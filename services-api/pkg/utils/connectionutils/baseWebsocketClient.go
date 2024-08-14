@@ -23,6 +23,7 @@ import (
 const (
 	interval    = 1.0
 	backoffRate = 2.0
+	separator   = "://"
 )
 
 // BaseWebSocketClient is the extended implementation of ConnectionManagerImpl
@@ -70,6 +71,8 @@ func (c *BaseWebSocketClient) Close() error {
 
 // Connect is new initiation of connecting to a websocket
 // value True for using the existing (previous) connection and False for a new one
+// Connect initiates a connection to the WebSocket server.
+// If reconnecting is true, it attempts to reconnect using existing session data.
 func (c *BaseWebSocketClient) Connect(reconnecting bool) bool {
 	c.conn.mu.Lock()
 	defer c.conn.mu.Unlock()
@@ -78,31 +81,25 @@ func (c *BaseWebSocketClient) Connect(reconnecting bool) bool {
 		logrus.Println("Attempting to reconnect...")
 
 		for attempt := int32(1); ; attempt++ {
-			if _, exists := c.data["LobbySessionID"]; exists {
-				lobbySessionID := c.GetData("LobbySessionID")
+			if lobbySessionID, exists := c.data["LobbySessionID"]; exists {
+				c.header = http.Header{}
 				c.header.Set("X-Ab-LobbySessionID", lobbySessionID.(string))
 
-				if success := c.connectInternal(); success {
+				if success := c.connectToWebSocket(); success {
 					logrus.Println("Successfully reconnected to the WebSocket server.")
-					c.OnConnect(reconnecting)
-
+					c.OnConnect(true)
 					return true
 				}
 			} else {
 				logrus.Println("Reconnecting but LobbySessionID is not found")
 
-				if success := c.connectInternal(); success {
+				if success := c.connectToWebSocket(); success {
 					logrus.Println("Connecting for the first time...")
-					c.OnConnect(false)
+					c.connectToWebSocket()
+					logrus.Infof("success to connect")
 
 					return true
 				}
-
-				return false
-			}
-
-			if !c.ShouldReconnect(websocket.CloseGoingAway, "Temporary network issue") {
-				logrus.Println("Decided not to reconnect.")
 
 				return false
 			}
@@ -113,69 +110,89 @@ func (c *BaseWebSocketClient) Connect(reconnecting bool) bool {
 			time.Sleep(time.Duration(delay) * time.Second)
 		}
 	} else {
-		if success := c.connectInternal(); success {
-			logrus.Println("Connecting to lobby for the first time...")
+		logrus.Infof("Non-reconnecting connection attempt")
+		if success := c.connectToWebSocket(); success {
 			c.OnConnect(false)
-
 			return true
 		}
-
 		return false
 	}
 }
 
-func (c *BaseWebSocketClient) connectInternal() bool {
+// connectToWebSocket performs the actual connection to the WebSocket server.
+func (c *BaseWebSocketClient) connectToWebSocket() bool {
 	authHeader := "Bearer " + c.data["token"].(string)
 	host := c.data["host"].(string)
-
 	lobbyURL := c.createURL(host)
+
 	logrus.Infof("Connecting user to %s", lobbyURL)
+
 	req, err := http.NewRequest(http.MethodGet, lobbyURL, nil)
 	if err != nil {
 		logrus.Error(err)
-
 		return false
 	}
 	req.Header.Set("Authorization", authHeader)
 
 	connection, res, err := websocket.DefaultDialer.Dial(req.URL.String(), req.Header)
 	if errors.Is(err, websocket.ErrBadHandshake) {
-		b, e := ioutil.ReadAll(res.Body)
-		if e == nil {
+		if b, e := ioutil.ReadAll(res.Body); e == nil {
 			logrus.Error("bad handshake", res.Status, string(b))
-
 			return false
 		}
 	}
-
 	if err != nil {
 		logrus.Error(err)
-
 		return false
 	}
 	defer res.Body.Close()
 
-	connection.SetCloseHandler(func(code int, text string) error {
-		logrus.Infof("handling close message, code: %d, message: %s\n", code, text)
-		err := connection.WriteControl(websocket.CloseMessage, websocket.FormatCloseMessage(code, text), time.Now().Add(time.Second))
-		if err != nil {
-			logrus.Error("error writing control message: ", err)
-		}
+	// Set up connection handlers
+	c.setupConnectionHandlers(connection)
 
-		return nil
-	})
-	connection.SetPongHandler(func(text string) error {
-		err := connection.SetReadDeadline(time.Now().Add(6 * time.Second))
-		if err != nil {
-			logrus.Error("error setting read deadline: ", err)
-		}
-
-		return nil
-	})
-
+	// Save the new connection
 	c.conn.Conn = connection
 
 	return true
+}
+
+// setupConnectionHandlers configures the close and pong handlers for the WebSocket connection.
+func (c *BaseWebSocketClient) setupConnectionHandlers(connection *websocket.Conn) {
+	connection.SetCloseHandler(func(code int, text string) error {
+		logrus.Infof("Handling close message, code: %d, message: %s\n", code, text)
+		logrus.Info("checking whether should reconnect")
+
+		if !c.ShouldReconnect(int32(code), text) {
+			logrus.Infof("should not reconnect. ")
+			c.Disconnect(int32(code), text)
+		}
+		logrus.Infof("reconnecting code %v", code)
+
+		go func() {
+			time.Sleep(time.Duration(c.ReconnectDelay(1)) * time.Second) // Wait before reconnecting
+			if !c.Connect(true) {
+				logrus.Error("failed to reconnect")
+
+				c.OnDisconnect(int32(code), text)
+
+				logrus.Infof("disconnecting with close message")
+				err := connection.WriteControl(websocket.CloseMessage, websocket.FormatCloseMessage(code, text), time.Now().Add(2*time.Second))
+				if err != nil {
+					logrus.Error("Error writing control message: ", err)
+				}
+			}
+		}()
+
+		return nil
+	})
+
+	connection.SetPongHandler(func(text string) error {
+		err := connection.SetReadDeadline(time.Now().Add(6 * time.Second))
+		if err != nil {
+			logrus.Error("Error setting read deadline: ", err)
+		}
+		return nil
+	})
 }
 
 func (c *BaseWebSocketClient) OnConnect(reconnecting bool) {
@@ -186,13 +203,29 @@ func (c *BaseWebSocketClient) OnConnect(reconnecting bool) {
 	}
 }
 
-func (c *BaseWebSocketClient) Send(message string) {
-	err := c.conn.Conn.WriteMessage(websocket.TextMessage, []byte(message))
-	if err != nil {
-		logrus.Error("failed to send websocket message")
-
-		return
+func (c *BaseWebSocketClient) Send(code int, message string) error {
+	// Check if the connection is still open
+	if c.conn.Conn == nil {
+		return errors.New("connection is not initialized")
 	}
+	if c.conn.Conn.UnderlyingConn() == nil {
+		return errors.New("connection is closed")
+	}
+
+	err := c.conn.Conn.WriteMessage(code, []byte(message))
+	if err != nil {
+		logrus.Error("failed to send websocket message: ", err)
+
+		if strings.Contains(err.Error(), "close sent") {
+			if !c.connectToWebSocket() {
+				return err
+			}
+		}
+
+		return err
+	}
+
+	return nil
 }
 
 func (c *BaseWebSocketClient) Disconnect(code int32, reason string) {
@@ -200,30 +233,24 @@ func (c *BaseWebSocketClient) Disconnect(code int32, reason string) {
 	defer c.conn.mu.Unlock()
 
 	if c.conn.Conn == nil {
-		logrus.Errorf("not connected")
+		logrus.Errorf("already disconnected")
 	}
 
 	logrus.Infof("Connection is closed. Code: %v, Reason: %s", code, reason)
 
-	message := websocket.FormatCloseMessage(int(code), reason)
-	err := c.conn.Conn.WriteMessage(websocket.CloseMessage, message)
-	if err != nil {
-		logrus.Errorf("failed to send close message: %v", err)
-	}
+	c.OnDisconnect(code, reason)
 
-	err = c.conn.Conn.Close()
+	err := c.conn.Conn.Close()
 	if err != nil {
 		logrus.Errorf("failed to close connection: %v", err)
 	}
-
-	c.conn.Base = nil
-	c.OnDisconnect(code, reason)
 }
 
 func (c *BaseWebSocketClient) OnDisconnect(code int32, reason string) {
 	logrus.Printf("Disconnected from WebSocket server with code %d and reason: %s\n", code, reason)
 
 	// Clean up data or state related to the connection
+	logrus.Infof("clearing data...")
 	c.ClearData()
 }
 
@@ -241,6 +268,7 @@ func (c *BaseWebSocketClient) OnMessage(msg string) {
 }
 
 func (c *BaseWebSocketClient) ShouldReconnect(code int32, reason string) bool {
+	logrus.Infof("code: %v", code)
 	// Undefined
 	if code < 0 {
 		return false
@@ -276,14 +304,17 @@ func (c *BaseWebSocketClient) ShouldReconnect(code int32, reason string) bool {
 }
 
 func (c *BaseWebSocketClient) ReconnectDelay(numberOfAttempts int32) float32 {
+	logrus.Infof("adding reconnect delay")
+
 	return float32(interval * math.Pow(backoffRate, float64(numberOfAttempts)))
 }
 
 func (c *BaseWebSocketClient) GetData(key string) interface{} {
-	c.conn.mu.Lock()
-	defer c.conn.mu.Unlock()
+	if _, exists := c.data[key]; exists {
+		return c.data[key]
+	}
 
-	return c.data[key]
+	return ""
 }
 
 func (c *BaseWebSocketClient) HasData(key string) bool {
@@ -303,27 +334,40 @@ func (c *BaseWebSocketClient) SetData(key string, value interface{}) {
 }
 
 func (c *BaseWebSocketClient) ClearData() {
-	c.conn.mu.Lock()
-	defer c.conn.mu.Unlock()
-
 	c.data = make(map[string]interface{})
 }
 
 func (c *BaseWebSocketClient) ReadWSMessage(done chan struct{}, messageHandler func(message []byte)) {
 	for {
-		_, msg, subErr := c.conn.Conn.ReadMessage()
-		if subErr != nil {
-			logrus.Info("read message failed: ", subErr)
+		_, msg, err := c.conn.Conn.ReadMessage()
+		if err != nil {
+			logrus.Errorf("read message failed: %v", err)
+
+			code := websocket.CloseProtocolError // TODO adjusted to switch
+			text := err.Error()
+
+			if !c.ShouldReconnect(int32(code), text) {
+				logrus.Infof("should not reconnect. ")
+				c.Disconnect(int32(code), text)
+			}
+			logrus.Infof("reconnecting code %v", code)
+
+			time.Sleep(time.Duration(c.ReconnectDelay(1)) * time.Second) // Wait before reconnecting
+
+			c.connectToWebSocket()
+
+			logrus.Error("failed to reconnect")
 			close(done)
 
 			return
 		}
+
 		if len(msg) > 0 {
 			if messageHandler != nil {
-				// If a custom message handler is provided, use it
+				// Use custom message handler if provided
 				messageHandler(msg)
 			} else {
-				// Otherwise, use the default OnMessage method
+				// Default message handling
 				c.OnMessage(string(msg))
 			}
 		}
@@ -341,6 +385,7 @@ func (c *BaseWebSocketClient) WSHeartbeat(done chan struct{}) {
 			if err != nil {
 				logrus.Errorf("cannot write heartbeat: %v", err)
 			}
+
 		case <-done:
 			logrus.Info("done signal received, stop heartbeat.")
 

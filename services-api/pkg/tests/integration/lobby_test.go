@@ -5,11 +5,8 @@
 package integration_test
 
 import (
-	"bufio"
-	"strings"
 	"testing"
 
-	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
 	lobbyAdminNotification "github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/admin"
@@ -24,32 +21,12 @@ import (
 
 var (
 	connMgr             *integration.ConnectionManagerImpl
-	msgType             string
 	notificationService = &service.NotificationServiceWebsocket{
 		ConfigRepository:  oAuth20Service.ConfigRepository,
 		TokenRepository:   oAuth20Service.TokenRepository,
 		ConnectionManager: connMgr,
 	}
 )
-
-func decodeWSMessage(msg string) map[string]string {
-	scanner := bufio.NewScanner(strings.NewReader(msg))
-	res := make(map[string]string)
-
-	for scanner.Scan() {
-		str := scanner.Text()
-		keyValue := strings.Split(str, ": ")
-		if len(keyValue) == 2 {
-			res[keyValue[0]] = keyValue[1]
-		}
-	}
-
-	if err := scanner.Err(); err != nil {
-		logrus.Errorf("error reading websocket message: %v", err)
-	}
-
-	return res
-}
 
 func TestIntegrationNotification(t *testing.T) {
 	t.Parallel()

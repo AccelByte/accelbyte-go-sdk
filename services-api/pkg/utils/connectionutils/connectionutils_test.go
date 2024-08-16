@@ -5,16 +5,15 @@
 package connectionutils_test
 
 import (
-	"github.com/gorilla/websocket"
 	"net/http"
 	"testing"
 	"time"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
-	"github.com/sirupsen/logrus"
+
+	"github.com/gorilla/websocket"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -22,13 +21,8 @@ var (
 	configRepo = auth.DefaultConfigRepositoryImpl()
 	tokenRepo  = auth.DefaultTokenRepositoryImpl()
 	token      = "foo"
+	baseUrl    = utils.GetEnv("AB_BASE_URL", "http://localhost:8080")
 	connMgr    = &connectionutils.WSConnection{Base: &connectionutils.BaseWebSocketClient{}}
-
-	oAuth20Service = &iam.OAuth20Service{
-		Client:           factory.NewIamClient(configRepo),
-		ConfigRepository: configRepo,
-		TokenRepository:  tokenRepo,
-	}
 )
 
 const (
@@ -36,17 +30,9 @@ const (
 	url2 = "http://localhost:8080/ws/lobby/force-close?errorCode=4000"
 )
 
-func Init(t *testing.T) {
-	t.Helper()
-
-	err := oAuth20Service.Login("admin", "admin")
-	if err != nil {
-		t.Fatal(err)
-	}
-}
-
 func TestConnectionUtils(t *testing.T) {
-	Init(t)
+	tokenRepo.AccessToken.AccessToken = &token
+	configRepo.BaseUrl = baseUrl
 
 	conn, err := connectionutils.NewWebsocketConnectionWithReconnect(configRepo, tokenRepo, false)
 	if err != nil {
@@ -58,6 +44,7 @@ func TestConnectionUtils(t *testing.T) {
 
 func TestConnectionUtils_ShouldReconnect(t *testing.T) {
 	tokenRepo.AccessToken.AccessToken = &token
+	configRepo.BaseUrl = baseUrl
 	connection := connectionutils.NewDefaultBaseWebSocketClient(configRepo, tokenRepo)
 
 	assert.False(t, connection.ShouldReconnect(-1, "Invalid code"))
@@ -99,10 +86,11 @@ func TestConnectionUtils_DataManagement(t *testing.T) {
 }
 
 func TestWebSocketReconnect_Case1(t *testing.T) {
-	Init(t)
+	tokenRepo.AccessToken.AccessToken = &token
+	configRepo.BaseUrl = baseUrl
 
 	// 1. Connecting to mock server
-	client, err := connectionutils.NewWebsocketConnectionWithReconnect(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, true)
+	client, err := connectionutils.NewWebsocketConnectionWithReconnect(configRepo, tokenRepo, true)
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, client)
 
@@ -118,17 +106,16 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 	assert.Nil(t, errPing)
 
 	client.Conn.SetPongHandler(func(appData string) error {
-		err := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
-		if err != nil {
-			logrus.Error("Error setting read deadline: ", err)
-			return err
+		errDeadline := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
+		if errDeadline != nil {
+			assert.Nil(t, errDeadline, "Error setting read deadline")
 		}
 
 		// Log the received Pong message and the application data (if any) to t.Log
 		t.Logf("Pong received: %s", appData)
+
 		return nil
 	})
-
 	// 4. Send a POST /ws/lobby/force-close?errorCode=2000 HTTP request to the Mock Server.
 	req, _ := http.NewRequest("POST", url1, nil)
 	_, err = http.DefaultClient.Do(req)
@@ -148,14 +135,14 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 	assert.Nil(t, errPing)
 
 	client.Conn.SetPongHandler(func(appData string) error {
-		err := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
-		if err != nil {
-			logrus.Error("Error setting read deadline: ", err)
-			return err
+		errDeadline := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
+		if errDeadline != nil {
+			assert.Nil(t, errDeadline, "Error setting read deadline")
 		}
 
 		// Log the received Pong message and the application data (if any) to t.Log
 		t.Logf("Pong received: %s", appData)
+
 		return nil
 	})
 
@@ -167,10 +154,11 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 }
 
 func TestWebSocketReconnect_Case2(t *testing.T) {
-	Init(t)
+	tokenRepo.AccessToken.AccessToken = &token
+	configRepo.BaseUrl = baseUrl
 
 	// 1. Connecting to mock server
-	client, err := connectionutils.NewWebsocketConnectionWithReconnect(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, false)
+	client, err := connectionutils.NewWebsocketConnectionWithReconnect(configRepo, tokenRepo, true)
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, client)
 
@@ -186,14 +174,14 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	assert.Nil(t, errPing)
 
 	client.Conn.SetPongHandler(func(appData string) error {
-		err := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
-		if err != nil {
-			logrus.Error("Error setting read deadline: ", err)
-			return err
+		errDeadline := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
+		if errDeadline != nil {
+			assert.Nil(t, errDeadline, "Error setting read deadline")
 		}
 
 		// Log the received Pong message and the application data (if any) to t.Log
 		t.Logf("Pong received: %s", appData)
+
 		return nil
 	})
 
@@ -217,7 +205,7 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	assert.Empty(t, client.Base.GetData("LobbySessionID"))
 
 	// 9. Start a new connection to the Mock Server’s Lobby Service.
-	client, err = connectionutils.NewWebsocketConnectionWithReconnect(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, false)
+	client, err = connectionutils.NewWebsocketConnectionWithReconnect(configRepo, tokenRepo, false)
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, client)
 
@@ -230,14 +218,14 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	assert.Nil(t, errPing)
 
 	client.Conn.SetPongHandler(func(appData string) error {
-		err := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
-		if err != nil {
-			logrus.Error("Error setting read deadline: ", err)
-			return err
+		errDeadline := client.Conn.SetReadDeadline(time.Now().Add(6 * time.Second))
+		if errDeadline != nil {
+			assert.Nil(t, errDeadline, "Error setting read deadline")
 		}
 
 		// Log the received Pong message and the application data (if any) to t.Log
 		t.Logf("Pong received: %s", appData)
+
 		return nil
 	})
 

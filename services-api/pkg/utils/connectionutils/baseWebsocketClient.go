@@ -32,6 +32,8 @@ type BaseWebSocketClient struct {
 	conn   *WSConnection
 	data   map[string]interface{}
 	header http.Header
+
+	mu sync.RWMutex
 }
 
 func NewDefaultBaseWebSocketClient(configRepo repository.ConfigRepository, tokenRepo repository.TokenRepository) *BaseWebSocketClient {
@@ -48,7 +50,6 @@ func NewDefaultBaseWebSocketClient(configRepo repository.ConfigRepository, token
 		"host":  baseURLSplit[1],
 	}, conn: &WSConnection{
 		Conn: &websocket.Conn{},
-		mu:   sync.RWMutex{},
 	}}
 }
 
@@ -75,8 +76,10 @@ func (c *BaseWebSocketClient) Close() error {
 // Connect initiates a connection to the WebSocket server.
 // If reconnecting is true, it attempts to reconnect using existing session data.
 func (c *BaseWebSocketClient) Connect(reconnecting bool) bool {
-	c.conn.mu.Lock()
-	defer c.conn.mu.Unlock()
+	c.mu = sync.RWMutex{}
+
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
 	if reconnecting {
 		logrus.Println("Attempting to reconnect...")
@@ -237,8 +240,8 @@ func (c *BaseWebSocketClient) Send(code int, message string) error {
 }
 
 func (c *BaseWebSocketClient) Disconnect(code int32, reason string) {
-	c.conn.mu.Lock()
-	defer c.conn.mu.Unlock()
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
 	if c.conn.Conn == nil {
 		logrus.Errorf("already disconnected")
@@ -325,8 +328,8 @@ func (c *BaseWebSocketClient) GetData(key string) interface{} {
 }
 
 func (c *BaseWebSocketClient) HasData(key string) bool {
-	c.conn.mu.Lock()
-	defer c.conn.mu.Unlock()
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
 	_, exists := c.data[key]
 
@@ -334,8 +337,8 @@ func (c *BaseWebSocketClient) HasData(key string) bool {
 }
 
 func (c *BaseWebSocketClient) SetData(key string, value interface{}) {
-	c.conn.mu.Lock()
-	defer c.conn.mu.Unlock()
+	c.mu.Lock()
+	defer c.mu.Unlock()
 
 	c.data[key] = value
 }
@@ -344,41 +347,54 @@ func (c *BaseWebSocketClient) ClearData() {
 	c.data = make(map[string]interface{})
 }
 
+func (c *BaseWebSocketClient) readWs() (messageType int, p []byte, err error) {
+	c.mu.Lock()
+	c.mu.Unlock()
+
+	return c.conn.Conn.ReadMessage()
+}
+
 func (c *BaseWebSocketClient) ReadWSMessage(done chan struct{}, messageHandler func(message []byte)) {
-	for {
-		_, msg, err := c.conn.Conn.ReadMessage()
-		if err != nil {
-			logrus.Errorf("read message failed: %v", err)
+	go func() {
+		for {
+			var msg []byte
+			var err error
 
-			code := websocket.CloseProtocolError
-			text := err.Error()
+			_, msg, err = c.readWs()
 
-			if !c.ShouldReconnect(int32(code), text) {
-				logrus.Infof("should not reconnect. ")
-				c.Disconnect(int32(code), text)
+			if err != nil {
+				logrus.Errorf("read message failed: %v", err)
+
+				code := websocket.CloseProtocolError
+				text := err.Error()
+
+				if !c.ShouldReconnect(int32(code), text) {
+					logrus.Infof("should not reconnect. ")
+					c.Disconnect(int32(code), text)
+				}
+				logrus.Infof("reconnecting code %v", code)
+
+				time.Sleep(time.Duration(c.ReconnectDelay(1)) * time.Second) // Wait before reconnecting
+
+				c.connectToWebSocket()
+
+				logrus.Error("failed to reconnect")
+				close(done)
+
+				return
 			}
-			logrus.Infof("reconnecting code %v", code)
 
-			time.Sleep(time.Duration(c.ReconnectDelay(1)) * time.Second) // Wait before reconnecting
-
-			c.connectToWebSocket()
-
-			logrus.Error("failed to reconnect")
-			close(done)
-
-			return
-		}
-
-		if len(msg) > 0 {
-			if messageHandler != nil {
-				// Use custom message handler if provided
-				messageHandler(msg)
-			} else {
-				// Default message handling
-				c.OnMessage(string(msg))
+			if len(msg) > 0 {
+				if messageHandler != nil {
+					// Use custom message handler if provided
+					messageHandler(msg)
+				} else {
+					// Default message handling
+					c.OnMessage(string(msg))
+				}
 			}
 		}
-	}
+	}()
 }
 
 func (c *BaseWebSocketClient) WSHeartbeat(done chan struct{}) {

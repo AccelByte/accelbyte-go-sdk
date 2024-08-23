@@ -5,14 +5,18 @@
 package integration_test
 
 import (
+	"bufio"
+	"strings"
 	"testing"
 
+	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
 	lobbyAdminNotification "github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
@@ -21,12 +25,43 @@ import (
 
 var (
 	connMgr             *integration.ConnectionManagerImpl
+	msgType             string
 	notificationService = &service.NotificationServiceWebsocket{
 		ConfigRepository:  oAuth20Service.ConfigRepository,
 		TokenRepository:   oAuth20Service.TokenRepository,
 		ConnectionManager: connMgr,
 	}
+	lobbyMessageHandler = func(dataByte []byte) {
+
+		msg := decodeWSMessage(string(dataByte))
+
+		if v, ok := msg["type"]; ok {
+			msgType = v
+		}
+		switch msgType {
+		case model.TypeNotificationMessage:
+		}
+	}
 )
+
+func decodeWSMessage(msg string) map[string]string {
+	scanner := bufio.NewScanner(strings.NewReader(msg))
+	res := make(map[string]string)
+
+	for scanner.Scan() {
+		str := scanner.Text()
+		keyValue := strings.Split(str, ": ")
+		if len(keyValue) == 2 {
+			res[keyValue[0]] = keyValue[1]
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		logrus.Errorf("error reading websocket message: %v", err)
+	}
+
+	return res
+}
 
 func TestIntegrationNotification(t *testing.T) {
 	t.Parallel()
@@ -34,7 +69,14 @@ func TestIntegrationNotification(t *testing.T) {
 	// Login User - Arrange
 	Init()
 	connMgr = &integration.ConnectionManagerImpl{}
-	connection, err := connectionutils.NewWebsocketConnectionWithReconnect(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, true)
+	connection, err := connectionutils.NewWSConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, connectionutils.WithMessageHandler(lobbyMessageHandler))
+	assert.Nil(t, err, "err should be nil")
+
+	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
+	assert.NotNil(t, lobbyClient)
+
+	success, err := lobbyClient.Connect(true)
+	assert.True(t, success)
 	assert.Nil(t, err, "err should be nil")
 
 	connMgr.Save(connection)

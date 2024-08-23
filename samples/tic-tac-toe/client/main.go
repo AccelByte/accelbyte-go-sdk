@@ -231,10 +231,15 @@ func login() {
 	// listening message from lobby using AccelByte Go SDK
 	logrus.Info("Enter websocket mode")
 	connMgr = &utils.ConnectionManagerImpl{}
-	connection, err := connectionutils.NewWebsocketConnection(
+	connection, err := connectionutils.NewWSConnection(
 		oauthService.ConfigRepository,
 		oauthService.TokenRepository,
-		websocketMessageHandler)
+		connectionutils.WithMessageHandler(websocketMessageHandler))
+	if err != nil {
+		panic(err)
+	}
+	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
+	_, err = lobbyClient.Connect(true)
 	if err != nil {
 		panic(err)
 	}

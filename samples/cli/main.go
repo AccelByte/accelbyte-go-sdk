@@ -76,7 +76,12 @@ func main() {
 		connMgr = &utils.ConnectionManagerImpl{}
 		configRepo := &repository.ConfigRepositoryImpl{}
 		tokenRepo := &repository.TokenRepositoryImpl{}
-		connection, err := connectionutils.NewWebsocketConnection(configRepo, tokenRepo, messageHandler)
+		connection, err := connectionutils.NewWSConnection(configRepo, tokenRepo, connectionutils.WithMessageHandler(messageHandler))
+		if err != nil {
+			panic(err)
+		}
+		lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
+		_, err = lobbyClient.Connect(true)
 		if err != nil {
 			panic(err)
 		}
@@ -111,7 +116,12 @@ func main() {
 		connMgr = &utils.ConnectionManagerImpl{}
 		configRepo := &repository.ConfigRepositoryImpl{}
 		tokenRepo := &repository.TokenRepositoryImpl{}
-		connection, err := connectionutils.NewWebsocketConnection(configRepo, tokenRepo, messageHandler)
+		connection, err := connectionutils.NewWSConnection(configRepo, tokenRepo, connectionutils.WithMessageHandler(messageHandler))
+		if err != nil {
+			panic(err)
+		}
+		lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
+		_, err = lobbyClient.Connect(true)
 		if err != nil {
 			panic(err)
 		}

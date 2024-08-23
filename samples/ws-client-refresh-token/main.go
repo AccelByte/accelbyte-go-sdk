@@ -64,11 +64,15 @@ func main() {
 		TokenRepository:   &tokenRepo,
 		ConnectionManager: connMgr,
 	}
-	connection, errConn := connectionutils.NewWebsocketConnection(&configRepo, &tokenRepo, lobbyMessageHandler)
+	connection, errConn := connectionutils.NewWSConnection(&configRepo, &tokenRepo, connectionutils.WithMessageHandler(lobbyMessageHandler))
 	if errConn != nil {
 		fmt.Println("failed to make websocket connection")
 	}
-
+	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
+	_, err = lobbyClient.Connect(true)
+	if err != nil {
+		panic(err)
+	}
 	connMgr.Save(connection)
 
 	fmt.Println("This will print every 5 seconds")

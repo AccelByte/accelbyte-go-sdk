@@ -185,8 +185,13 @@ func TestWebsocketRefresh_withMockServer(t *testing.T) {
 		ConnectionManager: connMgr,
 	}
 
-	connection, err := connectionutils.NewWebsocketConnection(configRepoObs, tokenRepoObs, lobbyMessageHandler)
+	connection, err := connectionutils.NewWSConnection(configRepoObs, tokenRepoObs, connectionutils.WithMessageHandler(lobbyMessageHandler))
 	assert.Nil(t, err, "err should be nil")
+
+	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
+	success, err := lobbyClient.Connect(true)
+	assert.Nil(t, err, "err should be nil")
+	assert.True(t, success)
 
 	connMgr.Save(connection)
 

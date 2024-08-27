@@ -45,11 +45,11 @@ var (
 	matchFunction     = "basic"
 	expirationSeconds = int32(600)
 	data              = map[string]interface{}{
-		"alliance": map[string]string{
-			"minNumber":       "2",
-			"maxNumber":       "10",
-			"playerMinNumber": "2",
-			"playerMaxNumber": "4",
+		"alliance": map[string]int{
+			"min_number":        2,
+			"max_number":        10,
+			"player_min_number": 2,
+			"player_max_number": 4,
 		},
 		"matchingRules": []map[string]string{
 			{
@@ -77,10 +77,10 @@ var (
 		"alliance_flexing_rule": []map[string]int{
 			{
 				"duration":          600,
-				"min_number":        0,
-				"max_number":        0,
-				"player_min_number": 0,
-				"player_max_number": 0,
+				"min_number":        1,
+				"max_number":        2,
+				"player_min_number": 1,
+				"player_max_number": 2,
 			},
 		},
 	}

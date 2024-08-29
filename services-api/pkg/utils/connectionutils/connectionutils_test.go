@@ -256,7 +256,7 @@ func checkIfClosed(t *testing.T, WSConn *connectionutils.WSConnection) bool {
 
 	mu.Lock()
 	defer mu.Unlock()
-	err := WSConn.Conn.WriteMessage(websocket.TextMessage, []byte("ping"))
+	err := WSConn.Conn.WriteMessage(websocket.PongMessage, []byte{})
 	if err != nil {
 		t.Logf("Connection is closed: %v", err)
 

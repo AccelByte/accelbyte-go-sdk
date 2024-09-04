@@ -28,14 +28,14 @@ var RefundOrderCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		orderNo, _ := cmd.Flags().GetString("orderNo")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.OrderRefundCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		orderNo, _ := cmd.Flags().GetString("orderNo")
 		input := &order.RefundOrderParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var RefundOrderCmd = &cobra.Command{
 
 func init() {
 	RefundOrderCmd.Flags().String("body", "", "Body")
+	_ = RefundOrderCmd.MarkFlagRequired("body")
 	RefundOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = RefundOrderCmd.MarkFlagRequired("namespace")
 	RefundOrderCmd.Flags().String("orderNo", "", "Order no")

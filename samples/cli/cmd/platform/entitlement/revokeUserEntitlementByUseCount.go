@@ -28,15 +28,15 @@ var RevokeUserEntitlementByUseCountCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		entitlementId, _ := cmd.Flags().GetString("entitlementId")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RevokeUseCountRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		entitlementId, _ := cmd.Flags().GetString("entitlementId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &entitlement.RevokeUserEntitlementByUseCountParams{
 			Body:          body,
 			EntitlementID: entitlementId,
@@ -58,6 +58,7 @@ var RevokeUserEntitlementByUseCountCmd = &cobra.Command{
 
 func init() {
 	RevokeUserEntitlementByUseCountCmd.Flags().String("body", "", "Body")
+	_ = RevokeUserEntitlementByUseCountCmd.MarkFlagRequired("body")
 	RevokeUserEntitlementByUseCountCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = RevokeUserEntitlementByUseCountCmd.MarkFlagRequired("entitlementId")
 	RevokeUserEntitlementByUseCountCmd.Flags().String("namespace", "", "Namespace")

@@ -28,15 +28,15 @@ var DebitUserWalletCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
-		walletId, _ := cmd.Flags().GetString("walletId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.DebitRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
+		walletId, _ := cmd.Flags().GetString("walletId")
 		input := &wallet.DebitUserWalletParams{
 			Body:      body,
 			Namespace: namespace,
@@ -58,6 +58,7 @@ var DebitUserWalletCmd = &cobra.Command{
 
 func init() {
 	DebitUserWalletCmd.Flags().String("body", "", "Body")
+	_ = DebitUserWalletCmd.MarkFlagRequired("body")
 	DebitUserWalletCmd.Flags().String("namespace", "", "Namespace")
 	_ = DebitUserWalletCmd.MarkFlagRequired("namespace")
 	DebitUserWalletCmd.Flags().String("userId", "", "User id")

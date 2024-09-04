@@ -28,13 +28,13 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.DLCItemConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &dlc.UpdateDLCItemConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateDLCItemConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateDLCItemConfigCmd.MarkFlagRequired("body")
 	UpdateDLCItemConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

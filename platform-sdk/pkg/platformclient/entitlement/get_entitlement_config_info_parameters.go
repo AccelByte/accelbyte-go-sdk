@@ -161,8 +161,8 @@ func (o *GetEntitlementConfigInfoParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithWithoutCache adds the withoutCache to the get entitlement config info params
-func (o *GetEntitlementConfigInfoParams) WithWithoutCache(withoutCache *bool) *GetEntitlementConfigInfoParams {
+// WithWithoutCache_ adds the withoutCache to the get entitlement config info params
+func (o *GetEntitlementConfigInfoParams) WithWithoutCache_(withoutCache *bool) *GetEntitlementConfigInfoParams {
 	o.SetWithoutCache(withoutCache)
 	return o
 }

@@ -28,13 +28,13 @@ var BulkCreditCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body []*platformclientmodels.BulkCreditRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &wallet.BulkCreditParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var BulkCreditCmd = &cobra.Command{
 
 func init() {
 	BulkCreditCmd.Flags().String("body", "", "Body")
+	_ = BulkCreditCmd.MarkFlagRequired("body")
 	BulkCreditCmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkCreditCmd.MarkFlagRequired("namespace")
 }

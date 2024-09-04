@@ -18,32 +18,6 @@
     "url": "https://stage.accelbyte.io/dsartifact/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:DSAM:ARTIFACT:NODES [DELETE]": "ADMIN:DSAM:ARTIFACT:NODES [DELETE]",
-        "ADMIN:DSAM:ARTIFACT:NODES [READ]": "ADMIN:DSAM:ARTIFACT:NODES [READ]",
-        "ADMIN:DSAM:ARTIFACT:QUEUE [DELETE]": "ADMIN:DSAM:ARTIFACT:QUEUE [DELETE]",
-        "ADMIN:DSAM:ARTIFACT:QUEUE [READ]": "ADMIN:DSAM:ARTIFACT:QUEUE [READ]",
-        "ADMIN:DSAM:ARTIFACT:QUEUE [UPDATE]": "ADMIN:DSAM:ARTIFACT:QUEUE [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT [READ]": "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [READ]": "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSAM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSAM:SERVER [READ]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -98,12 +72,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:NODES [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -172,12 +140,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:NODES [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -261,9 +223,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:QUEUE [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -319,9 +278,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:QUEUE [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -384,9 +340,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:QUEUE [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -447,9 +400,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:QUEUE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -512,9 +462,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:DSAM:ARTIFACT:QUEUE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -578,12 +525,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -673,12 +614,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -782,12 +717,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT:QUEUE [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -913,9 +842,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:SERVER [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -972,12 +898,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1037,12 +957,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:ARTIFACT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1160,9 +1074,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSAM:SERVER [READ]"
-            ],
             "authorization": []
           }
         ],

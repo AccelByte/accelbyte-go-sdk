@@ -42,7 +42,7 @@ type ClientService interface {
 	RequestPresignedURLShort(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, error)
 	SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error)
 	SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error)
-	RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2NotFound, error)
+	RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2Forbidden, *RetrieveSingleLocalizedPolicyVersion2NotFound, error)
 	RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -661,7 +661,7 @@ RetrieveSingleLocalizedPolicyVersion2 retrieve a localized version
 Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.
 Other detail info:
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2NotFound, error) {
+func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2Forbidden, *RetrieveSingleLocalizedPolicyVersion2NotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRetrieveSingleLocalizedPolicyVersion2Params()
@@ -692,19 +692,22 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLoc
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *RetrieveSingleLocalizedPolicyVersion2OK:
-		return v, nil, nil
+		return v, nil, nil, nil
+
+	case *RetrieveSingleLocalizedPolicyVersion2Forbidden:
+		return nil, v, nil, nil
 
 	case *RetrieveSingleLocalizedPolicyVersion2NotFound:
-		return nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -747,6 +750,8 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSing
 
 	case *RetrieveSingleLocalizedPolicyVersion2OK:
 		return v, nil
+	case *RetrieveSingleLocalizedPolicyVersion2Forbidden:
+		return nil, v
 	case *RetrieveSingleLocalizedPolicyVersion2NotFound:
 		return nil, v
 

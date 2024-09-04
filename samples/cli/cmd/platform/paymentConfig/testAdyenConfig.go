@@ -54,5 +54,6 @@ var TestAdyenConfigCmd = &cobra.Command{
 
 func init() {
 	TestAdyenConfigCmd.Flags().String("body", "", "Body")
+	_ = TestAdyenConfigCmd.MarkFlagRequired("body")
 	TestAdyenConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
 }

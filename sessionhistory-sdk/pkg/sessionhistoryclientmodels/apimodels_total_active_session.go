@@ -21,6 +21,9 @@ type ApimodelsTotalActiveSession struct {
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
+	// matchpool
+	MatchPool string `json:"matchPool,omitempty"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 

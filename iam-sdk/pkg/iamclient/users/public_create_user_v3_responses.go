@@ -140,7 +140,7 @@ func NewPublicCreateUserV3BadRequest() *PublicCreateUserV3BadRequest {
 
 /*PublicCreateUserV3BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10130</td><td>user under age</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr><tr><td>20002</td><td>validation error</td></tr><tr><td>10130</td><td>user under age</td></tr><tr><td>10152</td><td>verification code not found</td></tr></table>
 */
 type PublicCreateUserV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse

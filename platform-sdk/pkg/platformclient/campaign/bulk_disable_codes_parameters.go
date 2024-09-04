@@ -69,11 +69,13 @@ type BulkDisableCodesParams struct {
 	CampaignID string
 	/*Namespace*/
 	Namespace string
+	/*BatchName*/
+	BatchName *string
 	/*BatchNo
 	  if not present will match all except 0
 
 	*/
-	BatchNo *int32
+	BatchNo []int32
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -162,14 +164,25 @@ func (o *BulkDisableCodesParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithBatchName_ adds the batchName to the bulk disable codes params
+func (o *BulkDisableCodesParams) WithBatchName_(batchName *string) *BulkDisableCodesParams {
+	o.SetBatchName(batchName)
+	return o
+}
+
+// SetBatchName adds the batchName to the bulk disable codes params
+func (o *BulkDisableCodesParams) SetBatchName(batchName *string) {
+	o.BatchName = batchName
+}
+
 // WithBatchNo adds the batchNo to the bulk disable codes params
-func (o *BulkDisableCodesParams) WithBatchNo(batchNo *int32) *BulkDisableCodesParams {
+func (o *BulkDisableCodesParams) WithBatchNo(batchNo []int32) *BulkDisableCodesParams {
 	o.SetBatchNo(batchNo)
 	return o
 }
 
 // SetBatchNo adds the batchNo to the bulk disable codes params
-func (o *BulkDisableCodesParams) SetBatchNo(batchNo *int32) {
+func (o *BulkDisableCodesParams) SetBatchNo(batchNo []int32) {
 	o.BatchNo = batchNo
 }
 
@@ -191,20 +204,31 @@ func (o *BulkDisableCodesParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 
-	if o.BatchNo != nil {
+	if o.BatchName != nil {
 
-		// query param batchNo
-		var qrBatchNo int32
-		if o.BatchNo != nil {
-			qrBatchNo = *o.BatchNo
+		// query param batchName
+		var qrBatchName string
+		if o.BatchName != nil {
+			qrBatchName = *o.BatchName
 		}
-		qBatchNo := swag.FormatInt32(qrBatchNo)
-		if qBatchNo != "" {
-			if err := r.SetQueryParam("batchNo", qBatchNo); err != nil {
+		qBatchName := qrBatchName
+		if qBatchName != "" {
+			if err := r.SetQueryParam("batchName", qBatchName); err != nil {
 				return err
 			}
 		}
 
+	}
+
+	var valuesBatchNo []string
+	for _, v := range o.BatchNo {
+		valuesBatchNo = append(valuesBatchNo, swag.FormatInt32(v))
+	}
+
+	joinedBatchNo := swag.JoinByFormat(valuesBatchNo, "multi")
+	// query array param batchNo
+	if err := r.SetQueryParam("batchNo", joinedBatchNo...); err != nil {
+		return err
 	}
 
 	// setting the default header value

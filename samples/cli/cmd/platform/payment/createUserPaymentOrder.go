@@ -28,14 +28,14 @@ var CreateUserPaymentOrderCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentOrderCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &payment.CreateUserPaymentOrderParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var CreateUserPaymentOrderCmd = &cobra.Command{
 
 func init() {
 	CreateUserPaymentOrderCmd.Flags().String("body", "", "Body")
+	_ = CreateUserPaymentOrderCmd.MarkFlagRequired("body")
 	CreateUserPaymentOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateUserPaymentOrderCmd.MarkFlagRequired("namespace")
 	CreateUserPaymentOrderCmd.Flags().String("userId", "", "User id")

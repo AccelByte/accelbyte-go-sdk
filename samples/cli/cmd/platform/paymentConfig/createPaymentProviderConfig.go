@@ -52,4 +52,5 @@ var CreatePaymentProviderConfigCmd = &cobra.Command{
 
 func init() {
 	CreatePaymentProviderConfigCmd.Flags().String("body", "", "Body")
+	_ = CreatePaymentProviderConfigCmd.MarkFlagRequired("body")
 }

@@ -28,14 +28,14 @@ var FulfillRewardsV2Cmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RewardsRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &fulfillment.FulfillRewardsV2Params{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var FulfillRewardsV2Cmd = &cobra.Command{
 
 func init() {
 	FulfillRewardsV2Cmd.Flags().String("body", "", "Body")
+	_ = FulfillRewardsV2Cmd.MarkFlagRequired("body")
 	FulfillRewardsV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = FulfillRewardsV2Cmd.MarkFlagRequired("namespace")
 	FulfillRewardsV2Cmd.Flags().String("userId", "", "User id")

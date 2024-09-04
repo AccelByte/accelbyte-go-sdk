@@ -68,7 +68,7 @@ type PublicEnableMyAuthenticatorV4Params struct {
 	  code
 
 	*/
-	Code *string
+	Code string
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -141,13 +141,13 @@ func (o *PublicEnableMyAuthenticatorV4Params) SetFlightId(flightId string) {
 }
 
 // WithCode adds the code to the public enable my authenticator v4 params
-func (o *PublicEnableMyAuthenticatorV4Params) WithCode(code *string) *PublicEnableMyAuthenticatorV4Params {
+func (o *PublicEnableMyAuthenticatorV4Params) WithCode(code string) *PublicEnableMyAuthenticatorV4Params {
 	o.SetCode(code)
 	return o
 }
 
 // SetCode adds the code to the public enable my authenticator v4 params
-func (o *PublicEnableMyAuthenticatorV4Params) SetCode(code *string) {
+func (o *PublicEnableMyAuthenticatorV4Params) SetCode(code string) {
 	o.Code = code
 }
 
@@ -170,20 +170,13 @@ func (o *PublicEnableMyAuthenticatorV4Params) WriteToRequest(r runtime.ClientReq
 	}
 	var res []error
 
-	if o.Code != nil {
-
-		// form param code
-		var frCode string
-		if o.Code != nil {
-			frCode = *o.Code
+	// form param code
+	frCode := o.Code
+	fCode := frCode
+	if fCode != "" {
+		if err := r.SetFormParam("code", fCode); err != nil {
+			return err
 		}
-		fCode := frCode
-		if fCode != "" {
-			if err := r.SetFormParam("code", fCode); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// path param namespace

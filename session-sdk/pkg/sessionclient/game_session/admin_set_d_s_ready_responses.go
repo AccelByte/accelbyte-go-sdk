@@ -75,7 +75,7 @@ func NewAdminSetDSReadyNoContent() *AdminSetDSReadyNoContent {
 
 /*AdminSetDSReadyNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
 type AdminSetDSReadyNoContent struct {
 }

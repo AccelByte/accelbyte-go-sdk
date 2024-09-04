@@ -117,6 +117,37 @@ func (aaa *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use RenameBatchShort instead.
+func (aaa *CampaignService) RenameBatch(input *campaign.RenameBatchParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, notFound, err := aaa.Client.Campaign.RenameBatch(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use QueryCampaignBatchNamesShort instead.
+func (aaa *CampaignService) QueryCampaignBatchNames(input *campaign.QueryCampaignBatchNamesParams) ([]*platformclientmodels.CampaignBatchNameInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Campaign.QueryCampaignBatchNames(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetCampaignDynamicShort instead.
 func (aaa *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicParams) (*platformclientmodels.CampaignDynamicInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -417,6 +448,66 @@ func (aaa *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPa
 	}
 
 	ok, err := aaa.Client.Campaign.UpdateCampaignShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *CampaignService) RenameBatchShort(input *campaign.RenameBatchParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Campaign.RenameBatchShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *CampaignService) QueryCampaignBatchNamesShort(input *campaign.QueryCampaignBatchNamesParams) ([]*platformclientmodels.CampaignBatchNameInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdCampaign != nil {
+		input.XFlightId = tempFlightIdCampaign
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Campaign.QueryCampaignBatchNamesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

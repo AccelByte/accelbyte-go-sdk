@@ -27,9 +27,11 @@ var PublicSendMyMFAEmailCodeV4Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		action, _ := cmd.Flags().GetString("action")
+		languageTag, _ := cmd.Flags().GetString("languageTag")
 		input := &users_v4.PublicSendMyMFAEmailCodeV4Params{
-			Action:    &action,
-			Namespace: namespace,
+			Action:      &action,
+			LanguageTag: &languageTag,
+			Namespace:   namespace,
 		}
 		errNoContent := usersV4Service.PublicSendMyMFAEmailCodeV4Short(input)
 		if errNoContent != nil {
@@ -46,6 +48,7 @@ var PublicSendMyMFAEmailCodeV4Cmd = &cobra.Command{
 
 func init() {
 	PublicSendMyMFAEmailCodeV4Cmd.Flags().String("action", "-1", "Action")
+	PublicSendMyMFAEmailCodeV4Cmd.Flags().String("languageTag", "", "Language tag")
 	PublicSendMyMFAEmailCodeV4Cmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicSendMyMFAEmailCodeV4Cmd.MarkFlagRequired("namespace")
 }

@@ -27,9 +27,13 @@ var FleetServersCmd = &cobra.Command{
 		}
 		fleetID, _ := cmd.Flags().GetString("fleetID")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		count, _ := cmd.Flags().GetString("count")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &fleets.FleetServersParams{
 			FleetID:   fleetID,
 			Namespace: namespace,
+			Count:     &count,
+			Offset:    &offset,
 		}
 		ok, errOK := fleetsService.FleetServersShort(input)
 		if errOK != nil {
@@ -49,4 +53,6 @@ func init() {
 	_ = FleetServersCmd.MarkFlagRequired("fleetID")
 	FleetServersCmd.Flags().String("namespace", "", "Namespace")
 	_ = FleetServersCmd.MarkFlagRequired("namespace")
+	FleetServersCmd.Flags().String("count", "1", "Count")
+	FleetServersCmd.Flags().Int64("offset", 0, "Offset")
 }

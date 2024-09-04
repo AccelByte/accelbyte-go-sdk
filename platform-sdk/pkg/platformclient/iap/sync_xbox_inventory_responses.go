@@ -39,6 +39,12 @@ func (o *SyncXboxInventoryReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewSyncXboxInventoryNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -108,7 +114,7 @@ func NewSyncXboxInventoryBadRequest() *SyncXboxInventoryBadRequest {
 
 /*SyncXboxInventoryBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39221</td><td>Invalid Xbox Business Partner Certificate or password: [{message}]</td></tr></table>
 */
 type SyncXboxInventoryBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -138,6 +144,59 @@ func (o *SyncXboxInventoryBadRequest) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *SyncXboxInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSyncXboxInventoryNotFound creates a SyncXboxInventoryNotFound with default headers values
+func NewSyncXboxInventoryNotFound() *SyncXboxInventoryNotFound {
+	return &SyncXboxInventoryNotFound{}
+}
+
+/*SyncXboxInventoryNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39145</td><td>XBox IAP config not found in namespace [{namespace}].</td></tr></table>
+*/
+type SyncXboxInventoryNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncXboxInventoryNotFound) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync][%d] syncXboxInventoryNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *SyncXboxInventoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncXboxInventoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncXboxInventoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -52,4 +52,5 @@ var TestXsollaConfigCmd = &cobra.Command{
 
 func init() {
 	TestXsollaConfigCmd.Flags().String("body", "", "Body")
+	_ = TestXsollaConfigCmd.MarkFlagRequired("body")
 }

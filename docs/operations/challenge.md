@@ -25,6 +25,14 @@
 | `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}` | PUT | AdminUpdateGoalsShort | [AdminUpdateGoalsShort](../../challenge-sdk/pkg/challengeclient/goal_configuration/goal_configuration_client.go) | [AdminUpdateGoalsShort](../../services-api/pkg/service/challenge/goalConfiguration.go) | [AdminUpdateGoalsShort](../../samples/cli/cmd/challenge/goalConfiguration/adminUpdateGoals.go) |
 | `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}` | DELETE | AdminDeleteGoalShort | [AdminDeleteGoalShort](../../challenge-sdk/pkg/challengeclient/goal_configuration/goal_configuration_client.go) | [AdminDeleteGoalShort](../../services-api/pkg/service/challenge/goalConfiguration.go) | [AdminDeleteGoalShort](../../samples/cli/cmd/challenge/goalConfiguration/adminDeleteGoal.go) |
 
+### Plugins Wrapper:  [Plugins](../../services-api/pkg/service/challenge/plugins.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/challenge/v1/admin/namespaces/{namespace}/plugins/assignment` | GET | AdminGetAssignmentPluginShort | [AdminGetAssignmentPluginShort](../../challenge-sdk/pkg/challengeclient/plugins/plugins_client.go) | [AdminGetAssignmentPluginShort](../../services-api/pkg/service/challenge/plugins.go) | [AdminGetAssignmentPluginShort](../../samples/cli/cmd/challenge/plugins/adminGetAssignmentPlugin.go) |
+| `/challenge/v1/admin/namespaces/{namespace}/plugins/assignment` | PUT | AdminUpdateAssignmentPluginShort | [AdminUpdateAssignmentPluginShort](../../challenge-sdk/pkg/challengeclient/plugins/plugins_client.go) | [AdminUpdateAssignmentPluginShort](../../services-api/pkg/service/challenge/plugins.go) | [AdminUpdateAssignmentPluginShort](../../samples/cli/cmd/challenge/plugins/adminUpdateAssignmentPlugin.go) |
+| `/challenge/v1/admin/namespaces/{namespace}/plugins/assignment` | POST | AdminCreateAssignmentPluginShort | [AdminCreateAssignmentPluginShort](../../challenge-sdk/pkg/challengeclient/plugins/plugins_client.go) | [AdminCreateAssignmentPluginShort](../../services-api/pkg/service/challenge/plugins.go) | [AdminCreateAssignmentPluginShort](../../samples/cli/cmd/challenge/plugins/adminCreateAssignmentPlugin.go) |
+| `/challenge/v1/admin/namespaces/{namespace}/plugins/assignment` | DELETE | AdminDeleteAssignmentPluginShort | [AdminDeleteAssignmentPluginShort](../../challenge-sdk/pkg/challengeclient/plugins/plugins_client.go) | [AdminDeleteAssignmentPluginShort](../../services-api/pkg/service/challenge/plugins.go) | [AdminDeleteAssignmentPluginShort](../../samples/cli/cmd/challenge/plugins/adminDeleteAssignmentPlugin.go) |
+
 ### Challenge Progression Wrapper:  [ChallengeProgression](../../services-api/pkg/service/challenge/challengeProgression.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -74,6 +82,10 @@
 | `model.ListPeriodsResponse` | [ModelListPeriodsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_periods_response.go) |
 | `model.ListUserRewardsResponse` | [ModelListUserRewardsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_user_rewards_response.go) |
 | `model.Pagination` | [ModelPagination ](../../challenge-sdk/pkg/challengeclientmodels/model_pagination.go) |
+| `model.PluginAsignmentAppConfig` | [ModelPluginAsignmentAppConfig ](../../challenge-sdk/pkg/challengeclientmodels/model_plugin_asignment_app_config.go) |
+| `model.PluginAssignmentCustomConfig` | [ModelPluginAssignmentCustomConfig ](../../challenge-sdk/pkg/challengeclientmodels/model_plugin_assignment_custom_config.go) |
+| `model.PluginAssignmentRequest` | [ModelPluginAssignmentRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_plugin_assignment_request.go) |
+| `model.PluginAssignmentResponse` | [ModelPluginAssignmentResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_plugin_assignment_response.go) |
 | `model.Predicate` | [ModelPredicate ](../../challenge-sdk/pkg/challengeclientmodels/model_predicate.go) |
 | `model.Requirement` | [ModelRequirement ](../../challenge-sdk/pkg/challengeclientmodels/model_requirement.go) |
 | `model.RequirementProgressionResponse` | [ModelRequirementProgressionResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_requirement_progression_response.go) |

@@ -32,6 +32,9 @@ type APIMatchPool struct {
 	// Format: int32
 	BackfillTicketExpirationSeconds *int32 `json:"backfill_ticket_expiration_seconds"`
 
+	// best_latency_calculation_method
+	BestLatencyCalculationMethod string `json:"best_latency_calculation_method,omitempty"`
+
 	// crossplay_disabled
 	CrossplayDisabled bool `json:"crossplay_disabled"`
 

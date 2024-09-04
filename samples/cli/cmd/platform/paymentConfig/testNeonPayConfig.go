@@ -54,5 +54,6 @@ var TestNeonPayConfigCmd = &cobra.Command{
 
 func init() {
 	TestNeonPayConfigCmd.Flags().String("body", "", "Body")
+	_ = TestNeonPayConfigCmd.MarkFlagRequired("body")
 	TestNeonPayConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
 }

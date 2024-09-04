@@ -28,15 +28,15 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		subscriptionId, _ := cmd.Flags().GetString("subscriptionId")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.TradeNotification
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		subscriptionId, _ := cmd.Flags().GetString("subscriptionId")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &subscription.ProcessUserSubscriptionNotificationParams{
 			Body:           body,
 			Namespace:      namespace,
@@ -58,6 +58,7 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 
 func init() {
 	ProcessUserSubscriptionNotificationCmd.Flags().String("body", "", "Body")
+	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("body")
 	ProcessUserSubscriptionNotificationCmd.Flags().String("namespace", "", "Namespace")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("namespace")
 	ProcessUserSubscriptionNotificationCmd.Flags().String("subscriptionId", "", "Subscription id")

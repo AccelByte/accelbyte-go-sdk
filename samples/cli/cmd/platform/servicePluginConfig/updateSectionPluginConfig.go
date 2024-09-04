@@ -28,13 +28,13 @@ var UpdateSectionPluginConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.SectionPluginConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &service_plugin_config.UpdateSectionPluginConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateSectionPluginConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateSectionPluginConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateSectionPluginConfigCmd.MarkFlagRequired("body")
 	UpdateSectionPluginConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateSectionPluginConfigCmd.MarkFlagRequired("namespace")
 }

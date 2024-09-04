@@ -579,17 +579,12 @@ Deprecated: 2022-08-10 - Use DeleteUserRankingByLeaderboardCodeAdminV1Short inst
 DeleteUserRankingByLeaderboardCodeAdminV1 delete all user ranking by leaderboard code
 
 
- [Test Facility Only]
-
-
-
-
 This endpoint will delete user ranking by leaderboard code
 
 
 
 
-Note: this endpoint only works on development environment.
+Warning : This will permanently delete your data. Make sure to back up anything important before continuing.
 */
 func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1(params *DeleteUserRankingByLeaderboardCodeAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV1NoContent, *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized, *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden, *DeleteUserRankingByLeaderboardCodeAdminV1NotFound, *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -652,17 +647,12 @@ func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1(params *DeleteUserRan
 DeleteUserRankingByLeaderboardCodeAdminV1Short delete all user ranking by leaderboard code
 
 
- [Test Facility Only]
-
-
-
-
 This endpoint will delete user ranking by leaderboard code
 
 
 
 
-Note: this endpoint only works on development environment.
+Warning : This will permanently delete your data. Make sure to back up anything important before continuing.
 */
 func (a *Client) DeleteUserRankingByLeaderboardCodeAdminV1Short(params *DeleteUserRankingByLeaderboardCodeAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV1NoContent, error) {
 	// TODO: Validate the params before sending

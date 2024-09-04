@@ -28,14 +28,14 @@ var CreateSectionCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.SectionCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &section.CreateSectionParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var CreateSectionCmd = &cobra.Command{
 
 func init() {
 	CreateSectionCmd.Flags().String("body", "", "Body")
+	_ = CreateSectionCmd.MarkFlagRequired("body")
 	CreateSectionCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateSectionCmd.MarkFlagRequired("namespace")
 	CreateSectionCmd.Flags().String("storeId", "", "Store id")

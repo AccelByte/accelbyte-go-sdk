@@ -28,13 +28,13 @@ var CreateRewardCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RewardCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &reward.CreateRewardParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var CreateRewardCmd = &cobra.Command{
 
 func init() {
 	CreateRewardCmd.Flags().String("body", "", "Body")
+	_ = CreateRewardCmd.MarkFlagRequired("body")
 	CreateRewardCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateRewardCmd.MarkFlagRequired("namespace")
 }

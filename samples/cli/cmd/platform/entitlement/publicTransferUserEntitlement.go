@@ -28,15 +28,15 @@ var PublicTransferUserEntitlementCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		entitlementId, _ := cmd.Flags().GetString("entitlementId")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.EntitlementTransferRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		entitlementId, _ := cmd.Flags().GetString("entitlementId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &entitlement.PublicTransferUserEntitlementParams{
 			Body:          body,
 			EntitlementID: entitlementId,
@@ -58,6 +58,7 @@ var PublicTransferUserEntitlementCmd = &cobra.Command{
 
 func init() {
 	PublicTransferUserEntitlementCmd.Flags().String("body", "", "Body")
+	_ = PublicTransferUserEntitlementCmd.MarkFlagRequired("body")
 	PublicTransferUserEntitlementCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = PublicTransferUserEntitlementCmd.MarkFlagRequired("entitlementId")
 	PublicTransferUserEntitlementCmd.Flags().String("namespace", "", "Namespace")

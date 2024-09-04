@@ -7,6 +7,8 @@
 package xRay
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionhistory"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionhistory-sdk/pkg/sessionhistoryclient/x_ray"
@@ -28,9 +30,16 @@ var QueryTotalActiveSessionCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		endDate, _ := cmd.Flags().GetString("endDate")
 		startDate, _ := cmd.Flags().GetString("startDate")
+		matchPoolString := cmd.Flag("matchPool").Value.String()
+		var matchPool []string
+		errMatchPool := json.Unmarshal([]byte(matchPoolString), &matchPool)
+		if errMatchPool != nil {
+			return errMatchPool
+		}
 		region, _ := cmd.Flags().GetString("region")
 		input := &x_ray.QueryTotalActiveSessionParams{
 			Namespace: namespace,
+			MatchPool: matchPool,
 			Region:    &region,
 			EndDate:   endDate,
 			StartDate: startDate,
@@ -51,6 +60,7 @@ var QueryTotalActiveSessionCmd = &cobra.Command{
 func init() {
 	QueryTotalActiveSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryTotalActiveSessionCmd.MarkFlagRequired("namespace")
+	QueryTotalActiveSessionCmd.Flags().String("matchPool", "", "Match pool")
 	QueryTotalActiveSessionCmd.Flags().String("region", "", "Region")
 	QueryTotalActiveSessionCmd.Flags().String("endDate", "", "End date")
 	_ = QueryTotalActiveSessionCmd.MarkFlagRequired("endDate")

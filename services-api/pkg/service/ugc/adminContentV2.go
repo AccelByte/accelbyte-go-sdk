@@ -142,6 +142,35 @@ func (aaa *AdminContentV2Service) AdminUpdateOfficialContentV2(input *admin_cont
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminCopyContentShort instead.
+func (aaa *AdminContentV2Service) AdminCopyContent(input *admin_content_v2.AdminCopyContentParams) (*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminContentV2.AdminCopyContent(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminUpdateOfficialContentFileLocationShort instead.
 func (aaa *AdminContentV2Service) AdminUpdateOfficialContentFileLocation(input *admin_content_v2.AdminUpdateOfficialContentFileLocationParams) (*ugcclientmodels.ModelsUpdateContentResponseV2, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -786,6 +815,36 @@ func (aaa *AdminContentV2Service) AdminUpdateOfficialContentV2Short(input *admin
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminContentV2Service) AdminCopyContentShort(input *admin_content_v2.AdminCopyContentParams) (*ugcclientmodels.ModelsContentDownloadResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminContentV2 != nil {
+		input.XFlightId = tempFlightIdAdminContentV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	created, err := aaa.Client.AdminContentV2.AdminCopyContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (aaa *AdminContentV2Service) AdminUpdateOfficialContentFileLocationShort(input *admin_content_v2.AdminUpdateOfficialContentFileLocationParams) (*ugcclientmodels.ModelsUpdateContentResponseV2, error) {

@@ -28,13 +28,13 @@ var CreateStoreCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.StoreCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &store.CreateStoreParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var CreateStoreCmd = &cobra.Command{
 
 func init() {
 	CreateStoreCmd.Flags().String("body", "", "Body")
+	_ = CreateStoreCmd.MarkFlagRequired("body")
 	CreateStoreCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateStoreCmd.MarkFlagRequired("namespace")
 }

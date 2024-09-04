@@ -22,8 +22,11 @@ import (
 // NewDownloadParams creates a new DownloadParams object
 // with the default values initialized.
 func NewDownloadParams() *DownloadParams {
-	var ()
+	var (
+		withBatchNameDefault = bool(false)
+	)
 	return &DownloadParams{
+		WithBatchName: &withBatchNameDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewDownloadParams() *DownloadParams {
 // NewDownloadParamsWithTimeout creates a new DownloadParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewDownloadParamsWithTimeout(timeout time.Duration) *DownloadParams {
-	var ()
+	var (
+		withBatchNameDefault = bool(false)
+	)
 	return &DownloadParams{
+		WithBatchName: &withBatchNameDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewDownloadParamsWithTimeout(timeout time.Duration) *DownloadParams {
 // NewDownloadParamsWithContext creates a new DownloadParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewDownloadParamsWithContext(ctx context.Context) *DownloadParams {
-	var ()
+	var (
+		withBatchNameDefault = bool(false)
+	)
 	return &DownloadParams{
+		WithBatchName: &withBatchNameDefault,
 
 		Context: ctx,
 	}
@@ -52,9 +61,12 @@ func NewDownloadParamsWithContext(ctx context.Context) *DownloadParams {
 // NewDownloadParamsWithHTTPClient creates a new DownloadParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewDownloadParamsWithHTTPClient(client *http.Client) *DownloadParams {
-	var ()
+	var (
+		withBatchNameDefault = bool(false)
+	)
 	return &DownloadParams{
-		HTTPClient: client,
+		WithBatchName: &withBatchNameDefault,
+		HTTPClient:    client,
 	}
 }
 
@@ -69,8 +81,12 @@ type DownloadParams struct {
 	CampaignID string
 	/*Namespace*/
 	Namespace string
+	/*BatchName*/
+	BatchName *string
 	/*BatchNo*/
-	BatchNo *int32
+	BatchNo []int32
+	/*WithBatchName*/
+	WithBatchName *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -159,15 +175,37 @@ func (o *DownloadParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithBatchName_ adds the batchName to the download params
+func (o *DownloadParams) WithBatchName_(batchName *string) *DownloadParams {
+	o.SetBatchName(batchName)
+	return o
+}
+
+// SetBatchName adds the batchName to the download params
+func (o *DownloadParams) SetBatchName(batchName *string) {
+	o.BatchName = batchName
+}
+
 // WithBatchNo adds the batchNo to the download params
-func (o *DownloadParams) WithBatchNo(batchNo *int32) *DownloadParams {
+func (o *DownloadParams) WithBatchNo(batchNo []int32) *DownloadParams {
 	o.SetBatchNo(batchNo)
 	return o
 }
 
 // SetBatchNo adds the batchNo to the download params
-func (o *DownloadParams) SetBatchNo(batchNo *int32) {
+func (o *DownloadParams) SetBatchNo(batchNo []int32) {
 	o.BatchNo = batchNo
+}
+
+// WithWithBatchName_ adds the withBatchName to the download params
+func (o *DownloadParams) WithWithBatchName_(withBatchName *bool) *DownloadParams {
+	o.SetWithBatchName(withBatchName)
+	return o
+}
+
+// SetWithBatchName adds the withBatchName to the download params
+func (o *DownloadParams) SetWithBatchName(withBatchName *bool) {
+	o.WithBatchName = withBatchName
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -188,16 +226,43 @@ func (o *DownloadParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 
-	if o.BatchNo != nil {
+	if o.BatchName != nil {
 
-		// query param batchNo
-		var qrBatchNo int32
-		if o.BatchNo != nil {
-			qrBatchNo = *o.BatchNo
+		// query param batchName
+		var qrBatchName string
+		if o.BatchName != nil {
+			qrBatchName = *o.BatchName
 		}
-		qBatchNo := swag.FormatInt32(qrBatchNo)
-		if qBatchNo != "" {
-			if err := r.SetQueryParam("batchNo", qBatchNo); err != nil {
+		qBatchName := qrBatchName
+		if qBatchName != "" {
+			if err := r.SetQueryParam("batchName", qBatchName); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	var valuesBatchNo []string
+	for _, v := range o.BatchNo {
+		valuesBatchNo = append(valuesBatchNo, swag.FormatInt32(v))
+	}
+
+	joinedBatchNo := swag.JoinByFormat(valuesBatchNo, "multi")
+	// query array param batchNo
+	if err := r.SetQueryParam("batchNo", joinedBatchNo...); err != nil {
+		return err
+	}
+
+	if o.WithBatchName != nil {
+
+		// query param withBatchName
+		var qrWithBatchName bool
+		if o.WithBatchName != nil {
+			qrWithBatchName = *o.WithBatchName
+		}
+		qWithBatchName := swag.FormatBool(qrWithBatchName)
+		if qWithBatchName != "" {
+			if err := r.SetQueryParam("withBatchName", qWithBatchName); err != nil {
 				return err
 			}
 		}

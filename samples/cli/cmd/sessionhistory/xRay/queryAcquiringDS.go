@@ -7,6 +7,8 @@
 package xRay
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionhistory"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionhistory-sdk/pkg/sessionhistoryclient/x_ray"
@@ -28,8 +30,15 @@ var QueryAcquiringDSCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		endDate, _ := cmd.Flags().GetString("endDate")
 		startDate, _ := cmd.Flags().GetString("startDate")
+		matchPoolString := cmd.Flag("matchPool").Value.String()
+		var matchPool []string
+		errMatchPool := json.Unmarshal([]byte(matchPoolString), &matchPool)
+		if errMatchPool != nil {
+			return errMatchPool
+		}
 		input := &x_ray.QueryAcquiringDSParams{
 			Namespace: namespace,
+			MatchPool: matchPool,
 			EndDate:   endDate,
 			StartDate: startDate,
 		}
@@ -49,6 +58,7 @@ var QueryAcquiringDSCmd = &cobra.Command{
 func init() {
 	QueryAcquiringDSCmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryAcquiringDSCmd.MarkFlagRequired("namespace")
+	QueryAcquiringDSCmd.Flags().String("matchPool", "", "Match pool")
 	QueryAcquiringDSCmd.Flags().String("endDate", "", "End date")
 	_ = QueryAcquiringDSCmd.MarkFlagRequired("endDate")
 	QueryAcquiringDSCmd.Flags().String("startDate", "", "Start date")

@@ -83,7 +83,7 @@ func NewSyncTwitchDropsEntitlement1BadRequest() *SyncTwitchDropsEntitlement1BadR
 
 /*SyncTwitchDropsEntitlement1BadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr></table>
 */
 type SyncTwitchDropsEntitlement1BadRequest struct {
 	Payload *platformclientmodels.ErrorEntity

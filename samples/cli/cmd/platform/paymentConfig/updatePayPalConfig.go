@@ -28,13 +28,13 @@ var UpdatePayPalConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PayPalConfig
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		id_, _ := cmd.Flags().GetString("id")
 		sandbox, _ := cmd.Flags().GetBool("sandbox")
 		validate, _ := cmd.Flags().GetBool("validate")
 		input := &payment_config.UpdatePayPalConfigParams{
@@ -58,6 +58,7 @@ var UpdatePayPalConfigCmd = &cobra.Command{
 
 func init() {
 	UpdatePayPalConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdatePayPalConfigCmd.MarkFlagRequired("body")
 	UpdatePayPalConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdatePayPalConfigCmd.MarkFlagRequired("id")
 	UpdatePayPalConfigCmd.Flags().Bool("sandbox", false, "Sandbox")

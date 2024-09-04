@@ -28,14 +28,14 @@ var CreateCodesCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		campaignId, _ := cmd.Flags().GetString("campaignId")
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CodeCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		campaignId, _ := cmd.Flags().GetString("campaignId")
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &campaign.CreateCodesParams{
 			Body:       body,
 			CampaignID: campaignId,
@@ -56,6 +56,7 @@ var CreateCodesCmd = &cobra.Command{
 
 func init() {
 	CreateCodesCmd.Flags().String("body", "", "Body")
+	_ = CreateCodesCmd.MarkFlagRequired("body")
 	CreateCodesCmd.Flags().String("campaignId", "", "Campaign id")
 	_ = CreateCodesCmd.MarkFlagRequired("campaignId")
 	CreateCodesCmd.Flags().String("namespace", "", "Namespace")

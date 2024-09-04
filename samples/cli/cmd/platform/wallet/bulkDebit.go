@@ -28,13 +28,13 @@ var BulkDebitCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body []*platformclientmodels.BulkDebitRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &wallet.BulkDebitParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var BulkDebitCmd = &cobra.Command{
 
 func init() {
 	BulkDebitCmd.Flags().String("body", "", "Body")
+	_ = BulkDebitCmd.MarkFlagRequired("body")
 	BulkDebitCmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkDebitCmd.MarkFlagRequired("namespace")
 }

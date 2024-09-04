@@ -51,6 +51,12 @@ func (o *DeleteMatchTicketReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 406:
+		result := NewDeleteMatchTicketNotAcceptable()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewDeleteMatchTicketInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -237,6 +243,59 @@ func (o *DeleteMatchTicketNotFound) GetPayload() *match2clientmodels.ResponseErr
 }
 
 func (o *DeleteMatchTicketNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(match2clientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteMatchTicketNotAcceptable creates a DeleteMatchTicketNotAcceptable with default headers values
+func NewDeleteMatchTicketNotAcceptable() *DeleteMatchTicketNotAcceptable {
+	return &DeleteMatchTicketNotAcceptable{}
+}
+
+/*DeleteMatchTicketNotAcceptable handles this case with default header values.
+
+  Not Acceptable
+*/
+type DeleteMatchTicketNotAcceptable struct {
+	Payload *match2clientmodels.ResponseError
+}
+
+func (o *DeleteMatchTicketNotAcceptable) Error() string {
+	return fmt.Sprintf("[DELETE /match2/v1/namespaces/{namespace}/match-tickets/{ticketid}][%d] deleteMatchTicketNotAcceptable  %+v", 406, o.ToJSONString())
+}
+
+func (o *DeleteMatchTicketNotAcceptable) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteMatchTicketNotAcceptable) GetPayload() *match2clientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *DeleteMatchTicketNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

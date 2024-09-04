@@ -69,6 +69,11 @@ type PublicSendMyMFAEmailCodeV4Params struct {
 
 	*/
 	Action *string
+	/*LanguageTag
+	  Language Tag
+
+	*/
+	LanguageTag *string
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -151,6 +156,17 @@ func (o *PublicSendMyMFAEmailCodeV4Params) SetAction(action *string) {
 	o.Action = action
 }
 
+// WithLanguageTag adds the languageTag to the public send my mfa email code v4 params
+func (o *PublicSendMyMFAEmailCodeV4Params) WithLanguageTag(languageTag *string) *PublicSendMyMFAEmailCodeV4Params {
+	o.SetLanguageTag(languageTag)
+	return o
+}
+
+// SetLanguageTag adds the languageTag to the public send my mfa email code v4 params
+func (o *PublicSendMyMFAEmailCodeV4Params) SetLanguageTag(languageTag *string) {
+	o.LanguageTag = languageTag
+}
+
 // WithNamespace adds the namespace to the public send my mfa email code v4 params
 func (o *PublicSendMyMFAEmailCodeV4Params) WithNamespace(namespace string) *PublicSendMyMFAEmailCodeV4Params {
 	o.SetNamespace(namespace)
@@ -180,6 +196,22 @@ func (o *PublicSendMyMFAEmailCodeV4Params) WriteToRequest(r runtime.ClientReques
 		fAction := frAction
 		if fAction != "" {
 			if err := r.SetFormParam("action", fAction); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.LanguageTag != nil {
+
+		// form param languageTag
+		var frLanguageTag string
+		if o.LanguageTag != nil {
+			frLanguageTag = *o.LanguageTag
+		}
+		fLanguageTag := frLanguageTag
+		if fLanguageTag != "" {
+			if err := r.SetFormParam("languageTag", fLanguageTag); err != nil {
 				return err
 			}
 		}

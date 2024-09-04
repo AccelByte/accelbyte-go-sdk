@@ -25,6 +25,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_v4"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/override_role_config_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
@@ -93,6 +94,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.OAuth20 = o_auth2_0.New(transport, formats)
 	cli.OAuth20Extension = o_auth2_0_extension.New(transport, formats)
 	cli.OAuth20V4 = o_auth2_0_v4.New(transport, formats)
+	cli.OverrideRoleConfigV3 = override_role_config_v3.New(transport, formats)
 	cli.Roles = roles.New(transport, formats)
 	cli.SSO = sso.New(transport, formats)
 	cli.SSOCredential = sso_credential.New(transport, formats)
@@ -182,6 +184,8 @@ type JusticeIamService struct {
 
 	OAuth20V4 o_auth2_0_v4.ClientService
 
+	OverrideRoleConfigV3 override_role_config_v3.ClientService
+
 	Roles roles.ClientService
 
 	SSO sso.ClientService
@@ -214,6 +218,7 @@ func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.OAuth20.SetTransport(transport)
 	c.OAuth20Extension.SetTransport(transport)
 	c.OAuth20V4.SetTransport(transport)
+	c.OverrideRoleConfigV3.SetTransport(transport)
 	c.Roles.SetTransport(transport)
 	c.SSO.SetTransport(transport)
 	c.SSOCredential.SetTransport(transport)

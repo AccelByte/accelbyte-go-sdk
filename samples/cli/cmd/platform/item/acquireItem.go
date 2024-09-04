@@ -28,14 +28,14 @@ var AcquireItemCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		itemId, _ := cmd.Flags().GetString("itemId")
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ItemAcquireRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		itemId, _ := cmd.Flags().GetString("itemId")
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &item.AcquireItemParams{
 			Body:      body,
 			ItemID:    itemId,
@@ -56,6 +56,7 @@ var AcquireItemCmd = &cobra.Command{
 
 func init() {
 	AcquireItemCmd.Flags().String("body", "", "Body")
+	_ = AcquireItemCmd.MarkFlagRequired("body")
 	AcquireItemCmd.Flags().String("itemId", "", "Item id")
 	_ = AcquireItemCmd.MarkFlagRequired("itemId")
 	AcquireItemCmd.Flags().String("namespace", "", "Namespace")

@@ -28,14 +28,14 @@ var ReturnItemCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		itemId, _ := cmd.Flags().GetString("itemId")
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ItemReturnRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		itemId, _ := cmd.Flags().GetString("itemId")
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &item.ReturnItemParams{
 			Body:      body,
 			ItemID:    itemId,
@@ -56,6 +56,7 @@ var ReturnItemCmd = &cobra.Command{
 
 func init() {
 	ReturnItemCmd.Flags().String("body", "", "Body")
+	_ = ReturnItemCmd.MarkFlagRequired("body")
 	ReturnItemCmd.Flags().String("itemId", "", "Item id")
 	_ = ReturnItemCmd.MarkFlagRequired("itemId")
 	ReturnItemCmd.Flags().String("namespace", "", "Namespace")

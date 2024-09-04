@@ -44,7 +44,10 @@ func (aaa *ChallengeProgressionService) AdminEvaluateProgress(input *challenge_p
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeProgression.AdminEvaluateProgress(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeProgression.AdminEvaluateProgress(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if unauthorized != nil {
 		return unauthorized
 	}

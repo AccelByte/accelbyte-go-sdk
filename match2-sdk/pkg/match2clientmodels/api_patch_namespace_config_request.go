@@ -17,8 +17,14 @@ import (
 // swagger:model Api patch namespace config request.
 type APIPatchNamespaceConfigRequest struct {
 
+	// crossplatformnocurrentplatform
+	CrossPlatformNoCurrentPlatform bool `json:"crossPlatformNoCurrentPlatform"`
+
 	// additional platforms that will be included in the cross_platform attribute alongside the login method
 	ExtraPlatforms []string `json:"extraPlatforms,omitempty"`
+
+	// matchanycommon
+	MatchAnyCommon bool `json:"matchAnyCommon"`
 
 	// platformgroup
 	PlatformGroup map[string][]string `json:"platformGroup,omitempty"`

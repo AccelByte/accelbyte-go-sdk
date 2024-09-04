@@ -32,6 +32,9 @@ type StatCycleCreate struct {
 	// Format: date-time
 	End *strfmt.DateTime `json:"end,omitempty"`
 
+	// cycle id
+	ID string `json:"id,omitempty"`
+
 	// name
 	// Required: true
 	Name *string `json:"name"`

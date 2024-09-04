@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.22.1"
+    "version": "1.24.2"
   },
   "schemes": [
     "https"
@@ -13,42 +13,6 @@
     "url": "https://stage.accelbyte.io/ams/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]",
-        "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]": "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]": "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]": "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]",
-        "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]": "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]",
-        "NAMESPACE:{namespace}:AMS:ACCOUNT [READ]": "NAMESPACE:{namespace}:AMS:ACCOUNT [READ]",
-        "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]": "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]",
-        "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]": "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
-        "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]": "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -178,9 +142,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -244,9 +205,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -310,9 +268,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -376,9 +331,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -460,9 +412,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -599,9 +548,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -659,9 +605,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -735,9 +678,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -814,9 +754,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -890,9 +827,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -962,9 +896,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1032,9 +963,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1103,9 +1031,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1151,9 +1076,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1223,9 +1145,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1299,9 +1218,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1376,9 +1292,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1458,9 +1371,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1537,9 +1447,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1622,9 +1529,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:ARTIFACT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1656,6 +1560,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "the data limit",
+            "in": "query",
+            "name": "count",
+            "type": "string"
+          },
+          {
+            "description": "the data offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1701,9 +1617,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1816,9 +1729,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1882,9 +1792,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1948,9 +1855,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2024,9 +1928,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -2095,9 +1996,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2174,9 +2072,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -2247,9 +2142,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:IMAGE [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -2319,9 +2211,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2403,9 +2292,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:QOS:SERVER [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -2463,9 +2349,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2536,9 +2419,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2609,9 +2489,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:AMS:DS:LOGS [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2682,9 +2559,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2742,9 +2616,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ARMADA [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2808,9 +2679,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:AMS:ACCOUNT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -2895,9 +2763,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -2938,9 +2803,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:AMS:LOCALDS [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3018,9 +2880,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3061,9 +2920,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:ARMADA:WATCHDOG [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3994,6 +3850,9 @@
     },
     "api.FleetServersResponse": {
       "properties": {
+        "paging": {
+          "$ref": "#/definitions/api.PagingInfo"
+        },
         "regions": {
           "items": {
             "$ref": "#/definitions/api.FleetRegionalServerCounts"
@@ -4008,6 +3867,7 @@
         }
       },
       "required": [
+        "paging",
         "regions",
         "servers"
       ]
@@ -4580,10 +4440,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-01T06:12:53+00:00",
-    "gitHash": "77943f23a0ecc742fd95bf6e20e3bc7d2cb06a44",
+    "buildDate": "2024-08-27T08:58:20+00:00",
+    "gitHash": "0f81a0c06bf2d58dffd34ea109946eca0f626ead",
     "name": "fleet-commander",
-    "version": "1.22.1",
+    "version": "1.24.2",
     "version-roles-seeding": "1.2.40"
   }
 }

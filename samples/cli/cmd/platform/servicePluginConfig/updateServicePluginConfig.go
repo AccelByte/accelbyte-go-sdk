@@ -28,13 +28,13 @@ var UpdateServicePluginConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ServicePluginConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &service_plugin_config.UpdateServicePluginConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateServicePluginConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateServicePluginConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateServicePluginConfigCmd.MarkFlagRequired("body")
 	UpdateServicePluginConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateServicePluginConfigCmd.MarkFlagRequired("namespace")
 }

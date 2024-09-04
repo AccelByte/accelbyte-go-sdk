@@ -39,6 +39,12 @@ func (o *SyncSteamInventoryReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewSyncSteamInventoryNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -83,7 +89,7 @@ func NewSyncSteamInventoryBadRequest() *SyncSteamInventoryBadRequest {
 
 /*SyncSteamInventoryBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39123</td><td>IAP request is not in valid application</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39123</td><td>IAP request is not in valid application</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr></table>
 */
 type SyncSteamInventoryBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -113,6 +119,59 @@ func (o *SyncSteamInventoryBadRequest) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *SyncSteamInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSyncSteamInventoryNotFound creates a SyncSteamInventoryNotFound with default headers values
+func NewSyncSteamInventoryNotFound() *SyncSteamInventoryNotFound {
+	return &SyncSteamInventoryNotFound{}
+}
+
+/*SyncSteamInventoryNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39144</td><td>Steam IAP config not found in namespace [{namespace}].</td></tr></table>
+*/
+type SyncSteamInventoryNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncSteamInventoryNotFound) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync][%d] syncSteamInventoryNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *SyncSteamInventoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncSteamInventoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncSteamInventoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

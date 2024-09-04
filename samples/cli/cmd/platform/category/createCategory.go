@@ -28,14 +28,14 @@ var CreateCategoryCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CategoryCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &category.CreateCategoryParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var CreateCategoryCmd = &cobra.Command{
 
 func init() {
 	CreateCategoryCmd.Flags().String("body", "", "Body")
+	_ = CreateCategoryCmd.MarkFlagRequired("body")
 	CreateCategoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateCategoryCmd.MarkFlagRequired("namespace")
 	CreateCategoryCmd.Flags().String("storeId", "", "Store id")

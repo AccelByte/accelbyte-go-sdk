@@ -106,21 +106,21 @@ type ClientService interface {
 	SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementOK, error)
 	PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, *PublicFulfillAppleIAPItemBadRequest, *PublicFulfillAppleIAPItemNotFound, *PublicFulfillAppleIAPItemConflict, error)
 	PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error)
-	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, error)
+	SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, *SyncEpicGamesInventoryNotFound, error)
 	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
 	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
 	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error)
-	SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, error)
+	SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, *SyncOculusConsumableEntitlementsNotFound, error)
 	SyncOculusConsumableEntitlementsShort(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, error)
-	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error)
+	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, *PublicReconcilePlayStationStoreNotFound, error)
 	PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
-	PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, error)
+	PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound, error)
 	PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, error)
-	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, error)
+	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, *SyncSteamInventoryNotFound, error)
 	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
 	SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, *SyncTwitchDropsEntitlement1BadRequest, error)
 	SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, error)
-	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, error)
+	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, *SyncXboxInventoryNotFound, error)
 	SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -3962,7 +3962,7 @@ SyncEpicGamesInventory sync epic games inventory.
 Sync epic games inventory's items.Other detail info:
   * Returns :
 */
-func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, error) {
+func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, *SyncEpicGamesInventoryNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncEpicGamesInventoryParams()
@@ -3994,19 +3994,22 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncEpicGamesInventoryOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncEpicGamesInventoryBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncEpicGamesInventoryNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4051,6 +4054,8 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 	case *SyncEpicGamesInventoryOK:
 		return v, nil
 	case *SyncEpicGamesInventoryBadRequest:
+		return nil, v
+	case *SyncEpicGamesInventoryNotFound:
 		return nil, v
 
 	default:
@@ -4178,7 +4183,7 @@ SyncOculusConsumableEntitlements sync oculus entitlements.
 Sync Oculus entitlements.Other detail info:
   * Returns :
 */
-func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, error) {
+func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, *SyncOculusConsumableEntitlementsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncOculusConsumableEntitlementsParams()
@@ -4210,19 +4215,22 @@ func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncOculusConsumableEntitlementsOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncOculusConsumableEntitlementsBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncOculusConsumableEntitlementsNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4268,6 +4276,8 @@ func (a *Client) SyncOculusConsumableEntitlementsShort(params *SyncOculusConsuma
 		return v, nil
 	case *SyncOculusConsumableEntitlementsBadRequest:
 		return nil, v
+	case *SyncOculusConsumableEntitlementsNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -4281,7 +4291,7 @@ PublicReconcilePlayStationStore synchronize with entitlements in psn store.
 Synchronize with entitlements in PSN Store.Other detail info:
   * Returns : result of synchronization
 */
-func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error) {
+func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, *PublicReconcilePlayStationStoreNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicReconcilePlayStationStoreParams()
@@ -4313,19 +4323,22 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicReconcilePlayStationStoreOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PublicReconcilePlayStationStoreBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PublicReconcilePlayStationStoreNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4371,6 +4384,8 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 		return v, nil
 	case *PublicReconcilePlayStationStoreBadRequest:
 		return nil, v
+	case *PublicReconcilePlayStationStoreNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -4384,7 +4399,7 @@ PublicReconcilePlayStationStoreWithMultipleServiceLabels synchronize with entitl
 Synchronize with entitlements in PSN Store with multiple service labels.Other detail info:
   * Returns : result of synchronization
 */
-func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, error) {
+func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicReconcilePlayStationStoreWithMultipleServiceLabelsParams()
@@ -4416,19 +4431,22 @@ func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4474,6 +4492,8 @@ func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(p
 		return v, nil
 	case *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest:
 		return nil, v
+	case *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -4487,7 +4507,7 @@ SyncSteamInventory sync steam inventory.
 Sync steam inventory's items.Other detail info:
   * Returns :
 */
-func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, error) {
+func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, *SyncSteamInventoryNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncSteamInventoryParams()
@@ -4519,19 +4539,22 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncSteamInventoryNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncSteamInventoryBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncSteamInventoryNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4576,6 +4599,8 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 	case *SyncSteamInventoryNoContent:
 		return v, nil
 	case *SyncSteamInventoryBadRequest:
+		return nil, v
+	case *SyncSteamInventoryNotFound:
 		return nil, v
 
 	default:
@@ -4693,7 +4718,7 @@ SyncXboxInventory sync xbox inventory.
 Sync Xbox inventory's items.Other detail info:
   * Returns :
 */
-func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, error) {
+func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, *SyncXboxInventoryNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncXboxInventoryParams()
@@ -4725,19 +4750,22 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncXboxInventoryOK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncXboxInventoryBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncXboxInventoryNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -4782,6 +4810,8 @@ func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInf
 	case *SyncXboxInventoryOK:
 		return v, nil
 	case *SyncXboxInventoryBadRequest:
+		return nil, v
+	case *SyncXboxInventoryNotFound:
 		return nil, v
 
 	default:

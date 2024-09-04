@@ -23,14 +23,16 @@ import (
 // with the default values initialized.
 func NewQueryCodesParams() *QueryCodesParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault    = bool(true)
+		limitDefault         = int32(20)
+		offsetDefault        = int32(0)
+		withBatchNameDefault = bool(false)
 	)
 	return &QueryCodesParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
+		ActiveOnly:    &activeOnlyDefault,
+		Limit:         &limitDefault,
+		Offset:        &offsetDefault,
+		WithBatchName: &withBatchNameDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -40,14 +42,16 @@ func NewQueryCodesParams() *QueryCodesParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQueryCodesParamsWithTimeout(timeout time.Duration) *QueryCodesParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault    = bool(true)
+		limitDefault         = int32(20)
+		offsetDefault        = int32(0)
+		withBatchNameDefault = bool(false)
 	)
 	return &QueryCodesParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
+		ActiveOnly:    &activeOnlyDefault,
+		Limit:         &limitDefault,
+		Offset:        &offsetDefault,
+		WithBatchName: &withBatchNameDefault,
 
 		timeout: timeout,
 	}
@@ -57,14 +61,16 @@ func NewQueryCodesParamsWithTimeout(timeout time.Duration) *QueryCodesParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewQueryCodesParamsWithContext(ctx context.Context) *QueryCodesParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault    = bool(true)
+		limitDefault         = int32(20)
+		offsetDefault        = int32(0)
+		withBatchNameDefault = bool(false)
 	)
 	return &QueryCodesParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
+		ActiveOnly:    &activeOnlyDefault,
+		Limit:         &limitDefault,
+		Offset:        &offsetDefault,
+		WithBatchName: &withBatchNameDefault,
 
 		Context: ctx,
 	}
@@ -74,15 +80,17 @@ func NewQueryCodesParamsWithContext(ctx context.Context) *QueryCodesParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQueryCodesParamsWithHTTPClient(client *http.Client) *QueryCodesParams {
 	var (
-		activeOnlyDefault = bool(true)
-		limitDefault      = int32(20)
-		offsetDefault     = int32(0)
+		activeOnlyDefault    = bool(true)
+		limitDefault         = int32(20)
+		offsetDefault        = int32(0)
+		withBatchNameDefault = bool(false)
 	)
 	return &QueryCodesParams{
-		ActiveOnly: &activeOnlyDefault,
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
-		HTTPClient: client,
+		ActiveOnly:    &activeOnlyDefault,
+		Limit:         &limitDefault,
+		Offset:        &offsetDefault,
+		WithBatchName: &withBatchNameDefault,
+		HTTPClient:    client,
 	}
 }
 
@@ -99,14 +107,18 @@ type QueryCodesParams struct {
 	Namespace string
 	/*ActiveOnly*/
 	ActiveOnly *bool
+	/*BatchName*/
+	BatchName *string
 	/*BatchNo*/
-	BatchNo *int32
+	BatchNo []int32
 	/*Code*/
 	Code *string
 	/*Limit*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32
+	/*WithBatchName*/
+	WithBatchName *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -206,14 +218,25 @@ func (o *QueryCodesParams) SetActiveOnly(activeOnly *bool) {
 	o.ActiveOnly = activeOnly
 }
 
+// WithBatchName_ adds the batchName to the query codes params
+func (o *QueryCodesParams) WithBatchName_(batchName *string) *QueryCodesParams {
+	o.SetBatchName(batchName)
+	return o
+}
+
+// SetBatchName adds the batchName to the query codes params
+func (o *QueryCodesParams) SetBatchName(batchName *string) {
+	o.BatchName = batchName
+}
+
 // WithBatchNo adds the batchNo to the query codes params
-func (o *QueryCodesParams) WithBatchNo(batchNo *int32) *QueryCodesParams {
+func (o *QueryCodesParams) WithBatchNo(batchNo []int32) *QueryCodesParams {
 	o.SetBatchNo(batchNo)
 	return o
 }
 
 // SetBatchNo adds the batchNo to the query codes params
-func (o *QueryCodesParams) SetBatchNo(batchNo *int32) {
+func (o *QueryCodesParams) SetBatchNo(batchNo []int32) {
 	o.BatchNo = batchNo
 }
 
@@ -250,6 +273,17 @@ func (o *QueryCodesParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithWithBatchName_ adds the withBatchName to the query codes params
+func (o *QueryCodesParams) WithWithBatchName_(withBatchName *bool) *QueryCodesParams {
+	o.SetWithBatchName(withBatchName)
+	return o
+}
+
+// SetWithBatchName adds the withBatchName to the query codes params
+func (o *QueryCodesParams) SetWithBatchName(withBatchName *bool) {
+	o.WithBatchName = withBatchName
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *QueryCodesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -284,20 +318,31 @@ func (o *QueryCodesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 	}
 
-	if o.BatchNo != nil {
+	if o.BatchName != nil {
 
-		// query param batchNo
-		var qrBatchNo int32
-		if o.BatchNo != nil {
-			qrBatchNo = *o.BatchNo
+		// query param batchName
+		var qrBatchName string
+		if o.BatchName != nil {
+			qrBatchName = *o.BatchName
 		}
-		qBatchNo := swag.FormatInt32(qrBatchNo)
-		if qBatchNo != "" {
-			if err := r.SetQueryParam("batchNo", qBatchNo); err != nil {
+		qBatchName := qrBatchName
+		if qBatchName != "" {
+			if err := r.SetQueryParam("batchName", qBatchName); err != nil {
 				return err
 			}
 		}
 
+	}
+
+	var valuesBatchNo []string
+	for _, v := range o.BatchNo {
+		valuesBatchNo = append(valuesBatchNo, swag.FormatInt32(v))
+	}
+
+	joinedBatchNo := swag.JoinByFormat(valuesBatchNo, "multi")
+	// query array param batchNo
+	if err := r.SetQueryParam("batchNo", joinedBatchNo...); err != nil {
+		return err
 	}
 
 	if o.Code != nil {
@@ -342,6 +387,22 @@ func (o *QueryCodesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.WithBatchName != nil {
+
+		// query param withBatchName
+		var qrWithBatchName bool
+		if o.WithBatchName != nil {
+			qrWithBatchName = *o.WithBatchName
+		}
+		qWithBatchName := swag.FormatBool(qrWithBatchName)
+		if qWithBatchName != "" {
+			if err := r.SetQueryParam("withBatchName", qWithBatchName); err != nil {
 				return err
 			}
 		}

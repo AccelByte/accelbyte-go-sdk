@@ -28,14 +28,14 @@ var CreateViewCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ViewCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &view.CreateViewParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var CreateViewCmd = &cobra.Command{
 
 func init() {
 	CreateViewCmd.Flags().String("body", "", "Body")
+	_ = CreateViewCmd.MarkFlagRequired("body")
 	CreateViewCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateViewCmd.MarkFlagRequired("namespace")
 	CreateViewCmd.Flags().String("storeId", "", "Store id")

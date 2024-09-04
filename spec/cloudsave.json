@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.20.9"
+    "version": "3.21.0"
   },
   "schemes": [
     "https"
@@ -18,22 +18,6 @@
     "url": "https://stage.accelbyte.io/cloudsave/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "CLIENT []": "CLIENT []"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -1571,9 +1555,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -2300,9 +2281,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -2402,9 +2380,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -4842,9 +4817,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -4969,9 +4941,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -5568,9 +5537,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -5675,9 +5641,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "CLIENT []"
-            ],
             "authorization": []
           }
         ],
@@ -11838,11 +11801,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-23T06:42:34+00:00",
-    "gitHash": "b8c1e8072e0a24a79b28e986b3b29c4cc391abdc",
+    "buildDate": "2024-08-28T01:35:26+00:00",
+    "gitHash": "0ad504affc6b58a474e0b9e90b675421be74aa58",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.20.9",
-    "version": "3.20.9",
+    "revisionID": "3.21.0",
+    "version": "3.21.0",
     "version-roles-seeding": "0.0.46"
   }
 }

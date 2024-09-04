@@ -33,6 +33,12 @@ func (o *RetrieveSingleLocalizedPolicyVersion2Reader) ReadResponse(response runt
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewRetrieveSingleLocalizedPolicyVersion2Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewRetrieveSingleLocalizedPolicyVersion2NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -94,6 +100,59 @@ func (o *RetrieveSingleLocalizedPolicyVersion2OK) readResponse(response runtime.
 	}
 
 	o.Payload = new(legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRetrieveSingleLocalizedPolicyVersion2Forbidden creates a RetrieveSingleLocalizedPolicyVersion2Forbidden with default headers values
+func NewRetrieveSingleLocalizedPolicyVersion2Forbidden() *RetrieveSingleLocalizedPolicyVersion2Forbidden {
+	return &RetrieveSingleLocalizedPolicyVersion2Forbidden{}
+}
+
+/*RetrieveSingleLocalizedPolicyVersion2Forbidden handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40081</td><td>errors.net.accelbyte.platform.legal.policy_not_accessible</td></tr></table>
+*/
+type RetrieveSingleLocalizedPolicyVersion2Forbidden struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersion2Forbidden) Error() string {
+	return fmt.Sprintf("[GET /agreement/public/localized-policy-versions/{localizedPolicyVersionId}][%d] retrieveSingleLocalizedPolicyVersion2Forbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersion2Forbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersion2Forbidden) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *RetrieveSingleLocalizedPolicyVersion2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -54,5 +54,6 @@ var TestAliPayConfigCmd = &cobra.Command{
 
 func init() {
 	TestAliPayConfigCmd.Flags().String("body", "", "Body")
+	_ = TestAliPayConfigCmd.MarkFlagRequired("body")
 	TestAliPayConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
 }

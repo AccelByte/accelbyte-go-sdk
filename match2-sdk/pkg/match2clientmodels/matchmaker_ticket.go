@@ -33,6 +33,10 @@ type MatchmakerTicket struct {
 	// Required: true
 	IsPivot *bool `json:"IsPivot"`
 
+	// issingleplay
+	// Required: true
+	IsSinglePlay *bool `json:"IsSinglePlay"`
+
 	// latencies
 	// Required: true
 	Latencies map[string]int64 `json:"Latencies"`
@@ -81,6 +85,9 @@ func (m *MatchmakerTicket) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateIsPivot(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateIsSinglePlay(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateMatchPool(formats); err != nil {
@@ -133,6 +140,15 @@ func (m *MatchmakerTicket) validateIsActive(formats strfmt.Registry) error {
 func (m *MatchmakerTicket) validateIsPivot(formats strfmt.Registry) error {
 
 	if err := validate.Required("IsPivot", "body", m.IsPivot); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MatchmakerTicket) validateIsSinglePlay(formats strfmt.Registry) error {
+
+	if err := validate.Required("IsSinglePlay", "body", m.IsSinglePlay); err != nil {
 		return err
 	}
 

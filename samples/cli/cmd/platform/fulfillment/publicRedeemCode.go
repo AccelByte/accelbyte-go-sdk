@@ -28,14 +28,14 @@ var PublicRedeemCodeCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.FulfillCodeRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &fulfillment.PublicRedeemCodeParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var PublicRedeemCodeCmd = &cobra.Command{
 
 func init() {
 	PublicRedeemCodeCmd.Flags().String("body", "", "Body")
+	_ = PublicRedeemCodeCmd.MarkFlagRequired("body")
 	PublicRedeemCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicRedeemCodeCmd.MarkFlagRequired("namespace")
 	PublicRedeemCodeCmd.Flags().String("userId", "", "User id")

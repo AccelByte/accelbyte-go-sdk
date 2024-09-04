@@ -71,6 +71,8 @@ func init() {
 	LeaderboardCmd.AddCommand(leaderboardConfigurationV3.DeleteLeaderboardConfigurationAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetAllTimeLeaderboardRankingAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.GetCurrentCycleLeaderboardRankingAdminV3Cmd)
+	LeaderboardCmd.AddCommand(leaderboardDataV3.DeleteAllUserRankingByCycleIdAdminV3Cmd)
+	LeaderboardCmd.AddCommand(leaderboardDataV3.DeleteUserRankingByCycleIdAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardConfigurationV3.HardDeleteLeaderboardAdminV3Cmd)
 	LeaderboardCmd.AddCommand(leaderboardDataV3.DeleteUserRankingByLeaderboardCodeAdminV3Cmd)
 	LeaderboardCmd.AddCommand(userVisibilityV3.GetHiddenUsersV3Cmd)

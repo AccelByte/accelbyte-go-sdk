@@ -42,7 +42,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetPaymentCallbackConfigShort instead.
 
 GetPaymentCallbackConfig get payment callback configuration
- [Not Supported Yet In Starter] Get payment callback configuration.
+ [Not supported yet in AGS Shared Cloud] Get payment callback configuration.
 Other detail info:
 
   * Returns : Payment callback config
@@ -97,7 +97,7 @@ func (a *Client) GetPaymentCallbackConfig(params *GetPaymentCallbackConfigParams
 
 /*
 GetPaymentCallbackConfigShort get payment callback configuration
- [Not Supported Yet In Starter] Get payment callback configuration.
+ [Not supported yet in AGS Shared Cloud] Get payment callback configuration.
 Other detail info:
 
   * Returns : Payment callback config
@@ -149,7 +149,7 @@ func (a *Client) GetPaymentCallbackConfigShort(params *GetPaymentCallbackConfigP
 Deprecated: 2022-08-10 - Use UpdatePaymentCallbackConfigShort instead.
 
 UpdatePaymentCallbackConfig update payment callback configuration
- [Not Supported Yet In Starter] Update payment callback configuration.
+ [Not supported yet in AGS Shared Cloud] Update payment callback configuration.
 Other detail info:
 
   * Returns : Payment callback config
@@ -201,7 +201,7 @@ func (a *Client) UpdatePaymentCallbackConfig(params *UpdatePaymentCallbackConfig
 
 /*
 UpdatePaymentCallbackConfigShort update payment callback configuration
- [Not Supported Yet In Starter] Update payment callback configuration.
+ [Not supported yet in AGS Shared Cloud] Update payment callback configuration.
 Other detail info:
 
   * Returns : Payment callback config

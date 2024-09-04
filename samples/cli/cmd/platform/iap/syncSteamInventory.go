@@ -28,14 +28,14 @@ var SyncSteamInventoryCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.SteamSyncRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &iap.SyncSteamInventoryParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var SyncSteamInventoryCmd = &cobra.Command{
 
 func init() {
 	SyncSteamInventoryCmd.Flags().String("body", "", "Body")
+	_ = SyncSteamInventoryCmd.MarkFlagRequired("body")
 	SyncSteamInventoryCmd.Flags().String("namespace", "", "Namespace")
 	_ = SyncSteamInventoryCmd.MarkFlagRequired("namespace")
 	SyncSteamInventoryCmd.Flags().String("userId", "", "User id")

@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.22.11"
+    "version": "2.23.0"
   },
   "schemes": [
     "https"
@@ -18,35 +18,6 @@
     "url": "https://stage.accelbyte.io/achievement/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]",
-        "NAMESPACE:{namespace}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:ACHIEVEMENT [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]": "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "social": "social",
-        "socialSuccessful": "socialSuccessful"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -157,12 +128,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -244,12 +209,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -329,12 +288,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "socialSuccessful"
-            ],
             "authorization": []
           }
         ],
@@ -422,12 +375,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -507,12 +454,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -593,12 +534,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -684,12 +619,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -778,12 +707,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -895,12 +818,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -998,12 +915,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1077,12 +988,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1262,12 +1167,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1388,12 +1287,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1480,12 +1373,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1572,12 +1459,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1645,9 +1526,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1756,12 +1634,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1893,12 +1765,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1988,12 +1854,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2105,12 +1965,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2208,12 +2062,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2316,12 +2164,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2442,12 +2284,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2534,12 +2370,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2653,12 +2483,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2739,12 +2563,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3648,11 +3466,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-23T06:42:24+00:00",
-    "gitHash": "2bfad592500e7d52885def194c79bbf2b92a37ec",
+    "buildDate": "2024-08-28T01:36:48+00:00",
+    "gitHash": "458374620ff45e6a3179016b65535b22d15c6089",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.22.11",
+    "version": "2.23.0",
     "version-roles-seeding": "1.0.7"
   }
 }

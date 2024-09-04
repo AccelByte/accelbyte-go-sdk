@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.16.15"
+    "version": "3.17.1"
   },
   "schemes": [
     "https"
@@ -13,25 +13,6 @@
     "url": "https://stage.accelbyte.io/session/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]": "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "psn": "psn",
-        "should": "should"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -43,6 +24,215 @@
     "/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfo",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof": {
+      "get": {
+        "operationId": "pprofHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/allocs": {
+      "get": {
+        "operationId": "allocsHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/block": {
+      "get": {
+        "operationId": "blockHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/cmdline": {
+      "get": {
+        "operationId": "cmdlineHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/goroutine": {
+      "get": {
+        "operationId": "goroutineHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/heap": {
+      "get": {
+        "operationId": "heapHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/mutex": {
+      "get": {
+        "operationId": "mutexHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/profile": {
+      "get": {
+        "operationId": "profile",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/symbol": {
+      "get": {
+        "operationId": "symbolHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/threadcreate": {
+      "get": {
+        "operationId": "threadcreateHandler",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/session/admin/internal/pprof/trace": {
+      "get": {
+        "operationId": "traceHandler",
         "produces": [
           "application/json"
         ],
@@ -1977,7 +2167,7 @@
         ],
         "responses": {
           "204": {
-            "description": "OK"
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
@@ -2018,6 +2208,93 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/members/{memberId}/kick": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Kick member from a game session.",
+        "operationId": "adminKickGameSessionMember",
+        "parameters": [
+          {
+            "description": "member ID",
+            "in": "path",
+            "name": "memberId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Kick member from a game session.",
+        "tags": [
+          "Game Session"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:GAME [DELETE]"
             ]
           }
         ]
@@ -2466,10 +2743,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "should"
-            ],
             "authorization": []
           }
         ],
@@ -2553,10 +2826,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "psn"
-            ],
             "authorization": []
           }
         ],
@@ -4352,9 +4621,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:SESSION:GAME [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -4436,6 +4702,93 @@
           }
         ],
         "summary": "Leave a game session.",
+        "tags": [
+          "Game Session"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:SESSION:GAME:PLAYER [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/members/{memberId}/kick": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Kick member from a game session, only leader can kick member.",
+        "operationId": "publicKickGameSessionMember",
+        "parameters": [
+          {
+            "description": "member ID",
+            "in": "path",
+            "name": "memberId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "session ID",
+            "in": "path",
+            "name": "sessionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Kick member from a game session, only leader can kick member.",
         "tags": [
           "Game Session"
         ],
@@ -8749,11 +9102,7 @@
           },
           "type": "array"
         }
-      },
-      "required": [
-        "partyID",
-        "userIDs"
-      ]
+      }
     },
     "models.PlatformCredentials": {
       "properties": {
@@ -8808,15 +9157,15 @@
     },
     "models.Team": {
       "properties": {
-        "UserIDs": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "parties": {
           "items": {
             "$ref": "#/definitions/models.PartyMembers"
+          },
+          "type": "array"
+        },
+        "userIDs": {
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -8897,9 +9246,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-25T04:23:46+00:00",
-    "gitHash": "ae366015f96446405ee944a8e2014d64eef42825",
-    "version": "3.16.15",
+    "buildDate": "2024-08-28T06:51:52+00:00",
+    "gitHash": "596a4503c2da2488e54fbd5f8f452aeee4f15c3b",
+    "version": "3.17.1",
     "version-roles-seeding": "1.2.37"
   }
 }

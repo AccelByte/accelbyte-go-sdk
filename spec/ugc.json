@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.20.4"
+    "version": "2.21.0"
   },
   "schemes": [
     "https"
@@ -18,33 +18,6 @@
     "url": "https://stage.accelbyte.io/ugc/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId} [DELETE]": "NAMESPACE:{namespace}:USER:{userId} [DELETE]",
-        "NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]",
-        "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]",
-        "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -451,9 +424,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -552,9 +522,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -666,9 +633,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -827,9 +791,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -910,9 +871,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1014,9 +972,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1101,9 +1056,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1190,9 +1142,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1341,9 +1290,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1430,9 +1376,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1510,9 +1453,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1589,9 +1529,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1668,9 +1605,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1759,9 +1693,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -2123,9 +2054,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -3727,9 +3655,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3850,9 +3775,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3941,9 +3863,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -4030,9 +3949,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -4141,9 +4057,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -4218,9 +4131,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -4308,9 +4218,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -4408,9 +4315,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -5004,9 +4908,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -6938,9 +6839,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -7040,9 +6938,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -7162,9 +7057,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -7280,9 +7172,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -7373,9 +7262,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -7463,9 +7349,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -7575,9 +7458,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -7696,9 +7576,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT:SHARECODE [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -7775,9 +7652,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -7867,9 +7741,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -9095,9 +8966,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId} [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -9495,6 +9363,106 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}/copy": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "AdminCopyContent",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CopyContentRequest"
+            }
+          },
+          {
+            "description": "source channel id",
+            "in": "path",
+            "name": "channelId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "source content id",
+            "in": "path",
+            "name": "contentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "contents copied",
+            "schema": {
+              "$ref": "#/definitions/models.ContentDownloadResponseV2"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Copy contents from a channel to another",
+        "tags": [
+          "Admin Content V2"
+        ],
+        "x-errorCodes": {
+          "20001": "unauthorized access",
+          "20013": "insufficient permission"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]"
             ]
           }
         ]
@@ -13991,9 +13959,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -15387,6 +15352,34 @@
         "version"
       ]
     },
+    "models.CopyContentRequest": {
+      "properties": {
+        "customAttributes": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subType": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetChannelId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetChannelId"
+      ]
+    },
     "models.CreateContentRequest": {
       "properties": {
         "customAttributes": {
@@ -16770,11 +16763,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-23T06:44:57+00:00",
-    "gitHash": "2a40a376e23b8d2b34778e9d07e0560276fce0c8",
+    "buildDate": "2024-08-28T01:35:26+00:00",
+    "gitHash": "27d8200496fd30060c4078ec2b0591c5be176056",
     "name": "justice-ugc-service",
     "realm": "staging",
-    "version": "2.20.4",
+    "version": "2.21.0",
     "version-roles-seeding": "1.0.21"
   }
 }

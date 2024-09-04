@@ -28,14 +28,14 @@ var UpdatePlatformEntitlementConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		platform, _ := cmd.Flags().GetString("platform")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.EntitlementPlatformConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		platform, _ := cmd.Flags().GetString("platform")
 		input := &entitlement.UpdatePlatformEntitlementConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var UpdatePlatformEntitlementConfigCmd = &cobra.Command{
 
 func init() {
 	UpdatePlatformEntitlementConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdatePlatformEntitlementConfigCmd.MarkFlagRequired("body")
 	UpdatePlatformEntitlementConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePlatformEntitlementConfigCmd.MarkFlagRequired("namespace")
 	UpdatePlatformEntitlementConfigCmd.Flags().String("platform", "", "Platform")

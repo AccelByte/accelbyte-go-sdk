@@ -28,15 +28,15 @@ var AcquireUserTicketCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		boothName, _ := cmd.Flags().GetString("boothName")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.TicketAcquireRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		boothName, _ := cmd.Flags().GetString("boothName")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &ticket.AcquireUserTicketParams{
 			Body:      body,
 			BoothName: boothName,
@@ -58,6 +58,7 @@ var AcquireUserTicketCmd = &cobra.Command{
 
 func init() {
 	AcquireUserTicketCmd.Flags().String("body", "", "Body")
+	_ = AcquireUserTicketCmd.MarkFlagRequired("body")
 	AcquireUserTicketCmd.Flags().String("boothName", "", "Booth name")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("boothName")
 	AcquireUserTicketCmd.Flags().String("namespace", "", "Namespace")

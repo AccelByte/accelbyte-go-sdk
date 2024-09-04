@@ -143,6 +143,7 @@ func init() {
 	UgcCmd.AddCommand(adminContentV2.AdminCreateContentV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminDeleteOfficialContentV2Cmd)
 	UgcCmd.AddCommand(adminContentV2.AdminUpdateOfficialContentV2Cmd)
+	UgcCmd.AddCommand(adminContentV2.AdminCopyContentCmd)
 	UgcCmd.AddCommand(adminContentV2.AdminUpdateOfficialContentFileLocationCmd)
 	UgcCmd.AddCommand(adminContentV2.AdminGenerateOfficialContentUploadURLV2Cmd)
 	UgcCmd.AddCommand(adminConfig.AdminGetConfigsCmd)

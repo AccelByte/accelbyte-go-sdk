@@ -28,13 +28,13 @@ var ValidatePlaystationIAPConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PlaystationIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &iap.ValidatePlaystationIAPConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var ValidatePlaystationIAPConfigCmd = &cobra.Command{
 
 func init() {
 	ValidatePlaystationIAPConfigCmd.Flags().String("body", "", "Body")
+	_ = ValidatePlaystationIAPConfigCmd.MarkFlagRequired("body")
 	ValidatePlaystationIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = ValidatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

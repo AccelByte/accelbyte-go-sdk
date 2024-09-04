@@ -17,6 +17,9 @@ import (
 // swagger:model Entitlement split request.
 type EntitlementSplitRequest struct {
 
+	// split metadata, It is not stored in the database, only forwarded to AGS event
+	Metadata *PublicEntitlementMetadata `json:"metadata,omitempty"`
+
 	// use count
 	// Format: int32
 	UseCount int32 `json:"useCount,omitempty"`

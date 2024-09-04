@@ -195,7 +195,10 @@ Request body:
     * rewards: list of rewards that will be claimable once a goal is complete.
     * tag: goal's labels.
     * isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.
-Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX
+Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.
+The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
+Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX.
+Number of goals per challenge is limited to 100 goals.
 */
 func (a *Client) AdminCreateGoal(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, *AdminCreateGoalBadRequest, *AdminCreateGoalUnauthorized, *AdminCreateGoalForbidden, *AdminCreateGoalNotFound, *AdminCreateGoalConflict, *AdminCreateGoalUnprocessableEntity, *AdminCreateGoalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -294,7 +297,10 @@ Request body:
       * rewards: list of rewards that will be claimable once a goal is complete.
       * tag: goal's labels.
       * isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.
-Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX
+Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.
+The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
+Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX.
+Number of goals per challenge is limited to 100 goals.
 */
 func (a *Client) AdminCreateGoalShort(params *AdminCreateGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateGoalCreated, error) {
 	// TODO: Validate the params before sending

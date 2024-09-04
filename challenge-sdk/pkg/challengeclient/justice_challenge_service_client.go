@@ -19,6 +19,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/challenge_progression"
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/goal_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/player_reward"
+	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/plugins"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
@@ -74,6 +75,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.ChallengeProgression = challenge_progression.New(transport, formats)
 	cli.GoalConfiguration = goal_configuration.New(transport, formats)
 	cli.PlayerReward = player_reward.New(transport, formats)
+	cli.Plugins = plugins.New(transport, formats)
 
 	return cli
 }
@@ -144,6 +146,8 @@ type JusticeChallengeService struct {
 
 	PlayerReward player_reward.ClientService
 
+	Plugins plugins.ClientService
+
 	Runtime   *httptransport.Runtime
 	Transport runtime.ClientTransport
 }
@@ -156,4 +160,5 @@ func (c *JusticeChallengeService) SetTransport(transport runtime.ClientTransport
 	c.ChallengeProgression.SetTransport(transport)
 	c.GoalConfiguration.SetTransport(transport)
 	c.PlayerReward.SetTransport(transport)
+	c.Plugins.SetTransport(transport)
 }

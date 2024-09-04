@@ -28,14 +28,14 @@ var PayCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		paymentOrderNo, _ := cmd.Flags().GetString("paymentOrderNo")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentToken
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		paymentOrderNo, _ := cmd.Flags().GetString("paymentOrderNo")
 		paymentProvider, _ := cmd.Flags().GetString("paymentProvider")
 		zipCode, _ := cmd.Flags().GetString("zipCode")
 		input := &payment_station.PayParams{
@@ -60,6 +60,7 @@ var PayCmd = &cobra.Command{
 
 func init() {
 	PayCmd.Flags().String("body", "", "Body")
+	_ = PayCmd.MarkFlagRequired("body")
 	PayCmd.Flags().String("namespace", "", "Namespace")
 	_ = PayCmd.MarkFlagRequired("namespace")
 	PayCmd.Flags().String("paymentOrderNo", "", "Payment order no")

@@ -72,6 +72,8 @@
 | `/platform/admin/namespaces/{namespace}/campaigns` | POST | CreateCampaignShort | [CreateCampaignShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [CreateCampaignShort](../../services-api/pkg/service/platform/campaign.go) | [CreateCampaignShort](../../samples/cli/cmd/platform/campaign/createCampaign.go) |
 | `/platform/admin/namespaces/{namespace}/campaigns/{campaignId}` | GET | GetCampaignShort | [GetCampaignShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [GetCampaignShort](../../services-api/pkg/service/platform/campaign.go) | [GetCampaignShort](../../samples/cli/cmd/platform/campaign/getCampaign.go) |
 | `/platform/admin/namespaces/{namespace}/campaigns/{campaignId}` | PUT | UpdateCampaignShort | [UpdateCampaignShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [UpdateCampaignShort](../../services-api/pkg/service/platform/campaign.go) | [UpdateCampaignShort](../../samples/cli/cmd/platform/campaign/updateCampaign.go) |
+| `/platform/admin/namespaces/{namespace}/campaigns/{campaignId}/batchName` | PUT | RenameBatchShort | [RenameBatchShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [RenameBatchShort](../../services-api/pkg/service/platform/campaign.go) | [RenameBatchShort](../../samples/cli/cmd/platform/campaign/renameBatch.go) |
+| `/platform/admin/namespaces/{namespace}/campaigns/{campaignId}/batchNames` | GET | QueryCampaignBatchNamesShort | [QueryCampaignBatchNamesShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [QueryCampaignBatchNamesShort](../../services-api/pkg/service/platform/campaign.go) | [QueryCampaignBatchNamesShort](../../samples/cli/cmd/platform/campaign/queryCampaignBatchNames.go) |
 | `/platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic` | GET | GetCampaignDynamicShort | [GetCampaignDynamicShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [GetCampaignDynamicShort](../../services-api/pkg/service/platform/campaign.go) | [GetCampaignDynamicShort](../../samples/cli/cmd/platform/campaign/getCampaignDynamic.go) |
 | `/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}` | GET | QueryCodesShort | [QueryCodesShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [QueryCodesShort](../../services-api/pkg/service/platform/campaign.go) | [QueryCodesShort](../../samples/cli/cmd/platform/campaign/queryCodes.go) |
 | `/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}` | POST | CreateCodesShort | [CreateCodesShort](../../platform-sdk/pkg/platformclient/campaign/campaign_client.go) | [CreateCodesShort](../../services-api/pkg/service/platform/campaign.go) | [CreateCodesShort](../../samples/cli/cmd/platform/campaign/createCodes.go) |
@@ -654,6 +656,8 @@
 | `BulkOperationResult` | [BulkOperationResult ](../../platform-sdk/pkg/platformclientmodels/bulk_operation_result.go) |
 | `BulkRegionDataChangeRequest` | [BulkRegionDataChangeRequest ](../../platform-sdk/pkg/platformclientmodels/bulk_region_data_change_request.go) |
 | `BundledItemInfo` | [BundledItemInfo ](../../platform-sdk/pkg/platformclientmodels/bundled_item_info.go) |
+| `CampaignBatchNameChange` | [CampaignBatchNameChange ](../../platform-sdk/pkg/platformclientmodels/campaign_batch_name_change.go) |
+| `CampaignBatchNameInfo` | [CampaignBatchNameInfo ](../../platform-sdk/pkg/platformclientmodels/campaign_batch_name_info.go) |
 | `CampaignCreate` | [CampaignCreate ](../../platform-sdk/pkg/platformclientmodels/campaign_create.go) |
 | `CampaignDynamicInfo` | [CampaignDynamicInfo ](../../platform-sdk/pkg/platformclientmodels/campaign_dynamic_info.go) |
 | `CampaignIfc` | [CampaignIfc ](../../platform-sdk/pkg/platformclientmodels/campaign_ifc.go) |
@@ -716,7 +720,6 @@
 | `DiscountItem` | [DiscountItem ](../../platform-sdk/pkg/platformclientmodels/discount_item.go) |
 | `DurableEntitlementRevocationConfig` | [DurableEntitlementRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/durable_entitlement_revocation_config.go) |
 | `EntitlementConfigInfo` | [EntitlementConfigInfo ](../../platform-sdk/pkg/platformclientmodels/entitlement_config_info.go) |
-| `EntitlementDecrement` | [EntitlementDecrement ](../../platform-sdk/pkg/platformclientmodels/entitlement_decrement.go) |
 | `EntitlementDecrementResult` | [EntitlementDecrementResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_decrement_result.go) |
 | `EntitlementGrant` | [EntitlementGrant ](../../platform-sdk/pkg/platformclientmodels/entitlement_grant.go) |
 | `EntitlementGrantResult` | [EntitlementGrantResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_grant_result.go) |
@@ -732,6 +735,7 @@
 | `EntitlementPrechekResult` | [EntitlementPrechekResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_prechek_result.go) |
 | `EntitlementRevocation` | [EntitlementRevocation ](../../platform-sdk/pkg/platformclientmodels/entitlement_revocation.go) |
 | `EntitlementRevocationConfig` | [EntitlementRevocationConfig ](../../platform-sdk/pkg/platformclientmodels/entitlement_revocation_config.go) |
+| `EntitlementRevokeRequest` | [EntitlementRevokeRequest ](../../platform-sdk/pkg/platformclientmodels/entitlement_revoke_request.go) |
 | `EntitlementRevokeResult` | [EntitlementRevokeResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_revoke_result.go) |
 | `EntitlementSoldRequest` | [EntitlementSoldRequest ](../../platform-sdk/pkg/platformclientmodels/entitlement_sold_request.go) |
 | `EntitlementSoldResult` | [EntitlementSoldResult ](../../platform-sdk/pkg/platformclientmodels/entitlement_sold_result.go) |
@@ -931,7 +935,9 @@
 | `PredicateValidateResult` | [PredicateValidateResult ](../../platform-sdk/pkg/platformclientmodels/predicate_validate_result.go) |
 | `PsnEntitlementOwnershipRequest` | [PsnEntitlementOwnershipRequest ](../../platform-sdk/pkg/platformclientmodels/psn_entitlement_ownership_request.go) |
 | `PublicCustomConfigInfo` | [PublicCustomConfigInfo ](../../platform-sdk/pkg/platformclientmodels/public_custom_config_info.go) |
+| `PublicEntitlementDecrement` | [PublicEntitlementDecrement ](../../platform-sdk/pkg/platformclientmodels/public_entitlement_decrement.go) |
 | `PublicEntitlementHistoryInfo` | [PublicEntitlementHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/public_entitlement_history_info.go) |
+| `PublicEntitlementMetadata` | [PublicEntitlementMetadata ](../../platform-sdk/pkg/platformclientmodels/public_entitlement_metadata.go) |
 | `PurchaseCondition` | [PurchaseCondition ](../../platform-sdk/pkg/platformclientmodels/purchase_condition.go) |
 | `PurchaseConditionUpdate` | [PurchaseConditionUpdate ](../../platform-sdk/pkg/platformclientmodels/purchase_condition_update.go) |
 | `PurchasedItemCount` | [PurchasedItemCount ](../../platform-sdk/pkg/platformclientmodels/purchased_item_count.go) |

@@ -28,14 +28,14 @@ var ApplyUserRedemptionCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RedeemRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &campaign.ApplyUserRedemptionParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var ApplyUserRedemptionCmd = &cobra.Command{
 
 func init() {
 	ApplyUserRedemptionCmd.Flags().String("body", "", "Body")
+	_ = ApplyUserRedemptionCmd.MarkFlagRequired("body")
 	ApplyUserRedemptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = ApplyUserRedemptionCmd.MarkFlagRequired("namespace")
 	ApplyUserRedemptionCmd.Flags().String("userId", "", "User id")

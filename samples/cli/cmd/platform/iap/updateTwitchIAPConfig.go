@@ -28,13 +28,13 @@ var UpdateTwitchIAPConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.TwitchIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &iap.UpdateTwitchIAPConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateTwitchIAPConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateTwitchIAPConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateTwitchIAPConfigCmd.MarkFlagRequired("body")
 	UpdateTwitchIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateTwitchIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -67,7 +67,7 @@ type PublicConsumeUserEntitlementParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *platformclientmodels.EntitlementDecrement
+	Body *platformclientmodels.PublicEntitlementDecrement
 	/*EntitlementID*/
 	EntitlementID string
 	/*Namespace*/
@@ -141,13 +141,13 @@ func (o *PublicConsumeUserEntitlementParams) SetFlightId(flightId string) {
 }
 
 // WithBody adds the body to the public consume user entitlement params
-func (o *PublicConsumeUserEntitlementParams) WithBody(body *platformclientmodels.EntitlementDecrement) *PublicConsumeUserEntitlementParams {
+func (o *PublicConsumeUserEntitlementParams) WithBody(body *platformclientmodels.PublicEntitlementDecrement) *PublicConsumeUserEntitlementParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the public consume user entitlement params
-func (o *PublicConsumeUserEntitlementParams) SetBody(body *platformclientmodels.EntitlementDecrement) {
+func (o *PublicConsumeUserEntitlementParams) SetBody(body *platformclientmodels.PublicEntitlementDecrement) {
 	o.Body = body
 }
 

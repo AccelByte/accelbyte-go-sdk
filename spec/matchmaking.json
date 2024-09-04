@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.30.5"
+    "version": "2.30.6"
   },
   "schemes": [
     "https"
@@ -13,20 +13,6 @@
     "url": "https://stage.accelbyte.io/matchmaking/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -6114,9 +6100,9 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-05-17T09:42:13+00:00",
-    "gitHash": "5860acb38d82b29e60f1fb44aa2a9d309a9f5ab1",
-    "version": "2.30.5",
+    "buildDate": "2024-08-28T03:29:04+00:00",
+    "gitHash": "b7391b3883f364dadb46a3cfe84b138b9fae432f",
+    "version": "2.30.6",
     "version-roles-seeding": "0.0.23"
   }
 }

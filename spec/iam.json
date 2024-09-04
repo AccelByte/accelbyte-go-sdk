@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.19.0"
+    "version": "7.21.0"
   },
   "schemes": [
     "https"
@@ -18,24 +18,6 @@
     "url": "https://stage.accelbyte.io/iam/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]": "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "will": "will"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -1397,9 +1379,6 @@
             "basic": []
           },
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1537,9 +1516,6 @@
             "basic": []
           },
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3079,9 +3055,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -9986,7 +9959,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/config/{configKey}": {
       "get": {
-        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n",
+        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n * mandatoryEmailVerificationEnabled\n",
         "operationId": "AdminGetConfigValueV3",
         "parameters": [
           {
@@ -11546,6 +11519,447 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/roleoverride": {
+      "get": {
+        "description": "Get role override config.\nThis API has upsert behavior, if there is no config yet, it will create a new one with inactive status.\n",
+        "operationId": "AdminGetRoleOverrideConfigV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "USER",
+            "description": "Role identity",
+            "enum": [
+              "GAME_ADMIN",
+              "USER",
+              "VIEW_ONLY"
+            ],
+            "in": "query",
+            "name": "identity",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.RoleOverrideResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get role override config",
+        "tags": [
+          "Override Role Config v3"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ROLE:OVERRIDE [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API is for updating role override config.\nNote:\nThis API has upsert behavior, if there is no config yet, it will create a new one first.\n",
+        "operationId": "AdminUpdateRoleOverrideConfigV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.RoleOverrideUpdateRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "USER",
+            "description": "Role identity",
+            "enum": [
+              "GAME_ADMIN",
+              "USER",
+              "VIEW_ONLY"
+            ],
+            "in": "query",
+            "name": "identity",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.RoleOverrideResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update role override config",
+        "tags": [
+          "Override Role Config v3"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ROLE:OVERRIDE [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/roleoverride/source": {
+      "get": {
+        "description": "Get role source permission set.",
+        "operationId": "AdminGetRoleSourceV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "USER",
+            "description": "Role identity",
+            "enum": [
+              "GAME_ADMIN",
+              "USER",
+              "VIEW_ONLY"
+            ],
+            "in": "query",
+            "name": "identity",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.RoleOverrideSourceResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10456\u003c/td\u003e\u003ctd\u003erole not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get role source permission set",
+        "tags": [
+          "Override Role Config v3"
+        ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ROLE:OVERRIDE [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/roleoverride/status": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Enable or disable the target role override feature in path namespace.\nNote:\nThis API has upsert behavior, if there is no config yet, it will create a new one first.\n",
+        "operationId": "AdminChangeRoleOverrideConfigStatusV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.RoleOverrideStatsUpdateRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "USER",
+            "description": "Role identity",
+            "enum": [
+              "GAME_ADMIN",
+              "USER",
+              "VIEW_ONLY"
+            ],
+            "in": "query",
+            "name": "identity",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.RoleOverrideResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Change role override config active status",
+        "tags": [
+          "Override Role Config v3"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ROLE:OVERRIDE [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/roleoverride/{roleId}/permissions": {
+      "get": {
+        "description": "Get role namespace permission set.",
+        "operationId": "AdminGetRoleNamespacePermissionV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Role ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "roleId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.RolePermissionResponseV3"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10456\u003c/td\u003e\u003ctd\u003erole not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get role namespace permission",
+        "tags": [
+          "Override Role Config v3"
+        ],
+        "x-errorCodes": {
+          "10456": "role not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:ROLE [READ]"
             ]
           }
         ]
@@ -13416,7 +13830,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/codes": {
       "get": {
-        "description": "[WARNING] This endpoint is only for testing purpose. \nThis endpoint get active user verification\ncode. There are 3 scenario of getting verification codes : after account registration, after reset password \nrequest, and after headless account upgrade. All of them will be returned on this endpoint. \naction code: 10146",
+        "description": "**[WARNING] This endpoint is only for testing purpose.**\n\nThis endpoint get active user verification code. \nThere are some scenarios of getting verification codes, all of them will be returned on this endpoint: \n- After account registration\n- After reset password request\n- After headless account upgrade\n- After update email request\n\nThis API only accept publisher/studio namespace and userId.\n\nAction code: 10146",
         "operationId": "getUserVerificationCode",
         "parameters": [
           {
@@ -14530,9 +14944,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -15700,6 +16111,14 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "By default, this API will query the platform account in the specified namespace path only. If 'crossNamespace' is set to true, it will query across all namespaces and find one.",
+            "in": "query",
+            "name": "crossNamespace",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -16349,7 +16768,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/verify": {
       "put": {
-        "description": "This endpoint force verify user\naction code: 10118",
+        "description": "This endpoint force verify user\nNote:\n- namespace: only accept publisher/studio namespace\n- userId: only accept publisher/studio userId\naction code: 10118",
         "operationId": "AdminVerifyUserWithoutVerificationCodeV3",
         "parameters": [
           {
@@ -17501,7 +17920,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Admin roles has its members listed in the role.\nRole can only be assigned to other users by the role\u0026#39;s manager.\naction code: 10411",
+        "deprecated": true,
+        "description": "Admin roles has its members listed in the role.\nRole can only be assigned to other users by the role\u0026#39;s manager.\naction code: 10411\nDeprecate: Suggest to use this: AdminRevokeUserFromRoleV4",
         "operationId": "AdminRemoveRoleMembersV3",
         "parameters": [
           {
@@ -20167,7 +20587,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/config/{configKey}": {
       "get": {
-        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\nNote: this endpoint does not need any authorization.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n",
+        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\nNote: this endpoint does not need any authorization.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n * mandatoryEmailVerificationEnabled\n",
         "operationId": "PublicGetConfigValueV3",
         "parameters": [
           {
@@ -20762,7 +21182,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Available Authentication Types:\n1. **EMAILPASSWD**: an authentication type used for new user registration through email.\n\n**Note**:\n  * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.\n\t\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
+        "description": "Available Authentication Types:\n1. **EMAILPASSWD**: an authentication type used for new user registration through email.\n\n**Note**:\n  * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.\n  * **code**: this is required when mandatoryEmailVerificationEnabled config is true. please refer to the config from /iam/v3/public/namespaces/{namespace}/config/{configKey} [GET] API.\n\t\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
         "operationId": "PublicCreateUserV3",
         "parameters": [
           {
@@ -20792,7 +21212,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10130\u003c/td\u003e\u003ctd\u003euser under age\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10130\u003c/td\u003e\u003ctd\u003euser under age\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10152\u003c/td\u003e\u003ctd\u003everification code not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -20840,6 +21260,7 @@
         "x-errorCodes": {
           "10130": "user under age",
           "10133": "email already used",
+          "10152": "verification code not found",
           "10154": "country not found",
           "10213": "country is blocked",
           "10222": "unique display name already exists",
@@ -27794,13 +28215,14 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "This endpoint is used to enable 2FA authenticator.",
+        "description": "This endpoint is used to enable 2FA authenticator.\n----------\nPrerequisites:\n- Generate the secret key/QR code uri by **_/iam/v4/admin/users/me/mfa/authenticator/key_**\n- Consume the secret key/QR code by an authenticator app\n- Get the code from the authenticator app\n",
         "operationId": "AdminEnableMyAuthenticatorV4",
         "parameters": [
           {
             "description": "code",
             "in": "formData",
             "name": "code",
+            "required": true,
             "type": "string"
           }
         ],
@@ -28611,6 +29033,12 @@
             "in": "formData",
             "name": "action",
             "type": "string"
+          },
+          {
+            "description": "Language Tag",
+            "in": "formData",
+            "name": "languageTag",
+            "type": "string"
           }
         ],
         "produces": [
@@ -28983,8 +29411,65 @@
       }
     },
     "/iam/v4/admin/users/me/mfa/status": {
-      "post": {
+      "get": {
         "description": "This endpoint will get user\u0026#39;s\u0026#39; MFA status.",
+        "operationId": "AdminGetMyOwnMFAStatusV4",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "MFA status returned",
+            "schema": {
+              "$ref": "#/definitions/model.UserMFAStatusResponseV4"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10365\u003c/td\u003e\u003ctd\u003eclient not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Admin Own MFA Status",
+        "tags": [
+          "Users V4"
+        ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
+        "x-security": {}
+      },
+      "post": {
+        "deprecated": true,
+        "description": "This endpoint will get user\u0026#39;s\u0026#39; MFA status.\n------------\n**Substitute endpoint**: /iam/v4/admin/users/me/mfa/status [GET]\n",
         "operationId": "AdminGetMyMFAStatusV4",
         "produces": [
           "application/json"
@@ -30044,7 +30529,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
+        "description": "Create a new user with unique email address and username.\n**Required attributes:**\n- authType: possible value is EMAILPASSWD\n- emailAddress: Please refer to the rule from /v3/public/inputValidations API.\n- username: Please refer to the rule from /v3/public/inputValidations API.\n- password: Please refer to the rule from /v3/public/inputValidations API.\n- country: ISO3166-1 alpha-2 two letter, e.g. US.\n- dateOfBirth: YYYY-MM-DD, e.g. 1990-01-01. valid values are between 1905-01-01 until current date.\n- uniqueDisplayName: required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true, please refer to the rule from /v3/public/inputValidations API.\n- code: required when mandatoryEmailVerificationEnabled config is true, please refer to the config from /iam/v3/public/namespaces/{namespace}/config/{configKey} [GET] API.\n\n**Not required attributes:**\t\n- displayName: Please refer to the rule from /v3/public/inputValidations API.\nThis endpoint support accepting agreements for the created user. Supply the accepted agreements in acceptedPolicies attribute.",
         "operationId": "PublicCreateUserV4",
         "parameters": [
           {
@@ -30074,7 +30559,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10130\u003c/td\u003e\u003ctd\u003euser under age\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10130\u003c/td\u003e\u003ctd\u003euser under age\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10152\u003c/td\u003e\u003ctd\u003everification code not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -30122,6 +30607,7 @@
         "x-errorCodes": {
           "10130": "user under age",
           "10133": "email already used",
+          "10152": "verification code not found",
           "10154": "country not found",
           "10177": "username already used",
           "10213": "country is blocked",
@@ -30681,20 +31167,21 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "This endpoint is used to enable 2FA authenticator.",
+        "description": "This endpoint is used to enable 2FA authenticator.\n----------\nPrerequisites:\n- Generate the secret key/QR code uri by **_/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key_**\n- Consume the secret key/QR code by an authenticator app\n- Get the code from the authenticator app\n",
         "operationId": "PublicEnableMyAuthenticatorV4",
         "parameters": [
+          {
+            "description": "code",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
           {
             "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
             "name": "namespace",
             "required": true,
-            "type": "string"
-          },
-          {
-            "description": "code",
-            "in": "formData",
-            "name": "code",
             "type": "string"
           }
         ],
@@ -31676,6 +32163,12 @@
             "in": "formData",
             "name": "action",
             "type": "string"
+          },
+          {
+            "description": "Language Tag",
+            "in": "formData",
+            "name": "languageTag",
+            "type": "string"
           }
         ],
         "produces": [
@@ -32078,8 +32571,74 @@
       }
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/status": {
-      "post": {
+      "get": {
         "description": "This endpoint will get user\u0026#39;s\u0026#39; MFA status.",
+        "operationId": "PublicGetMyOwnMFAStatusV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "MFA status returned",
+            "schema": {
+              "$ref": "#/definitions/model.UserMFAStatusResponseV4"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10365\u003c/td\u003e\u003ctd\u003eclient not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get My Own MFA Status",
+        "tags": [
+          "Users V4"
+        ],
+        "x-errorCodes": {
+          "10365": "client not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
+        "x-security": {}
+      },
+      "post": {
+        "deprecated": true,
+        "description": "This endpoint will get user\u0026#39;s\u0026#39; MFA status.\n---------\n**Substitute endpoint**: /iam/v4/public/namespaces/{namespace}/users/me/mfa/status [GET]\n",
         "operationId": "PublicGetMyMFAStatusV4",
         "parameters": [
           {
@@ -33409,6 +33968,24 @@
         "rootCertificateName"
       ]
     },
+    "accountcommon.OverrideRolePermission": {
+      "properties": {
+        "actions": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "actions",
+        "resource"
+      ]
+    },
     "accountcommon.Pagination": {
       "properties": {
         "First": {
@@ -33650,6 +34227,20 @@
         "domain",
         "namespaces",
         "roleId"
+      ]
+    },
+    "accountcommon.ReplaceRolePermission": {
+      "properties": {
+        "replacement": {
+          "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "replacement",
+        "target"
       ]
     },
     "accountcommon.Role": {
@@ -36916,6 +37507,10 @@
     },
     "model.ResetPasswordRequestV3": {
       "properties": {
+        "clientId": {
+          "description": "for tracking which client this request comes from",
+          "type": "string"
+        },
         "code": {
           "type": "string"
         },
@@ -37179,6 +37774,134 @@
       "required": [
         "data",
         "paging"
+      ]
+    },
+    "model.RoleOverrideResponse": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "additions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "exclusions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        },
+        "identity": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "overrides": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        },
+        "replacements": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ReplaceRolePermission"
+          },
+          "type": "array"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "active",
+        "additions",
+        "exclusions",
+        "identity",
+        "namespace",
+        "overrides",
+        "replacements"
+      ]
+    },
+    "model.RoleOverrideSourceResponse": {
+      "properties": {
+        "permissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "permissions"
+      ]
+    },
+    "model.RoleOverrideStatsUpdateRequest": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "active"
+      ]
+    },
+    "model.RoleOverrideUpdateRequest": {
+      "properties": {
+        "additions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        },
+        "exclusions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        },
+        "overrides": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.OverrideRolePermission"
+          },
+          "type": "array"
+        },
+        "replacements": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.ReplaceRolePermission"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "additions",
+        "exclusions",
+        "overrides",
+        "replacements"
+      ]
+    },
+    "model.RolePermissionResponseV3": {
+      "properties": {
+        "permissions": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.Permission"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "permissions"
       ]
     },
     "model.RoleResponse": {
@@ -38600,6 +39323,9 @@
         "displayName": {
           "type": "string"
         },
+        "password": {
+          "type": "string"
+        },
         "uniqueDisplayName": {
           "type": "string"
         },
@@ -38931,12 +39657,14 @@
           "type": "object"
         },
         "namespace": {
+          "description": "the namespace of this metadata query from",
           "type": "string"
         },
         "platformUserId": {
           "type": "string"
         },
         "userId": {
+          "description": "it is always the publisher user id. this is deprecate, and will be removed",
           "type": "string"
         }
       },
@@ -40059,6 +40787,7 @@
           "type": "string"
         },
         "refresh_expires_in": {
+          "description": "present if it is user token",
           "format": "int32",
           "type": "integer"
         },
@@ -40397,11 +41126,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-30T08:32:47+00:00",
-    "gitHash": "914108c472f2183b61a09f4ec148a2f8b47af64f",
+    "buildDate": "2024-08-28T01:54:58+00:00",
+    "gitHash": "e5058dac6aa8d74aae3c882e2c359b149a8e7310",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.19.0",
-    "version-roles-seeding": "1.2.50"
+    "version": "7.21.0",
+    "version-roles-seeding": "1.2.61"
   }
 }

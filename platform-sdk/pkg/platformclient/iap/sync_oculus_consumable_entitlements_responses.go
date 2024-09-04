@@ -39,6 +39,12 @@ func (o *SyncOculusConsumableEntitlementsReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewSyncOculusConsumableEntitlementsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -108,7 +114,7 @@ func NewSyncOculusConsumableEntitlementsBadRequest() *SyncOculusConsumableEntitl
 
 /*SyncOculusConsumableEntitlementsBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39134</td><td>Invalid Oculus IAP config under namespace [{namespace}]: [{message}]</td></tr><tr><td>39133</td><td>Bad request for Oculus: [{reason}]</td></tr></table>
 */
 type SyncOculusConsumableEntitlementsBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -138,6 +144,59 @@ func (o *SyncOculusConsumableEntitlementsBadRequest) GetPayload() *platformclien
 }
 
 func (o *SyncOculusConsumableEntitlementsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSyncOculusConsumableEntitlementsNotFound creates a SyncOculusConsumableEntitlementsNotFound with default headers values
+func NewSyncOculusConsumableEntitlementsNotFound() *SyncOculusConsumableEntitlementsNotFound {
+	return &SyncOculusConsumableEntitlementsNotFound{}
+}
+
+/*SyncOculusConsumableEntitlementsNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39146</td><td>Oculus IAP config not found in namespace [{namespace}].</td></tr></table>
+*/
+type SyncOculusConsumableEntitlementsNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncOculusConsumableEntitlementsNotFound) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/oculus/sync][%d] syncOculusConsumableEntitlementsNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *SyncOculusConsumableEntitlementsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncOculusConsumableEntitlementsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncOculusConsumableEntitlementsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -20,6 +20,10 @@ import (
 // swagger:model Api fleet servers response.
 type APIFleetServersResponse struct {
 
+	// paging
+	// Required: true
+	Paging *APIPagingInfo `json:"paging"`
+
 	// regions
 	// Required: true
 	Regions []*APIFleetRegionalServerCounts `json:"regions"`
@@ -33,6 +37,9 @@ type APIFleetServersResponse struct {
 func (m *APIFleetServersResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validatePaging(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateRegions(formats); err != nil {
 		res = append(res, err)
 	}
@@ -43,6 +50,24 @@ func (m *APIFleetServersResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIFleetServersResponse) validatePaging(formats strfmt.Registry) error {
+
+	if err := validate.Required("paging", "body", m.Paging); err != nil {
+		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

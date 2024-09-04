@@ -30,9 +30,16 @@ type ModelsUser struct {
 	// Required: true
 	PlatformUserID *string `json:"PlatformUserID"`
 
+	// previousstatus
+	PreviousStatus string `json:"PreviousStatus,omitempty"`
+
 	// status
 	// Required: true
 	Status *string `json:"Status"`
+
+	// statusv2
+	// Required: true
+	StatusV2 *string `json:"StatusV2"`
 
 	// updatedat
 	// Required: true
@@ -54,6 +61,9 @@ func (m *ModelsUser) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateStatusV2(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
@@ -96,6 +106,15 @@ func (m *ModelsUser) validatePlatformUserID(formats strfmt.Registry) error {
 func (m *ModelsUser) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("Status", "body", m.Status); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsUser) validateStatusV2(formats strfmt.Registry) error {
+
+	if err := validate.Required("StatusV2", "body", m.StatusV2); err != nil {
 		return err
 	}
 

@@ -495,8 +495,8 @@ func (o *QueryItemsV2Params) SetTargetNamespace(targetNamespace *string) {
 	o.TargetNamespace = targetNamespace
 }
 
-// WithWithTotal adds the withTotal to the query items v2 params
-func (o *QueryItemsV2Params) WithWithTotal(withTotal *bool) *QueryItemsV2Params {
+// WithWithTotal_ adds the withTotal to the query items v2 params
+func (o *QueryItemsV2Params) WithWithTotal_(withTotal *bool) *QueryItemsV2Params {
 	o.SetWithTotal(withTotal)
 	return o
 }

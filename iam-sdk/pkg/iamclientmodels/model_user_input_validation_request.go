@@ -20,6 +20,9 @@ type ModelUserInputValidationRequest struct {
 	// displayname
 	DisplayName string `json:"displayName,omitempty"`
 
+	// password
+	Password string `json:"password,omitempty"`
+
 	// uniquedisplayname
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 

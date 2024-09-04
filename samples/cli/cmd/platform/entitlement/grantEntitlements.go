@@ -28,13 +28,13 @@ var GrantEntitlementsCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.BulkEntitlementGrantRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &entitlement.GrantEntitlementsParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var GrantEntitlementsCmd = &cobra.Command{
 
 func init() {
 	GrantEntitlementsCmd.Flags().String("body", "", "Body")
+	_ = GrantEntitlementsCmd.MarkFlagRequired("body")
 	GrantEntitlementsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GrantEntitlementsCmd.MarkFlagRequired("namespace")
 }

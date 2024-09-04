@@ -414,8 +414,8 @@ func (o *QueryChangesParams) SetUpdatedAtStart(updatedAtStart *string) {
 	o.UpdatedAtStart = updatedAtStart
 }
 
-// WithWithTotal adds the withTotal to the query changes params
-func (o *QueryChangesParams) WithWithTotal(withTotal *bool) *QueryChangesParams {
+// WithWithTotal_ adds the withTotal to the query changes params
+func (o *QueryChangesParams) WithWithTotal_(withTotal *bool) *QueryChangesParams {
 	o.SetWithTotal(withTotal)
 	return o
 }

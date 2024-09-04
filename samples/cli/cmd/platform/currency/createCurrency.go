@@ -28,13 +28,13 @@ var CreateCurrencyCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CurrencyCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &currency.CreateCurrencyParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var CreateCurrencyCmd = &cobra.Command{
 
 func init() {
 	CreateCurrencyCmd.Flags().String("body", "", "Body")
+	_ = CreateCurrencyCmd.MarkFlagRequired("body")
 	CreateCurrencyCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateCurrencyCmd.MarkFlagRequired("namespace")
 }

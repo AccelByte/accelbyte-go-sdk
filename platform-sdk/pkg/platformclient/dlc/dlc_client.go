@@ -48,17 +48,17 @@ type ClientService interface {
 	GetUserDLCShort(params *GetUserDLCParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserDLCOK, error)
 	GeDLCDurableRewardShortMap(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, *GeDLCDurableRewardShortMapNotFound, error)
 	GeDLCDurableRewardShortMapShort(params *GeDLCDurableRewardShortMapParams, authInfo runtime.ClientAuthInfoWriter) (*GeDLCDurableRewardShortMapOK, error)
-	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error)
+	SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, *SyncEpicGameDLCNotFound, error)
 	SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, error)
-	SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, error)
+	SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, *SyncOculusDLCNotFound, error)
 	SyncOculusDLCShort(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, error)
-	PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, *PublicSyncPsnDLCInventoryBadRequest, error)
+	PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, *PublicSyncPsnDLCInventoryBadRequest, *PublicSyncPsnDLCInventoryNotFound, error)
 	PublicSyncPsnDLCInventoryShort(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, error)
-	PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest, error)
+	PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNotFound, error)
 	PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, error)
-	SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error)
+	SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, *SyncSteamDLCNotFound, error)
 	SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, error)
-	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error)
+	SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, *SyncXboxDLCNotFound, error)
 	SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, error)
 	PublicGetMyDLCContent(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error)
 	PublicGetMyDLCContentShort(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error)
@@ -1026,7 +1026,7 @@ Deprecated: 2022-08-10 - Use SyncEpicGameDLCShort instead.
 SyncEpicGameDLC sync epic games dlc items
 Sync epic games dlc items
 */
-func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, error) {
+func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGameDLCNoContent, *SyncEpicGameDLCBadRequest, *SyncEpicGameDLCNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncEpicGameDLCParams()
@@ -1058,19 +1058,22 @@ func (a *Client) SyncEpicGameDLC(params *SyncEpicGameDLCParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncEpicGameDLCNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncEpicGameDLCBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncEpicGameDLCNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1115,6 +1118,8 @@ func (a *Client) SyncEpicGameDLCShort(params *SyncEpicGameDLCParams, authInfo ru
 		return v, nil
 	case *SyncEpicGameDLCBadRequest:
 		return nil, v
+	case *SyncEpicGameDLCNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1127,7 +1132,7 @@ Deprecated: 2022-08-10 - Use SyncOculusDLCShort instead.
 SyncOculusDLC sync oculus dlc.
 Sync oculus dlc
 */
-func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, error) {
+func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusDLCNoContent, *SyncOculusDLCBadRequest, *SyncOculusDLCNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncOculusDLCParams()
@@ -1159,19 +1164,22 @@ func (a *Client) SyncOculusDLC(params *SyncOculusDLCParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncOculusDLCNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncOculusDLCBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncOculusDLCNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1216,6 +1224,8 @@ func (a *Client) SyncOculusDLCShort(params *SyncOculusDLCParams, authInfo runtim
 		return v, nil
 	case *SyncOculusDLCBadRequest:
 		return nil, v
+	case *SyncOculusDLCNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1229,7 +1239,7 @@ PublicSyncPsnDLCInventory synchronize with dlc entitlements in psn store.
 Synchronize with dlc entitlements in PSN Store.Other detail info:
   * Returns : result of synchronization
 */
-func (a *Client) PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, *PublicSyncPsnDLCInventoryBadRequest, error) {
+func (a *Client) PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryNoContent, *PublicSyncPsnDLCInventoryBadRequest, *PublicSyncPsnDLCInventoryNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSyncPsnDLCInventoryParams()
@@ -1261,19 +1271,22 @@ func (a *Client) PublicSyncPsnDLCInventory(params *PublicSyncPsnDLCInventoryPara
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSyncPsnDLCInventoryNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PublicSyncPsnDLCInventoryBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PublicSyncPsnDLCInventoryNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1319,6 +1332,8 @@ func (a *Client) PublicSyncPsnDLCInventoryShort(params *PublicSyncPsnDLCInventor
 		return v, nil
 	case *PublicSyncPsnDLCInventoryBadRequest:
 		return nil, v
+	case *PublicSyncPsnDLCInventoryNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1332,7 +1347,7 @@ PublicSyncPsnDLCInventoryWithMultipleServiceLabels synchronize with dlc entitlem
 Synchronize with dlc entitlements in PSN Store with multiple service labels.Other detail info:
   * Returns : result of synchronization
 */
-func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest, error) {
+func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest, *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicSyncPsnDLCInventoryWithMultipleServiceLabelsParams()
@@ -1364,19 +1379,22 @@ func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(params *Publ
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1422,6 +1440,8 @@ func (a *Client) PublicSyncPsnDLCInventoryWithMultipleServiceLabelsShort(params 
 		return v, nil
 	case *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest:
 		return nil, v
+	case *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1434,7 +1454,7 @@ Deprecated: 2022-08-10 - Use SyncSteamDLCShort instead.
 SyncSteamDLC sync steam dlc.
 Sync steam dlc
 */
-func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, error) {
+func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamDLCNoContent, *SyncSteamDLCBadRequest, *SyncSteamDLCNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncSteamDLCParams()
@@ -1466,19 +1486,22 @@ func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncSteamDLCNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncSteamDLCBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncSteamDLCNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1523,6 +1546,8 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 		return v, nil
 	case *SyncSteamDLCBadRequest:
 		return nil, v
+	case *SyncSteamDLCNotFound:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1535,7 +1560,7 @@ Deprecated: 2022-08-10 - Use SyncXboxDLCShort instead.
 SyncXboxDLC sync xbox dlc items.
 Sync Xbox inventory's dlc items
 */
-func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, error) {
+func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxDLCNoContent, *SyncXboxDLCBadRequest, *SyncXboxDLCNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSyncXboxDLCParams()
@@ -1567,19 +1592,22 @@ func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *SyncXboxDLCNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *SyncXboxDLCBadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *SyncXboxDLCNotFound:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1623,6 +1651,8 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 	case *SyncXboxDLCNoContent:
 		return v, nil
 	case *SyncXboxDLCBadRequest:
+		return nil, v
+	case *SyncXboxDLCNotFound:
 		return nil, v
 
 	default:

@@ -621,9 +621,12 @@ func (aaa *IAPService) SyncEpicGamesInventory(input *iap.SyncEpicGamesInventoryP
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.IAP.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.IAP.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -661,9 +664,12 @@ func (aaa *IAPService) SyncOculusConsumableEntitlements(input *iap.SyncOculusCon
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.IAP.SyncOculusConsumableEntitlements(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.IAP.SyncOculusConsumableEntitlements(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -678,9 +684,12 @@ func (aaa *IAPService) PublicReconcilePlayStationStore(input *iap.PublicReconcil
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.IAP.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.IAP.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -695,9 +704,12 @@ func (aaa *IAPService) PublicReconcilePlayStationStoreWithMultipleServiceLabels(
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.IAP.PublicReconcilePlayStationStoreWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.IAP.PublicReconcilePlayStationStoreWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -712,9 +724,12 @@ func (aaa *IAPService) SyncSteamInventory(input *iap.SyncSteamInventoryParams) e
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.IAP.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.IAP.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err
@@ -746,9 +761,12 @@ func (aaa *IAPService) SyncXboxInventory(input *iap.SyncXboxInventoryParams) ([]
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.IAP.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.IAP.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err

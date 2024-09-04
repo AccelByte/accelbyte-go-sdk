@@ -39,6 +39,12 @@ func (o *SyncSteamDLCReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewSyncSteamDLCNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -83,7 +89,7 @@ func NewSyncSteamDLCBadRequest() *SyncSteamDLCBadRequest {
 
 /*SyncSteamDLCBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39124</td><td>IAP request platform [{platformId}] user id is not linked with current user</td></tr></table>
 */
 type SyncSteamDLCBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -113,6 +119,59 @@ func (o *SyncSteamDLCBadRequest) GetPayload() *platformclientmodels.ErrorEntity 
 }
 
 func (o *SyncSteamDLCBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSyncSteamDLCNotFound creates a SyncSteamDLCNotFound with default headers values
+func NewSyncSteamDLCNotFound() *SyncSteamDLCNotFound {
+	return &SyncSteamDLCNotFound{}
+}
+
+/*SyncSteamDLCNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39144</td><td>Steam IAP config not found in namespace [{namespace}].</td></tr></table>
+*/
+type SyncSteamDLCNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *SyncSteamDLCNotFound) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync][%d] syncSteamDlcNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *SyncSteamDLCNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *SyncSteamDLCNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *SyncSteamDLCNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

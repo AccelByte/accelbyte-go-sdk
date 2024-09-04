@@ -28,13 +28,13 @@ var UpdateWxPayConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.WxPayConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		id_, _ := cmd.Flags().GetString("id")
 		validate, _ := cmd.Flags().GetBool("validate")
 		input := &payment_config.UpdateWxPayConfigParams{
 			Body:     body,
@@ -56,6 +56,7 @@ var UpdateWxPayConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateWxPayConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateWxPayConfigCmd.MarkFlagRequired("body")
 	UpdateWxPayConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateWxPayConfigCmd.MarkFlagRequired("id")
 	UpdateWxPayConfigCmd.Flags().Bool("validate", false, "Validate")

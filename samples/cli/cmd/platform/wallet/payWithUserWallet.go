@@ -28,15 +28,15 @@ var PayWithUserWalletCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		currencyCode, _ := cmd.Flags().GetString("currencyCode")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		currencyCode, _ := cmd.Flags().GetString("currencyCode")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &wallet.PayWithUserWalletParams{
 			Body:         body,
 			CurrencyCode: currencyCode,
@@ -58,6 +58,7 @@ var PayWithUserWalletCmd = &cobra.Command{
 
 func init() {
 	PayWithUserWalletCmd.Flags().String("body", "", "Body")
+	_ = PayWithUserWalletCmd.MarkFlagRequired("body")
 	PayWithUserWalletCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = PayWithUserWalletCmd.MarkFlagRequired("currencyCode")
 	PayWithUserWalletCmd.Flags().String("namespace", "", "Namespace")

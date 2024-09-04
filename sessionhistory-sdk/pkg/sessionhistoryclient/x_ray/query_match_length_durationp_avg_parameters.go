@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewQueryMatchLengthDurationpAvgParams creates a new QueryMatchLengthDurationpAvgParams object
@@ -69,13 +70,18 @@ type QueryMatchLengthDurationpAvgParams struct {
 
 	*/
 	Namespace string
+	/*MatchPool
+	  match pool name
+
+	*/
+	MatchPool []string
 	/*EndDate
-	  End date time: 2024-08-01T15:05:19Z
+	  End date time: 2024-08-28T03:37:36Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-08-01T15:05:19Z
+	  Start date time. Format: 2024-08-28T03:37:36Z
 
 	*/
 	StartDate string
@@ -156,6 +162,17 @@ func (o *QueryMatchLengthDurationpAvgParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithMatchPool adds the matchPool to the query match length durationp avg params
+func (o *QueryMatchLengthDurationpAvgParams) WithMatchPool(matchPool []string) *QueryMatchLengthDurationpAvgParams {
+	o.SetMatchPool(matchPool)
+	return o
+}
+
+// SetMatchPool adds the matchPool to the query match length durationp avg params
+func (o *QueryMatchLengthDurationpAvgParams) SetMatchPool(matchPool []string) {
+	o.MatchPool = matchPool
+}
+
 // WithEndDate adds the endDate to the query match length durationp avg params
 func (o *QueryMatchLengthDurationpAvgParams) WithEndDate(endDate string) *QueryMatchLengthDurationpAvgParams {
 	o.SetEndDate(endDate)
@@ -188,6 +205,14 @@ func (o *QueryMatchLengthDurationpAvgParams) WriteToRequest(r runtime.ClientRequ
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+		return err
+	}
+
+	valuesMatchPool := o.MatchPool
+
+	joinedMatchPool := swag.JoinByFormat(valuesMatchPool, "csv")
+	// query array param matchPool
+	if err := r.SetQueryParam("matchPool", joinedMatchPool...); err != nil {
 		return err
 	}
 

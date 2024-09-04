@@ -17,6 +17,9 @@ import (
 // swagger:model Admin entitlement decrement.
 type AdminEntitlementDecrement struct {
 
+	// metadata, It is not stored in the database, only forwarded to AGS event
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// options, it is only available when entitlement clazz is OPTIONBOX and value should be item id.
 	Options []string `json:"options,omitempty"`
 

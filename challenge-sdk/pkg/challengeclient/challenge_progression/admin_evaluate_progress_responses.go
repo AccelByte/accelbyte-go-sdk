@@ -33,6 +33,12 @@ func (o *AdminEvaluateProgressReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAdminEvaluateProgressBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewAdminEvaluateProgressUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +95,59 @@ func (o *AdminEvaluateProgressNoContent) readResponse(response runtime.ClientRes
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewAdminEvaluateProgressBadRequest creates a AdminEvaluateProgressBadRequest with default headers values
+func NewAdminEvaluateProgressBadRequest() *AdminEvaluateProgressBadRequest {
+	return &AdminEvaluateProgressBadRequest{}
+}
+
+/*AdminEvaluateProgressBadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20018</td><td>bad request: {{message}}</td></tr></table>
+*/
+type AdminEvaluateProgressBadRequest struct {
+	Payload *challengeclientmodels.IamErrorResponse
+}
+
+func (o *AdminEvaluateProgressBadRequest) Error() string {
+	return fmt.Sprintf("[POST /challenge/v1/admin/namespaces/{namespace}/progress/evaluate][%d] adminEvaluateProgressBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *AdminEvaluateProgressBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminEvaluateProgressBadRequest) GetPayload() *challengeclientmodels.IamErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminEvaluateProgressBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(challengeclientmodels.IamErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

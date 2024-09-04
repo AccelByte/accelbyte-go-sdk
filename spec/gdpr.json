@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.12.0"
+    "version": "2.13.0"
   },
   "schemes": [
     "https"
@@ -18,22 +18,6 @@
     "url": "https://stage.accelbyte.io/gdpr/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "account": "account"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -131,10 +115,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -219,10 +199,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -282,10 +258,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -356,10 +328,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -430,10 +398,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -595,10 +559,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -679,10 +639,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -777,10 +733,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -845,10 +797,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -919,10 +867,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -978,10 +922,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1037,10 +977,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1103,10 +1039,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1177,10 +1109,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1275,10 +1203,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1359,10 +1283,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1438,10 +1358,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1523,10 +1439,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1610,10 +1522,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1701,10 +1609,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1786,10 +1690,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1881,10 +1781,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -1959,10 +1855,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2057,10 +1949,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2126,10 +2014,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2207,10 +2091,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2293,10 +2173,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2372,10 +2248,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2461,10 +2333,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2725,10 +2593,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2813,10 +2677,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2900,10 +2760,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -2981,10 +2837,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -3069,10 +2921,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "account"
-            ],
             "authorization": []
           }
         ],
@@ -3691,11 +3539,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-23T09:18:09+00:00",
-    "gitHash": "5e2d6a15eedcf81bf87db5fcfe213d1cdd073475",
+    "buildDate": "2024-08-28T01:52:49+00:00",
+    "gitHash": "62db50b00583ada6b8f330616f2b76f4d0f4f70f",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.12.0",
+    "version": "2.13.0",
     "version-roles-seeding": "1.2.39"
   }
 }

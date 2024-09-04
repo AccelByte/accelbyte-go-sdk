@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.25.0"
+    "version": "2.26.1"
   },
   "schemes": [
     "https"
@@ -13,20 +13,6 @@
     "url": "https://stage.accelbyte.io/match2/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -2102,6 +2088,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "406": {
+            "description": "Not Acceptable",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -2910,6 +2902,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "best_latency_calculation_method": {
+          "type": "string"
+        },
         "crossplay_disabled": {
           "type": "boolean",
           "x-omitempty": false
@@ -2963,6 +2958,9 @@
         "backfill_ticket_expiration_seconds": {
           "format": "int32",
           "type": "integer"
+        },
+        "best_latency_calculation_method": {
+          "type": "string"
         },
         "crossplay_disabled": {
           "type": "boolean",
@@ -3125,12 +3123,20 @@
     },
     "api.PatchNamespaceConfigRequest": {
       "properties": {
+        "crossPlatformNoCurrentPlatform": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "extraPlatforms": {
           "description": "additional platforms that will be included in the cross_platform attribute alongside the login method",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "matchAnyCommon": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "platformGroup": {
           "additionalProperties": {
@@ -3298,11 +3304,19 @@
     },
     "configmodels.NamespaceConfig": {
       "properties": {
+        "crossPlatformNoCurrentPlatform": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "extraPlatforms": {
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "matchAnyCommon": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -3440,6 +3454,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "IsSinglePlay": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "Latencies": {
           "additionalProperties": {
             "type": "integer"
@@ -3478,6 +3496,7 @@
         "CreatedAt",
         "IsActive",
         "IsPivot",
+        "IsSinglePlay",
         "Latencies",
         "MatchPool",
         "Namespace",
@@ -3771,7 +3790,13 @@
         "PlatformUserID": {
           "type": "string"
         },
+        "PreviousStatus": {
+          "type": "string"
+        },
         "Status": {
+          "type": "string"
+        },
+        "StatusV2": {
           "type": "string"
         },
         "UpdatedAt": {
@@ -3785,6 +3810,7 @@
         "PlatformID",
         "PlatformUserID",
         "Status",
+        "StatusV2",
         "UpdatedAt"
       ]
     },
@@ -3834,9 +3860,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-01T04:53:28+00:00",
-    "gitHash": "06cdb32403f6412456898d2104cd468a2d19b69e",
-    "version": "2.25.0",
+    "buildDate": "2024-08-28T06:51:58+00:00",
+    "gitHash": "b805375c1276f8ef55151cf8149e2228509ffe0e",
+    "version": "2.26.1",
     "version-roles-seeding": "1.2.36"
   }
 }

@@ -28,15 +28,15 @@ var CreditUserWalletCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		currencyCode, _ := cmd.Flags().GetString("currencyCode")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CreditRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		currencyCode, _ := cmd.Flags().GetString("currencyCode")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &wallet.CreditUserWalletParams{
 			Body:         body,
 			CurrencyCode: currencyCode,
@@ -58,6 +58,7 @@ var CreditUserWalletCmd = &cobra.Command{
 
 func init() {
 	CreditUserWalletCmd.Flags().String("body", "", "Body")
+	_ = CreditUserWalletCmd.MarkFlagRequired("body")
 	CreditUserWalletCmd.Flags().String("currencyCode", "", "Currency code")
 	_ = CreditUserWalletCmd.MarkFlagRequired("currencyCode")
 	CreditUserWalletCmd.Flags().String("namespace", "", "Namespace")

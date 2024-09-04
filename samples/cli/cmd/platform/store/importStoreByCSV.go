@@ -27,8 +27,6 @@ var ImportStoreByCSVCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		outputCategory := cmd.Flag("category").Value.String()
 		logrus.Infof("category %v", outputCategory)
 		category, err := os.Open(outputCategory)
@@ -54,11 +52,13 @@ var ImportStoreByCSVCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &store.ImportStoreByCSVParams{
 			Category:  category,
 			Display:   display,
 			Item:      item,
-			Notes:     &notes,
+			Notes:     notes,
 			Section:   section,
 			Namespace: namespace,
 			StoreID:   storeId,
@@ -78,10 +78,15 @@ var ImportStoreByCSVCmd = &cobra.Command{
 
 func init() {
 	ImportStoreByCSVCmd.Flags().String("category", "", "Category")
+	_ = ImportStoreByCSVCmd.MarkFlagRequired("category")
 	ImportStoreByCSVCmd.Flags().String("display", "", "Display")
+	_ = ImportStoreByCSVCmd.MarkFlagRequired("display")
 	ImportStoreByCSVCmd.Flags().String("item", "", "Item")
+	_ = ImportStoreByCSVCmd.MarkFlagRequired("item")
 	ImportStoreByCSVCmd.Flags().String("notes", "", "Notes")
+	_ = ImportStoreByCSVCmd.MarkFlagRequired("notes")
 	ImportStoreByCSVCmd.Flags().String("section", "", "Section")
+	_ = ImportStoreByCSVCmd.MarkFlagRequired("section")
 	ImportStoreByCSVCmd.Flags().String("namespace", "", "Namespace")
 	_ = ImportStoreByCSVCmd.MarkFlagRequired("namespace")
 	ImportStoreByCSVCmd.Flags().String("storeId", "", "Store id")

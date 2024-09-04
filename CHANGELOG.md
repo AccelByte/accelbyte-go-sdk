@@ -1,3 +1,24 @@
+<a name="v0.73.0"></a>
+## [v0.73.0]
+### feat
+- **:** add websocket client base implementation
+### test
+- **lobby:** add tests for websocket client lobby implementation
+- **integration:** match2 - update alliance ruleset
+- **integration:** add inventory integration test
+- **core:** improve websocket connection status
+### docs
+- **readme:** improve lobby implementation
+### chore
+- **:** improve the core and test
+- **:** linter issue
+- **:** refactor the code and test
+- **:** update readme, migration guide, test, and samples for lobby websocket
+- **:** testing using pong
+### fix
+- **utils:** data races
+
+
 <a name="v0.72.0"></a>
 ## [v0.72.0]
 ### docs

@@ -32,7 +32,7 @@ eval_tap() {
 }
 
 echo "TAP version 13"
-echo "1..25"
+echo "1..29"
 
 #- 1 Login
 samples/cli/sample-apps login \
@@ -51,207 +51,233 @@ touch "tmp.dat"
 #- 2 AdminGetChallenges
 samples/cli/sample-apps Challenge adminGetChallenges \
     --namespace $AB_NAMESPACE \
-    --limit '79' \
-    --offset '90' \
-    --sortBy '7sRdtiaSWsB2zUID' \
-    --status 'INIT' \
+    --limit '74' \
+    --offset '63' \
+    --sortBy 'pP6MlW52oK25ttAi' \
+    --status 'RETIRED' \
     > test.out 2>&1
 eval_tap $? 2 'AdminGetChallenges' test.out
 
 #- 3 AdminCreateChallenge
 samples/cli/sample-apps Challenge adminCreateChallenge \
     --namespace $AB_NAMESPACE \
-    --body '{"activeGoalsPerRotation": 87, "assignmentRule": "UNSCHEDULED", "code": "5rsnPBvBOrhPRsdX", "description": "ezm1wCWXCTOCyGEN", "endAfter": 72, "endDate": "1991-06-02T00:00:00Z", "goalsVisibility": "SHOWALL", "name": "UC7C68vzQlp8qdgC", "randomizedPerRotation": true, "repeatAfter": 97, "resetConfig": {"resetDate": 47, "resetDay": 20, "resetTime": "4JEX02h9aAn7yVtG"}, "rotation": "NONE", "startDate": "1978-10-23T00:00:00Z"}' \
+    --body '{"activeGoalsPerRotation": 72, "assignmentRule": "RANDOMIZED", "code": "AAMj1Zr607AdObV2", "description": "nWWi4fLz3zLf9XFd", "endAfter": 45, "endDate": "1973-06-17T00:00:00Z", "goalsVisibility": "PERIODONLY", "name": "eyBggHCyPBjGZOj9", "randomizedPerRotation": false, "repeatAfter": 55, "resetConfig": {"resetDate": 77, "resetDay": 99, "resetTime": "KrVYYDTD08DF1qdF"}, "rotation": "NONE", "startDate": "1995-08-27T00:00:00Z"}' \
     > test.out 2>&1
 eval_tap $? 3 'AdminCreateChallenge' test.out
 
 #- 4 AdminGetChallenge
 samples/cli/sample-apps Challenge adminGetChallenge \
-    --challengeCode '3KjeuJUQnQb8LCF4' \
+    --challengeCode 'QqU7zIZXIpSychk4' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 4 'AdminGetChallenge' test.out
 
 #- 5 AdminUpdateChallenge
 samples/cli/sample-apps Challenge adminUpdateChallenge \
-    --challengeCode 'ovYKtQhysuknHuqn' \
+    --challengeCode 'XtorgIeWYLTPNPiC' \
     --namespace $AB_NAMESPACE \
-    --body '{"activeGoalsPerRotation": 88, "assignmentRule": "FIXED", "description": "t8EfSxdDbbHJOg6A", "endAfter": 79, "endDate": "1995-09-27T00:00:00Z", "goalsVisibility": "SHOWALL", "name": "ZEiW2bHj7FRx5jQF", "randomizedPerRotation": false, "repeatAfter": 93, "resetConfig": {"resetDate": 100, "resetDay": 0, "resetTime": "NiosgCIV7Equ4zHl"}, "rotation": "MONTHLY", "startDate": "1980-05-11T00:00:00Z"}' \
+    --body '{"activeGoalsPerRotation": 3, "assignmentRule": "RANDOMIZED", "description": "KEXupYdBPcM3jXx9", "endAfter": 19, "endDate": "1994-08-03T00:00:00Z", "goalsVisibility": "PERIODONLY", "name": "3Hy7lPSQjRwx9rk9", "randomizedPerRotation": true, "repeatAfter": 93, "resetConfig": {"resetDate": 38, "resetDay": 39, "resetTime": "eprExq4FlKxDuHQi"}, "rotation": "NONE", "startDate": "1973-06-12T00:00:00Z"}' \
     > test.out 2>&1
 eval_tap $? 5 'AdminUpdateChallenge' test.out
 
 #- 6 AdminDeleteChallenge
 samples/cli/sample-apps Challenge adminDeleteChallenge \
-    --challengeCode 'qnaBbH2ghlLYqtmn' \
+    --challengeCode 'lDGDcmvX8buefS63' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 6 'AdminDeleteChallenge' test.out
 
 #- 7 AdminGetGoals
 samples/cli/sample-apps Challenge adminGetGoals \
-    --challengeCode 'hlIphB1HVyLMs6cZ' \
+    --challengeCode 'HspbzklgiKjedl58' \
     --namespace $AB_NAMESPACE \
-    --limit '53' \
-    --offset '37' \
-    --sortBy 'PoJgw5eRY4wkTjWf' \
+    --limit '58' \
+    --offset '56' \
+    --sortBy 'gWoBoIlXq1eKGAOi' \
     > test.out 2>&1
 eval_tap $? 7 'AdminGetGoals' test.out
 
 #- 8 AdminCreateGoal
 samples/cli/sample-apps Challenge adminCreateGoal \
-    --challengeCode 'ueZiv1QoUGwt1QFe' \
+    --challengeCode 'dDuoAdqf02v2lmMG' \
     --namespace $AB_NAMESPACE \
-    --body '{"code": "18Rr2Ykk9wyVWxva", "description": "RIgjteGqfCVmzlGq", "isActive": true, "name": "O2WLY8bUa3lMNv1D", "requirementGroups": [{"operator": "AND", "predicates": [{"matcher": "LESS_THAN", "parameterName": "P46FHF6v0h1YkiYE", "parameterType": "STATISTIC_CYCLE", "statCycleId": "AX6Tf2h4Ihs7UBcu", "targetValue": 0.7603033029096966}, {"matcher": "GREATER_THAN", "parameterName": "4J7Ez1kWivGY6oGV", "parameterType": "STATISTIC_CYCLE", "statCycleId": "TN1CCPeB21OgME1L", "targetValue": 0.16118583782154017}, {"matcher": "LESS_THAN", "parameterName": "TULZFO1pMQ6BA7Y3", "parameterType": "STATISTIC_CYCLE", "statCycleId": "2ZuAXILlZsa4gj25", "targetValue": 0.9004754211613288}]}, {"operator": "AND", "predicates": [{"matcher": "GREATER_THAN", "parameterName": "JfoaftkTTJ3CIJqt", "parameterType": "ACHIEVEMENT", "statCycleId": "lrANe1adEOsCh8D4", "targetValue": 0.18960490380774564}, {"matcher": "GREATER_THAN", "parameterName": "XKQaGeZrnFhjXn4m", "parameterType": "STATISTIC", "statCycleId": "DnvaAyQjbYZUHZhB", "targetValue": 0.35623910365890943}, {"matcher": "GREATER_THAN_EQUAL", "parameterName": "raxoulEbc38uEo1V", "parameterType": "USERACCOUNT", "statCycleId": "gywbpqqb9QOBUjTc", "targetValue": 0.850018143319066}]}, {"operator": "AND", "predicates": [{"matcher": "GREATER_THAN", "parameterName": "QVb8g5VWLib8Ot0p", "parameterType": "ACHIEVEMENT", "statCycleId": "CrFSv1o56pQ1O2VC", "targetValue": 0.6162914557571931}, {"matcher": "GREATER_THAN", "parameterName": "UBoYzPhAh4tP0kzD", "parameterType": "STATISTIC_CYCLE", "statCycleId": "wxhmQa4ArKdc7frm", "targetValue": 0.4099499992672835}, {"matcher": "LESS_THAN_EQUAL", "parameterName": "mWSsBMWbefnpoRmR", "parameterType": "STATISTIC_CYCLE", "statCycleId": "kTMKn0bhiHxsJtLc", "targetValue": 0.8913624283849481}]}], "rewards": [{"itemId": "EHCbkwnSkLNwOTMp", "itemName": "JgwznAC1EA05eXp0", "qty": 0.4481020857244572, "type": "STATISTIC"}, {"itemId": "KToOmfykqLKbtijO", "itemName": "HCoVliT0CMJw5p7o", "qty": 0.3099072485933795, "type": "STATISTIC"}, {"itemId": "9hC67dNSxDfHWfVq", "itemName": "k3HpogUIJjmqqb9V", "qty": 0.2755756559132848, "type": "STATISTIC"}], "schedule": {"endTime": "1978-07-26T00:00:00Z", "order": 64, "startTime": "1972-05-18T00:00:00Z"}, "tags": ["SPPE5EEdxEOJApTT", "MM2SZNwGhi2CP5CC", "sHe0nSU6FSQPYO3L"]}' \
+    --body '{"code": "0ruAictqhIdAcGL6", "description": "aOGNqVkk0Jzo94q7", "isActive": false, "name": "nzB5v0RGVKlua0rn", "requirementGroups": [{"operator": "AND", "predicates": [{"matcher": "LESS_THAN", "parameterName": "Wzl3t9SNoSg5mrAS", "parameterType": "ACHIEVEMENT", "statCycleId": "Bfv3glJrRZz4WFHP", "targetValue": 0.38181649096361336}, {"matcher": "LESS_THAN", "parameterName": "pZxbYn6NPGk6n39I", "parameterType": "STATISTIC_CYCLE", "statCycleId": "LQNzQ8EjdE9lQAox", "targetValue": 0.40822392887704884}, {"matcher": "LESS_THAN", "parameterName": "eIbmlfSEz4DLAZON", "parameterType": "USERACCOUNT", "statCycleId": "ZahnajOLuhAC1N2R", "targetValue": 0.8739759717567112}]}, {"operator": "AND", "predicates": [{"matcher": "LESS_THAN", "parameterName": "4d9t0sl4k0r7ibCD", "parameterType": "ENTITLEMENT", "statCycleId": "hTXDDD1hThJIVTfh", "targetValue": 0.9621975005084247}, {"matcher": "GREATER_THAN_EQUAL", "parameterName": "1oRwSzwQaE9s0omy", "parameterType": "STATISTIC_CYCLE", "statCycleId": "wIQaYEkTxVys660t", "targetValue": 0.7814055193372627}, {"matcher": "EQUAL", "parameterName": "3xXroz8Sk1BULAFA", "parameterType": "ENTITLEMENT", "statCycleId": "pPs2q5xV4zHBTasF", "targetValue": 0.023120256328211353}]}, {"operator": "AND", "predicates": [{"matcher": "EQUAL", "parameterName": "XNTndJCt3R7A3xRi", "parameterType": "ENTITLEMENT", "statCycleId": "ad18NxDVy31GLXoa", "targetValue": 0.7781452611067458}, {"matcher": "GREATER_THAN_EQUAL", "parameterName": "Wq5VI4wEDiwcd0rj", "parameterType": "STATISTIC_CYCLE", "statCycleId": "qQ2pvDZuYQ8aAGQU", "targetValue": 0.4507898679533481}, {"matcher": "GREATER_THAN", "parameterName": "WbOpJUKFmPwjYsNS", "parameterType": "ENTITLEMENT", "statCycleId": "ONX6M0pBfNGGxzrz", "targetValue": 0.3239724021240564}]}], "rewards": [{"itemId": "lNcU0hD9QBC0u1Gw", "itemName": "zKDUFA8xIc8zQ9GO", "qty": 0.6148896510356421, "type": "STATISTIC"}, {"itemId": "Hg9QK78eJn2FqQS5", "itemName": "HGJS5jn9N86Q56tC", "qty": 0.1291457034666419, "type": "ENTITLEMENT"}, {"itemId": "0xwugptbRLeXf7YR", "itemName": "x8K64lv4YwhJBlTK", "qty": 0.5122179687488652, "type": "ENTITLEMENT"}], "schedule": {"endTime": "1971-01-14T00:00:00Z", "order": 26, "startTime": "1980-12-07T00:00:00Z"}, "tags": ["7FihGrg21YNmokYH", "gxqKeM1zsval4sIT", "TQfAf1JtUFVV2eo4"]}' \
     > test.out 2>&1
 eval_tap $? 8 'AdminCreateGoal' test.out
 
 #- 9 AdminGetGoal
 samples/cli/sample-apps Challenge adminGetGoal \
-    --challengeCode 'n1v3XL8IB4IhKis2' \
-    --code 'Uls4zwYMv1GiZ8CO' \
+    --challengeCode 'YxlSzKT9Yg552r3C' \
+    --code 'XMFraS1PXueChR5m' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 9 'AdminGetGoal' test.out
 
 #- 10 AdminUpdateGoals
 samples/cli/sample-apps Challenge adminUpdateGoals \
-    --challengeCode 'kfPwcGOZ7KgzfQeF' \
-    --code '2HrjGmT4lvBVzdwK' \
+    --challengeCode 'jUv4HI5y5RLMAEuz' \
+    --code 'p3JonNKd4177wO8H' \
     --namespace $AB_NAMESPACE \
-    --body '{"description": "vLgGC6PLYHsMVqOG", "isActive": false, "name": "BDR5FFrD72fjRyiM", "requirementGroups": [{"operator": "AND", "predicates": [{"matcher": "GREATER_THAN", "parameterName": "QJQJ7wbzat7EPsxk", "parameterType": "STATISTIC", "statCycleId": "OLysySKQ6zVBkNv2", "targetValue": 0.09291870687994852}, {"matcher": "LESS_THAN_EQUAL", "parameterName": "03EltwNfB94FBdMF", "parameterType": "USERACCOUNT", "statCycleId": "9dBxzGuA2ealhsOl", "targetValue": 0.7830448221589296}, {"matcher": "GREATER_THAN", "parameterName": "Ta4mRtHZRlpLbBsv", "parameterType": "ENTITLEMENT", "statCycleId": "86eOMAJ4dgs8To22", "targetValue": 0.9046020552550492}]}, {"operator": "AND", "predicates": [{"matcher": "EQUAL", "parameterName": "TRk6aOvtN88T81ma", "parameterType": "USERACCOUNT", "statCycleId": "iE4Z55BfdGp21gmP", "targetValue": 0.09292152396738462}, {"matcher": "LESS_THAN", "parameterName": "APjPlrbZDGHvdKxv", "parameterType": "ENTITLEMENT", "statCycleId": "3uHqLRDnM87htar4", "targetValue": 0.6242077331238589}, {"matcher": "LESS_THAN_EQUAL", "parameterName": "0AK8YxXEzoe7znsv", "parameterType": "ENTITLEMENT", "statCycleId": "rfnl6K2hRpad3MxQ", "targetValue": 0.002334640795033871}]}, {"operator": "AND", "predicates": [{"matcher": "LESS_THAN_EQUAL", "parameterName": "dXabAdKhzLowa7u1", "parameterType": "ACHIEVEMENT", "statCycleId": "8OTMdU8jVDhRaPeF", "targetValue": 0.8984527477270394}, {"matcher": "GREATER_THAN_EQUAL", "parameterName": "U8JmRrmnng7nsJnF", "parameterType": "USERACCOUNT", "statCycleId": "9Qp3TONXvLk8FI97", "targetValue": 0.9450900697182314}, {"matcher": "LESS_THAN_EQUAL", "parameterName": "jPnS4nx4bbRKgLo5", "parameterType": "ACHIEVEMENT", "statCycleId": "4eeKnydsHV9JBxUL", "targetValue": 0.8266221254916416}]}], "rewards": [{"itemId": "1E1UTKVQlVfP670w", "itemName": "1TYBegsI8h7viKmB", "qty": 0.8286969273338348, "type": "STATISTIC"}, {"itemId": "Zkrr0DvjqGx8i97e", "itemName": "90c582D8zzxwdH84", "qty": 0.47916305007460247, "type": "ENTITLEMENT"}, {"itemId": "S6EP9Xru54FMFDtU", "itemName": "qiqo6Ig1NXnhJwa5", "qty": 0.5085526433776438, "type": "ENTITLEMENT"}], "schedule": {"endTime": "1984-11-14T00:00:00Z", "order": 78, "startTime": "1992-08-27T00:00:00Z"}, "tags": ["1qPVqouINSsvpYce", "XVIDif2eWcVFi0dg", "Z7xCA9f99Ae1crx8"]}' \
+    --body '{"description": "CNKiciD2dlbRqCRm", "isActive": true, "name": "X6024L9Ow9NvSXff", "requirementGroups": [{"operator": "AND", "predicates": [{"matcher": "GREATER_THAN", "parameterName": "TCJSA2bn3Iwogr0f", "parameterType": "USERACCOUNT", "statCycleId": "8TSwoJx5nW6i5Ffx", "targetValue": 0.8879385201434855}, {"matcher": "EQUAL", "parameterName": "bRbpYJXvG8zFXaM8", "parameterType": "STATISTIC_CYCLE", "statCycleId": "BS8AvxYWilBCV3pP", "targetValue": 0.5323914887232479}, {"matcher": "GREATER_THAN", "parameterName": "s5QYvtajGg2k8BwA", "parameterType": "STATISTIC_CYCLE", "statCycleId": "VqCaZFOIp4X8ni5Z", "targetValue": 0.9162839742774956}]}, {"operator": "AND", "predicates": [{"matcher": "GREATER_THAN_EQUAL", "parameterName": "LlzTzbUDViovZIBQ", "parameterType": "ACHIEVEMENT", "statCycleId": "JSnaRXBFWvqCVR55", "targetValue": 0.8944353404275351}, {"matcher": "LESS_THAN_EQUAL", "parameterName": "bw7tiiIDGWSNtpO2", "parameterType": "STATISTIC_CYCLE", "statCycleId": "UaqWgFGLpMT98INs", "targetValue": 0.6059221936818238}, {"matcher": "EQUAL", "parameterName": "JL2dVzjsACb8DLfD", "parameterType": "USERACCOUNT", "statCycleId": "ayfifrcCzT6otU8f", "targetValue": 0.638016433445455}]}, {"operator": "AND", "predicates": [{"matcher": "LESS_THAN_EQUAL", "parameterName": "hv33sDjrYn3U4ris", "parameterType": "ACHIEVEMENT", "statCycleId": "JmnAuCJep5QlaOfX", "targetValue": 0.05751157490988734}, {"matcher": "GREATER_THAN_EQUAL", "parameterName": "l0c5ELTHQmSckyDx", "parameterType": "ACHIEVEMENT", "statCycleId": "oYOzqCJaZ4LFIiwI", "targetValue": 0.29208440059092133}, {"matcher": "LESS_THAN", "parameterName": "QAas9X2l4YLGfVdX", "parameterType": "ENTITLEMENT", "statCycleId": "eyifXSa3fcd2RoBp", "targetValue": 0.8387127994173065}]}], "rewards": [{"itemId": "kABSrcWeYD0XcFLC", "itemName": "9StKtpQ4QW3id8Yf", "qty": 0.8166075571358066, "type": "ENTITLEMENT"}, {"itemId": "xnCWfW1XjvKhHYlA", "itemName": "2xxzCZGIM05VAvBI", "qty": 0.9967265361124972, "type": "STATISTIC"}, {"itemId": "qGVdqSHA2I5tLF6K", "itemName": "LubmwhnZ9Rh10M1a", "qty": 0.5569229124058428, "type": "ENTITLEMENT"}], "schedule": {"endTime": "1994-12-10T00:00:00Z", "order": 63, "startTime": "1998-04-04T00:00:00Z"}, "tags": ["keDDTtbQVPrvUdbd", "vvSGNmf9sufbhEnM", "RoIVvzxeVhVKD4qr"]}' \
     > test.out 2>&1
 eval_tap $? 10 'AdminUpdateGoals' test.out
 
 #- 11 AdminDeleteGoal
 samples/cli/sample-apps Challenge adminDeleteGoal \
-    --challengeCode 'g9lrjhj1nCZpx6Mu' \
-    --code 'wwDEFkkizrNbEziI' \
+    --challengeCode 'WSKCakbL7ZsCBfcv' \
+    --code 'DqS8jainanfaZ9s2' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 11 'AdminDeleteGoal' test.out
 
 #- 12 AdminGetPeriods
 samples/cli/sample-apps Challenge adminGetPeriods \
-    --challengeCode 'KHczBsmAsJFVl5rG' \
+    --challengeCode 'qXUEo22rx8eT5h0i' \
     --namespace $AB_NAMESPACE \
-    --limit '29' \
-    --offset '57' \
+    --limit '13' \
+    --offset '42' \
     > test.out 2>&1
 eval_tap $? 12 'AdminGetPeriods' test.out
 
 #- 13 AdminRandomizeChallenge
 samples/cli/sample-apps Challenge adminRandomizeChallenge \
-    --challengeCode 'Lko3hothwGpuBf6X' \
+    --challengeCode 'IXWFCueU7s0NsuGB' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 13 'AdminRandomizeChallenge' test.out
 
 #- 14 AdminDeleteTiedChallenge
 samples/cli/sample-apps Challenge adminDeleteTiedChallenge \
-    --challengeCode 'Nc3S7GqwyLkLbqrn' \
+    --challengeCode 'MDJKRiLXSKU3RNyZ' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 14 'AdminDeleteTiedChallenge' test.out
 
-#- 15 AdminEvaluateProgress
+#- 15 AdminGetAssignmentPlugin
+samples/cli/sample-apps Challenge adminGetAssignmentPlugin \
+    --namespace $AB_NAMESPACE \
+    > test.out 2>&1
+eval_tap $? 15 'AdminGetAssignmentPlugin' test.out
+
+#- 16 AdminUpdateAssignmentPlugin
+samples/cli/sample-apps Challenge adminUpdateAssignmentPlugin \
+    --namespace $AB_NAMESPACE \
+    --body '{"appName": "CJPiy6oabDOHWP1E", "extendType": "CUSTOM", "grpcServerAddress": "gGco2TpzQFT3QLhH"}' \
+    > test.out 2>&1
+eval_tap $? 16 'AdminUpdateAssignmentPlugin' test.out
+
+#- 17 AdminCreateAssignmentPlugin
+samples/cli/sample-apps Challenge adminCreateAssignmentPlugin \
+    --namespace $AB_NAMESPACE \
+    --body '{"appName": "jvyifKVBL7oxTnp1", "extendType": "CUSTOM", "grpcServerAddress": "9WU0E8hdsPHnEUWS"}' \
+    > test.out 2>&1
+eval_tap $? 17 'AdminCreateAssignmentPlugin' test.out
+
+#- 18 AdminDeleteAssignmentPlugin
+samples/cli/sample-apps Challenge adminDeleteAssignmentPlugin \
+    --namespace $AB_NAMESPACE \
+    > test.out 2>&1
+eval_tap $? 18 'AdminDeleteAssignmentPlugin' test.out
+
+#- 19 AdminEvaluateProgress
 samples/cli/sample-apps Challenge adminEvaluateProgress \
     --namespace $AB_NAMESPACE \
-    --body '{"userIds": ["zWjnz51whnogfHq3", "mDVdIZI6Kcr3hjw5", "w1ftYYzOzuzY1Urk"]}' \
+    --body '{"userIds": ["ptp7hiDs7y2SyWnL", "kQ5jPzzuDaIyODtU", "jlqsIqoNxeHlVU24"]}' \
     > test.out 2>&1
-eval_tap $? 15 'AdminEvaluateProgress' test.out
+eval_tap $? 19 'AdminEvaluateProgress' test.out
 
-#- 16 AdminClaimUsersRewards
+#- 20 AdminClaimUsersRewards
 samples/cli/sample-apps Challenge adminClaimUsersRewards \
     --namespace $AB_NAMESPACE \
-    --body '[{"rewardIds": ["CiFvhPekMqF2lQrA", "7uQEyNQdkcEEJyfK", "ubJ34OaXUNIyJR28"], "userId": "muS8gkUmLqhtXMS3"}, {"rewardIds": ["JTWwmp03Si7eGYEg", "a2ChQScQ72GE5rZ0", "9UnaQK20bcISb1qo"], "userId": "KMUlm9NCo4pyPBYi"}, {"rewardIds": ["YJzIi8spxQvDr718", "MA2NBJ16GyfkXf0s", "vqZNA0aZU4x8uw0W"], "userId": "kmLynVWrKQfrLYmk"}]' \
+    --body '[{"rewardIds": ["71I9TgpWaG7FsrlO", "24tvpunHXTTyQMFe", "DjQBaiAtBp62A4jY"], "userId": "LDfTitAvETuDmz78"}, {"rewardIds": ["qFfHSl6KUSo6qg3Z", "McKJRFKr7BFeTg4x", "381cPLH84rnP9K5i"], "userId": "fDgRdk7bbMbFRbeX"}, {"rewardIds": ["gp6uAYj1bvUPYZEj", "aimmPv9SdjOGyuLF", "9FA7YzOD8QklWyIa"], "userId": "PpyWQxaNRjhmNPQd"}]' \
     > test.out 2>&1
-eval_tap $? 16 'AdminClaimUsersRewards' test.out
+eval_tap $? 20 'AdminClaimUsersRewards' test.out
 
-#- 17 AdminGetUserRewards
+#- 21 AdminGetUserRewards
 samples/cli/sample-apps Challenge adminGetUserRewards \
     --namespace $AB_NAMESPACE \
-    --userId 'oIEbKjlGrLGWFHmN' \
-    --limit '71' \
-    --offset '2' \
-    --sortBy 'isQQI3QCN2kJQZSS' \
-    --status 'UNCLAIMED' \
+    --userId '6jGX9Cg9HHXaTrsj' \
+    --limit '83' \
+    --offset '83' \
+    --sortBy 'GuOwrNkkSbeMP1AO' \
+    --status 'CLAIMED' \
     > test.out 2>&1
-eval_tap $? 17 'AdminGetUserRewards' test.out
+eval_tap $? 21 'AdminGetUserRewards' test.out
 
-#- 18 AdminClaimUserRewards
+#- 22 AdminClaimUserRewards
 samples/cli/sample-apps Challenge adminClaimUserRewards \
     --namespace $AB_NAMESPACE \
-    --userId 'Gr0XY1y8DIxwAwd1' \
-    --body '{"rewardIDs": ["YplF2WOaOBtAkbNL", "lR7blHFy4eCDETcB", "S7s8oZ3CePq1dG3o"]}' \
+    --userId 'xrAJsKS2ot5wZklA' \
+    --body '{"rewardIDs": ["97Wc3FcxBml5Qk2F", "b9xu7a6swWgVoOqC", "uyIcAJCTtYS5UWhC"]}' \
     > test.out 2>&1
-eval_tap $? 18 'AdminClaimUserRewards' test.out
+eval_tap $? 22 'AdminClaimUserRewards' test.out
 
-#- 19 GetChallenges
+#- 23 GetChallenges
 samples/cli/sample-apps Challenge getChallenges \
     --namespace $AB_NAMESPACE \
-    --limit '30' \
-    --offset '79' \
-    --sortBy 'bgk8GVWSC7TdHLvm' \
-    --status 'TIED' \
+    --limit '22' \
+    --offset '20' \
+    --sortBy 'qwcD8DrnuYRm9Gsy' \
+    --status 'RETIRED' \
     > test.out 2>&1
-eval_tap $? 19 'GetChallenges' test.out
+eval_tap $? 23 'GetChallenges' test.out
 
-#- 20 PublicGetScheduledGoals
+#- 24 PublicGetScheduledGoals
 samples/cli/sample-apps Challenge publicGetScheduledGoals \
-    --challengeCode '1LAzII2gJ00z0NPp' \
+    --challengeCode 'T4VCnEFCz9wSvYfY' \
     --namespace $AB_NAMESPACE \
-    --limit '17' \
-    --offset '92' \
-    --tags '["KXSvDvHUSBNFWi9n", "CbjLWhK30ur4mqDM", "2d9m858O0go88OL9"]' \
+    --limit '28' \
+    --offset '68' \
+    --tags '["njyoMP5ducYPJKEw", "ah1L7wzE568bYO1c", "ES9nvjwBCsttuyoo"]' \
     > test.out 2>&1
-eval_tap $? 20 'PublicGetScheduledGoals' test.out
+eval_tap $? 24 'PublicGetScheduledGoals' test.out
 
-#- 21 EvaluateMyProgress
+#- 25 EvaluateMyProgress
 samples/cli/sample-apps Challenge evaluateMyProgress \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
-eval_tap $? 21 'EvaluateMyProgress' test.out
+eval_tap $? 25 'EvaluateMyProgress' test.out
 
-#- 22 PublicGetUserProgression
+#- 26 PublicGetUserProgression
 samples/cli/sample-apps Challenge publicGetUserProgression \
-    --challengeCode 'aoKDEYxFVuelBZAZ' \
+    --challengeCode 'cMssqsCFOr0bdwXR' \
     --namespace $AB_NAMESPACE \
-    --dateTime '1984-11-13T00:00:00Z' \
-    --goalCode 'SuHAoK4Gh7xsnJZb' \
-    --limit '93' \
-    --offset '41' \
-    --tags '["UXAaBZZau93nP1FI", "w9C4NuIMK01TDHPs", "6cd6rHcom0HY755E"]' \
+    --dateTime '1981-06-11T00:00:00Z' \
+    --goalCode 'a5iKXnO7IzhKtJ0A' \
+    --limit '97' \
+    --offset '79' \
+    --tags '["PhbUPMCH3Tww95lX", "FYnizIq9nfgGxyEr", "HelRidMdV37TfsfR"]' \
     > test.out 2>&1
-eval_tap $? 22 'PublicGetUserProgression' test.out
+eval_tap $? 26 'PublicGetUserProgression' test.out
 
-#- 23 PublicGetPastUserProgression
+#- 27 PublicGetPastUserProgression
 samples/cli/sample-apps Challenge publicGetPastUserProgression \
-    --challengeCode '6oZv0YNuCAbhqAw9' \
-    --index '87' \
+    --challengeCode 'dknNkZikuODvBfMj' \
+    --index '81' \
     --namespace $AB_NAMESPACE \
-    --goalCode 'VZMUVDa7hkJTeZLk' \
-    --limit '18' \
-    --offset '31' \
-    --tags '["XnGeBc58QUkirBT0", "lYmQOfqqapnLSd5H", "Xm2pZLkbkVUmT2FI"]' \
+    --goalCode 'hrTF8vf0KHxND1U6' \
+    --limit '35' \
+    --offset '27' \
+    --tags '["hLe4RhDEh4CBTclk", "fhwVg10bNeux3Hs9", "TA3V9cHSdPiTZnhg"]' \
     > test.out 2>&1
-eval_tap $? 23 'PublicGetPastUserProgression' test.out
+eval_tap $? 27 'PublicGetPastUserProgression' test.out
 
-#- 24 PublicGetUserRewards
+#- 28 PublicGetUserRewards
 samples/cli/sample-apps Challenge publicGetUserRewards \
     --namespace $AB_NAMESPACE \
-    --limit '76' \
-    --offset '47' \
-    --sortBy 'Tl13YZ8NnUhAkkcd' \
-    --status 'UNCLAIMED' \
+    --limit '21' \
+    --offset '57' \
+    --sortBy 'CU23mHB2Ys09nzQc' \
+    --status 'CLAIMED' \
     > test.out 2>&1
-eval_tap $? 24 'PublicGetUserRewards' test.out
+eval_tap $? 28 'PublicGetUserRewards' test.out
 
-#- 25 PublicClaimUserRewards
+#- 29 PublicClaimUserRewards
 samples/cli/sample-apps Challenge publicClaimUserRewards \
     --namespace $AB_NAMESPACE \
-    --body '{"rewardIDs": ["mY3vVnOca7TAboKA", "gAgHzT9HikYcO0ul", "WY21O1OWU43qW4Zk"]}' \
+    --body '{"rewardIDs": ["R14CQj2FFyBnkQoE", "zwb10fY2YGAHigwm", "CUFbGg5wOSR6d3K2"]}' \
     > test.out 2>&1
-eval_tap $? 25 'PublicClaimUserRewards' test.out
+eval_tap $? 29 'PublicClaimUserRewards' test.out
 
 
 rm -f "tmp.dat"

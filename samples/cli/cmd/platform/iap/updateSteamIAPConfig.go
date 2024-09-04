@@ -28,13 +28,13 @@ var UpdateSteamIAPConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.SteamIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &iap.UpdateSteamIAPConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateSteamIAPConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateSteamIAPConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateSteamIAPConfigCmd.MarkFlagRequired("body")
 	UpdateSteamIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -28,13 +28,13 @@ var PublicValidateItemPurchaseConditionCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ItemPurchaseConditionValidateRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &item.PublicValidateItemPurchaseConditionParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var PublicValidateItemPurchaseConditionCmd = &cobra.Command{
 
 func init() {
 	PublicValidateItemPurchaseConditionCmd.Flags().String("body", "", "Body")
+	_ = PublicValidateItemPurchaseConditionCmd.MarkFlagRequired("body")
 	PublicValidateItemPurchaseConditionCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicValidateItemPurchaseConditionCmd.MarkFlagRequired("namespace")
 }

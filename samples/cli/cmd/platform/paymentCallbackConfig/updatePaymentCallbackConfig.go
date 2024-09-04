@@ -28,13 +28,13 @@ var UpdatePaymentCallbackConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentCallbackConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &payment_callback_config.UpdatePaymentCallbackConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdatePaymentCallbackConfigCmd = &cobra.Command{
 
 func init() {
 	UpdatePaymentCallbackConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdatePaymentCallbackConfigCmd.MarkFlagRequired("body")
 	UpdatePaymentCallbackConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePaymentCallbackConfigCmd.MarkFlagRequired("namespace")
 }

@@ -17,11 +17,11 @@ import (
 // swagger:model Models team.
 type ModelsTeam struct {
 
-	// userids
-	UserIDs []string `json:"UserIDs,omitempty"`
-
 	// parties
 	Parties []*ModelsPartyMembers `json:"parties,omitempty"`
+
+	// userids
+	UserIDs []string `json:"userIDs,omitempty"`
 }
 
 // Validate validates this Models team

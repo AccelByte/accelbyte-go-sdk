@@ -28,13 +28,13 @@ var PublicGetPaymentUrlCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentURLCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &payment_station.PublicGetPaymentURLParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var PublicGetPaymentUrlCmd = &cobra.Command{
 
 func init() {
 	PublicGetPaymentUrlCmd.Flags().String("body", "", "Body")
+	_ = PublicGetPaymentUrlCmd.MarkFlagRequired("body")
 	PublicGetPaymentUrlCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetPaymentUrlCmd.MarkFlagRequired("namespace")
 }

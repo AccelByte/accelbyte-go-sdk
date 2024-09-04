@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewQueryXrayMatchPoolParams creates a new QueryXrayMatchPoolParams object
@@ -70,17 +71,17 @@ type QueryXrayMatchPoolParams struct {
 	*/
 	Namespace string
 	/*PoolName
-	  match pool name
+	  match pool names
 
 	*/
-	PoolName string
+	PoolName []string
 	/*EndDate
-	  End date time: 2024-08-01T15:05:19Z
+	  End date time: 2024-08-28T03:37:36Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-08-01T15:05:19Z
+	  Start date time. Format: 2024-08-28T03:37:36Z
 
 	*/
 	StartDate string
@@ -162,13 +163,13 @@ func (o *QueryXrayMatchPoolParams) SetNamespace(namespace string) {
 }
 
 // WithPoolName adds the poolName to the query xray match pool params
-func (o *QueryXrayMatchPoolParams) WithPoolName(poolName string) *QueryXrayMatchPoolParams {
+func (o *QueryXrayMatchPoolParams) WithPoolName(poolName []string) *QueryXrayMatchPoolParams {
 	o.SetPoolName(poolName)
 	return o
 }
 
 // SetPoolName adds the poolName to the query xray match pool params
-func (o *QueryXrayMatchPoolParams) SetPoolName(poolName string) {
+func (o *QueryXrayMatchPoolParams) SetPoolName(poolName []string) {
 	o.PoolName = poolName
 }
 
@@ -208,8 +209,13 @@ func (o *QueryXrayMatchPoolParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 
 	// path param poolName
-	if err := r.SetPathParam("poolName", o.PoolName); err != nil {
-		return err
+	valuesPoolName := o.PoolName
+
+	joinedPoolName := swag.JoinByFormat(valuesPoolName, "csv")
+	if len(joinedPoolName) > 0 {
+		if err := r.SetPathParam("poolName", joinedPoolName[0]); err != nil {
+			return err
+		}
 	}
 
 	// query param endDate

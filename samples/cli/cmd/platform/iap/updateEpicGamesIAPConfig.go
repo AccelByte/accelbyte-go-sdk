@@ -28,13 +28,13 @@ var UpdateEpicGamesIAPConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.EpicGamesIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &iap.UpdateEpicGamesIAPConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateEpicGamesIAPConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateEpicGamesIAPConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateEpicGamesIAPConfigCmd.MarkFlagRequired("body")
 	UpdateEpicGamesIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

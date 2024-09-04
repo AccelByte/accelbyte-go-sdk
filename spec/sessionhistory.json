@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.11.1"
+    "version": "1.12.0"
   },
   "schemes": [
     "https"
@@ -13,20 +13,6 @@
     "url": "https://stage.accelbyte.io/sessionhistory/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -196,7 +182,7 @@
             "type": "string"
           },
           {
-            "description": "End date time in RFC 3339 format: 2024-08-01T15:05:19Z",
+            "description": "End date time in RFC 3339 format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -234,7 +220,7 @@
             "type": "string"
           },
           {
-            "description": "Start date time in RFC 3339 format: 2024-08-01T15:05:19Z",
+            "description": "Start date time in RFC 3339 format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -858,7 +844,7 @@
             "type": "string"
           },
           {
-            "description": "End Date 2024-08-01T15:05:19Z",
+            "description": "End Date 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -902,7 +888,7 @@
             "type": "string"
           },
           {
-            "description": "Start Date 2024-08-01T15:05:19Z",
+            "description": "Start Date 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -1146,7 +1132,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query xray match pool.\n",
+        "description": "Query xray match pool.\nquery can using matchpool array with separate \u0026#34;,\u0026#34;\n",
         "operationId": "queryXrayMatchPool",
         "parameters": [
           {
@@ -1157,21 +1143,25 @@
             "type": "string"
           },
           {
-            "description": "match pool name",
+            "collectionFormat": "csv",
+            "description": "match pool names",
             "in": "path",
+            "items": {
+              "type": "string"
+            },
             "name": "poolName",
             "required": true,
-            "type": "string"
+            "type": "array"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1268,14 +1258,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1837,18 +1827,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "match pool name",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "matchPool",
+            "type": "array"
           }
         ],
         "produces": [
@@ -1927,18 +1927,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "match pool name",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "matchPool",
+            "type": "array"
           }
         ],
         "produces": [
@@ -2017,18 +2027,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "match pool name",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "matchPool",
+            "type": "array"
           }
         ],
         "produces": [
@@ -2107,18 +2127,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "match pool name",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "matchPool",
+            "type": "array"
           }
         ],
         "produces": [
@@ -2197,18 +2227,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "match pool name",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "matchPool",
+            "type": "array"
           },
           {
             "description": "region name",
@@ -2293,24 +2333,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "match pool name",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "matchPool",
-            "type": "string"
+            "type": "array"
           }
         ],
         "produces": [
@@ -2389,18 +2433,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "match pool name",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "matchPool",
+            "type": "array"
           }
         ],
         "produces": [
@@ -2479,24 +2533,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "match pool name",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "matchPool",
-            "type": "string"
+            "type": "array"
           }
         ],
         "produces": [
@@ -2575,24 +2633,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "match pool name",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "matchPool",
-            "type": "string"
+            "type": "array"
           }
         ],
         "produces": [
@@ -2671,24 +2733,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "match pool name",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "matchPool",
-            "type": "string"
+            "type": "array"
           }
         ],
         "produces": [
@@ -2767,24 +2833,28 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
             "type": "string"
           },
           {
+            "collectionFormat": "csv",
             "description": "match pool name",
             "in": "query",
+            "items": {
+              "type": "string"
+            },
             "name": "matchPool",
-            "type": "string"
+            "type": "array"
           }
         ],
         "produces": [
@@ -2852,7 +2922,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \u0026#34;started\u0026#34;\n\t\t\t\t\t\t    2. \u0026#34;matchFound\u0026#34;\n\t\t\t\t\t\t    3. \u0026#34;matchNotFound\u0026#34;\n\t\t\t\t\t\t    4. \u0026#34;flexed\u0026#34;\n\t\t\t\t\t\t    5  \u0026#34;canceled\u0026#34;\n\t\t\t\t\t\t    6. \u0026#34;expired\u0026#34;        \nPartyID\t\t\t\t\t  : ticket Party ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
+        "description": "Create ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \u0026#34;matchFound\u0026#34;\n\t\t\t\t\t\t    2. \u0026#34;matchNotFound\u0026#34;\n\t\t\t\t\t\t    3. \u0026#34;flexed\u0026#34;\nPartyID\t\t\t\t\t  : ticket Party ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
         "operationId": "createXrayTicketObservability",
         "parameters": [
           {
@@ -2926,6 +2996,85 @@
         ]
       }
     },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create bulk ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \u0026#34;matchFound\u0026#34;\n\t\t\t\t\t\t    2. \u0026#34;matchNotFound\u0026#34;\n\t\t\t\t\t\t    3. \u0026#34;flexed\u0026#34;\nPartyID\t\t\t\t\t  : ticket Party ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
+        "operationId": "createXrayBulkTicketObservability",
+        "parameters": [
+          {
+            "description": "Create bulk ticket observability request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayBulkTicketObservabilityRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayBulkTicketObservabilityResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create bulk ticket observability request",
+        "tags": [
+          "XRay"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets/{ticketId}": {
       "get": {
         "consumes": [
@@ -2949,14 +3098,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3060,14 +3209,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-01T15:05:19Z",
+            "description": "End date time: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-01T15:05:19Z",
+            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3763,6 +3912,9 @@
           "type": "string",
           "x-nullable": true
         },
+        "matchPool": {
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -3821,6 +3973,32 @@
       },
       "required": [
         "data"
+      ]
+    },
+    "apimodels.XRayBulkTicketObservabilityRequest": {
+      "properties": {
+        "ticketObservabilities": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayTicketObservabilityRequest"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ticketObservabilities"
+      ]
+    },
+    "apimodels.XRayBulkTicketObservabilityResponse": {
+      "properties": {
+        "ticketIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ticketIDs"
       ]
     },
     "apimodels.XRayCanceledMatchmakingTicketQueryResponse": {
@@ -5353,9 +5531,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-25T04:22:37+00:00",
-    "gitHash": "c8e99e55876f692a5c38a521bfad50b123749cca",
-    "version": "1.11.1",
-    "version-roles-seeding": "1.2.56"
+    "buildDate": "2024-08-28T03:31:22+00:00",
+    "gitHash": "ab4b4fe3770fc13749f1525b2a99d5c26a5f51c6",
+    "version": "1.12.0",
+    "version-roles-seeding": "1.2.61"
   }
 }

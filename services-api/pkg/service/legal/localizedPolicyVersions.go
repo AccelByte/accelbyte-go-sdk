@@ -142,7 +142,10 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_pol
 
 // Deprecated: 2022-01-10 - please use RetrieveSingleLocalizedPolicyVersion2Short instead.
 func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
-	ok, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2(input)
+	ok, forbidden, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2(input)
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}

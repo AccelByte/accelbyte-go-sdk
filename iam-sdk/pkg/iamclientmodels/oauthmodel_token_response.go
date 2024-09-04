@@ -65,7 +65,7 @@ type OauthmodelTokenResponse struct {
 	// platform_user_id
 	PlatformUserID string `json:"platform_user_id,omitempty"`
 
-	// refresh_expires_in
+	// present if it is user token
 	// Format: int32
 	RefreshExpiresIn int32 `json:"refresh_expires_in,omitempty"`
 

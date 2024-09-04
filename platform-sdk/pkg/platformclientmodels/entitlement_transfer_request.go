@@ -20,6 +20,9 @@ type EntitlementTransferRequest struct {
 	// entitlement id
 	EntitlementID string `json:"entitlementId,omitempty"`
 
+	// transfer metadata, It is not stored in the database, only forwarded to AGS event
+	Metadata *PublicEntitlementMetadata `json:"metadata,omitempty"`
+
 	// useCount(optional). means transfer all of use count to target entitlement id if not pass.
 	// Format: int32
 	UseCount int32 `json:"useCount,omitempty"`

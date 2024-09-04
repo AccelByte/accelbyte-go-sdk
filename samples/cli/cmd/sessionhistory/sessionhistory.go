@@ -54,6 +54,7 @@ func init() {
 	SessionhistoryCmd.AddCommand(xRay.QueryTotalMatchmakingExpiredCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryTotalMatchmakingMatchTicketCmd)
 	SessionhistoryCmd.AddCommand(xRay.CreateXrayTicketObservabilityCmd)
+	SessionhistoryCmd.AddCommand(xRay.CreateXrayBulkTicketObservabilityCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryXrayTimelineByTicketIDCmd)
 	SessionhistoryCmd.AddCommand(xRay.QueryXrayTimelineByUserIDCmd)
 }

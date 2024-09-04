@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.21.0"
+    "version": "2.21.1"
   },
   "schemes": [
     "https"
@@ -38,22 +38,6 @@
     "url": "https://stage.accelbyte.io/basic"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:PROFILE []": "ADMIN:NAMESPACE:{namespace}:PROFILE []"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -1408,7 +1392,7 @@
             "description": "successful operation",
             "schema": {
               "additionalProperties": {
-                "type": "object"
+                "type": "string"
               },
               "type": "object"
             }
@@ -1622,12 +1606,6 @@
         },
         "security": [
           {
-            "authorization": []
-          },
-          {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:PROFILE []"
-            ],
             "authorization": []
           }
         ],
@@ -2929,9 +2907,6 @@
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
-        },
         "x-errorCodes": {
           "20002": "validation error"
         }
@@ -2974,9 +2949,6 @@
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
-        },
         "x-errorCodes": {
           "20002": "validation error"
         }
@@ -3019,9 +2991,6 @@
         "tags": [
           "Misc"
         ],
-        "x-authorization": {
-          "authenticated": "true"
-        },
         "x-errorCodes": {
           "20002": "validation error"
         }
@@ -4581,6 +4550,7 @@
       "type": "object"
     },
     "NamespaceContext": {
+      "description": "This model is used to indicate the context of a namespace",
       "properties": {
         "namespace": {
           "description": "target namespace which need to get its context",
@@ -5234,16 +5204,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-07-23T09:17:54+00:00",
-    "buildID": "2.21.0",
+    "buildDate": "2024-08-28T01:52:21+00:00",
+    "buildID": "2.21.1",
     "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.219-208.866.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.223-211.872.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "2bee84b64b",
-    "gitTag": "2.21.0",
+    "gitHash": "7a8fd0a5fe",
+    "gitTag": "2.21.1",
     "name": "justice-basic-service",
     "realm": "staging",
-    "version": "2.21.0",
+    "version": "2.21.1",
     "version-roles-seeding": "0.0.10"
   }
 }

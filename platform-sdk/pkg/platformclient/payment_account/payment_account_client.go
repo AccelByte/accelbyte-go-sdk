@@ -42,7 +42,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use PublicGetPaymentAccountsShort instead.
 
 PublicGetPaymentAccounts get payment accounts
- [Not Supported Yet In Starter] Get payment accounts.
+ [Not supported yet in AGS Shared Cloud] Get payment accounts.
 Other detail info:
 
   * Returns : Payment account list
@@ -94,7 +94,7 @@ func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams
 
 /*
 PublicGetPaymentAccountsShort get payment accounts
- [Not Supported Yet In Starter] Get payment accounts.
+ [Not supported yet in AGS Shared Cloud] Get payment accounts.
 Other detail info:
 
   * Returns : Payment account list
@@ -144,7 +144,7 @@ func (a *Client) PublicGetPaymentAccountsShort(params *PublicGetPaymentAccountsP
 Deprecated: 2022-08-10 - Use PublicDeletePaymentAccountShort instead.
 
 PublicDeletePaymentAccount delete payment account
- [Not Supported Yet In Starter] Delete payment account.
+ [Not supported yet in AGS Shared Cloud] Delete payment account.
 Other detail info:
 
   * Returns :
@@ -196,7 +196,7 @@ func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountPa
 
 /*
 PublicDeletePaymentAccountShort delete payment account
- [Not Supported Yet In Starter] Delete payment account.
+ [Not supported yet in AGS Shared Cloud] Delete payment account.
 Other detail info:
 
   * Returns :

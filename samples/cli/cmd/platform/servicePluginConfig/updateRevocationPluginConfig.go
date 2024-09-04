@@ -28,13 +28,13 @@ var UpdateRevocationPluginConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RevocationPluginConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &service_plugin_config.UpdateRevocationPluginConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateRevocationPluginConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateRevocationPluginConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateRevocationPluginConfigCmd.MarkFlagRequired("body")
 	UpdateRevocationPluginConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateRevocationPluginConfigCmd.MarkFlagRequired("namespace")
 }

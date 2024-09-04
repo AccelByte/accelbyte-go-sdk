@@ -28,15 +28,15 @@ var UpdateUserOrderStatusCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		orderNo, _ := cmd.Flags().GetString("orderNo")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.OrderUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		orderNo, _ := cmd.Flags().GetString("orderNo")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &order.UpdateUserOrderStatusParams{
 			Body:      body,
 			Namespace: namespace,
@@ -58,6 +58,7 @@ var UpdateUserOrderStatusCmd = &cobra.Command{
 
 func init() {
 	UpdateUserOrderStatusCmd.Flags().String("body", "", "Body")
+	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("body")
 	UpdateUserOrderStatusCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("namespace")
 	UpdateUserOrderStatusCmd.Flags().String("orderNo", "", "Order no")

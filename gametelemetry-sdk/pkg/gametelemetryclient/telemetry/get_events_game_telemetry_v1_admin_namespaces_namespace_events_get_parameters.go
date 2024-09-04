@@ -87,6 +87,11 @@ type GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams struct {
 	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
+	/*DeviceType
+	  Game telemetry DeviceType.
+
+	*/
+	DeviceType *string
 	/*EndTime
 	  End time of data to be queried. Default: Current time in UTC.
 
@@ -209,6 +214,17 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) SetNam
 	o.Namespace = namespace
 }
 
+// WithDeviceType adds the deviceType to the get events game telemetry v1 admin namespaces namespace events get params
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WithDeviceType(deviceType *string) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
+	o.SetDeviceType(deviceType)
+	return o
+}
+
+// SetDeviceType adds the deviceType to the get events game telemetry v1 admin namespaces namespace events get params
+func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) SetDeviceType(deviceType *string) {
+	o.DeviceType = deviceType
+}
+
 // WithEndTime adds the endTime to the get events game telemetry v1 admin namespaces namespace events get params
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WithEndTime(endTime *string) *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams {
 	o.SetEndTime(endTime)
@@ -319,6 +335,22 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetParams) WriteT
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.DeviceType != nil {
+
+		// query param deviceType
+		var qrDeviceType string
+		if o.DeviceType != nil {
+			qrDeviceType = *o.DeviceType
+		}
+		qDeviceType := qrDeviceType
+		if qDeviceType != "" {
+			if err := r.SetQueryParam("deviceType", qDeviceType); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.EndTime != nil {

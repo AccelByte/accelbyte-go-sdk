@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFleetServersParams creates a new FleetServersParams object
@@ -74,6 +75,16 @@ type FleetServersParams struct {
 
 	*/
 	Namespace string
+	/*Count
+	  the data limit
+
+	*/
+	Count *string
+	/*Offset
+	  the data offset
+
+	*/
+	Offset *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -162,6 +173,28 @@ func (o *FleetServersParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithCount adds the count to the fleet servers params
+func (o *FleetServersParams) WithCount(count *string) *FleetServersParams {
+	o.SetCount(count)
+	return o
+}
+
+// SetCount adds the count to the fleet servers params
+func (o *FleetServersParams) SetCount(count *string) {
+	o.Count = count
+}
+
+// WithOffset adds the offset to the fleet servers params
+func (o *FleetServersParams) WithOffset(offset *int64) *FleetServersParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the fleet servers params
+func (o *FleetServersParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *FleetServersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -178,6 +211,38 @@ func (o *FleetServersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Count != nil {
+
+		// query param count
+		var qrCount string
+		if o.Count != nil {
+			qrCount = *o.Count
+		}
+		qCount := qrCount
+		if qCount != "" {
+			if err := r.SetQueryParam("count", qCount); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

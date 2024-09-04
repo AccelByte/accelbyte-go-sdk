@@ -28,14 +28,14 @@ var PublicFulfillAppleIAPItemCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.AppleIAPReceipt
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &iap.PublicFulfillAppleIAPItemParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var PublicFulfillAppleIAPItemCmd = &cobra.Command{
 
 func init() {
 	PublicFulfillAppleIAPItemCmd.Flags().String("body", "", "Body")
+	_ = PublicFulfillAppleIAPItemCmd.MarkFlagRequired("body")
 	PublicFulfillAppleIAPItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicFulfillAppleIAPItemCmd.MarkFlagRequired("namespace")
 	PublicFulfillAppleIAPItemCmd.Flags().String("userId", "", "User id")

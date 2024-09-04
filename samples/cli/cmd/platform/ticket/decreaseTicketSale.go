@@ -28,14 +28,14 @@ var DecreaseTicketSaleCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		boothName, _ := cmd.Flags().GetString("boothName")
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.TicketSaleDecrementRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		boothName, _ := cmd.Flags().GetString("boothName")
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &ticket.DecreaseTicketSaleParams{
 			Body:      body,
 			BoothName: boothName,
@@ -56,6 +56,7 @@ var DecreaseTicketSaleCmd = &cobra.Command{
 
 func init() {
 	DecreaseTicketSaleCmd.Flags().String("body", "", "Body")
+	_ = DecreaseTicketSaleCmd.MarkFlagRequired("body")
 	DecreaseTicketSaleCmd.Flags().String("boothName", "", "Booth name")
 	_ = DecreaseTicketSaleCmd.MarkFlagRequired("boothName")
 	DecreaseTicketSaleCmd.Flags().String("namespace", "", "Namespace")

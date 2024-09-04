@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewQueryAcquiringDSWaitTimeAvgParams creates a new QueryAcquiringDSWaitTimeAvgParams object
@@ -69,13 +70,18 @@ type QueryAcquiringDSWaitTimeAvgParams struct {
 
 	*/
 	Namespace string
+	/*MatchPool
+	  match pool name
+
+	*/
+	MatchPool []string
 	/*EndDate
-	  End date time: 2024-08-01T15:05:19Z
+	  End date time: 2024-08-28T03:37:36Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-08-01T15:05:19Z
+	  Start date time. Format: 2024-08-28T03:37:36Z
 
 	*/
 	StartDate string
@@ -156,6 +162,17 @@ func (o *QueryAcquiringDSWaitTimeAvgParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithMatchPool adds the matchPool to the query acquiring ds wait time avg params
+func (o *QueryAcquiringDSWaitTimeAvgParams) WithMatchPool(matchPool []string) *QueryAcquiringDSWaitTimeAvgParams {
+	o.SetMatchPool(matchPool)
+	return o
+}
+
+// SetMatchPool adds the matchPool to the query acquiring ds wait time avg params
+func (o *QueryAcquiringDSWaitTimeAvgParams) SetMatchPool(matchPool []string) {
+	o.MatchPool = matchPool
+}
+
 // WithEndDate adds the endDate to the query acquiring ds wait time avg params
 func (o *QueryAcquiringDSWaitTimeAvgParams) WithEndDate(endDate string) *QueryAcquiringDSWaitTimeAvgParams {
 	o.SetEndDate(endDate)
@@ -188,6 +205,14 @@ func (o *QueryAcquiringDSWaitTimeAvgParams) WriteToRequest(r runtime.ClientReque
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+		return err
+	}
+
+	valuesMatchPool := o.MatchPool
+
+	joinedMatchPool := swag.JoinByFormat(valuesMatchPool, "csv")
+	// query array param matchPool
+	if err := r.SetQueryParam("matchPool", joinedMatchPool...); err != nil {
 		return err
 	}
 

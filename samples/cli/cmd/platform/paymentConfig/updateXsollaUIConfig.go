@@ -28,13 +28,13 @@ var UpdateXsollaUIConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.XsollaPaywallConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		id_, _ := cmd.Flags().GetString("id")
 		input := &payment_config.UpdateXsollaUIConfigParams{
 			Body: body,
 			ID:   id_,
@@ -54,6 +54,7 @@ var UpdateXsollaUIConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateXsollaUIConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateXsollaUIConfigCmd.MarkFlagRequired("body")
 	UpdateXsollaUIConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateXsollaUIConfigCmd.MarkFlagRequired("id")
 }

@@ -31,8 +31,11 @@ type CreateBasePolicyRequestV2 struct {
 	// description
 	Description string `json:"description,omitempty"`
 
-	// ishidden
+	// active status of this policy, it will affect user's eligibility status check
 	IsHidden bool `json:"isHidden"`
+
+	// hide the policy from public(e.g. legal website), it will NOT affect user's eligibility status check
+	IsHiddenPublic bool `json:"isHiddenPublic"`
 
 	// tags
 	// Unique: true

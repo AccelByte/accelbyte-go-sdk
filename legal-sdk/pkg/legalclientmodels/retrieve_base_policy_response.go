@@ -37,8 +37,11 @@ type RetrieveBasePolicyResponse struct {
 	// Required: true
 	ID *string `json:"id"`
 
-	// ishidden
+	// active status of this policy, it will affect user's eligibility status check
 	IsHidden bool `json:"isHidden"`
+
+	// hide the policy from public(e.g. legal website), it will NOT affect user's eligibility status check
+	IsHiddenPublic bool `json:"isHiddenPublic"`
 
 	// namespace
 	// Required: true

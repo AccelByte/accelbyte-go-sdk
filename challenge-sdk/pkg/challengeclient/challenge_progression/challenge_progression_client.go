@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminEvaluateProgress(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, *AdminEvaluateProgressUnauthorized, *AdminEvaluateProgressForbidden, *AdminEvaluateProgressNotFound, *AdminEvaluateProgressInternalServerError, error)
+	AdminEvaluateProgress(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, *AdminEvaluateProgressBadRequest, *AdminEvaluateProgressUnauthorized, *AdminEvaluateProgressForbidden, *AdminEvaluateProgressNotFound, *AdminEvaluateProgressInternalServerError, error)
 	AdminEvaluateProgressShort(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, error)
 	EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, *EvaluateMyProgressUnauthorized, *EvaluateMyProgressForbidden, *EvaluateMyProgressInternalServerError, error)
 	EvaluateMyProgressShort(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, error)
@@ -48,8 +48,9 @@ Deprecated: 2022-08-10 - Use AdminEvaluateProgressShort instead.
 AdminEvaluateProgress evaluate user's progressions
 
       * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+      * Limited up to 10 users per request
 */
-func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, *AdminEvaluateProgressUnauthorized, *AdminEvaluateProgressForbidden, *AdminEvaluateProgressNotFound, *AdminEvaluateProgressInternalServerError, error) {
+func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, *AdminEvaluateProgressBadRequest, *AdminEvaluateProgressUnauthorized, *AdminEvaluateProgressForbidden, *AdminEvaluateProgressNotFound, *AdminEvaluateProgressInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminEvaluateProgressParams()
@@ -81,28 +82,31 @@ func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminEvaluateProgressNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminEvaluateProgressBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminEvaluateProgressUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminEvaluateProgressForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminEvaluateProgressNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminEvaluateProgressInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -110,6 +114,7 @@ func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, auth
 AdminEvaluateProgressShort evaluate user's progressions
 
       * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+      * Limited up to 10 users per request
 */
 func (a *Client) AdminEvaluateProgressShort(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -146,6 +151,8 @@ func (a *Client) AdminEvaluateProgressShort(params *AdminEvaluateProgressParams,
 
 	case *AdminEvaluateProgressNoContent:
 		return v, nil
+	case *AdminEvaluateProgressBadRequest:
+		return nil, v
 	case *AdminEvaluateProgressUnauthorized:
 		return nil, v
 	case *AdminEvaluateProgressForbidden:

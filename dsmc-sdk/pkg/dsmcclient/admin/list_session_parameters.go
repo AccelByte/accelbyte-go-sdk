@@ -178,8 +178,8 @@ func (o *ListSessionParams) SetRegion(region *string) {
 	o.Region = region
 }
 
-// WithWithServer adds the withServer to the list session params
-func (o *ListSessionParams) WithWithServer(withServer *bool) *ListSessionParams {
+// WithWithServer_ adds the withServer to the list session params
+func (o *ListSessionParams) WithWithServer_(withServer *bool) *ListSessionParams {
 	o.SetWithServer(withServer)
 	return o
 }

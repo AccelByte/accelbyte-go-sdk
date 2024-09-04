@@ -28,15 +28,15 @@ var PublicSplitUserEntitlementCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		entitlementId, _ := cmd.Flags().GetString("entitlementId")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.EntitlementSplitRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		entitlementId, _ := cmd.Flags().GetString("entitlementId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &entitlement.PublicSplitUserEntitlementParams{
 			Body:          body,
 			EntitlementID: entitlementId,
@@ -58,6 +58,7 @@ var PublicSplitUserEntitlementCmd = &cobra.Command{
 
 func init() {
 	PublicSplitUserEntitlementCmd.Flags().String("body", "", "Body")
+	_ = PublicSplitUserEntitlementCmd.MarkFlagRequired("body")
 	PublicSplitUserEntitlementCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = PublicSplitUserEntitlementCmd.MarkFlagRequired("entitlementId")
 	PublicSplitUserEntitlementCmd.Flags().String("namespace", "", "Namespace")

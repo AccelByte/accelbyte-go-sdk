@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewQueryTotalMatchmakingCanceledParams creates a new QueryTotalMatchmakingCanceledParams object
@@ -73,14 +74,14 @@ type QueryTotalMatchmakingCanceledParams struct {
 	  match pool name
 
 	*/
-	MatchPool *string
+	MatchPool []string
 	/*EndDate
-	  End date time: 2024-08-01T15:05:19Z
+	  End date time: 2024-08-28T03:37:36Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-08-01T15:05:19Z
+	  Start date time. Format: 2024-08-28T03:37:36Z
 
 	*/
 	StartDate string
@@ -162,13 +163,13 @@ func (o *QueryTotalMatchmakingCanceledParams) SetNamespace(namespace string) {
 }
 
 // WithMatchPool adds the matchPool to the query total matchmaking canceled params
-func (o *QueryTotalMatchmakingCanceledParams) WithMatchPool(matchPool *string) *QueryTotalMatchmakingCanceledParams {
+func (o *QueryTotalMatchmakingCanceledParams) WithMatchPool(matchPool []string) *QueryTotalMatchmakingCanceledParams {
 	o.SetMatchPool(matchPool)
 	return o
 }
 
 // SetMatchPool adds the matchPool to the query total matchmaking canceled params
-func (o *QueryTotalMatchmakingCanceledParams) SetMatchPool(matchPool *string) {
+func (o *QueryTotalMatchmakingCanceledParams) SetMatchPool(matchPool []string) {
 	o.MatchPool = matchPool
 }
 
@@ -207,20 +208,12 @@ func (o *QueryTotalMatchmakingCanceledParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 
-	if o.MatchPool != nil {
+	valuesMatchPool := o.MatchPool
 
-		// query param matchPool
-		var qrMatchPool string
-		if o.MatchPool != nil {
-			qrMatchPool = *o.MatchPool
-		}
-		qMatchPool := qrMatchPool
-		if qMatchPool != "" {
-			if err := r.SetQueryParam("matchPool", qMatchPool); err != nil {
-				return err
-			}
-		}
-
+	joinedMatchPool := swag.JoinByFormat(valuesMatchPool, "csv")
+	// query array param matchPool
+	if err := r.SetQueryParam("matchPool", joinedMatchPool...); err != nil {
+		return err
 	}
 
 	// query param endDate

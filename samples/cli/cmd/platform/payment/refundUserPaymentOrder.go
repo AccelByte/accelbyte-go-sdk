@@ -28,15 +28,15 @@ var RefundUserPaymentOrderCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		paymentOrderNo, _ := cmd.Flags().GetString("paymentOrderNo")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentOrderRefund
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		paymentOrderNo, _ := cmd.Flags().GetString("paymentOrderNo")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &payment.RefundUserPaymentOrderParams{
 			Body:           body,
 			Namespace:      namespace,
@@ -58,6 +58,7 @@ var RefundUserPaymentOrderCmd = &cobra.Command{
 
 func init() {
 	RefundUserPaymentOrderCmd.Flags().String("body", "", "Body")
+	_ = RefundUserPaymentOrderCmd.MarkFlagRequired("body")
 	RefundUserPaymentOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = RefundUserPaymentOrderCmd.MarkFlagRequired("namespace")
 	RefundUserPaymentOrderCmd.Flags().String("paymentOrderNo", "", "Payment order no")

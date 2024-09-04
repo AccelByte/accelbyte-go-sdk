@@ -41,6 +41,9 @@ type EntitlementGrant struct {
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
 
+	// metadata, It is not stored in the database, only forwarded to AGS event
+	Metadata interface{} `json:"metadata,omitempty"`
+
 	// entitlement Origin, The platform of the entitlement.
 	// Enum: ['Epic', 'GooglePlay', 'IOS', 'Nintendo', 'Oculus', 'Other', 'Playstation', 'Steam', 'System', 'Twitch', 'Xbox']
 	Origin string `json:"origin,omitempty"`

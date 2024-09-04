@@ -27,7 +27,7 @@ var AdminEnableMyAuthenticatorV4Cmd = &cobra.Command{
 		}
 		code, _ := cmd.Flags().GetString("code")
 		input := &users_v4.AdminEnableMyAuthenticatorV4Params{
-			Code: &code,
+			Code: code,
 		}
 		errNoContent := usersV4Service.AdminEnableMyAuthenticatorV4Short(input)
 		if errNoContent != nil {
@@ -44,4 +44,5 @@ var AdminEnableMyAuthenticatorV4Cmd = &cobra.Command{
 
 func init() {
 	AdminEnableMyAuthenticatorV4Cmd.Flags().String("code", "", "Code")
+	_ = AdminEnableMyAuthenticatorV4Cmd.MarkFlagRequired("code")
 }

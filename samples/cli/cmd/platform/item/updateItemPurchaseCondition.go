@@ -28,15 +28,15 @@ var UpdateItemPurchaseConditionCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		itemId, _ := cmd.Flags().GetString("itemId")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PurchaseConditionUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		itemId, _ := cmd.Flags().GetString("itemId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.UpdateItemPurchaseConditionParams{
 			Body:      body,
 			ItemID:    itemId,
@@ -58,6 +58,7 @@ var UpdateItemPurchaseConditionCmd = &cobra.Command{
 
 func init() {
 	UpdateItemPurchaseConditionCmd.Flags().String("body", "", "Body")
+	_ = UpdateItemPurchaseConditionCmd.MarkFlagRequired("body")
 	UpdateItemPurchaseConditionCmd.Flags().String("itemId", "", "Item id")
 	_ = UpdateItemPurchaseConditionCmd.MarkFlagRequired("itemId")
 	UpdateItemPurchaseConditionCmd.Flags().String("namespace", "", "Namespace")

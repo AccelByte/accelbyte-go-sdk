@@ -18,6 +18,9 @@ import (
 // swagger:model Model reset password request V3.
 type ModelResetPasswordRequestV3 struct {
 
+	// for tracking which client this request comes from
+	ClientID string `json:"clientId,omitempty"`
+
 	// code
 	// Required: true
 	Code *string `json:"code"`

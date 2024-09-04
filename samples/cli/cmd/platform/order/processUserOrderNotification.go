@@ -28,15 +28,15 @@ var ProcessUserOrderNotificationCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		orderNo, _ := cmd.Flags().GetString("orderNo")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.TradeNotification
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		orderNo, _ := cmd.Flags().GetString("orderNo")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &order.ProcessUserOrderNotificationParams{
 			Body:      body,
 			Namespace: namespace,
@@ -58,6 +58,7 @@ var ProcessUserOrderNotificationCmd = &cobra.Command{
 
 func init() {
 	ProcessUserOrderNotificationCmd.Flags().String("body", "", "Body")
+	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("body")
 	ProcessUserOrderNotificationCmd.Flags().String("namespace", "", "Namespace")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("namespace")
 	ProcessUserOrderNotificationCmd.Flags().String("orderNo", "", "Order no")

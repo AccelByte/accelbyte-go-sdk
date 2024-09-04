@@ -47,6 +47,7 @@ This endpoint return the value of config key. The namespace should be publisher 
 **Supported config key:**
 * uniqueDisplayNameEnabled
 * usernameDisabled
+* mandatoryEmailVerificationEnabled
 */
 func (a *Client) AdminGetConfigValueV3(params *AdminGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigValueV3OK, *AdminGetConfigValueV3BadRequest, *AdminGetConfigValueV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -106,6 +107,7 @@ This endpoint return the value of config key. The namespace should be publisher 
 **Supported config key:**
 * uniqueDisplayNameEnabled
 * usernameDisabled
+* mandatoryEmailVerificationEnabled
 */
 func (a *Client) AdminGetConfigValueV3Short(params *AdminGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigValueV3OK, error) {
 	// TODO: Validate the params before sending
@@ -162,6 +164,7 @@ Note: this endpoint does not need any authorization.
 **Supported config key:**
 * uniqueDisplayNameEnabled
 * usernameDisabled
+* mandatoryEmailVerificationEnabled
 */
 func (a *Client) PublicGetConfigValueV3(params *PublicGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigValueV3OK, *PublicGetConfigValueV3BadRequest, *PublicGetConfigValueV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -222,6 +225,7 @@ Note: this endpoint does not need any authorization.
 **Supported config key:**
 * uniqueDisplayNameEnabled
 * usernameDisabled
+* mandatoryEmailVerificationEnabled
 */
 func (a *Client) PublicGetConfigValueV3Short(params *PublicGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigValueV3OK, error) {
 	// TODO: Validate the params before sending

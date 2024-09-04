@@ -52,4 +52,5 @@ var TestWxPayConfigCmd = &cobra.Command{
 
 func init() {
 	TestWxPayConfigCmd.Flags().String("body", "", "Body")
+	_ = TestWxPayConfigCmd.MarkFlagRequired("body")
 }

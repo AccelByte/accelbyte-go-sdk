@@ -28,14 +28,14 @@ var FulfillItemCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.FulfillmentRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &fulfillment.FulfillItemParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var FulfillItemCmd = &cobra.Command{
 
 func init() {
 	FulfillItemCmd.Flags().String("body", "", "Body")
+	_ = FulfillItemCmd.MarkFlagRequired("body")
 	FulfillItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = FulfillItemCmd.MarkFlagRequired("namespace")
 	FulfillItemCmd.Flags().String("userId", "", "User id")

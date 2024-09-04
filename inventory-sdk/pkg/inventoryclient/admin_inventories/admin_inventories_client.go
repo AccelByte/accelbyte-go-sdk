@@ -40,6 +40,8 @@ type ClientService interface {
 	AdminUpdateInventoryShort(params *AdminUpdateInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInventoryOK, error)
 	DeleteInventory(params *DeleteInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteInventoryNoContent, *DeleteInventoryBadRequest, *DeleteInventoryNotFound, *DeleteInventoryInternalServerError, error)
 	DeleteInventoryShort(params *DeleteInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteInventoryNoContent, error)
+	AdminUpdateUserInventoriesByInventoryCode(params *AdminUpdateUserInventoriesByInventoryCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserInventoriesByInventoryCodeOK, *AdminUpdateUserInventoriesByInventoryCodeBadRequest, *AdminUpdateUserInventoriesByInventoryCodeUnauthorized, *AdminUpdateUserInventoriesByInventoryCodeForbidden, *AdminUpdateUserInventoriesByInventoryCodeNotFound, *AdminUpdateUserInventoriesByInventoryCodeInternalServerError, error)
+	AdminUpdateUserInventoriesByInventoryCodeShort(params *AdminUpdateUserInventoriesByInventoryCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserInventoriesByInventoryCodeOK, error)
 	AdminPurchasable(params *AdminPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPurchasableNoContent, *AdminPurchasableBadRequest, *AdminPurchasableNotFound, *AdminPurchasableConflict, *AdminPurchasableInternalServerError, error)
 	AdminPurchasableShort(params *AdminPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPurchasableNoContent, error)
 
@@ -630,6 +632,139 @@ func (a *Client) DeleteInventoryShort(params *DeleteInventoryParams, authInfo ru
 	case *DeleteInventoryNotFound:
 		return nil, v
 	case *DeleteInventoryInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminUpdateUserInventoriesByInventoryCodeShort instead.
+
+AdminUpdateUserInventoriesByInventoryCode to update user inventories by inventory code
+
+Updating user inventories.
+Positive value will increase MaxSlots from existing value
+Negative value will decrease MaxSlots from existing value
+Limited slots can not be changed to unlimited, vice versa
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]
+*/
+func (a *Client) AdminUpdateUserInventoriesByInventoryCode(params *AdminUpdateUserInventoriesByInventoryCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserInventoriesByInventoryCodeOK, *AdminUpdateUserInventoriesByInventoryCodeBadRequest, *AdminUpdateUserInventoriesByInventoryCodeUnauthorized, *AdminUpdateUserInventoriesByInventoryCodeForbidden, *AdminUpdateUserInventoriesByInventoryCodeNotFound, *AdminUpdateUserInventoriesByInventoryCodeInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserInventoriesByInventoryCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserInventoriesByInventoryCode",
+		Method:             "PUT",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventoryConfigurations/{inventoryConfigurationCode}/inventories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserInventoriesByInventoryCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserInventoriesByInventoryCodeOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminUpdateUserInventoriesByInventoryCodeBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateUserInventoriesByInventoryCodeUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateUserInventoriesByInventoryCodeForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminUpdateUserInventoriesByInventoryCodeNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateUserInventoriesByInventoryCodeInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminUpdateUserInventoriesByInventoryCodeShort to update user inventories by inventory code
+
+Updating user inventories.
+Positive value will increase MaxSlots from existing value
+Negative value will decrease MaxSlots from existing value
+Limited slots can not be changed to unlimited, vice versa
+
+Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]
+*/
+func (a *Client) AdminUpdateUserInventoriesByInventoryCodeShort(params *AdminUpdateUserInventoriesByInventoryCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserInventoriesByInventoryCodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateUserInventoriesByInventoryCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminUpdateUserInventoriesByInventoryCode",
+		Method:             "PUT",
+		PathPattern:        "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventoryConfigurations/{inventoryConfigurationCode}/inventories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateUserInventoriesByInventoryCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateUserInventoriesByInventoryCodeOK:
+		return v, nil
+	case *AdminUpdateUserInventoriesByInventoryCodeBadRequest:
+		return nil, v
+	case *AdminUpdateUserInventoriesByInventoryCodeUnauthorized:
+		return nil, v
+	case *AdminUpdateUserInventoriesByInventoryCodeForbidden:
+		return nil, v
+	case *AdminUpdateUserInventoriesByInventoryCodeNotFound:
+		return nil, v
+	case *AdminUpdateUserInventoriesByInventoryCodeInternalServerError:
 		return nil, v
 
 	default:

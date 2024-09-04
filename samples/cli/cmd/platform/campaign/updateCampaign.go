@@ -28,14 +28,14 @@ var UpdateCampaignCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		campaignId, _ := cmd.Flags().GetString("campaignId")
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CampaignUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		campaignId, _ := cmd.Flags().GetString("campaignId")
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &campaign.UpdateCampaignParams{
 			Body:       body,
 			CampaignID: campaignId,
@@ -56,6 +56,7 @@ var UpdateCampaignCmd = &cobra.Command{
 
 func init() {
 	UpdateCampaignCmd.Flags().String("body", "", "Body")
+	_ = UpdateCampaignCmd.MarkFlagRequired("body")
 	UpdateCampaignCmd.Flags().String("campaignId", "", "Campaign id")
 	_ = UpdateCampaignCmd.MarkFlagRequired("campaignId")
 	UpdateCampaignCmd.Flags().String("namespace", "", "Namespace")

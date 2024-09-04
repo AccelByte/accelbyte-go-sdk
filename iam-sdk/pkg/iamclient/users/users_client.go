@@ -12002,11 +12002,18 @@ func (a *Client) AdminVerifyAccountV3Short(params *AdminVerifyAccountV3Params, a
 Deprecated: 2022-08-10 - Use GetUserVerificationCodeShort instead.
 
 GetUserVerificationCode get verification code sent to user
-[WARNING] This endpoint is only for testing purpose.
-This endpoint get active user verification
-code. There are 3 scenario of getting verification codes : after account registration, after reset password
-request, and after headless account upgrade. All of them will be returned on this endpoint.
-action code: 10146
+**[WARNING] This endpoint is only for testing purpose.**
+
+This endpoint get active user verification code.
+There are some scenarios of getting verification codes, all of them will be returned on this endpoint:
+- After account registration
+- After reset password request
+- After headless account upgrade
+- After update email request
+
+This API only accept publisher/studio namespace and userId.
+
+Action code: 10146
 */
 func (a *Client) GetUserVerificationCode(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, *GetUserVerificationCodeUnauthorized, *GetUserVerificationCodeForbidden, *GetUserVerificationCodeNotFound, *GetUserVerificationCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -12067,11 +12074,18 @@ func (a *Client) GetUserVerificationCode(params *GetUserVerificationCodeParams, 
 
 /*
 GetUserVerificationCodeShort get verification code sent to user
-[WARNING] This endpoint is only for testing purpose.
-This endpoint get active user verification
-code. There are 3 scenario of getting verification codes : after account registration, after reset password
-request, and after headless account upgrade. All of them will be returned on this endpoint.
-action code: 10146
+**[WARNING] This endpoint is only for testing purpose.**
+
+This endpoint get active user verification code.
+There are some scenarios of getting verification codes, all of them will be returned on this endpoint:
+- After account registration
+- After reset password request
+- After headless account upgrade
+- After update email request
+
+This API only accept publisher/studio namespace and userId.
+
+Action code: 10146
 */
 func (a *Client) GetUserVerificationCodeShort(params *GetUserVerificationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserVerificationCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -16608,6 +16622,9 @@ Deprecated: 2022-08-10 - Use AdminVerifyUserWithoutVerificationCodeV3Short inste
 
 AdminVerifyUserWithoutVerificationCodeV3 verify user without verification code
 This endpoint force verify user
+Note:
+- namespace: only accept publisher/studio namespace
+- userId: only accept publisher/studio userId
 action code: 10118
 */
 func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, *AdminVerifyUserWithoutVerificationCodeV3BadRequest, *AdminVerifyUserWithoutVerificationCodeV3Unauthorized, *AdminVerifyUserWithoutVerificationCodeV3Forbidden, *AdminVerifyUserWithoutVerificationCodeV3NotFound, *AdminVerifyUserWithoutVerificationCodeV3Conflict, *AdminVerifyUserWithoutVerificationCodeV3InternalServerError, error) {
@@ -16676,6 +16693,9 @@ func (a *Client) AdminVerifyUserWithoutVerificationCodeV3(params *AdminVerifyUse
 /*
 AdminVerifyUserWithoutVerificationCodeV3Short verify user without verification code
 This endpoint force verify user
+Note:
+- namespace: only accept publisher/studio namespace
+- userId: only accept publisher/studio userId
 action code: 10118
 */
 func (a *Client) AdminVerifyUserWithoutVerificationCodeV3Short(params *AdminVerifyUserWithoutVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyUserWithoutVerificationCodeV3NoContent, error) {
@@ -17656,6 +17676,7 @@ Available Authentication Types:
 
 **Note**:
 * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.
+* **code**: this is required when mandatoryEmailVerificationEnabled config is true. please refer to the config from /iam/v3/public/namespaces/{namespace}/config/{configKey} [GET] API.
 
 Country use ISO3166-1 alpha-2 two letter, e.g. US.
 Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.
@@ -17731,6 +17752,7 @@ Available Authentication Types:
 
 **Note**:
 * **uniqueDisplayName**: this is required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true.
+* **code**: this is required when mandatoryEmailVerificationEnabled config is true. please refer to the config from /iam/v3/public/namespaces/{namespace}/config/{configKey} [GET] API.
 
 Country use ISO3166-1 alpha-2 two letter, e.g. US.
 Date of Birth format : YYYY-MM-DD, e.g. 2019-04-29.

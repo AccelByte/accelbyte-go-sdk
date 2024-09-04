@@ -81,17 +81,17 @@ type DownloadInvoiceDetailsParams struct {
 	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
-	/*Feature*/
-	Feature *string
-	/*ItemID*/
-	ItemID *string
-	/*ItemType*/
-	ItemType *string
 	/*EndTime
 	  end time is exclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ
 
 	*/
 	EndTime string
+	/*Feature*/
+	Feature string
+	/*ItemID*/
+	ItemID string
+	/*ItemType*/
+	ItemType string
 	/*StartTime
 	  start time is inclusive, using ISO 8601 format e.g. yyyy-MM-dd'T'HH:mm:ssZZ
 
@@ -174,39 +174,6 @@ func (o *DownloadInvoiceDetailsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithFeature adds the feature to the download invoice details params
-func (o *DownloadInvoiceDetailsParams) WithFeature(feature *string) *DownloadInvoiceDetailsParams {
-	o.SetFeature(feature)
-	return o
-}
-
-// SetFeature adds the feature to the download invoice details params
-func (o *DownloadInvoiceDetailsParams) SetFeature(feature *string) {
-	o.Feature = feature
-}
-
-// WithItemID adds the itemID to the download invoice details params
-func (o *DownloadInvoiceDetailsParams) WithItemID(itemID *string) *DownloadInvoiceDetailsParams {
-	o.SetItemID(itemID)
-	return o
-}
-
-// SetItemID adds the itemId to the download invoice details params
-func (o *DownloadInvoiceDetailsParams) SetItemID(itemID *string) {
-	o.ItemID = itemID
-}
-
-// WithItemType adds the itemType to the download invoice details params
-func (o *DownloadInvoiceDetailsParams) WithItemType(itemType *string) *DownloadInvoiceDetailsParams {
-	o.SetItemType(itemType)
-	return o
-}
-
-// SetItemType adds the itemType to the download invoice details params
-func (o *DownloadInvoiceDetailsParams) SetItemType(itemType *string) {
-	o.ItemType = itemType
-}
-
 // WithEndTime adds the endTime to the download invoice details params
 func (o *DownloadInvoiceDetailsParams) WithEndTime(endTime string) *DownloadInvoiceDetailsParams {
 	o.SetEndTime(endTime)
@@ -216,6 +183,39 @@ func (o *DownloadInvoiceDetailsParams) WithEndTime(endTime string) *DownloadInvo
 // SetEndTime adds the endTime to the download invoice details params
 func (o *DownloadInvoiceDetailsParams) SetEndTime(endTime string) {
 	o.EndTime = endTime
+}
+
+// WithFeature adds the feature to the download invoice details params
+func (o *DownloadInvoiceDetailsParams) WithFeature(feature string) *DownloadInvoiceDetailsParams {
+	o.SetFeature(feature)
+	return o
+}
+
+// SetFeature adds the feature to the download invoice details params
+func (o *DownloadInvoiceDetailsParams) SetFeature(feature string) {
+	o.Feature = feature
+}
+
+// WithItemID adds the itemID to the download invoice details params
+func (o *DownloadInvoiceDetailsParams) WithItemID(itemID string) *DownloadInvoiceDetailsParams {
+	o.SetItemID(itemID)
+	return o
+}
+
+// SetItemID adds the itemId to the download invoice details params
+func (o *DownloadInvoiceDetailsParams) SetItemID(itemID string) {
+	o.ItemID = itemID
+}
+
+// WithItemType adds the itemType to the download invoice details params
+func (o *DownloadInvoiceDetailsParams) WithItemType(itemType string) *DownloadInvoiceDetailsParams {
+	o.SetItemType(itemType)
+	return o
+}
+
+// SetItemType adds the itemType to the download invoice details params
+func (o *DownloadInvoiceDetailsParams) SetItemType(itemType string) {
+	o.ItemType = itemType
 }
 
 // WithStartTime adds the startTime to the download invoice details params
@@ -242,59 +242,38 @@ func (o *DownloadInvoiceDetailsParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 
-	if o.Feature != nil {
-
-		// query param feature
-		var qrFeature string
-		if o.Feature != nil {
-			qrFeature = *o.Feature
-		}
-		qFeature := qrFeature
-		if qFeature != "" {
-			if err := r.SetQueryParam("feature", qFeature); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.ItemID != nil {
-
-		// query param itemId
-		var qrItemID string
-		if o.ItemID != nil {
-			qrItemID = *o.ItemID
-		}
-		qItemID := qrItemID
-		if qItemID != "" {
-			if err := r.SetQueryParam("itemId", qItemID); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.ItemType != nil {
-
-		// query param itemType
-		var qrItemType string
-		if o.ItemType != nil {
-			qrItemType = *o.ItemType
-		}
-		qItemType := qrItemType
-		if qItemType != "" {
-			if err := r.SetQueryParam("itemType", qItemType); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	// query param endTime
 	qrEndTime := o.EndTime
 	qEndTime := qrEndTime
 	if qEndTime != "" {
 		if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+			return err
+		}
+	}
+
+	// query param feature
+	qrFeature := o.Feature
+	qFeature := qrFeature
+	if qFeature != "" {
+		if err := r.SetQueryParam("feature", qFeature); err != nil {
+			return err
+		}
+	}
+
+	// query param itemId
+	qrItemID := o.ItemID
+	qItemID := qrItemID
+	if qItemID != "" {
+		if err := r.SetQueryParam("itemId", qItemID); err != nil {
+			return err
+		}
+	}
+
+	// query param itemType
+	qrItemType := o.ItemType
+	qItemType := qrItemType
+	if qItemType != "" {
+		if err := r.SetQueryParam("itemType", qItemType); err != nil {
 			return err
 		}
 	}

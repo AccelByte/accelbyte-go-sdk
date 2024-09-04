@@ -28,15 +28,15 @@ var UpdateSectionCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		sectionId, _ := cmd.Flags().GetString("sectionId")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.SectionUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		sectionId, _ := cmd.Flags().GetString("sectionId")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &section.UpdateSectionParams{
 			Body:      body,
 			Namespace: namespace,
@@ -58,6 +58,7 @@ var UpdateSectionCmd = &cobra.Command{
 
 func init() {
 	UpdateSectionCmd.Flags().String("body", "", "Body")
+	_ = UpdateSectionCmd.MarkFlagRequired("body")
 	UpdateSectionCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateSectionCmd.MarkFlagRequired("namespace")
 	UpdateSectionCmd.Flags().String("sectionId", "", "Section id")

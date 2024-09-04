@@ -13,29 +13,6 @@
     "url": "https://stage.accelbyte.io/event/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]": "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:EVENT [READ]": "ADMIN:NAMESPACE:{namespace}:EVENT [READ]",
-        "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]": "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]",
-        "NAMESPACE:{namespace}:EVENT [CREATE]": "NAMESPACE:{namespace}:EVENT [CREATE]",
-        "NAMESPACE:{namespace}:EVENT [UPDATE]": "NAMESPACE:{namespace}:EVENT [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "analytics": "analytics"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -453,12 +430,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -514,12 +485,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [CREATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -606,12 +571,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -698,12 +657,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -797,12 +750,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -889,12 +836,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -948,12 +889,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1024,12 +959,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1123,12 +1052,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1222,12 +1145,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1328,12 +1245,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1390,12 +1301,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1433,12 +1338,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1490,12 +1389,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1542,12 +1435,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1598,12 +1485,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1662,12 +1543,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],
@@ -1720,12 +1595,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:EVENT [READ]"
-            ],
-            "HasScope": [
-              "analytics"
-            ],
             "authorization": []
           }
         ],

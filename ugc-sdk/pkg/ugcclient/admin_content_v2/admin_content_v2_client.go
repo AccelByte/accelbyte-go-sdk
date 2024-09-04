@@ -38,6 +38,8 @@ type ClientService interface {
 	AdminDeleteOfficialContentV2Short(params *AdminDeleteOfficialContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteOfficialContentV2NoContent, error)
 	AdminUpdateOfficialContentV2(params *AdminUpdateOfficialContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateOfficialContentV2OK, *AdminUpdateOfficialContentV2BadRequest, *AdminUpdateOfficialContentV2Unauthorized, *AdminUpdateOfficialContentV2NotFound, *AdminUpdateOfficialContentV2Conflict, *AdminUpdateOfficialContentV2InternalServerError, error)
 	AdminUpdateOfficialContentV2Short(params *AdminUpdateOfficialContentV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateOfficialContentV2OK, error)
+	AdminCopyContent(params *AdminCopyContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCopyContentCreated, *AdminCopyContentBadRequest, *AdminCopyContentUnauthorized, *AdminCopyContentForbidden, *AdminCopyContentNotFound, *AdminCopyContentInternalServerError, error)
+	AdminCopyContentShort(params *AdminCopyContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCopyContentCreated, error)
 	AdminUpdateOfficialContentFileLocation(params *AdminUpdateOfficialContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateOfficialContentFileLocationOK, *AdminUpdateOfficialContentFileLocationBadRequest, *AdminUpdateOfficialContentFileLocationUnauthorized, *AdminUpdateOfficialContentFileLocationForbidden, *AdminUpdateOfficialContentFileLocationNotFound, *AdminUpdateOfficialContentFileLocationInternalServerError, error)
 	AdminUpdateOfficialContentFileLocationShort(params *AdminUpdateOfficialContentFileLocationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateOfficialContentFileLocationOK, error)
 	AdminGenerateOfficialContentUploadURLV2(params *AdminGenerateOfficialContentUploadURLV2Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateOfficialContentUploadURLV2OK, *AdminGenerateOfficialContentUploadURLV2BadRequest, *AdminGenerateOfficialContentUploadURLV2Unauthorized, *AdminGenerateOfficialContentUploadURLV2NotFound, *AdminGenerateOfficialContentUploadURLV2InternalServerError, error)
@@ -539,6 +541,125 @@ func (a *Client) AdminUpdateOfficialContentV2Short(params *AdminUpdateOfficialCo
 	case *AdminUpdateOfficialContentV2Conflict:
 		return nil, v
 	case *AdminUpdateOfficialContentV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminCopyContentShort instead.
+
+AdminCopyContent copy contents from a channel to another
+*/
+func (a *Client) AdminCopyContent(params *AdminCopyContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCopyContentCreated, *AdminCopyContentBadRequest, *AdminCopyContentUnauthorized, *AdminCopyContentForbidden, *AdminCopyContentNotFound, *AdminCopyContentInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCopyContentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCopyContent",
+		Method:             "POST",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}/copy",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCopyContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCopyContentCreated:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminCopyContentBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminCopyContentUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminCopyContentForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminCopyContentNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminCopyContentInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminCopyContentShort copy contents from a channel to another
+*/
+func (a *Client) AdminCopyContentShort(params *AdminCopyContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCopyContentCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCopyContentParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCopyContent",
+		Method:             "POST",
+		PathPattern:        "/ugc/v2/admin/namespaces/{namespace}/channels/{channelId}/contents/{contentId}/copy",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCopyContentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCopyContentCreated:
+		return v, nil
+	case *AdminCopyContentBadRequest:
+		return nil, v
+	case *AdminCopyContentUnauthorized:
+		return nil, v
+	case *AdminCopyContentForbidden:
+		return nil, v
+	case *AdminCopyContentNotFound:
+		return nil, v
+	case *AdminCopyContentInternalServerError:
 		return nil, v
 
 	default:

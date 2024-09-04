@@ -122,7 +122,7 @@ func NewPublicFulfillGoogleIAPItemBadRequest() *PublicFulfillGoogleIAPItemBadReq
 
 /*PublicFulfillGoogleIAPItemBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39122</td><td>Google iap receipt is invalid with status code [{statusCode}] and error message [{message}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39122</td><td>Google iap receipt is invalid with status code [{statusCode}] and error message [{message}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr><tr><td>39135</td><td>Invalid Google IAP config under namespace [{namespace}]: [{message}]</td></tr></table>
 */
 type PublicFulfillGoogleIAPItemBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -175,7 +175,7 @@ func NewPublicFulfillGoogleIAPItemNotFound() *PublicFulfillGoogleIAPItemNotFound
 
 /*PublicFulfillGoogleIAPItemNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>39148</td><td>Google IAP config not found in namespace [{namespace}].</td></tr></table>
 */
 type PublicFulfillGoogleIAPItemNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

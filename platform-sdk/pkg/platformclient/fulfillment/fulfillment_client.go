@@ -745,10 +745,10 @@ func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo 
 Deprecated: 2022-08-10 - Use QueryFulfillmentsShort instead.
 
 QueryFulfillments query fulfillments
- [Not Supported Yet In Starter] Query fulfillments in a namespace.
+ [Not supported yet in AGS Shared Cloud] Query fulfillments in a namespace.
 Other detail info:
 
-  * Returns : query fulfillments
+  * Returns : list of fulfillment info, storeId field can be ignored.
 */
 func (a *Client) QueryFulfillments(params *QueryFulfillmentsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentsOK, error) {
 	// TODO: Validate the params before sending
@@ -797,10 +797,10 @@ func (a *Client) QueryFulfillments(params *QueryFulfillmentsParams, authInfo run
 
 /*
 QueryFulfillmentsShort query fulfillments
- [Not Supported Yet In Starter] Query fulfillments in a namespace.
+ [Not supported yet in AGS Shared Cloud] Query fulfillments in a namespace.
 Other detail info:
 
-  * Returns : query fulfillments
+  * Returns : list of fulfillment info, storeId field can be ignored.
 */
 func (a *Client) QueryFulfillmentsShort(params *QueryFulfillmentsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryFulfillmentsOK, error) {
 	// TODO: Validate the params before sending
@@ -966,10 +966,11 @@ func (a *Client) FulfillRewardsV2Short(params *FulfillRewardsV2Params, authInfo 
 Deprecated: 2022-08-10 - Use FulfillItemsShort instead.
 
 FulfillItems fulfill items by transactionid
- [Not Supported Yet In Starter] Fulfill items by transactionId.
+ [Not supported yet in AGS Shared Cloud] Fulfill items by transactionId.
 Other detail info:
 
-  * Returns : fulfillment v2 result
+  * Request body : storeId, region, language, and entitlementCollectionId can be ignored.
+  *  Returns : fulfillment v2 result, storeId field can be ignored.
 */
 func (a *Client) FulfillItems(params *FulfillItemsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemsOK, *FulfillItemsBadRequest, *FulfillItemsNotFound, *FulfillItemsConflict, error) {
 	// TODO: Validate the params before sending
@@ -1027,10 +1028,11 @@ func (a *Client) FulfillItems(params *FulfillItemsParams, authInfo runtime.Clien
 
 /*
 FulfillItemsShort fulfill items by transactionid
- [Not Supported Yet In Starter] Fulfill items by transactionId.
+ [Not supported yet in AGS Shared Cloud] Fulfill items by transactionId.
 Other detail info:
 
-  * Returns : fulfillment v2 result
+  * Request body : storeId, region, language, and entitlementCollectionId can be ignored.
+  *  Returns : fulfillment v2 result, storeId field can be ignored.
 */
 func (a *Client) FulfillItemsShort(params *FulfillItemsParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillItemsOK, error) {
 	// TODO: Validate the params before sending
@@ -1083,10 +1085,10 @@ func (a *Client) FulfillItemsShort(params *FulfillItemsParams, authInfo runtime.
 Deprecated: 2022-08-10 - Use RevokeItemsShort instead.
 
 RevokeItems revoke items by transactionid
- [Not Supported Yet In Starter] Revoke items by transactionId.
+ [Not supported yet in AGS Shared Cloud] Revoke items by transactionId.
 Other detail info:
 
-  * Returns : revoke fulfillment v2 result
+  * Returns : revoke fulfillment v2 result, storeId field can be ignored.
 */
 func (a *Client) RevokeItems(params *RevokeItemsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeItemsOK, *RevokeItemsNotFound, *RevokeItemsConflict, error) {
 	// TODO: Validate the params before sending
@@ -1141,10 +1143,10 @@ func (a *Client) RevokeItems(params *RevokeItemsParams, authInfo runtime.ClientA
 
 /*
 RevokeItemsShort revoke items by transactionid
- [Not Supported Yet In Starter] Revoke items by transactionId.
+ [Not supported yet in AGS Shared Cloud] Revoke items by transactionId.
 Other detail info:
 
-  * Returns : revoke fulfillment v2 result
+  * Returns : revoke fulfillment v2 result, storeId field can be ignored.
 */
 func (a *Client) RevokeItemsShort(params *RevokeItemsParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeItemsOK, error) {
 	// TODO: Validate the params before sending

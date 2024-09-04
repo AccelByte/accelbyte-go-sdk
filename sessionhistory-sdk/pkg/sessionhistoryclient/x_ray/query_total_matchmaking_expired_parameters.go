@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewQueryTotalMatchmakingExpiredParams creates a new QueryTotalMatchmakingExpiredParams object
@@ -73,14 +74,14 @@ type QueryTotalMatchmakingExpiredParams struct {
 	  match pool name
 
 	*/
-	MatchPool *string
+	MatchPool []string
 	/*EndDate
-	  End date time: 2024-08-01T15:05:19Z
+	  End date time: 2024-08-28T03:37:36Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-08-01T15:05:19Z
+	  Start date time. Format: 2024-08-28T03:37:36Z
 
 	*/
 	StartDate string
@@ -162,13 +163,13 @@ func (o *QueryTotalMatchmakingExpiredParams) SetNamespace(namespace string) {
 }
 
 // WithMatchPool adds the matchPool to the query total matchmaking expired params
-func (o *QueryTotalMatchmakingExpiredParams) WithMatchPool(matchPool *string) *QueryTotalMatchmakingExpiredParams {
+func (o *QueryTotalMatchmakingExpiredParams) WithMatchPool(matchPool []string) *QueryTotalMatchmakingExpiredParams {
 	o.SetMatchPool(matchPool)
 	return o
 }
 
 // SetMatchPool adds the matchPool to the query total matchmaking expired params
-func (o *QueryTotalMatchmakingExpiredParams) SetMatchPool(matchPool *string) {
+func (o *QueryTotalMatchmakingExpiredParams) SetMatchPool(matchPool []string) {
 	o.MatchPool = matchPool
 }
 
@@ -207,20 +208,12 @@ func (o *QueryTotalMatchmakingExpiredParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 
-	if o.MatchPool != nil {
+	valuesMatchPool := o.MatchPool
 
-		// query param matchPool
-		var qrMatchPool string
-		if o.MatchPool != nil {
-			qrMatchPool = *o.MatchPool
-		}
-		qMatchPool := qrMatchPool
-		if qMatchPool != "" {
-			if err := r.SetQueryParam("matchPool", qMatchPool); err != nil {
-				return err
-			}
-		}
-
+	joinedMatchPool := swag.JoinByFormat(valuesMatchPool, "csv")
+	// query array param matchPool
+	if err := r.SetQueryParam("matchPool", joinedMatchPool...); err != nil {
+		return err
 	}
 
 	// query param endDate

@@ -13,44 +13,6 @@
     "url": "https://stage.accelbyte.io/dsmcontroller/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:*:DSM:CONFIG [READ]": "ADMIN:NAMESPACE:*:DSM:CONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]": "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]": "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]": "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]",
-        "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]": "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]",
-        "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]": "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]",
-        "NAMESPACE:{namespace}:DSM:CONFIG [READ]": "NAMESPACE:{namespace}:DSM:CONFIG [READ]",
-        "NAMESPACE:{namespace}:DSM:SERVER [READ]": "NAMESPACE:{namespace}:DSM:SERVER [READ]",
-        "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]": "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]",
-        "NAMESPACE:{namespace}:DSM:SESSION [CREATE]": "NAMESPACE:{namespace}:DSM:SESSION [CREATE]",
-        "NAMESPACE:{namespace}:DSM:SESSION [DELETE]": "NAMESPACE:{namespace}:DSM:SESSION [DELETE]",
-        "NAMESPACE:{namespace}:DSM:SESSION [READ]": "NAMESPACE:{namespace}:DSM:SESSION [READ]",
-        "NAMESPACE:{namespace}:DSM:SESSION [UPDATE]": "NAMESPACE:{namespace}:DSM:SESSION [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "social": "social"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -91,12 +53,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -151,12 +107,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -224,12 +174,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -283,12 +227,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -350,12 +288,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -398,12 +330,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:*:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -467,12 +393,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -536,12 +456,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -608,12 +522,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:WORKER:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -674,12 +582,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -735,12 +637,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -810,12 +706,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -885,12 +775,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -939,12 +823,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1022,12 +900,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1095,12 +967,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1169,12 +1035,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1257,12 +1117,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1339,12 +1193,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1422,12 +1270,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1511,12 +1353,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1606,12 +1442,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1703,12 +1533,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1786,12 +1610,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1875,12 +1693,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -1965,12 +1777,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2061,12 +1867,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2163,12 +1963,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2243,12 +2037,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2320,12 +2108,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2399,12 +2181,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2473,12 +2249,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2561,12 +2331,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2643,12 +2407,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2719,12 +2477,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2801,12 +2553,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2889,12 +2635,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -2975,12 +2715,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3079,12 +2813,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3142,12 +2870,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3235,12 +2957,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3305,12 +3021,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3369,12 +3079,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3446,12 +3150,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3523,12 +3221,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3586,12 +3278,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3663,12 +3349,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3720,12 +3400,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3783,12 +3457,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3840,12 +3508,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3901,12 +3563,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -3968,12 +3624,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4036,12 +3686,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4120,12 +3764,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4183,12 +3821,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4244,12 +3876,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4292,12 +3918,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4348,12 +3968,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4409,12 +4023,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4478,12 +4086,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4559,12 +4161,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4642,12 +4238,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4715,12 +4305,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4789,12 +4373,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4871,12 +4449,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -4948,12 +4520,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5027,12 +4593,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5109,12 +4669,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5215,12 +4769,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5278,12 +4826,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5348,12 +4890,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5425,12 +4961,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5488,12 +5018,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5562,12 +5086,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5630,12 +5148,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5707,12 +5219,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5790,12 +5296,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5864,12 +5364,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -5940,12 +5434,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:CONFIG [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -6016,12 +5504,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SERVER [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -6105,12 +5587,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SESSION [CREATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -6191,12 +5667,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SESSION [UPDATE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -6261,12 +5731,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SESSION [READ]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],
@@ -6334,12 +5798,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "NAMESPACE:{namespace}:DSM:SESSION [DELETE]"
-            ],
-            "HasScope": [
-              "social"
-            ],
             "authorization": []
           }
         ],

@@ -139,7 +139,10 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) SetDefaultPolicy1(input 
 
 // Deprecated: 2022-01-10 - please use RetrieveSingleLocalizedPolicyVersion3Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveSingleLocalizedPolicyVersion3(input *localized_policy_versions_with_namespace.RetrieveSingleLocalizedPolicyVersion3Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
-	ok, notFound, err := aaa.Client.LocalizedPolicyVersionsWithNamespace.RetrieveSingleLocalizedPolicyVersion3(input)
+	ok, forbidden, notFound, err := aaa.Client.LocalizedPolicyVersionsWithNamespace.RetrieveSingleLocalizedPolicyVersion3(input)
+	if forbidden != nil {
+		return nil, forbidden
+	}
 	if notFound != nil {
 		return nil, notFound
 	}

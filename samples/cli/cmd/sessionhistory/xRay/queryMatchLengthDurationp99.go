@@ -7,6 +7,8 @@
 package xRay
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionhistory"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionhistory-sdk/pkg/sessionhistoryclient/x_ray"
@@ -28,8 +30,15 @@ var QueryMatchLengthDurationp99Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		endDate, _ := cmd.Flags().GetString("endDate")
 		startDate, _ := cmd.Flags().GetString("startDate")
+		matchPoolString := cmd.Flag("matchPool").Value.String()
+		var matchPool []string
+		errMatchPool := json.Unmarshal([]byte(matchPoolString), &matchPool)
+		if errMatchPool != nil {
+			return errMatchPool
+		}
 		input := &x_ray.QueryMatchLengthDurationp99Params{
 			Namespace: namespace,
+			MatchPool: matchPool,
 			EndDate:   endDate,
 			StartDate: startDate,
 		}
@@ -49,6 +58,7 @@ var QueryMatchLengthDurationp99Cmd = &cobra.Command{
 func init() {
 	QueryMatchLengthDurationp99Cmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryMatchLengthDurationp99Cmd.MarkFlagRequired("namespace")
+	QueryMatchLengthDurationp99Cmd.Flags().String("matchPool", "", "Match pool")
 	QueryMatchLengthDurationp99Cmd.Flags().String("endDate", "", "End date")
 	_ = QueryMatchLengthDurationp99Cmd.MarkFlagRequired("endDate")
 	QueryMatchLengthDurationp99Cmd.Flags().String("startDate", "", "Start date")

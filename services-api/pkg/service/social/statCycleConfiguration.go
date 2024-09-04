@@ -69,7 +69,7 @@ func (aaa *StatCycleConfigurationService) CreateStatCycle(input *stat_cycle_conf
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.CreateStatCycle(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, unprocessableEntity, internalServerError, err := aaa.Client.StatCycleConfiguration.CreateStatCycle(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -78,6 +78,9 @@ func (aaa *StatCycleConfigurationService) CreateStatCycle(input *stat_cycle_conf
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity

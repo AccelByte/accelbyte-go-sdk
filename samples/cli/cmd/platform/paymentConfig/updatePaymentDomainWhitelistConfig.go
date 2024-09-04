@@ -28,13 +28,13 @@ var UpdatePaymentDomainWhitelistConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PaymentDomainWhitelistConfigEdit
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &payment_config.UpdatePaymentDomainWhitelistConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdatePaymentDomainWhitelistConfigCmd = &cobra.Command{
 
 func init() {
 	UpdatePaymentDomainWhitelistConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdatePaymentDomainWhitelistConfigCmd.MarkFlagRequired("body")
 	UpdatePaymentDomainWhitelistConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePaymentDomainWhitelistConfigCmd.MarkFlagRequired("namespace")
 }

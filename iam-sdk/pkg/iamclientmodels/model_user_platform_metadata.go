@@ -22,7 +22,7 @@ type ModelUserPlatformMetadata struct {
 	// Required: true
 	Metadata interface{} `json:"metadata"`
 
-	// namespace
+	// the namespace of this metadata query from
 	// Required: true
 	Namespace *string `json:"namespace"`
 
@@ -30,7 +30,7 @@ type ModelUserPlatformMetadata struct {
 	// Required: true
 	PlatformUserID *string `json:"platformUserId"`
 
-	// userid
+	// it is always the publisher user id. this is deprecate, and will be removed
 	// Required: true
 	UserID *string `json:"userId"`
 }

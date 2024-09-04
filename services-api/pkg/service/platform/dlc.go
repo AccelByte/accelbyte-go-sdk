@@ -191,9 +191,12 @@ func (aaa *DLCService) SyncEpicGameDLC(input *dlc.SyncEpicGameDLCParams) error {
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.DLC.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.DLC.SyncEpicGameDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err
@@ -208,9 +211,12 @@ func (aaa *DLCService) SyncOculusDLC(input *dlc.SyncOculusDLCParams) error {
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.DLC.SyncOculusDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.DLC.SyncOculusDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err
@@ -225,9 +231,12 @@ func (aaa *DLCService) PublicSyncPsnDLCInventory(input *dlc.PublicSyncPsnDLCInve
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.DLC.PublicSyncPsnDLCInventory(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.DLC.PublicSyncPsnDLCInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err
@@ -242,9 +251,12 @@ func (aaa *DLCService) PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input 
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.DLC.PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.DLC.PublicSyncPsnDLCInventoryWithMultipleServiceLabels(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err
@@ -259,9 +271,12 @@ func (aaa *DLCService) SyncSteamDLC(input *dlc.SyncSteamDLCParams) error {
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.DLC.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.DLC.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err
@@ -276,9 +291,12 @@ func (aaa *DLCService) SyncXboxDLC(input *dlc.SyncXboxDLCParams) error {
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.DLC.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, notFound, err := aaa.Client.DLC.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if err != nil {
 		return err

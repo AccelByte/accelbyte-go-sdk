@@ -147,6 +147,35 @@ func (aaa *AdminInventoriesService) DeleteInventory(input *admin_inventories.Del
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminUpdateUserInventoriesByInventoryCodeShort instead.
+func (aaa *AdminInventoriesService) AdminUpdateUserInventoriesByInventoryCode(input *admin_inventories.AdminUpdateUserInventoriesByInventoryCodeParams) ([]*inventoryclientmodels.ApimodelsInventoryResp, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminInventories.AdminUpdateUserInventoriesByInventoryCode(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminPurchasableShort instead.
 func (aaa *AdminInventoriesService) AdminPurchasable(input *admin_inventories.AdminPurchasableParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -321,6 +350,36 @@ func (aaa *AdminInventoriesService) DeleteInventoryShort(input *admin_inventorie
 	}
 
 	return nil
+}
+
+func (aaa *AdminInventoriesService) AdminUpdateUserInventoriesByInventoryCodeShort(input *admin_inventories.AdminUpdateUserInventoriesByInventoryCodeParams) ([]*inventoryclientmodels.ApimodelsInventoryResp, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminInventories != nil {
+		input.XFlightId = tempFlightIdAdminInventories
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.AdminInventories.AdminUpdateUserInventoriesByInventoryCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *AdminInventoriesService) AdminPurchasableShort(input *admin_inventories.AdminPurchasableParams) error {

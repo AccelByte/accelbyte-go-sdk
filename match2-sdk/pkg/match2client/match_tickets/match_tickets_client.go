@@ -36,7 +36,7 @@ type ClientService interface {
 	GetMyMatchTicketsShort(params *GetMyMatchTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyMatchTicketsOK, error)
 	MatchTicketDetails(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, *MatchTicketDetailsUnauthorized, *MatchTicketDetailsForbidden, *MatchTicketDetailsNotFound, *MatchTicketDetailsInternalServerError, error)
 	MatchTicketDetailsShort(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, error)
-	DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, *DeleteMatchTicketUnauthorized, *DeleteMatchTicketForbidden, *DeleteMatchTicketNotFound, *DeleteMatchTicketInternalServerError, error)
+	DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, *DeleteMatchTicketUnauthorized, *DeleteMatchTicketForbidden, *DeleteMatchTicketNotFound, *DeleteMatchTicketNotAcceptable, *DeleteMatchTicketInternalServerError, error)
 	DeleteMatchTicketShort(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -471,7 +471,7 @@ Deprecated: 2022-08-10 - Use DeleteMatchTicketShort instead.
 DeleteMatchTicket delete a match ticket
 Deletes an existing matchmaking ticket.
 */
-func (a *Client) DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, *DeleteMatchTicketUnauthorized, *DeleteMatchTicketForbidden, *DeleteMatchTicketNotFound, *DeleteMatchTicketInternalServerError, error) {
+func (a *Client) DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchTicketNoContent, *DeleteMatchTicketUnauthorized, *DeleteMatchTicketForbidden, *DeleteMatchTicketNotFound, *DeleteMatchTicketNotAcceptable, *DeleteMatchTicketInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteMatchTicketParams()
@@ -503,28 +503,31 @@ func (a *Client) DeleteMatchTicket(params *DeleteMatchTicketParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteMatchTicketNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *DeleteMatchTicketUnauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *DeleteMatchTicketForbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *DeleteMatchTicketNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteMatchTicketNotAcceptable:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *DeleteMatchTicketInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -572,6 +575,8 @@ func (a *Client) DeleteMatchTicketShort(params *DeleteMatchTicketParams, authInf
 	case *DeleteMatchTicketForbidden:
 		return nil, v
 	case *DeleteMatchTicketNotFound:
+		return nil, v
+	case *DeleteMatchTicketNotAcceptable:
 		return nil, v
 	case *DeleteMatchTicketInternalServerError:
 		return nil, v

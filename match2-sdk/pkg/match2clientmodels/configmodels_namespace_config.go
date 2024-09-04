@@ -18,8 +18,14 @@ import (
 // swagger:model Configmodels namespace config.
 type ConfigmodelsNamespaceConfig struct {
 
+	// crossplatformnocurrentplatform
+	CrossPlatformNoCurrentPlatform bool `json:"crossPlatformNoCurrentPlatform"`
+
 	// extraplatforms
 	ExtraPlatforms []string `json:"extraPlatforms,omitempty"`
+
+	// matchanycommon
+	MatchAnyCommon bool `json:"matchAnyCommon"`
 
 	// namespace
 	// Required: true

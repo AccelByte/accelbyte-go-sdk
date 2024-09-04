@@ -27,16 +27,16 @@ var GenerateInvoiceSummaryCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		endTime, _ := cmd.Flags().GetString("endTime")
-		startTime, _ := cmd.Flags().GetString("startTime")
 		feature, _ := cmd.Flags().GetString("feature")
 		itemId, _ := cmd.Flags().GetString("itemId")
 		itemType, _ := cmd.Flags().GetString("itemType")
+		startTime, _ := cmd.Flags().GetString("startTime")
 		input := &invoice.GenerateInvoiceSummaryParams{
 			Namespace: namespace,
-			Feature:   &feature,
-			ItemID:    &itemId,
-			ItemType:  &itemType,
 			EndTime:   endTime,
+			Feature:   feature,
+			ItemID:    itemId,
+			ItemType:  itemType,
 			StartTime: startTime,
 		}
 		ok, errOK := invoiceService.GenerateInvoiceSummaryShort(input)
@@ -55,11 +55,14 @@ var GenerateInvoiceSummaryCmd = &cobra.Command{
 func init() {
 	GenerateInvoiceSummaryCmd.Flags().String("namespace", "", "Namespace")
 	_ = GenerateInvoiceSummaryCmd.MarkFlagRequired("namespace")
-	GenerateInvoiceSummaryCmd.Flags().String("feature", "", "Feature")
-	GenerateInvoiceSummaryCmd.Flags().String("itemId", "", "Item id")
-	GenerateInvoiceSummaryCmd.Flags().String("itemType", "", "Item type")
 	GenerateInvoiceSummaryCmd.Flags().String("endTime", "", "End time")
 	_ = GenerateInvoiceSummaryCmd.MarkFlagRequired("endTime")
+	GenerateInvoiceSummaryCmd.Flags().String("feature", "", "Feature")
+	_ = GenerateInvoiceSummaryCmd.MarkFlagRequired("feature")
+	GenerateInvoiceSummaryCmd.Flags().String("itemId", "", "Item id")
+	_ = GenerateInvoiceSummaryCmd.MarkFlagRequired("itemId")
+	GenerateInvoiceSummaryCmd.Flags().String("itemType", "", "Item type")
+	_ = GenerateInvoiceSummaryCmd.MarkFlagRequired("itemType")
 	GenerateInvoiceSummaryCmd.Flags().String("startTime", "", "Start time")
 	_ = GenerateInvoiceSummaryCmd.MarkFlagRequired("startTime")
 }

@@ -28,14 +28,14 @@ var PublicPreviewOrderPriceCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.OrderDiscountPreviewRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &order.PublicPreviewOrderPriceParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var PublicPreviewOrderPriceCmd = &cobra.Command{
 
 func init() {
 	PublicPreviewOrderPriceCmd.Flags().String("body", "", "Body")
+	_ = PublicPreviewOrderPriceCmd.MarkFlagRequired("body")
 	PublicPreviewOrderPriceCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicPreviewOrderPriceCmd.MarkFlagRequired("namespace")
 	PublicPreviewOrderPriceCmd.Flags().String("userId", "", "User id")

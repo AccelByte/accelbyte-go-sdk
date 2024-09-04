@@ -28,10 +28,12 @@ var GetCodeCmd = &cobra.Command{
 		code, _ := cmd.Flags().GetString("code")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		redeemable, _ := cmd.Flags().GetBool("redeemable")
+		withBatchName, _ := cmd.Flags().GetBool("withBatchName")
 		input := &campaign.GetCodeParams{
-			Code:       code,
-			Namespace:  namespace,
-			Redeemable: &redeemable,
+			Code:          code,
+			Namespace:     namespace,
+			Redeemable:    &redeemable,
+			WithBatchName: &withBatchName,
 		}
 		ok, errOK := campaignService.GetCodeShort(input)
 		if errOK != nil {
@@ -52,4 +54,5 @@ func init() {
 	GetCodeCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetCodeCmd.MarkFlagRequired("namespace")
 	GetCodeCmd.Flags().Bool("redeemable", false, "Redeemable")
+	GetCodeCmd.Flags().Bool("withBatchName", false, "With batch name")
 }

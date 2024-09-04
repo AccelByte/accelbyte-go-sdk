@@ -28,15 +28,15 @@ var UpdateAppCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		itemId, _ := cmd.Flags().GetString("itemId")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.AppUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		itemId, _ := cmd.Flags().GetString("itemId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.UpdateAppParams{
 			Body:      body,
 			ItemID:    itemId,
@@ -58,6 +58,7 @@ var UpdateAppCmd = &cobra.Command{
 
 func init() {
 	UpdateAppCmd.Flags().String("body", "", "Body")
+	_ = UpdateAppCmd.MarkFlagRequired("body")
 	UpdateAppCmd.Flags().String("itemId", "", "Item id")
 	_ = UpdateAppCmd.MarkFlagRequired("itemId")
 	UpdateAppCmd.Flags().String("namespace", "", "Namespace")

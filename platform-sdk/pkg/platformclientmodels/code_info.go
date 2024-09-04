@@ -26,6 +26,9 @@ type CodeInfo struct {
 	// user Id who get this code
 	AcquireUserID string `json:"acquireUserId,omitempty"`
 
+	// batch name
+	BatchName string `json:"batchName,omitempty"`
+
 	// batch No.
 	// Required: true
 	// Format: int32

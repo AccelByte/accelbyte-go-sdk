@@ -52,4 +52,5 @@ var CreateItemTypeConfigCmd = &cobra.Command{
 
 func init() {
 	CreateItemTypeConfigCmd.Flags().String("body", "", "Body")
+	_ = CreateItemTypeConfigCmd.MarkFlagRequired("body")
 }

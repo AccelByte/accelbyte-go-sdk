@@ -7,6 +7,8 @@
 package inventoryclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -47,6 +49,7 @@ type ApimodelsCreateItem struct {
 	SlotUsed *int32 `json:"slotUsed"`
 
 	// source
+	// Enum: ['ECOMMERCE', 'OTHER']
 	Source string `json:"source,omitempty"`
 
 	// sourceitemid
@@ -122,6 +125,35 @@ func (m *ApimodelsCreateItem) validateSlotUsed(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var apimodelsCreateItemTypeSourcePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ECOMMERCE", "OTHER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsCreateItemTypeSourcePropEnum = append(apimodelsCreateItemTypeSourcePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsCreateItemSourceECOMMERCE captures enum value "ECOMMERCE"
+	ApimodelsCreateItemSourceECOMMERCE string = "ECOMMERCE"
+
+	// ApimodelsCreateItemSourceOTHER captures enum value "OTHER"
+	ApimodelsCreateItemSourceOTHER string = "OTHER"
+)
+
+// prop value enum
+func (m *ApimodelsCreateItem) validateSourceEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsCreateItemTypeSourcePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

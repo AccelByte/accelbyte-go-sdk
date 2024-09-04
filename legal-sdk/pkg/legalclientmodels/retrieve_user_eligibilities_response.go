@@ -31,9 +31,15 @@ type RetrieveUserEligibilitiesResponse struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// hiddenpublic
+	HiddenPublic bool `json:"hiddenPublic"`
+
 	// isaccepted
 	// Required: true
 	IsAccepted *bool `json:"isAccepted"`
+
+	// hide the policy from public(e.g. legal website), it will NOT affect user's eligibility status check
+	IsHiddenPublic bool `json:"isHiddenPublic"`
 
 	// ismandatory
 	// Required: true

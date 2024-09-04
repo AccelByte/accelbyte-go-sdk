@@ -68,7 +68,7 @@ type AdminEnableMyAuthenticatorV4Params struct {
 	  code
 
 	*/
-	Code *string
+	Code string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -136,13 +136,13 @@ func (o *AdminEnableMyAuthenticatorV4Params) SetFlightId(flightId string) {
 }
 
 // WithCode adds the code to the admin enable my authenticator v4 params
-func (o *AdminEnableMyAuthenticatorV4Params) WithCode(code *string) *AdminEnableMyAuthenticatorV4Params {
+func (o *AdminEnableMyAuthenticatorV4Params) WithCode(code string) *AdminEnableMyAuthenticatorV4Params {
 	o.SetCode(code)
 	return o
 }
 
 // SetCode adds the code to the admin enable my authenticator v4 params
-func (o *AdminEnableMyAuthenticatorV4Params) SetCode(code *string) {
+func (o *AdminEnableMyAuthenticatorV4Params) SetCode(code string) {
 	o.Code = code
 }
 
@@ -154,20 +154,13 @@ func (o *AdminEnableMyAuthenticatorV4Params) WriteToRequest(r runtime.ClientRequ
 	}
 	var res []error
 
-	if o.Code != nil {
-
-		// form param code
-		var frCode string
-		if o.Code != nil {
-			frCode = *o.Code
+	// form param code
+	frCode := o.Code
+	fCode := frCode
+	if fCode != "" {
+		if err := r.SetFormParam("code", fCode); err != nil {
+			return err
 		}
-		fCode := frCode
-		if fCode != "" {
-			if err := r.SetFormParam("code", fCode); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// setting the default header value

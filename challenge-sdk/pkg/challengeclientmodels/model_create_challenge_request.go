@@ -25,7 +25,7 @@ type ModelCreateChallengeRequest struct {
 	ActiveGoalsPerRotation int32 `json:"activeGoalsPerRotation,omitempty"`
 
 	// assignmentrule
-	// Enum: ['FIXED', 'RANDOMIZED', 'UNSCHEDULED']
+	// Enum: ['CUSTOM', 'FIXED', 'RANDOMIZED', 'UNSCHEDULED']
 	// Required: true
 	AssignmentRule *string `json:"assignmentRule"`
 
@@ -107,7 +107,7 @@ var modelCreateChallengeRequestTypeAssignmentRulePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FIXED", "RANDOMIZED", "UNSCHEDULED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CUSTOM", "FIXED", "RANDOMIZED", "UNSCHEDULED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -116,6 +116,9 @@ func init() {
 }
 
 const (
+
+	// ModelCreateChallengeRequestAssignmentRuleCUSTOM captures enum value "CUSTOM"
+	ModelCreateChallengeRequestAssignmentRuleCUSTOM string = "CUSTOM"
 
 	// ModelCreateChallengeRequestAssignmentRuleFIXED captures enum value "FIXED"
 	ModelCreateChallengeRequestAssignmentRuleFIXED string = "FIXED"

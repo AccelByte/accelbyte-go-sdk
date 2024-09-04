@@ -3,7 +3,7 @@
   "info": {
     "description": "justice-inventory-service",
     "title": "justice-inventory-service",
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   "schemes": [
     "https"
@@ -13,42 +13,6 @@
     "url": "https://stage.accelbyte.io/inventory/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [CREATE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]": "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]",
-        "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-      },
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -124,9 +88,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -199,9 +160,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -265,9 +223,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -346,9 +301,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -427,9 +379,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -520,9 +469,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -580,9 +526,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -652,9 +595,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -714,9 +654,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -787,9 +724,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -884,9 +818,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -962,9 +893,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1049,9 +977,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1115,9 +1040,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1176,9 +1098,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1238,9 +1157,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1317,9 +1233,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1395,9 +1308,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1461,9 +1371,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1516,9 +1423,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1600,9 +1504,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]"
-            ],
             "authorization": []
           }
         ],
@@ -1666,9 +1567,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1721,9 +1619,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1803,9 +1698,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -1891,9 +1783,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]"
-            ],
             "authorization": []
           }
         ],
@@ -1965,9 +1854,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
-            ],
             "authorization": []
           }
         ],
@@ -2051,15 +1937,209 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "To bulk update items",
         "tags": [
           "Admin Items"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tThis endpoint will be used by client to save the purchased item to user\u0026#39;s inventory, \n\t\t\tsince want to integrate the inventory service to e-commerce, source field will be mandatory to determine the item, \n\t\t\tsupported field “OTHER” and “ECOMMERCE”\n\n\t\t\tNotes :\n\t\t\tsource ECOMMERCE, the quantity of ecommerce items saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount \n\t\t\ti.e. If the store item is configured with a useCount of 5 and the quantity of a particular item is set to 2 during saving, it will be stored as 10\n\n\t\t\tType:\n\t\t\t- ingame\n\t\t\t- app\n\t\t\t- coin\n\t\t\tetc..\n\n\t\t\tMax length of the payload is 10 items\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "operationId": "AdminBulkSaveItemToInventory",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/apimodels.SaveItemToInventoryReq"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "inventoryID",
+            "in": "path",
+            "name": "inventoryId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UserID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/apimodels.BulkSaveItemResp"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk save items to specific inventory",
+        "tags": [
+          "Admin Items"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventoryConfigurations/{inventoryConfigurationCode}/inventories": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tUpdating user inventories.\n\t\t\tPositive value will increase MaxSlots from existing value\n\t\t\tNegative value will decrease MaxSlots from existing value\n\t\t\tLimited slots can not be changed to unlimited, vice versa\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]\n\t\t",
+        "operationId": "AdminUpdateUserInventoriesByInventoryCode",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.UpdateInventoryReq"
+            }
+          },
+          {
+            "description": "InventoryConfigurationCode",
+            "in": "path",
+            "name": "inventoryConfigurationCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UserID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/apimodels.InventoryResp"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "To update user inventories by inventory code",
+        "tags": [
+          "Admin Inventories"
         ],
         "x-errorCodes": {}
       }
@@ -2120,13 +2200,106 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
-            ],
             "authorization": []
           }
         ],
         "summary": "To save item",
+        "tags": [
+          "Admin Items"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\tThis endpoint will be used by client to save the purchased item to user\u0026#39;s inventory, \n\t\t\tsince want to integrate the inventory service to e-commerce, source field will be mandatory to determine the item, \n\t\t\tsupported field “OTHER” and “ECOMMERCE”\n\n\t\t\tNotes :\n\t\t\tsource ECOMMERCE, the quantity of ecommerce items saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount \n\t\t\ti.e. If the store item is configured with a useCount of 5 and the quantity of a particular item is set to 2 during saving, it will be stored as 10\n\n\t\t\tTarget inventory will be based on the specified inventoryConfigurationCode. If the inventory exist then will put to the existing one, \n\t\t\tif not exist at all then will create at least one inventory, if full then will return failed at the response. \n\t\t\tWe implement the logic as proportional to store the item to inventory, will loop from createdAt until find the available slots at inventory.\n\n\t\t\tType:\n\t\t\t- ingame\n\t\t\t- app\n\t\t\t- coin\n\t\t\tetc..\n\n\t\t\tMax length of the payload is 10 items\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "operationId": "AdminBulkSaveItem",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/apimodels.SaveItemReq"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UserID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/apimodels.BulkSaveItemResp"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk save items to inventory",
         "tags": [
           "Admin Items"
         ],
@@ -2193,9 +2366,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -2271,9 +2441,6 @@
         },
         "security": [
           {
-            "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
-            ],
             "authorization": []
           }
         ],
@@ -3111,6 +3278,46 @@
         "type"
       ]
     },
+    "apimodels.BulkSaveItemError": {
+      "properties": {
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "sourceItemId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage",
+        "slotId",
+        "sourceItemId"
+      ]
+    },
+    "apimodels.BulkSaveItemResp": {
+      "properties": {
+        "errorDetails": {
+          "$ref": "#/definitions/apimodels.BulkSaveItemError"
+        },
+        "item": {
+          "$ref": "#/definitions/apimodels.ItemResp"
+        },
+        "success": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "success"
+      ]
+    },
     "apimodels.ChainingOperationReq": {
       "properties": {
         "message": {
@@ -3284,6 +3491,10 @@
           "type": "integer"
         },
         "source": {
+          "enum": [
+            "ECOMMERCE",
+            "OTHER"
+          ],
           "type": "string"
         },
         "sourceItemId": {
@@ -4302,11 +4513,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-07-17T09:31:54+00:00",
-    "gitHash": "4144599dbb7e81333a511653ca9df0679925736a",
+    "buildDate": "2024-08-28T01:37:05+00:00",
+    "gitHash": "108b1455b0caa091daf928045d7f6b68521eb7f4",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "version-roles-seeding": "1.2.34"
   }
 }

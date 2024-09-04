@@ -28,14 +28,14 @@ var DeleteRewardConditionRecordCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		rewardId, _ := cmd.Flags().GetString("rewardId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.DeleteRewardConditionRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		rewardId, _ := cmd.Flags().GetString("rewardId")
 		input := &reward.DeleteRewardConditionRecordParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var DeleteRewardConditionRecordCmd = &cobra.Command{
 
 func init() {
 	DeleteRewardConditionRecordCmd.Flags().String("body", "", "Body")
+	_ = DeleteRewardConditionRecordCmd.MarkFlagRequired("body")
 	DeleteRewardConditionRecordCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteRewardConditionRecordCmd.MarkFlagRequired("namespace")
 	DeleteRewardConditionRecordCmd.Flags().String("rewardId", "", "Reward id")

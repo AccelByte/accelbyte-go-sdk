@@ -28,15 +28,15 @@ var SellUserEntitlementCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		entitlementId, _ := cmd.Flags().GetString("entitlementId")
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.AdminEntitlementSoldRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		entitlementId, _ := cmd.Flags().GetString("entitlementId")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &entitlement.SellUserEntitlementParams{
 			Body:          body,
 			EntitlementID: entitlementId,
@@ -58,6 +58,7 @@ var SellUserEntitlementCmd = &cobra.Command{
 
 func init() {
 	SellUserEntitlementCmd.Flags().String("body", "", "Body")
+	_ = SellUserEntitlementCmd.MarkFlagRequired("body")
 	SellUserEntitlementCmd.Flags().String("entitlementId", "", "Entitlement id")
 	_ = SellUserEntitlementCmd.MarkFlagRequired("entitlementId")
 	SellUserEntitlementCmd.Flags().String("namespace", "", "Namespace")

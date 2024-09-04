@@ -28,13 +28,13 @@ var UpdateCatalogConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CatalogConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &store.UpdateCatalogConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateCatalogConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateCatalogConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateCatalogConfigCmd.MarkFlagRequired("body")
 	UpdateCatalogConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateCatalogConfigCmd.MarkFlagRequired("namespace")
 }

@@ -71,7 +71,7 @@ type ImportStoreByCSVParams struct {
 	/*Item*/
 	Item runtime.NamedReadCloser
 	/*Notes*/
-	Notes *string
+	Notes string
 	/*Section*/
 	Section runtime.NamedReadCloser
 	/*Namespace*/
@@ -178,13 +178,13 @@ func (o *ImportStoreByCSVParams) SetItem(item runtime.NamedReadCloser) {
 }
 
 // WithNotes adds the notes to the import store by csv params
-func (o *ImportStoreByCSVParams) WithNotes(notes *string) *ImportStoreByCSVParams {
+func (o *ImportStoreByCSVParams) WithNotes(notes string) *ImportStoreByCSVParams {
 	o.SetNotes(notes)
 	return o
 }
 
 // SetNotes adds the notes to the import store by csv params
-func (o *ImportStoreByCSVParams) SetNotes(notes *string) {
+func (o *ImportStoreByCSVParams) SetNotes(notes string) {
 	o.Notes = notes
 }
 
@@ -229,72 +229,33 @@ func (o *ImportStoreByCSVParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	if o.Category != nil {
-
-		if o.Category != nil {
-
-			// form category param category
-			if err := r.SetFileParam("category", o.Category); err != nil {
-				return err
-			}
-
-		}
-
+	// form file param category
+	if err := r.SetFileParam("category", o.Category); err != nil {
+		return err
 	}
 
-	if o.Display != nil {
-
-		if o.Display != nil {
-
-			// form display param display
-			if err := r.SetFileParam("display", o.Display); err != nil {
-				return err
-			}
-
-		}
-
+	// form file param display
+	if err := r.SetFileParam("display", o.Display); err != nil {
+		return err
 	}
 
-	if o.Item != nil {
-
-		if o.Item != nil {
-
-			// form item param item
-			if err := r.SetFileParam("item", o.Item); err != nil {
-				return err
-			}
-
-		}
-
+	// form file param item
+	if err := r.SetFileParam("item", o.Item); err != nil {
+		return err
 	}
 
-	if o.Notes != nil {
-
-		// form param notes
-		var frNotes string
-		if o.Notes != nil {
-			frNotes = *o.Notes
+	// form param notes
+	frNotes := o.Notes
+	fNotes := frNotes
+	if fNotes != "" {
+		if err := r.SetFormParam("notes", fNotes); err != nil {
+			return err
 		}
-		fNotes := frNotes
-		if fNotes != "" {
-			if err := r.SetFormParam("notes", fNotes); err != nil {
-				return err
-			}
-		}
-
 	}
 
-	if o.Section != nil {
-
-		if o.Section != nil {
-
-			// form section param section
-			if err := r.SetFileParam("section", o.Section); err != nil {
-				return err
-			}
-
-		}
-
+	// form file param section
+	if err := r.SetFileParam("section", o.Section); err != nil {
+		return err
 	}
 
 	// path param namespace

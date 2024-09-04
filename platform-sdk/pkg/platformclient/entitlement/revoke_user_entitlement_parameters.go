@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // NewRevokeUserEntitlementParams creates a new RevokeUserEntitlementParams object
@@ -64,6 +66,8 @@ type RevokeUserEntitlementParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *platformclientmodels.EntitlementRevokeRequest
 	/*EntitlementID*/
 	EntitlementID string
 	/*Namespace*/
@@ -136,6 +140,17 @@ func (o *RevokeUserEntitlementParams) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the revoke user entitlement params
+func (o *RevokeUserEntitlementParams) WithBody(body *platformclientmodels.EntitlementRevokeRequest) *RevokeUserEntitlementParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the revoke user entitlement params
+func (o *RevokeUserEntitlementParams) SetBody(body *platformclientmodels.EntitlementRevokeRequest) {
+	o.Body = body
+}
+
 // WithEntitlementID adds the entitlementID to the revoke user entitlement params
 func (o *RevokeUserEntitlementParams) WithEntitlementID(entitlementID string) *RevokeUserEntitlementParams {
 	o.SetEntitlementID(entitlementID)
@@ -176,6 +191,12 @@ func (o *RevokeUserEntitlementParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param entitlementId
 	if err := r.SetPathParam("entitlementId", o.EntitlementID); err != nil {

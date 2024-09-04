@@ -28,14 +28,14 @@ var UpdateRewardCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		rewardId, _ := cmd.Flags().GetString("rewardId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RewardUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		rewardId, _ := cmd.Flags().GetString("rewardId")
 		input := &reward.UpdateRewardParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var UpdateRewardCmd = &cobra.Command{
 
 func init() {
 	UpdateRewardCmd.Flags().String("body", "", "Body")
+	_ = UpdateRewardCmd.MarkFlagRequired("body")
 	UpdateRewardCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateRewardCmd.MarkFlagRequired("namespace")
 	UpdateRewardCmd.Flags().String("rewardId", "", "Reward id")

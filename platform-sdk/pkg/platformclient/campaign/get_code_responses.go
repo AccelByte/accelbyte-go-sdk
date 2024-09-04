@@ -116,7 +116,7 @@ func NewGetCodeNotFound() *GetCodeNotFound {
 
 /*GetCodeNotFound handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>37142</td><td>Code [{code}] does not exist in namespace [{namespace}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>37142</td><td>Code [{code}] does not exist in namespace [{namespace}]</td></tr><tr><td>37144</td><td>Campaign batch name does not exist for batch number [{batchNo}] campaign [{campaignId}] in namespace [{namespace}].</td></tr></table>
 */
 type GetCodeNotFound struct {
 	Payload *platformclientmodels.ErrorEntity

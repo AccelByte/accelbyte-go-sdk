@@ -28,13 +28,13 @@ var UpdateOculusIAPConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.OculusIAPConfigRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &iap.UpdateOculusIAPConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var UpdateOculusIAPConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateOculusIAPConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateOculusIAPConfigCmd.MarkFlagRequired("body")
 	UpdateOculusIAPConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateOculusIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -66,7 +66,7 @@ func NewGetLanguagesOK() *GetLanguagesOK {
   successful operation
 */
 type GetLanguagesOK struct {
-	Payload map[string]interface{}
+	Payload map[string]string
 }
 
 func (o *GetLanguagesOK) Error() string {
@@ -88,7 +88,7 @@ func (o *GetLanguagesOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *GetLanguagesOK) GetPayload() map[string]interface{} {
+func (o *GetLanguagesOK) GetPayload() map[string]string {
 	return o.Payload
 }
 

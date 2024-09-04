@@ -23,10 +23,12 @@ import (
 // with the default values initialized.
 func NewGetCodeParams() *GetCodeParams {
 	var (
-		redeemableDefault = bool(false)
+		redeemableDefault    = bool(false)
+		withBatchNameDefault = bool(false)
 	)
 	return &GetCodeParams{
-		Redeemable: &redeemableDefault,
+		Redeemable:    &redeemableDefault,
+		WithBatchName: &withBatchNameDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -36,10 +38,12 @@ func NewGetCodeParams() *GetCodeParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetCodeParamsWithTimeout(timeout time.Duration) *GetCodeParams {
 	var (
-		redeemableDefault = bool(false)
+		redeemableDefault    = bool(false)
+		withBatchNameDefault = bool(false)
 	)
 	return &GetCodeParams{
-		Redeemable: &redeemableDefault,
+		Redeemable:    &redeemableDefault,
+		WithBatchName: &withBatchNameDefault,
 
 		timeout: timeout,
 	}
@@ -49,10 +53,12 @@ func NewGetCodeParamsWithTimeout(timeout time.Duration) *GetCodeParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetCodeParamsWithContext(ctx context.Context) *GetCodeParams {
 	var (
-		redeemableDefault = bool(false)
+		redeemableDefault    = bool(false)
+		withBatchNameDefault = bool(false)
 	)
 	return &GetCodeParams{
-		Redeemable: &redeemableDefault,
+		Redeemable:    &redeemableDefault,
+		WithBatchName: &withBatchNameDefault,
 
 		Context: ctx,
 	}
@@ -62,11 +68,13 @@ func NewGetCodeParamsWithContext(ctx context.Context) *GetCodeParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetCodeParamsWithHTTPClient(client *http.Client) *GetCodeParams {
 	var (
-		redeemableDefault = bool(false)
+		redeemableDefault    = bool(false)
+		withBatchNameDefault = bool(false)
 	)
 	return &GetCodeParams{
-		Redeemable: &redeemableDefault,
-		HTTPClient: client,
+		Redeemable:    &redeemableDefault,
+		WithBatchName: &withBatchNameDefault,
+		HTTPClient:    client,
 	}
 }
 
@@ -83,6 +91,8 @@ type GetCodeParams struct {
 	Namespace string
 	/*Redeemable*/
 	Redeemable *bool
+	/*WithBatchName*/
+	WithBatchName *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -182,6 +192,17 @@ func (o *GetCodeParams) SetRedeemable(redeemable *bool) {
 	o.Redeemable = redeemable
 }
 
+// WithWithBatchName_ adds the withBatchName to the get code params
+func (o *GetCodeParams) WithWithBatchName_(withBatchName *bool) *GetCodeParams {
+	o.SetWithBatchName(withBatchName)
+	return o
+}
+
+// SetWithBatchName adds the withBatchName to the get code params
+func (o *GetCodeParams) SetWithBatchName(withBatchName *bool) {
+	o.WithBatchName = withBatchName
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetCodeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -210,6 +231,22 @@ func (o *GetCodeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 		qRedeemable := swag.FormatBool(qrRedeemable)
 		if qRedeemable != "" {
 			if err := r.SetQueryParam("redeemable", qRedeemable); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.WithBatchName != nil {
+
+		// query param withBatchName
+		var qrWithBatchName bool
+		if o.WithBatchName != nil {
+			qrWithBatchName = *o.WithBatchName
+		}
+		qWithBatchName := swag.FormatBool(qrWithBatchName)
+		if qWithBatchName != "" {
+			if err := r.SetQueryParam("withBatchName", qWithBatchName); err != nil {
 				return err
 			}
 		}

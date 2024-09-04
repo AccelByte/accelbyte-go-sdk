@@ -28,15 +28,15 @@ var UpdateViewCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		viewId, _ := cmd.Flags().GetString("viewId")
-		storeId, _ := cmd.Flags().GetString("storeId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ViewUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		viewId, _ := cmd.Flags().GetString("viewId")
+		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &view.UpdateViewParams{
 			Body:      body,
 			Namespace: namespace,
@@ -58,6 +58,7 @@ var UpdateViewCmd = &cobra.Command{
 
 func init() {
 	UpdateViewCmd.Flags().String("body", "", "Body")
+	_ = UpdateViewCmd.MarkFlagRequired("body")
 	UpdateViewCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateViewCmd.MarkFlagRequired("namespace")
 	UpdateViewCmd.Flags().String("viewId", "", "View id")

@@ -28,14 +28,14 @@ var UpdateXblUserAchievementCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.XblAchievementUpdateRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &achievement_platform.UpdateXblUserAchievementParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var UpdateXblUserAchievementCmd = &cobra.Command{
 
 func init() {
 	UpdateXblUserAchievementCmd.Flags().String("body", "", "Body")
+	_ = UpdateXblUserAchievementCmd.MarkFlagRequired("body")
 	UpdateXblUserAchievementCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateXblUserAchievementCmd.MarkFlagRequired("namespace")
 	UpdateXblUserAchievementCmd.Flags().String("userId", "", "User id")

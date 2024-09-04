@@ -69,6 +69,11 @@ type AdminSendMyMFAEmailCodeV4Params struct {
 
 	*/
 	Action *string
+	/*LanguageTag
+	  Language Tag
+
+	*/
+	LanguageTag *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -146,6 +151,17 @@ func (o *AdminSendMyMFAEmailCodeV4Params) SetAction(action *string) {
 	o.Action = action
 }
 
+// WithLanguageTag adds the languageTag to the admin send my mfa email code v4 params
+func (o *AdminSendMyMFAEmailCodeV4Params) WithLanguageTag(languageTag *string) *AdminSendMyMFAEmailCodeV4Params {
+	o.SetLanguageTag(languageTag)
+	return o
+}
+
+// SetLanguageTag adds the languageTag to the admin send my mfa email code v4 params
+func (o *AdminSendMyMFAEmailCodeV4Params) SetLanguageTag(languageTag *string) {
+	o.LanguageTag = languageTag
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminSendMyMFAEmailCodeV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -164,6 +180,22 @@ func (o *AdminSendMyMFAEmailCodeV4Params) WriteToRequest(r runtime.ClientRequest
 		fAction := frAction
 		if fAction != "" {
 			if err := r.SetFormParam("action", fAction); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.LanguageTag != nil {
+
+		// form param languageTag
+		var frLanguageTag string
+		if o.LanguageTag != nil {
+			frLanguageTag = *o.LanguageTag
+		}
+		fLanguageTag := frLanguageTag
+		if fLanguageTag != "" {
+			if err := r.SetFormParam("languageTag", fLanguageTag); err != nil {
 				return err
 			}
 		}

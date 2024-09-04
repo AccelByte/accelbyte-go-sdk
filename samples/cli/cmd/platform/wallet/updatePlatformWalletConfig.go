@@ -28,14 +28,14 @@ var UpdatePlatformWalletConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		platform, _ := cmd.Flags().GetString("platform")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.PlatformWalletConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		platform, _ := cmd.Flags().GetString("platform")
 		input := &wallet.UpdatePlatformWalletConfigParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var UpdatePlatformWalletConfigCmd = &cobra.Command{
 
 func init() {
 	UpdatePlatformWalletConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdatePlatformWalletConfigCmd.MarkFlagRequired("body")
 	UpdatePlatformWalletConfigCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdatePlatformWalletConfigCmd.MarkFlagRequired("namespace")
 	UpdatePlatformWalletConfigCmd.Flags().String("platform", "", "Platform")

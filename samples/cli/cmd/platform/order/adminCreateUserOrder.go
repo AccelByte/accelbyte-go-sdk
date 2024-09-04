@@ -28,14 +28,14 @@ var AdminCreateUserOrderCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.AdminOrderCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &order.AdminCreateUserOrderParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var AdminCreateUserOrderCmd = &cobra.Command{
 
 func init() {
 	AdminCreateUserOrderCmd.Flags().String("body", "", "Body")
+	_ = AdminCreateUserOrderCmd.MarkFlagRequired("body")
 	AdminCreateUserOrderCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminCreateUserOrderCmd.MarkFlagRequired("namespace")
 	AdminCreateUserOrderCmd.Flags().String("userId", "", "User id")

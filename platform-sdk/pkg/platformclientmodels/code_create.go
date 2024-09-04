@@ -17,6 +17,9 @@ import (
 // swagger:model Code create.
 type CodeCreate struct {
 
+	// batch name, can contain special character, should not start or end with whitespaces, min. 3, max. 60 characters
+	BatchName string `json:"batchName,omitempty"`
+
 	// custom code value, allowed characters alpha numeric with length range from 6 to 20, only generate one custom code value if this codeValue is not null
 	CodeValue string `json:"codeValue,omitempty"`
 

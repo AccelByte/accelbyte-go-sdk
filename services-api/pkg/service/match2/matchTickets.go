@@ -125,7 +125,7 @@ func (aaa *MatchTicketsService) DeleteMatchTicket(input *match_tickets.DeleteMat
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchTickets.DeleteMatchTicket(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, notFound, notAcceptable, internalServerError, err := aaa.Client.MatchTickets.DeleteMatchTicket(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -134,6 +134,9 @@ func (aaa *MatchTicketsService) DeleteMatchTicket(input *match_tickets.DeleteMat
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if notAcceptable != nil {
+		return notAcceptable
 	}
 	if internalServerError != nil {
 		return internalServerError

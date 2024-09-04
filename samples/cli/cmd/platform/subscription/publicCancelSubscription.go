@@ -28,15 +28,15 @@ var PublicCancelSubscriptionCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		subscriptionId, _ := cmd.Flags().GetString("subscriptionId")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CancelRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		subscriptionId, _ := cmd.Flags().GetString("subscriptionId")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &subscription.PublicCancelSubscriptionParams{
 			Body:           body,
 			Namespace:      namespace,
@@ -58,6 +58,7 @@ var PublicCancelSubscriptionCmd = &cobra.Command{
 
 func init() {
 	PublicCancelSubscriptionCmd.Flags().String("body", "", "Body")
+	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("body")
 	PublicCancelSubscriptionCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("namespace")
 	PublicCancelSubscriptionCmd.Flags().String("subscriptionId", "", "Subscription id")

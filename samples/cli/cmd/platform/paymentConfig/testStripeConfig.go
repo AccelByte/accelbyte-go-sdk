@@ -54,5 +54,6 @@ var TestStripeConfigCmd = &cobra.Command{
 
 func init() {
 	TestStripeConfigCmd.Flags().String("body", "", "Body")
+	_ = TestStripeConfigCmd.MarkFlagRequired("body")
 	TestStripeConfigCmd.Flags().Bool("sandbox", false, "Sandbox")
 }

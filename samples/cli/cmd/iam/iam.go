@@ -18,6 +18,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20Extension"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20V4"
+	"github.com/AccelByte/sample-apps/cmd/iam/overrideRoleConfigV3"
 	"github.com/AccelByte/sample-apps/cmd/iam/roles"
 	"github.com/AccelByte/sample-apps/cmd/iam/sso"
 	"github.com/AccelByte/sample-apps/cmd/iam/ssoCredential"
@@ -185,6 +186,11 @@ func init() {
 	IamCmd.AddCommand(ssoCredential.UpdateSSOPlatformCredentialCmd)
 	IamCmd.AddCommand(users.AdminListUserIDByPlatformUserIDsV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserByPlatformUserIDV3Cmd)
+	IamCmd.AddCommand(overrideRoleConfigV3.AdminGetRoleOverrideConfigV3Cmd)
+	IamCmd.AddCommand(overrideRoleConfigV3.AdminUpdateRoleOverrideConfigV3Cmd)
+	IamCmd.AddCommand(overrideRoleConfigV3.AdminGetRoleSourceV3Cmd)
+	IamCmd.AddCommand(overrideRoleConfigV3.AdminChangeRoleOverrideConfigStatusV3Cmd)
+	IamCmd.AddCommand(overrideRoleConfigV3.AdminGetRoleNamespacePermissionV3Cmd)
 	IamCmd.AddCommand(users.GetAdminUsersByRoleIdV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserByEmailAddressV3Cmd)
 	IamCmd.AddCommand(users.AdminBulkUpdateUsersV3Cmd)
@@ -400,6 +406,7 @@ func init() {
 	IamCmd.AddCommand(usersV4.AdminEnableMyEmailV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminGetMyEnabledFactorsV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminMakeFactorMyDefaultV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminGetMyOwnMFAStatusV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminGetMyMFAStatusV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminInviteUserV4Cmd)
 	IamCmd.AddCommand(oAuth20V4.AuthenticationWithPlatformLinkV4Cmd)
@@ -435,6 +442,7 @@ func init() {
 	IamCmd.AddCommand(usersV4.PublicEnableMyEmailV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicGetMyEnabledFactorsV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicMakeFactorMyDefaultV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicGetMyOwnMFAStatusV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicGetMyMFAStatusV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicGetUserPublicInfoByUserIdV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicInviteUserV4Cmd)

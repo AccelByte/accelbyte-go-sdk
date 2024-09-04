@@ -39,6 +39,12 @@ func (o *PublicSyncPsnDLCInventoryReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPublicSyncPsnDLCInventoryNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -83,7 +89,7 @@ func NewPublicSyncPsnDLCInventoryBadRequest() *PublicSyncPsnDLCInventoryBadReque
 
 /*PublicSyncPsnDLCInventoryBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39127</td><td>Invalid service label [{serviceLabel}]</td></tr>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39125</td><td>Invalid platform [{platformId}] user token</td></tr><tr><td>39126</td><td>User id [{}] in namespace [{}] doesn't link platform [{}]</td></tr><tr><td>39127</td><td>Invalid service label [{serviceLabel}]</td></tr><tr><td>39132</td><td>Bad request for playstation under namespace [{namespace}], reason: [{reason}].</td></tr></table>
 */
 type PublicSyncPsnDLCInventoryBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -113,6 +119,59 @@ func (o *PublicSyncPsnDLCInventoryBadRequest) GetPayload() *platformclientmodels
 }
 
 func (o *PublicSyncPsnDLCInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicSyncPsnDLCInventoryNotFound creates a PublicSyncPsnDLCInventoryNotFound with default headers values
+func NewPublicSyncPsnDLCInventoryNotFound() *PublicSyncPsnDLCInventoryNotFound {
+	return &PublicSyncPsnDLCInventoryNotFound{}
+}
+
+/*PublicSyncPsnDLCInventoryNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39143</td><td>PlayStation IAP config not found in namespace [{namespace}]</td></tr></table>
+*/
+type PublicSyncPsnDLCInventoryNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *PublicSyncPsnDLCInventoryNotFound) Error() string {
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync][%d] publicSyncPsnDlcInventoryNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *PublicSyncPsnDLCInventoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicSyncPsnDLCInventoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicSyncPsnDLCInventoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

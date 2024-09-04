@@ -28,13 +28,13 @@ var UpdateCheckoutConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.CheckoutConfig
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		id_, _ := cmd.Flags().GetString("id")
 		sandbox, _ := cmd.Flags().GetBool("sandbox")
 		validate, _ := cmd.Flags().GetBool("validate")
 		input := &payment_config.UpdateCheckoutConfigParams{
@@ -58,6 +58,7 @@ var UpdateCheckoutConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateCheckoutConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateCheckoutConfigCmd.MarkFlagRequired("body")
 	UpdateCheckoutConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateCheckoutConfigCmd.MarkFlagRequired("id")
 	UpdateCheckoutConfigCmd.Flags().Bool("sandbox", false, "Sandbox")

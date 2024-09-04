@@ -26,7 +26,7 @@ type ModelChallengeResponse struct {
 	ActiveGoalsPerRotation *int32 `json:"activeGoalsPerRotation"`
 
 	// assignmentrule
-	// Enum: ['FIXED', 'RANDOMIZED', 'UNSCHEDULED']
+	// Enum: ['CUSTOM', 'FIXED', 'RANDOMIZED', 'UNSCHEDULED']
 	// Required: true
 	AssignmentRule *string `json:"assignmentRule"`
 
@@ -152,7 +152,7 @@ var modelChallengeResponseTypeAssignmentRulePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FIXED", "RANDOMIZED", "UNSCHEDULED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CUSTOM", "FIXED", "RANDOMIZED", "UNSCHEDULED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -161,6 +161,9 @@ func init() {
 }
 
 const (
+
+	// ModelChallengeResponseAssignmentRuleCUSTOM captures enum value "CUSTOM"
+	ModelChallengeResponseAssignmentRuleCUSTOM string = "CUSTOM"
 
 	// ModelChallengeResponseAssignmentRuleFIXED captures enum value "FIXED"
 	ModelChallengeResponseAssignmentRuleFIXED string = "FIXED"

@@ -170,6 +170,38 @@ func (aaa *AdminItemsService) AdminBulkRemoveItems(input *admin_items.AdminBulkR
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBulkSaveItemToInventoryShort instead.
+func (aaa *AdminItemsService) AdminBulkSaveItemToInventory(input *admin_items.AdminBulkSaveItemToInventoryParams) ([]*inventoryclientmodels.ApimodelsBulkSaveItemResp, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.AdminItems.AdminBulkSaveItemToInventory(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminSaveItemShort instead.
 func (aaa *AdminItemsService) AdminSaveItem(input *admin_items.AdminSaveItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -179,6 +211,38 @@ func (aaa *AdminItemsService) AdminSaveItem(input *admin_items.AdminSaveItemPara
 	ok, badRequest, internalServerError, err := aaa.Client.AdminItems.AdminSaveItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminBulkSaveItemShort instead.
+func (aaa *AdminItemsService) AdminBulkSaveItem(input *admin_items.AdminBulkSaveItemParams) ([]*inventoryclientmodels.ApimodelsBulkSaveItemResp, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.AdminItems.AdminBulkSaveItem(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -399,6 +463,36 @@ func (aaa *AdminItemsService) AdminBulkRemoveItemsShort(input *admin_items.Admin
 	return ok.GetPayload(), nil
 }
 
+func (aaa *AdminItemsService) AdminBulkSaveItemToInventoryShort(input *admin_items.AdminBulkSaveItemToInventoryParams) ([]*inventoryclientmodels.ApimodelsBulkSaveItemResp, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminItems != nil {
+		input.XFlightId = tempFlightIdAdminItems
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.AdminItems.AdminBulkSaveItemToInventoryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *AdminItemsService) AdminSaveItemShort(input *admin_items.AdminSaveItemParams) (*inventoryclientmodels.ApimodelsItemResp, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -422,6 +516,36 @@ func (aaa *AdminItemsService) AdminSaveItemShort(input *admin_items.AdminSaveIte
 	}
 
 	ok, err := aaa.Client.AdminItems.AdminSaveItemShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AdminItemsService) AdminBulkSaveItemShort(input *admin_items.AdminBulkSaveItemParams) ([]*inventoryclientmodels.ApimodelsBulkSaveItemResp, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAdminItems != nil {
+		input.XFlightId = tempFlightIdAdminItems
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.AdminItems.AdminBulkSaveItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -91,7 +91,7 @@ type AdminQueryGameSessionDetailParams struct {
 	*/
 	Namespace string
 	/*EndDate
-	  End date time in RFC 3339 format: 2024-08-01T15:05:19Z
+	  End date time in RFC 3339 format: 2024-08-28T03:37:36Z
 
 	*/
 	EndDate *string
@@ -121,7 +121,7 @@ type AdminQueryGameSessionDetailParams struct {
 	*/
 	OrderBy *string
 	/*StartDate
-	  Start date time in RFC 3339 format: 2024-08-01T15:05:19Z
+	  Start date time in RFC 3339 format: 2024-08-28T03:37:36Z
 
 	*/
 	StartDate *string

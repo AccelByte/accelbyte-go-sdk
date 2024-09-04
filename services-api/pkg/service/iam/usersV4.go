@@ -1021,6 +1021,32 @@ func (aaa *UsersV4Service) AdminMakeFactorMyDefaultV4(input *users_v4.AdminMakeF
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetMyOwnMFAStatusV4Short instead.
+func (aaa *UsersV4Service) AdminGetMyOwnMFAStatusV4(input *users_v4.AdminGetMyOwnMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminGetMyOwnMFAStatusV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetMyMFAStatusV4Short instead.
 func (aaa *UsersV4Service) AdminGetMyMFAStatusV4(input *users_v4.AdminGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1852,6 +1878,32 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMak
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetMyOwnMFAStatusV4Short instead.
+func (aaa *UsersV4Service) PublicGetMyOwnMFAStatusV4(input *users_v4.PublicGetMyOwnMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.PublicGetMyOwnMFAStatusV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicGetMyMFAStatusV4Short instead.
@@ -2922,6 +2974,36 @@ func (aaa *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.Admin
 	return nil
 }
 
+func (aaa *UsersV4Service) AdminGetMyOwnMFAStatusV4Short(input *users_v4.AdminGetMyOwnMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.AdminGetMyOwnMFAStatusV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersV4Service) AdminGetMyMFAStatusV4Short(input *users_v4.AdminGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -3760,6 +3842,36 @@ func (aaa *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.Publ
 	}
 
 	return nil
+}
+
+func (aaa *UsersV4Service) PublicGetMyOwnMFAStatusV4Short(input *users_v4.PublicGetMyOwnMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.PublicGetMyOwnMFAStatusV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersV4Service) PublicGetMyMFAStatusV4Short(input *users_v4.PublicGetMyMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {

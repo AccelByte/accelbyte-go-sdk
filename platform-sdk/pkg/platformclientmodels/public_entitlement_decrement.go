@@ -12,10 +12,13 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// EntitlementDecrement Entitlement decrement
+// PublicEntitlementDecrement Public entitlement decrement
 //
-// swagger:model Entitlement decrement.
-type EntitlementDecrement struct {
+// swagger:model Public entitlement decrement.
+type PublicEntitlementDecrement struct {
+
+	// metadata, It is not stored in the database, only forwarded to AGS event
+	Metadata *PublicEntitlementMetadata `json:"metadata,omitempty"`
 
 	// options, it is only available when entitlement clazz is OPTIONBOX and value should be item id.
 	Options []string `json:"options,omitempty"`
@@ -28,8 +31,8 @@ type EntitlementDecrement struct {
 	UseCount int32 `json:"useCount,omitempty"`
 }
 
-// Validate validates this Entitlement decrement
-func (m *EntitlementDecrement) Validate(formats strfmt.Registry) error {
+// Validate validates this Public entitlement decrement
+func (m *PublicEntitlementDecrement) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {
@@ -39,7 +42,7 @@ func (m *EntitlementDecrement) Validate(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *EntitlementDecrement) MarshalBinary() ([]byte, error) {
+func (m *PublicEntitlementDecrement) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -47,8 +50,8 @@ func (m *EntitlementDecrement) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *EntitlementDecrement) UnmarshalBinary(b []byte) error {
-	var res EntitlementDecrement
+func (m *PublicEntitlementDecrement) UnmarshalBinary(b []byte) error {
+	var res PublicEntitlementDecrement
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

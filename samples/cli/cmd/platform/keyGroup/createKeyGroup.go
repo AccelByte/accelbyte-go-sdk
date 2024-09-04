@@ -28,13 +28,13 @@ var CreateKeyGroupCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.KeyGroupCreate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &key_group.CreateKeyGroupParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var CreateKeyGroupCmd = &cobra.Command{
 
 func init() {
 	CreateKeyGroupCmd.Flags().String("body", "", "Body")
+	_ = CreateKeyGroupCmd.MarkFlagRequired("body")
 	CreateKeyGroupCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateKeyGroupCmd.MarkFlagRequired("namespace")
 }

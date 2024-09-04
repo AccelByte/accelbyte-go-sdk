@@ -28,13 +28,13 @@ var UpdateAliPayConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.AliPayConfig
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		id_, _ := cmd.Flags().GetString("id")
 		sandbox, _ := cmd.Flags().GetBool("sandbox")
 		validate, _ := cmd.Flags().GetBool("validate")
 		input := &payment_config.UpdateAliPayConfigParams{
@@ -58,6 +58,7 @@ var UpdateAliPayConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateAliPayConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateAliPayConfigCmd.MarkFlagRequired("body")
 	UpdateAliPayConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateAliPayConfigCmd.MarkFlagRequired("id")
 	UpdateAliPayConfigCmd.Flags().Bool("sandbox", false, "Sandbox")

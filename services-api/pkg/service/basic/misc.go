@@ -163,7 +163,7 @@ func (aaa *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams)
 }
 
 // Deprecated: 2022-01-10 - please use GetLanguagesShort instead.
-func (aaa *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
+func (aaa *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]string, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -401,7 +401,7 @@ func (aaa *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPa
 	return nil
 }
 
-func (aaa *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
+func (aaa *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[string]string, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

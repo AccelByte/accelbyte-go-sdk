@@ -28,14 +28,14 @@ var DoRevocationCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.RevocationRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &revocation.DoRevocationParams{
 			Body:      body,
 			Namespace: namespace,
@@ -56,6 +56,7 @@ var DoRevocationCmd = &cobra.Command{
 
 func init() {
 	DoRevocationCmd.Flags().String("body", "", "Body")
+	_ = DoRevocationCmd.MarkFlagRequired("body")
 	DoRevocationCmd.Flags().String("namespace", "", "Namespace")
 	_ = DoRevocationCmd.MarkFlagRequired("namespace")
 	DoRevocationCmd.Flags().String("userId", "", "User id")

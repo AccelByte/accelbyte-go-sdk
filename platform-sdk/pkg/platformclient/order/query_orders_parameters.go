@@ -300,8 +300,8 @@ func (o *QueryOrdersParams) SetStatus(status *string) {
 	o.Status = status
 }
 
-// WithWithTotal adds the withTotal to the query orders params
-func (o *QueryOrdersParams) WithWithTotal(withTotal *bool) *QueryOrdersParams {
+// WithWithTotal_ adds the withTotal to the query orders params
+func (o *QueryOrdersParams) WithWithTotal_(withTotal *bool) *QueryOrdersParams {
 	o.SetWithTotal(withTotal)
 	return o
 }

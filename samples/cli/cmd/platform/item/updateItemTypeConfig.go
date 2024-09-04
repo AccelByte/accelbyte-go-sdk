@@ -28,13 +28,13 @@ var UpdateItemTypeConfigCmd = &cobra.Command{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		id_, _ := cmd.Flags().GetString("id")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *platformclientmodels.ItemTypeConfigUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		id_, _ := cmd.Flags().GetString("id")
 		input := &item.UpdateItemTypeConfigParams{
 			Body: body,
 			ID:   id_,
@@ -54,6 +54,7 @@ var UpdateItemTypeConfigCmd = &cobra.Command{
 
 func init() {
 	UpdateItemTypeConfigCmd.Flags().String("body", "", "Body")
+	_ = UpdateItemTypeConfigCmd.MarkFlagRequired("body")
 	UpdateItemTypeConfigCmd.Flags().String("id", "", "Id")
 	_ = UpdateItemTypeConfigCmd.MarkFlagRequired("id")
 }

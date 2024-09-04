@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/challenge/challengeProgression"
 	"github.com/AccelByte/sample-apps/cmd/challenge/goalConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/challenge/playerReward"
+	"github.com/AccelByte/sample-apps/cmd/challenge/plugins"
 	"github.com/spf13/cobra"
 )
 
@@ -35,6 +36,10 @@ func init() {
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminGetPeriodsCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminRandomizeChallengeCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminDeleteTiedChallengeCmd)
+	ChallengeCmd.AddCommand(plugins.AdminGetAssignmentPluginCmd)
+	ChallengeCmd.AddCommand(plugins.AdminUpdateAssignmentPluginCmd)
+	ChallengeCmd.AddCommand(plugins.AdminCreateAssignmentPluginCmd)
+	ChallengeCmd.AddCommand(plugins.AdminDeleteAssignmentPluginCmd)
 	ChallengeCmd.AddCommand(challengeProgression.AdminEvaluateProgressCmd)
 	ChallengeCmd.AddCommand(playerReward.AdminClaimUsersRewardsCmd)
 	ChallengeCmd.AddCommand(playerReward.AdminGetUserRewardsCmd)

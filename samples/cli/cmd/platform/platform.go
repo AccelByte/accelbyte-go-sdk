@@ -68,6 +68,8 @@ func init() {
 	PlatformCmd.AddCommand(campaign.CreateCampaignCmd)
 	PlatformCmd.AddCommand(campaign.GetCampaignCmd)
 	PlatformCmd.AddCommand(campaign.UpdateCampaignCmd)
+	PlatformCmd.AddCommand(campaign.RenameBatchCmd)
+	PlatformCmd.AddCommand(campaign.QueryCampaignBatchNamesCmd)
 	PlatformCmd.AddCommand(campaign.GetCampaignDynamicCmd)
 	PlatformCmd.AddCommand(store.GetCatalogConfigCmd)
 	PlatformCmd.AddCommand(store.UpdateCatalogConfigCmd)

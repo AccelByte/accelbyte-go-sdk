@@ -13,20 +13,6 @@
     "url": "https://stage.accelbyte.io/chat/apidocs"
   },
   "securityDefinitions": {
-    "HasPermission": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
-    "HasScope": {
-      "authorizationUrl": "https://dummy.oauth.net/auth",
-      "flow": "accessCode",
-      "scopes": {},
-      "tokenUrl": "https://dumy.oauth.net/token",
-      "type": "oauth2"
-    },
     "authorization": {
       "in": "header",
       "name": "Authorization",
@@ -9266,6 +9252,14 @@
     },
     {
       "Attributes": [],
+      "Code": "513308",
+      "CodeName": "UnmuteUserNotMuted",
+      "Section": "mute",
+      "Service": "chat",
+      "Text": "user is not muted"
+    },
+    {
+      "Attributes": [],
       "Code": "514110",
       "CodeName": "AddUserToAllActiveShardSuccess",
       "Section": "add user to shard",
@@ -10032,11 +10026,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-07-17T04:14:24+00:00",
-    "gitHash": "aeab65c4bcb315d51f6011c67d519ed6cbfd5221",
+    "buildDate": "2024-08-28T03:30:16+00:00",
+    "gitHash": "d1745f0b718e0e8ea9f9e4d9a6e456e36308a80e",
     "name": "justice-chat-service",
-    "revisionID": "0.4.31",
-    "version": "0.4.31",
+    "revisionID": "0.4.33",
+    "version": "0.4.33",
     "version-roles-seeding": "1.2.15"
   }
 }

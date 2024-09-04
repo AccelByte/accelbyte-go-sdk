@@ -35,12 +35,17 @@ func NewLobbyWebSocketClient(wsConn *WSConnection) *LobbyWebSocketClient {
 }
 
 func (c *LobbyWebSocketClient) Connect(reconnecting bool) (bool, error) {
-	//c.WSConn.Mu = sync.RWMutex{}
-
 	// Re-usable
 	if c.WSConn == nil {
 		logrus.Warn("WSConn is nil")
 	}
+
+	if reconnecting {
+		c.WSConn.SetStatus(Reconnecting)
+	} else {
+		c.WSConn.SetStatus(Connecting)
+	}
+
 	c.WSConn.Mu.Lock()
 	if _, exist := c.WSConn.Data["host"].(string); !exist {
 		logrus.Debugf("host data is not found")
@@ -64,12 +69,18 @@ func (c *LobbyWebSocketClient) Connect(reconnecting bool) (bool, error) {
 
 	conn, err := c.WSConn.Dial(req.URL.String(), req.Header)
 	if err != nil {
+		logrus.Errorf("Failed to dial. %v", err)
+		c.WSConn.SetStatus(Disconnected)
+
 		return false, err
 	}
 
 	c.WSConn.Mu.Lock()
 	c.WSConn.Conn = conn
 	c.WSConn.Mu.Unlock()
+
+	c.WSConn.SetStatus(Connected)
+
 	logrus.Info("Successfully dialing. Connection saved.")
 
 	c.setHandlers()
@@ -89,13 +100,12 @@ func (c *LobbyWebSocketClient) setHandlers() {
 }
 
 func (c *LobbyWebSocketClient) lobbyCloseHandler(code int, reason string) error {
-	//c.WSConn.Mu.Lock()
-	//defer c.WSConn.Mu.Unlock()
-
 	logrus.Debugf("Lobby close handler with code: %v", code)
 	didReconnect := false
+	c.WSConn.SetStatus(Disconnected)
 
 	if c.WSConn.EnableAutoReconnect {
+		//time.Sleep(time.Duration(c.ReconnectDelay(0)) * time.Second)
 		if c.ShouldReconnect(code, reason, 0) {
 			didReconnect = c.reconnect(code, reason)
 		}
@@ -150,14 +160,16 @@ func (c *LobbyWebSocketClient) Get() *WSConnection {
 }
 
 func (c *LobbyWebSocketClient) Close() error {
-	//c.WSConn.Mu.Lock()
-	//defer c.WSConn.Mu.Unlock()
+	c.WSConn.Mu.Lock()
+	defer c.WSConn.Mu.Unlock()
 
 	if c.WSConn.Conn == nil {
 		logrus.Errorf("no websocket connection can be closed")
 
 		return errors.New("no websocket connection can be closed")
 	}
+
+	c.WSConn.SetStatus(Closed)
 
 	return c.WSConn.Close(websocket.CloseNormalClosure, "")
 }

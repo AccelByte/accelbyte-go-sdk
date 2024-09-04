@@ -24,13 +24,24 @@ type ConnectionManager interface {
 	Close() error
 }
 
+type ConnectionStatus int
+
 const (
 	separator = "://"
 )
 
+const (
+	Disconnected ConnectionStatus = iota
+	Connecting
+	Connected
+	Reconnecting
+	Closed
+)
+
 type WSConnection struct {
-	Conn *websocket.Conn
-	Mu   sync.RWMutex
+	Conn     *websocket.Conn
+	Mu       sync.RWMutex
+	MuStatus sync.RWMutex
 
 	Header http.Header
 	Data   map[string]interface{}
@@ -38,6 +49,8 @@ type WSConnection struct {
 	EnableAutoReconnect  bool
 	MaxReconnectAttempts int
 	MessageHandler       WSConnectionMessageHandler
+
+	status ConnectionStatus
 }
 
 type WSConnectionOption func(wsConn *WSConnection) error
@@ -138,12 +151,27 @@ func (c *WSConnection) Close(code int, reason string) error {
 		logrus.Error("Failed to close connection: ", err)
 	}
 
+	c.SetStatus(Disconnected)
+
 	return nil
 }
 
+func (c *WSConnection) SetStatus(status ConnectionStatus) {
+	c.MuStatus.Lock()
+	defer c.MuStatus.Unlock()
+
+	c.status = status
+}
+
+func (c *WSConnection) GetStatus() ConnectionStatus {
+	c.MuStatus.Lock()
+	defer c.MuStatus.Unlock()
+
+	return c.status
+}
+
 func (c *WSConnection) DefaultCloseHandler(code int, reason string) error {
-	//c.Mu.Lock()
-	//defer c.Mu.Unlock()
+	c.SetStatus(Disconnected)
 
 	return c.Close(code, reason)
 }

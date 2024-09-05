@@ -8,6 +8,7 @@
 - **integration:** add inventory integration test
 - **core:** improve websocket connection status
 ### docs
+- **migrations:** add migration-guide-v0.72-to-v0.73.md
 - **readme:** improve lobby implementation
 ### chore
 - **:** improve the core and test
@@ -15,6 +16,7 @@
 - **:** refactor the code and test
 - **:** update readme, migration guide, test, and samples for lobby websocket
 - **:** testing using pong
+- **:** update CHANGELOG.md and go sum getting started
 ### fix
 - **utils:** data races
 

@@ -44,6 +44,8 @@ var (
 	poolName          = "go_sdk_pool_" + RandStringBytes(4)
 	matchFunction     = "basic"
 	expirationSeconds = int32(600)
+	offset            = int64(0)
+	userID            string
 	data              = map[string]interface{}{
 		"alliance": map[string]int{
 			"min_number":        2,

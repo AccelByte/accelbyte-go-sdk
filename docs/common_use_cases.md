@@ -281,45 +281,6 @@ if err != nil {
 	assert.FailNow(t, err.Error())
 }
 ```
-## EventLog
-
-Source: [eventlog_test.go](../services-api/pkg/tests/integration/eventlog_test.go)
-
-### Query event stream
-
-```go
-inputEventLog := &event_v2.QueryEventStreamHandlerParams{
-	Body:      bodyEventLog,
-	Namespace: integration.NamespaceTest,
-	EndDate:   &date,
-	Offset:    &offset,
-	PageSize:  &size,
-	StartDate: &date,
-}
-
-ok, err := eventV2Service.QueryEventStreamHandlerShort(inputEventLog)
-if err != nil {
-	assert.FailNow(t, err.Error())
-}
-```
-
-### Get an events
-
-```go
-inputEventLog := &event_v2.GetEventSpecificUserV2HandlerParams{
-	EventName: &emptyString,
-	Namespace: integration.NamespaceTest,
-	Offset:    &offset,
-	PageSize:  &size,
-	StartDate: &date,
-	UserID:    userID,
-}
-
-ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
-if err != nil {
-	t.Skipf(err.Error())
-}
-```
 ## GameTelemetry
 
 Source: [gametelemetry_test.go](../services-api/pkg/tests/integration/gametelemetry_test.go)

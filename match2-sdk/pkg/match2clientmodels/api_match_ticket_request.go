@@ -35,6 +35,9 @@ type APIMatchTicketRequest struct {
 
 	// leader session storage
 	Storage interface{} `json:"storage,omitempty"`
+
+	// excludedsessions
+	ExcludedSessions []string `json:"excludedSessions,omitempty"`
 }
 
 // Validate validates this Api match ticket request

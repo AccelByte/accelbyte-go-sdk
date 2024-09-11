@@ -3028,6 +3028,12 @@
         "storage": {
           "description": "leader session storage",
           "type": "object"
+        },
+        "excludedSessions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "required": [

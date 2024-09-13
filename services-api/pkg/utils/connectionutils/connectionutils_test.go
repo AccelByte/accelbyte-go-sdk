@@ -45,7 +45,9 @@ func TestConnectionUtils(t *testing.T) {
 
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
-		connectionutils.WithEnableAutoReconnect(), connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithScheme("ws"),
+		connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithEnableAutoReconnect(),
 	)
 
 	assert.Nil(t, err, "err should be nil")
@@ -56,9 +58,12 @@ func TestConnectionUtils(t *testing.T) {
 func TestConnectionUtils_ShouldReconnect(t *testing.T) {
 	tokenRepo.AccessToken.AccessToken = &token
 	configRepo.BaseUrl = baseUrl
+
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
-		connectionutils.WithEnableAutoReconnect(), connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithScheme("ws"),
+		connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithEnableAutoReconnect(),
 	)
 
 	assert.Nil(t, err, "err should be nil")
@@ -76,9 +81,12 @@ func TestConnectionUtils_ShouldReconnect(t *testing.T) {
 func TestConnectionUtils_ReconnectDelay(t *testing.T) {
 	tokenRepo.AccessToken.AccessToken = &token
 	configRepo.BaseUrl = baseUrl
+
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
-		connectionutils.WithEnableAutoReconnect(), connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithScheme("ws"),
+		connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithEnableAutoReconnect(),
 	)
 
 	assert.Nil(t, err, "err should be nil")
@@ -93,9 +101,12 @@ func TestConnectionUtils_ReconnectDelay(t *testing.T) {
 func TestConnectionUtils_DataManagement(t *testing.T) {
 	tokenRepo.AccessToken.AccessToken = &token
 	configRepo.BaseUrl = baseUrl
+
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
-		connectionutils.WithEnableAutoReconnect(), connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithScheme("ws"),
+		connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithEnableAutoReconnect(),
 	)
 
 	assert.Nil(t, err, "err should be nil")
@@ -124,8 +135,11 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 	// 1. Connecting to mock server
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
-		connectionutils.WithEnableAutoReconnect(), connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithScheme("ws"),
+		connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithEnableAutoReconnect(),
 	)
+
 	assert.Nil(t, err, "err should be nil")
 	lobby := connectionutils.NewLobbyWebSocketClient(conn)
 	assert.NotNil(t, lobby)
@@ -173,8 +187,11 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	// 1. Connecting to mock server
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
-		connectionutils.WithEnableAutoReconnect(), connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithScheme("ws"),
+		connectionutils.WithMessageHandler(onMessage),
+		connectionutils.WithEnableAutoReconnect(),
 	)
+
 	assert.Nil(t, err, "err should be nil")
 	lobby := connectionutils.NewLobbyWebSocketClient(conn)
 	assert.NotNil(t, lobby)

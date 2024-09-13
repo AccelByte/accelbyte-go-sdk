@@ -76,7 +76,11 @@ func main() {
 		connMgr = &utils.ConnectionManagerImpl{}
 		configRepo := &repository.ConfigRepositoryImpl{}
 		tokenRepo := &repository.TokenRepositoryImpl{}
-		connection, err := connectionutils.NewWSConnection(configRepo, tokenRepo, connectionutils.WithMessageHandler(messageHandler))
+		connection, err := connectionutils.NewWSConnection(
+			configRepo, tokenRepo,
+			connectionutils.WithScheme("ws"),
+			connectionutils.WithMessageHandler(messageHandler),
+		)
 		if err != nil {
 			panic(err)
 		}

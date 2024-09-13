@@ -297,7 +297,7 @@ func (c *LobbyWebSocketClient) SetData(key string, value interface{}) {
 
 func (c *LobbyWebSocketClient) ClearData() {
 	for key := range c.WSConn.Data {
-		if key != "host" && key != "token" {
+		if _, exists := c.WSConn.Meta[key]; !exists {
 			delete(c.WSConn.Data, key)
 		}
 	}
@@ -368,7 +368,14 @@ func (c *LobbyWebSocketClient) createURL(host string) string {
 		return "ws" + separator + host + "/lobby/"
 	}
 
-	return "wss" + separator + host + "/lobby/"
+	scheme := "wss"
+	if dataScheme, exists := c.WSConn.Data["scheme"]; exists {
+		if dataSchemeString, ok := dataScheme.(string); ok {
+			scheme = dataSchemeString
+		}
+	}
+
+	return scheme + separator + host + "/lobby/"
 }
 
 func DecodeWSMessage(msg string) map[string]interface{} {

@@ -45,6 +45,7 @@ type WSConnection struct {
 
 	Header http.Header
 	Data   map[string]interface{}
+	Meta   map[string]interface{}
 
 	EnableAutoReconnect  bool
 	MaxReconnectAttempts int
@@ -79,6 +80,14 @@ func WithMaxReconnectAttempts(maxReconnectAttempts int) WSConnectionOption {
 	}
 }
 
+func WithScheme(scheme string) WSConnectionOption {
+	return func(wsConn *WSConnection) error {
+		wsConn.Data["scheme"] = scheme
+
+		return nil
+	}
+}
+
 type WSConnectionMessageHandler func(msg []byte)
 
 func NewWSConnection(
@@ -97,8 +106,14 @@ func NewWSConnection(
 	wsConn := &WSConnection{
 		Conn: &websocket.Conn{},
 		Data: map[string]interface{}{
-			"token": *token.AccessToken,
-			"host":  baseURLSplit[1],
+			"token":  *token.AccessToken,
+			"host":   baseURLSplit[1],
+			"scheme": "wss",
+		},
+		Meta: map[string]interface{}{
+			"token":  nil,
+			"host":   nil,
+			"scheme": nil,
 		},
 		MaxReconnectAttempts: 10,
 	}

@@ -204,3 +204,13 @@ func (c *WSConnection) GetData(key string) interface{} {
 
 	return nil
 }
+
+func (c *WSConnection) Lock(location string) {
+	logrus.Debugf("locking at %s", location)
+	c.Mu.Lock()
+}
+
+func (c *WSConnection) Unlock(location string) {
+	logrus.Debugf("unlocking at %s", location)
+	c.Mu.Unlock()
+}

@@ -73,9 +73,9 @@ func (c *LobbyWebSocketClient) Connect(reconnecting bool) (bool, error) {
 		return false, err
 	}
 
-	c.WSConn.Mu.Lock()
+	c.WSConn.Lock("Connect()")
 	c.WSConn.Conn = conn
-	c.WSConn.Mu.Unlock()
+	c.WSConn.Unlock("Connect()")
 
 	c.WSConn.SetStatus(Connected)
 
@@ -158,8 +158,8 @@ func (c *LobbyWebSocketClient) Get() *WSConnection {
 }
 
 func (c *LobbyWebSocketClient) Close() error {
-	c.WSConn.Mu.Lock()
-	defer c.WSConn.Mu.Unlock()
+	c.WSConn.Lock("Close()")
+	defer c.WSConn.Unlock("Close()")
 
 	if c.WSConn.Conn == nil {
 		logrus.Errorf("no websocket connection can be closed")
@@ -278,8 +278,8 @@ func (c *LobbyWebSocketClient) GetData(key string) interface{} {
 }
 
 func (c *LobbyWebSocketClient) HasData(key string) bool {
-	c.WSConn.Mu.Lock()
-	defer c.WSConn.Mu.Unlock()
+	c.WSConn.Lock("HasData()")
+	defer c.WSConn.Unlock("HasData()")
 
 	_, exists := c.WSConn.Data[key]
 
@@ -287,8 +287,8 @@ func (c *LobbyWebSocketClient) HasData(key string) bool {
 }
 
 func (c *LobbyWebSocketClient) SetData(key string, value interface{}) {
-	c.WSConn.Mu.Lock()
-	defer c.WSConn.Mu.Unlock()
+	c.WSConn.Lock("SetData()")
+	defer c.WSConn.Unlock("SetData()")
 
 	c.WSConn.Data[key] = value
 }

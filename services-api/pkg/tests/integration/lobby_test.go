@@ -75,7 +75,7 @@ func TestIntegrationNotification(t *testing.T) {
 	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
 	assert.NotNil(t, lobbyClient)
 
-	success, err := lobbyClient.Connect(true)
+	success, err := lobbyClient.Connect(false)
 	assert.True(t, success)
 	assert.Nil(t, err, "err should be nil")
 

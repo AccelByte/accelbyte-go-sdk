@@ -130,7 +130,7 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 	lobby := connectionutils.NewLobbyWebSocketClient(conn)
 	assert.NotNil(t, lobby)
 
-	success, err := lobby.Connect(true)
+	success, err := lobby.Connect(false)
 	assert.Nil(t, err)
 	assert.True(t, success)
 
@@ -179,7 +179,7 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	lobby := connectionutils.NewLobbyWebSocketClient(conn)
 	assert.NotNil(t, lobby)
 
-	success, err := lobby.Connect(true)
+	success, err := lobby.Connect(false)
 	assert.Nil(t, err)
 	assert.True(t, success)
 

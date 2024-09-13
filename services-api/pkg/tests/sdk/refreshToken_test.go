@@ -189,7 +189,7 @@ func TestWebsocketRefresh_withMockServer(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 
 	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
-	success, err := lobbyClient.Connect(true)
+	success, err := lobbyClient.Connect(false)
 	assert.Nil(t, err, "err should be nil")
 	assert.True(t, success)
 

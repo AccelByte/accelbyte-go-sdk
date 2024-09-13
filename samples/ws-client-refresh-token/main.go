@@ -69,7 +69,7 @@ func main() {
 		fmt.Println("failed to make websocket connection")
 	}
 	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
-	_, err = lobbyClient.Connect(true)
+	_, err = lobbyClient.Connect(false)
 	if err != nil {
 		panic(err)
 	}

@@ -81,7 +81,7 @@ func main() {
 			panic(err)
 		}
 		lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
-		_, err = lobbyClient.Connect(true)
+		_, err = lobbyClient.Connect(false)
 		if err != nil {
 			panic(err)
 		}
@@ -121,7 +121,7 @@ func main() {
 			panic(err)
 		}
 		lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
-		_, err = lobbyClient.Connect(true)
+		_, err = lobbyClient.Connect(false)
 		if err != nil {
 			panic(err)
 		}
@@ -163,7 +163,7 @@ func main() {
 	}
 }
 
-//messageHandler is callback function how to handle incoming ws message
+// messageHandler is callback function how to handle incoming ws message
 var messageHandler = func(dataByte []byte) {
 	message, err := parser.UnmarshalResponse(dataByte)
 	if err != nil {

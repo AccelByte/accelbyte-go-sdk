@@ -5,6 +5,8 @@
 package connectionutils_test
 
 import (
+	"context"
+	"fmt"
 	"net/http"
 	"strings"
 	"sync"
@@ -17,6 +19,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
+	"tideland.dev/go/wait"
 )
 
 var (
@@ -24,6 +27,7 @@ var (
 	tokenRepo  = auth.DefaultTokenRepositoryImpl()
 	token      = "foo"
 	baseUrl    = utils.GetEnv("AB_BASE_URL", "http://localhost:8000")
+	statuses   = make([]string, 0)
 	messages   = make([][]byte, 0)
 	mu         sync.RWMutex
 )
@@ -32,6 +36,28 @@ const (
 	url1 = "http://localhost:8000/ws/lobby/force-close?errorCode=2000"
 	url2 = "http://localhost:8000/ws/lobby/force-close?errorCode=4000"
 )
+
+func onStatus(status string) {
+	mu.Lock()
+	defer mu.Unlock()
+	statuses = append(statuses, status)
+}
+
+func inStatuses(status string) bool {
+	for _, s := range statuses {
+		if s == status {
+			return true
+		}
+	}
+
+	return false
+}
+
+func clearStatuses() {
+	mu.Lock()
+	defer mu.Unlock()
+	statuses = make([]string, 0)
+}
 
 func onMessage(msg []byte) {
 	mu.Lock()
@@ -136,6 +162,7 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
 		connectionutils.WithScheme("ws"),
+		connectionutils.WithStatusHandler(onStatus),
 		connectionutils.WithMessageHandler(onMessage),
 		connectionutils.WithEnableAutoReconnect(),
 	)
@@ -188,6 +215,7 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	conn, err := connectionutils.NewWSConnection(
 		configRepo, tokenRepo,
 		connectionutils.WithScheme("ws"),
+		connectionutils.WithStatusHandler(onStatus),
 		connectionutils.WithMessageHandler(onMessage),
 		connectionutils.WithEnableAutoReconnect(),
 	)
@@ -240,6 +268,23 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 
 	// 11. Assert that the originalLobbySessionId is not equal to newLobbySessionId.
 	assert.NotEqual(t, originalLobbySessionId, newLobbySessionId)
+}
+
+func assertConnectionStatusWithTimeout(t *testing.T, status string, timeoutInSecs int) {
+	err := wait.WithTimeout(
+		context.Background(), 500*time.Millisecond, time.Duration(timeoutInSecs)*time.Second,
+		func() (bool, error) {
+			if inStatuses(status) {
+				return true, nil
+			}
+			return false, nil
+		},
+	)
+	if err != nil {
+		assert.FailNow(t,
+			fmt.Sprintf("was expecting to be %s in %s by %ds, error: %s", status, statuses, timeoutInSecs, err),
+		)
+	}
 }
 
 // Utility function to wait for the connectNotif message

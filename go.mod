@@ -19,6 +19,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.0
 	go.opentelemetry.io/contrib/propagators/aws v1.4.0
+	tideland.dev/go/wait v0.2.0
 )
 
 require (
@@ -53,6 +54,7 @@ require (
 	golang.org/x/text v0.3.5 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	tideland.dev/go v0.2.0 // indirect
 )
 
 // Published v1 too early

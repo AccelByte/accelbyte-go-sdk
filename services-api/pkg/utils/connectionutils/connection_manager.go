@@ -49,12 +49,21 @@ type WSConnection struct {
 
 	EnableAutoReconnect  bool
 	MaxReconnectAttempts int
+	StatusHandler        WSConnectionStatusHandler
 	MessageHandler       WSConnectionMessageHandler
 
 	status string
 }
 
 type WSConnectionOption func(wsConn *WSConnection) error
+
+func WithStatusHandler(handler WSConnectionStatusHandler) WSConnectionOption {
+	return func(wsConn *WSConnection) error {
+		wsConn.StatusHandler = handler
+
+		return nil
+	}
+}
 
 func WithMessageHandler(handler WSConnectionMessageHandler) WSConnectionOption {
 	return func(wsConn *WSConnection) error {
@@ -87,6 +96,8 @@ func WithScheme(scheme string) WSConnectionOption {
 		return nil
 	}
 }
+
+type WSConnectionStatusHandler func(status string)
 
 type WSConnectionMessageHandler func(msg []byte)
 
@@ -171,8 +182,13 @@ func (c *WSConnection) Close(code int, reason string) error {
 func (c *WSConnection) SetStatus(status string) {
 	c.MuStatus.Lock()
 	defer c.MuStatus.Unlock()
-
 	c.status = status
+
+	if c.StatusHandler != nil {
+		c.StatusHandler(c.status)
+	}
+
+	logrus.Debugf("status: %s", status)
 }
 
 func (c *WSConnection) GetStatus() string {

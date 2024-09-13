@@ -23,14 +23,14 @@ var (
 	configRepo = auth.DefaultConfigRepositoryImpl()
 	tokenRepo  = auth.DefaultTokenRepositoryImpl()
 	token      = "foo"
-	baseUrl    = utils.GetEnv("AB_BASE_URL", "http://localhost:8080")
+	baseUrl    = utils.GetEnv("AB_BASE_URL", "http://localhost:8000")
 	messages   = make([][]byte, 0)
 	mu         sync.RWMutex
 )
 
 const (
-	url1 = "http://localhost:8080/ws/lobby/force-close?errorCode=2000"
-	url2 = "http://localhost:8080/ws/lobby/force-close?errorCode=4000"
+	url1 = "http://localhost:8000/ws/lobby/force-close?errorCode=2000"
+	url2 = "http://localhost:8000/ws/lobby/force-close?errorCode=4000"
 )
 
 func onMessage(msg []byte) {

@@ -193,6 +193,12 @@ func TestWebsocketRefresh_withMockServer(t *testing.T) {
 
 	assert.Nil(t, err, "err should be nil")
 
+	// use standalone ws mock server
+	if host, ok := connection.Data["host"]; ok {
+		host = strings.ReplaceAll(host.(string), "8080", "8000")
+		connection.Data["host"] = host
+	}
+
 	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)
 	success, err := lobbyClient.Connect(false)
 	assert.Nil(t, err, "err should be nil")

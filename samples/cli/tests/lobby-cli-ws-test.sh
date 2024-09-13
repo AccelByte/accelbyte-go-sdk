@@ -13,7 +13,7 @@
 # Instructions:
 # - Run the Justice SDK Mock Server first before running this script.
 
-export AB_BASE_URL="http://127.0.0.1:8080"
+export AB_BASE_URL="http://127.0.0.1:8000"
 export AB_CLIENT_ID="admin"
 export AB_CLIENT_SECRET="admin"
 export AB_NAMESPACE="test"
@@ -37,20 +37,6 @@ eval_tap() {
 
 echo "TAP version 13"
 echo "1..1"
-
-#- 1 Login
-samples/cli/sample-apps login \
-    -u 'admin' \
-    -p 'admin' \
-    > test.out 2>&1
-eval_tap $? 1 'Login' test.out
-
-if [ $EXIT_CODE -ne 0 ]; then
-  echo "Bail out! Login failed."
-  exit $EXIT_CODE
-fi
-
-touch "tmp.dat"
 
 #- 2 AcceptFriendsNotif
 samples/cli/sample-apps --wsModeStandalone \
@@ -681,8 +667,5 @@ samples/cli/sample-apps --wsModeStandalone \
     'type: userStatusNotif\nactivity: wLyjSdksBDQ6I9YF\navailability: 54\nlastSeenAt: 1988-07-17T00:00:00Z\nuserId: hVEXlUXRuM0Lyiod' \
     > test.out 2>&1
 eval_tap $? 106 'UserStatusNotif' test.out
-
-
-rm -f "tmp.dat"
 
 exit $EXIT_CODE

@@ -364,10 +364,6 @@ func (c *LobbyWebSocketClient) WSHeartbeat(done chan struct{}) {
 }
 
 func (c *LobbyWebSocketClient) createURL(host string) string {
-	if strings.Contains(host, "8080") {
-		return "ws" + separator + host + "/lobby/"
-	}
-
 	scheme := "wss"
 	if dataScheme, exists := c.WSConn.Data["scheme"]; exists {
 		if dataSchemeString, ok := dataScheme.(string); ok {

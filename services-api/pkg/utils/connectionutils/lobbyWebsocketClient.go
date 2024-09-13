@@ -46,11 +46,9 @@ func (c *LobbyWebSocketClient) Connect(reconnecting bool) (bool, error) {
 		c.WSConn.SetStatus(Connecting)
 	}
 
-	c.WSConn.Mu.Lock()
 	if _, exist := c.WSConn.Data["host"].(string); !exist {
 		logrus.Debugf("host data is not found")
 	}
-	c.WSConn.Mu.Unlock()
 
 	url := c.createURL(c.WSConn.Data["host"].(string))
 	logrus.Info("Connecting to ", url)
@@ -303,19 +301,12 @@ func (c *LobbyWebSocketClient) ClearData() {
 	}
 }
 
-func (c *LobbyWebSocketClient) readWs() (messageType int, p []byte, err error) {
-	c.WSConn.Mu.Lock()
-	defer c.WSConn.Mu.Unlock()
-
-	return c.WSConn.Conn.ReadMessage()
-}
-
 func (c *LobbyWebSocketClient) ReadWSMessage(done chan struct{}, messageHandler func(message []byte)) {
 	for {
 		var msg []byte
 		var err error
 
-		_, msg, err = c.readWs()
+		_, msg, err = c.WSConn.Conn.ReadMessage()
 		if err != nil {
 			logrus.Errorf("Read message failed: %v", err)
 
@@ -348,9 +339,7 @@ func (c *LobbyWebSocketClient) WSHeartbeat(done chan struct{}) {
 	for {
 		select {
 		case <-ticker.C:
-			c.WSConn.Mu.Lock()
 			err := c.WSConn.Conn.WriteMessage(websocket.PingMessage, []byte{})
-			c.WSConn.Mu.Unlock()
 			if err != nil {
 				logrus.Errorf("Cannot write heartbeat: %v", err)
 			}

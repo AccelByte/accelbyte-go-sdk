@@ -139,9 +139,6 @@ func NewWebsocketConnection(
 }
 
 func (c *WSConnection) Dial(url string, headers http.Header) (*websocket.Conn, error) {
-	c.Mu.Lock()
-	defer c.Mu.Unlock()
-
 	conn, res, err := websocket.DefaultDialer.Dial(url, headers)
 	if errors.Is(err, websocket.ErrBadHandshake) {
 		if _, e := io.ReadAll(res.Body); e == nil {

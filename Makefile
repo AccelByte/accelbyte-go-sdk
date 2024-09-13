@@ -48,19 +48,31 @@ samples:
 
 test_core:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
-	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \
-	trap "docker stop justice-codegen-sdk-mock-server && docker rm -f mylocal_httpbin" EXIT && \
-	docker run -d --name mylocal_httpbin -p 8070:80 kennethreitz/httpbin && \
-	(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
-	(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8070 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
-	(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8080 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
-	docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ --network host -e AB_HTTPBIN_URL=http://localhost -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
-		sh -c "go test -v -race \
-			github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/... \
-            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model/... \
-            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository/... \
-            github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service \
-			github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
+	trap "docker stop --time 1 justice-codegen-sdk-mock-server justice-codegen-sdk-ws-mock-server; docker rm --force mylocal_httpbin" EXIT && \
+		echo "[info] running httpbin" && \
+			docker run -d -p 8070:80 --name mylocal_httpbin kennethreitz/httpbin && \
+			(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8070 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
+			echo "[info] httpbin ready" && \
+		echo "[info] running mock-server" && \
+			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec -t "-" --save_files y &) && \
+			(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8080 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
+			echo "[info] mock-server ready" && \
+		echo "[info] running ws-mock-server" && \
+			(SPEC_DIR=/data/spec bash "$(SDK_MOCK_SERVER_PATH)/ws/ws-mock-server.sh" &) && \
+			(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8000 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
+			echo "[info] ws-mock-server ready" && \
+		docker run --rm --tty --network host \
+			--user $$(id -u):$$(id -g) \
+			--volume $$(pwd):/data --workdir /data \
+			--env GOCACHE=/data/.cache/go-build \
+			--env AB_HTTPBIN_URL=http://localhost \
+			$(GOLANG_DOCKER_IMAGE) \
+				sh -c "go test -v -race \
+					github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/... \
+					github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model/... \
+					github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository/... \
+					github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service \
+					github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
 
 test_integration:
 	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)
@@ -70,17 +82,26 @@ test_integration:
 test_cli:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
 	rm -f test.err
-	docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/data/.cache/go-build $(GOLANG_DOCKER_IMAGE) \
-			sh -c "cd samples/cli && go build"
-	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \
-			trap "docker stop justice-codegen-sdk-mock-server" EXIT && \
-			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
+	docker run --rm --tty \
+		--user $$(id -u):$$(id -g) \
+		--volume $$(pwd):/data --workdir /data \
+		--env GOCACHE=/data/.cache/go-build \
+		$(GOLANG_DOCKER_IMAGE) \
+		sh -c "cd samples/cli && go build"
+	trap "docker stop --time 1 justice-codegen-sdk-mock-server justice-codegen-sdk-ws-mock-server" EXIT && \
+		echo "[info] running mock-server" && \
+			(bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec -t "-" --save_files y &) && \
 			(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8080 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
-			sed -i "s/\r//" samples/cli/tests/* && \
+			echo "[info] mock-server ready" && \
+		echo "[info] running ws-mock-server" && \
+			(SPEC_DIR=/data/spec bash "$(SDK_MOCK_SERVER_PATH)/ws/ws-mock-server.sh" &) && \
+			(for i in $$(seq 1 10); do docker run -t --rm --add-host=host.docker.internal:host-gateway dwdraju/alpine-curl-jq curl http://host.docker.internal:8000 >/dev/null && exit 0 || sleep 10; done; exit 1) && \
+			echo "[info] ws-mock-server ready" && \
+		sed -i "s/\r//" samples/cli/tests/* && \
 			rm -f samples/cli/tests/*.tap && \
 			for FILE in $$(ls samples/cli/tests/*.sh); do \
-					echo "# $$(basename "$$FILE")"; \
-					(set -o pipefail; PATH=samples/cli:$$PATH bash $${FILE} | tee "$${FILE}.tap") || touch test.err; \
+				echo "# $$(basename "$$FILE")"; \
+				(set -o pipefail; PATH=samples/cli:$$PATH bash $${FILE} | tee "$${FILE}.tap") || touch test.err; \
 			done
 	[ ! -f test.err ]
 

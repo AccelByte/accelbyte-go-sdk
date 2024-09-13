@@ -138,11 +138,13 @@ func (c *LobbyWebSocketClient) reconnect(code int, reason string) bool {
 		}
 		if success {
 			didReconnect = true
+
 			break
 		}
 
 		if !c.ShouldReconnect(code, reason, numberOfAttempts) {
 			logrus.Debugf("should not reconnect at attempt %d", numberOfAttempts)
+
 			break
 		}
 	}
@@ -307,6 +309,7 @@ func (c *LobbyWebSocketClient) ReadWSMessage(done chan struct{}, messageHandler 
 		select {
 		case <-done:
 			logrus.Info("done signal received, stop read.")
+
 			return
 		default:
 			var msg []byte

@@ -276,12 +276,15 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 
 // Utility function to wait for a specific status
 func assertConnectionStatusWithTimeout(t *testing.T, status string, timeoutInSecs int, invert bool) {
+	t.Helper()
+
 	err := wait.WithTimeout(
 		context.Background(), 100*time.Millisecond, time.Duration(timeoutInSecs)*time.Second,
 		func() (bool, error) {
 			if inStatuses(status) {
 				return true, nil
 			}
+
 			return false, nil
 		},
 	)

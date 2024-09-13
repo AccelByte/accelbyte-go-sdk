@@ -175,29 +175,31 @@ func TestWebSocketReconnect_Case1(t *testing.T) {
 	assert.Nil(t, err)
 	assert.True(t, success)
 
-	// 2. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
+	// 2. Assert that status: Connected
+	assertConnectionStatusWithTimeout(t, connectionutils.Connected, 1, false)
+	clearStatuses()
+
+	// 3. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
 	originalLobbySessionId := waitForConnectNotif(t)
 
-	// 3. Assert that the value from the WebSocket Client using GetData("lobbySessionId") is equal to originalLobbySessionId.
+	// 4. Assert that the value from the WebSocket Client using GetData("lobbySessionId") is equal to originalLobbySessionId.
 	assert.Equal(t, originalLobbySessionId, lobby.WSConn.GetData(connectionutils.LobbySessionID).(string))
-	statusConnected := connectionutils.Connected
-	assert.Equal(t, statusConnected, lobby.WSConn.GetStatus())
 
-	// 4. Send a POST /ws/lobby/force-close?errorCode=2000 HTTP request to the Mock Server.
+	// 5. Send a POST /ws/lobby/force-close?errorCode=2000 HTTP request to the Mock Server.
 	req, _ := http.NewRequest("POST", url1, nil)
 	_, err = http.DefaultClient.Do(req)
 	assert.NoError(t, err)
 
-	// 5. Assert that the websocket connection has disconnected.
-	statusDisconnected := connectionutils.Disconnected
-	assert.Equal(t, statusDisconnected, lobby.WSConn.GetStatus())
-
-	// 6. Wait for a second.
-	time.Sleep(3 * time.Second)
+	// 6. Assert that the websocket connection has disconnected.
+	assertConnectionStatusWithTimeout(t, connectionutils.Disconnected, 3, false)
 
 	// 7. Assert that the websocket connection has reconnected.
-	assert.NotNil(t, lobby.WSConn.GetData(connectionutils.LobbySessionID)) // make sure the data is not deleted
-	assert.Equal(t, statusConnected, lobby.WSConn.GetStatus())
+	assertConnectionStatusWithTimeout(t, connectionutils.Reconnecting, 3, false)
+	assertConnectionStatusWithTimeout(t, connectionutils.Connected, 3, false)
+	clearStatuses()
+
+	// 8. Assert that after we reconnected the data should not be deleted.
+	assert.NotNil(t, lobby.WSConn.GetData(connectionutils.LobbySessionID))
 
 	// 8. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
 	newLobbySessionId := waitForConnectNotif(t)
@@ -228,28 +230,28 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	assert.Nil(t, err)
 	assert.True(t, success)
 
-	// 2. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
+	// 2. Assert that status: Connected
+	assertConnectionStatusWithTimeout(t, connectionutils.Connected, 1, false)
+	clearStatuses()
+
+	// 3. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
 	originalLobbySessionId := waitForConnectNotif(t)
 
-	// 3. Assert that the value from the WebSocket Client using GetData("LobbySessionId") is equal to originalLobbySessionId.
+	// 4. Assert that the value from the WebSocket Client using GetData("LobbySessionId") is equal to originalLobbySessionId.
 	assert.Equal(t, originalLobbySessionId, lobby.WSConn.GetData(connectionutils.LobbySessionID).(string))
-	statusConnected := connectionutils.Connected
-	assert.Equal(t, statusConnected, lobby.WSConn.GetStatus())
 
-	// 4. Send a POST /ws/lobby/force-close?errorCode=4000 HTTP request to the Mock Server.
+	// 5. Send a POST /ws/lobby/force-close?errorCode=4000 HTTP request to the Mock Server.
 	req, _ := http.NewRequest("POST", url2, nil)
 	_, err = http.DefaultClient.Do(req)
 	assert.NoError(t, err)
 
-	// 5. Assert that the websocket connection has disconnected.
-	statusDisconnected := connectionutils.Disconnected
-	assert.Equal(t, statusDisconnected, lobby.WSConn.GetStatus())
-
-	// 6. Wait for a second.
-	time.Sleep(time.Second)
+	// 6. Assert that the websocket connection has disconnected.
+	assertConnectionStatusWithTimeout(t, connectionutils.Disconnected, 3, false)
 
 	// 7. Assert that the websocket connection has stayed disconnected.
-	assert.Equal(t, statusDisconnected, lobby.WSConn.GetStatus())
+	assertConnectionStatusWithTimeout(t, connectionutils.Reconnecting, 3, true)
+	assertConnectionStatusWithTimeout(t, connectionutils.Connected, 3, true)
+	clearStatuses()
 
 	// 8. Assert that the value from the WebSocket Client using GetData("LobbySessionId") is null or empty.
 	assert.Empty(t, lobby.WSConn.GetData(connectionutils.LobbySessionID))
@@ -261,18 +263,21 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	assert.NotNil(t, lobby.WSConn)
 	assert.NotNil(t, lobby.WSConn.Conn)
 
-	assert.Equal(t, statusConnected, lobby.WSConn.GetStatus())
+	// 10. Assert that status: Connected
+	assertConnectionStatusWithTimeout(t, connectionutils.Connected, 1, false)
+	clearStatuses()
 
-	// 10. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
+	// 11. Wait for the connectNotif message and store lobbySessionId from the connectNotif message.
 	newLobbySessionId := waitForConnectNotif(t)
 
-	// 11. Assert that the originalLobbySessionId is not equal to newLobbySessionId.
+	// 12. Assert that the originalLobbySessionId is not equal to newLobbySessionId.
 	assert.NotEqual(t, originalLobbySessionId, newLobbySessionId)
 }
 
-func assertConnectionStatusWithTimeout(t *testing.T, status string, timeoutInSecs int) {
+// Utility function to wait for a specific status
+func assertConnectionStatusWithTimeout(t *testing.T, status string, timeoutInSecs int, invert bool) {
 	err := wait.WithTimeout(
-		context.Background(), 500*time.Millisecond, time.Duration(timeoutInSecs)*time.Second,
+		context.Background(), 100*time.Millisecond, time.Duration(timeoutInSecs)*time.Second,
 		func() (bool, error) {
 			if inStatuses(status) {
 				return true, nil
@@ -281,9 +286,17 @@ func assertConnectionStatusWithTimeout(t *testing.T, status string, timeoutInSec
 		},
 	)
 	if err != nil {
-		assert.FailNow(t,
-			fmt.Sprintf("was expecting to be %s in %s by %ds, error: %s", status, statuses, timeoutInSecs, err),
-		)
+		if !invert {
+			assert.FailNow(t,
+				fmt.Sprintf("was expecting to be %s in %s by %ds, error: %s", status, statuses, timeoutInSecs, err),
+			)
+		}
+	} else {
+		if invert {
+			assert.FailNow(t,
+				fmt.Sprintf("was not expecting %s to be in %s by %ds, error: %s", status, statuses, timeoutInSecs, err),
+			)
+		}
 	}
 }
 

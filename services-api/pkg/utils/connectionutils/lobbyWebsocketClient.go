@@ -58,8 +58,10 @@ func (c *LobbyWebSocketClient) Connect(reconnecting bool) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if token, exists := c.WSConn.Data["token"]; exists {
-		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
+	if tokenValue, exists := c.WSConn.Data["token"]; exists && tokenValue != nil {
+		if tokenString, ok := tokenValue.(string); ok && tokenString != "" {
+			req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", tokenString))
+		}
 	}
 
 	// Specific to Lobby Service can be moved later

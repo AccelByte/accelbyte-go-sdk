@@ -97,6 +97,14 @@ func WithScheme(scheme string) WSConnectionOption {
 	}
 }
 
+func WithToken(token string) WSConnectionOption {
+	return func(wsConn *WSConnection) error {
+		wsConn.Data["token"] = token
+
+		return nil
+	}
+}
+
 type WSConnectionStatusHandler func(status string)
 
 type WSConnectionMessageHandler func(msg []byte)
@@ -109,15 +117,10 @@ func NewWSConnection(
 	baseURL := configRepo.GetJusticeBaseUrl()
 	baseURLSplit := strings.Split(baseURL, separator)
 
-	token, err := tokenRepo.GetToken()
-	if err != nil {
-		logrus.Errorf("Unable to connect get token: %v", err)
-	}
-
 	wsConn := &WSConnection{
 		Conn: &websocket.Conn{},
 		Data: map[string]interface{}{
-			"token":  *token.AccessToken,
+			"token":  nil,
 			"host":   baseURLSplit[1],
 			"scheme": "wss",
 		},
@@ -130,9 +133,20 @@ func NewWSConnection(
 	}
 
 	for _, opt := range options {
-		err = opt(wsConn)
+		err := opt(wsConn)
 		if err != nil {
 			return nil, err
+		}
+	}
+
+	// Try to fill in the auth token with value from the token repository.
+	if tokenValue, exists := wsConn.Data["token"]; !exists || tokenValue == nil {
+		tokenResponse, err := tokenRepo.GetToken()
+		if err == nil && tokenResponse != nil {
+			accessToken := tokenResponse.AccessToken
+			if accessToken != nil && *accessToken != "" {
+				wsConn.Data["token"] = accessToken
+			}
 		}
 	}
 

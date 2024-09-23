@@ -71,7 +71,7 @@ var (
 		"match_options": map[string]interface{}{
 			"options": []map[string]string{
 				{
-					"name": "",
+					"name": "option",
 					"type": "any",
 				},
 			},

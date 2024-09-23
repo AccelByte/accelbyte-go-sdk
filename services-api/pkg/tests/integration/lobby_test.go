@@ -66,10 +66,21 @@ func decodeWSMessage(msg string) map[string]string {
 func TestIntegrationNotification(t *testing.T) {
 	t.Parallel()
 
+	var scheme string
+	if strings.Contains(configRepository.BaseUrl, "accelbyte") {
+		scheme = "wss"
+	} else {
+		scheme = "ws"
+	}
+
 	// Login User - Arrange
 	Init()
 	connMgr = &integration.ConnectionManagerImpl{}
-	connection, err := connectionutils.NewWSConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, connectionutils.WithMessageHandler(lobbyMessageHandler))
+	connection, err := connectionutils.NewWSConnection(
+		oAuth20Service.ConfigRepository,
+		oAuth20Service.TokenRepository,
+		connectionutils.WithScheme(scheme),
+		connectionutils.WithMessageHandler(lobbyMessageHandler))
 	assert.Nil(t, err, "err should be nil")
 
 	lobbyClient := connectionutils.NewLobbyWebSocketClient(connection)

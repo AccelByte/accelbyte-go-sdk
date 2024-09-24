@@ -59,8 +59,13 @@ func (c *LobbyWebSocketClient) Connect(reconnecting bool) (bool, error) {
 		return false, err
 	}
 	if tokenValue, exists := c.WSConn.Data["token"]; exists && tokenValue != nil {
-		if tokenString, ok := tokenValue.(string); ok && tokenString != "" {
-			req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", tokenString))
+		if tokenString, ok := tokenValue.(*string); ok && tokenString != nil {
+			req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", *tokenString))
+		} else {
+			tokenErr := "token is missing"
+			logrus.Debug(tokenErr)
+
+			return false, errors.New(tokenErr)
 		}
 	}
 

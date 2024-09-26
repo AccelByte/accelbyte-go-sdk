@@ -18,11 +18,41 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	sessionBrowser "github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
+	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
 )
 
 var (
+	sessionService = &sessionbrowser.SessionService{
+		Client:          factory.NewSessionbrowserClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
+	}
+	mode               = "mode"
+	mapName            = "mapName"
+	emptyInt32         = int32(0)
+	gameSessionSetting = &sessionbrowserclientmodels.ModelsGameSessionSetting{
+		AllowJoinInProgress:   &defaultBool,
+		CurrentInternalPlayer: &emptyInt32,
+		CurrentPlayer:         &emptyInt32,
+		MapName:               &mapName,
+		MaxInternalPlayer:     &emptyInt32,
+		MaxPlayer:             &emptyInt32,
+		Mode:                  &mode,
+		NumBot:                &emptyInt32,
+		Password:              &emptyString,
+		Settings:              &emptyInterface,
+	}
+	namespaceSession = integration.NamespaceTest
+	sessionType      = "dedicated" // "p2p needs to connect to lobby"
+	bodySession      = &sessionbrowserclientmodels.ModelsCreateSessionRequest{
+		GameSessionSetting: gameSessionSetting,
+		GameVersion:        &emptyString,
+		Namespace:          &namespaceSession,
+		SessionType:        &sessionType,
+		Username:           &emptyString,
+	}
 	deployment     = "default"
 	emptyString    = ""
 	emptyInterface interface{}

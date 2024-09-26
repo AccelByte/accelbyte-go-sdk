@@ -44,7 +44,8 @@ var (
 		BufferSize: &bufferSize,
 		Region:     &regionConfig,
 	}
-	imageId = "imageId"
+	imageId     = "imageId"
+	defaultBool = false
 )
 
 func checkAmsAccount() error {

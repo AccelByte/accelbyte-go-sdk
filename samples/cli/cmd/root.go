@@ -23,7 +23,6 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/dsartifact"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager"
 	"github.com/AccelByte/sample-apps/cmd/dsmc"
-	"github.com/AccelByte/sample-apps/cmd/eventlog"
 	"github.com/AccelByte/sample-apps/cmd/gametelemetry"
 	"github.com/AccelByte/sample-apps/cmd/gdpr"
 	"github.com/AccelByte/sample-apps/cmd/group"
@@ -93,7 +92,6 @@ func init() {
 	RootCmd.AddCommand(dsmc.DsmcCmd)
 	RootCmd.AddCommand(dsartifact.DsartifactCmd)
 	RootCmd.AddCommand(dslogmanager.DslogmanagerCmd)
-	RootCmd.AddCommand(eventlog.EventlogCmd)
 	RootCmd.AddCommand(gametelemetry.GametelemetryCmd)
 	RootCmd.AddCommand(gdpr.GdprCmd)
 	RootCmd.AddCommand(group.GroupCmd)

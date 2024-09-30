@@ -714,57 +714,6 @@ err = notificationService.GetNotificationMessage()
 ```go
 err = notificationService.GetOfflineNotification()
 ```
-## Matchmaking
-
-Source: [matchmaking_test.go](../services-api/pkg/tests/integration/matchmaking_test.go)
-
-### Delete a matchmaking channel
-
-```go
-inputMatchmaking := &matchmaking_.DeleteChannelHandlerParams{
-	Channel:   defaultGameMode,
-	Namespace: integration.NamespaceTest,
-}
-
-err := matchmakingService.DeleteChannelHandlerShort(inputMatchmaking)
-```
-
-### Create a matchmaking channel
-
-```go
-allianceFlexingRules = append(allianceFlexingRules, allianceFlexingRule)
-flexingRules = append(flexingRules, flexingRule)
-matchingRules = append(matchingRules, matchingRule)
-inputMatchmaking := &matchmaking_.CreateChannelHandlerParams{
-	Body:      bodyMatchmaking,
-	Namespace: integration.NamespaceTest,
-}
-
-ok, err := matchmakingService.CreateChannelHandlerShort(inputMatchmaking)
-```
-
-### Get a matchmaking channel
-
-```go
-inputMatchmaking := &matchmaking_.GetSingleMatchmakingChannelParams{
-	ChannelName: defaultGameMode,
-	Namespace:   integration.NamespaceTest,
-}
-
-ok, err := matchmakingService.GetSingleMatchmakingChannelShort(inputMatchmaking)
-```
-
-### Update matchmaking
-
-```go
-inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
-	Body:        bodyMatchmakingUpdate,
-	ChannelName: defaultGameMode,
-	Namespace:   integration.NamespaceTest,
-}
-
-err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
-```
 ## MatchmakingV2
 
 Source: [match2_test.go](../services-api/pkg/tests/integration/match2_test.go)
@@ -1341,54 +1290,6 @@ if errLeave != nil {
 
 	return
 }
-```
-## SessionBrowser
-
-Source: [sessionbrowser_test.go](../services-api/pkg/tests/integration/sessionbrowser_test.go)
-
-### Create a session
-
-```go
-inputCreate := &session.CreateSessionParams{
-	Body:      bodySession,
-	Namespace: integration.NamespaceTest,
-}
-
-created, errCreate := sessionService.CreateSessionShort(inputCreate)
-```
-
-### Get a session
-
-```go
-inputGet := &session.GetSessionParams{
-	Namespace: integration.NamespaceTest,
-	SessionID: sessionBrowserID,
-}
-
-get, errGet := sessionService.GetSessionShort(inputGet)
-```
-
-### Update a session
-
-```go
-inputUpdate := &session.UpdateSessionParams{
-	Body:      bodySessionUpdate,
-	Namespace: integration.NamespaceTest,
-	SessionID: sessionBrowserID,
-}
-
-updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate)
-```
-
-### Delete a session
-
-```go
-inputDelete := &session.AdminDeleteSessionParams{
-	Namespace: integration.NamespaceTest,
-	SessionID: sessionBrowserID,
-}
-
-deleted, errDelete := sessionService.AdminDeleteSessionShort(inputDelete)
 ```
 ## Social
 

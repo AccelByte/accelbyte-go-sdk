@@ -11,6 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
@@ -18,6 +19,10 @@ import (
 
 var (
 	publicGameRecordService = &cloudsave.PublicGameRecordService{
+		Client:          factory.NewCloudsaveClient(auth.DefaultConfigRepositoryImpl()),
+		TokenRepository: tokenRepository,
+	}
+	publicPlayerRecordService = &cloudsave.PublicPlayerRecordService{
 		Client:          factory.NewCloudsaveClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepository,
 	}
@@ -105,32 +110,108 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
-	// CASE Delete a game record
-	input := &public_game_record.PutGameRecordHandlerV1Params{
-		Body:      map[string]interface{}{"foo": "bar"},
-		Key:       key,
-		Namespace: integration.NamespaceTest,
-	}
-	ok, err := publicGameRecordService.PutGameRecordHandlerV1Short(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-	// ESAC
-
-	// Assert
-	assert.NotNil(t, ok, "err should not be nil")
-	assert.Nil(t, err, "err should be nil")
-
 	inputDelete := &public_game_record.DeleteGameRecordHandlerV1Params{
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
 
 	errDelete := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDelete)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
 	}
 
 	// Assert
 	assert.Nil(t, errDelete, "err should be nil")
+}
+
+func TestIntegrationPlayerRecordHandlerV1(t *testing.T) {
+	// Login User - Arrange
+	Init()
+
+	userID = GetUserID()
+
+	// CASE Create a player record
+	input := &public_player_record.PostPlayerPublicRecordHandlerV1Params{
+		Body:      map[string]interface{}{"foo": "bar"},
+		Key:       key,
+		Namespace: integration.NamespaceTest,
+		UserID:    userID,
+	}
+	ok, err := publicPlayerRecordService.PostPlayerPublicRecordHandlerV1Short(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+
+	// CASE Get a player record
+	inputRecord := &public_player_record.GetPlayerPublicRecordHandlerV1Params{
+		Key:       key,
+		Namespace: integration.NamespaceTest,
+		UserID:    userID,
+	}
+
+	ok, errOk := publicPlayerRecordService.GetPlayerPublicRecordHandlerV1Short(inputRecord)
+	if errOk != nil {
+		assert.FailNow(t, errOk.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.NotNil(t, ok, "err should not be nil")
+	assert.Nil(t, errOk, "err should be nil")
+
+	// CASE Put a player record
+	keyUpdate := key + "-update"
+	inputUpdate := &public_player_record.PutPlayerPublicRecordHandlerV1Params{
+		Body:      map[string]interface{}{"foo": "bar"},
+		Key:       keyUpdate,
+		Namespace: integration.NamespaceTest,
+		UserID:    userID,
+	}
+
+	okUpdate, errUpdate := publicPlayerRecordService.PutPlayerPublicRecordHandlerV1Short(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.NotNil(t, okUpdate, "err should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.Equal(t, keyUpdate, *okUpdate.Key)
+
+	// CASE Delete a player record
+	inputDelete := &public_player_record.DeletePlayerRecordHandlerV1Params{
+		Key:       keyUpdate,
+		Namespace: integration.NamespaceTest,
+		UserID:    userID,
+	}
+
+	errDelete := publicPlayerRecordService.DeletePlayerRecordHandlerV1Short(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Nil(t, errDelete, "err should be nil")
+
+	// confirm if player record is deleted
+	defer func() {
+		inputRecord = &public_player_record.GetPlayerPublicRecordHandlerV1Params{
+			Key:       keyUpdate,
+			Namespace: integration.NamespaceTest,
+			UserID:    userID,
+		}
+
+		okGet, errGet := publicPlayerRecordService.GetPlayerPublicRecordHandlerV1Short(inputRecord)
+
+		// Assert
+		assert.NotNil(t, errGet, "err should not be nil")
+		assert.Nil(t, okGet, "err should be nil")
+	}()
 }

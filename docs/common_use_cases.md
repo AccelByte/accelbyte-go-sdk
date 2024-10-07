@@ -268,17 +268,65 @@ if errOk != nil {
 }
 ```
 
-### Delete a game record
+### Create a player record
 
 ```go
-input := &public_game_record.DeleteGameRecordHandlerV1Params{
+input := &public_player_record.PostPlayerPublicRecordHandlerV1Params{
+	Body:      map[string]interface{}{"foo": "bar"},
 	Key:       key,
 	Namespace: integration.NamespaceTest,
+	UserID:    userID,
 }
-
-err := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
+ok, err := publicPlayerRecordService.PostPlayerPublicRecordHandlerV1Short(input)
 if err != nil {
 	assert.FailNow(t, err.Error())
+}
+```
+
+### Get a player record
+
+```go
+inputRecord := &public_player_record.GetPlayerPublicRecordHandlerV1Params{
+	Key:       key,
+	Namespace: integration.NamespaceTest,
+	UserID:    userID,
+}
+
+ok, errOk := publicPlayerRecordService.GetPlayerPublicRecordHandlerV1Short(inputRecord)
+if errOk != nil {
+	assert.FailNow(t, errOk.Error())
+}
+```
+
+### Put a player record
+
+```go
+keyUpdate := key + "-update"
+inputUpdate := &public_player_record.PutPlayerPublicRecordHandlerV1Params{
+	Body:      map[string]interface{}{"foo": "bar"},
+	Key:       keyUpdate,
+	Namespace: integration.NamespaceTest,
+	UserID:    userID,
+}
+
+okUpdate, errUpdate := publicPlayerRecordService.PutPlayerPublicRecordHandlerV1Short(inputUpdate)
+if errUpdate != nil {
+	assert.FailNow(t, errUpdate.Error())
+}
+```
+
+### Delete a player record
+
+```go
+inputDelete := &public_player_record.DeletePlayerRecordHandlerV1Params{
+	Key:       keyUpdate,
+	Namespace: integration.NamespaceTest,
+	UserID:    userID,
+}
+
+errDelete := publicPlayerRecordService.DeletePlayerRecordHandlerV1Short(inputDelete)
+if errDelete != nil {
+	assert.FailNow(t, errDelete.Error())
 }
 ```
 ## GameTelemetry

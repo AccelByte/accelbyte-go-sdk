@@ -268,6 +268,22 @@ if errOk != nil {
 }
 ```
 
+### Update a game record
+
+```go
+keyUpdate := key + "-update"
+inputUpdate := &public_game_record.PutGameRecordHandlerV1Params{
+	Body:      map[string]interface{}{"foo": "bar"},
+	Key:       keyUpdate,
+	Namespace: integration.NamespaceTest,
+}
+
+okUpdate, errUpdate := publicGameRecordService.PutGameRecordHandlerV1Short(inputUpdate)
+if errUpdate != nil {
+	assert.FailNow(t, errUpdate.Error())
+}
+```
+
 ### Create a player record
 
 ```go

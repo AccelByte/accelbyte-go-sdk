@@ -110,18 +110,48 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 	// Login User - Arrange
 	Init()
 
-	inputDelete := &public_game_record.DeleteGameRecordHandlerV1Params{
+	input := &public_game_record.PostGameRecordHandlerV1Params{
+		Body:      map[string]interface{}{"foo": "bar"},
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
 
-	errDelete := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDelete)
-	if errDelete != nil {
-		assert.FailNow(t, errDelete.Error())
+	post, err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
 	}
 
 	// Assert
-	assert.Nil(t, errDelete, "err should be nil")
+	assert.NotNil(t, post, "err should not be nil")
+
+	// CASE Update a game record
+	keyUpdate := key + "-update"
+	inputUpdate := &public_game_record.PutGameRecordHandlerV1Params{
+		Body:      map[string]interface{}{"foo": "bar"},
+		Key:       keyUpdate,
+		Namespace: integration.NamespaceTest,
+	}
+
+	okUpdate, errUpdate := publicGameRecordService.PutGameRecordHandlerV1Short(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	// ESAC
+
+	// Assert
+	assert.Equal(t, keyUpdate, *okUpdate.Key)
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, okUpdate, "response should not be nil")
+
+	inputDel := &public_game_record.DeleteGameRecordHandlerV1Params{
+		Key:       keyUpdate,
+		Namespace: integration.NamespaceTest,
+	}
+
+	errDel := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDel)
+	if errDel != nil {
+		assert.FailNow(t, err.Error())
+	}
 }
 
 func TestIntegrationPlayerRecordHandlerV1(t *testing.T) {

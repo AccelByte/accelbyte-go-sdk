@@ -105,6 +105,7 @@ func (o *AdminListGameBinaryRecordsV1OK) GetPayload() *cloudsaveclientmodels.Mod
 }
 
 func (o *AdminListGameBinaryRecordsV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *AdminListGameBinaryRecordsV1BadRequest) GetPayload() *cloudsaveclientmo
 }
 
 func (o *AdminListGameBinaryRecordsV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *AdminListGameBinaryRecordsV1Unauthorized) GetPayload() *cloudsaveclient
 }
 
 func (o *AdminListGameBinaryRecordsV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *AdminListGameBinaryRecordsV1Forbidden) GetPayload() *cloudsaveclientmod
 }
 
 func (o *AdminListGameBinaryRecordsV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *AdminListGameBinaryRecordsV1InternalServerError) GetPayload() *cloudsav
 }
 
 func (o *AdminListGameBinaryRecordsV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

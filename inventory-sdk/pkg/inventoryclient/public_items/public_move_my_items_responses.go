@@ -93,6 +93,7 @@ func (o *PublicMoveMyItemsOK) GetPayload() *inventoryclientmodels.ApimodelsMoveI
 }
 
 func (o *PublicMoveMyItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *PublicMoveMyItemsBadRequest) GetPayload() *inventoryclientmodels.Apimod
 }
 
 func (o *PublicMoveMyItemsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *PublicMoveMyItemsInternalServerError) GetPayload() *inventoryclientmode
 }
 
 func (o *PublicMoveMyItemsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

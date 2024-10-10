@@ -99,6 +99,7 @@ func (o *AdminCreateTagCreated) GetPayload() *inventoryclientmodels.ApimodelsCre
 }
 
 func (o *AdminCreateTagCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminCreateTagBadRequest) GetPayload() *inventoryclientmodels.Apimodels
 }
 
 func (o *AdminCreateTagBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminCreateTagConflict) GetPayload() *inventoryclientmodels.ApimodelsEr
 }
 
 func (o *AdminCreateTagConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminCreateTagInternalServerError) GetPayload() *inventoryclientmodels.
 }
 
 func (o *AdminCreateTagInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

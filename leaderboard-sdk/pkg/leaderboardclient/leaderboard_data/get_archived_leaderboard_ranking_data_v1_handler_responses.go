@@ -111,6 +111,7 @@ func (o *GetArchivedLeaderboardRankingDataV1HandlerOK) GetPayload() []*leaderboa
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *GetArchivedLeaderboardRankingDataV1HandlerBadRequest) GetPayload() *lea
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *GetArchivedLeaderboardRankingDataV1HandlerUnauthorized) GetPayload() *l
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *GetArchivedLeaderboardRankingDataV1HandlerForbidden) GetPayload() *lead
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *GetArchivedLeaderboardRankingDataV1HandlerNotFound) GetPayload() *leade
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *GetArchivedLeaderboardRankingDataV1HandlerInternalServerError) GetPaylo
 }
 
 func (o *GetArchivedLeaderboardRankingDataV1HandlerInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

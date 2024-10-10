@@ -93,6 +93,7 @@ func (o *ListServerClientOK) GetPayload() *dsmcclientmodels.ModelsListServerResp
 }
 
 func (o *ListServerClientOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *ListServerClientUnauthorized) GetPayload() *dsmcclientmodels.ResponseEr
 }
 
 func (o *ListServerClientUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *ListServerClientInternalServerError) GetPayload() *dsmcclientmodels.Res
 }
 
 func (o *ListServerClientInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

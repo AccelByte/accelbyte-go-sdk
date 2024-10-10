@@ -93,6 +93,7 @@ func (o *ListNodesIPAddressOK) GetPayload() *dsartifactclientmodels.ModelsListNo
 }
 
 func (o *ListNodesIPAddressOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *ListNodesIPAddressBadRequest) GetPayload() *dsartifactclientmodels.Resp
 }
 
 func (o *ListNodesIPAddressBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *ListNodesIPAddressInternalServerError) GetPayload() *dsartifactclientmo
 }
 
 func (o *ListNodesIPAddressInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -111,6 +111,7 @@ func (o *CreatePluginConfigCreated) GetPayload() *cloudsaveclientmodels.ModelsPl
 }
 
 func (o *CreatePluginConfigCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *CreatePluginConfigBadRequest) GetPayload() *cloudsaveclientmodels.Model
 }
 
 func (o *CreatePluginConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *CreatePluginConfigUnauthorized) GetPayload() *cloudsaveclientmodels.Mod
 }
 
 func (o *CreatePluginConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *CreatePluginConfigForbidden) GetPayload() *cloudsaveclientmodels.Models
 }
 
 func (o *CreatePluginConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *CreatePluginConfigConflict) GetPayload() *cloudsaveclientmodels.ModelsR
 }
 
 func (o *CreatePluginConfigConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *CreatePluginConfigInternalServerError) GetPayload() *cloudsaveclientmod
 }
 
 func (o *CreatePluginConfigInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

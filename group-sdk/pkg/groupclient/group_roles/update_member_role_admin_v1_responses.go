@@ -111,6 +111,7 @@ func (o *UpdateMemberRoleAdminV1OK) GetPayload() *groupclientmodels.ModelsMember
 }
 
 func (o *UpdateMemberRoleAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *UpdateMemberRoleAdminV1BadRequest) GetPayload() *groupclientmodels.Resp
 }
 
 func (o *UpdateMemberRoleAdminV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *UpdateMemberRoleAdminV1Unauthorized) GetPayload() *groupclientmodels.Re
 }
 
 func (o *UpdateMemberRoleAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *UpdateMemberRoleAdminV1Forbidden) GetPayload() *groupclientmodels.Respo
 }
 
 func (o *UpdateMemberRoleAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *UpdateMemberRoleAdminV1NotFound) GetPayload() *groupclientmodels.Respon
 }
 
 func (o *UpdateMemberRoleAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *UpdateMemberRoleAdminV1InternalServerError) GetPayload() *groupclientmo
 }
 
 func (o *UpdateMemberRoleAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

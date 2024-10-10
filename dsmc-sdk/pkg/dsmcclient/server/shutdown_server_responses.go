@@ -85,6 +85,7 @@ func (o *ShutdownServerNoContent) Error() string {
 }
 
 func (o *ShutdownServerNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *ShutdownServerBadRequest) GetPayload() *dsmcclientmodels.ResponseError 
 }
 
 func (o *ShutdownServerBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *ShutdownServerUnauthorized) GetPayload() *dsmcclientmodels.ResponseErro
 }
 
 func (o *ShutdownServerUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *ShutdownServerNotFound) GetPayload() *dsmcclientmodels.ResponseError {
 }
 
 func (o *ShutdownServerNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *ShutdownServerInternalServerError) GetPayload() *dsmcclientmodels.Respo
 }
 
 func (o *ShutdownServerInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

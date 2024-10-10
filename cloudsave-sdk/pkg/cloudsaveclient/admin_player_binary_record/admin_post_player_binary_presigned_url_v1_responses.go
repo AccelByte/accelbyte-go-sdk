@@ -111,6 +111,7 @@ func (o *AdminPostPlayerBinaryPresignedURLV1Created) GetPayload() *cloudsaveclie
 }
 
 func (o *AdminPostPlayerBinaryPresignedURLV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminPostPlayerBinaryPresignedURLV1BadRequest) GetPayload() *cloudsavec
 }
 
 func (o *AdminPostPlayerBinaryPresignedURLV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminPostPlayerBinaryPresignedURLV1Unauthorized) GetPayload() *cloudsav
 }
 
 func (o *AdminPostPlayerBinaryPresignedURLV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminPostPlayerBinaryPresignedURLV1Forbidden) GetPayload() *cloudsavecl
 }
 
 func (o *AdminPostPlayerBinaryPresignedURLV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminPostPlayerBinaryPresignedURLV1NotFound) GetPayload() *cloudsavecli
 }
 
 func (o *AdminPostPlayerBinaryPresignedURLV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminPostPlayerBinaryPresignedURLV1InternalServerError) GetPayload() *c
 }
 
 func (o *AdminPostPlayerBinaryPresignedURLV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

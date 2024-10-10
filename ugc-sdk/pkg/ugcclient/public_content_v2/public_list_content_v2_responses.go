@@ -99,6 +99,7 @@ func (o *PublicListContentV2OK) GetPayload() *ugcclientmodels.ModelsPaginatedCon
 }
 
 func (o *PublicListContentV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicListContentV2BadRequest) GetPayload() *ugcclientmodels.ResponseEr
 }
 
 func (o *PublicListContentV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicListContentV2Unauthorized) GetPayload() *ugcclientmodels.Response
 }
 
 func (o *PublicListContentV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicListContentV2InternalServerError) GetPayload() *ugcclientmodels.R
 }
 
 func (o *PublicListContentV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *AdminGetUserByUserIDV2OK) GetPayload() *iamclientmodels.ModelUserRespon
 }
 
 func (o *AdminGetUserByUserIDV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -126,6 +127,7 @@ func (o *AdminGetUserByUserIDV2NotFound) Error() string {
 }
 
 func (o *AdminGetUserByUserIDV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +154,7 @@ func (o *AdminGetUserByUserIDV2InternalServerError) Error() string {
 }
 
 func (o *AdminGetUserByUserIDV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -79,6 +79,7 @@ func (o *AdminAnonymizeUserLeaderboardAdminV1NoContent) Error() string {
 }
 
 func (o *AdminAnonymizeUserLeaderboardAdminV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *AdminAnonymizeUserLeaderboardAdminV1Unauthorized) GetPayload() *leaderb
 }
 
 func (o *AdminAnonymizeUserLeaderboardAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *AdminAnonymizeUserLeaderboardAdminV1Forbidden) GetPayload() *leaderboar
 }
 
 func (o *AdminAnonymizeUserLeaderboardAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *AdminAnonymizeUserLeaderboardAdminV1InternalServerError) GetPayload() *
 }
 
 func (o *AdminAnonymizeUserLeaderboardAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

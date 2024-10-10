@@ -105,6 +105,7 @@ func (o *SetUserVisibilityV3OK) GetPayload() *leaderboardclientmodels.ModelsGetU
 }
 
 func (o *SetUserVisibilityV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *SetUserVisibilityV3BadRequest) GetPayload() *leaderboardclientmodels.Re
 }
 
 func (o *SetUserVisibilityV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *SetUserVisibilityV3Unauthorized) GetPayload() *leaderboardclientmodels.
 }
 
 func (o *SetUserVisibilityV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *SetUserVisibilityV3Forbidden) GetPayload() *leaderboardclientmodels.Res
 }
 
 func (o *SetUserVisibilityV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *SetUserVisibilityV3InternalServerError) GetPayload() *leaderboardclient
 }
 
 func (o *SetUserVisibilityV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

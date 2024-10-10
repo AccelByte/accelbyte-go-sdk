@@ -99,6 +99,7 @@ func (o *DebitUserWalletByCurrencyCodeOK) GetPayload() *platformclientmodels.Wal
 }
 
 func (o *DebitUserWalletByCurrencyCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *DebitUserWalletByCurrencyCodeBadRequest) GetPayload() *platformclientmo
 }
 
 func (o *DebitUserWalletByCurrencyCodeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *DebitUserWalletByCurrencyCodeConflict) GetPayload() *platformclientmode
 }
 
 func (o *DebitUserWalletByCurrencyCodeConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *DebitUserWalletByCurrencyCodeUnprocessableEntity) GetPayload() *platfor
 }
 
 func (o *DebitUserWalletByCurrencyCodeUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

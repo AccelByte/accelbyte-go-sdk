@@ -105,6 +105,7 @@ func (o *PublicUnbanTopicMembersOK) GetPayload() *chatclientmodels.ModelsPublicU
 }
 
 func (o *PublicUnbanTopicMembersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *PublicUnbanTopicMembersBadRequest) GetPayload() *chatclientmodels.Resta
 }
 
 func (o *PublicUnbanTopicMembersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *PublicUnbanTopicMembersUnauthorized) GetPayload() *chatclientmodels.Res
 }
 
 func (o *PublicUnbanTopicMembersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *PublicUnbanTopicMembersForbidden) GetPayload() *chatclientmodels.Restap
 }
 
 func (o *PublicUnbanTopicMembersForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *PublicUnbanTopicMembersInternalServerError) GetPayload() *chatclientmod
 }
 
 func (o *PublicUnbanTopicMembersInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -111,6 +111,7 @@ func (o *PublicPromotePartyLeaderOK) GetPayload() *sessionclientmodels.Apimodels
 }
 
 func (o *PublicPromotePartyLeaderOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *PublicPromotePartyLeaderBadRequest) GetPayload() *sessionclientmodels.R
 }
 
 func (o *PublicPromotePartyLeaderBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *PublicPromotePartyLeaderUnauthorized) GetPayload() *sessionclientmodels
 }
 
 func (o *PublicPromotePartyLeaderUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *PublicPromotePartyLeaderForbidden) GetPayload() *sessionclientmodels.Re
 }
 
 func (o *PublicPromotePartyLeaderForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *PublicPromotePartyLeaderNotFound) GetPayload() *sessionclientmodels.Res
 }
 
 func (o *PublicPromotePartyLeaderNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *PublicPromotePartyLeaderInternalServerError) GetPayload() *sessionclien
 }
 
 func (o *PublicPromotePartyLeaderInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

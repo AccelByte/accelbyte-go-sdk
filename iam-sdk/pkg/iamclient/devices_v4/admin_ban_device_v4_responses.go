@@ -91,6 +91,7 @@ func (o *AdminBanDeviceV4NoContent) Error() string {
 }
 
 func (o *AdminBanDeviceV4NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *AdminBanDeviceV4BadRequest) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *AdminBanDeviceV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *AdminBanDeviceV4Unauthorized) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *AdminBanDeviceV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *AdminBanDeviceV4Forbidden) GetPayload() *iamclientmodels.RestErrorRespo
 }
 
 func (o *AdminBanDeviceV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *AdminBanDeviceV4Conflict) GetPayload() *iamclientmodels.RestErrorRespon
 }
 
 func (o *AdminBanDeviceV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *AdminBanDeviceV4InternalServerError) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminBanDeviceV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

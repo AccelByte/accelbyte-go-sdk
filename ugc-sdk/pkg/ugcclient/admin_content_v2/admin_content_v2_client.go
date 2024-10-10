@@ -552,6 +552,7 @@ func (a *Client) AdminUpdateOfficialContentV2Short(params *AdminUpdateOfficialCo
 Deprecated: 2022-08-10 - Use AdminCopyContentShort instead.
 
 AdminCopyContent copy contents from a channel to another
+Copy existing content from source channel to target channel.
 */
 func (a *Client) AdminCopyContent(params *AdminCopyContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCopyContentCreated, *AdminCopyContentBadRequest, *AdminCopyContentUnauthorized, *AdminCopyContentForbidden, *AdminCopyContentNotFound, *AdminCopyContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -615,6 +616,7 @@ func (a *Client) AdminCopyContent(params *AdminCopyContentParams, authInfo runti
 
 /*
 AdminCopyContentShort copy contents from a channel to another
+Copy existing content from source channel to target channel.
 */
 func (a *Client) AdminCopyContentShort(params *AdminCopyContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCopyContentCreated, error) {
 	// TODO: Validate the params before sending

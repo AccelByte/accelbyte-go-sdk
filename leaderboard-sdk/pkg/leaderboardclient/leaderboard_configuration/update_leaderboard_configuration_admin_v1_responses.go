@@ -117,6 +117,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1OK) GetPayload() *leaderboardclien
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -170,6 +171,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1BadRequest) GetPayload() *leaderbo
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -223,6 +225,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1Unauthorized) GetPayload() *leader
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +279,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1Forbidden) GetPayload() *leaderboa
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +333,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1NotFound) GetPayload() *leaderboar
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -382,6 +387,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1Conflict) GetPayload() *leaderboar
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -435,6 +441,7 @@ func (o *UpdateLeaderboardConfigurationAdminV1InternalServerError) GetPayload() 
 }
 
 func (o *UpdateLeaderboardConfigurationAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

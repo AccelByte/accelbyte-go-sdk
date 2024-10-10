@@ -99,6 +99,7 @@ func (o *GetAllPodConfigOK) GetPayload() *dsmcclientmodels.ModelsListPodConfigRe
 }
 
 func (o *GetAllPodConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *GetAllPodConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseError
 }
 
 func (o *GetAllPodConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *GetAllPodConfigUnauthorized) GetPayload() *dsmcclientmodels.ResponseErr
 }
 
 func (o *GetAllPodConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *GetAllPodConfigInternalServerError) GetPayload() *dsmcclientmodels.Resp
 }
 
 func (o *GetAllPodConfigInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

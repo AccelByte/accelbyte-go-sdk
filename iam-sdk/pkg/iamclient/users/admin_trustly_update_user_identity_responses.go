@@ -97,6 +97,7 @@ func (o *AdminTrustlyUpdateUserIdentityNoContent) Error() string {
 }
 
 func (o *AdminTrustlyUpdateUserIdentityNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -143,6 +144,7 @@ func (o *AdminTrustlyUpdateUserIdentityBadRequest) GetPayload() *iamclientmodels
 }
 
 func (o *AdminTrustlyUpdateUserIdentityBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -196,6 +198,7 @@ func (o *AdminTrustlyUpdateUserIdentityUnauthorized) GetPayload() *iamclientmode
 }
 
 func (o *AdminTrustlyUpdateUserIdentityUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -249,6 +252,7 @@ func (o *AdminTrustlyUpdateUserIdentityForbidden) GetPayload() *iamclientmodels.
 }
 
 func (o *AdminTrustlyUpdateUserIdentityForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -302,6 +306,7 @@ func (o *AdminTrustlyUpdateUserIdentityNotFound) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminTrustlyUpdateUserIdentityNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -355,6 +360,7 @@ func (o *AdminTrustlyUpdateUserIdentityConflict) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminTrustlyUpdateUserIdentityConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -408,6 +414,7 @@ func (o *AdminTrustlyUpdateUserIdentityInternalServerError) GetPayload() *iamcli
 }
 
 func (o *AdminTrustlyUpdateUserIdentityInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

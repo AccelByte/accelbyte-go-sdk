@@ -884,7 +884,9 @@ func (a *Client) FleetClaimByIDShort(params *FleetClaimByIDParams, authInfo runt
 Deprecated: 2022-08-10 - Use FleetClaimByKeysShort instead.
 
 FleetClaimByKeys claim a dedicated server
-Claim a dedicated server from fleets with matching claim keys
+Claim a dedicated server from fleets with matching claim keys.
+If the claim key is for a regular fleet (non development), the request will instantly fail if there are no DS available (HTTP 404).
+If the claim key is for a development fleet and there are no DS available, a new DS will be launched and the request might take up to 8 seconds to return (depending on the environment configuration). If it's not ready after that duration the request will still return HTTP 404. In either case, the call to this endpoint may be retried at any time to check if a DS has become available.
 
 Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */
@@ -950,7 +952,9 @@ func (a *Client) FleetClaimByKeys(params *FleetClaimByKeysParams, authInfo runti
 
 /*
 FleetClaimByKeysShort claim a dedicated server
-Claim a dedicated server from fleets with matching claim keys
+Claim a dedicated server from fleets with matching claim keys.
+If the claim key is for a regular fleet (non development), the request will instantly fail if there are no DS available (HTTP 404).
+If the claim key is for a development fleet and there are no DS available, a new DS will be launched and the request might take up to 8 seconds to return (depending on the environment configuration). If it's not ready after that duration the request will still return HTTP 404. In either case, the call to this endpoint may be retried at any time to check if a DS has become available.
 
 Required Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]
 */

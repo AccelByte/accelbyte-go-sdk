@@ -73,6 +73,7 @@ func (o *ImportRewardsOK) Error() string {
 }
 
 func (o *ImportRewardsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *ImportRewardsBadRequest) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *ImportRewardsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *ImportRewardsConflict) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *ImportRewardsConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

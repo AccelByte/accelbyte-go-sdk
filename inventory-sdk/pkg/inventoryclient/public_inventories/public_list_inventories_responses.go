@@ -93,6 +93,7 @@ func (o *PublicListInventoriesOK) GetPayload() *inventoryclientmodels.ApimodelsL
 }
 
 func (o *PublicListInventoriesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *PublicListInventoriesBadRequest) GetPayload() *inventoryclientmodels.Ap
 }
 
 func (o *PublicListInventoriesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *PublicListInventoriesInternalServerError) GetPayload() *inventoryclient
 }
 
 func (o *PublicListInventoriesInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

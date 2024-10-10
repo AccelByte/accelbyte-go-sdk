@@ -99,6 +99,7 @@ func (o *ListAllActiveQueueOK) GetPayload() *dsartifactclientmodels.ModelsListAl
 }
 
 func (o *ListAllActiveQueueOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *ListAllActiveQueueBadRequest) GetPayload() *dsartifactclientmodels.Resp
 }
 
 func (o *ListAllActiveQueueBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *ListAllActiveQueueNotFound) GetPayload() *dsartifactclientmodels.Respon
 }
 
 func (o *ListAllActiveQueueNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *ListAllActiveQueueInternalServerError) GetPayload() *dsartifactclientmo
 }
 
 func (o *ListAllActiveQueueInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *PublicClaimUserRewardOK) GetPayload() *seasonpassclientmodels.Claimable
 }
 
 func (o *PublicClaimUserRewardOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicClaimUserRewardBadRequest) GetPayload() *seasonpassclientmodels.E
 }
 
 func (o *PublicClaimUserRewardBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicClaimUserRewardNotFound) GetPayload() *seasonpassclientmodels.Err
 }
 
 func (o *PublicClaimUserRewardNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicClaimUserRewardConflict) GetPayload() *seasonpassclientmodels.Err
 }
 
 func (o *PublicClaimUserRewardConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -67,6 +67,7 @@ func (o *DeleteItemNoContent) Error() string {
 }
 
 func (o *DeleteItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -113,6 +114,7 @@ func (o *DeleteItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *DeleteItemNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

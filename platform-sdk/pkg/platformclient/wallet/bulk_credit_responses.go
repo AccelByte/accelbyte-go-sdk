@@ -87,6 +87,7 @@ func (o *BulkCreditOK) GetPayload() *platformclientmodels.BulkCreditResult {
 }
 
 func (o *BulkCreditOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *BulkCreditUnprocessableEntity) GetPayload() *platformclientmodels.Valid
 }
 
 func (o *BulkCreditUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

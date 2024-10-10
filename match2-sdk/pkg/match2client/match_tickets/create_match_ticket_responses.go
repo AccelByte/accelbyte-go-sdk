@@ -117,6 +117,7 @@ func (o *CreateMatchTicketCreated) GetPayload() *match2clientmodels.APIMatchTick
 }
 
 func (o *CreateMatchTicketCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -170,6 +171,7 @@ func (o *CreateMatchTicketBadRequest) GetPayload() *match2clientmodels.ResponseE
 }
 
 func (o *CreateMatchTicketBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -223,6 +225,7 @@ func (o *CreateMatchTicketUnauthorized) GetPayload() *match2clientmodels.Respons
 }
 
 func (o *CreateMatchTicketUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +279,7 @@ func (o *CreateMatchTicketForbidden) GetPayload() *match2clientmodels.ResponseEr
 }
 
 func (o *CreateMatchTicketForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +333,7 @@ func (o *CreateMatchTicketNotFound) GetPayload() *match2clientmodels.ResponseErr
 }
 
 func (o *CreateMatchTicketNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -382,6 +387,7 @@ func (o *CreateMatchTicketConflict) GetPayload() *match2clientmodels.ResponseErr
 }
 
 func (o *CreateMatchTicketConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -435,6 +441,7 @@ func (o *CreateMatchTicketInternalServerError) GetPayload() *match2clientmodels.
 }
 
 func (o *CreateMatchTicketInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

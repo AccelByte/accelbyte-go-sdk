@@ -87,6 +87,7 @@ func (o *SearchItemTypeConfigOK) GetPayload() *platformclientmodels.ItemTypeConf
 }
 
 func (o *SearchItemTypeConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *SearchItemTypeConfigNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *SearchItemTypeConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

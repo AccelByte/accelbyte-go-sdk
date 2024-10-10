@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "2.21.1"
+    "version": "3.0.0"
   },
   "schemes": [
     "https"
@@ -5203,17 +5203,17 @@
     "path": "/basic/swagger.json"
   },
   "x-version": {
-    "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-08-28T01:52:21+00:00",
-    "buildID": "2.21.1",
-    "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.223-211.872.amzn2.x86_64",
+    "buildBy": "Gradle 8.5",
+    "buildDate": "2024-10-01T09:37:16+00:00",
+    "buildID": "3.0.0",
+    "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
+    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "7a8fd0a5fe",
-    "gitTag": "2.21.1",
+    "gitHash": "d2d59c101d",
+    "gitTag": "3.0.0",
     "name": "justice-basic-service",
     "realm": "staging",
-    "version": "2.21.1",
+    "version": "3.0.0",
     "version-roles-seeding": "0.0.10"
   }
 }

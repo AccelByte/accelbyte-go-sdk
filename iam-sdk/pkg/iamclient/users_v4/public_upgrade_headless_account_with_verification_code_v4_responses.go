@@ -117,6 +117,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK) GetPayload() *iam
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -170,6 +171,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest) GetPayloa
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -223,6 +225,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized) GetPayl
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +279,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden) GetPayload
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +333,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound) GetPayload(
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -382,6 +387,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict) GetPayload(
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -435,6 +441,7 @@ func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4InternalServerError) 
 }
 
 func (o *PublicUpgradeHeadlessAccountWithVerificationCodeV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

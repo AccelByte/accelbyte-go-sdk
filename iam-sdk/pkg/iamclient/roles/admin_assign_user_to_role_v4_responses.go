@@ -117,6 +117,7 @@ func (o *AdminAssignUserToRoleV4Created) GetPayload() *iamclientmodels.ModelAssi
 }
 
 func (o *AdminAssignUserToRoleV4Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -170,6 +171,7 @@ func (o *AdminAssignUserToRoleV4BadRequest) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *AdminAssignUserToRoleV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -223,6 +225,7 @@ func (o *AdminAssignUserToRoleV4Unauthorized) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminAssignUserToRoleV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +279,7 @@ func (o *AdminAssignUserToRoleV4Forbidden) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *AdminAssignUserToRoleV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +333,7 @@ func (o *AdminAssignUserToRoleV4NotFound) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *AdminAssignUserToRoleV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -382,6 +387,7 @@ func (o *AdminAssignUserToRoleV4Conflict) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *AdminAssignUserToRoleV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -435,6 +441,7 @@ func (o *AdminAssignUserToRoleV4UnprocessableEntity) GetPayload() *iamclientmode
 }
 
 func (o *AdminAssignUserToRoleV4UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

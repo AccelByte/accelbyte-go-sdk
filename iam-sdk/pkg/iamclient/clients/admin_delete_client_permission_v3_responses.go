@@ -85,6 +85,7 @@ func (o *AdminDeleteClientPermissionV3NoContent) Error() string {
 }
 
 func (o *AdminDeleteClientPermissionV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *AdminDeleteClientPermissionV3BadRequest) GetPayload() *iamclientmodels.
 }
 
 func (o *AdminDeleteClientPermissionV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *AdminDeleteClientPermissionV3Unauthorized) GetPayload() *iamclientmodel
 }
 
 func (o *AdminDeleteClientPermissionV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *AdminDeleteClientPermissionV3Forbidden) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminDeleteClientPermissionV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *AdminDeleteClientPermissionV3NotFound) GetPayload() *iamclientmodels.Re
 }
 
 func (o *AdminDeleteClientPermissionV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -54,7 +54,7 @@ func NewQueryFulfillmentsOK() *QueryFulfillmentsOK {
   successful operation
 */
 type QueryFulfillmentsOK struct {
-	Payload *platformclientmodels.FulfillmentHistoryPagingSlicedResult
+	Payload *platformclientmodels.FulfillmentPagingSlicedResult
 }
 
 func (o *QueryFulfillmentsOK) Error() string {
@@ -76,18 +76,19 @@ func (o *QueryFulfillmentsOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryFulfillmentsOK) GetPayload() *platformclientmodels.FulfillmentHistoryPagingSlicedResult {
+func (o *QueryFulfillmentsOK) GetPayload() *platformclientmodels.FulfillmentPagingSlicedResult {
 	return o.Payload
 }
 
 func (o *QueryFulfillmentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(platformclientmodels.FulfillmentHistoryPagingSlicedResult)
+	o.Payload = new(platformclientmodels.FulfillmentPagingSlicedResult)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

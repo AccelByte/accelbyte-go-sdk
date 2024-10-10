@@ -93,6 +93,7 @@ func (o *AdminGetLogConfigOK) GetPayload() *sessionhistoryclientmodels.Logconfig
 }
 
 func (o *AdminGetLogConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminGetLogConfigUnauthorized) GetPayload() *sessionhistoryclientmodels
 }
 
 func (o *AdminGetLogConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminGetLogConfigForbidden) GetPayload() *sessionhistoryclientmodels.Re
 }
 
 func (o *AdminGetLogConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

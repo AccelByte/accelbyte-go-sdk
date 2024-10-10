@@ -79,6 +79,7 @@ func (o *DeleteUserRankingsAdminV1NoContent) Error() string {
 }
 
 func (o *DeleteUserRankingsAdminV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *DeleteUserRankingsAdminV1Unauthorized) GetPayload() *leaderboardclientm
 }
 
 func (o *DeleteUserRankingsAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *DeleteUserRankingsAdminV1Forbidden) GetPayload() *leaderboardclientmode
 }
 
 func (o *DeleteUserRankingsAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *DeleteUserRankingsAdminV1InternalServerError) GetPayload() *leaderboard
 }
 
 func (o *DeleteUserRankingsAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

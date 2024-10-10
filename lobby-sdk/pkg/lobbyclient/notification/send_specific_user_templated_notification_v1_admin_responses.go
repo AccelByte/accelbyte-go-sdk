@@ -85,6 +85,7 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminNoContent) Error() string {
 }
 
 func (o *SendSpecificUserTemplatedNotificationV1AdminNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminBadRequest) GetPayload() *l
 }
 
 func (o *SendSpecificUserTemplatedNotificationV1AdminBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminUnauthorized) GetPayload() 
 }
 
 func (o *SendSpecificUserTemplatedNotificationV1AdminUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminForbidden) GetPayload() *lo
 }
 
 func (o *SendSpecificUserTemplatedNotificationV1AdminForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *SendSpecificUserTemplatedNotificationV1AdminNotFound) GetPayload() *lob
 }
 
 func (o *SendSpecificUserTemplatedNotificationV1AdminNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

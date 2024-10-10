@@ -80,6 +80,20 @@ func (aaa *IAPService) DeleteAppleIAPConfig(input *iap.DeleteAppleIAPConfigParam
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use UpdateAppleP8FileShort instead.
+func (aaa *IAPService) UpdateAppleP8File(input *iap.UpdateAppleP8FileParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.IAP.UpdateAppleP8File(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetEpicGamesIAPConfigShort instead.
 func (aaa *IAPService) GetEpicGamesIAPConfig(input *iap.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -558,6 +572,23 @@ func (aaa *IAPService) MockFulfillIAPItem(input *iap.MockFulfillIAPItemParams) e
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use GetAppleConfigVersionShort instead.
+func (aaa *IAPService) GetAppleConfigVersion(input *iap.GetAppleConfigVersionParams) (*platformclientmodels.AppleIAPConfigVersionInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.IAP.GetAppleConfigVersion(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetIAPItemMappingShort instead.
 func (aaa *IAPService) GetIAPItemMapping(input *iap.GetIAPItemMappingParams) (*platformclientmodels.IAPItemMappingInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -775,6 +806,29 @@ func (aaa *IAPService) SyncXboxInventory(input *iap.SyncXboxInventoryParams) ([]
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use V2PublicFulfillAppleIAPItemShort instead.
+func (aaa *IAPService) V2PublicFulfillAppleIAPItem(input *iap.V2PublicFulfillAppleIAPItemParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, notFound, conflict, err := aaa.Client.IAP.V2PublicFulfillAppleIAPItem(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *IAPService) GetAppleIAPConfigShort(input *iap.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -863,6 +917,36 @@ func (aaa *IAPService) DeleteAppleIAPConfigShort(input *iap.DeleteAppleIAPConfig
 	}
 
 	return nil
+}
+
+func (aaa *IAPService) UpdateAppleP8FileShort(input *iap.UpdateAppleP8FileParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.IAP.UpdateAppleP8FileShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *IAPService) GetEpicGamesIAPConfigShort(input *iap.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
@@ -1825,6 +1909,36 @@ func (aaa *IAPService) MockFulfillIAPItemShort(input *iap.MockFulfillIAPItemPara
 	return nil
 }
 
+func (aaa *IAPService) GetAppleConfigVersionShort(input *iap.GetAppleConfigVersionParams) (*platformclientmodels.AppleIAPConfigVersionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.IAP.GetAppleConfigVersionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *IAPService) GetIAPItemMappingShort(input *iap.GetIAPItemMappingParams) (*platformclientmodels.IAPItemMappingInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -2153,4 +2267,34 @@ func (aaa *IAPService) SyncXboxInventoryShort(input *iap.SyncXboxInventoryParams
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) V2PublicFulfillAppleIAPItemShort(input *iap.V2PublicFulfillAppleIAPItemParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.IAP.V2PublicFulfillAppleIAPItemShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

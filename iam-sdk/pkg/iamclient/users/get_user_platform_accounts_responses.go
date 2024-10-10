@@ -99,6 +99,7 @@ func (o *GetUserPlatformAccountsOK) GetPayload() []*iamclientmodels.Accountcommo
 }
 
 func (o *GetUserPlatformAccountsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *GetUserPlatformAccountsBadRequest) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *GetUserPlatformAccountsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *GetUserPlatformAccountsUnauthorized) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *GetUserPlatformAccountsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -256,6 +259,7 @@ func (o *GetUserPlatformAccountsForbidden) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *GetUserPlatformAccountsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

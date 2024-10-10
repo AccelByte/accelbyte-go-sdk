@@ -99,6 +99,7 @@ func (o *PublicGetMyAccountDeletionStatusOK) GetPayload() *gdprclientmodels.Mode
 }
 
 func (o *PublicGetMyAccountDeletionStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicGetMyAccountDeletionStatusUnauthorized) GetPayload() *gdprclientm
 }
 
 func (o *PublicGetMyAccountDeletionStatusUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicGetMyAccountDeletionStatusForbidden) GetPayload() *gdprclientmode
 }
 
 func (o *PublicGetMyAccountDeletionStatusForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicGetMyAccountDeletionStatusInternalServerError) GetPayload() *gdpr
 }
 
 func (o *PublicGetMyAccountDeletionStatusInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

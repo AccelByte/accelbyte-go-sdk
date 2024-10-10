@@ -111,6 +111,7 @@ func (o *AdminGetProfanityListsOK) GetPayload() []*lobbyclientmodels.ModelsAdmin
 }
 
 func (o *AdminGetProfanityListsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *AdminGetProfanityListsBadRequest) GetPayload() *lobbyclientmodels.Resta
 }
 
 func (o *AdminGetProfanityListsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *AdminGetProfanityListsUnauthorized) GetPayload() *lobbyclientmodels.Res
 }
 
 func (o *AdminGetProfanityListsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *AdminGetProfanityListsForbidden) GetPayload() *lobbyclientmodels.Restap
 }
 
 func (o *AdminGetProfanityListsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *AdminGetProfanityListsNotFound) GetPayload() *lobbyclientmodels.Restapi
 }
 
 func (o *AdminGetProfanityListsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *AdminGetProfanityListsInternalServerError) GetPayload() *lobbyclientmod
 }
 
 func (o *AdminGetProfanityListsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

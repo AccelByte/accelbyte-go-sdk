@@ -111,6 +111,7 @@ func (o *AdminUpdateOfficialContentV2OK) GetPayload() *ugcclientmodels.ModelsUpd
 }
 
 func (o *AdminUpdateOfficialContentV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminUpdateOfficialContentV2BadRequest) GetPayload() *ugcclientmodels.R
 }
 
 func (o *AdminUpdateOfficialContentV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminUpdateOfficialContentV2Unauthorized) GetPayload() *ugcclientmodels
 }
 
 func (o *AdminUpdateOfficialContentV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminUpdateOfficialContentV2NotFound) GetPayload() *ugcclientmodels.Res
 }
 
 func (o *AdminUpdateOfficialContentV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminUpdateOfficialContentV2Conflict) GetPayload() *ugcclientmodels.Res
 }
 
 func (o *AdminUpdateOfficialContentV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminUpdateOfficialContentV2InternalServerError) GetPayload() *ugcclien
 }
 
 func (o *AdminUpdateOfficialContentV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -67,6 +67,7 @@ func (o *SetDefaultPolicy3OK) Error() string {
 }
 
 func (o *SetDefaultPolicy3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -113,6 +114,7 @@ func (o *SetDefaultPolicy3BadRequest) GetPayload() *legalclientmodels.ErrorEntit
 }
 
 func (o *SetDefaultPolicy3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

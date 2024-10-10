@@ -93,6 +93,7 @@ func (o *GetPaymentTaxValueOK) GetPayload() *platformclientmodels.TaxResult {
 }
 
 func (o *GetPaymentTaxValueOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetPaymentTaxValueBadRequest) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *GetPaymentTaxValueBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetPaymentTaxValueNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *GetPaymentTaxValueNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

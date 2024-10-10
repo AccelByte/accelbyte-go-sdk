@@ -91,6 +91,7 @@ func (o *PublicPartyCancelNoContent) Error() string {
 }
 
 func (o *PublicPartyCancelNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *PublicPartyCancelBadRequest) GetPayload() *sessionclientmodels.Response
 }
 
 func (o *PublicPartyCancelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *PublicPartyCancelUnauthorized) GetPayload() *sessionclientmodels.Respon
 }
 
 func (o *PublicPartyCancelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *PublicPartyCancelForbidden) GetPayload() *sessionclientmodels.ResponseE
 }
 
 func (o *PublicPartyCancelForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *PublicPartyCancelNotFound) GetPayload() *sessionclientmodels.ResponseEr
 }
 
 func (o *PublicPartyCancelNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *PublicPartyCancelInternalServerError) GetPayload() *sessionclientmodels
 }
 
 func (o *PublicPartyCancelInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *Verify2FACodeOK) GetPayload() *iamclientmodels.OauthmodelTokenResponseV
 }
 
 func (o *Verify2FACodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *Verify2FACodeUnauthorized) GetPayload() *iamclientmodels.OauthmodelErro
 }
 
 func (o *Verify2FACodeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

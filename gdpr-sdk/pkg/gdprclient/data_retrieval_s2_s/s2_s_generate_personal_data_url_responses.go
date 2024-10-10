@@ -105,6 +105,7 @@ func (o *S2SGeneratePersonalDataURLOK) GetPayload() *gdprclientmodels.ModelsS2SU
 }
 
 func (o *S2SGeneratePersonalDataURLOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *S2SGeneratePersonalDataURLBadRequest) GetPayload() *gdprclientmodels.Re
 }
 
 func (o *S2SGeneratePersonalDataURLBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *S2SGeneratePersonalDataURLUnauthorized) GetPayload() *gdprclientmodels.
 }
 
 func (o *S2SGeneratePersonalDataURLUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *S2SGeneratePersonalDataURLNotFound) GetPayload() *gdprclientmodels.Resp
 }
 
 func (o *S2SGeneratePersonalDataURLNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *S2SGeneratePersonalDataURLInternalServerError) GetPayload() *gdprclient
 }
 
 func (o *S2SGeneratePersonalDataURLInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

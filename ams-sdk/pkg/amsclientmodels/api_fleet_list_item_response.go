@@ -36,6 +36,10 @@ type APIFleetListItemResponse struct {
 	// Required: true
 	Image *string `json:"image"`
 
+	// instanceprovider
+	// Required: true
+	InstanceProvider *string `json:"instanceProvider"`
+
 	// islocal
 	// Required: true
 	IsLocal *bool `json:"isLocal"`
@@ -67,6 +71,9 @@ func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateImage(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateInstanceProvider(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIsLocal(formats); err != nil {
@@ -134,6 +141,15 @@ func (m *APIFleetListItemResponse) validateID(formats strfmt.Registry) error {
 func (m *APIFleetListItemResponse) validateImage(formats strfmt.Registry) error {
 
 	if err := validate.Required("image", "body", m.Image); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetListItemResponse) validateInstanceProvider(formats strfmt.Registry) error {
+
+	if err := validate.Required("instanceProvider", "body", m.InstanceProvider); err != nil {
 		return err
 	}
 

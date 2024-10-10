@@ -87,6 +87,7 @@ func (o *GetWalletOK) GetPayload() *platformclientmodels.WalletInfo {
 }
 
 func (o *GetWalletOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *GetWalletNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

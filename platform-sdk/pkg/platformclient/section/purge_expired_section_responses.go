@@ -67,6 +67,7 @@ func (o *PurgeExpiredSectionNoContent) Error() string {
 }
 
 func (o *PurgeExpiredSectionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -113,6 +114,7 @@ func (o *PurgeExpiredSectionNotFound) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *PurgeExpiredSectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

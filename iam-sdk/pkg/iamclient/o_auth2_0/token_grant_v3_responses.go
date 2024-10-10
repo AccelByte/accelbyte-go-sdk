@@ -105,6 +105,7 @@ func (o *TokenGrantV3OK) GetPayload() *iamclientmodels.OauthmodelTokenWithDevice
 }
 
 func (o *TokenGrantV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *TokenGrantV3BadRequest) GetPayload() *iamclientmodels.OauthmodelErrorRe
 }
 
 func (o *TokenGrantV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *TokenGrantV3Unauthorized) GetPayload() *iamclientmodels.OauthmodelError
 }
 
 func (o *TokenGrantV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *TokenGrantV3Forbidden) GetPayload() *iamclientmodels.OauthmodelErrorRes
 }
 
 func (o *TokenGrantV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *TokenGrantV3TooManyRequests) GetPayload() *iamclientmodels.OauthmodelEr
 }
 
 func (o *TokenGrantV3TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

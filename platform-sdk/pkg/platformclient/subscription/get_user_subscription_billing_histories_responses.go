@@ -81,6 +81,7 @@ func (o *GetUserSubscriptionBillingHistoriesOK) GetPayload() *platformclientmode
 }
 
 func (o *GetUserSubscriptionBillingHistoriesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

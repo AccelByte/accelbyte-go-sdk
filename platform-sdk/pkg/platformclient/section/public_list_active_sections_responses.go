@@ -87,6 +87,7 @@ func (o *PublicListActiveSectionsOK) GetPayload() []*platformclientmodels.Sectio
 }
 
 func (o *PublicListActiveSectionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *PublicListActiveSectionsNotFound) GetPayload() *platformclientmodels.Er
 }
 
 func (o *PublicListActiveSectionsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

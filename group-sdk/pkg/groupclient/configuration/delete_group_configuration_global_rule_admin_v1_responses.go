@@ -111,6 +111,7 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1OK) GetPayload() *groupclientm
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1BadRequest) GetPayload() *grou
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized) GetPayload() *gr
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1Forbidden) GetPayload() *group
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1NotFound) GetPayload() *groupc
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError) GetPayloa
 }
 
 func (o *DeleteGroupConfigurationGlobalRuleAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

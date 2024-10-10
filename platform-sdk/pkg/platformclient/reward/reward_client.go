@@ -31,8 +31,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error)
-	CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, error)
+	CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error)
+	CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, error)
 	QueryRewards(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, *QueryRewardsUnprocessableEntity, error)
 	QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, error)
 	ExportRewards(params *ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*ExportRewardsOK, error)
@@ -69,7 +69,7 @@ Other detail info:
   * Returns : created reward data
   *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
-func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
+func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRewardParams()
@@ -106,7 +106,7 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 
 	switch v := result.(type) {
 
-	case *CreateRewardOK:
+	case *CreateRewardCreated:
 		return v, nil, nil, nil, nil, nil
 
 	case *CreateRewardBadRequest:
@@ -134,7 +134,7 @@ Other detail info:
   * Returns : created reward data
   *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
-func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardOK, error) {
+func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateRewardParams()
@@ -167,7 +167,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 
 	switch v := result.(type) {
 
-	case *CreateRewardOK:
+	case *CreateRewardCreated:
 		return v, nil
 	case *CreateRewardBadRequest:
 		return nil, v

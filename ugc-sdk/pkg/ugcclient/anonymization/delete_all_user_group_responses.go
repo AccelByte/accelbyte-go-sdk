@@ -79,6 +79,7 @@ func (o *DeleteAllUserGroupNoContent) Error() string {
 }
 
 func (o *DeleteAllUserGroupNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *DeleteAllUserGroupUnauthorized) GetPayload() *ugcclientmodels.ResponseE
 }
 
 func (o *DeleteAllUserGroupUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *DeleteAllUserGroupNotFound) GetPayload() *ugcclientmodels.ResponseError
 }
 
 func (o *DeleteAllUserGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *DeleteAllUserGroupInternalServerError) GetPayload() *ugcclientmodels.Re
 }
 
 func (o *DeleteAllUserGroupInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

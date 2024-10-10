@@ -99,6 +99,7 @@ func (o *AdminChangeRoleOverrideConfigStatusV3OK) GetPayload() *iamclientmodels.
 }
 
 func (o *AdminChangeRoleOverrideConfigStatusV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminChangeRoleOverrideConfigStatusV3Unauthorized) GetPayload() *iamcli
 }
 
 func (o *AdminChangeRoleOverrideConfigStatusV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminChangeRoleOverrideConfigStatusV3Forbidden) GetPayload() *iamclient
 }
 
 func (o *AdminChangeRoleOverrideConfigStatusV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminChangeRoleOverrideConfigStatusV3InternalServerError) GetPayload() 
 }
 
 func (o *AdminChangeRoleOverrideConfigStatusV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

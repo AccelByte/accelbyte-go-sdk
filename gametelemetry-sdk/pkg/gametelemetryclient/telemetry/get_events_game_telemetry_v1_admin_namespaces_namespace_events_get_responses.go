@@ -93,6 +93,7 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) GetPayload
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest) Ge
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableE
 }
 
 func (o *GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

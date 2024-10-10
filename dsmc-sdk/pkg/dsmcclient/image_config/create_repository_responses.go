@@ -79,6 +79,7 @@ func (o *CreateRepositoryNoContent) Error() string {
 }
 
 func (o *CreateRepositoryNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *CreateRepositoryBadRequest) GetPayload() *dsmcclientmodels.ResponseErro
 }
 
 func (o *CreateRepositoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *CreateRepositoryUnauthorized) GetPayload() *dsmcclientmodels.ResponseEr
 }
 
 func (o *CreateRepositoryUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *CreateRepositoryInternalServerError) GetPayload() *dsmcclientmodels.Res
 }
 
 func (o *CreateRepositoryInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

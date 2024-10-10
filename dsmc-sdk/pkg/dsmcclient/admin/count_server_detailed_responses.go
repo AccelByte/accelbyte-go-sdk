@@ -93,6 +93,7 @@ func (o *CountServerDetailedOK) GetPayload() *dsmcclientmodels.ModelsDetailedCou
 }
 
 func (o *CountServerDetailedOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *CountServerDetailedUnauthorized) GetPayload() *dsmcclientmodels.Respons
 }
 
 func (o *CountServerDetailedUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *CountServerDetailedInternalServerError) GetPayload() *dsmcclientmodels.
 }
 
 func (o *CountServerDetailedInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

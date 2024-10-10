@@ -25,6 +25,10 @@ type MatchmakerTicket struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
+	// excludedsessions
+	// Required: true
+	ExcludedSessions []string `json:"ExcludedSessions"`
+
 	// isactive
 	// Required: true
 	IsActive *bool `json:"IsActive"`
@@ -44,6 +48,11 @@ type MatchmakerTicket struct {
 	// matchpool
 	// Required: true
 	MatchPool *string `json:"MatchPool"`
+
+	// matchedat
+	// Required: true
+	// Format: date-time
+	MatchedAt strfmt.DateTime `json:"MatchedAt"`
 
 	// namespace
 	// Required: true
@@ -81,6 +90,9 @@ func (m *MatchmakerTicket) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateExcludedSessions(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateIsActive(formats); err != nil {
 		res = append(res, err)
 	}
@@ -91,6 +103,9 @@ func (m *MatchmakerTicket) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateMatchPool(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateMatchedAt(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateNamespace(formats); err != nil {
@@ -128,6 +143,15 @@ func (m *MatchmakerTicket) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *MatchmakerTicket) validateExcludedSessions(formats strfmt.Registry) error {
+
+	if err := validate.Required("ExcludedSessions", "body", m.ExcludedSessions); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *MatchmakerTicket) validateIsActive(formats strfmt.Registry) error {
 
 	if err := validate.Required("IsActive", "body", m.IsActive); err != nil {
@@ -158,6 +182,19 @@ func (m *MatchmakerTicket) validateIsSinglePlay(formats strfmt.Registry) error {
 func (m *MatchmakerTicket) validateMatchPool(formats strfmt.Registry) error {
 
 	if err := validate.Required("MatchPool", "body", m.MatchPool); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MatchmakerTicket) validateMatchedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("MatchedAt", "body", strfmt.DateTime(m.MatchedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("MatchedAt", "body", "date-time", m.MatchedAt.String(), formats); err != nil {
 		return err
 	}
 

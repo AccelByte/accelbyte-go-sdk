@@ -87,6 +87,7 @@ func (o *UpdateTicketResolutionsOK) GetPayload() *reportingclientmodels.RestapiT
 }
 
 func (o *UpdateTicketResolutionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateTicketResolutionsInternalServerError) GetPayload() *reportingclie
 }
 
 func (o *UpdateTicketResolutionsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

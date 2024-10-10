@@ -96,6 +96,7 @@ func (o *PublicDownloadUserOrderReceiptOK) GetPayload() io.Writer {
 }
 
 func (o *PublicDownloadUserOrderReceiptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -147,6 +148,7 @@ func (o *PublicDownloadUserOrderReceiptNotFound) GetPayload() *platformclientmod
 }
 
 func (o *PublicDownloadUserOrderReceiptNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -200,6 +202,7 @@ func (o *PublicDownloadUserOrderReceiptConflict) GetPayload() *platformclientmod
 }
 
 func (o *PublicDownloadUserOrderReceiptConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

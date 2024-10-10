@@ -105,6 +105,7 @@ func (o *GetGameTemplateOK) GetPayload() []*lobbyclientmodels.ModelTemplateRespo
 }
 
 func (o *GetGameTemplateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -156,6 +157,7 @@ func (o *GetGameTemplateBadRequest) GetPayload() *lobbyclientmodels.RestapiError
 }
 
 func (o *GetGameTemplateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -209,6 +211,7 @@ func (o *GetGameTemplateUnauthorized) GetPayload() *lobbyclientmodels.RestapiErr
 }
 
 func (o *GetGameTemplateUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -262,6 +265,7 @@ func (o *GetGameTemplateForbidden) GetPayload() *lobbyclientmodels.RestapiErrorR
 }
 
 func (o *GetGameTemplateForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -315,6 +319,7 @@ func (o *GetGameTemplateNotFound) GetPayload() *lobbyclientmodels.RestapiErrorRe
 }
 
 func (o *GetGameTemplateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

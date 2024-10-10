@@ -18,8 +18,11 @@ import (
 // swagger:model Google IAP receipt.
 type GoogleIAPReceipt struct {
 
-	// If invoke Google play's Acknowledge after sync & fulfill item
+	// If invoke Google play's Acknowledge after sync & fulfill item, default: false.
 	AutoAck bool `json:"autoAck"`
+
+	// If invoke Google play's Consume after sync & fulfill item, default: false.
+	AutoConsume bool `json:"autoConsume"`
 
 	// language value from language tag, allowed format: en, en-US.<p>Supported language tag : [RFC5646](https://gist.github.com/msikma/8912e62ed866778ff8cd) and [IETF](https://datahub.io/core/language-codes#resource-ietf-language-tags)</p>
 	Language string `json:"language,omitempty"`
@@ -32,14 +35,12 @@ type GoogleIAPReceipt struct {
 	// Required: true
 	PackageName *string `json:"packageName"`
 
-	// Product id (SKU)
-	// Required: true
-	ProductID *string `json:"productId"`
+	// Product id (SKU), required when purchase in-app product, subscription product is optional
+	ProductID string `json:"productId,omitempty"`
 
-	// Purchase time returned from google play
-	// Required: true
+	// Purchase time returned from google play, required when purchase in-app product, subscription product is optional
 	// Format: int64
-	PurchaseTime *int64 `json:"purchaseTime"`
+	PurchaseTime int64 `json:"purchaseTime,omitempty"`
 
 	// Google play purchase token returned from google play
 	// Required: true
@@ -47,6 +48,9 @@ type GoogleIAPReceipt struct {
 
 	// country value from ISO countries
 	Region string `json:"region,omitempty"`
+
+	// is subscription product
+	SubscriptionPurchase bool `json:"subscriptionPurchase"`
 }
 
 // Validate validates this Google IAP receipt
@@ -60,12 +64,6 @@ func (m *GoogleIAPReceipt) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validatePackageName(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateProductID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validatePurchaseTime(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePurchaseToken(formats); err != nil {
@@ -103,24 +101,6 @@ func (m *GoogleIAPReceipt) validateOrderID(formats strfmt.Registry) error {
 func (m *GoogleIAPReceipt) validatePackageName(formats strfmt.Registry) error {
 
 	if err := validate.Required("packageName", "body", m.PackageName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GoogleIAPReceipt) validateProductID(formats strfmt.Registry) error {
-
-	if err := validate.Required("productId", "body", m.ProductID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GoogleIAPReceipt) validatePurchaseTime(formats strfmt.Registry) error {
-
-	if err := validate.Required("purchaseTime", "body", m.PurchaseTime); err != nil {
 		return err
 	}
 

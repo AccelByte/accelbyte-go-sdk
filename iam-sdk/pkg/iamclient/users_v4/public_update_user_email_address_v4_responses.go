@@ -91,6 +91,7 @@ func (o *PublicUpdateUserEmailAddressV4NoContent) Error() string {
 }
 
 func (o *PublicUpdateUserEmailAddressV4NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *PublicUpdateUserEmailAddressV4BadRequest) GetPayload() *iamclientmodels
 }
 
 func (o *PublicUpdateUserEmailAddressV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *PublicUpdateUserEmailAddressV4Unauthorized) GetPayload() *iamclientmode
 }
 
 func (o *PublicUpdateUserEmailAddressV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *PublicUpdateUserEmailAddressV4NotFound) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicUpdateUserEmailAddressV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *PublicUpdateUserEmailAddressV4Conflict) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicUpdateUserEmailAddressV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *PublicUpdateUserEmailAddressV4InternalServerError) GetPayload() *iamcli
 }
 
 func (o *PublicUpdateUserEmailAddressV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

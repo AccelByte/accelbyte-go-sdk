@@ -93,6 +93,7 @@ func (o *SyncOculusConsumableEntitlementsOK) GetPayload() []*platformclientmodel
 }
 
 func (o *SyncOculusConsumableEntitlementsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *SyncOculusConsumableEntitlementsBadRequest) GetPayload() *platformclien
 }
 
 func (o *SyncOculusConsumableEntitlementsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *SyncOculusConsumableEntitlementsNotFound) GetPayload() *platformclientm
 }
 
 func (o *SyncOculusConsumableEntitlementsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

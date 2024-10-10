@@ -87,6 +87,7 @@ func (o *GetRevocationConfigOK) GetPayload() *platformclientmodels.RevocationCon
 }
 
 func (o *GetRevocationConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetRevocationConfigNotFound) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *GetRevocationConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

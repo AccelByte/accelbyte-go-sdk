@@ -99,6 +99,7 @@ func (o *ExportConfigOK) GetPayload() []*chatclientmodels.ModelsConfigExport {
 }
 
 func (o *ExportConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *ExportConfigUnauthorized) GetPayload() *chatclientmodels.ResponseError 
 }
 
 func (o *ExportConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *ExportConfigForbidden) GetPayload() *chatclientmodels.ResponseError {
 }
 
 func (o *ExportConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -256,6 +259,7 @@ func (o *ExportConfigInternalServerError) GetPayload() *chatclientmodels.Respons
 }
 
 func (o *ExportConfigInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

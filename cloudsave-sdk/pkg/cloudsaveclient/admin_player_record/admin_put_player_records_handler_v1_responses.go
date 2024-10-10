@@ -99,6 +99,7 @@ func (o *AdminPutPlayerRecordsHandlerV1OK) GetPayload() []*cloudsaveclientmodels
 }
 
 func (o *AdminPutPlayerRecordsHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *AdminPutPlayerRecordsHandlerV1BadRequest) GetPayload() *cloudsaveclient
 }
 
 func (o *AdminPutPlayerRecordsHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *AdminPutPlayerRecordsHandlerV1Unauthorized) GetPayload() *cloudsaveclie
 }
 
 func (o *AdminPutPlayerRecordsHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -256,6 +259,7 @@ func (o *AdminPutPlayerRecordsHandlerV1Forbidden) GetPayload() *cloudsaveclientm
 }
 
 func (o *AdminPutPlayerRecordsHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -111,6 +111,7 @@ func (o *PublicPartialUpdateUserV3OK) GetPayload() *iamclientmodels.ModelUserRes
 }
 
 func (o *PublicPartialUpdateUserV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *PublicPartialUpdateUserV3BadRequest) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *PublicPartialUpdateUserV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *PublicPartialUpdateUserV3Unauthorized) GetPayload() *iamclientmodels.Re
 }
 
 func (o *PublicPartialUpdateUserV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -240,7 +243,7 @@ func NewPublicPartialUpdateUserV3Forbidden() *PublicPartialUpdateUserV3Forbidden
 
 /*PublicPartialUpdateUserV3Forbidden handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20003</td><td>forbidden access</td></tr><tr><td>10213</td><td>country is blocked</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10213</td><td>country is blocked</td></tr><tr><td>10235</td><td>date of birth not allowed to update</td></tr><tr><td>10236</td><td>username not allowed to update</td></tr><tr><td>10237</td><td>display name not allowed to update</td></tr><tr><td>10238</td><td>country not allowed to update</td></tr></table>
 */
 type PublicPartialUpdateUserV3Forbidden struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -270,6 +273,7 @@ func (o *PublicPartialUpdateUserV3Forbidden) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *PublicPartialUpdateUserV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *PublicPartialUpdateUserV3Conflict) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *PublicPartialUpdateUserV3Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *PublicPartialUpdateUserV3InternalServerError) GetPayload() *iamclientmo
 }
 
 func (o *PublicPartialUpdateUserV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

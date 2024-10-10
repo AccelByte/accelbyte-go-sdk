@@ -40,7 +40,7 @@ func (o *QueryEntitlements1Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/entitlements/byItemIds returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/entitlements returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -58,7 +58,7 @@ type QueryEntitlements1OK struct {
 }
 
 func (o *QueryEntitlements1OK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/byItemIds][%d] queryEntitlements1OK  %+v", 200, o.ToJSONString())
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements][%d] queryEntitlements1OK  %+v", 200, o.ToJSONString())
 }
 
 func (o *QueryEntitlements1OK) ToJSONString() string {
@@ -81,6 +81,7 @@ func (o *QueryEntitlements1OK) GetPayload() *platformclientmodels.EntitlementPag
 }
 
 func (o *QueryEntitlements1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

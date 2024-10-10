@@ -24,6 +24,14 @@ type LogconfigConfiguration struct {
 	// Enum: ['debug', 'error', 'fatal', 'info', 'panic', 'trace', 'warning']
 	LogLevel string `json:"logLevel,omitempty"`
 
+	// logleveldb
+	// Enum: ['debug', 'error', 'fatal', 'info', 'panic', 'trace', 'warning']
+	LogLevelDB string `json:"logLevelDB,omitempty"`
+
+	// slowquerythreshold
+	// Format: int64
+	SlowQueryThreshold int64 `json:"slowQueryThreshold,omitempty"`
+
 	// socketlogenabled
 	SocketLogEnabled bool `json:"socketLogEnabled"`
 }
@@ -77,6 +85,50 @@ const (
 // prop value enum
 func (m *LogconfigConfiguration) validateLogLevelEnum(path, location string, value string) error {
 	if err := validate.EnumCase(path, location, value, logconfigConfigurationTypeLogLevelPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+var logconfigConfigurationTypeLogLevelDBPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DEBUG", "ERROR", "FATAL", "INFO", "PANIC", "TRACE", "WARNING"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		logconfigConfigurationTypeLogLevelDBPropEnum = append(logconfigConfigurationTypeLogLevelDBPropEnum, v)
+	}
+}
+
+const (
+
+	// LogconfigConfigurationLogLevelDBDEBUG captures enum value "DEBUG"
+	LogconfigConfigurationLogLevelDBDEBUG string = "DEBUG"
+
+	// LogconfigConfigurationLogLevelDBERROR captures enum value "ERROR"
+	LogconfigConfigurationLogLevelDBERROR string = "ERROR"
+
+	// LogconfigConfigurationLogLevelDBFATAL captures enum value "FATAL"
+	LogconfigConfigurationLogLevelDBFATAL string = "FATAL"
+
+	// LogconfigConfigurationLogLevelDBINFO captures enum value "INFO"
+	LogconfigConfigurationLogLevelDBINFO string = "INFO"
+
+	// LogconfigConfigurationLogLevelDBPANIC captures enum value "PANIC"
+	LogconfigConfigurationLogLevelDBPANIC string = "PANIC"
+
+	// LogconfigConfigurationLogLevelDBTRACE captures enum value "TRACE"
+	LogconfigConfigurationLogLevelDBTRACE string = "TRACE"
+
+	// LogconfigConfigurationLogLevelDBWARNING captures enum value "WARNING"
+	LogconfigConfigurationLogLevelDBWARNING string = "WARNING"
+)
+
+// prop value enum
+func (m *LogconfigConfiguration) validateLogLevelDBEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, logconfigConfigurationTypeLogLevelDBPropEnum, true); err != nil {
 		return err
 	}
 	return nil

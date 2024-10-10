@@ -93,6 +93,7 @@ func (o *GetReasonGroupOK) GetPayload() *reportingclientmodels.RestapiReasonGrou
 }
 
 func (o *GetReasonGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetReasonGroupNotFound) GetPayload() *reportingclientmodels.RestapiErro
 }
 
 func (o *GetReasonGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetReasonGroupInternalServerError) GetPayload() *reportingclientmodels.
 }
 
 func (o *GetReasonGroupInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

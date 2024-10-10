@@ -93,6 +93,7 @@ func (o *AdminGetConfigValueV3OK) GetPayload() *iamclientmodels.ModelConfigValue
 }
 
 func (o *AdminGetConfigValueV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminGetConfigValueV3BadRequest) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *AdminGetConfigValueV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminGetConfigValueV3InternalServerError) GetPayload() *iamclientmodels
 }
 
 func (o *AdminGetConfigValueV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

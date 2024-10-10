@@ -99,6 +99,7 @@ func (o *FulfillRewardsV2OK) GetPayload() *platformclientmodels.FulfillmentResul
 }
 
 func (o *FulfillRewardsV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *FulfillRewardsV2BadRequest) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *FulfillRewardsV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *FulfillRewardsV2NotFound) GetPayload() *platformclientmodels.ErrorEntit
 }
 
 func (o *FulfillRewardsV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *FulfillRewardsV2Conflict) GetPayload() *platformclientmodels.ErrorEntit
 }
 
 func (o *FulfillRewardsV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

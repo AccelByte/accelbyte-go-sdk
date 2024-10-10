@@ -85,6 +85,7 @@ func (o *PublicPlatformUnlinkV3NoContent) Error() string {
 }
 
 func (o *PublicPlatformUnlinkV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *PublicPlatformUnlinkV3BadRequest) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *PublicPlatformUnlinkV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *PublicPlatformUnlinkV3Unauthorized) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *PublicPlatformUnlinkV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *PublicPlatformUnlinkV3NotFound) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *PublicPlatformUnlinkV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *PublicPlatformUnlinkV3InternalServerError) GetPayload() *iamclientmodel
 }
 
 func (o *PublicPlatformUnlinkV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

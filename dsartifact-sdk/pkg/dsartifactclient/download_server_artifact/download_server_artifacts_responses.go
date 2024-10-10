@@ -73,6 +73,7 @@ func (o *DownloadServerArtifactsOK) Error() string {
 }
 
 func (o *DownloadServerArtifactsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *DownloadServerArtifactsNotFound) GetPayload() *dsartifactclientmodels.R
 }
 
 func (o *DownloadServerArtifactsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *DownloadServerArtifactsInternalServerError) GetPayload() *dsartifactcli
 }
 
 func (o *DownloadServerArtifactsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

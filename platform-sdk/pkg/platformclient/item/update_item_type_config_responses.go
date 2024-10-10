@@ -99,6 +99,7 @@ func (o *UpdateItemTypeConfigOK) GetPayload() *platformclientmodels.ItemTypeConf
 }
 
 func (o *UpdateItemTypeConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *UpdateItemTypeConfigNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *UpdateItemTypeConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *UpdateItemTypeConfigConflict) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *UpdateItemTypeConfigConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *UpdateItemTypeConfigUnprocessableEntity) GetPayload() *platformclientmo
 }
 
 func (o *UpdateItemTypeConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -117,6 +117,7 @@ func (o *AdminListUsersStatItemsOK) GetPayload() []*socialclientmodels.ADTOObjec
 }
 
 func (o *AdminListUsersStatItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -168,6 +169,7 @@ func (o *AdminListUsersStatItemsBadRequest) GetPayload() *socialclientmodels.Err
 }
 
 func (o *AdminListUsersStatItemsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -221,6 +223,7 @@ func (o *AdminListUsersStatItemsUnauthorized) GetPayload() *socialclientmodels.E
 }
 
 func (o *AdminListUsersStatItemsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -274,6 +277,7 @@ func (o *AdminListUsersStatItemsForbidden) GetPayload() *socialclientmodels.Erro
 }
 
 func (o *AdminListUsersStatItemsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -327,6 +331,7 @@ func (o *AdminListUsersStatItemsNotFound) GetPayload() *socialclientmodels.Error
 }
 
 func (o *AdminListUsersStatItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -380,6 +385,7 @@ func (o *AdminListUsersStatItemsUnprocessableEntity) GetPayload() *socialclientm
 }
 
 func (o *AdminListUsersStatItemsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -433,6 +439,7 @@ func (o *AdminListUsersStatItemsInternalServerError) GetPayload() *socialclientm
 }
 
 func (o *AdminListUsersStatItemsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

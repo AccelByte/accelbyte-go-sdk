@@ -105,6 +105,7 @@ func (o *GetGlobalStatItemByStatCodeOK) GetPayload() *socialclientmodels.GlobalS
 }
 
 func (o *GetGlobalStatItemByStatCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *GetGlobalStatItemByStatCodeUnauthorized) GetPayload() *socialclientmode
 }
 
 func (o *GetGlobalStatItemByStatCodeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *GetGlobalStatItemByStatCodeForbidden) GetPayload() *socialclientmodels.
 }
 
 func (o *GetGlobalStatItemByStatCodeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *GetGlobalStatItemByStatCodeNotFound) GetPayload() *socialclientmodels.E
 }
 
 func (o *GetGlobalStatItemByStatCodeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *GetGlobalStatItemByStatCodeInternalServerError) GetPayload() *socialcli
 }
 
 func (o *GetGlobalStatItemByStatCodeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

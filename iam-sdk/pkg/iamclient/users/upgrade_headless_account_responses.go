@@ -99,6 +99,7 @@ func (o *UpgradeHeadlessAccountOK) GetPayload() *iamclientmodels.ModelUserRespon
 }
 
 func (o *UpgradeHeadlessAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *UpgradeHeadlessAccountUnauthorized) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *UpgradeHeadlessAccountUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *UpgradeHeadlessAccountForbidden) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *UpgradeHeadlessAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -238,6 +241,7 @@ func (o *UpgradeHeadlessAccountConflict) Error() string {
 }
 
 func (o *UpgradeHeadlessAccountConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

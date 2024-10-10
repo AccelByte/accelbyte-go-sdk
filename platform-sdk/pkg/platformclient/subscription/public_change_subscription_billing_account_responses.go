@@ -99,6 +99,7 @@ func (o *PublicChangeSubscriptionBillingAccountOK) GetPayload() *platformclientm
 }
 
 func (o *PublicChangeSubscriptionBillingAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicChangeSubscriptionBillingAccountBadRequest) GetPayload() *platfor
 }
 
 func (o *PublicChangeSubscriptionBillingAccountBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicChangeSubscriptionBillingAccountNotFound) GetPayload() *platformc
 }
 
 func (o *PublicChangeSubscriptionBillingAccountNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicChangeSubscriptionBillingAccountConflict) GetPayload() *platformc
 }
 
 func (o *PublicChangeSubscriptionBillingAccountConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

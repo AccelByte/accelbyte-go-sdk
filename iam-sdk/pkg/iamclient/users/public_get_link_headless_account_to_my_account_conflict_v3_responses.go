@@ -105,6 +105,7 @@ func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3OK) GetPayload() *iamc
 }
 
 func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest) GetPayload
 }
 
 func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized) GetPaylo
 }
 
 func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden) GetPayload(
 }
 
 func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError) G
 }
 
 func (o *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -1,3 +1,39 @@
+<a name="v0.74.0"></a>
+## [v0.74.0]
+### chore
+- **:** remove event log integration test
+- **ws:** set connect calls to reconnect: false
+- **ws:** add method for locking and unlocking
+- **:** remove event log
+- **docs:** add player record cloudsave integration test
+- **integration:** add player record cloudsave test
+- **integration:** update game record cloudsave test
+- **docs:** add update game record cloudsave integration test
+### feat
+- **ws:** add WithScheme WSConnectionOption
+- **ws:** add on status changed callback
+### fix
+- **ws:** remove hard-coded ws scheme
+- **:** remove unnecessary locks
+- **ws:** clean up goroutines
+- **ws:** fix lint errors
+- **lobby:** remove auth token hard requirement
+- **core:** add pointer in token conversion websocket
+### test
+- **ws:** update tests that use ws mock server
+- **:** update makefile to use standalone ws mock server
+- **:** update tests to use standalone ws mock server
+- **ws:** update status assertion
+- **:** update tests to use standalone ws mock server
+- **integration:** add lobby scheme
+- **integration:** add match2 option's name
+- **integration:** remove deprecated services
+### ci
+- **:** disable lint for test for now
+### docs
+- **common use cases:** remove deprecated services
+
+
 <a name="v0.73.0"></a>
 ## [v0.73.0]
 ### feat

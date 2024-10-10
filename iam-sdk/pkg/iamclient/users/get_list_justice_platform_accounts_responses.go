@@ -93,6 +93,7 @@ func (o *GetListJusticePlatformAccountsOK) GetPayload() []*iamclientmodels.Model
 }
 
 func (o *GetListJusticePlatformAccountsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *GetListJusticePlatformAccountsBadRequest) GetPayload() *iamclientmodels
 }
 
 func (o *GetListJusticePlatformAccountsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -177,6 +179,7 @@ func (o *GetListJusticePlatformAccountsNotFound) Error() string {
 }
 
 func (o *GetListJusticePlatformAccountsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -97,6 +97,7 @@ func (o *PublicPlatformLinkV2NoContent) Error() string {
 }
 
 func (o *PublicPlatformLinkV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -123,6 +124,7 @@ func (o *PublicPlatformLinkV2BadRequest) Error() string {
 }
 
 func (o *PublicPlatformLinkV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -169,6 +171,7 @@ func (o *PublicPlatformLinkV2Unauthorized) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *PublicPlatformLinkV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -222,6 +225,7 @@ func (o *PublicPlatformLinkV2Forbidden) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *PublicPlatformLinkV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -255,6 +259,7 @@ func (o *PublicPlatformLinkV2NotFound) Error() string {
 }
 
 func (o *PublicPlatformLinkV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -281,6 +286,7 @@ func (o *PublicPlatformLinkV2Conflict) Error() string {
 }
 
 func (o *PublicPlatformLinkV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -307,6 +313,7 @@ func (o *PublicPlatformLinkV2InternalServerError) Error() string {
 }
 
 func (o *PublicPlatformLinkV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

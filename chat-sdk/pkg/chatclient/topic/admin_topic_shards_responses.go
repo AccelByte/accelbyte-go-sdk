@@ -105,6 +105,7 @@ func (o *AdminTopicShardsOK) GetPayload() []string {
 }
 
 func (o *AdminTopicShardsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -156,6 +157,7 @@ func (o *AdminTopicShardsBadRequest) GetPayload() *chatclientmodels.RestapiError
 }
 
 func (o *AdminTopicShardsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -209,6 +211,7 @@ func (o *AdminTopicShardsUnauthorized) GetPayload() *chatclientmodels.RestapiErr
 }
 
 func (o *AdminTopicShardsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -262,6 +265,7 @@ func (o *AdminTopicShardsForbidden) GetPayload() *chatclientmodels.RestapiErrorR
 }
 
 func (o *AdminTopicShardsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -315,6 +319,7 @@ func (o *AdminTopicShardsInternalServerError) GetPayload() *chatclientmodels.Res
 }
 
 func (o *AdminTopicShardsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *GrantUserTierOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary
 }
 
 func (o *GrantUserTierOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GrantUserTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEnti
 }
 
 func (o *GrantUserTierBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GrantUserTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity
 }
 
 func (o *GrantUserTierNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

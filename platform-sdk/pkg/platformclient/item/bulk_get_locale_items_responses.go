@@ -87,6 +87,7 @@ func (o *BulkGetLocaleItemsOK) GetPayload() []*platformclientmodels.ItemInfo {
 }
 
 func (o *BulkGetLocaleItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *BulkGetLocaleItemsNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *BulkGetLocaleItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

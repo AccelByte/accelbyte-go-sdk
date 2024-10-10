@@ -99,6 +99,7 @@ func (o *AddDownloadCountOK) GetPayload() *ugcclientmodels.ModelsAddDownloadCoun
 }
 
 func (o *AddDownloadCountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AddDownloadCountUnauthorized) GetPayload() *ugcclientmodels.ResponseErr
 }
 
 func (o *AddDownloadCountUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AddDownloadCountNotFound) GetPayload() *ugcclientmodels.ResponseError {
 }
 
 func (o *AddDownloadCountNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AddDownloadCountInternalServerError) GetPayload() *ugcclientmodels.Resp
 }
 
 func (o *AddDownloadCountInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

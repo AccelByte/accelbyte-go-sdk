@@ -93,6 +93,7 @@ func (o *EnvironmentVariableListOK) GetPayload() *match2clientmodels.APIListEnvi
 }
 
 func (o *EnvironmentVariableListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *EnvironmentVariableListUnauthorized) GetPayload() *match2clientmodels.R
 }
 
 func (o *EnvironmentVariableListUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *EnvironmentVariableListForbidden) GetPayload() *match2clientmodels.Resp
 }
 
 func (o *EnvironmentVariableListForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

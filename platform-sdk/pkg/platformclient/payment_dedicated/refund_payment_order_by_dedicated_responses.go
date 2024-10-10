@@ -105,6 +105,7 @@ func (o *RefundPaymentOrderByDedicatedOK) GetPayload() *platformclientmodels.Pay
 }
 
 func (o *RefundPaymentOrderByDedicatedOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *RefundPaymentOrderByDedicatedNoContent) Error() string {
 }
 
 func (o *RefundPaymentOrderByDedicatedNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *RefundPaymentOrderByDedicatedNotFound) GetPayload() *platformclientmode
 }
 
 func (o *RefundPaymentOrderByDedicatedNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *RefundPaymentOrderByDedicatedConflict) GetPayload() *platformclientmode
 }
 
 func (o *RefundPaymentOrderByDedicatedConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *RefundPaymentOrderByDedicatedUnprocessableEntity) GetPayload() *platfor
 }
 
 func (o *RefundPaymentOrderByDedicatedUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *UpdatePaymentTaxConfigOK) GetPayload() *platformclientmodels.PaymentTax
 }
 
 func (o *UpdatePaymentTaxConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *UpdatePaymentTaxConfigBadRequest) GetPayload() *platformclientmodels.Er
 }
 
 func (o *UpdatePaymentTaxConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *UpdatePaymentTaxConfigUnprocessableEntity) GetPayload() *platformclient
 }
 
 func (o *UpdatePaymentTaxConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -73,6 +73,7 @@ func (o *PublicCreateUserNamespaceSlotCreated) Error() string {
 }
 
 func (o *PublicCreateUserNamespaceSlotCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *PublicCreateUserNamespaceSlotBadRequest) GetPayload() *socialclientmode
 }
 
 func (o *PublicCreateUserNamespaceSlotBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *PublicCreateUserNamespaceSlotConflict) GetPayload() *socialclientmodels
 }
 
 func (o *PublicCreateUserNamespaceSlotConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

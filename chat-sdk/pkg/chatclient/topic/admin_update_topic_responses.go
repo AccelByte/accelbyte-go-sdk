@@ -81,6 +81,7 @@ func (o *AdminUpdateTopicOK) GetPayload() *chatclientmodels.APICreateTopicRespon
 }
 
 func (o *AdminUpdateTopicOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

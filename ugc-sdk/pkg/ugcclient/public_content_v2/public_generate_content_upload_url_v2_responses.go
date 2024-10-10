@@ -111,6 +111,7 @@ func (o *PublicGenerateContentUploadURLV2OK) GetPayload() *ugcclientmodels.Model
 }
 
 func (o *PublicGenerateContentUploadURLV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *PublicGenerateContentUploadURLV2BadRequest) GetPayload() *ugcclientmode
 }
 
 func (o *PublicGenerateContentUploadURLV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *PublicGenerateContentUploadURLV2Unauthorized) GetPayload() *ugcclientmo
 }
 
 func (o *PublicGenerateContentUploadURLV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *PublicGenerateContentUploadURLV2Forbidden) GetPayload() *ugcclientmodel
 }
 
 func (o *PublicGenerateContentUploadURLV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *PublicGenerateContentUploadURLV2NotFound) GetPayload() *ugcclientmodels
 }
 
 func (o *PublicGenerateContentUploadURLV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *PublicGenerateContentUploadURLV2InternalServerError) GetPayload() *ugcc
 }
 
 func (o *PublicGenerateContentUploadURLV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

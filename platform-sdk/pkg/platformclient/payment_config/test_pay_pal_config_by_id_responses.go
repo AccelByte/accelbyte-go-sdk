@@ -87,6 +87,7 @@ func (o *TestPayPalConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
 }
 
 func (o *TestPayPalConfigByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *TestPayPalConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *TestPayPalConfigByIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *PublicGetCountryAgeRestrictionV3OK) GetPayload() *iamclientmodels.Model
 }
 
 func (o *PublicGetCountryAgeRestrictionV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *PublicGetCountryAgeRestrictionV3Unauthorized) GetPayload() *iamclientmo
 }
 
 func (o *PublicGetCountryAgeRestrictionV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -179,6 +181,7 @@ func (o *PublicGetCountryAgeRestrictionV3NotFound) Error() string {
 }
 
 func (o *PublicGetCountryAgeRestrictionV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

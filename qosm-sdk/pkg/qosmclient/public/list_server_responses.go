@@ -87,6 +87,7 @@ func (o *ListServerOK) GetPayload() *qosmclientmodels.ModelsListServerResponse {
 }
 
 func (o *ListServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *ListServerInternalServerError) GetPayload() *qosmclientmodels.ResponseE
 }
 
 func (o *ListServerInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -73,6 +73,7 @@ func (o *SyncEpicGameDLCNoContent) Error() string {
 }
 
 func (o *SyncEpicGameDLCNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *SyncEpicGameDLCBadRequest) GetPayload() *platformclientmodels.ErrorEnti
 }
 
 func (o *SyncEpicGameDLCBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *SyncEpicGameDLCNotFound) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *SyncEpicGameDLCNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

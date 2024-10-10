@@ -91,6 +91,7 @@ func (o *PublicUpdatePasswordV2NoContent) Error() string {
 }
 
 func (o *PublicUpdatePasswordV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -117,6 +118,7 @@ func (o *PublicUpdatePasswordV2BadRequest) Error() string {
 }
 
 func (o *PublicUpdatePasswordV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -163,6 +165,7 @@ func (o *PublicUpdatePasswordV2Unauthorized) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *PublicUpdatePasswordV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -216,6 +219,7 @@ func (o *PublicUpdatePasswordV2Forbidden) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *PublicUpdatePasswordV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -249,6 +253,7 @@ func (o *PublicUpdatePasswordV2NotFound) Error() string {
 }
 
 func (o *PublicUpdatePasswordV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -275,6 +280,7 @@ func (o *PublicUpdatePasswordV2InternalServerError) Error() string {
 }
 
 func (o *PublicUpdatePasswordV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

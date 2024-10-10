@@ -73,6 +73,7 @@ func (o *AdminResetServicesConfigurationNoContent) Error() string {
 }
 
 func (o *AdminResetServicesConfigurationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *AdminResetServicesConfigurationUnauthorized) GetPayload() *gdprclientmo
 }
 
 func (o *AdminResetServicesConfigurationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *AdminResetServicesConfigurationInternalServerError) GetPayload() *gdprc
 }
 
 func (o *AdminResetServicesConfigurationInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

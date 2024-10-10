@@ -91,6 +91,7 @@ func (o *PublicDeletePlatformLinkV2NoContent) Error() string {
 }
 
 func (o *PublicDeletePlatformLinkV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -117,6 +118,7 @@ func (o *PublicDeletePlatformLinkV2BadRequest) Error() string {
 }
 
 func (o *PublicDeletePlatformLinkV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -163,6 +165,7 @@ func (o *PublicDeletePlatformLinkV2Unauthorized) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicDeletePlatformLinkV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -216,6 +219,7 @@ func (o *PublicDeletePlatformLinkV2Forbidden) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *PublicDeletePlatformLinkV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -249,6 +253,7 @@ func (o *PublicDeletePlatformLinkV2NotFound) Error() string {
 }
 
 func (o *PublicDeletePlatformLinkV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -275,6 +280,7 @@ func (o *PublicDeletePlatformLinkV2InternalServerError) Error() string {
 }
 
 func (o *PublicDeletePlatformLinkV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

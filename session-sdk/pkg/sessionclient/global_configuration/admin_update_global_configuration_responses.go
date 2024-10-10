@@ -93,6 +93,7 @@ func (o *AdminUpdateGlobalConfigurationOK) GetPayload() *sessionclientmodels.Api
 }
 
 func (o *AdminUpdateGlobalConfigurationOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminUpdateGlobalConfigurationUnauthorized) GetPayload() *sessionclient
 }
 
 func (o *AdminUpdateGlobalConfigurationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminUpdateGlobalConfigurationForbidden) GetPayload() *sessionclientmod
 }
 
 func (o *AdminUpdateGlobalConfigurationForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

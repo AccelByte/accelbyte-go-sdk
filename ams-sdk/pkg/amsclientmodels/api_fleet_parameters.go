@@ -29,7 +29,7 @@ type APIFleetParameters struct {
 
 	// dshostconfiguration
 	// Required: true
-	DsHostConfiguration *APIDSHostConfiguration `json:"dsHostConfiguration"`
+	DsHostConfiguration *APIDSHostConfigurationParameters `json:"dsHostConfiguration"`
 
 	// imagedeploymentprofile
 	// Required: true

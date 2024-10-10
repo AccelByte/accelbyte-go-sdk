@@ -91,6 +91,7 @@ func (o *AdminCreateUserRolesV2NoContent) Error() string {
 }
 
 func (o *AdminCreateUserRolesV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *AdminCreateUserRolesV2BadRequest) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *AdminCreateUserRolesV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *AdminCreateUserRolesV2Unauthorized) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *AdminCreateUserRolesV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *AdminCreateUserRolesV2Forbidden) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *AdminCreateUserRolesV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +280,7 @@ func (o *AdminCreateUserRolesV2NotFound) Error() string {
 }
 
 func (o *AdminCreateUserRolesV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -302,6 +307,7 @@ func (o *AdminCreateUserRolesV2Conflict) Error() string {
 }
 
 func (o *AdminCreateUserRolesV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

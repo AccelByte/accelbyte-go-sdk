@@ -123,6 +123,7 @@ func (o *AdminCreateGoalCreated) GetPayload() *challengeclientmodels.ModelGoalRe
 }
 
 func (o *AdminCreateGoalCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -176,6 +177,7 @@ func (o *AdminCreateGoalBadRequest) GetPayload() *challengeclientmodels.IamError
 }
 
 func (o *AdminCreateGoalBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -229,6 +231,7 @@ func (o *AdminCreateGoalUnauthorized) GetPayload() *challengeclientmodels.IamErr
 }
 
 func (o *AdminCreateGoalUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -282,6 +285,7 @@ func (o *AdminCreateGoalForbidden) GetPayload() *challengeclientmodels.IamErrorR
 }
 
 func (o *AdminCreateGoalForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -335,6 +339,7 @@ func (o *AdminCreateGoalNotFound) GetPayload() *challengeclientmodels.ResponseEr
 }
 
 func (o *AdminCreateGoalNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -388,6 +393,7 @@ func (o *AdminCreateGoalConflict) GetPayload() *challengeclientmodels.ResponseEr
 }
 
 func (o *AdminCreateGoalConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -441,6 +447,7 @@ func (o *AdminCreateGoalUnprocessableEntity) GetPayload() *challengeclientmodels
 }
 
 func (o *AdminCreateGoalUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -494,6 +501,7 @@ func (o *AdminCreateGoalInternalServerError) GetPayload() *challengeclientmodels
 }
 
 func (o *AdminCreateGoalInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

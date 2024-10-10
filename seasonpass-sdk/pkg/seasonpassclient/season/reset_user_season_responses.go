@@ -67,6 +67,7 @@ func (o *ResetUserSeasonNoContent) Error() string {
 }
 
 func (o *ResetUserSeasonNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -113,6 +114,7 @@ func (o *ResetUserSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEn
 }
 
 func (o *ResetUserSeasonBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

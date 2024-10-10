@@ -56,7 +56,7 @@ type ModelGoalResponse struct {
 	// Required: true
 	Rewards []*ModelReward `json:"rewards"`
 
-	// schedule
+	// this field will be deprecated
 	Schedule *ModelGoalSchedule `json:"schedule,omitempty"`
 
 	// tags

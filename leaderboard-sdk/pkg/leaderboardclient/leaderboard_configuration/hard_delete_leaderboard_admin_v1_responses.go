@@ -91,6 +91,7 @@ func (o *HardDeleteLeaderboardAdminV1NoContent) Error() string {
 }
 
 func (o *HardDeleteLeaderboardAdminV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *HardDeleteLeaderboardAdminV1BadRequest) GetPayload() *leaderboardclient
 }
 
 func (o *HardDeleteLeaderboardAdminV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *HardDeleteLeaderboardAdminV1Unauthorized) GetPayload() *leaderboardclie
 }
 
 func (o *HardDeleteLeaderboardAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *HardDeleteLeaderboardAdminV1Forbidden) GetPayload() *leaderboardclientm
 }
 
 func (o *HardDeleteLeaderboardAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *HardDeleteLeaderboardAdminV1NotFound) GetPayload() *leaderboardclientmo
 }
 
 func (o *HardDeleteLeaderboardAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *HardDeleteLeaderboardAdminV1InternalServerError) GetPayload() *leaderbo
 }
 
 func (o *HardDeleteLeaderboardAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *SearchItemsOK) GetPayload() *platformclientmodels.FullItemPagingSlicedR
 }
 
 func (o *SearchItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *SearchItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *SearchItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

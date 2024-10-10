@@ -87,6 +87,7 @@ func (o *GetAvailablePredicateTypesOK) GetPayload() []*platformclientmodels.Avai
 }
 
 func (o *GetAvailablePredicateTypesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *GetAvailablePredicateTypesNotFound) GetPayload() *platformclientmodels.
 }
 
 func (o *GetAvailablePredicateTypesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

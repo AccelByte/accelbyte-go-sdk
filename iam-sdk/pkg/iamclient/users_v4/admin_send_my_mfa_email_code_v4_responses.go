@@ -97,6 +97,7 @@ func (o *AdminSendMyMFAEmailCodeV4NoContent) Error() string {
 }
 
 func (o *AdminSendMyMFAEmailCodeV4NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -143,6 +144,7 @@ func (o *AdminSendMyMFAEmailCodeV4BadRequest) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminSendMyMFAEmailCodeV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -196,6 +198,7 @@ func (o *AdminSendMyMFAEmailCodeV4Unauthorized) GetPayload() *iamclientmodels.Re
 }
 
 func (o *AdminSendMyMFAEmailCodeV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -249,6 +252,7 @@ func (o *AdminSendMyMFAEmailCodeV4Forbidden) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *AdminSendMyMFAEmailCodeV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -302,6 +306,7 @@ func (o *AdminSendMyMFAEmailCodeV4NotFound) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *AdminSendMyMFAEmailCodeV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -355,6 +360,7 @@ func (o *AdminSendMyMFAEmailCodeV4TooManyRequests) GetPayload() *iamclientmodels
 }
 
 func (o *AdminSendMyMFAEmailCodeV4TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -408,6 +414,7 @@ func (o *AdminSendMyMFAEmailCodeV4InternalServerError) GetPayload() *iamclientmo
 }
 
 func (o *AdminSendMyMFAEmailCodeV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

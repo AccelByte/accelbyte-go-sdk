@@ -111,6 +111,7 @@ func (o *AdminUpdateUserInventoriesByInventoryCodeOK) GetPayload() []*inventoryc
 }
 
 func (o *AdminUpdateUserInventoriesByInventoryCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *AdminUpdateUserInventoriesByInventoryCodeBadRequest) GetPayload() *inve
 }
 
 func (o *AdminUpdateUserInventoriesByInventoryCodeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *AdminUpdateUserInventoriesByInventoryCodeUnauthorized) GetPayload() *in
 }
 
 func (o *AdminUpdateUserInventoriesByInventoryCodeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *AdminUpdateUserInventoriesByInventoryCodeForbidden) GetPayload() *inven
 }
 
 func (o *AdminUpdateUserInventoriesByInventoryCodeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *AdminUpdateUserInventoriesByInventoryCodeNotFound) GetPayload() *invent
 }
 
 func (o *AdminUpdateUserInventoriesByInventoryCodeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *AdminUpdateUserInventoriesByInventoryCodeInternalServerError) GetPayloa
 }
 
 func (o *AdminUpdateUserInventoriesByInventoryCodeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

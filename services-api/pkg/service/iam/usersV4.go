@@ -327,6 +327,32 @@ func (aaa *UsersV4Service) AdminDisableUserMFAV4(input *users_v4.AdminDisableUse
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetUserMFAStatusV4Short instead.
+func (aaa *UsersV4Service) AdminGetUserMFAStatusV4(input *users_v4.AdminGetUserMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.AdminGetUserMFAStatusV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminListUserRolesV4Short instead.
 func (aaa *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2282,6 +2308,36 @@ func (aaa *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisab
 	}
 
 	return nil
+}
+
+func (aaa *UsersV4Service) AdminGetUserMFAStatusV4Short(input *users_v4.AdminGetUserMFAStatusV4Params) (*iamclientmodels.ModelUserMFAStatusResponseV4, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.AdminGetUserMFAStatusV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {

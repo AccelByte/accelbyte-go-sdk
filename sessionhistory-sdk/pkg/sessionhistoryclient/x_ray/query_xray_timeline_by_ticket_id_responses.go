@@ -111,6 +111,7 @@ func (o *QueryXrayTimelineByTicketIDOK) GetPayload() *sessionhistoryclientmodels
 }
 
 func (o *QueryXrayTimelineByTicketIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *QueryXrayTimelineByTicketIDBadRequest) GetPayload() *sessionhistoryclie
 }
 
 func (o *QueryXrayTimelineByTicketIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *QueryXrayTimelineByTicketIDUnauthorized) GetPayload() *sessionhistorycl
 }
 
 func (o *QueryXrayTimelineByTicketIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *QueryXrayTimelineByTicketIDForbidden) GetPayload() *sessionhistoryclien
 }
 
 func (o *QueryXrayTimelineByTicketIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *QueryXrayTimelineByTicketIDNotFound) GetPayload() *sessionhistoryclient
 }
 
 func (o *QueryXrayTimelineByTicketIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *QueryXrayTimelineByTicketIDInternalServerError) GetPayload() *sessionhi
 }
 
 func (o *QueryXrayTimelineByTicketIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -7,27 +7,28 @@
 package payment_station
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
-	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // PublicGetQRCodeReader is a Reader for the PublicGetQRCode structure.
 type PublicGetQRCodeReader struct {
 	formats strfmt.Registry
-	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *PublicGetQRCodeReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewPublicGetQRCodeOK(o.writer)
+		result := NewPublicGetQRCodeOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -44,10 +45,8 @@ func (o *PublicGetQRCodeReader) ReadResponse(response runtime.ClientResponse, co
 }
 
 // NewPublicGetQRCodeOK creates a PublicGetQRCodeOK with default headers values
-func NewPublicGetQRCodeOK(writer io.Writer) *PublicGetQRCodeOK {
-	return &PublicGetQRCodeOK{
-		Payload: writer,
-	}
+func NewPublicGetQRCodeOK() *PublicGetQRCodeOK {
+	return &PublicGetQRCodeOK{}
 }
 
 /*PublicGetQRCodeOK handles this case with default header values.
@@ -55,7 +54,7 @@ func NewPublicGetQRCodeOK(writer io.Writer) *PublicGetQRCodeOK {
   Successful operation
 */
 type PublicGetQRCodeOK struct {
-	Payload io.Writer
+	Payload *platformclientmodels.BinarySchema
 }
 
 func (o *PublicGetQRCodeOK) Error() string {
@@ -77,16 +76,27 @@ func (o *PublicGetQRCodeOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicGetQRCodeOK) GetPayload() io.Writer {
+func (o *PublicGetQRCodeOK) GetPayload() *platformclientmodels.BinarySchema {
 	return o.Payload
 }
 
 func (o *PublicGetQRCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-	// handle file responses
-	contentDisposition := response.GetHeader("Content-Disposition")
-	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
-		consumer = runtime.ByteStreamConsumer()
+
+	// Handle the image/png producer with model interface{}
+	if rc, ok := response.Body().(io.ReadCloser); ok {
+		buffer := new(bytes.Buffer)
+		if _, err := io.Copy(buffer, rc); err != nil && err != io.EOF {
+			return err
+		}
+
+		binaryData := platformclientmodels.BinarySchema(buffer.Bytes())
+
+		o.Payload = &binaryData
+
+		return nil
 	}
+
+	o.Payload = new(platformclientmodels.BinarySchema)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

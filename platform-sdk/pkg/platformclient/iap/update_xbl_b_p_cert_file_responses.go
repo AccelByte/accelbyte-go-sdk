@@ -87,6 +87,7 @@ func (o *UpdateXblBPCertFileOK) GetPayload() *platformclientmodels.XblIAPConfigI
 }
 
 func (o *UpdateXblBPCertFileOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateXblBPCertFileBadRequest) GetPayload() *platformclientmodels.Error
 }
 
 func (o *UpdateXblBPCertFileBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

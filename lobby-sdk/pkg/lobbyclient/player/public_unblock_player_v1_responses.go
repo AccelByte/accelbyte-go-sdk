@@ -91,6 +91,7 @@ func (o *PublicUnblockPlayerV1NoContent) Error() string {
 }
 
 func (o *PublicUnblockPlayerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *PublicUnblockPlayerV1BadRequest) GetPayload() *lobbyclientmodels.Restap
 }
 
 func (o *PublicUnblockPlayerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *PublicUnblockPlayerV1Unauthorized) GetPayload() *lobbyclientmodels.Rest
 }
 
 func (o *PublicUnblockPlayerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *PublicUnblockPlayerV1Forbidden) GetPayload() *lobbyclientmodels.Restapi
 }
 
 func (o *PublicUnblockPlayerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *PublicUnblockPlayerV1NotFound) GetPayload() *lobbyclientmodels.RestapiE
 }
 
 func (o *PublicUnblockPlayerV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *PublicUnblockPlayerV1InternalServerError) GetPayload() *lobbyclientmode
 }
 
 func (o *PublicUnblockPlayerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

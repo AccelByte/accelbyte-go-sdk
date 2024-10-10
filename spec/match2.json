@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.26.1"
+    "version": "2.27.0"
   },
   "schemes": [
     "https"
@@ -325,7 +325,7 @@
         "x-security": [
           {
             "userPermissions": [
-              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CONFIG [READ]"
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CONFIG [UPDATE]"
             ]
           }
         ]
@@ -718,7 +718,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Accept backfill proposal.\n",
+        "description": " \tAccept backfill proposal.\nField **acceptedTicketIds** can be used to accept specific tickets within a backfill proposal. If the ticketIDs are not mentioned in this field, those tickets will be rejected and reactivated for future proposals. \nIf **acceptedTicketIds** is nil or not specified, then all tickets in the proposal will be accepted.\n",
         "operationId": "AcceptBackfill",
         "parameters": [
           {
@@ -1871,7 +1871,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;all\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute \u0026lt;code\u0026gt;cross_platform\u0026lt;/code\u0026gt; will be populated from backend\n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;all\u0026#34;.\n\t```\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {\u0026#34;name\u0026#34;: \u0026#34;cross_platform\u0026#34;, \u0026#34;type\u0026#34;: \u0026#34;all\u0026#34;}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n\t```\n2. Cross Platform can be disabled from the matchpool configuration \u0026lt;code\u0026gt;crossplay_disabled=true\u0026lt;/code\u0026gt;\n3. When matchpool \u0026lt;code\u0026gt;crossplay_disabled=false\u0026lt;/code\u0026gt; \n\t* request attribute cross_platform is empty **[Recommended]**:\n\t\t* Matchmaking will consider Party leader \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference or Session attribute \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference.\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=true\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=false\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be set to user\u0026#39;s currentPlatform\n\t* request attribute cross_platform is not empty **[Not Recommended]**:\n\t\t* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]\n\t\t* Multiple cross_platform values is considered to be crossplay enabled\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n",
+        "description": "Creates a new request for matchmaking.\n\nCross Platform: Allow player to play game with \u0026#34;all\u0026#34; registered platforms.\n1. Cross Platform can be enabled through session service or create match ticket. \n\ta. via ticket: specify several cross_platform on create match ticket attributes. **[DEPRECATED]** client should not send from attribute \u0026lt;code\u0026gt;cross_platform\u0026lt;/code\u0026gt; will be populated from backend\n\t   This value will override player attributes in session service. e.g. cross_platform:[xbox,psn,steam]\n\tb. via session service: set player/party cross_platform attributes.\n\tc. Enable match options ruleset with name cross_platform and type \u0026#34;all\u0026#34;.\n\t```\n\t{\n\t\t\u0026#34;name\u0026#34;: \u0026#34;co-op\u0026#34;,\n\t\t\u0026#34;data\u0026#34;: {\n\t\t  \u0026#34;alliance\u0026#34;: {\n\t\t\t\u0026#34;min_number\u0026#34;: 1,\n\t\t\t\u0026#34;max_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_min_number\u0026#34;: 1,\n\t\t\t\u0026#34;player_max_number\u0026#34;: 4\n\t\t  }, \n\t\t  \u0026#34;match_options\u0026#34;: {\n\t\t\t\u0026#34;options\u0026#34;: [\n\t\t\t  {\u0026#34;name\u0026#34;: \u0026#34;cross_platform\u0026#34;, \u0026#34;type\u0026#34;: \u0026#34;all\u0026#34;}\n\t\t\t]\n\t\t  }\n\t\t}\n\t}\n\t```\n2. Cross Platform can be disabled from the matchpool configuration \u0026lt;code\u0026gt;crossplay_disabled=true\u0026lt;/code\u0026gt;\n3. When matchpool \u0026lt;code\u0026gt;crossplay_disabled=false\u0026lt;/code\u0026gt; \n\t* request attribute cross_platform is empty **[Recommended]**:\n\t\t* Matchmaking will consider Party leader \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference or Session attribute \u0026lt;code\u0026gt;crossplayEnabled\u0026lt;/code\u0026gt; preference.\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=true\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be populated from [active login methods](/iam/apidocs/#/Third%20Party%20Credential/RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3) otherwise it will set to leader current platform\n\t\t* When \u0026lt;code\u0026gt;crossplayEnabled=false\u0026lt;/code\u0026gt; \u0026lt;code\u0026gt;cross_platforms\u0026lt;/code\u0026gt; attributes will be set to user\u0026#39;s currentPlatform\n\t* request attribute cross_platform is not empty **[Not Recommended]**:\n\t\t* Cross Platform can be disabled with specify only ONE cross_platform. Current matchmaking use this behavior. e.g. cross_platform:[xbox]\n\t\t* Multiple cross_platform values is considered to be crossplay enabled\n4. This behavior only works for Default Matchmaker. Custom matchmaker (custom gRPC matchmaker) need to consider this on its own implementation.\n\nExcludedSessions: allow player to list out game sessions that they want to avoid matching, for example a match that they\u0026#39;ve recently left or get kicked out from.\n",
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
@@ -2597,6 +2597,84 @@
         ]
       }
     },
+    "/match2/v1/public/namespaces/{namespace}/match-pools/{pool}/metrics/player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Public get player metric for a specific match pool\n",
+        "operationId": "PublicGetPlayerMetric",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Name of the match pool",
+            "in": "path",
+            "name": "pool",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/api.PlayerMetricRecord"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get metrics player for a specific match pool",
+        "tags": [
+          "Match-Pools",
+          "public"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/match2/version": {
       "get": {
         "operationId": "versionCheckHandler",
@@ -2617,6 +2695,12 @@
   "definitions": {
     "api.BackFillAcceptRequest": {
       "properties": {
+        "acceptedTicketIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "proposalId": {
           "type": "string"
         },
@@ -3012,6 +3096,12 @@
       "properties": {
         "attributes": {
           "type": "object"
+        },
+        "excludedSessions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "latencies": {
           "additionalProperties": {
@@ -3446,6 +3536,12 @@
           "type": "string",
           "x-nullable": false
         },
+        "ExcludedSessions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "IsActive": {
           "type": "boolean",
           "x-omitempty": false
@@ -3466,6 +3562,11 @@
         },
         "MatchPool": {
           "type": "string"
+        },
+        "MatchedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "Namespace": {
           "type": "string"
@@ -3494,11 +3595,13 @@
       },
       "required": [
         "CreatedAt",
+        "ExcludedSessions",
         "IsActive",
         "IsPivot",
         "IsSinglePlay",
         "Latencies",
         "MatchPool",
+        "MatchedAt",
         "Namespace",
         "PartySessionID",
         "Players",
@@ -3860,9 +3963,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T06:51:58+00:00",
-    "gitHash": "b805375c1276f8ef55151cf8149e2228509ffe0e",
-    "version": "2.26.1",
-    "version-roles-seeding": "1.2.36"
+    "buildDate": "2024-10-02T03:19:36+00:00",
+    "gitHash": "2a9339b9b8a0742cba67fa92ab4502f927b1cd3e",
+    "version": "2.27.0",
+    "version-roles-seeding": "1.2.75"
   }
 }

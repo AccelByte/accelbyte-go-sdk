@@ -73,6 +73,7 @@ func (o *AdminAnonymizeUserAchievementNoContent) Error() string {
 }
 
 func (o *AdminAnonymizeUserAchievementNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *AdminAnonymizeUserAchievementUnauthorized) GetPayload() *achievementcli
 }
 
 func (o *AdminAnonymizeUserAchievementUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *AdminAnonymizeUserAchievementInternalServerError) GetPayload() *achieve
 }
 
 func (o *AdminAnonymizeUserAchievementInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

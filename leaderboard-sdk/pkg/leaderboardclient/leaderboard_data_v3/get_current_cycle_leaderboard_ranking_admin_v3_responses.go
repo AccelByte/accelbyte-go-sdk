@@ -111,6 +111,7 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3OK) GetPayload() *leaderboardcl
 }
 
 func (o *GetCurrentCycleLeaderboardRankingAdminV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3BadRequest) GetPayload() *leade
 }
 
 func (o *GetCurrentCycleLeaderboardRankingAdminV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3Unauthorized) GetPayload() *lea
 }
 
 func (o *GetCurrentCycleLeaderboardRankingAdminV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3Forbidden) GetPayload() *leader
 }
 
 func (o *GetCurrentCycleLeaderboardRankingAdminV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3NotFound) GetPayload() *leaderb
 }
 
 func (o *GetCurrentCycleLeaderboardRankingAdminV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3InternalServerError) GetPayload
 }
 
 func (o *GetCurrentCycleLeaderboardRankingAdminV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

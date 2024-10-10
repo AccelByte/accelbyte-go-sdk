@@ -99,6 +99,7 @@ func (o *ListAllTerminatedServersOK) GetPayload() *dslogmanagerclientmodels.Mode
 }
 
 func (o *ListAllTerminatedServersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *ListAllTerminatedServersBadRequest) GetPayload() *dslogmanagerclientmod
 }
 
 func (o *ListAllTerminatedServersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *ListAllTerminatedServersUnauthorized) GetPayload() *dslogmanagerclientm
 }
 
 func (o *ListAllTerminatedServersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *ListAllTerminatedServersInternalServerError) GetPayload() *dslogmanager
 }
 
 func (o *ListAllTerminatedServersInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

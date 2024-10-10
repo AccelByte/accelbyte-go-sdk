@@ -93,6 +93,7 @@ func (o *RevokeItemsOK) GetPayload() *platformclientmodels.RevokeFulfillmentV2Re
 }
 
 func (o *RevokeItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *RevokeItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *RevokeItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *RevokeItemsConflict) GetPayload() *platformclientmodels.RevokeFulfillme
 }
 
 func (o *RevokeItemsConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

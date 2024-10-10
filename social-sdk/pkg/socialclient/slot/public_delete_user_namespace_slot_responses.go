@@ -67,6 +67,7 @@ func (o *PublicDeleteUserNamespaceSlotNoContent) Error() string {
 }
 
 func (o *PublicDeleteUserNamespaceSlotNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -113,6 +114,7 @@ func (o *PublicDeleteUserNamespaceSlotNotFound) GetPayload() *socialclientmodels
 }
 
 func (o *PublicDeleteUserNamespaceSlotNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -111,6 +111,7 @@ func (o *AdminGetPlatformAccountClosureClientOK) GetPayload() *gdprclientmodels.
 }
 
 func (o *AdminGetPlatformAccountClosureClientOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminGetPlatformAccountClosureClientBadRequest) GetPayload() *gdprclien
 }
 
 func (o *AdminGetPlatformAccountClosureClientBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminGetPlatformAccountClosureClientUnauthorized) GetPayload() *gdprcli
 }
 
 func (o *AdminGetPlatformAccountClosureClientUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminGetPlatformAccountClosureClientForbidden) GetPayload() *gdprclient
 }
 
 func (o *AdminGetPlatformAccountClosureClientForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminGetPlatformAccountClosureClientNotFound) GetPayload() *gdprclientm
 }
 
 func (o *AdminGetPlatformAccountClosureClientNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminGetPlatformAccountClosureClientInternalServerError) GetPayload() *
 }
 
 func (o *AdminGetPlatformAccountClosureClientInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

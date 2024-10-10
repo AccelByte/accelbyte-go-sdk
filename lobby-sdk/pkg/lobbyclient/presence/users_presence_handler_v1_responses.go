@@ -99,6 +99,7 @@ func (o *UsersPresenceHandlerV1OK) GetPayload() *lobbyclientmodels.HandlersGetUs
 }
 
 func (o *UsersPresenceHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *UsersPresenceHandlerV1BadRequest) GetPayload() *lobbyclientmodels.Resta
 }
 
 func (o *UsersPresenceHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *UsersPresenceHandlerV1Unauthorized) GetPayload() *lobbyclientmodels.Res
 }
 
 func (o *UsersPresenceHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *UsersPresenceHandlerV1InternalServerError) GetPayload() *lobbyclientmod
 }
 
 func (o *UsersPresenceHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

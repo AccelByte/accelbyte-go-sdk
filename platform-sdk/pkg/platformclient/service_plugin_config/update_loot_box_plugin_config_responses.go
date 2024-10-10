@@ -87,6 +87,7 @@ func (o *UpdateLootBoxPluginConfigOK) GetPayload() *platformclientmodels.LootBox
 }
 
 func (o *UpdateLootBoxPluginConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateLootBoxPluginConfigUnprocessableEntity) GetPayload() *platformcli
 }
 
 func (o *UpdateLootBoxPluginConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

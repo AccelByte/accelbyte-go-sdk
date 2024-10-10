@@ -99,6 +99,7 @@ func (o *ImageLimitClientOK) GetPayload() *dsmcclientmodels.ModelsGetImageLimitR
 }
 
 func (o *ImageLimitClientOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *ImageLimitClientBadRequest) GetPayload() *dsmcclientmodels.ResponseErro
 }
 
 func (o *ImageLimitClientBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *ImageLimitClientUnauthorized) GetPayload() *dsmcclientmodels.ResponseEr
 }
 
 func (o *ImageLimitClientUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *ImageLimitClientInternalServerError) GetPayload() *dsmcclientmodels.Res
 }
 
 func (o *ImageLimitClientInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *TokenGrantOK) GetPayload() *iamclientmodels.OauthmodelTokenResponse {
 }
 
 func (o *TokenGrantOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *TokenGrantBadRequest) GetPayload() *iamclientmodels.OauthmodelErrorResp
 }
 
 func (o *TokenGrantBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *TokenGrantUnauthorized) GetPayload() *iamclientmodels.OauthmodelErrorRe
 }
 
 func (o *TokenGrantUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

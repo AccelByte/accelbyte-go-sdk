@@ -19,40 +19,6 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Get the enum in QueryEntitlementsParams
-const (
-	QueryEntitlementsDEMOConstant     = "DEMO"
-	QueryEntitlementsDLCConstant      = "DLC"
-	QueryEntitlementsGAMEConstant     = "GAME"
-	QueryEntitlementsSOFTWAREConstant = "SOFTWARE"
-)
-
-// Get the enum in QueryEntitlementsParams
-const (
-	QueryEntitlementsAPPConstant          = "APP"
-	QueryEntitlementsCODEConstant         = "CODE"
-	QueryEntitlementsENTITLEMENTConstant  = "ENTITLEMENT"
-	QueryEntitlementsLOOTBOXConstant      = "LOOTBOX"
-	QueryEntitlementsMEDIAConstant        = "MEDIA"
-	QueryEntitlementsOPTIONBOXConstant    = "OPTIONBOX"
-	QueryEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
-)
-
-// Get the enum in QueryEntitlementsParams
-const (
-	QueryEntitlementsEpicConstant        = "Epic"
-	QueryEntitlementsGooglePlayConstant  = "GooglePlay"
-	QueryEntitlementsIOSConstant         = "IOS"
-	QueryEntitlementsNintendoConstant    = "Nintendo"
-	QueryEntitlementsOculusConstant      = "Oculus"
-	QueryEntitlementsOtherConstant       = "Other"
-	QueryEntitlementsPlaystationConstant = "Playstation"
-	QueryEntitlementsSteamConstant       = "Steam"
-	QueryEntitlementsSystemConstant      = "System"
-	QueryEntitlementsTwitchConstant      = "Twitch"
-	QueryEntitlementsXboxConstant        = "Xbox"
-)
-
 // NewQueryEntitlementsParams creates a new QueryEntitlementsParams object
 // with the default values initialized.
 func NewQueryEntitlementsParams() *QueryEntitlementsParams {
@@ -131,22 +97,12 @@ type QueryEntitlementsParams struct {
 	Namespace string
 	/*ActiveOnly*/
 	ActiveOnly *bool
-	/*AppType*/
-	AppType *string
-	/*EntitlementClazz*/
-	EntitlementClazz *string
-	/*EntitlementName*/
-	EntitlementName *string
-	/*ItemID*/
-	ItemID []string
+	/*ItemIds*/
+	ItemIds []string
 	/*Limit*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32
-	/*Origin*/
-	Origin *string
-	/*UserID*/
-	UserID *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -235,48 +191,15 @@ func (o *QueryEntitlementsParams) SetActiveOnly(activeOnly *bool) {
 	o.ActiveOnly = activeOnly
 }
 
-// WithAppType adds the appType to the query entitlements params
-func (o *QueryEntitlementsParams) WithAppType(appType *string) *QueryEntitlementsParams {
-	o.SetAppType(appType)
+// WithItemIds adds the itemIds to the query entitlements params
+func (o *QueryEntitlementsParams) WithItemIds(itemIds []string) *QueryEntitlementsParams {
+	o.SetItemIds(itemIds)
 	return o
 }
 
-// SetAppType adds the appType to the query entitlements params
-func (o *QueryEntitlementsParams) SetAppType(appType *string) {
-	o.AppType = appType
-}
-
-// WithEntitlementClazz adds the entitlementClazz to the query entitlements params
-func (o *QueryEntitlementsParams) WithEntitlementClazz(entitlementClazz *string) *QueryEntitlementsParams {
-	o.SetEntitlementClazz(entitlementClazz)
-	return o
-}
-
-// SetEntitlementClazz adds the entitlementClazz to the query entitlements params
-func (o *QueryEntitlementsParams) SetEntitlementClazz(entitlementClazz *string) {
-	o.EntitlementClazz = entitlementClazz
-}
-
-// WithEntitlementName adds the entitlementName to the query entitlements params
-func (o *QueryEntitlementsParams) WithEntitlementName(entitlementName *string) *QueryEntitlementsParams {
-	o.SetEntitlementName(entitlementName)
-	return o
-}
-
-// SetEntitlementName adds the entitlementName to the query entitlements params
-func (o *QueryEntitlementsParams) SetEntitlementName(entitlementName *string) {
-	o.EntitlementName = entitlementName
-}
-
-// WithItemID adds the itemID to the query entitlements params
-func (o *QueryEntitlementsParams) WithItemID(itemID []string) *QueryEntitlementsParams {
-	o.SetItemID(itemID)
-	return o
-}
-
-// SetItemID adds the itemId to the query entitlements params
-func (o *QueryEntitlementsParams) SetItemID(itemID []string) {
-	o.ItemID = itemID
+// SetItemIds adds the itemIds to the query entitlements params
+func (o *QueryEntitlementsParams) SetItemIds(itemIds []string) {
+	o.ItemIds = itemIds
 }
 
 // WithLimit adds the limit to the query entitlements params
@@ -299,28 +222,6 @@ func (o *QueryEntitlementsParams) WithOffset(offset *int32) *QueryEntitlementsPa
 // SetOffset adds the offset to the query entitlements params
 func (o *QueryEntitlementsParams) SetOffset(offset *int32) {
 	o.Offset = offset
-}
-
-// WithOrigin adds the origin to the query entitlements params
-func (o *QueryEntitlementsParams) WithOrigin(origin *string) *QueryEntitlementsParams {
-	o.SetOrigin(origin)
-	return o
-}
-
-// SetOrigin adds the origin to the query entitlements params
-func (o *QueryEntitlementsParams) SetOrigin(origin *string) {
-	o.Origin = origin
-}
-
-// WithUserID adds the userID to the query entitlements params
-func (o *QueryEntitlementsParams) WithUserID(userID *string) *QueryEntitlementsParams {
-	o.SetUserID(userID)
-	return o
-}
-
-// SetUserID adds the userId to the query entitlements params
-func (o *QueryEntitlementsParams) SetUserID(userID *string) {
-	o.UserID = userID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -352,59 +253,11 @@ func (o *QueryEntitlementsParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 	}
 
-	if o.AppType != nil {
+	valuesItemIds := o.ItemIds
 
-		// query param appType
-		var qrAppType string
-		if o.AppType != nil {
-			qrAppType = *o.AppType
-		}
-		qAppType := qrAppType
-		if qAppType != "" {
-			if err := r.SetQueryParam("appType", qAppType); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.EntitlementClazz != nil {
-
-		// query param entitlementClazz
-		var qrEntitlementClazz string
-		if o.EntitlementClazz != nil {
-			qrEntitlementClazz = *o.EntitlementClazz
-		}
-		qEntitlementClazz := qrEntitlementClazz
-		if qEntitlementClazz != "" {
-			if err := r.SetQueryParam("entitlementClazz", qEntitlementClazz); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.EntitlementName != nil {
-
-		// query param entitlementName
-		var qrEntitlementName string
-		if o.EntitlementName != nil {
-			qrEntitlementName = *o.EntitlementName
-		}
-		qEntitlementName := qrEntitlementName
-		if qEntitlementName != "" {
-			if err := r.SetQueryParam("entitlementName", qEntitlementName); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	valuesItemID := o.ItemID
-
-	joinedItemID := swag.JoinByFormat(valuesItemID, "multi")
-	// query array param itemId
-	if err := r.SetQueryParam("itemId", joinedItemID...); err != nil {
+	joinedItemIds := swag.JoinByFormat(valuesItemIds, "multi")
+	// query array param itemIds
+	if err := r.SetQueryParam("itemIds", joinedItemIds...); err != nil {
 		return err
 	}
 
@@ -434,38 +287,6 @@ func (o *QueryEntitlementsParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Origin != nil {
-
-		// query param origin
-		var qrOrigin string
-		if o.Origin != nil {
-			qrOrigin = *o.Origin
-		}
-		qOrigin := qrOrigin
-		if qOrigin != "" {
-			if err := r.SetQueryParam("origin", qOrigin); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.UserID != nil {
-
-		// query param userId
-		var qrUserID string
-		if o.UserID != nil {
-			qrUserID = *o.UserID
-		}
-		qUserID := qrUserID
-		if qUserID != "" {
-			if err := r.SetQueryParam("userId", qUserID); err != nil {
 				return err
 			}
 		}

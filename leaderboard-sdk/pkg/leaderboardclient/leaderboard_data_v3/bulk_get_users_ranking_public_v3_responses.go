@@ -111,6 +111,7 @@ func (o *BulkGetUsersRankingPublicV3OK) GetPayload() *leaderboardclientmodels.Mo
 }
 
 func (o *BulkGetUsersRankingPublicV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *BulkGetUsersRankingPublicV3BadRequest) GetPayload() *leaderboardclientm
 }
 
 func (o *BulkGetUsersRankingPublicV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *BulkGetUsersRankingPublicV3Unauthorized) GetPayload() *leaderboardclien
 }
 
 func (o *BulkGetUsersRankingPublicV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *BulkGetUsersRankingPublicV3Forbidden) GetPayload() *leaderboardclientmo
 }
 
 func (o *BulkGetUsersRankingPublicV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *BulkGetUsersRankingPublicV3NotFound) GetPayload() *leaderboardclientmod
 }
 
 func (o *BulkGetUsersRankingPublicV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *BulkGetUsersRankingPublicV3InternalServerError) GetPayload() *leaderboa
 }
 
 func (o *BulkGetUsersRankingPublicV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

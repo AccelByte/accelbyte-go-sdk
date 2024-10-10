@@ -111,6 +111,7 @@ func (o *BulkUpdateUserStatItemV2OK) GetPayload() []*socialclientmodels.BulkStat
 }
 
 func (o *BulkUpdateUserStatItemV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *BulkUpdateUserStatItemV2BadRequest) GetPayload() *socialclientmodels.Er
 }
 
 func (o *BulkUpdateUserStatItemV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *BulkUpdateUserStatItemV2Unauthorized) GetPayload() *socialclientmodels.
 }
 
 func (o *BulkUpdateUserStatItemV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *BulkUpdateUserStatItemV2Forbidden) GetPayload() *socialclientmodels.Err
 }
 
 func (o *BulkUpdateUserStatItemV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *BulkUpdateUserStatItemV2UnprocessableEntity) GetPayload() *socialclient
 }
 
 func (o *BulkUpdateUserStatItemV2UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *BulkUpdateUserStatItemV2InternalServerError) GetPayload() *socialclient
 }
 
 func (o *BulkUpdateUserStatItemV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

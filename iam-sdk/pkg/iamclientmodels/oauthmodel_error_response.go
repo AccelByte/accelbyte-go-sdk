@@ -55,6 +55,10 @@ type OauthmodelErrorResponse struct {
 	// platformid
 	PlatformID string `json:"platformId,omitempty"`
 
+	// remainingbackupcodecount
+	// Format: int32
+	RemainingBackupCodeCount int32 `json:"remainingBackupCodeCount,omitempty"`
+
 	// userban
 	UserBan *OauthmodelUserBan `json:"userBan,omitempty"`
 }

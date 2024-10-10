@@ -36,8 +36,8 @@ type ClientService interface {
 	AdminUpdateAssignmentPluginShort(params *AdminUpdateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAssignmentPluginOK, error)
 	AdminCreateAssignmentPlugin(params *AdminCreateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateAssignmentPluginCreated, *AdminCreateAssignmentPluginBadRequest, *AdminCreateAssignmentPluginUnauthorized, *AdminCreateAssignmentPluginForbidden, *AdminCreateAssignmentPluginInternalServerError, error)
 	AdminCreateAssignmentPluginShort(params *AdminCreateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateAssignmentPluginCreated, error)
-	AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginOK, *AdminDeleteAssignmentPluginBadRequest, *AdminDeleteAssignmentPluginUnauthorized, *AdminDeleteAssignmentPluginForbidden, *AdminDeleteAssignmentPluginNotFound, *AdminDeleteAssignmentPluginInternalServerError, error)
-	AdminDeleteAssignmentPluginShort(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginOK, error)
+	AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginNoContent, *AdminDeleteAssignmentPluginBadRequest, *AdminDeleteAssignmentPluginUnauthorized, *AdminDeleteAssignmentPluginForbidden, *AdminDeleteAssignmentPluginNotFound, *AdminDeleteAssignmentPluginInternalServerError, error)
+	AdminDeleteAssignmentPluginShort(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -413,7 +413,7 @@ AdminDeleteAssignmentPlugin delete assignment plugin
 
       * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]
 */
-func (a *Client) AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginOK, *AdminDeleteAssignmentPluginBadRequest, *AdminDeleteAssignmentPluginUnauthorized, *AdminDeleteAssignmentPluginForbidden, *AdminDeleteAssignmentPluginNotFound, *AdminDeleteAssignmentPluginInternalServerError, error) {
+func (a *Client) AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginNoContent, *AdminDeleteAssignmentPluginBadRequest, *AdminDeleteAssignmentPluginUnauthorized, *AdminDeleteAssignmentPluginForbidden, *AdminDeleteAssignmentPluginNotFound, *AdminDeleteAssignmentPluginInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAssignmentPluginParams()
@@ -450,7 +450,7 @@ func (a *Client) AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPlugin
 
 	switch v := result.(type) {
 
-	case *AdminDeleteAssignmentPluginOK:
+	case *AdminDeleteAssignmentPluginNoContent:
 		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteAssignmentPluginBadRequest:
@@ -478,7 +478,7 @@ AdminDeleteAssignmentPluginShort delete assignment plugin
 
       * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]
 */
-func (a *Client) AdminDeleteAssignmentPluginShort(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginOK, error) {
+func (a *Client) AdminDeleteAssignmentPluginShort(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteAssignmentPluginParams()
@@ -511,7 +511,7 @@ func (a *Client) AdminDeleteAssignmentPluginShort(params *AdminDeleteAssignmentP
 
 	switch v := result.(type) {
 
-	case *AdminDeleteAssignmentPluginOK:
+	case *AdminDeleteAssignmentPluginNoContent:
 		return v, nil
 	case *AdminDeleteAssignmentPluginBadRequest:
 		return nil, v

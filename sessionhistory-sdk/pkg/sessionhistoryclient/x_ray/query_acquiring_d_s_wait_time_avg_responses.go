@@ -111,6 +111,7 @@ func (o *QueryAcquiringDSWaitTimeAvgOK) GetPayload() *sessionhistoryclientmodels
 }
 
 func (o *QueryAcquiringDSWaitTimeAvgOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *QueryAcquiringDSWaitTimeAvgBadRequest) GetPayload() *sessionhistoryclie
 }
 
 func (o *QueryAcquiringDSWaitTimeAvgBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *QueryAcquiringDSWaitTimeAvgUnauthorized) GetPayload() *sessionhistorycl
 }
 
 func (o *QueryAcquiringDSWaitTimeAvgUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *QueryAcquiringDSWaitTimeAvgForbidden) GetPayload() *sessionhistoryclien
 }
 
 func (o *QueryAcquiringDSWaitTimeAvgForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *QueryAcquiringDSWaitTimeAvgNotFound) GetPayload() *sessionhistoryclient
 }
 
 func (o *QueryAcquiringDSWaitTimeAvgNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *QueryAcquiringDSWaitTimeAvgInternalServerError) GetPayload() *sessionhi
 }
 
 func (o *QueryAcquiringDSWaitTimeAvgInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

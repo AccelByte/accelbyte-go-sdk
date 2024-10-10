@@ -97,6 +97,7 @@ func (o *AdminJoinPartyV1Accepted) Error() string {
 }
 
 func (o *AdminJoinPartyV1Accepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -143,6 +144,7 @@ func (o *AdminJoinPartyV1BadRequest) GetPayload() *lobbyclientmodels.RestapiErro
 }
 
 func (o *AdminJoinPartyV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -196,6 +198,7 @@ func (o *AdminJoinPartyV1Unauthorized) GetPayload() *lobbyclientmodels.RestapiEr
 }
 
 func (o *AdminJoinPartyV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -249,6 +252,7 @@ func (o *AdminJoinPartyV1Forbidden) GetPayload() *lobbyclientmodels.RestapiError
 }
 
 func (o *AdminJoinPartyV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -302,6 +306,7 @@ func (o *AdminJoinPartyV1NotFound) GetPayload() *lobbyclientmodels.RestapiErrorR
 }
 
 func (o *AdminJoinPartyV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -355,6 +360,7 @@ func (o *AdminJoinPartyV1PreconditionFailed) GetPayload() *lobbyclientmodels.Res
 }
 
 func (o *AdminJoinPartyV1PreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -408,6 +414,7 @@ func (o *AdminJoinPartyV1InternalServerError) GetPayload() *lobbyclientmodels.Re
 }
 
 func (o *AdminJoinPartyV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

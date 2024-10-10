@@ -21,11 +21,13 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/country"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/devices_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/login_allowlist"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/override_role_config_v3"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/profile_update_strategy"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/sso_credential"
@@ -90,11 +92,13 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Country = country.New(transport, formats)
 	cli.DevicesV4 = devices_v4.New(transport, formats)
 	cli.InputValidations = input_validations.New(transport, formats)
+	cli.LoginAllowlist = login_allowlist.New(transport, formats)
 	cli.OAuth = o_auth.New(transport, formats)
 	cli.OAuth20 = o_auth2_0.New(transport, formats)
 	cli.OAuth20Extension = o_auth2_0_extension.New(transport, formats)
 	cli.OAuth20V4 = o_auth2_0_v4.New(transport, formats)
 	cli.OverrideRoleConfigV3 = override_role_config_v3.New(transport, formats)
+	cli.ProfileUpdateStrategy = profile_update_strategy.New(transport, formats)
 	cli.Roles = roles.New(transport, formats)
 	cli.SSO = sso.New(transport, formats)
 	cli.SSOCredential = sso_credential.New(transport, formats)
@@ -176,6 +180,8 @@ type JusticeIamService struct {
 
 	InputValidations input_validations.ClientService
 
+	LoginAllowlist login_allowlist.ClientService
+
 	OAuth o_auth.ClientService
 
 	OAuth20 o_auth2_0.ClientService
@@ -185,6 +191,8 @@ type JusticeIamService struct {
 	OAuth20V4 o_auth2_0_v4.ClientService
 
 	OverrideRoleConfigV3 override_role_config_v3.ClientService
+
+	ProfileUpdateStrategy profile_update_strategy.ClientService
 
 	Roles roles.ClientService
 
@@ -214,11 +222,13 @@ func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.Country.SetTransport(transport)
 	c.DevicesV4.SetTransport(transport)
 	c.InputValidations.SetTransport(transport)
+	c.LoginAllowlist.SetTransport(transport)
 	c.OAuth.SetTransport(transport)
 	c.OAuth20.SetTransport(transport)
 	c.OAuth20Extension.SetTransport(transport)
 	c.OAuth20V4.SetTransport(transport)
 	c.OverrideRoleConfigV3.SetTransport(transport)
+	c.ProfileUpdateStrategy.SetTransport(transport)
 	c.Roles.SetTransport(transport)
 	c.SSO.SetTransport(transport)
 	c.SSOCredential.SetTransport(transport)

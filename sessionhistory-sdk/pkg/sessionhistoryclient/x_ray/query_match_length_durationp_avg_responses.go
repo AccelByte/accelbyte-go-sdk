@@ -111,6 +111,7 @@ func (o *QueryMatchLengthDurationpAvgOK) GetPayload() *sessionhistoryclientmodel
 }
 
 func (o *QueryMatchLengthDurationpAvgOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *QueryMatchLengthDurationpAvgBadRequest) GetPayload() *sessionhistorycli
 }
 
 func (o *QueryMatchLengthDurationpAvgBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *QueryMatchLengthDurationpAvgUnauthorized) GetPayload() *sessionhistoryc
 }
 
 func (o *QueryMatchLengthDurationpAvgUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *QueryMatchLengthDurationpAvgForbidden) GetPayload() *sessionhistoryclie
 }
 
 func (o *QueryMatchLengthDurationpAvgForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *QueryMatchLengthDurationpAvgNotFound) GetPayload() *sessionhistoryclien
 }
 
 func (o *QueryMatchLengthDurationpAvgNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *QueryMatchLengthDurationpAvgInternalServerError) GetPayload() *sessionh
 }
 
 func (o *QueryMatchLengthDurationpAvgInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

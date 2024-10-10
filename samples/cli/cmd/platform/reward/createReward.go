@@ -39,14 +39,14 @@ var CreateRewardCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, errOK := rewardService.CreateRewardShort(input)
-		if errOK != nil {
-			logrus.Error(errOK)
+		created, errCreated := rewardService.CreateRewardShort(input)
+		if errCreated != nil {
+			logrus.Error(errCreated)
 
-			return errOK
+			return errCreated
 		}
 
-		logrus.Infof("Response CLI success: %+v", ok)
+		logrus.Infof("Response CLI success: %+v", created)
 
 		return nil
 	},

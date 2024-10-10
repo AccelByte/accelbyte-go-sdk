@@ -87,6 +87,7 @@ func (o *DeleteRewardOK) GetPayload() *platformclientmodels.RewardInfo {
 }
 
 func (o *DeleteRewardOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *DeleteRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *DeleteRewardNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

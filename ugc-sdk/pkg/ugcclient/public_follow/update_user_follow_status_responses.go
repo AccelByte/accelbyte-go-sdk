@@ -99,6 +99,7 @@ func (o *UpdateUserFollowStatusOK) GetPayload() *ugcclientmodels.ModelsUserFollo
 }
 
 func (o *UpdateUserFollowStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *UpdateUserFollowStatusBadRequest) GetPayload() *ugcclientmodels.Respons
 }
 
 func (o *UpdateUserFollowStatusBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *UpdateUserFollowStatusUnauthorized) GetPayload() *ugcclientmodels.Respo
 }
 
 func (o *UpdateUserFollowStatusUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *UpdateUserFollowStatusInternalServerError) GetPayload() *ugcclientmodel
 }
 
 func (o *UpdateUserFollowStatusInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

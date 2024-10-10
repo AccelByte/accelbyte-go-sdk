@@ -29,20 +29,30 @@ var QueryEntitlements1Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		activeOnly, _ := cmd.Flags().GetBool("activeOnly")
-		itemIdsString := cmd.Flag("itemIds").Value.String()
-		var itemIds []string
-		errItemIds := json.Unmarshal([]byte(itemIdsString), &itemIds)
-		if errItemIds != nil {
-			return errItemIds
+		appType, _ := cmd.Flags().GetString("appType")
+		entitlementClazz, _ := cmd.Flags().GetString("entitlementClazz")
+		entitlementName, _ := cmd.Flags().GetString("entitlementName")
+		itemIdString := cmd.Flag("itemId").Value.String()
+		var itemId []string
+		errItemId := json.Unmarshal([]byte(itemIdString), &itemId)
+		if errItemId != nil {
+			return errItemId
 		}
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
+		origin, _ := cmd.Flags().GetString("origin")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &entitlement.QueryEntitlements1Params{
-			Namespace:  namespace,
-			ActiveOnly: &activeOnly,
-			ItemIds:    itemIds,
-			Limit:      &limit,
-			Offset:     &offset,
+			Namespace:        namespace,
+			ActiveOnly:       &activeOnly,
+			AppType:          &appType,
+			EntitlementClazz: &entitlementClazz,
+			EntitlementName:  &entitlementName,
+			ItemID:           itemId,
+			Limit:            &limit,
+			Offset:           &offset,
+			Origin:           &origin,
+			UserID:           &userId,
 		}
 		ok, errOK := entitlementService.QueryEntitlements1Short(input)
 		if errOK != nil {
@@ -61,7 +71,12 @@ func init() {
 	QueryEntitlements1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = QueryEntitlements1Cmd.MarkFlagRequired("namespace")
 	QueryEntitlements1Cmd.Flags().Bool("activeOnly", false, "Active only")
-	QueryEntitlements1Cmd.Flags().String("itemIds", "", "Item ids")
+	QueryEntitlements1Cmd.Flags().String("appType", "", "App type")
+	QueryEntitlements1Cmd.Flags().String("entitlementClazz", "", "Entitlement clazz")
+	QueryEntitlements1Cmd.Flags().String("entitlementName", "", "Entitlement name")
+	QueryEntitlements1Cmd.Flags().String("itemId", "", "Item id")
 	QueryEntitlements1Cmd.Flags().Int32("limit", 20, "Limit")
 	QueryEntitlements1Cmd.Flags().Int32("offset", 0, "Offset")
+	QueryEntitlements1Cmd.Flags().String("origin", "", "Origin")
+	QueryEntitlements1Cmd.Flags().String("userId", "", "User id")
 }

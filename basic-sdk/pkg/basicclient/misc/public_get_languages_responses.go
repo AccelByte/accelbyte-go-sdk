@@ -87,6 +87,7 @@ func (o *PublicGetLanguagesOK) GetPayload() map[string]interface{} {
 }
 
 func (o *PublicGetLanguagesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *PublicGetLanguagesBadRequest) GetPayload() *basicclientmodels.Validatio
 }
 
 func (o *PublicGetLanguagesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

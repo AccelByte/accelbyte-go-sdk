@@ -87,6 +87,7 @@ func (o *QueryOrdersOK) GetPayload() *platformclientmodels.OrderPagingResult {
 }
 
 func (o *QueryOrdersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *QueryOrdersUnprocessableEntity) GetPayload() *platformclientmodels.Vali
 }
 
 func (o *QueryOrdersUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

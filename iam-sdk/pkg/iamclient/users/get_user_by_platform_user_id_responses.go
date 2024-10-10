@@ -105,6 +105,7 @@ func (o *GetUserByPlatformUserIDOK) GetPayload() *iamclientmodels.ModelPublicUse
 }
 
 func (o *GetUserByPlatformUserIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *GetUserByPlatformUserIDBadRequest) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *GetUserByPlatformUserIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *GetUserByPlatformUserIDUnauthorized) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *GetUserByPlatformUserIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *GetUserByPlatformUserIDForbidden) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *GetUserByPlatformUserIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -297,6 +301,7 @@ func (o *GetUserByPlatformUserIDNotFound) Error() string {
 }
 
 func (o *GetUserByPlatformUserIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

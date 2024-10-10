@@ -22,6 +22,14 @@ type APIDevelopmentServerConfigurationGetResponse struct {
 	// Required: true
 	CommandLineArguments *string `json:"commandLineArguments"`
 
+	// createdat
+	// Format: date-time
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
+
+	// expiresat
+	// Format: date-time
+	ExpiresAt *strfmt.DateTime `json:"expiresAt,omitempty"`
+
 	// imageid
 	// Required: true
 	ImageID *string `json:"imageId"`

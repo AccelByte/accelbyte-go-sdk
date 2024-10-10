@@ -99,6 +99,7 @@ func (o *AdminGetCountryListV3OK) GetPayload() []*iamclientmodels.ModelCountryRe
 }
 
 func (o *AdminGetCountryListV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *AdminGetCountryListV3Unauthorized) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *AdminGetCountryListV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *AdminGetCountryListV3Forbidden) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *AdminGetCountryListV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -256,6 +259,7 @@ func (o *AdminGetCountryListV3InternalServerError) GetPayload() *iamclientmodels
 }
 
 func (o *AdminGetCountryListV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

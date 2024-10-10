@@ -99,6 +99,7 @@ func (o *SingleAdminGetAllGroupsOK) GetPayload() *ugcclientmodels.ModelsPaginate
 }
 
 func (o *SingleAdminGetAllGroupsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *SingleAdminGetAllGroupsBadRequest) GetPayload() *ugcclientmodels.Respon
 }
 
 func (o *SingleAdminGetAllGroupsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *SingleAdminGetAllGroupsUnauthorized) GetPayload() *ugcclientmodels.Resp
 }
 
 func (o *SingleAdminGetAllGroupsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *SingleAdminGetAllGroupsInternalServerError) GetPayload() *ugcclientmode
 }
 
 func (o *SingleAdminGetAllGroupsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

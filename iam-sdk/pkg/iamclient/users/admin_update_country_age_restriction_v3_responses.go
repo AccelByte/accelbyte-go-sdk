@@ -111,6 +111,7 @@ func (o *AdminUpdateCountryAgeRestrictionV3OK) GetPayload() *iamclientmodels.Mod
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) GetPayload() *iamclientmo
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) GetPayload() *iamclient
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) GetPayload() *iamclientmod
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminUpdateCountryAgeRestrictionV3NotFound) GetPayload() *iamclientmode
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) GetPayload() *ia
 }
 
 func (o *AdminUpdateCountryAgeRestrictionV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

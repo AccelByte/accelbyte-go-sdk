@@ -111,6 +111,7 @@ func (o *ChangeNamespaceStatusOK) GetPayload() *basicclientmodels.NamespaceInfo 
 }
 
 func (o *ChangeNamespaceStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *ChangeNamespaceStatusBadRequest) GetPayload() *basicclientmodels.Valida
 }
 
 func (o *ChangeNamespaceStatusBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *ChangeNamespaceStatusUnauthorized) GetPayload() *basicclientmodels.Erro
 }
 
 func (o *ChangeNamespaceStatusUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *ChangeNamespaceStatusForbidden) GetPayload() *basicclientmodels.ErrorEn
 }
 
 func (o *ChangeNamespaceStatusForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *ChangeNamespaceStatusNotFound) GetPayload() *basicclientmodels.ErrorEnt
 }
 
 func (o *ChangeNamespaceStatusNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *ChangeNamespaceStatusConflict) GetPayload() *basicclientmodels.ErrorEnt
 }
 
 func (o *ChangeNamespaceStatusConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

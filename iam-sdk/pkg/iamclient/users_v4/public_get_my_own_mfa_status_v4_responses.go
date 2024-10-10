@@ -105,6 +105,7 @@ func (o *PublicGetMyOwnMFAStatusV4OK) GetPayload() *iamclientmodels.ModelUserMFA
 }
 
 func (o *PublicGetMyOwnMFAStatusV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *PublicGetMyOwnMFAStatusV4Unauthorized) GetPayload() *iamclientmodels.Re
 }
 
 func (o *PublicGetMyOwnMFAStatusV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *PublicGetMyOwnMFAStatusV4Forbidden) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *PublicGetMyOwnMFAStatusV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *PublicGetMyOwnMFAStatusV4NotFound) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *PublicGetMyOwnMFAStatusV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *PublicGetMyOwnMFAStatusV4InternalServerError) GetPayload() *iamclientmo
 }
 
 func (o *PublicGetMyOwnMFAStatusV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

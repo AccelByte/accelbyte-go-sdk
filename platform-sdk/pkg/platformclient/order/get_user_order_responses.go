@@ -87,6 +87,7 @@ func (o *GetUserOrderOK) GetPayload() *platformclientmodels.OrderInfo {
 }
 
 func (o *GetUserOrderOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *GetUserOrderNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

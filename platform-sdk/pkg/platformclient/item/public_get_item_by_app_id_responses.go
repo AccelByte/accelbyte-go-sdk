@@ -87,6 +87,7 @@ func (o *PublicGetItemByAppIDOK) GetPayload() *platformclientmodels.ItemInfo {
 }
 
 func (o *PublicGetItemByAppIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PublicGetItemByAppIDNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *PublicGetItemByAppIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

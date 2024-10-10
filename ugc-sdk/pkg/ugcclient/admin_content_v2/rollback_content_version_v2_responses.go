@@ -105,6 +105,7 @@ func (o *RollbackContentVersionV2OK) GetPayload() *ugcclientmodels.ModelsContent
 }
 
 func (o *RollbackContentVersionV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *RollbackContentVersionV2Unauthorized) GetPayload() *ugcclientmodels.Res
 }
 
 func (o *RollbackContentVersionV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *RollbackContentVersionV2NotFound) GetPayload() *ugcclientmodels.Respons
 }
 
 func (o *RollbackContentVersionV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *RollbackContentVersionV2UnprocessableEntity) GetPayload() *ugcclientmod
 }
 
 func (o *RollbackContentVersionV2UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *RollbackContentVersionV2InternalServerError) GetPayload() *ugcclientmod
 }
 
 func (o *RollbackContentVersionV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

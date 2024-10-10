@@ -111,6 +111,7 @@ func (o *PublicUpdateUserV2OK) GetPayload() []*iamclientmodels.ModelUserResponse
 }
 
 func (o *PublicUpdateUserV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -142,6 +143,7 @@ func (o *PublicUpdateUserV2BadRequest) Error() string {
 }
 
 func (o *PublicUpdateUserV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -188,6 +190,7 @@ func (o *PublicUpdateUserV2Unauthorized) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *PublicUpdateUserV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -221,6 +224,7 @@ func (o *PublicUpdateUserV2NotFound) Error() string {
 }
 
 func (o *PublicUpdateUserV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -247,6 +251,7 @@ func (o *PublicUpdateUserV2Conflict) Error() string {
 }
 
 func (o *PublicUpdateUserV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -273,6 +278,7 @@ func (o *PublicUpdateUserV2InternalServerError) Error() string {
 }
 
 func (o *PublicUpdateUserV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

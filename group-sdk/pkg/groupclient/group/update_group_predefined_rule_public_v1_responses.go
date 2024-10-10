@@ -111,6 +111,7 @@ func (o *UpdateGroupPredefinedRulePublicV1OK) GetPayload() *groupclientmodels.Mo
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *UpdateGroupPredefinedRulePublicV1BadRequest) GetPayload() *groupclientm
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *UpdateGroupPredefinedRulePublicV1Unauthorized) GetPayload() *groupclien
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *UpdateGroupPredefinedRulePublicV1Forbidden) GetPayload() *groupclientmo
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *UpdateGroupPredefinedRulePublicV1NotFound) GetPayload() *groupclientmod
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *UpdateGroupPredefinedRulePublicV1InternalServerError) GetPayload() *gro
 }
 
 func (o *UpdateGroupPredefinedRulePublicV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

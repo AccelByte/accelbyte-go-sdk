@@ -99,6 +99,7 @@ func (o *AdminConsumeUserItemOK) GetPayload() *inventoryclientmodels.ApimodelsIt
 }
 
 func (o *AdminConsumeUserItemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminConsumeUserItemBadRequest) GetPayload() *inventoryclientmodels.Api
 }
 
 func (o *AdminConsumeUserItemBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminConsumeUserItemNotFound) GetPayload() *inventoryclientmodels.Apimo
 }
 
 func (o *AdminConsumeUserItemNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminConsumeUserItemInternalServerError) GetPayload() *inventoryclientm
 }
 
 func (o *AdminConsumeUserItemInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

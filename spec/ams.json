@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.24.2"
+    "version": "1.27.1"
   },
   "schemes": [
     "https"
@@ -1562,16 +1562,63 @@
             "type": "string"
           },
           {
+            "default": 10000,
             "description": "the data limit",
             "in": "query",
             "name": "count",
-            "type": "string"
+            "type": "integer"
           },
           {
+            "default": 0,
             "description": "the data offset",
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "the servers region",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "the id of the server",
+            "in": "query",
+            "name": "serverId",
+            "type": "string"
+          },
+          {
+            "default": "created_at",
+            "description": "the field by which to order the data",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "the data ordering direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDirection",
+            "type": "string"
+          },
+          {
+            "description": "the servers status",
+            "enum": [
+              "claimed",
+              "claiming",
+              "crash backoff",
+              "creating",
+              "draining",
+              "ready",
+              "unresponsive"
+            ],
+            "in": "query",
+            "name": "status",
+            "type": "string"
           }
         ],
         "produces": [
@@ -2818,7 +2865,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Claim a dedicated server from fleets with matching claim keys\n\nRequired Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
+        "description": "Claim a dedicated server from fleets with matching claim keys.\nIf the claim key is for a regular fleet (non development), the request will instantly fail if there are no DS available (HTTP 404).\nIf the claim key is for a development fleet and there are no DS available, a new DS will be launched and the request might take up to 8 seconds to return (depending on the environment configuration). If it\u0026#39;s not ready after that duration the request will still return HTTP 404. In either case, the call to this endpoint may be retried at any time to check if a DS has become available.\n\nRequired Permission: NAMESPACE:{namespace}:AMS:SERVER:CLAIM [UPDATE]",
         "operationId": "FleetClaimByKeys",
         "parameters": [
           {
@@ -3278,17 +3325,79 @@
         "usedBytes"
       ]
     },
+    "api.AvailableInstanceType": {
+      "properties": {
+        "capacity": {
+          "items": {
+            "$ref": "#/definitions/api.Capacity"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "memoryGiB": {
+          "format": "double",
+          "type": "number"
+        },
+        "minSpeed": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ownerAccountId": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "virtualCpu": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "capacity",
+        "description",
+        "id",
+        "memoryGiB",
+        "minSpeed",
+        "name",
+        "ownerAccountId",
+        "provider",
+        "virtualCpu"
+      ]
+    },
     "api.AvailableInstanceTypesResponse": {
       "properties": {
         "availableInstanceTypes": {
           "items": {
-            "$ref": "#/definitions/api.InstanceTypeDescriptionResponse"
+            "$ref": "#/definitions/api.AvailableInstanceType"
           },
           "type": "array"
         }
       },
       "required": [
         "availableInstanceTypes"
+      ]
+    },
+    "api.Capacity": {
+      "properties": {
+        "region": {
+          "type": "string"
+        },
+        "vmCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "region",
+        "vmCount"
       ]
     },
     "api.DSHistoryEvent": {
@@ -3312,6 +3421,9 @@
         "serverId": {
           "type": "string"
         },
+        "sessionId": {
+          "type": "string"
+        },
         "status": {
           "type": "string"
         }
@@ -3323,6 +3435,7 @@
         "reason",
         "region",
         "serverId",
+        "sessionId",
         "status"
       ]
     },
@@ -3348,6 +3461,9 @@
         "instanceId": {
           "type": "string"
         },
+        "instanceProvider": {
+          "type": "string"
+        },
         "instanceType": {
           "type": "string"
         },
@@ -3358,7 +3474,23 @@
       },
       "required": [
         "instanceId",
+        "instanceProvider",
         "instanceType",
+        "serversPerVm"
+      ]
+    },
+    "api.DSHostConfigurationParameters": {
+      "properties": {
+        "instanceId": {
+          "type": "string"
+        },
+        "serversPerVm": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "instanceId",
         "serversPerVm"
       ]
     },
@@ -3366,6 +3498,11 @@
       "properties": {
         "commandLineArguments": {
           "type": "string"
+        },
+        "expiresAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "imageId": {
           "type": "string"
@@ -3376,6 +3513,7 @@
       },
       "required": [
         "commandLineArguments",
+        "expiresAt",
         "imageId",
         "name"
       ]
@@ -3394,6 +3532,16 @@
       "properties": {
         "commandLineArguments": {
           "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "expiresAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
         },
         "imageId": {
           "type": "string"
@@ -3586,6 +3734,9 @@
         "image": {
           "type": "string"
         },
+        "instanceProvider": {
+          "type": "string"
+        },
         "isLocal": {
           "type": "boolean",
           "x-omitempty": false
@@ -3609,6 +3760,7 @@
         "counts",
         "id",
         "image",
+        "instanceProvider",
         "isLocal",
         "name",
         "onDemand",
@@ -3641,7 +3793,7 @@
           "type": "array"
         },
         "dsHostConfiguration": {
-          "$ref": "#/definitions/api.DSHostConfiguration"
+          "$ref": "#/definitions/api.DSHostConfigurationParameters"
         },
         "imageDeploymentProfile": {
           "$ref": "#/definitions/api.ImageDeploymentProfile"
@@ -4082,38 +4234,6 @@
         "removedTags"
       ]
     },
-    "api.InstanceTypeDescriptionResponse": {
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "memoryGiB": {
-          "format": "double",
-          "type": "number"
-        },
-        "minSpeed": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "virtualCpu": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "description",
-        "id",
-        "memoryGiB",
-        "minSpeed",
-        "name",
-        "virtualCpu"
-      ]
-    },
     "api.PagingInfo": {
       "properties": {
         "currentPage": {
@@ -4440,10 +4560,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-27T08:58:20+00:00",
-    "gitHash": "0f81a0c06bf2d58dffd34ea109946eca0f626ead",
+    "buildDate": "2024-10-04T13:45:43+00:00",
+    "gitHash": "1bfe42012e9314e3b8d7b2703d696f41a51a6ef0",
     "name": "fleet-commander",
-    "version": "1.24.2",
-    "version-roles-seeding": "1.2.40"
+    "version": "1.27.1",
+    "version-roles-seeding": "1.2.70"
   }
 }

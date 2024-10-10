@@ -85,6 +85,7 @@ func (o *UpdateTopicByTopicNameNoContent) Error() string {
 }
 
 func (o *UpdateTopicByTopicNameNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *UpdateTopicByTopicNameUnauthorized) GetPayload() *lobbyclientmodels.Res
 }
 
 func (o *UpdateTopicByTopicNameUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *UpdateTopicByTopicNameForbidden) GetPayload() *lobbyclientmodels.Restap
 }
 
 func (o *UpdateTopicByTopicNameForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *UpdateTopicByTopicNameNotFound) GetPayload() *lobbyclientmodels.Restapi
 }
 
 func (o *UpdateTopicByTopicNameNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *UpdateTopicByTopicNameInternalServerError) GetPayload() *lobbyclientmod
 }
 
 func (o *UpdateTopicByTopicNameInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

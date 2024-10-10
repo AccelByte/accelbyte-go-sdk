@@ -99,6 +99,7 @@ func (o *CreatePolicy1Created) GetPayload() *legalclientmodels.CreateBasePolicyR
 }
 
 func (o *CreatePolicy1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *CreatePolicy1BadRequest) GetPayload() *legalclientmodels.ErrorEntity {
 }
 
 func (o *CreatePolicy1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *CreatePolicy1Conflict) GetPayload() *legalclientmodels.ErrorEntity {
 }
 
 func (o *CreatePolicy1Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *CreatePolicy1UnprocessableEntity) GetPayload() *legalclientmodels.Valid
 }
 
 func (o *CreatePolicy1UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

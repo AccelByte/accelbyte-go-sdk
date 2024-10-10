@@ -73,6 +73,7 @@ func (o *AdminResetPlatformAccountClosureServicesConfigurationNoContent) Error()
 }
 
 func (o *AdminResetPlatformAccountClosureServicesConfigurationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *AdminResetPlatformAccountClosureServicesConfigurationUnauthorized) GetP
 }
 
 func (o *AdminResetPlatformAccountClosureServicesConfigurationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *AdminResetPlatformAccountClosureServicesConfigurationInternalServerErro
 }
 
 func (o *AdminResetPlatformAccountClosureServicesConfigurationInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

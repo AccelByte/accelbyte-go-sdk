@@ -29,11 +29,11 @@ var AdminDeleteAssignmentPluginCmd = &cobra.Command{
 		input := &plugins.AdminDeleteAssignmentPluginParams{
 			Namespace: namespace,
 		}
-		errOK := pluginsService.AdminDeleteAssignmentPluginShort(input)
-		if errOK != nil {
-			logrus.Error(errOK)
+		errNoContent := pluginsService.AdminDeleteAssignmentPluginShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errOK
+			return errNoContent
 		}
 
 		logrus.Infof("Response CLI success.")

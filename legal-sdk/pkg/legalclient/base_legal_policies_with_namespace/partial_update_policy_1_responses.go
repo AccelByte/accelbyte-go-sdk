@@ -87,6 +87,7 @@ func (o *PartialUpdatePolicy1OK) GetPayload() *legalclientmodels.UpdateBasePolic
 }
 
 func (o *PartialUpdatePolicy1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PartialUpdatePolicy1BadRequest) GetPayload() *legalclientmodels.ErrorEn
 }
 
 func (o *PartialUpdatePolicy1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

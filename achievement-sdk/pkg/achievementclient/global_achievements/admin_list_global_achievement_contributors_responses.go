@@ -99,6 +99,7 @@ func (o *AdminListGlobalAchievementContributorsOK) GetPayload() *achievementclie
 }
 
 func (o *AdminListGlobalAchievementContributorsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminListGlobalAchievementContributorsBadRequest) GetPayload() *achieve
 }
 
 func (o *AdminListGlobalAchievementContributorsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminListGlobalAchievementContributorsUnauthorized) GetPayload() *achie
 }
 
 func (o *AdminListGlobalAchievementContributorsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminListGlobalAchievementContributorsInternalServerError) GetPayload()
 }
 
 func (o *AdminListGlobalAchievementContributorsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

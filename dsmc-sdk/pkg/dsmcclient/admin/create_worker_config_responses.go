@@ -99,6 +99,7 @@ func (o *CreateWorkerConfigCreated) GetPayload() *dsmcclientmodels.ModelsWorkerC
 }
 
 func (o *CreateWorkerConfigCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *CreateWorkerConfigBadRequest) GetPayload() *dsmcclientmodels.ResponseEr
 }
 
 func (o *CreateWorkerConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *CreateWorkerConfigUnauthorized) GetPayload() *dsmcclientmodels.Response
 }
 
 func (o *CreateWorkerConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *CreateWorkerConfigInternalServerError) GetPayload() *dsmcclientmodels.R
 }
 
 func (o *CreateWorkerConfigInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

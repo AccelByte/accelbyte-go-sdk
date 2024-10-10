@@ -117,6 +117,7 @@ func (o *PublicChallengeMyMFAV4OK) GetPayload() *iamclientmodels.ModelUserMFATok
 }
 
 func (o *PublicChallengeMyMFAV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *PublicChallengeMyMFAV4NoContent) Error() string {
 }
 
 func (o *PublicChallengeMyMFAV4NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -196,6 +198,7 @@ func (o *PublicChallengeMyMFAV4BadRequest) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *PublicChallengeMyMFAV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -249,6 +252,7 @@ func (o *PublicChallengeMyMFAV4Unauthorized) GetPayload() *iamclientmodels.RestE
 }
 
 func (o *PublicChallengeMyMFAV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -302,6 +306,7 @@ func (o *PublicChallengeMyMFAV4Forbidden) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *PublicChallengeMyMFAV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -355,6 +360,7 @@ func (o *PublicChallengeMyMFAV4NotFound) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *PublicChallengeMyMFAV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -408,6 +414,7 @@ func (o *PublicChallengeMyMFAV4InternalServerError) GetPayload() *iamclientmodel
 }
 
 func (o *PublicChallengeMyMFAV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

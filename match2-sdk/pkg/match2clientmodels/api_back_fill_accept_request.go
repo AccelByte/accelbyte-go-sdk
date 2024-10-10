@@ -18,6 +18,9 @@ import (
 // swagger:model Api back fill accept request.
 type APIBackFillAcceptRequest struct {
 
+	// acceptedticketids
+	AcceptedTicketIds []string `json:"acceptedTicketIds,omitempty"`
+
 	// proposalid
 	// Required: true
 	ProposalID *string `json:"proposalId"`

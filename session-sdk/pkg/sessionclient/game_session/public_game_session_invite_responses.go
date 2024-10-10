@@ -91,6 +91,7 @@ func (o *PublicGameSessionInviteCreated) Error() string {
 }
 
 func (o *PublicGameSessionInviteCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -117,6 +118,7 @@ func (o *PublicGameSessionInviteNoContent) Error() string {
 }
 
 func (o *PublicGameSessionInviteNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -163,6 +165,7 @@ func (o *PublicGameSessionInviteBadRequest) GetPayload() *sessionclientmodels.Re
 }
 
 func (o *PublicGameSessionInviteBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -216,6 +219,7 @@ func (o *PublicGameSessionInviteUnauthorized) GetPayload() *sessionclientmodels.
 }
 
 func (o *PublicGameSessionInviteUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -269,6 +273,7 @@ func (o *PublicGameSessionInviteNotFound) GetPayload() *sessionclientmodels.Resp
 }
 
 func (o *PublicGameSessionInviteNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -322,6 +327,7 @@ func (o *PublicGameSessionInviteInternalServerError) GetPayload() *sessionclient
 }
 
 func (o *PublicGameSessionInviteInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *GetPublishedStoreBackupOK) GetPayload() *platformclientmodels.StoreBack
 }
 
 func (o *GetPublishedStoreBackupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetPublishedStoreBackupNotFound) GetPayload() *platformclientmodels.Err
 }
 
 func (o *GetPublishedStoreBackupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

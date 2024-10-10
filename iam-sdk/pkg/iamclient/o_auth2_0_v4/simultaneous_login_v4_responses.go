@@ -111,6 +111,7 @@ func (o *SimultaneousLoginV4OK) GetPayload() *iamclientmodels.OauthmodelTokenRes
 }
 
 func (o *SimultaneousLoginV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *SimultaneousLoginV4Accepted) GetPayload() *iamclientmodels.OauthmodelLo
 }
 
 func (o *SimultaneousLoginV4Accepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *SimultaneousLoginV4BadRequest) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *SimultaneousLoginV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *SimultaneousLoginV4Unauthorized) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *SimultaneousLoginV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *SimultaneousLoginV4Conflict) GetPayload() *iamclientmodels.RestErrorRes
 }
 
 func (o *SimultaneousLoginV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *SimultaneousLoginV4InternalServerError) GetPayload() *iamclientmodels.R
 }
 
 func (o *SimultaneousLoginV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

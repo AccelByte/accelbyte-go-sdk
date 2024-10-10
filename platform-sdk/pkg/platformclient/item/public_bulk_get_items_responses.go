@@ -87,6 +87,7 @@ func (o *PublicBulkGetItemsOK) GetPayload() []*platformclientmodels.ItemInfo {
 }
 
 func (o *PublicBulkGetItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *PublicBulkGetItemsNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *PublicBulkGetItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

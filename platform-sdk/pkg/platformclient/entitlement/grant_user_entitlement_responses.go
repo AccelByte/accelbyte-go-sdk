@@ -93,6 +93,7 @@ func (o *GrantUserEntitlementCreated) GetPayload() []*platformclientmodels.Stack
 }
 
 func (o *GrantUserEntitlementCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *GrantUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *GrantUserEntitlementNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *GrantUserEntitlementUnprocessableEntity) GetPayload() *platformclientmo
 }
 
 func (o *GrantUserEntitlementUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

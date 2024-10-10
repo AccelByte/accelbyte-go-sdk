@@ -87,6 +87,7 @@ func (o *GetPaymentCallbackConfigOK) GetPayload() *platformclientmodels.PaymentC
 }
 
 func (o *GetPaymentCallbackConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetPaymentCallbackConfigNotFound) GetPayload() *platformclientmodels.Er
 }
 
 func (o *GetPaymentCallbackConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

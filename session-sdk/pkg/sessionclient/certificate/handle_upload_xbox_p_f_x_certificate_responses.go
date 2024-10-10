@@ -111,6 +111,7 @@ func (o *HandleUploadXboxPFXCertificateOK) GetPayload() *sessionclientmodels.Mod
 }
 
 func (o *HandleUploadXboxPFXCertificateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *HandleUploadXboxPFXCertificateBadRequest) GetPayload() *sessionclientmo
 }
 
 func (o *HandleUploadXboxPFXCertificateBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *HandleUploadXboxPFXCertificateUnauthorized) GetPayload() *sessionclient
 }
 
 func (o *HandleUploadXboxPFXCertificateUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *HandleUploadXboxPFXCertificateForbidden) GetPayload() *sessionclientmod
 }
 
 func (o *HandleUploadXboxPFXCertificateForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *HandleUploadXboxPFXCertificateNotFound) GetPayload() *sessionclientmode
 }
 
 func (o *HandleUploadXboxPFXCertificateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *HandleUploadXboxPFXCertificateInternalServerError) GetPayload() *sessio
 }
 
 func (o *HandleUploadXboxPFXCertificateInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -340,3 +340,5 @@ gopkg.in/yaml.v3 v3.0.0-20200605160147-a5ece683394c/go.mod h1:K4uyk7z7BCEPqu6E+C
 gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b h1:h8qDotaEPuJATrMmW04NCwg7v22aHH28wwpauUhK9Oo=
 gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
+tideland.dev/go v0.2.0 h1:JC/dwuqqn8NfU2jTNytDCjzbUTsWFGj1V2XfYJn0MKI=
+tideland.dev/go/wait v0.2.0 h1:YlzCwWUr/A+AVhXHWy2CqGBwH5LZ5R9+VjtjuAmNLRA=

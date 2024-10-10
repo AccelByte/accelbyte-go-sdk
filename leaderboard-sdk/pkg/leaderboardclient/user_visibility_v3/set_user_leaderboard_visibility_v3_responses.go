@@ -105,6 +105,7 @@ func (o *SetUserLeaderboardVisibilityV3OK) GetPayload() *leaderboardclientmodels
 }
 
 func (o *SetUserLeaderboardVisibilityV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *SetUserLeaderboardVisibilityV3BadRequest) GetPayload() *leaderboardclie
 }
 
 func (o *SetUserLeaderboardVisibilityV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *SetUserLeaderboardVisibilityV3Unauthorized) GetPayload() *leaderboardcl
 }
 
 func (o *SetUserLeaderboardVisibilityV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *SetUserLeaderboardVisibilityV3Forbidden) GetPayload() *leaderboardclien
 }
 
 func (o *SetUserLeaderboardVisibilityV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *SetUserLeaderboardVisibilityV3InternalServerError) GetPayload() *leader
 }
 
 func (o *SetUserLeaderboardVisibilityV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *ApplyUserRedemptionOK) GetPayload() *platformclientmodels.RedeemResult 
 }
 
 func (o *ApplyUserRedemptionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *ApplyUserRedemptionNotFound) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *ApplyUserRedemptionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *ApplyUserRedemptionConflict) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *ApplyUserRedemptionConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *ApplyUserRedemptionUnprocessableEntity) GetPayload() *platformclientmod
 }
 
 func (o *ApplyUserRedemptionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

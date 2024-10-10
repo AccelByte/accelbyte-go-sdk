@@ -93,6 +93,7 @@ func (o *GetUserByUserIDOK) GetPayload() *iamclientmodels.ModelUserResponse {
 }
 
 func (o *GetUserByUserIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -126,6 +127,7 @@ func (o *GetUserByUserIDNotFound) Error() string {
 }
 
 func (o *GetUserByUserIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +154,7 @@ func (o *GetUserByUserIDInternalServerError) Error() string {
 }
 
 func (o *GetUserByUserIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

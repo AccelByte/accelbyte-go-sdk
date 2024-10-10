@@ -111,6 +111,7 @@ func (o *GetAdminUsersByRoleIDOK) GetPayload() *iamclientmodels.ModelGetAdminUse
 }
 
 func (o *GetAdminUsersByRoleIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *GetAdminUsersByRoleIDBadRequest) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *GetAdminUsersByRoleIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *GetAdminUsersByRoleIDUnauthorized) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *GetAdminUsersByRoleIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *GetAdminUsersByRoleIDForbidden) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *GetAdminUsersByRoleIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -303,6 +307,7 @@ func (o *GetAdminUsersByRoleIDNotFound) Error() string {
 }
 
 func (o *GetAdminUsersByRoleIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +334,7 @@ func (o *GetAdminUsersByRoleIDInternalServerError) Error() string {
 }
 
 func (o *GetAdminUsersByRoleIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

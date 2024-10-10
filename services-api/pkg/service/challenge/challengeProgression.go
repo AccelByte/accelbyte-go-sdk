@@ -67,6 +67,38 @@ func (aaa *ChallengeProgressionService) AdminEvaluateProgress(input *challenge_p
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetUserProgressionShort instead.
+func (aaa *ChallengeProgressionService) AdminGetUserProgression(input *challenge_progression.AdminGetUserProgressionParams) (*challengeclientmodels.ModelUserProgressionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.ChallengeProgression.AdminGetUserProgression(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use EvaluateMyProgressShort instead.
 func (aaa *ChallengeProgressionService) EvaluateMyProgress(input *challenge_progression.EvaluateMyProgressParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -96,7 +128,7 @@ func (aaa *ChallengeProgressionService) PublicGetUserProgression(input *challeng
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.ChallengeProgression.PublicGetUserProgression(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.ChallengeProgression.PublicGetUserProgression(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -108,6 +140,9 @@ func (aaa *ChallengeProgressionService) PublicGetUserProgression(input *challeng
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -176,6 +211,36 @@ func (aaa *ChallengeProgressionService) AdminEvaluateProgressShort(input *challe
 	}
 
 	return nil
+}
+
+func (aaa *ChallengeProgressionService) AdminGetUserProgressionShort(input *challenge_progression.AdminGetUserProgressionParams) (*challengeclientmodels.ModelUserProgressionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdChallengeProgression != nil {
+		input.XFlightId = tempFlightIdChallengeProgression
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.ChallengeProgression.AdminGetUserProgressionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *ChallengeProgressionService) EvaluateMyProgressShort(input *challenge_progression.EvaluateMyProgressParams) error {

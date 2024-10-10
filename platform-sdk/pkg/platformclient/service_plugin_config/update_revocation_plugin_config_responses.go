@@ -87,6 +87,7 @@ func (o *UpdateRevocationPluginConfigOK) GetPayload() *platformclientmodels.Revo
 }
 
 func (o *UpdateRevocationPluginConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateRevocationPluginConfigUnprocessableEntity) GetPayload() *platform
 }
 
 func (o *UpdateRevocationPluginConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

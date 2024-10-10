@@ -27,13 +27,23 @@ var FleetServersCmd = &cobra.Command{
 		}
 		fleetID, _ := cmd.Flags().GetString("fleetID")
 		namespace, _ := cmd.Flags().GetString("namespace")
-		count, _ := cmd.Flags().GetString("count")
+		count, _ := cmd.Flags().GetInt64("count")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		region, _ := cmd.Flags().GetString("region")
+		serverId, _ := cmd.Flags().GetString("serverId")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
+		sortDirection, _ := cmd.Flags().GetString("sortDirection")
+		status, _ := cmd.Flags().GetString("status")
 		input := &fleets.FleetServersParams{
-			FleetID:   fleetID,
-			Namespace: namespace,
-			Count:     &count,
-			Offset:    &offset,
+			FleetID:       fleetID,
+			Namespace:     namespace,
+			Count:         &count,
+			Offset:        &offset,
+			Region:        &region,
+			ServerID:      &serverId,
+			SortBy:        &sortBy,
+			SortDirection: &sortDirection,
+			Status:        &status,
 		}
 		ok, errOK := fleetsService.FleetServersShort(input)
 		if errOK != nil {
@@ -53,6 +63,11 @@ func init() {
 	_ = FleetServersCmd.MarkFlagRequired("fleetID")
 	FleetServersCmd.Flags().String("namespace", "", "Namespace")
 	_ = FleetServersCmd.MarkFlagRequired("namespace")
-	FleetServersCmd.Flags().String("count", "1", "Count")
+	FleetServersCmd.Flags().Int64("count", 1, "Count")
 	FleetServersCmd.Flags().Int64("offset", 0, "Offset")
+	FleetServersCmd.Flags().String("region", "", "Region")
+	FleetServersCmd.Flags().String("serverId", "", "Server id")
+	FleetServersCmd.Flags().String("sortBy", "", "Sort by")
+	FleetServersCmd.Flags().String("sortDirection", "", "Sort direction")
+	FleetServersCmd.Flags().String("status", "", "Status")
 }

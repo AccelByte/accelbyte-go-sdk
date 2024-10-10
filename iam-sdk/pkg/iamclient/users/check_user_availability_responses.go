@@ -79,6 +79,7 @@ func (o *CheckUserAvailabilityNoContent) Error() string {
 }
 
 func (o *CheckUserAvailabilityNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *CheckUserAvailabilityBadRequest) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *CheckUserAvailabilityBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +160,7 @@ func (o *CheckUserAvailabilityNotFound) Error() string {
 }
 
 func (o *CheckUserAvailabilityNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -204,6 +207,7 @@ func (o *CheckUserAvailabilityUnprocessableEntity) GetPayload() *iamclientmodels
 }
 
 func (o *CheckUserAvailabilityUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -79,6 +79,7 @@ func (o *AdminDeleteAllUserChannelsNoContent) Error() string {
 }
 
 func (o *AdminDeleteAllUserChannelsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *AdminDeleteAllUserChannelsUnauthorized) GetPayload() *ugcclientmodels.R
 }
 
 func (o *AdminDeleteAllUserChannelsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *AdminDeleteAllUserChannelsNotFound) GetPayload() *ugcclientmodels.Respo
 }
 
 func (o *AdminDeleteAllUserChannelsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *AdminDeleteAllUserChannelsInternalServerError) GetPayload() *ugcclientm
 }
 
 func (o *AdminDeleteAllUserChannelsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

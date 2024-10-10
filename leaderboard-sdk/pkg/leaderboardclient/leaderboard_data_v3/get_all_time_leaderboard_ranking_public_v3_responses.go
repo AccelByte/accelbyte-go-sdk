@@ -99,6 +99,7 @@ func (o *GetAllTimeLeaderboardRankingPublicV3OK) GetPayload() *leaderboardclient
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *GetAllTimeLeaderboardRankingPublicV3BadRequest) GetPayload() *leaderboa
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *GetAllTimeLeaderboardRankingPublicV3NotFound) GetPayload() *leaderboard
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *GetAllTimeLeaderboardRankingPublicV3InternalServerError) GetPayload() *
 }
 
 func (o *GetAllTimeLeaderboardRankingPublicV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

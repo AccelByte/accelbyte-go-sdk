@@ -27,8 +27,8 @@ type CreateRewardReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CreateRewardReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewCreateRewardOK()
+	case 201:
+		result := NewCreateRewardCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -68,24 +68,24 @@ func (o *CreateRewardReader) ReadResponse(response runtime.ClientResponse, consu
 	}
 }
 
-// NewCreateRewardOK creates a CreateRewardOK with default headers values
-func NewCreateRewardOK() *CreateRewardOK {
-	return &CreateRewardOK{}
+// NewCreateRewardCreated creates a CreateRewardCreated with default headers values
+func NewCreateRewardCreated() *CreateRewardCreated {
+	return &CreateRewardCreated{}
 }
 
-/*CreateRewardOK handles this case with default header values.
+/*CreateRewardCreated handles this case with default header values.
 
   successful operation
 */
-type CreateRewardOK struct {
+type CreateRewardCreated struct {
 	Payload *platformclientmodels.RewardInfo
 }
 
-func (o *CreateRewardOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardOK  %+v", 200, o.ToJSONString())
+func (o *CreateRewardCreated) Error() string {
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards][%d] createRewardCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *CreateRewardOK) ToJSONString() string {
+func (o *CreateRewardCreated) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -100,11 +100,12 @@ func (o *CreateRewardOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *CreateRewardOK) GetPayload() *platformclientmodels.RewardInfo {
+func (o *CreateRewardCreated) GetPayload() *platformclientmodels.RewardInfo {
 	return o.Payload
 }
 
-func (o *CreateRewardOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateRewardCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *CreateRewardBadRequest) GetPayload() *platformclientmodels.ErrorEntity 
 }
 
 func (o *CreateRewardBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *CreateRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *CreateRewardNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *CreateRewardConflict) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *CreateRewardConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *CreateRewardUnprocessableEntity) GetPayload() *platformclientmodels.Val
 }
 
 func (o *CreateRewardUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *GetUserParticipatedSeasonsOK) GetPayload() *seasonpassclientmodels.List
 }
 
 func (o *GetUserParticipatedSeasonsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetUserParticipatedSeasonsBadRequest) GetPayload() *seasonpassclientmod
 }
 
 func (o *GetUserParticipatedSeasonsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

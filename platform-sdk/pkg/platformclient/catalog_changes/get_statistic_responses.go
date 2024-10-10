@@ -81,6 +81,7 @@ func (o *GetStatisticOK) GetPayload() *platformclientmodels.CatalogChangeStatist
 }
 
 func (o *GetStatisticOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

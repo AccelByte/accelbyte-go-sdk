@@ -87,6 +87,7 @@ func (o *UpdatePayPalConfigOK) GetPayload() *platformclientmodels.PaymentMerchan
 }
 
 func (o *UpdatePayPalConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdatePayPalConfigNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *UpdatePayPalConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

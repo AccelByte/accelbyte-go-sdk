@@ -22,6 +22,9 @@ type APIMatchTicketRequest struct {
 	// Required: true
 	Attributes interface{} `json:"attributes"`
 
+	// excludedsessions
+	ExcludedSessions []string `json:"excludedSessions,omitempty"`
+
 	// latencies
 	// Required: true
 	Latencies map[string]int64 `json:"latencies"`

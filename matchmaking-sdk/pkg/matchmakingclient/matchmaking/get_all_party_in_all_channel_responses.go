@@ -111,6 +111,7 @@ func (o *GetAllPartyInAllChannelOK) GetPayload() map[string][]matchmakingclientm
 }
 
 func (o *GetAllPartyInAllChannelOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *GetAllPartyInAllChannelBadRequest) GetPayload() *matchmakingclientmodel
 }
 
 func (o *GetAllPartyInAllChannelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *GetAllPartyInAllChannelUnauthorized) GetPayload() *matchmakingclientmod
 }
 
 func (o *GetAllPartyInAllChannelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *GetAllPartyInAllChannelForbidden) GetPayload() *matchmakingclientmodels
 }
 
 func (o *GetAllPartyInAllChannelForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *GetAllPartyInAllChannelNotFound) GetPayload() *matchmakingclientmodels.
 }
 
 func (o *GetAllPartyInAllChannelNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *GetAllPartyInAllChannelInternalServerError) GetPayload() *matchmakingcl
 }
 
 func (o *GetAllPartyInAllChannelInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

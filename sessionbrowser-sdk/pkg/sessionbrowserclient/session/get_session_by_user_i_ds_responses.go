@@ -93,6 +93,7 @@ func (o *GetSessionByUserIDsOK) GetPayload() *sessionbrowserclientmodels.ModelsS
 }
 
 func (o *GetSessionByUserIDsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetSessionByUserIDsBadRequest) GetPayload() *sessionbrowserclientmodels
 }
 
 func (o *GetSessionByUserIDsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetSessionByUserIDsInternalServerError) GetPayload() *sessionbrowsercli
 }
 
 func (o *GetSessionByUserIDsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

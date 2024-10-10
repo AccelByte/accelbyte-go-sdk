@@ -81,12 +81,12 @@ type QueryTotalActiveSessionParams struct {
 	*/
 	Region *string
 	/*EndDate
-	  End date time: 2024-08-28T03:37:36Z
+	  End date time: 2024-10-02T04:06:06Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-08-28T03:37:36Z
+	  Start date time. Format: 2024-10-02T04:06:06Z
 
 	*/
 	StartDate string

@@ -93,6 +93,7 @@ func (o *PublicReconcilePlayStationStoreOK) GetPayload() []*platformclientmodels
 }
 
 func (o *PublicReconcilePlayStationStoreOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *PublicReconcilePlayStationStoreBadRequest) GetPayload() *platformclient
 }
 
 func (o *PublicReconcilePlayStationStoreBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *PublicReconcilePlayStationStoreNotFound) GetPayload() *platformclientmo
 }
 
 func (o *PublicReconcilePlayStationStoreNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

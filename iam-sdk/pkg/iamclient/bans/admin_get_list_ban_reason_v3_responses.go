@@ -99,6 +99,7 @@ func (o *AdminGetListBanReasonV3OK) GetPayload() *iamclientmodels.AccountcommonB
 }
 
 func (o *AdminGetListBanReasonV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminGetListBanReasonV3Unauthorized) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminGetListBanReasonV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminGetListBanReasonV3Forbidden) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *AdminGetListBanReasonV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminGetListBanReasonV3InternalServerError) GetPayload() *iamclientmode
 }
 
 func (o *AdminGetListBanReasonV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

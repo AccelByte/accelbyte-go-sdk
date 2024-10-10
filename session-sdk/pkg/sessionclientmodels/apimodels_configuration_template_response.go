@@ -66,6 +66,9 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// fallbackclaimkeys
 	FallbackClaimKeys []string `json:"fallbackClaimKeys,omitempty"`
 
+	// grpcsessionconfig
+	GrpcSessionConfig *ModelsExtendConfiguration `json:"grpcSessionConfig,omitempty"`
+
 	// immutablestorage
 	ImmutableStorage bool `json:"immutableStorage"`
 

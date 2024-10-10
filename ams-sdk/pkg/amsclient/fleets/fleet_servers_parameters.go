@@ -19,11 +19,37 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in FleetServersParams
+const (
+	FleetServersAscConstant  = "asc"
+	FleetServersDescConstant = "desc"
+)
+
+// Get the enum in FleetServersParams
+const (
+	FleetServersClaimedConstant      = "claimed"
+	FleetServersClaimingConstant     = "claiming"
+	FleetServersCrashBackoffConstant = "crash backoff"
+	FleetServersCreatingConstant     = "creating"
+	FleetServersDrainingConstant     = "draining"
+	FleetServersReadyConstant        = "ready"
+	FleetServersUnresponsiveConstant = "unresponsive"
+)
+
 // NewFleetServersParams creates a new FleetServersParams object
 // with the default values initialized.
 func NewFleetServersParams() *FleetServersParams {
-	var ()
+	var (
+		countDefault         = int64(10000)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_at")
+		sortDirectionDefault = string("desc")
+	)
 	return &FleetServersParams{
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +58,17 @@ func NewFleetServersParams() *FleetServersParams {
 // NewFleetServersParamsWithTimeout creates a new FleetServersParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewFleetServersParamsWithTimeout(timeout time.Duration) *FleetServersParams {
-	var ()
+	var (
+		countDefault         = int64(10000)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_at")
+		sortDirectionDefault = string("desc")
+	)
 	return &FleetServersParams{
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +77,17 @@ func NewFleetServersParamsWithTimeout(timeout time.Duration) *FleetServersParams
 // NewFleetServersParamsWithContext creates a new FleetServersParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewFleetServersParamsWithContext(ctx context.Context) *FleetServersParams {
-	var ()
+	var (
+		countDefault         = int64(10000)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_at")
+		sortDirectionDefault = string("desc")
+	)
 	return &FleetServersParams{
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		Context: ctx,
 	}
@@ -52,9 +96,18 @@ func NewFleetServersParamsWithContext(ctx context.Context) *FleetServersParams {
 // NewFleetServersParamsWithHTTPClient creates a new FleetServersParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFleetServersParamsWithHTTPClient(client *http.Client) *FleetServersParams {
-	var ()
+	var (
+		countDefault         = int64(10000)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_at")
+		sortDirectionDefault = string("desc")
+	)
 	return &FleetServersParams{
-		HTTPClient: client,
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
+		HTTPClient:    client,
 	}
 }
 
@@ -79,12 +132,37 @@ type FleetServersParams struct {
 	  the data limit
 
 	*/
-	Count *string
+	Count *int64
 	/*Offset
 	  the data offset
 
 	*/
 	Offset *int64
+	/*Region
+	  the servers region
+
+	*/
+	Region *string
+	/*ServerID
+	  the id of the server
+
+	*/
+	ServerID *string
+	/*SortBy
+	  the field by which to order the data
+
+	*/
+	SortBy *string
+	/*SortDirection
+	  the data ordering direction
+
+	*/
+	SortDirection *string
+	/*Status
+	  the servers status
+
+	*/
+	Status *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -174,13 +252,13 @@ func (o *FleetServersParams) SetNamespace(namespace string) {
 }
 
 // WithCount adds the count to the fleet servers params
-func (o *FleetServersParams) WithCount(count *string) *FleetServersParams {
+func (o *FleetServersParams) WithCount(count *int64) *FleetServersParams {
 	o.SetCount(count)
 	return o
 }
 
 // SetCount adds the count to the fleet servers params
-func (o *FleetServersParams) SetCount(count *string) {
+func (o *FleetServersParams) SetCount(count *int64) {
 	o.Count = count
 }
 
@@ -193,6 +271,61 @@ func (o *FleetServersParams) WithOffset(offset *int64) *FleetServersParams {
 // SetOffset adds the offset to the fleet servers params
 func (o *FleetServersParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithRegion adds the region to the fleet servers params
+func (o *FleetServersParams) WithRegion(region *string) *FleetServersParams {
+	o.SetRegion(region)
+	return o
+}
+
+// SetRegion adds the region to the fleet servers params
+func (o *FleetServersParams) SetRegion(region *string) {
+	o.Region = region
+}
+
+// WithServerID adds the serverID to the fleet servers params
+func (o *FleetServersParams) WithServerID(serverID *string) *FleetServersParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the fleet servers params
+func (o *FleetServersParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
+}
+
+// WithSortBy adds the sortBy to the fleet servers params
+func (o *FleetServersParams) WithSortBy(sortBy *string) *FleetServersParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the fleet servers params
+func (o *FleetServersParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
+// WithSortDirection adds the sortDirection to the fleet servers params
+func (o *FleetServersParams) WithSortDirection(sortDirection *string) *FleetServersParams {
+	o.SetSortDirection(sortDirection)
+	return o
+}
+
+// SetSortDirection adds the sortDirection to the fleet servers params
+func (o *FleetServersParams) SetSortDirection(sortDirection *string) {
+	o.SortDirection = sortDirection
+}
+
+// WithStatus adds the status to the fleet servers params
+func (o *FleetServersParams) WithStatus(status *string) *FleetServersParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the fleet servers params
+func (o *FleetServersParams) SetStatus(status *string) {
+	o.Status = status
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -216,11 +349,11 @@ func (o *FleetServersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Count != nil {
 
 		// query param count
-		var qrCount string
+		var qrCount int64
 		if o.Count != nil {
 			qrCount = *o.Count
 		}
-		qCount := qrCount
+		qCount := swag.FormatInt64(qrCount)
 		if qCount != "" {
 			if err := r.SetQueryParam("count", qCount); err != nil {
 				return err
@@ -239,6 +372,86 @@ func (o *FleetServersParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Region != nil {
+
+		// query param region
+		var qrRegion string
+		if o.Region != nil {
+			qrRegion = *o.Region
+		}
+		qRegion := qrRegion
+		if qRegion != "" {
+			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ServerID != nil {
+
+		// query param serverId
+		var qrServerID string
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+			if err := r.SetQueryParam("serverId", qServerID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortDirection != nil {
+
+		// query param sortDirection
+		var qrSortDirection string
+		if o.SortDirection != nil {
+			qrSortDirection = *o.SortDirection
+		}
+		qSortDirection := qrSortDirection
+		if qSortDirection != "" {
+			if err := r.SetQueryParam("sortDirection", qSortDirection); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+			if err := r.SetQueryParam("status", qStatus); err != nil {
 				return err
 			}
 		}

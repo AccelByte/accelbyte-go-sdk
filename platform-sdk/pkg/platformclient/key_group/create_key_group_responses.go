@@ -93,6 +93,7 @@ func (o *CreateKeyGroupCreated) GetPayload() *platformclientmodels.KeyGroupInfo 
 }
 
 func (o *CreateKeyGroupCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *CreateKeyGroupConflict) GetPayload() *platformclientmodels.ErrorEntity 
 }
 
 func (o *CreateKeyGroupConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *CreateKeyGroupUnprocessableEntity) GetPayload() *platformclientmodels.V
 }
 
 func (o *CreateKeyGroupUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

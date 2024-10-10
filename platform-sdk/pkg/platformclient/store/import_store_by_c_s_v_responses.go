@@ -99,6 +99,7 @@ func (o *ImportStoreByCSVOK) GetPayload() *platformclientmodels.ImportStoreResul
 }
 
 func (o *ImportStoreByCSVOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *ImportStoreByCSVBadRequest) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *ImportStoreByCSVBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *ImportStoreByCSVNotFound) GetPayload() *platformclientmodels.ErrorEntit
 }
 
 func (o *ImportStoreByCSVNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *ImportStoreByCSVConflict) GetPayload() *platformclientmodels.ErrorEntit
 }
 
 func (o *ImportStoreByCSVConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

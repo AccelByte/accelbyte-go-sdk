@@ -105,6 +105,7 @@ func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1OK) GetPayload() []*cloudsavecli
 }
 
 func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -156,6 +157,7 @@ func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest) GetPayload() *clouds
 }
 
 func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -209,6 +211,7 @@ func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized) GetPayload() *clou
 }
 
 func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -262,6 +265,7 @@ func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden) GetPayload() *cloudsa
 }
 
 func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -315,6 +319,7 @@ func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError) GetPayload(
 }
 
 func (o *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

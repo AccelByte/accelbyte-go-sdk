@@ -63,6 +63,7 @@ func (o *PublicNormalizePaymentReturnURLNoContent) Error() string {
 }
 
 func (o *PublicNormalizePaymentReturnURLNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -90,6 +91,7 @@ func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) Error() string {
 }
 
 func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

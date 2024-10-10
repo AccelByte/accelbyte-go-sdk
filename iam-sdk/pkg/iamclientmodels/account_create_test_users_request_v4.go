@@ -22,6 +22,10 @@ type AccountCreateTestUsersRequestV4 struct {
 	// Required: true
 	// Format: int32
 	Count *int32 `json:"count"`
+
+	// userinfo
+	// Required: true
+	UserInfo *AccountUserInfo `json:"userInfo"`
 }
 
 // Validate validates this Account create test users request V4
@@ -29,6 +33,9 @@ func (m *AccountCreateTestUsersRequestV4) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validateCount(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUserInfo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -42,6 +49,24 @@ func (m *AccountCreateTestUsersRequestV4) validateCount(formats strfmt.Registry)
 
 	if err := validate.Required("count", "body", m.Count); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AccountCreateTestUsersRequestV4) validateUserInfo(formats strfmt.Registry) error {
+
+	if err := validate.Required("userInfo", "body", m.UserInfo); err != nil {
+		return err
+	}
+
+	if m.UserInfo != nil {
+		if err := m.UserInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("userInfo")
+			}
+			return err
+		}
 	}
 
 	return nil

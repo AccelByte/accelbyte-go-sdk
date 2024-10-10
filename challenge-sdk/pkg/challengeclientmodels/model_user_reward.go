@@ -50,7 +50,7 @@ type ModelUserReward struct {
 	Qty *float32 `json:"qty"`
 
 	// status
-	// Enum: ['CLAIM', 'UNCLAIMED']
+	// Enum: ['CLAIMED', 'UNCLAIMED']
 	// Required: true
 	Status *string `json:"status"`
 
@@ -179,7 +179,7 @@ var modelUserRewardTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["CLAIM", "UNCLAIMED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CLAIMED", "UNCLAIMED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -189,8 +189,8 @@ func init() {
 
 const (
 
-	// ModelUserRewardStatusCLAIM captures enum value "CLAIM"
-	ModelUserRewardStatusCLAIM string = "CLAIM"
+	// ModelUserRewardStatusCLAIMED captures enum value "CLAIMED"
+	ModelUserRewardStatusCLAIMED string = "CLAIMED"
 
 	// ModelUserRewardStatusUNCLAIMED captures enum value "UNCLAIMED"
 	ModelUserRewardStatusUNCLAIMED string = "UNCLAIMED"

@@ -91,6 +91,7 @@ func (o *PublicMakeFactorMyDefaultV4NoContent) Error() string {
 }
 
 func (o *PublicMakeFactorMyDefaultV4NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *PublicMakeFactorMyDefaultV4BadRequest) GetPayload() *iamclientmodels.Re
 }
 
 func (o *PublicMakeFactorMyDefaultV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *PublicMakeFactorMyDefaultV4Unauthorized) GetPayload() *iamclientmodels.
 }
 
 func (o *PublicMakeFactorMyDefaultV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *PublicMakeFactorMyDefaultV4Forbidden) GetPayload() *iamclientmodels.Res
 }
 
 func (o *PublicMakeFactorMyDefaultV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *PublicMakeFactorMyDefaultV4NotFound) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *PublicMakeFactorMyDefaultV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *PublicMakeFactorMyDefaultV4InternalServerError) GetPayload() *iamclient
 }
 
 func (o *PublicMakeFactorMyDefaultV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

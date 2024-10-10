@@ -91,6 +91,7 @@ func (o *AdminBulkUpdateUserAccountTypeV4NoContent) Error() string {
 }
 
 func (o *AdminBulkUpdateUserAccountTypeV4NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *AdminBulkUpdateUserAccountTypeV4BadRequest) GetPayload() *iamclientmode
 }
 
 func (o *AdminBulkUpdateUserAccountTypeV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *AdminBulkUpdateUserAccountTypeV4Unauthorized) GetPayload() *iamclientmo
 }
 
 func (o *AdminBulkUpdateUserAccountTypeV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *AdminBulkUpdateUserAccountTypeV4Forbidden) GetPayload() *iamclientmodel
 }
 
 func (o *AdminBulkUpdateUserAccountTypeV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *AdminBulkUpdateUserAccountTypeV4NotFound) GetPayload() *iamclientmodels
 }
 
 func (o *AdminBulkUpdateUserAccountTypeV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *AdminBulkUpdateUserAccountTypeV4InternalServerError) GetPayload() *iamc
 }
 
 func (o *AdminBulkUpdateUserAccountTypeV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

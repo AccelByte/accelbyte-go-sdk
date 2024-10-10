@@ -87,6 +87,7 @@ func (o *GetRewardByCodeOK) GetPayload() *platformclientmodels.RewardInfo {
 }
 
 func (o *GetRewardByCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetRewardByCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity
 }
 
 func (o *GetRewardByCodeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

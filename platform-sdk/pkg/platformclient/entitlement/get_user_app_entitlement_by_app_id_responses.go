@@ -87,6 +87,7 @@ func (o *GetUserAppEntitlementByAppIDOK) GetPayload() *platformclientmodels.AppE
 }
 
 func (o *GetUserAppEntitlementByAppIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetUserAppEntitlementByAppIDNotFound) GetPayload() *platformclientmodel
 }
 
 func (o *GetUserAppEntitlementByAppIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

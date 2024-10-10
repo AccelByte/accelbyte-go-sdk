@@ -99,6 +99,7 @@ func (o *PublicWebLinkPlatformOK) GetPayload() *iamclientmodels.ModelWebLinkingR
 }
 
 func (o *PublicWebLinkPlatformOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicWebLinkPlatformBadRequest) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *PublicWebLinkPlatformBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicWebLinkPlatformUnauthorized) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *PublicWebLinkPlatformUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicWebLinkPlatformNotFound) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *PublicWebLinkPlatformNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

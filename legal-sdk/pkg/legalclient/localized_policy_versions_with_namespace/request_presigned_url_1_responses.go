@@ -87,6 +87,7 @@ func (o *RequestPresignedURL1Created) GetPayload() *legalclientmodels.UploadLoca
 }
 
 func (o *RequestPresignedURL1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *RequestPresignedURL1BadRequest) GetPayload() *legalclientmodels.ErrorEn
 }
 
 func (o *RequestPresignedURL1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

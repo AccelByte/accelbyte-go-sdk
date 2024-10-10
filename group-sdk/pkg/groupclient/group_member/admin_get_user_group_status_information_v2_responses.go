@@ -105,6 +105,7 @@ func (o *AdminGetUserGroupStatusInformationV2OK) GetPayload() *groupclientmodels
 }
 
 func (o *AdminGetUserGroupStatusInformationV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *AdminGetUserGroupStatusInformationV2Unauthorized) GetPayload() *groupcl
 }
 
 func (o *AdminGetUserGroupStatusInformationV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *AdminGetUserGroupStatusInformationV2Forbidden) GetPayload() *groupclien
 }
 
 func (o *AdminGetUserGroupStatusInformationV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *AdminGetUserGroupStatusInformationV2NotFound) GetPayload() *groupclient
 }
 
 func (o *AdminGetUserGroupStatusInformationV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *AdminGetUserGroupStatusInformationV2InternalServerError) GetPayload() *
 }
 
 func (o *AdminGetUserGroupStatusInformationV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

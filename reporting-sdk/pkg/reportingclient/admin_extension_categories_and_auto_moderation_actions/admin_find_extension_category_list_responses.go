@@ -93,6 +93,7 @@ func (o *AdminFindExtensionCategoryListOK) GetPayload() *reportingclientmodels.R
 }
 
 func (o *AdminFindExtensionCategoryListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminFindExtensionCategoryListBadRequest) GetPayload() *reportingclient
 }
 
 func (o *AdminFindExtensionCategoryListBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminFindExtensionCategoryListInternalServerError) GetPayload() *report
 }
 
 func (o *AdminFindExtensionCategoryListInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

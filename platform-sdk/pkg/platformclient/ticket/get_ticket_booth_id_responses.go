@@ -87,6 +87,7 @@ func (o *GetTicketBoothIDOK) GetPayload() *platformclientmodels.TicketBoothID {
 }
 
 func (o *GetTicketBoothIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetTicketBoothIDNotFound) GetPayload() *platformclientmodels.ErrorEntit
 }
 
 func (o *GetTicketBoothIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

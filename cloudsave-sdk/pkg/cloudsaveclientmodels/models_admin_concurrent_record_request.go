@@ -33,7 +33,8 @@ type ModelsAdminConcurrentRecordRequest struct {
 
 	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
-	UpdatedAt *string `json:"updatedAt"`
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// Record data, should be in valid json format
 	// Required: true
@@ -102,7 +103,11 @@ func (m *ModelsAdminConcurrentRecordRequest) validateSetBy(formats strfmt.Regist
 
 func (m *ModelsAdminConcurrentRecordRequest) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
 	}
 

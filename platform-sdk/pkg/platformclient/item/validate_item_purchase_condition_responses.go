@@ -87,6 +87,7 @@ func (o *ValidateItemPurchaseConditionOK) GetPayload() []*platformclientmodels.I
 }
 
 func (o *ValidateItemPurchaseConditionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *ValidateItemPurchaseConditionUnprocessableEntity) GetPayload() *platfor
 }
 
 func (o *ValidateItemPurchaseConditionUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

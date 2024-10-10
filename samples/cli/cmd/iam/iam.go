@@ -14,11 +14,13 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/iam/country"
 	"github.com/AccelByte/sample-apps/cmd/iam/devicesV4"
 	"github.com/AccelByte/sample-apps/cmd/iam/inputValidations"
+	"github.com/AccelByte/sample-apps/cmd/iam/loginAllowlist"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20Extension"
 	"github.com/AccelByte/sample-apps/cmd/iam/oAuth20V4"
 	"github.com/AccelByte/sample-apps/cmd/iam/overrideRoleConfigV3"
+	"github.com/AccelByte/sample-apps/cmd/iam/profileUpdateStrategy"
 	"github.com/AccelByte/sample-apps/cmd/iam/roles"
 	"github.com/AccelByte/sample-apps/cmd/iam/sso"
 	"github.com/AccelByte/sample-apps/cmd/iam/ssoCredential"
@@ -171,6 +173,8 @@ func init() {
 	IamCmd.AddCommand(country.AdminGetCountryListV3Cmd)
 	IamCmd.AddCommand(country.AdminGetCountryBlacklistV3Cmd)
 	IamCmd.AddCommand(country.AdminAddCountryBlacklistV3Cmd)
+	IamCmd.AddCommand(loginAllowlist.AdminGetLoginAllowlistV3Cmd)
+	IamCmd.AddCommand(loginAllowlist.AdminUpdateLoginAllowlistV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllThirdPartyLoginPlatformCredentialV3Cmd)
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Cmd)
 	IamCmd.AddCommand(ssoCredential.RetrieveAllSSOLoginPlatformCredentialV3Cmd)
@@ -186,6 +190,8 @@ func init() {
 	IamCmd.AddCommand(ssoCredential.UpdateSSOPlatformCredentialCmd)
 	IamCmd.AddCommand(users.AdminListUserIDByPlatformUserIDsV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserByPlatformUserIDV3Cmd)
+	IamCmd.AddCommand(profileUpdateStrategy.AdminGetProfileUpdateStrategyV3Cmd)
+	IamCmd.AddCommand(profileUpdateStrategy.AdminUpdateProfileUpdateStrategyV3Cmd)
 	IamCmd.AddCommand(overrideRoleConfigV3.AdminGetRoleOverrideConfigV3Cmd)
 	IamCmd.AddCommand(overrideRoleConfigV3.AdminUpdateRoleOverrideConfigV3Cmd)
 	IamCmd.AddCommand(overrideRoleConfigV3.AdminGetRoleSourceV3Cmd)
@@ -300,6 +306,7 @@ func init() {
 	IamCmd.AddCommand(thirdPartyCredential.RetrieveActiveOIDCClientsPublicV3Cmd)
 	IamCmd.AddCommand(users.PublicListUserIDByPlatformUserIDsV3Cmd)
 	IamCmd.AddCommand(users.PublicGetUserByPlatformUserIDV3Cmd)
+	IamCmd.AddCommand(profileUpdateStrategy.PublicGetProfileUpdateStrategyV3Cmd)
 	IamCmd.AddCommand(users.PublicGetAsyncStatusCmd)
 	IamCmd.AddCommand(users.PublicSearchUserV3Cmd)
 	IamCmd.AddCommand(users.PublicCreateUserV3Cmd)
@@ -344,6 +351,7 @@ func init() {
 	IamCmd.AddCommand(users.PublicGetMyUserV3Cmd)
 	IamCmd.AddCommand(users.PublicGetLinkHeadlessAccountToMyAccountConflictV3Cmd)
 	IamCmd.AddCommand(users.LinkHeadlessAccountToMyAccountV3Cmd)
+	IamCmd.AddCommand(users.PublicGetMyProfileAllowUpdateStatusV3Cmd)
 	IamCmd.AddCommand(users.PublicSendVerificationLinkV3Cmd)
 	IamCmd.AddCommand(users.PublicVerifyUserByLinkV3Cmd)
 	IamCmd.AddCommand(ssoSAML20.PlatformAuthenticateSAMLV3HandlerCmd)
@@ -372,6 +380,7 @@ func init() {
 	IamCmd.AddCommand(usersV4.AdminUpdateUserV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserEmailAddressV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminDisableUserMFAV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminGetUserMFAStatusV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminListUserRolesV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserRoleV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminAddUserRoleV4Cmd)

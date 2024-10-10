@@ -93,6 +93,7 @@ func (o *PublicGetInputValidationByFieldOK) GetPayload() *iamclientmodels.ModelI
 }
 
 func (o *PublicGetInputValidationByFieldOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -126,6 +127,7 @@ func (o *PublicGetInputValidationByFieldNotFound) Error() string {
 }
 
 func (o *PublicGetInputValidationByFieldNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *PublicGetInputValidationByFieldInternalServerError) GetPayload() *iamcl
 }
 
 func (o *PublicGetInputValidationByFieldInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

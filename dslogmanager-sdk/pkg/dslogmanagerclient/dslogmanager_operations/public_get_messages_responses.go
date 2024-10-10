@@ -87,6 +87,7 @@ func (o *PublicGetMessagesOK) GetPayload() []*dslogmanagerclientmodels.LogAppMes
 }
 
 func (o *PublicGetMessagesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *PublicGetMessagesInternalServerError) GetPayload() *dslogmanagerclientm
 }
 
 func (o *PublicGetMessagesInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -117,6 +117,7 @@ func (o *PublicUpdateContentByShareCodeV2OK) GetPayload() *ugcclientmodels.Model
 }
 
 func (o *PublicUpdateContentByShareCodeV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -170,6 +171,7 @@ func (o *PublicUpdateContentByShareCodeV2BadRequest) GetPayload() *ugcclientmode
 }
 
 func (o *PublicUpdateContentByShareCodeV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -223,6 +225,7 @@ func (o *PublicUpdateContentByShareCodeV2Unauthorized) GetPayload() *ugcclientmo
 }
 
 func (o *PublicUpdateContentByShareCodeV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +279,7 @@ func (o *PublicUpdateContentByShareCodeV2Forbidden) GetPayload() *ugcclientmodel
 }
 
 func (o *PublicUpdateContentByShareCodeV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +333,7 @@ func (o *PublicUpdateContentByShareCodeV2NotFound) GetPayload() *ugcclientmodels
 }
 
 func (o *PublicUpdateContentByShareCodeV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -382,6 +387,7 @@ func (o *PublicUpdateContentByShareCodeV2Conflict) GetPayload() *ugcclientmodels
 }
 
 func (o *PublicUpdateContentByShareCodeV2Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -435,6 +441,7 @@ func (o *PublicUpdateContentByShareCodeV2InternalServerError) GetPayload() *ugcc
 }
 
 func (o *PublicUpdateContentByShareCodeV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

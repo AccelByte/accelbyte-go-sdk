@@ -99,6 +99,7 @@ func (o *AdminGetAgeRestrictionStatusV2OK) GetPayload() *iamclientmodels.ModelAg
 }
 
 func (o *AdminGetAgeRestrictionStatusV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminGetAgeRestrictionStatusV2Unauthorized) GetPayload() *iamclientmode
 }
 
 func (o *AdminGetAgeRestrictionStatusV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminGetAgeRestrictionStatusV2Forbidden) GetPayload() *iamclientmodels.
 }
 
 func (o *AdminGetAgeRestrictionStatusV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -238,6 +241,7 @@ func (o *AdminGetAgeRestrictionStatusV2NotFound) Error() string {
 }
 
 func (o *AdminGetAgeRestrictionStatusV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

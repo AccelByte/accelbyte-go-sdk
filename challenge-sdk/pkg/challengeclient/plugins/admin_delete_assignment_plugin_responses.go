@@ -27,8 +27,8 @@ type AdminDeleteAssignmentPluginReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AdminDeleteAssignmentPluginReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewAdminDeleteAssignmentPluginOK()
+	case 204:
+		result := NewAdminDeleteAssignmentPluginNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,23 +74,24 @@ func (o *AdminDeleteAssignmentPluginReader) ReadResponse(response runtime.Client
 	}
 }
 
-// NewAdminDeleteAssignmentPluginOK creates a AdminDeleteAssignmentPluginOK with default headers values
-func NewAdminDeleteAssignmentPluginOK() *AdminDeleteAssignmentPluginOK {
-	return &AdminDeleteAssignmentPluginOK{}
+// NewAdminDeleteAssignmentPluginNoContent creates a AdminDeleteAssignmentPluginNoContent with default headers values
+func NewAdminDeleteAssignmentPluginNoContent() *AdminDeleteAssignmentPluginNoContent {
+	return &AdminDeleteAssignmentPluginNoContent{}
 }
 
-/*AdminDeleteAssignmentPluginOK handles this case with default header values.
+/*AdminDeleteAssignmentPluginNoContent handles this case with default header values.
 
-  OK
+  No Content
 */
-type AdminDeleteAssignmentPluginOK struct {
+type AdminDeleteAssignmentPluginNoContent struct {
 }
 
-func (o *AdminDeleteAssignmentPluginOK) Error() string {
-	return fmt.Sprintf("[DELETE /challenge/v1/admin/namespaces/{namespace}/plugins/assignment][%d] adminDeleteAssignmentPluginOK ", 200)
+func (o *AdminDeleteAssignmentPluginNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /challenge/v1/admin/namespaces/{namespace}/plugins/assignment][%d] adminDeleteAssignmentPluginNoContent ", 204)
 }
 
-func (o *AdminDeleteAssignmentPluginOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminDeleteAssignmentPluginNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *AdminDeleteAssignmentPluginBadRequest) GetPayload() *challengeclientmod
 }
 
 func (o *AdminDeleteAssignmentPluginBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *AdminDeleteAssignmentPluginUnauthorized) GetPayload() *challengeclientm
 }
 
 func (o *AdminDeleteAssignmentPluginUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *AdminDeleteAssignmentPluginForbidden) GetPayload() *challengeclientmode
 }
 
 func (o *AdminDeleteAssignmentPluginForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *AdminDeleteAssignmentPluginNotFound) GetPayload() *challengeclientmodel
 }
 
 func (o *AdminDeleteAssignmentPluginNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *AdminDeleteAssignmentPluginInternalServerError) GetPayload() *challenge
 }
 
 func (o *AdminDeleteAssignmentPluginInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

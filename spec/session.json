@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.17.1"
+    "version": "3.19.0"
   },
   "schemes": [
     "https"
@@ -24,215 +24,6 @@
     "/healthz": {
       "get": {
         "operationId": "GetHealthcheckInfo",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof": {
-      "get": {
-        "operationId": "pprofHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/allocs": {
-      "get": {
-        "operationId": "allocsHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/block": {
-      "get": {
-        "operationId": "blockHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/cmdline": {
-      "get": {
-        "operationId": "cmdlineHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/goroutine": {
-      "get": {
-        "operationId": "goroutineHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/heap": {
-      "get": {
-        "operationId": "heapHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/mutex": {
-      "get": {
-        "operationId": "mutexHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/profile": {
-      "get": {
-        "operationId": "profile",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/symbol": {
-      "get": {
-        "operationId": "symbolHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/threadcreate": {
-      "get": {
-        "operationId": "threadcreateHandler",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
-        "x-errorCodes": {}
-      }
-    },
-    "/session/admin/internal/pprof/trace": {
-      "get": {
-        "operationId": "traceHandler",
         "produces": [
           "application/json"
         ],
@@ -1066,7 +857,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability. supported values:\n\t- OPEN: user can join or rejoin the session without an invite\n\t- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.\n\t- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.\n\t- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.\n\t- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.\n\t- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent will only applies to session with type DS (example value true or false, default: false)\n\t- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n\t- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\t- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n\t- https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n\t- https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n\t- https://s2s.np.playstation.net (Production)\n\t- localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created\n- LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value \u0026gt; 0 if leader disconnect will be wait until value reach and leader will be change after reach\n- ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.\n- DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites\u0026#39;\n",
+        "description": "Create template configuration to be applied across party and session.\nSession configuration mandatory :\n- name\n- joinability. supported values:\n\t- OPEN: user can join or rejoin the session without an invite\n\t- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.\n\t- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.\n\t- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.\n\t- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.\n\t- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent will only applies to session with type DS (example value true or false, default: false)\n\t- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n\t- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n\t- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n\t- https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n\t- https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n\t- https://s2s.np.playstation.net (Production)\n\t- localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime (optional, default: false): If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created\n- LeaderElectionGracePeriod this is on second (optional, default:0) this is only use for party session, if value \u0026gt; 0 if leader disconnect will be wait until value reach and leader will be change after reach\n- ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.\n- DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites\u0026#39;.\n- appName (optional, default: empty string). Extend application name that uploaded to AccelByte extends deployment. The application is for custom/external DS management.\n- customURLGRPC (optional: default: empty string). Url for grpc server that server custom/external DS management. This value will be ignore when appName is filled. Value formatted as host:port. Example: yourdomain.com:9989 \n- grpcSessionConfig (optional, default: empty object). Setting for grpc session extends. Session service will calls the grpc when any activity for the game sessions.\n\t- appName (required when customURL is empty) The extends app name that created and uploaded to AccelByte extends deployment.\n\t- customURL (required when appName is empty) The url for grpc server. Format is host:port. Example: mycustomdomain.com:9889. This will be ignore when appName is filled.\n\t- functionFlag (optional, default: -1) Flag to enable which function to calls when any event on the game sessions. The value is bitwise integer.\n\t\t- 0x1 is for created event. Event is sync, anything return from create event will be overide the final game session.\n\t\t- 0x2 is for updated event. Event is async. Called when any update on the game session.\n\t\t- 0x4 is for deleted event. Event is async. Callen when game session got deleted.\n\t\tExample: \n\t\t\t- value 3: enable for created and updated\n\t\t\t- value 7: enable for created, updated, and deleted, etc\n",
         "operationId": "adminCreateConfigurationTemplateV1",
         "parameters": [
           {
@@ -1406,7 +1197,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Modify template configuration\nSession configuration mandatory :\n- name\n- joinability. supported values:\n\t- OPEN: user can join or rejoin the session without an invite\n\t- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.\n\t- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.\n\t- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.\n\t- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.\n\t- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n\t- https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n\t- https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n\t- https://s2s.np.playstation.net (Production)\n\t- localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created.\n- ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.\n         - DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites\u0026#39;\n",
+        "description": "Modify template configuration\nSession configuration mandatory :\n- name\n- joinability. supported values:\n\t- OPEN: user can join or rejoin the session without an invite\n\t- CLOSED: once a CLOSED session is created or a session joinability is updated to CLOSED, any change to session members is not allowed and remaining invites will all be canceled.\n\t- INVITE_ONLY: to join the session, user whether needs to be invited, or have the code (for join by code). when a user is KICKED/LEFT/REJECTED from this session, they will need to be re-invited to join.\n\t- FRIENDS_OF_MEMBERS: only if a user is friend with at least one of the session members, they can join via code.\n\t- FRIENDS_OF_LEADER: only if a user is friend with the session leader, they can join via code.\n\t- FRIENDS_OF_FRIENDS: only friends of the leader OR friends of friends of the leader can join via code.\n- autoJoin: when enabled, players will automatically join the initial game session creation. Game session will not send any invite and players dont need to act upon it. default: false (disabled)\n- Type (example value : P2P, DS, NONE) if type empty, type will be assign to NONE\n- MinPlayers (must greater or equal 0)\n- MaxPlayers (must greater than 0)\n- InviteTimeout (must greater or equal 0) if InviteTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- InactiveTimeout (must greater or equal 0) if InactiveTimeout equal 0 will be use default DefaultTimeoutSecond (60s)\n- Persistent Flag only can use with type DS (example value true or false)\n- If Persistent True the session always active even DS removing or terminate and Session will be request DS again until DS Ready or Busy.\n- To Stop Session Not request again to DS or want Delete Session can Delete Session using endpoint DELETE /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}\n- If Persistent False the session will be inactive if all member left and DS terminate or removing\n- nativeSessionSetting:\n\t- XboxSessionTemplateName: the XBox session template name that correspondent to the AB session template, and is needed to define XBox session\u0026#39;s joinRestriction and maxMembersCount when doing the session sync.\n\t- XboxServiceConfigID: the XBox service configuration ID.\n\t- PSNServiceLabel: the PSN service label.\n\t- SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.\n\t- ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).\n\t- PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.\n- PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.\n\t- https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)\n\t- https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)\n\t- https://s2s.np.playstation.net (Production)\n\t- localizedSessionName : for localized name and default language\n\t\texample payload :\n\t\t\u0026#34;localizedSessionName\u0026#34;:{\n\t\t\t\u0026#34;defaultLanguage\u0026#34; : \u0026#34;en-US\u0026#34;\n\t\t\t\u0026#34;localizedText\u0026#34; :{\n\t\t\t\t\u0026#34;en-US\u0026#34; : \u0026#34;title\u0026#34;\n\t\t\t}\n\t\t}\n\t- if the game client wants to enable push context to PSN, game client will need to store PSN_PUSH_CONTEXT_ID on the player attributes, otherwise Session service will try to populate from the session attributes or auto generate with random UUID if empty.\n- TieTeamsSessionLifetime: If it is set to true, the lifetime of any partyId session inside teams attribute will be tied to the game session. Only applies when the teams partyId is game session.\n- DisableCodeGeneration (optional, default: false): If it is set to true, code will not be generated for party session automatically. \n- DSManualSetReady (optional, default: false): The DS need to call specific end point to flag the DS for game session is ready to accept client connection. \n- EnableSecret (optional, default: false): if configuration template is created with TypeDS and EnableSecret is True, A secret will be created.\n- ManualRejoin (optional, default: false): indicates if game client will handle manual rejoin upon websocket reconnection when enabled.\n         - DisableResendInvite (optional, default: false): by default, the service will be sending invites until the user reacts to it. enabling this flag will prohibit the service to send reminder invites\u0026#39;.\n- appName (optional, default: empty string). Extend application name that uploaded to AccelByte extends deployment. The application is for custom/external DS management.\n- customURLGRPC (optional: default: empty string). Url for grpc server that server custom/external DS management. This value will be ignore when appName is filled. Value formatted as host:port. Example: yourdomain.com:9989\n- grpcSessionConfig (optional, default: empty object). Setting for grpc session extends. Session service will calls the grpc when any activity for the game sessions.\n\t- appName (required when customURL is empty) The extends app name that created and uploaded to AccelByte extends deployment.\n\t- customURL (required when appName is empty) The url for grpc server. Format is host:port. Example: mycustomdomain.com:9889. This will be ignore when appName is filled.\n\t- functionFlag (optional, default: -1) Flag to enable which function to calls when any event on the game sessions. The value is bitwise integer.\n\t\t- 0x1 is for created event. Event is sync, anything return from create event will be overide the final game session.\n\t\t- 0x2 is for updated event. Event is async. Called when any update on the game session.\n\t\t- 0x4 is for deleted event. Event is async. Callen when game session got deleted.\n\t\tExample: \n\t\t\t- value 3: enable for created and updated\n\t\t\t- value 7: enable for created, updated, and deleted, etc\n",
         "operationId": "adminUpdateConfigurationTemplateV1",
         "parameters": [
           {
@@ -3479,7 +3270,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a game session.\nSession configuration \u0026#34;name\u0026#34; is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n- type\n- joinability\n- autoJoin. If enabled (set to true), players provided in the request will automatically joined the initial game session creation. Game session will not send any invite and players dont need to act upon it.\n- minPlayers\n- maxPlayers\n- inviteTimeout\n- inactiveTimeout\n- attributes\n- dsSource\n- tieTeamsSessionLifetime\n- matchPool\n- clientVersion\n- deployment\n- serverName\n- textChat\n- autoJoin\n- requestedRegions\n- dsSource\n- preferredClaimKeys\n- fallbackClaimKeys\n- customURLGRPC\n\nWhen the tieTeamsSessionLifetime is true, the lifetime of any partyId inside teams attribute will be tied to the game session.\nOnly applies when the teams partyId is a game session.\n\nSession has 2 fields for user status: \u0026#34;status\u0026#34; and \u0026#34;statusV2\u0026#34;. The \u0026#34;status\u0026#34; is there for backward-compatibility, therefore we encourage to just rely on \u0026#34;statusV2\u0026#34; for the more updated statuses.\nUser statuses:\n1. INVITED: by default, to join a session (except session with OPEN joinability or if session configuration has \u0026#34;autoJoin\u0026#34; sets to True) a user will receive an invite. The invitee will have the chance to respond within \u0026#34;inviteTimeout\u0026#34; which you can configure through session configuration.\n2. TIMEOUT: when a user is invited to a session, they will receive an invite. Unless \u0026#34;disableResendInvite\u0026#34; sets to True in the session configuration, the user will also receive invite reminder every 30s until they respond to the invite. \n3. REJECTED: when a user rejects an invite. To rejoin an INVITE_ONLY session, they will need to be re-invited and accept the invite.   \n4. JOINED: there are few ways of a user to join a session, by invite, direct join (depends on session joinability) or join by code. upon invite, once a user accepts an invite, their status will be changed to JOINED. \n5. LEFT: user can leave a session. in case of party, a user can only be in 1 party at a time. therefore when they decide to create or join another party, they will be automatically removed from their initial party and their status will be changed to LEFT.\n6. KICKED: only party leader can kick a member.   \n7. DISCONNECTED: if user still have reserved seat in the session and they disconnect lobby websocket, their status in the session will be changed to DISCONNECTED and field \u0026#34;members.previousStatus\u0026#34; of that user will contains the initial status before they disconnect lobby websocket. the user will be given chance to reconnect within \u0026#34;inactiveTimeout\u0026#34; which you can configure through session configuration.\n8. CONNECTED: when a user reconnect their lobby websocket, their status will change from DISCONNECTED to CONNECTED, only if they previously JOINED session. if they were on INVITED state before the disconnect happened, the user\u0026#39;s status will return back to INVITED after they reconnect.\n9. DROPPED: when \u0026#34;inactiveTimeout\u0026#34; is due and user never re-establish their websocket connection, we will drop them from the session.\n10. TERMINATED: only applies to game session. If a game session (match) is ended, DS will end/delete the session and we will mark all remaining users\u0026#39; status to be TERMINATED.  \n11. CANCELLED: when a session joinability changes to CLOSED, any remaining invites will be canceled.  \n\nUser is considered as active if they\u0026#39;re present in the session, which their status either CONNECTED or JOINED.\nUser has a reserved seat in the session if their status either INVITED, JOINED, CONNECTED, DISCONNECTED. When user\u0026#39;s\u0026#39; status change to other than these mentioned statuses, we will release the seat for other players to occupy.\n\nManaging the relation between session and lobby websocket connection:\n- Session relies on lobby to consider player\u0026#39;s connection health to our backend. therefore a disruption to lobby websocket will be reflected in the user\u0026#39;s status in all of their session(s). \n- If user still have a reserved seat in the session and they disconnect lobby websocket, their status in session(s) will be changed to DISCONNECTED and field \u0026#34;members.previousStatus\u0026#34; of that user will contains the initial status before they disconnect lobby websocket. This \u0026#34;members.previousStatus\u0026#34; used to track user\u0026#39;s previous status before they disconnect websocket, since we still reserve a seat for them, therefore this field will be empty again after they websocket.\n- If the disconnected user is the leader of the session they\u0026#39;re disconnected from, we will wait until \u0026#34;leaderElectionGracePeriod\u0026#34; is due, to promote the next oldest member as the new leader of the session. You can configure \u0026#34;leaderElectionGracePeriod\u0026#34; through session configuration.\n- The user will be given chance to reconnect within \u0026#34;inactiveTimeout\u0026#34; which you can configure through session configuration. If until \u0026#34;inactiveTimeout\u0026#34; is due and the user doesn\u0026#39;t reconnect their websocket, they will be removed from session and their status will change to DROPPED. If the dropped user was the leader of the session, we will promote the next oldest member as leader.\n- By default, we will update user\u0026#39;s status to what it was before disconnect, when the user reconnects lobby websocket, unless \u0026#34;manualRejoin\u0026#34; sets to True in the session configuration. When \u0026#34;manualRejoin\u0026#34; is enabled, after lobby websocket reconnect, the game client will need to manually invoke join session again to rejoin the session. \n- If the user was on INVITED state before the disconnect happened, the user\u0026#39;s status will return back to INVITED after they reconnect.\n\nWhen the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\nSession service has several DSInformation status to track DS request to DS providers:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- PREPARING: DS needs to call manual set ready for the game session\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to spin up a DS for session.\n- DS_ERROR: DS provider fails to spin up the DS or the DS itself becomes unreachable\n- DS_CANCELLED: when DSMC is preparing the DS, DSMC will give a temporary DS. In this phase, if you delete the game session, the DS request will be canceled.\n- ENDED: when a game session (match) has finished and DS has done its job, it will terminate itself.\n- UNKNOWN: if any unknown DS status is detected.\nDSInformation has 2 fields for DS status: \u0026#34;status\u0026#34; and \u0026#34;statusV2\u0026#34;. The \u0026#34;status\u0026#34; is there for backward-compatibility, therefore we encourage to just rely on \u0026#34;statusV2\u0026#34; for the more updated statuses.\nDS Source can be DSMC, AMS or custom. In DSMC, a DS request will be put in queue if they dont have available buffers, and DSMC will let the service knows when they finished spinning it up. While AMS doesn\u0026#39;t have a concept of queue. Therefore some \u0026#34;DSInformation.statusV2\u0026#34; only applicable for DSMC.\n\nBy default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n- A DS will be requested from AMS instead of DSMC.\n- The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n- The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows:\n\t[preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\n",
+        "description": "Create a game session.\nSession configuration \u0026#34;name\u0026#34; is mandatory, this API will refer following values from the session template if they\u0026#39;re not provided in the request:\n- type\n- joinability\n- autoJoin. If enabled (set to true), players provided in the request will automatically joined the initial game session creation. Game session will not send any invite and players dont need to act upon it.\n- minPlayers\n- maxPlayers\n- inviteTimeout\n- inactiveTimeout\n- attributes\n- dsSource\n- tieTeamsSessionLifetime\n- matchPool\n- clientVersion\n- deployment\n- serverName\n- textChat\n- autoJoin\n- requestedRegions\n- dsSource\n- preferredClaimKeys\n- fallbackClaimKeys\n- customURLGRPC\n\nWhen the tieTeamsSessionLifetime is true, the lifetime of any partyId inside teams attribute will be tied to the game session.\nOnly applies when the teams partyId is a game session.\n\nSession has 2 fields for user status: \u0026#34;status\u0026#34; and \u0026#34;statusV2\u0026#34;. The \u0026#34;status\u0026#34; is there for backward-compatibility, therefore we encourage to just rely on \u0026#34;statusV2\u0026#34; for the more updated statuses.\nUser statuses:\n1. INVITED: by default, to join a session (except session with OPEN joinability or if session configuration has \u0026#34;autoJoin\u0026#34; sets to True) a user will receive an invite. The invitee will have the chance to respond within \u0026#34;inviteTimeout\u0026#34; which you can configure through session configuration.\n2. TIMEOUT: when a user is invited to a session, they will receive an invite. Unless \u0026#34;disableResendInvite\u0026#34; sets to True in the session configuration, the user will also receive invite reminder every 30s until they respond to the invite. \n3. REJECTED: when a user rejects an invite. To rejoin an INVITE_ONLY session, they will need to be re-invited and accept the invite.   \n4. JOINED: there are few ways of a user to join a session, by invite, direct join (depends on session joinability) or join by code. upon invite, once a user accepts an invite, their status will be changed to JOINED. \n5. LEFT: user can leave a session. in case of party, a user can only be in 1 party at a time. therefore when they decide to create or join another party, they will be automatically removed from their initial party and their status will be changed to LEFT.\n6. KICKED: only party leader can kick a member.   \n7. DISCONNECTED: if user still have reserved seat in the session and they disconnect lobby websocket, their status in the session will be changed to DISCONNECTED and field \u0026#34;members.previousStatus\u0026#34; of that user will contains the initial status before they disconnect lobby websocket. the user will be given chance to reconnect within \u0026#34;inactiveTimeout\u0026#34; which you can configure through session configuration.\n8. CONNECTED: when a user reconnect their lobby websocket, their status will change from DISCONNECTED to CONNECTED, only if they previously JOINED session. if they were on INVITED state before the disconnect happened, the user\u0026#39;s status will return back to INVITED after they reconnect.\n9. DROPPED: when \u0026#34;inactiveTimeout\u0026#34; is due and user never re-establish their websocket connection, we will drop them from the session.\n10. TERMINATED: only applies to game session. If a game session (match) is ended, DS will end/delete the session and we will mark all remaining users\u0026#39; status to be TERMINATED.  \n11. CANCELLED: when a session joinability changes to CLOSED, any remaining invites will be canceled.  \n\nUser is considered as active if they\u0026#39;re present in the session, which their status either CONNECTED or JOINED.\nUser has a reserved seat in the session if their status either INVITED, JOINED, CONNECTED, DISCONNECTED. When user\u0026#39;s\u0026#39; status change to other than these mentioned statuses, we will release the seat for other players to occupy.\n\nManaging the relation between session and lobby websocket connection:\n- Session relies on lobby to consider player\u0026#39;s connection health to our backend. therefore a disruption to lobby websocket will be reflected in the user\u0026#39;s status in all of their session(s). \n- If user still have a reserved seat in the session and they disconnect lobby websocket, their status in session(s) will be changed to DISCONNECTED and field \u0026#34;members.previousStatus\u0026#34; of that user will contains the initial status before they disconnect lobby websocket. This \u0026#34;members.previousStatus\u0026#34; used to track user\u0026#39;s previous status before they disconnect websocket, since we still reserve a seat for them, therefore this field will be empty again after they websocket.\n- If the disconnected user is the leader of the session they\u0026#39;re disconnected from, we will wait until \u0026#34;leaderElectionGracePeriod\u0026#34; is due, to promote the next oldest member as the new leader of the session. You can configure \u0026#34;leaderElectionGracePeriod\u0026#34; through session configuration.\n- The user will be given chance to reconnect within \u0026#34;inactiveTimeout\u0026#34; which you can configure through session configuration. If until \u0026#34;inactiveTimeout\u0026#34; is due and the user doesn\u0026#39;t reconnect their websocket, they will be removed from session and their status will change to DROPPED. If the dropped user was the leader of the session, we will promote the next oldest member as leader.\n- By default, we will update user\u0026#39;s status to what it was before disconnect, when the user reconnects lobby websocket, unless \u0026#34;manualRejoin\u0026#34; sets to True in the session configuration. When \u0026#34;manualRejoin\u0026#34; is enabled, after lobby websocket reconnect, the game client will need to manually invoke join session again to rejoin the session. \n- If the user was on INVITED state before the disconnect happened, the user\u0026#39;s status will return back to INVITED after they reconnect.\n\nWhen the session type is a DS, a DS creation request will be sent if number of active players reaches session\u0026#39;s minPlayers.\nSession service has several DSInformation status to track DS request to DS providers:\n- NEED_TO_REQUEST: number of active players hasn\u0026#39;t reached session\u0026#39;s minPlayers therefore DS has not yet requested.\n- REQUESTED: DS is being requested to DSMC.\n- PREPARING: DS needs to call manual set ready for the game session\n- AVAILABLE: DS is ready to use. The DSMC status for this DS is either READY/BUSY.\n- FAILED_TO_REQUEST: DSMC fails to spin up a DS for session.\n- DS_ERROR: DS provider fails to spin up the DS or the DS itself becomes unreachable\n- DS_CANCELLED: when DSMC is preparing the DS, DSMC will give a temporary DS. In this phase, if you delete the game session, the DS request will be canceled.\n- ENDED: when a game session (match) has finished and DS has done its job, it will terminate itself.\n- UNKNOWN: if any unknown DS status is detected.\nDSInformation has 2 fields for DS status: \u0026#34;status\u0026#34; and \u0026#34;statusV2\u0026#34;. The \u0026#34;status\u0026#34; is there for backward-compatibility, therefore we encourage to just rely on \u0026#34;statusV2\u0026#34; for the more updated statuses.\nDS Source can be DSMC, AMS or custom. In DSMC, a DS request will be put in queue if they dont have available buffers, and DSMC will let the service knows when they finished spinning it up. While AMS doesn\u0026#39;t have a concept of queue. Therefore some \u0026#34;DSInformation.statusV2\u0026#34; only applicable for DSMC.\n\nBy default, DS requests are sent to DSMC, but if dsSource is set to \u0026#34;AMS\u0026#34;:\n- A DS will be requested from AMS instead of DSMC.\n- The server will be chosen based on a set of claim keys, in order of preference, to match with fleets.\n- The claim key list is built build from the preferredClaimKeys, fallbackClaimKeys, and clientVersion as follows:\n\t[preferredClaimKeys.., clientVersion, fallbackClaimKeys...]\nfor session override can follow guideline in here https://docs.accelbyte.io/gaming-services/services/extend/override-ags-feature/getting-started-with-session-customization/\n",
         "operationId": "createGameSession",
         "parameters": [
           {
@@ -7193,6 +6984,9 @@
           },
           "type": "array"
         },
+        "grpcSessionConfig": {
+          "$ref": "#/definitions/models.ExtendConfiguration"
+        },
         "immutableStorage": {
           "type": "boolean",
           "x-omitempty": false
@@ -7361,6 +7155,9 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "grpcSessionConfig": {
+          "$ref": "#/definitions/models.ExtendConfiguration"
         },
         "immutableStorage": {
           "type": "boolean",
@@ -8193,6 +7990,9 @@
           },
           "type": "array"
         },
+        "grpcSessionConfig": {
+          "$ref": "#/definitions/models.ExtendConfiguration"
+        },
         "immutableStorage": {
           "type": "boolean",
           "x-omitempty": false
@@ -8477,6 +8277,9 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "grpcSessionConfig": {
+          "$ref": "#/definitions/models.ExtendConfiguration"
         },
         "immutableStorage": {
           "type": "boolean",
@@ -8891,6 +8694,21 @@
         "creation_timeout"
       ]
     },
+    "models.ExtendConfiguration": {
+      "properties": {
+        "appName": {
+          "type": "string"
+        },
+        "customURL": {
+          "type": "string"
+        },
+        "functionFlag": {
+          "format": "int32",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
     "models.GameServer": {
       "properties": {
         "alternate_ips": {
@@ -9246,9 +9064,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T06:51:52+00:00",
-    "gitHash": "596a4503c2da2488e54fbd5f8f452aeee4f15c3b",
-    "version": "3.17.1",
+    "buildDate": "2024-10-02T03:24:28+00:00",
+    "gitHash": "51f34fe7f4a1e57c079ff0c2f8ee2c3bf57cadd5",
+    "version": "3.19.0",
     "version-roles-seeding": "1.2.37"
   }
 }

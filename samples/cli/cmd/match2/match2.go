@@ -60,5 +60,6 @@ func init() {
 	Match2Cmd.AddCommand(ruleSets.RuleSetDetailsCmd)
 	Match2Cmd.AddCommand(ruleSets.UpdateRuleSetCmd)
 	Match2Cmd.AddCommand(ruleSets.DeleteRuleSetCmd)
+	Match2Cmd.AddCommand(matchPools.PublicGetPlayerMetricCmd)
 	Match2Cmd.AddCommand(operations.VersionCheckHandlerCmd)
 }

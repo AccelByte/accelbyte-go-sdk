@@ -117,6 +117,7 @@ func (o *AdminUpdatePartyAttributesV1OK) GetPayload() *lobbyclientmodels.ModelsP
 }
 
 func (o *AdminUpdatePartyAttributesV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -170,6 +171,7 @@ func (o *AdminUpdatePartyAttributesV1BadRequest) GetPayload() *lobbyclientmodels
 }
 
 func (o *AdminUpdatePartyAttributesV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -223,6 +225,7 @@ func (o *AdminUpdatePartyAttributesV1Unauthorized) GetPayload() *lobbyclientmode
 }
 
 func (o *AdminUpdatePartyAttributesV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -276,6 +279,7 @@ func (o *AdminUpdatePartyAttributesV1Forbidden) GetPayload() *lobbyclientmodels.
 }
 
 func (o *AdminUpdatePartyAttributesV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -329,6 +333,7 @@ func (o *AdminUpdatePartyAttributesV1NotFound) GetPayload() *lobbyclientmodels.R
 }
 
 func (o *AdminUpdatePartyAttributesV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -382,6 +387,7 @@ func (o *AdminUpdatePartyAttributesV1PreconditionFailed) GetPayload() *lobbyclie
 }
 
 func (o *AdminUpdatePartyAttributesV1PreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -435,6 +441,7 @@ func (o *AdminUpdatePartyAttributesV1InternalServerError) GetPayload() *lobbycli
 }
 
 func (o *AdminUpdatePartyAttributesV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

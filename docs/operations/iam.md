@@ -214,6 +214,7 @@
 | `/iam/v3/public/users/me` | GET | PublicGetMyUserV3Short | [PublicGetMyUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetMyUserV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetMyUserV3Short](../../samples/cli/cmd/iam/users/publicGetMyUserV3.go) |
 | `/iam/v3/public/users/me/headless/link/conflict` | GET | PublicGetLinkHeadlessAccountToMyAccountConflictV3Short | [PublicGetLinkHeadlessAccountToMyAccountConflictV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetLinkHeadlessAccountToMyAccountConflictV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetLinkHeadlessAccountToMyAccountConflictV3Short](../../samples/cli/cmd/iam/users/publicGetLinkHeadlessAccountToMyAccountConflictV3.go) |
 | `/iam/v3/public/users/me/headless/linkWithProgression` | POST | LinkHeadlessAccountToMyAccountV3Short | [LinkHeadlessAccountToMyAccountV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [LinkHeadlessAccountToMyAccountV3Short](../../services-api/pkg/service/iam/users.go) | [LinkHeadlessAccountToMyAccountV3Short](../../samples/cli/cmd/iam/users/linkHeadlessAccountToMyAccountV3.go) |
+| `/iam/v3/public/users/me/profileStatus` | GET | PublicGetMyProfileAllowUpdateStatusV3Short | [PublicGetMyProfileAllowUpdateStatusV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetMyProfileAllowUpdateStatusV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetMyProfileAllowUpdateStatusV3Short](../../samples/cli/cmd/iam/users/publicGetMyProfileAllowUpdateStatusV3.go) |
 | `/iam/v3/public/users/me/verify_link/request` | POST | PublicSendVerificationLinkV3Short | [PublicSendVerificationLinkV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicSendVerificationLinkV3Short](../../services-api/pkg/service/iam/users.go) | [PublicSendVerificationLinkV3Short](../../samples/cli/cmd/iam/users/publicSendVerificationLinkV3.go) |
 | `/iam/v3/public/users/verify_link/verify` | GET | PublicVerifyUserByLinkV3Short | [PublicVerifyUserByLinkV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicVerifyUserByLinkV3Short](../../services-api/pkg/service/iam/users.go) | [PublicVerifyUserByLinkV3Short](../../samples/cli/cmd/iam/users/publicVerifyUserByLinkV3.go) |
 
@@ -313,6 +314,12 @@
 | `/iam/v3/admin/namespaces/{namespace}/countries/blacklist` | POST | AdminAddCountryBlacklistV3Short | [AdminAddCountryBlacklistV3Short](../../iam-sdk/pkg/iamclient/country/country_client.go) | [AdminAddCountryBlacklistV3Short](../../services-api/pkg/service/iam/country.go) | [AdminAddCountryBlacklistV3Short](../../samples/cli/cmd/iam/country/adminAddCountryBlacklistV3.go) |
 | `/iam/v3/public/namespaces/{namespace}/countries` | GET | PublicGetCountryListV3Short | [PublicGetCountryListV3Short](../../iam-sdk/pkg/iamclient/country/country_client.go) | [PublicGetCountryListV3Short](../../services-api/pkg/service/iam/country.go) | [PublicGetCountryListV3Short](../../samples/cli/cmd/iam/country/publicGetCountryListV3.go) |
 
+### Login Allowlist Wrapper:  [LoginAllowlist](../../services-api/pkg/service/iam/loginAllowlist.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v3/admin/namespaces/{namespace}/loginAllowlist` | GET | AdminGetLoginAllowlistV3Short | [AdminGetLoginAllowlistV3Short](../../iam-sdk/pkg/iamclient/login_allowlist/login_allowlist_client.go) | [AdminGetLoginAllowlistV3Short](../../services-api/pkg/service/iam/loginAllowlist.go) | [AdminGetLoginAllowlistV3Short](../../samples/cli/cmd/iam/loginAllowlist/adminGetLoginAllowlistV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/loginAllowlist` | PUT | AdminUpdateLoginAllowlistV3Short | [AdminUpdateLoginAllowlistV3Short](../../iam-sdk/pkg/iamclient/login_allowlist/login_allowlist_client.go) | [AdminUpdateLoginAllowlistV3Short](../../services-api/pkg/service/iam/loginAllowlist.go) | [AdminUpdateLoginAllowlistV3Short](../../samples/cli/cmd/iam/loginAllowlist/adminUpdateLoginAllowlistV3.go) |
+
 ### Third Party Credential Wrapper:  [ThirdPartyCredential](../../services-api/pkg/service/iam/thirdPartyCredential.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -336,6 +343,13 @@
 | `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | POST | AddSSOLoginPlatformCredentialShort | [AddSSOLoginPlatformCredentialShort](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [AddSSOLoginPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [AddSSOLoginPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/addSSOLoginPlatformCredential.go) |
 | `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | DELETE | DeleteSSOLoginPlatformCredentialV3Short | [DeleteSSOLoginPlatformCredentialV3Short](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [DeleteSSOLoginPlatformCredentialV3Short](../../services-api/pkg/service/iam/ssoCredential.go) | [DeleteSSOLoginPlatformCredentialV3Short](../../samples/cli/cmd/iam/ssoCredential/deleteSSOLoginPlatformCredentialV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/sso` | PATCH | UpdateSSOPlatformCredentialShort | [UpdateSSOPlatformCredentialShort](../../iam-sdk/pkg/iamclient/sso_credential/sso_credential_client.go) | [UpdateSSOPlatformCredentialShort](../../services-api/pkg/service/iam/ssoCredential.go) | [UpdateSSOPlatformCredentialShort](../../samples/cli/cmd/iam/ssoCredential/updateSSOPlatformCredential.go) |
+
+### Profile Update Strategy Wrapper:  [ProfileUpdateStrategy](../../services-api/pkg/service/iam/profileUpdateStrategy.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v3/admin/namespaces/{namespace}/profileUpdateStrategies` | GET | AdminGetProfileUpdateStrategyV3Short | [AdminGetProfileUpdateStrategyV3Short](../../iam-sdk/pkg/iamclient/profile_update_strategy/profile_update_strategy_client.go) | [AdminGetProfileUpdateStrategyV3Short](../../services-api/pkg/service/iam/profileUpdateStrategy.go) | [AdminGetProfileUpdateStrategyV3Short](../../samples/cli/cmd/iam/profileUpdateStrategy/adminGetProfileUpdateStrategyV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/profileUpdateStrategies` | PUT | AdminUpdateProfileUpdateStrategyV3Short | [AdminUpdateProfileUpdateStrategyV3Short](../../iam-sdk/pkg/iamclient/profile_update_strategy/profile_update_strategy_client.go) | [AdminUpdateProfileUpdateStrategyV3Short](../../services-api/pkg/service/iam/profileUpdateStrategy.go) | [AdminUpdateProfileUpdateStrategyV3Short](../../samples/cli/cmd/iam/profileUpdateStrategy/adminUpdateProfileUpdateStrategyV3.go) |
+| `/iam/v3/public/namespaces/{namespace}/profileUpdateStrategies` | GET | PublicGetProfileUpdateStrategyV3Short | [PublicGetProfileUpdateStrategyV3Short](../../iam-sdk/pkg/iamclient/profile_update_strategy/profile_update_strategy_client.go) | [PublicGetProfileUpdateStrategyV3Short](../../services-api/pkg/service/iam/profileUpdateStrategy.go) | [PublicGetProfileUpdateStrategyV3Short](../../samples/cli/cmd/iam/profileUpdateStrategy/publicGetProfileUpdateStrategyV3.go) |
 
 ### Override Role Config v3 Wrapper:  [OverrideRoleConfigV3](../../services-api/pkg/service/iam/overrideRoleConfigV3.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -406,6 +420,7 @@
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}` | PUT | AdminUpdateUserV4Short | [AdminUpdateUserV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminUpdateUserV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminUpdateUserV4Short](../../samples/cli/cmd/iam/usersV4/adminUpdateUserV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}/email` | PUT | AdminUpdateUserEmailAddressV4Short | [AdminUpdateUserEmailAddressV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminUpdateUserEmailAddressV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminUpdateUserEmailAddressV4Short](../../samples/cli/cmd/iam/usersV4/adminUpdateUserEmailAddressV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/disable` | DELETE | AdminDisableUserMFAV4Short | [AdminDisableUserMFAV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminDisableUserMFAV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminDisableUserMFAV4Short](../../samples/cli/cmd/iam/usersV4/adminDisableUserMFAV4.go) |
+| `/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/status` | GET | AdminGetUserMFAStatusV4Short | [AdminGetUserMFAStatusV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminGetUserMFAStatusV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminGetUserMFAStatusV4Short](../../samples/cli/cmd/iam/usersV4/adminGetUserMFAStatusV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles` | GET | AdminListUserRolesV4Short | [AdminListUserRolesV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminListUserRolesV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminListUserRolesV4Short](../../samples/cli/cmd/iam/usersV4/adminListUserRolesV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles` | PUT | AdminUpdateUserRoleV4Short | [AdminUpdateUserRoleV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminUpdateUserRoleV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminUpdateUserRoleV4Short](../../samples/cli/cmd/iam/usersV4/adminUpdateUserRoleV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles` | POST | AdminAddUserRoleV4Short | [AdminAddUserRoleV4Short](../../iam-sdk/pkg/iamclient/users_v4/users_v4_client.go) | [AdminAddUserRoleV4Short](../../services-api/pkg/service/iam/usersV4.go) | [AdminAddUserRoleV4Short](../../samples/cli/cmd/iam/usersV4/adminAddUserRoleV4.go) |
@@ -475,7 +490,7 @@
 | `/iam/v4/admin/namespaces/{namespace}/devices/report` | GET | AdminGenerateReportV4Short | [AdminGenerateReportV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGenerateReportV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGenerateReportV4Short](../../samples/cli/cmd/iam/devicesV4/adminGenerateReportV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/devices/types` | GET | AdminGetDeviceTypesV4Short | [AdminGetDeviceTypesV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetDeviceTypesV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetDeviceTypesV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetDeviceTypesV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/bans` | GET | AdminGetDeviceBansV4Short | [AdminGetDeviceBansV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetDeviceBansV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetDeviceBansV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetDeviceBansV4.go) |
-| `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/decrypt` | GET | AdminDecryptDeviceV4Short | [AdminDecryptDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminDecryptDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminDecryptDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminDecryptDeviceV4.go) |
+| [DEPRECATED] `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/decrypt` | GET | AdminDecryptDeviceV4Short | [AdminDecryptDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminDecryptDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminDecryptDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminDecryptDeviceV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/unban` | PUT | AdminUnbanDeviceV4Short | [AdminUnbanDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminUnbanDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminUnbanDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminUnbanDeviceV4.go) |
 | `/iam/v4/admin/namespaces/{namespace}/devices/{deviceId}/users` | GET | AdminGetUsersByDeviceV4Short | [AdminGetUsersByDeviceV4Short](../../iam-sdk/pkg/iamclient/devices_v4/devices_v4_client.go) | [AdminGetUsersByDeviceV4Short](../../services-api/pkg/service/iam/devicesV4.go) | [AdminGetUsersByDeviceV4Short](../../samples/cli/cmd/iam/devicesV4/adminGetUsersByDeviceV4.go) |
 
@@ -511,6 +526,7 @@
 | `account.createUserResponseV4` | [AccountCreateUserResponseV4 ](../../iam-sdk/pkg/iamclientmodels/account_create_user_response_v4.go) |
 | `account.upgradeHeadlessAccountRequestV4` | [AccountUpgradeHeadlessAccountRequestV4 ](../../iam-sdk/pkg/iamclientmodels/account_upgrade_headless_account_request_v4.go) |
 | `account.upgradeHeadlessAccountWithVerificationCodeRequestV4` | [AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4 ](../../iam-sdk/pkg/iamclientmodels/account_upgrade_headless_account_with_verification_code_request_v4.go) |
+| `account.userInfo` | [AccountUserInfo ](../../iam-sdk/pkg/iamclientmodels/account_user_info.go) |
 | `accountcommon.AllowedPermission` | [AccountcommonAllowedPermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_allowed_permission.go) |
 | `accountcommon.AvatarConfig` | [AccountcommonAvatarConfig ](../../iam-sdk/pkg/iamclientmodels/accountcommon_avatar_config.go) |
 | `accountcommon.Ban` | [AccountcommonBan ](../../iam-sdk/pkg/iamclientmodels/accountcommon_ban.go) |
@@ -551,6 +567,7 @@
 | `accountcommon.PlatformAccount` | [AccountcommonPlatformAccount ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_account.go) |
 | `accountcommon.PlatformLinkingHistory` | [AccountcommonPlatformLinkingHistory ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_linking_history.go) |
 | `accountcommon.PlatformUserInformationV3` | [AccountcommonPlatformUserInformationV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_user_information_v3.go) |
+| `accountcommon.ProfileUpdateConfig` | [AccountcommonProfileUpdateConfig ](../../iam-sdk/pkg/iamclientmodels/accountcommon_profile_update_config.go) |
 | `accountcommon.RegisteredDomain` | [AccountcommonRegisteredDomain ](../../iam-sdk/pkg/iamclientmodels/accountcommon_registered_domain.go) |
 | `accountcommon.ReplaceRolePermission` | [AccountcommonReplaceRolePermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_replace_role_permission.go) |
 | `accountcommon.Role` | [AccountcommonRole ](../../iam-sdk/pkg/iamclientmodels/accountcommon_role.go) |
@@ -634,10 +651,12 @@
 | `model.EmailUpdateRequestV4` | [ModelEmailUpdateRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_email_update_request_v4.go) |
 | `model.EnabledFactorsResponseV4` | [ModelEnabledFactorsResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_enabled_factors_response_v4.go) |
 | `model.FailedBanUnbanUserV3` | [ModelFailedBanUnbanUserV3 ](../../iam-sdk/pkg/iamclientmodels/model_failed_ban_unban_user_v3.go) |
+| `model.FieldUpdateAllowStatus` | [ModelFieldUpdateAllowStatus ](../../iam-sdk/pkg/iamclientmodels/model_field_update_allow_status.go) |
 | `model.ForgotPasswordRequestV3` | [ModelForgotPasswordRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_forgot_password_request_v3.go) |
 | `model.GetAdminUsersResponse` | [ModelGetAdminUsersResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_admin_users_response.go) |
 | `model.GetBulkUserBansRequest` | [ModelGetBulkUserBansRequest ](../../iam-sdk/pkg/iamclientmodels/model_get_bulk_user_bans_request.go) |
 | `model.GetLinkHeadlessAccountConflictResponse` | [ModelGetLinkHeadlessAccountConflictResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_link_headless_account_conflict_response.go) |
+| `model.GetProfileUpdateStrategyConfigResponse` | [ModelGetProfileUpdateStrategyConfigResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_profile_update_strategy_config_response.go) |
 | `model.GetPublisherUserResponse` | [ModelGetPublisherUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_publisher_user_response.go) |
 | `model.GetUserBanSummaryV3` | [ModelGetUserBanSummaryV3 ](../../iam-sdk/pkg/iamclientmodels/model_get_user_ban_summary_v3.go) |
 | `model.GetUserBanV3Response` | [ModelGetUserBanV3Response ](../../iam-sdk/pkg/iamclientmodels/model_get_user_ban_v3_response.go) |
@@ -671,6 +690,8 @@
 | `model.ListUserResponseV3` | [ModelListUserResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_list_user_response_v3.go) |
 | `model.ListUserRolesV4Response` | [ModelListUserRolesV4Response ](../../iam-sdk/pkg/iamclientmodels/model_list_user_roles_v4_response.go) |
 | `model.ListValidUserIDResponseV4` | [ModelListValidUserIDResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_list_valid_user_id_response_v4.go) |
+| `model.LoginAllowlistRequest` | [ModelLoginAllowlistRequest ](../../iam-sdk/pkg/iamclientmodels/model_login_allowlist_request.go) |
+| `model.LoginAllowlistResponse` | [ModelLoginAllowlistResponse ](../../iam-sdk/pkg/iamclientmodels/model_login_allowlist_response.go) |
 | `model.LoginHistoriesResponse` | [ModelLoginHistoriesResponse ](../../iam-sdk/pkg/iamclientmodels/model_login_histories_response.go) |
 | `model.NamespaceInvitationHistoryUserV4Response` | [ModelNamespaceInvitationHistoryUserV4Response ](../../iam-sdk/pkg/iamclientmodels/model_namespace_invitation_history_user_v4_response.go) |
 | `model.NamespaceRoleRequest` | [ModelNamespaceRoleRequest ](../../iam-sdk/pkg/iamclientmodels/model_namespace_role_request.go) |
@@ -729,11 +750,13 @@
 | `model.SendVerificationCodeRequest` | [ModelSendVerificationCodeRequest ](../../iam-sdk/pkg/iamclientmodels/model_send_verification_code_request.go) |
 | `model.SendVerificationCodeRequestV3` | [ModelSendVerificationCodeRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_send_verification_code_request_v3.go) |
 | `model.SendVerificationLinkRequest` | [ModelSendVerificationLinkRequest ](../../iam-sdk/pkg/iamclientmodels/model_send_verification_link_request.go) |
+| `model.SimpleProfileUpdateStrategyConfigs` | [ModelSimpleProfileUpdateStrategyConfigs ](../../iam-sdk/pkg/iamclientmodels/model_simple_profile_update_strategy_configs.go) |
 | `model.ThirdPartyLoginPlatformCredentialRequest` | [ModelThirdPartyLoginPlatformCredentialRequest ](../../iam-sdk/pkg/iamclientmodels/model_third_party_login_platform_credential_request.go) |
 | `model.ThirdPartyLoginPlatformCredentialResponse` | [ModelThirdPartyLoginPlatformCredentialResponse ](../../iam-sdk/pkg/iamclientmodels/model_third_party_login_platform_credential_response.go) |
 | `model.TokenThirdPartyLinkStatusResponse` | [ModelTokenThirdPartyLinkStatusResponse ](../../iam-sdk/pkg/iamclientmodels/model_token_third_party_link_status_response.go) |
 | `model.UnlinkUserPlatformRequest` | [ModelUnlinkUserPlatformRequest ](../../iam-sdk/pkg/iamclientmodels/model_unlink_user_platform_request.go) |
 | `model.UpdatePermissionScheduleRequest` | [ModelUpdatePermissionScheduleRequest ](../../iam-sdk/pkg/iamclientmodels/model_update_permission_schedule_request.go) |
+| `model.UpdateProfileUpdateStrategyConfigRequest` | [ModelUpdateProfileUpdateStrategyConfigRequest ](../../iam-sdk/pkg/iamclientmodels/model_update_profile_update_strategy_config_request.go) |
 | `model.UpdateUserDeletionStatusRequest` | [ModelUpdateUserDeletionStatusRequest ](../../iam-sdk/pkg/iamclientmodels/model_update_user_deletion_status_request.go) |
 | `model.UpdateUserStatusRequest` | [ModelUpdateUserStatusRequest ](../../iam-sdk/pkg/iamclientmodels/model_update_user_status_request.go) |
 | `model.UpgradeHeadlessAccountRequest` | [ModelUpgradeHeadlessAccountRequest ](../../iam-sdk/pkg/iamclientmodels/model_upgrade_headless_account_request.go) |
@@ -771,6 +794,7 @@
 | `model.UserPlatformLinkHistories` | [ModelUserPlatformLinkHistories ](../../iam-sdk/pkg/iamclientmodels/model_user_platform_link_histories.go) |
 | `model.UserPlatformLinkHistory` | [ModelUserPlatformLinkHistory ](../../iam-sdk/pkg/iamclientmodels/model_user_platform_link_history.go) |
 | `model.UserPlatformMetadata` | [ModelUserPlatformMetadata ](../../iam-sdk/pkg/iamclientmodels/model_user_platform_metadata.go) |
+| `model.UserProfileUpdateAllowStatus` | [ModelUserProfileUpdateAllowStatus ](../../iam-sdk/pkg/iamclientmodels/model_user_profile_update_allow_status.go) |
 | `model.UserPublicInfoResponseV4` | [ModelUserPublicInfoResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_user_public_info_response_v4.go) |
 | `model.UserResponse` | [ModelUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_user_response.go) |
 | `model.UserResponseV3` | [ModelUserResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_user_response_v3.go) |

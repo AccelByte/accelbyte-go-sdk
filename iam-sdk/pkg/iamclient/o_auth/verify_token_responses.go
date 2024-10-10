@@ -87,6 +87,7 @@ func (o *VerifyTokenOK) GetPayload() *iamclientmodels.OauthmodelTokenResponse {
 }
 
 func (o *VerifyTokenOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -120,6 +121,7 @@ func (o *VerifyTokenBadRequest) Error() string {
 }
 
 func (o *VerifyTokenBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *UpdatePaymentDomainWhitelistConfigOK) GetPayload() *platformclientmodel
 }
 
 func (o *UpdatePaymentDomainWhitelistConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdatePaymentDomainWhitelistConfigUnprocessableEntity) GetPayload() *pl
 }
 
 func (o *UpdatePaymentDomainWhitelistConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

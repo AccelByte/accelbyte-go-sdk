@@ -111,6 +111,7 @@ func (o *CancelInvitationGroupMemberV2OK) GetPayload() *groupclientmodels.Models
 }
 
 func (o *CancelInvitationGroupMemberV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *CancelInvitationGroupMemberV2BadRequest) GetPayload() *groupclientmodel
 }
 
 func (o *CancelInvitationGroupMemberV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *CancelInvitationGroupMemberV2Unauthorized) GetPayload() *groupclientmod
 }
 
 func (o *CancelInvitationGroupMemberV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *CancelInvitationGroupMemberV2Forbidden) GetPayload() *groupclientmodels
 }
 
 func (o *CancelInvitationGroupMemberV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *CancelInvitationGroupMemberV2NotFound) GetPayload() *groupclientmodels.
 }
 
 func (o *CancelInvitationGroupMemberV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *CancelInvitationGroupMemberV2InternalServerError) GetPayload() *groupcl
 }
 
 func (o *CancelInvitationGroupMemberV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

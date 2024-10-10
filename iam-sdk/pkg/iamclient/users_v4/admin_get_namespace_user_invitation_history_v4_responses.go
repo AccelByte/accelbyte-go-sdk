@@ -111,6 +111,7 @@ func (o *AdminGetNamespaceUserInvitationHistoryV4OK) GetPayload() *iamclientmode
 }
 
 func (o *AdminGetNamespaceUserInvitationHistoryV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminGetNamespaceUserInvitationHistoryV4BadRequest) GetPayload() *iamcl
 }
 
 func (o *AdminGetNamespaceUserInvitationHistoryV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminGetNamespaceUserInvitationHistoryV4Unauthorized) GetPayload() *iam
 }
 
 func (o *AdminGetNamespaceUserInvitationHistoryV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminGetNamespaceUserInvitationHistoryV4Forbidden) GetPayload() *iamcli
 }
 
 func (o *AdminGetNamespaceUserInvitationHistoryV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminGetNamespaceUserInvitationHistoryV4InternalServerError) GetPayload
 }
 
 func (o *AdminGetNamespaceUserInvitationHistoryV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminGetNamespaceUserInvitationHistoryV4NotImplemented) GetPayload() *i
 }
 
 func (o *AdminGetNamespaceUserInvitationHistoryV4NotImplemented) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

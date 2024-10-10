@@ -93,6 +93,7 @@ func (o *AdminListEnvironmentVariablesOK) GetPayload() *sessionclientmodels.Apim
 }
 
 func (o *AdminListEnvironmentVariablesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminListEnvironmentVariablesUnauthorized) GetPayload() *sessionclientm
 }
 
 func (o *AdminListEnvironmentVariablesUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminListEnvironmentVariablesForbidden) GetPayload() *sessionclientmode
 }
 
 func (o *AdminListEnvironmentVariablesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

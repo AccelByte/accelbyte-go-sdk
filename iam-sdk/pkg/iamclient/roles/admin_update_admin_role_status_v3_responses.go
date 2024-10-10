@@ -91,6 +91,7 @@ func (o *AdminUpdateAdminRoleStatusV3NoContent) Error() string {
 }
 
 func (o *AdminUpdateAdminRoleStatusV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *AdminUpdateAdminRoleStatusV3BadRequest) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminUpdateAdminRoleStatusV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *AdminUpdateAdminRoleStatusV3Unauthorized) GetPayload() *iamclientmodels
 }
 
 func (o *AdminUpdateAdminRoleStatusV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *AdminUpdateAdminRoleStatusV3Forbidden) GetPayload() *iamclientmodels.Re
 }
 
 func (o *AdminUpdateAdminRoleStatusV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *AdminUpdateAdminRoleStatusV3NotFound) GetPayload() *iamclientmodels.Res
 }
 
 func (o *AdminUpdateAdminRoleStatusV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *AdminUpdateAdminRoleStatusV3InternalServerError) GetPayload() *iamclien
 }
 
 func (o *AdminUpdateAdminRoleStatusV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

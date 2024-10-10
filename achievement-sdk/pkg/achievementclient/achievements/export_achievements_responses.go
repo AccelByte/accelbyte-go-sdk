@@ -102,6 +102,7 @@ func (o *ExportAchievementsOK) GetPayload() io.Writer {
 }
 
 func (o *ExportAchievementsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -153,6 +154,7 @@ func (o *ExportAchievementsUnauthorized) GetPayload() *achievementclientmodels.R
 }
 
 func (o *ExportAchievementsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -206,6 +208,7 @@ func (o *ExportAchievementsForbidden) GetPayload() *achievementclientmodels.Resp
 }
 
 func (o *ExportAchievementsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -259,6 +262,7 @@ func (o *ExportAchievementsInternalServerError) GetPayload() *achievementclientm
 }
 
 func (o *ExportAchievementsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *PublicGetUserProfileInfoByPublicIDOK) GetPayload() *basicclientmodels.U
 }
 
 func (o *PublicGetUserProfileInfoByPublicIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *PublicGetUserProfileInfoByPublicIDBadRequest) GetPayload() *basicclient
 }
 
 func (o *PublicGetUserProfileInfoByPublicIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *PublicGetUserProfileInfoByPublicIDNotFound) GetPayload() *basicclientmo
 }
 
 func (o *PublicGetUserProfileInfoByPublicIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

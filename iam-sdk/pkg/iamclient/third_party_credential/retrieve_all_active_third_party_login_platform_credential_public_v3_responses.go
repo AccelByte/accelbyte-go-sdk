@@ -105,6 +105,7 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK) GetPayloa
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -156,6 +157,7 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized)
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -209,6 +211,7 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden) Ge
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -262,6 +265,7 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound) Get
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -315,6 +319,7 @@ func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServe
 }
 
 func (o *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *GetUserSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionI
 }
 
 func (o *GetUserSubscriptionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetUserSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *GetUserSubscriptionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

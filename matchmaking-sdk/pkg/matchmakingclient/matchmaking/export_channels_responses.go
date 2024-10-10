@@ -102,6 +102,7 @@ func (o *ExportChannelsOK) GetPayload() io.Writer {
 }
 
 func (o *ExportChannelsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -153,6 +154,7 @@ func (o *ExportChannelsUnauthorized) GetPayload() *matchmakingclientmodels.Respo
 }
 
 func (o *ExportChannelsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -206,6 +208,7 @@ func (o *ExportChannelsForbidden) GetPayload() *matchmakingclientmodels.Response
 }
 
 func (o *ExportChannelsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -259,6 +262,7 @@ func (o *ExportChannelsInternalServerError) GetPayload() *matchmakingclientmodel
 }
 
 func (o *ExportChannelsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

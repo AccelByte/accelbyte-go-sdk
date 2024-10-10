@@ -105,6 +105,7 @@ func (o *DeleteDeploymentOverrideOK) GetPayload() *dsmcclientmodels.ModelsDeploy
 }
 
 func (o *DeleteDeploymentOverrideOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *DeleteDeploymentOverrideBadRequest) GetPayload() *dsmcclientmodels.Resp
 }
 
 func (o *DeleteDeploymentOverrideBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *DeleteDeploymentOverrideUnauthorized) GetPayload() *dsmcclientmodels.Re
 }
 
 func (o *DeleteDeploymentOverrideUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *DeleteDeploymentOverrideNotFound) GetPayload() *dsmcclientmodels.Respon
 }
 
 func (o *DeleteDeploymentOverrideNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *DeleteDeploymentOverrideInternalServerError) GetPayload() *dsmcclientmo
 }
 
 func (o *DeleteDeploymentOverrideInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) GetPayload(
 }
 
 func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest) Get
 }
 
 func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound) GetPa
 }
 
 func (o *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

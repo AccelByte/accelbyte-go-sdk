@@ -99,6 +99,7 @@ func (o *UnpublishSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
 }
 
 func (o *UnpublishSeasonOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *UnpublishSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEn
 }
 
 func (o *UnpublishSeasonBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *UnpublishSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEnti
 }
 
 func (o *UnpublishSeasonNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *UnpublishSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEnti
 }
 
 func (o *UnpublishSeasonConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *UpdateCurrencyOK) GetPayload() *platformclientmodels.CurrencyInfo {
 }
 
 func (o *UpdateCurrencyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *UpdateCurrencyNotFound) GetPayload() *platformclientmodels.ErrorEntity 
 }
 
 func (o *UpdateCurrencyNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *UpdateCurrencyUnprocessableEntity) GetPayload() *platformclientmodels.V
 }
 
 func (o *UpdateCurrencyUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -246,6 +246,32 @@ func (aaa *MatchPoolsService) AdminGetMatchPoolTickets(input *match_pools.AdminG
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetPlayerMetricShort instead.
+func (aaa *MatchPoolsService) PublicGetPlayerMetric(input *match_pools.PublicGetPlayerMetricParams) (*match2clientmodels.APIPlayerMetricRecord, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchPools.PublicGetPlayerMetric(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *MatchPoolsService) MatchPoolListShort(input *match_pools.MatchPoolListParams) (*match2clientmodels.APIListMatchPoolsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -479,6 +505,36 @@ func (aaa *MatchPoolsService) AdminGetMatchPoolTicketsShort(input *match_pools.A
 	}
 
 	ok, err := aaa.Client.MatchPools.AdminGetMatchPoolTicketsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *MatchPoolsService) PublicGetPlayerMetricShort(input *match_pools.PublicGetPlayerMetricParams) (*match2clientmodels.APIPlayerMetricRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.MatchPools.PublicGetPlayerMetricShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

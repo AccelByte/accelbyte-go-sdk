@@ -63,6 +63,7 @@ func (o *ProcessUserOrderNotificationNoContent) Error() string {
 }
 
 func (o *ProcessUserOrderNotificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -89,6 +90,7 @@ func (o *ProcessUserOrderNotificationBadRequest) Error() string {
 }
 
 func (o *ProcessUserOrderNotificationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

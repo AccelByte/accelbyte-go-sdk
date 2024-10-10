@@ -114,10 +114,13 @@
 | `api.ArtifactTypeSamplingRules` | [ApiArtifactTypeSamplingRules ](../../ams-sdk/pkg/amsclientmodels/api_artifact_type_sampling_rules.go) |
 | `api.ArtifactURLResponse` | [ApiArtifactURLResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_url_response.go) |
 | `api.ArtifactUsageResponse` | [ApiArtifactUsageResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_usage_response.go) |
+| `api.AvailableInstanceType` | [ApiAvailableInstanceType ](../../ams-sdk/pkg/amsclientmodels/api_available_instance_type.go) |
 | `api.AvailableInstanceTypesResponse` | [ApiAvailableInstanceTypesResponse ](../../ams-sdk/pkg/amsclientmodels/api_available_instance_types_response.go) |
+| `api.Capacity` | [ApiCapacity ](../../ams-sdk/pkg/amsclientmodels/api_capacity.go) |
 | `api.DSHistoryEvent` | [ApiDSHistoryEvent ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_event.go) |
 | `api.DSHistoryList` | [ApiDSHistoryList ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_list.go) |
 | `api.DSHostConfiguration` | [ApiDSHostConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_d_s_host_configuration.go) |
+| `api.DSHostConfigurationParameters` | [ApiDSHostConfigurationParameters ](../../ams-sdk/pkg/amsclientmodels/api_d_s_host_configuration_parameters.go) |
 | `api.DevelopmentServerConfigurationCreateRequest` | [ApiDevelopmentServerConfigurationCreateRequest ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_create_request.go) |
 | `api.DevelopmentServerConfigurationCreateResponse` | [ApiDevelopmentServerConfigurationCreateResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_create_response.go) |
 | `api.DevelopmentServerConfigurationGetResponse` | [ApiDevelopmentServerConfigurationGetResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_get_response.go) |
@@ -143,7 +146,6 @@
 | `api.ImageListItem` | [ApiImageListItem ](../../ams-sdk/pkg/amsclientmodels/api_image_list_item.go) |
 | `api.ImageStorage` | [ApiImageStorage ](../../ams-sdk/pkg/amsclientmodels/api_image_storage.go) |
 | `api.ImageUpdate` | [ApiImageUpdate ](../../ams-sdk/pkg/amsclientmodels/api_image_update.go) |
-| `api.InstanceTypeDescriptionResponse` | [ApiInstanceTypeDescriptionResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_description_response.go) |
 | `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |
 | `api.PortConfiguration` | [ApiPortConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_port_configuration.go) |
 | `api.QoSEndpointResponse` | [ApiQoSEndpointResponse ](../../ams-sdk/pkg/amsclientmodels/api_qo_s_endpoint_response.go) |

@@ -96,6 +96,7 @@ func (o *DownloadServerLogsOK) GetPayload() io.Writer {
 }
 
 func (o *DownloadServerLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -147,6 +148,7 @@ func (o *DownloadServerLogsNotFound) GetPayload() *dslogmanagerclientmodels.Resp
 }
 
 func (o *DownloadServerLogsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -200,6 +202,7 @@ func (o *DownloadServerLogsInternalServerError) GetPayload() *dslogmanagerclient
 }
 
 func (o *DownloadServerLogsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *GenerateTokenByNewHeadlessAccountV3OK) GetPayload() *iamclientmodels.Oa
 }
 
 func (o *GenerateTokenByNewHeadlessAccountV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *GenerateTokenByNewHeadlessAccountV3BadRequest) GetPayload() *iamclientm
 }
 
 func (o *GenerateTokenByNewHeadlessAccountV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *GenerateTokenByNewHeadlessAccountV3Unauthorized) GetPayload() *iamclien
 }
 
 func (o *GenerateTokenByNewHeadlessAccountV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *GenerateTokenByNewHeadlessAccountV3NotFound) GetPayload() *iamclientmod
 }
 
 func (o *GenerateTokenByNewHeadlessAccountV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

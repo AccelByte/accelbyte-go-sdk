@@ -99,6 +99,7 @@ func (o *AdminGetDeviceTypesV4OK) GetPayload() *iamclientmodels.ModelDeviceTypes
 }
 
 func (o *AdminGetDeviceTypesV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminGetDeviceTypesV4Unauthorized) GetPayload() *iamclientmodels.RestEr
 }
 
 func (o *AdminGetDeviceTypesV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminGetDeviceTypesV4Forbidden) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *AdminGetDeviceTypesV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminGetDeviceTypesV4InternalServerError) GetPayload() *iamclientmodels
 }
 
 func (o *AdminGetDeviceTypesV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

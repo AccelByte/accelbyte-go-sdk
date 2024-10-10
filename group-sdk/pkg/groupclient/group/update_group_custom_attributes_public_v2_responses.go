@@ -111,6 +111,7 @@ func (o *UpdateGroupCustomAttributesPublicV2OK) GetPayload() *groupclientmodels.
 }
 
 func (o *UpdateGroupCustomAttributesPublicV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *UpdateGroupCustomAttributesPublicV2BadRequest) GetPayload() *groupclien
 }
 
 func (o *UpdateGroupCustomAttributesPublicV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *UpdateGroupCustomAttributesPublicV2Unauthorized) GetPayload() *groupcli
 }
 
 func (o *UpdateGroupCustomAttributesPublicV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *UpdateGroupCustomAttributesPublicV2Forbidden) GetPayload() *groupclient
 }
 
 func (o *UpdateGroupCustomAttributesPublicV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *UpdateGroupCustomAttributesPublicV2NotFound) GetPayload() *groupclientm
 }
 
 func (o *UpdateGroupCustomAttributesPublicV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *UpdateGroupCustomAttributesPublicV2InternalServerError) GetPayload() *g
 }
 
 func (o *UpdateGroupCustomAttributesPublicV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

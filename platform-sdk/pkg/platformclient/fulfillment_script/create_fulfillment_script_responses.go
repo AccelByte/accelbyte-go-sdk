@@ -87,6 +87,7 @@ func (o *CreateFulfillmentScriptCreated) GetPayload() *platformclientmodels.Fulf
 }
 
 func (o *CreateFulfillmentScriptCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *CreateFulfillmentScriptConflict) GetPayload() *platformclientmodels.Err
 }
 
 func (o *CreateFulfillmentScriptConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

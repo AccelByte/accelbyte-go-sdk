@@ -72,6 +72,10 @@ type StatCreate struct {
 	// tags
 	// Unique: true
 	Tags []string `json:"tags"`
+
+	// The visibility for a stat, the default SHOWALL
+	// Enum: ['SERVERONLY', 'SHOWALL']
+	Visibility string `json:"visibility,omitempty"`
 }
 
 // Validate validates this Stat create
@@ -199,6 +203,35 @@ func (m *StatCreate) validateStatCode(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var statCreateTypeVisibilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["SERVERONLY", "SHOWALL"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		statCreateTypeVisibilityPropEnum = append(statCreateTypeVisibilityPropEnum, v)
+	}
+}
+
+const (
+
+	// StatCreateVisibilitySERVERONLY captures enum value "SERVERONLY"
+	StatCreateVisibilitySERVERONLY string = "SERVERONLY"
+
+	// StatCreateVisibilitySHOWALL captures enum value "SHOWALL"
+	StatCreateVisibilitySHOWALL string = "SHOWALL"
+)
+
+// prop value enum
+func (m *StatCreate) validateVisibilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, statCreateTypeVisibilityPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

@@ -87,6 +87,7 @@ func (o *EnableCodeOK) GetPayload() *platformclientmodels.CodeInfo {
 }
 
 func (o *EnableCodeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *EnableCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *EnableCodeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *PublicGetRolesV3OK) GetPayload() *iamclientmodels.ModelRoleNamesRespons
 }
 
 func (o *PublicGetRolesV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PublicGetRolesV3BadRequest) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *PublicGetRolesV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

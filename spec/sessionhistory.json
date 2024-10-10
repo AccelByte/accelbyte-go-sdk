@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.12.0"
+    "version": "1.12.2"
   },
   "schemes": [
     "https"
@@ -182,7 +182,7 @@
             "type": "string"
           },
           {
-            "description": "End date time in RFC 3339 format: 2024-08-28T03:37:36Z",
+            "description": "End date time in RFC 3339 format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -220,7 +220,7 @@
             "type": "string"
           },
           {
-            "description": "Start date time in RFC 3339 format: 2024-08-28T03:37:36Z",
+            "description": "Start date time in RFC 3339 format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -844,7 +844,7 @@
             "type": "string"
           },
           {
-            "description": "End Date 2024-08-28T03:37:36Z",
+            "description": "End Date 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -888,7 +888,7 @@
             "type": "string"
           },
           {
-            "description": "Start Date 2024-08-28T03:37:36Z",
+            "description": "Start Date 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -1154,14 +1154,14 @@
             "type": "array"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1258,14 +1258,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1827,14 +1827,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1927,14 +1927,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2027,14 +2027,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2127,14 +2127,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2227,14 +2227,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2333,14 +2333,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2433,14 +2433,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2533,14 +2533,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2633,14 +2633,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2733,14 +2733,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2833,14 +2833,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2922,7 +2922,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \u0026#34;matchFound\u0026#34;\n\t\t\t\t\t\t    2. \u0026#34;matchNotFound\u0026#34;\n\t\t\t\t\t\t    3. \u0026#34;flexed\u0026#34;\nPartyID\t\t\t\t\t  : ticket Party ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
+        "description": "Create ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \u0026#34;matchFound\u0026#34;\n\t\t\t\t\t\t    2. \u0026#34;matchNotFound\u0026#34;\n\t\t\t\t\t\t    3. \u0026#34;flexed\u0026#34;\nTicketID\t\t\t\t  : ticket ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
         "operationId": "createXrayTicketObservability",
         "parameters": [
           {
@@ -3098,14 +3098,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3209,14 +3209,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-08-28T03:37:36Z",
+            "description": "End date time: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-08-28T03:37:36Z",
+            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -4290,6 +4290,11 @@
         "MatchPool": {
           "type": "string"
         },
+        "MatchedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
         "Namespace": {
           "type": "string"
         },
@@ -4361,9 +4366,6 @@
         "namespace": {
           "type": "string"
         },
-        "partyID": {
-          "type": "string"
-        },
         "remainingPlayersPerTicket": {
           "items": {
             "format": "int32",
@@ -4381,6 +4383,9 @@
         "tickID": {
           "format": "int64",
           "type": "integer"
+        },
+        "ticketID": {
+          "type": "string"
         },
         "timeToMatchSec": {
           "format": "double",
@@ -4404,9 +4409,9 @@
         "isBackfillMatch",
         "isRuleSetFlexed",
         "namespace",
-        "partyID",
         "sessionTickID",
         "tickID",
+        "ticketID",
         "timestamp"
       ]
     },
@@ -4867,6 +4872,11 @@
         "MatchPool": {
           "type": "string"
         },
+        "MatchedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
         "Namespace": {
           "type": "string"
         },
@@ -5308,6 +5318,11 @@
         "MatchPool": {
           "type": "string"
         },
+        "MatchedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
         "Namespace": {
           "type": "string"
         },
@@ -5531,9 +5546,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T03:31:22+00:00",
-    "gitHash": "ab4b4fe3770fc13749f1525b2a99d5c26a5f51c6",
-    "version": "1.12.0",
+    "buildDate": "2024-10-02T03:26:54+00:00",
+    "gitHash": "e73c94541ac73c31556adc60c81fbc64ef2bb2cc",
+    "version": "1.12.2",
     "version-roles-seeding": "1.2.61"
   }
 }

@@ -73,6 +73,7 @@ func (o *DecreaseTicketSaleNoContent) Error() string {
 }
 
 func (o *DecreaseTicketSaleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *DecreaseTicketSaleNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *DecreaseTicketSaleNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *DecreaseTicketSaleUnprocessableEntity) GetPayload() *platformclientmode
 }
 
 func (o *DecreaseTicketSaleUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

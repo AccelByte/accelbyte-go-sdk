@@ -46,7 +46,7 @@ func (aaa *RewardService) CreateReward(input *reward.CreateRewardParams) (*platf
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := aaa.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -63,7 +63,7 @@ func (aaa *RewardService) CreateReward(input *reward.CreateRewardParams) (*platf
 		return nil, err
 	}
 
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use QueryRewardsShort instead.
@@ -278,12 +278,12 @@ func (aaa *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.Reward.CreateRewardShort(input, authInfoWriter)
+	created, err := aaa.Client.Reward.CreateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
 
-	return ok.GetPayload(), nil
+	return created.GetPayload(), nil
 }
 
 func (aaa *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {

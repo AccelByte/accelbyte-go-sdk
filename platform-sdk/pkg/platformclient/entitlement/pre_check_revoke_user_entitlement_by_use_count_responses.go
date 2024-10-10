@@ -87,6 +87,7 @@ func (o *PreCheckRevokeUserEntitlementByUseCountOK) GetPayload() *platformclient
 }
 
 func (o *PreCheckRevokeUserEntitlementByUseCountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PreCheckRevokeUserEntitlementByUseCountNotFound) GetPayload() *platform
 }
 
 func (o *PreCheckRevokeUserEntitlementByUseCountNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

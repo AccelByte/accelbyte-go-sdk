@@ -111,6 +111,7 @@ func (o *GetUserIncomingFriendsOK) GetPayload() []*lobbyclientmodels.ModelGetUse
 }
 
 func (o *GetUserIncomingFriendsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *GetUserIncomingFriendsBadRequest) GetPayload() *lobbyclientmodels.Resta
 }
 
 func (o *GetUserIncomingFriendsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *GetUserIncomingFriendsUnauthorized) GetPayload() *lobbyclientmodels.Res
 }
 
 func (o *GetUserIncomingFriendsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *GetUserIncomingFriendsForbidden) GetPayload() *lobbyclientmodels.Restap
 }
 
 func (o *GetUserIncomingFriendsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *GetUserIncomingFriendsNotFound) GetPayload() *lobbyclientmodels.Restapi
 }
 
 func (o *GetUserIncomingFriendsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *GetUserIncomingFriendsInternalServerError) GetPayload() *lobbyclientmod
 }
 
 func (o *GetUserIncomingFriendsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

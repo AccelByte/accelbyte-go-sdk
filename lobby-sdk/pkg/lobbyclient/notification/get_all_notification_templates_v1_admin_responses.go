@@ -111,6 +111,7 @@ func (o *GetAllNotificationTemplatesV1AdminOK) GetPayload() []*lobbyclientmodels
 }
 
 func (o *GetAllNotificationTemplatesV1AdminOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *GetAllNotificationTemplatesV1AdminBadRequest) GetPayload() *lobbyclient
 }
 
 func (o *GetAllNotificationTemplatesV1AdminBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *GetAllNotificationTemplatesV1AdminUnauthorized) GetPayload() *lobbyclie
 }
 
 func (o *GetAllNotificationTemplatesV1AdminUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *GetAllNotificationTemplatesV1AdminForbidden) GetPayload() *lobbyclientm
 }
 
 func (o *GetAllNotificationTemplatesV1AdminForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *GetAllNotificationTemplatesV1AdminNotFound) GetPayload() *lobbyclientmo
 }
 
 func (o *GetAllNotificationTemplatesV1AdminNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *GetAllNotificationTemplatesV1AdminInternalServerError) GetPayload() *lo
 }
 
 func (o *GetAllNotificationTemplatesV1AdminInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

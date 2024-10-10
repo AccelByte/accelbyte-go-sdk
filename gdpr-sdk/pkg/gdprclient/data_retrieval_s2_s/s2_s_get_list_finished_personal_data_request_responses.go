@@ -105,6 +105,7 @@ func (o *S2SGetListFinishedPersonalDataRequestOK) GetPayload() *gdprclientmodels
 }
 
 func (o *S2SGetListFinishedPersonalDataRequestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *S2SGetListFinishedPersonalDataRequestBadRequest) GetPayload() *gdprclie
 }
 
 func (o *S2SGetListFinishedPersonalDataRequestBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *S2SGetListFinishedPersonalDataRequestUnauthorized) GetPayload() *gdprcl
 }
 
 func (o *S2SGetListFinishedPersonalDataRequestUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *S2SGetListFinishedPersonalDataRequestForbidden) GetPayload() *gdprclien
 }
 
 func (o *S2SGetListFinishedPersonalDataRequestForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *S2SGetListFinishedPersonalDataRequestInternalServerError) GetPayload() 
 }
 
 func (o *S2SGetListFinishedPersonalDataRequestInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *PublicGetUserPublicInfoByUserIDV4OK) GetPayload() *iamclientmodels.Mode
 }
 
 func (o *PublicGetUserPublicInfoByUserIDV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicGetUserPublicInfoByUserIDV4BadRequest) GetPayload() *iamclientmod
 }
 
 func (o *PublicGetUserPublicInfoByUserIDV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicGetUserPublicInfoByUserIDV4NotFound) GetPayload() *iamclientmodel
 }
 
 func (o *PublicGetUserPublicInfoByUserIDV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicGetUserPublicInfoByUserIDV4InternalServerError) GetPayload() *iam
 }
 
 func (o *PublicGetUserPublicInfoByUserIDV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

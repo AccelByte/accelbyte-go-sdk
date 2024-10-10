@@ -25,6 +25,10 @@ type ModelEnabledFactorsResponseV4 struct {
 	// enabled
 	// Required: true
 	Enabled []string `json:"enabled"`
+
+	// remainingbackupcodecount
+	// Format: int32
+	RemainingBackupCodeCount int32 `json:"remainingBackupCodeCount,omitempty"`
 }
 
 // Validate validates this Model enabled factors response V4

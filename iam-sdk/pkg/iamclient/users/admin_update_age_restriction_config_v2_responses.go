@@ -105,6 +105,7 @@ func (o *AdminUpdateAgeRestrictionConfigV2OK) GetPayload() *iamclientmodels.Mode
 }
 
 func (o *AdminUpdateAgeRestrictionConfigV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *AdminUpdateAgeRestrictionConfigV2BadRequest) GetPayload() *iamclientmod
 }
 
 func (o *AdminUpdateAgeRestrictionConfigV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *AdminUpdateAgeRestrictionConfigV2Unauthorized) GetPayload() *iamclientm
 }
 
 func (o *AdminUpdateAgeRestrictionConfigV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *AdminUpdateAgeRestrictionConfigV2Forbidden) GetPayload() *iamclientmode
 }
 
 func (o *AdminUpdateAgeRestrictionConfigV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -297,6 +301,7 @@ func (o *AdminUpdateAgeRestrictionConfigV2NotFound) Error() string {
 }
 
 func (o *AdminUpdateAgeRestrictionConfigV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -105,6 +105,7 @@ func (o *RetrievePlayerRecordsOK) GetPayload() *cloudsaveclientmodels.ModelsList
 }
 
 func (o *RetrievePlayerRecordsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *RetrievePlayerRecordsBadRequest) GetPayload() *cloudsaveclientmodels.Mo
 }
 
 func (o *RetrievePlayerRecordsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *RetrievePlayerRecordsUnauthorized) GetPayload() *cloudsaveclientmodels.
 }
 
 func (o *RetrievePlayerRecordsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *RetrievePlayerRecordsForbidden) GetPayload() *cloudsaveclientmodels.Mod
 }
 
 func (o *RetrievePlayerRecordsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *RetrievePlayerRecordsInternalServerError) GetPayload() *cloudsaveclient
 }
 
 func (o *RetrievePlayerRecordsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

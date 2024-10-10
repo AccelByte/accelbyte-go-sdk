@@ -99,6 +99,7 @@ func (o *DevelopmentServerConfigurationListOK) GetPayload() *amsclientmodels.API
 }
 
 func (o *DevelopmentServerConfigurationListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *DevelopmentServerConfigurationListUnauthorized) GetPayload() *amsclient
 }
 
 func (o *DevelopmentServerConfigurationListUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *DevelopmentServerConfigurationListForbidden) GetPayload() *amsclientmod
 }
 
 func (o *DevelopmentServerConfigurationListForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *DevelopmentServerConfigurationListInternalServerError) GetPayload() *am
 }
 
 func (o *DevelopmentServerConfigurationListInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

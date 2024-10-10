@@ -93,6 +93,7 @@ func (o *RetrieveActiveOIDCClientsPublicV3OK) GetPayload() []*iamclientmodels.Mo
 }
 
 func (o *RetrieveActiveOIDCClientsPublicV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *RetrieveActiveOIDCClientsPublicV3NotFound) GetPayload() *iamclientmodel
 }
 
 func (o *RetrieveActiveOIDCClientsPublicV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *RetrieveActiveOIDCClientsPublicV3InternalServerError) GetPayload() *iam
 }
 
 func (o *RetrieveActiveOIDCClientsPublicV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

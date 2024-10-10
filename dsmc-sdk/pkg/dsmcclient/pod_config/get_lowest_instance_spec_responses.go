@@ -93,6 +93,7 @@ func (o *GetLowestInstanceSpecOK) GetPayload() *dsmcclientmodels.ModelsInstanceS
 }
 
 func (o *GetLowestInstanceSpecOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetLowestInstanceSpecUnauthorized) GetPayload() *dsmcclientmodels.Respo
 }
 
 func (o *GetLowestInstanceSpecUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetLowestInstanceSpecInternalServerError) GetPayload() *dsmcclientmodel
 }
 
 func (o *GetLowestInstanceSpecInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -105,6 +105,7 @@ func (o *GetOutgoingFriendRequestsOK) GetPayload() *lobbyclientmodels.ModelLoadO
 }
 
 func (o *GetOutgoingFriendRequestsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *GetOutgoingFriendRequestsBadRequest) GetPayload() *lobbyclientmodels.Re
 }
 
 func (o *GetOutgoingFriendRequestsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *GetOutgoingFriendRequestsUnauthorized) GetPayload() *lobbyclientmodels.
 }
 
 func (o *GetOutgoingFriendRequestsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *GetOutgoingFriendRequestsForbidden) GetPayload() *lobbyclientmodels.Res
 }
 
 func (o *GetOutgoingFriendRequestsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *GetOutgoingFriendRequestsInternalServerError) GetPayload() *lobbyclient
 }
 
 func (o *GetOutgoingFriendRequestsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

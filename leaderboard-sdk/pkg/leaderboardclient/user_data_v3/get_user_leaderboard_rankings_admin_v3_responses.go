@@ -99,6 +99,7 @@ func (o *GetUserLeaderboardRankingsAdminV3OK) GetPayload() *leaderboardclientmod
 }
 
 func (o *GetUserLeaderboardRankingsAdminV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *GetUserLeaderboardRankingsAdminV3Unauthorized) GetPayload() *leaderboar
 }
 
 func (o *GetUserLeaderboardRankingsAdminV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *GetUserLeaderboardRankingsAdminV3Forbidden) GetPayload() *leaderboardcl
 }
 
 func (o *GetUserLeaderboardRankingsAdminV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *GetUserLeaderboardRankingsAdminV3InternalServerError) GetPayload() *lea
 }
 
 func (o *GetUserLeaderboardRankingsAdminV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

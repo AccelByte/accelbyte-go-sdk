@@ -93,6 +93,7 @@ func (o *GetAdminInvitationV3OK) GetPayload() *iamclientmodels.ModelUserInvitati
 }
 
 func (o *GetAdminInvitationV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetAdminInvitationV3NotFound) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *GetAdminInvitationV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetAdminInvitationV3InternalServerError) GetPayload() *iamclientmodels.
 }
 
 func (o *GetAdminInvitationV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -87,6 +87,7 @@ func (o *PublicGetItemBySkuOK) GetPayload() *platformclientmodels.ItemInfo {
 }
 
 func (o *PublicGetItemBySkuOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PublicGetItemBySkuNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *PublicGetItemBySkuNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

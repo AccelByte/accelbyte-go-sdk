@@ -93,6 +93,7 @@ func (o *QueryItemsV2OK) GetPayload() *platformclientmodels.FullItemPagingResult
 }
 
 func (o *QueryItemsV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *QueryItemsV2NotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *QueryItemsV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *QueryItemsV2UnprocessableEntity) GetPayload() *platformclientmodels.Val
 }
 
 func (o *QueryItemsV2UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

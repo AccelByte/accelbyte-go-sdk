@@ -99,6 +99,7 @@ func (o *AdminGetClientsByNamespaceV3OK) GetPayload() *iamclientmodels.Clientmod
 }
 
 func (o *AdminGetClientsByNamespaceV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminGetClientsByNamespaceV3BadRequest) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminGetClientsByNamespaceV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminGetClientsByNamespaceV3Unauthorized) GetPayload() *iamclientmodels
 }
 
 func (o *AdminGetClientsByNamespaceV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminGetClientsByNamespaceV3Forbidden) GetPayload() *iamclientmodels.Re
 }
 
 func (o *AdminGetClientsByNamespaceV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -102,6 +102,7 @@ func (o *ExportStatCycleOK) GetPayload() io.Writer {
 }
 
 func (o *ExportStatCycleOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -153,6 +154,7 @@ func (o *ExportStatCycleUnauthorized) GetPayload() *socialclientmodels.ErrorEnti
 }
 
 func (o *ExportStatCycleUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -206,6 +208,7 @@ func (o *ExportStatCycleForbidden) GetPayload() *socialclientmodels.ErrorEntity 
 }
 
 func (o *ExportStatCycleForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -259,6 +262,7 @@ func (o *ExportStatCycleInternalServerError) GetPayload() *socialclientmodels.Er
 }
 
 func (o *ExportStatCycleInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

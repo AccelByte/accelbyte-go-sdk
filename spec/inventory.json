@@ -3,7 +3,7 @@
   "info": {
     "description": "justice-inventory-service",
     "title": "justice-inventory-service",
-    "version": "0.2.2"
+    "version": "0.2.4"
   },
   "schemes": [
     "https"
@@ -3104,7 +3104,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tMove items between inventories that is owned by the same user.\n\n\t\t\tCurrently, this endpoint supports transferring items exclusively from source OTHER.\n\t\t\tItems from source ECOMMERCE are not yet eligible for transfer.\n\t\t\tWe are working on expanding support to include source ECOMMERCE in future updates.\n\t\t",
+        "description": "\n\t\t\tMove items between inventories that is owned by the same user.\n\t\t",
         "operationId": "PublicMoveMyItems",
         "parameters": [
           {
@@ -4513,11 +4513,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T01:37:05+00:00",
-    "gitHash": "108b1455b0caa091daf928045d7f6b68521eb7f4",
+    "buildDate": "2024-10-01T08:28:09+00:00",
+    "gitHash": "c27e23cd8f2ba500e23a428781375c81dfa5a69b",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.2",
+    "version": "0.2.4",
     "version-roles-seeding": "1.2.34"
   }
 }

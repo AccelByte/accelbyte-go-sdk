@@ -87,6 +87,7 @@ func (o *SyncTwitchDropsEntitlementOK) GetPayload() []*platformclientmodels.Twit
 }
 
 func (o *SyncTwitchDropsEntitlementOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *SyncTwitchDropsEntitlementBadRequest) GetPayload() *platformclientmodel
 }
 
 func (o *SyncTwitchDropsEntitlementBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

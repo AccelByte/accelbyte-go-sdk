@@ -111,6 +111,7 @@ func (o *GetMockTicketsByTimestampOK) GetPayload() *matchmakingclientmodels.Mode
 }
 
 func (o *GetMockTicketsByTimestampOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *GetMockTicketsByTimestampBadRequest) GetPayload() *matchmakingclientmod
 }
 
 func (o *GetMockTicketsByTimestampBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *GetMockTicketsByTimestampUnauthorized) GetPayload() *matchmakingclientm
 }
 
 func (o *GetMockTicketsByTimestampUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *GetMockTicketsByTimestampForbidden) GetPayload() *matchmakingclientmode
 }
 
 func (o *GetMockTicketsByTimestampForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *GetMockTicketsByTimestampNotFound) GetPayload() *matchmakingclientmodel
 }
 
 func (o *GetMockTicketsByTimestampNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *GetMockTicketsByTimestampInternalServerError) GetPayload() *matchmaking
 }
 
 func (o *GetMockTicketsByTimestampInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

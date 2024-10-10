@@ -99,6 +99,7 @@ func (o *BulkCreatePSNEventOK) GetPayload() *achievementclientmodels.ModelsBulkC
 }
 
 func (o *BulkCreatePSNEventOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *BulkCreatePSNEventUnauthorized) GetPayload() *achievementclientmodels.R
 }
 
 func (o *BulkCreatePSNEventUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *BulkCreatePSNEventForbidden) GetPayload() *achievementclientmodels.Resp
 }
 
 func (o *BulkCreatePSNEventForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *BulkCreatePSNEventInternalServerError) GetPayload() *achievementclientm
 }
 
 func (o *BulkCreatePSNEventInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

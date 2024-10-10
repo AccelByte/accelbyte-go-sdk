@@ -105,6 +105,7 @@ func (o *AdminGetRoleOverrideConfigV3OK) GetPayload() *iamclientmodels.ModelRole
 }
 
 func (o *AdminGetRoleOverrideConfigV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *AdminGetRoleOverrideConfigV3BadRequest) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminGetRoleOverrideConfigV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *AdminGetRoleOverrideConfigV3Unauthorized) GetPayload() *iamclientmodels
 }
 
 func (o *AdminGetRoleOverrideConfigV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *AdminGetRoleOverrideConfigV3Forbidden) GetPayload() *iamclientmodels.Re
 }
 
 func (o *AdminGetRoleOverrideConfigV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *AdminGetRoleOverrideConfigV3InternalServerError) GetPayload() *iamclien
 }
 
 func (o *AdminGetRoleOverrideConfigV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

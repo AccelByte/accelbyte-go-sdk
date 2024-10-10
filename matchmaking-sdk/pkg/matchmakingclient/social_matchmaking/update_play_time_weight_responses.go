@@ -111,6 +111,7 @@ func (o *UpdatePlayTimeWeightOK) GetPayload() *matchmakingclientmodels.ModelsUpd
 }
 
 func (o *UpdatePlayTimeWeightOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *UpdatePlayTimeWeightBadRequest) GetPayload() *matchmakingclientmodels.R
 }
 
 func (o *UpdatePlayTimeWeightBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *UpdatePlayTimeWeightUnauthorized) GetPayload() *matchmakingclientmodels
 }
 
 func (o *UpdatePlayTimeWeightUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *UpdatePlayTimeWeightForbidden) GetPayload() *matchmakingclientmodels.Re
 }
 
 func (o *UpdatePlayTimeWeightForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *UpdatePlayTimeWeightNotFound) GetPayload() *matchmakingclientmodels.Res
 }
 
 func (o *UpdatePlayTimeWeightNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *UpdatePlayTimeWeightInternalServerError) GetPayload() *matchmakingclien
 }
 
 func (o *UpdatePlayTimeWeightInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

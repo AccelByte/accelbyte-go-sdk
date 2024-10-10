@@ -87,6 +87,7 @@ func (o *TestNeonPayConfigByIDOK) GetPayload() *platformclientmodels.TestResult 
 }
 
 func (o *TestNeonPayConfigByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *TestNeonPayConfigByIDNotFound) GetPayload() *platformclientmodels.Error
 }
 
 func (o *TestNeonPayConfigByIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

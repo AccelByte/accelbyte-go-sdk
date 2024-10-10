@@ -87,6 +87,7 @@ func (o *PublicGetItemDynamicDataOK) GetPayload() *platformclientmodels.ItemDyna
 }
 
 func (o *PublicGetItemDynamicDataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PublicGetItemDynamicDataNotFound) GetPayload() *platformclientmodels.Er
 }
 
 func (o *PublicGetItemDynamicDataNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

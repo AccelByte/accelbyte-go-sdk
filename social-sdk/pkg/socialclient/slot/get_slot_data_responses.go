@@ -90,6 +90,7 @@ func (o *GetSlotDataOK) GetPayload() io.Writer {
 }
 
 func (o *GetSlotDataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -141,6 +142,7 @@ func (o *GetSlotDataNotFound) GetPayload() *socialclientmodels.ErrorEntity {
 }
 
 func (o *GetSlotDataNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *DeleteSessionLocalDSOK) GetPayload() *sessionbrowserclientmodels.Models
 }
 
 func (o *DeleteSessionLocalDSOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *DeleteSessionLocalDSBadRequest) GetPayload() *sessionbrowserclientmodel
 }
 
 func (o *DeleteSessionLocalDSBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *DeleteSessionLocalDSNotFound) GetPayload() *sessionbrowserclientmodels.
 }
 
 func (o *DeleteSessionLocalDSNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *DeleteSessionLocalDSInternalServerError) GetPayload() *sessionbrowsercl
 }
 
 func (o *DeleteSessionLocalDSInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

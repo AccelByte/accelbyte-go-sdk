@@ -79,6 +79,7 @@ func (o *ClaimGlobalAchievementRewardAccepted) Error() string {
 }
 
 func (o *ClaimGlobalAchievementRewardAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *ClaimGlobalAchievementRewardBadRequest) GetPayload() *achievementclient
 }
 
 func (o *ClaimGlobalAchievementRewardBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *ClaimGlobalAchievementRewardUnauthorized) GetPayload() *achievementclie
 }
 
 func (o *ClaimGlobalAchievementRewardUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *ClaimGlobalAchievementRewardInternalServerError) GetPayload() *achievem
 }
 
 func (o *ClaimGlobalAchievementRewardInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

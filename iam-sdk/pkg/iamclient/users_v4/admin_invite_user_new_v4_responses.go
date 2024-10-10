@@ -123,6 +123,7 @@ func (o *AdminInviteUserNewV4Created) GetPayload() *iamclientmodels.ModelInviteU
 }
 
 func (o *AdminInviteUserNewV4Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -176,6 +177,7 @@ func (o *AdminInviteUserNewV4BadRequest) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *AdminInviteUserNewV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -229,6 +231,7 @@ func (o *AdminInviteUserNewV4Unauthorized) GetPayload() *iamclientmodels.RestErr
 }
 
 func (o *AdminInviteUserNewV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -282,6 +285,7 @@ func (o *AdminInviteUserNewV4Forbidden) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *AdminInviteUserNewV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -335,6 +339,7 @@ func (o *AdminInviteUserNewV4NotFound) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *AdminInviteUserNewV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -388,6 +393,7 @@ func (o *AdminInviteUserNewV4Conflict) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *AdminInviteUserNewV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -441,6 +447,7 @@ func (o *AdminInviteUserNewV4UnprocessableEntity) GetPayload() *iamclientmodels.
 }
 
 func (o *AdminInviteUserNewV4UnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -494,6 +501,7 @@ func (o *AdminInviteUserNewV4InternalServerError) GetPayload() *iamclientmodels.
 }
 
 func (o *AdminInviteUserNewV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

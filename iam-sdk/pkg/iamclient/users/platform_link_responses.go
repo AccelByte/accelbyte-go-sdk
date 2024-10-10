@@ -97,6 +97,7 @@ func (o *PlatformLinkNoContent) Error() string {
 }
 
 func (o *PlatformLinkNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -123,6 +124,7 @@ func (o *PlatformLinkBadRequest) Error() string {
 }
 
 func (o *PlatformLinkBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -169,6 +171,7 @@ func (o *PlatformLinkUnauthorized) GetPayload() *iamclientmodels.RestErrorRespon
 }
 
 func (o *PlatformLinkUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -222,6 +225,7 @@ func (o *PlatformLinkForbidden) GetPayload() *iamclientmodels.RestErrorResponse 
 }
 
 func (o *PlatformLinkForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -255,6 +259,7 @@ func (o *PlatformLinkNotFound) Error() string {
 }
 
 func (o *PlatformLinkNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -281,6 +286,7 @@ func (o *PlatformLinkConflict) Error() string {
 }
 
 func (o *PlatformLinkConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -307,6 +313,7 @@ func (o *PlatformLinkInternalServerError) Error() string {
 }
 
 func (o *PlatformLinkInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

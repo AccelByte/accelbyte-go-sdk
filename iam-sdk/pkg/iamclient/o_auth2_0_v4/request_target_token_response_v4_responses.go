@@ -87,6 +87,7 @@ func (o *RequestTargetTokenResponseV4OK) GetPayload() *iamclientmodels.Oauthmode
 }
 
 func (o *RequestTargetTokenResponseV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *RequestTargetTokenResponseV4Accepted) GetPayload() *iamclientmodels.Oau
 }
 
 func (o *RequestTargetTokenResponseV4Accepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

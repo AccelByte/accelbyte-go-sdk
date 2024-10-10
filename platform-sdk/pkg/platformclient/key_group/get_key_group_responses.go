@@ -87,6 +87,7 @@ func (o *GetKeyGroupOK) GetPayload() *platformclientmodels.KeyGroupInfo {
 }
 
 func (o *GetKeyGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetKeyGroupNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *GetKeyGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

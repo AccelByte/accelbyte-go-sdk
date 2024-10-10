@@ -105,6 +105,7 @@ func (o *PublicAddDownloadCountV2OK) GetPayload() *ugcclientmodels.ModelsAddDown
 }
 
 func (o *PublicAddDownloadCountV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *PublicAddDownloadCountV2Unauthorized) GetPayload() *ugcclientmodels.Res
 }
 
 func (o *PublicAddDownloadCountV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *PublicAddDownloadCountV2NotFound) GetPayload() *ugcclientmodels.Respons
 }
 
 func (o *PublicAddDownloadCountV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *PublicAddDownloadCountV2TooManyRequests) GetPayload() *ugcclientmodels.
 }
 
 func (o *PublicAddDownloadCountV2TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *PublicAddDownloadCountV2InternalServerError) GetPayload() *ugcclientmod
 }
 
 func (o *PublicAddDownloadCountV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

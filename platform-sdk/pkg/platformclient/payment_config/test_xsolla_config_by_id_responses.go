@@ -87,6 +87,7 @@ func (o *TestXsollaConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
 }
 
 func (o *TestXsollaConfigByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *TestXsollaConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *TestXsollaConfigByIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

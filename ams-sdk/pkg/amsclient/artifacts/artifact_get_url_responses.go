@@ -111,6 +111,7 @@ func (o *ArtifactGetURLOK) GetPayload() *amsclientmodels.APIArtifactURLResponse 
 }
 
 func (o *ArtifactGetURLOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *ArtifactGetURLBadRequest) GetPayload() *amsclientmodels.ResponseErrorRe
 }
 
 func (o *ArtifactGetURLBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *ArtifactGetURLUnauthorized) GetPayload() *amsclientmodels.ResponseError
 }
 
 func (o *ArtifactGetURLUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *ArtifactGetURLForbidden) GetPayload() *amsclientmodels.ResponseErrorRes
 }
 
 func (o *ArtifactGetURLForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *ArtifactGetURLNotFound) GetPayload() *amsclientmodels.ResponseErrorResp
 }
 
 func (o *ArtifactGetURLNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *ArtifactGetURLInternalServerError) GetPayload() *amsclientmodels.Respon
 }
 
 func (o *ArtifactGetURLInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

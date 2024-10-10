@@ -93,6 +93,7 @@ func (o *AdminPatchUpdateLogConfigOK) GetPayload() *sessionclientmodels.Logconfi
 }
 
 func (o *AdminPatchUpdateLogConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminPatchUpdateLogConfigUnauthorized) GetPayload() *sessionclientmodel
 }
 
 func (o *AdminPatchUpdateLogConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminPatchUpdateLogConfigForbidden) GetPayload() *sessionclientmodels.R
 }
 
 func (o *AdminPatchUpdateLogConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

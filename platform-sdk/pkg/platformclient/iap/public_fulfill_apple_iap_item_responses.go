@@ -79,6 +79,7 @@ func (o *PublicFulfillAppleIAPItemNoContent) Error() string {
 }
 
 func (o *PublicFulfillAppleIAPItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -95,7 +96,7 @@ func NewPublicFulfillAppleIAPItemBadRequest() *PublicFulfillAppleIAPItemBadReque
 
 /*PublicFulfillAppleIAPItemBadRequest handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39121</td><td>Apple iap receipt verify failed with status code [{statusCode}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>38122</td><td>Subscription endDate required</td></tr><tr><td>39131</td><td>Invalid Apple IAP config under namespace [{namespace}]: [{message}]</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>39121</td><td>Apple iap receipt verify failed with status code [{statusCode}]</td></tr><tr><td>35123</td><td>Wallet [{walletId}] is inactive</td></tr><tr><td>38121</td><td>Duplicate permanent item exists</td></tr><tr><td>39131</td><td>Invalid Apple IAP config under namespace [{namespace}]: [{message}]</td></tr><tr><td>39138</td><td>Apple IAP version mismatch detected: The current configuration is set to  [{configVersion}], but the API version is [{apiVersion}]. Please ensure that both the configuration and API versions are aligned</td></tr></table>
 */
 type PublicFulfillAppleIAPItemBadRequest struct {
 	Payload *platformclientmodels.ErrorEntity
@@ -125,6 +126,7 @@ func (o *PublicFulfillAppleIAPItemBadRequest) GetPayload() *platformclientmodels
 }
 
 func (o *PublicFulfillAppleIAPItemBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *PublicFulfillAppleIAPItemNotFound) GetPayload() *platformclientmodels.E
 }
 
 func (o *PublicFulfillAppleIAPItemNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *PublicFulfillAppleIAPItemConflict) GetPayload() *platformclientmodels.E
 }
 
 func (o *PublicFulfillAppleIAPItemConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -26,6 +26,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap_notification"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/iap_subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/invoice"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
@@ -112,6 +114,8 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Fulfillment = fulfillment.New(transport, formats)
 	cli.FulfillmentScript = fulfillment_script.New(transport, formats)
 	cli.IAP = iap.New(transport, formats)
+	cli.IAPNotification = iap_notification.New(transport, formats)
+	cli.IAPSubscription = iap_subscription.New(transport, formats)
 	cli.Invoice = invoice.New(transport, formats)
 	cli.Item = item.New(transport, formats)
 	cli.KeyGroup = key_group.New(transport, formats)
@@ -220,6 +224,10 @@ type JusticePlatformService struct {
 
 	IAP iap.ClientService
 
+	IAPNotification iap_notification.ClientService
+
+	IAPSubscription iap_subscription.ClientService
+
 	Invoice invoice.ClientService
 
 	Item item.ClientService
@@ -287,6 +295,8 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.Fulfillment.SetTransport(transport)
 	c.FulfillmentScript.SetTransport(transport)
 	c.IAP.SetTransport(transport)
+	c.IAPNotification.SetTransport(transport)
+	c.IAPSubscription.SetTransport(transport)
 	c.Invoice.SetTransport(transport)
 	c.Item.SetTransport(transport)
 	c.KeyGroup.SetTransport(transport)

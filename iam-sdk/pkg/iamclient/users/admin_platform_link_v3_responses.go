@@ -97,6 +97,7 @@ func (o *AdminPlatformLinkV3NoContent) Error() string {
 }
 
 func (o *AdminPlatformLinkV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -123,6 +124,7 @@ func (o *AdminPlatformLinkV3BadRequest) Error() string {
 }
 
 func (o *AdminPlatformLinkV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -169,6 +171,7 @@ func (o *AdminPlatformLinkV3Unauthorized) GetPayload() *iamclientmodels.RestErro
 }
 
 func (o *AdminPlatformLinkV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -222,6 +225,7 @@ func (o *AdminPlatformLinkV3Forbidden) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *AdminPlatformLinkV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -255,6 +259,7 @@ func (o *AdminPlatformLinkV3NotFound) Error() string {
 }
 
 func (o *AdminPlatformLinkV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -281,6 +286,7 @@ func (o *AdminPlatformLinkV3Conflict) Error() string {
 }
 
 func (o *AdminPlatformLinkV3Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -327,6 +333,7 @@ func (o *AdminPlatformLinkV3InternalServerError) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminPlatformLinkV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -105,6 +105,7 @@ func (o *PlatformTokenRefreshV3OK) GetPayload() *iamclientmodels.OauthmodelPlatf
 }
 
 func (o *PlatformTokenRefreshV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *PlatformTokenRefreshV3BadRequest) GetPayload() *iamclientmodels.Oauthmo
 }
 
 func (o *PlatformTokenRefreshV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *PlatformTokenRefreshV3Unauthorized) GetPayload() *iamclientmodels.Oauth
 }
 
 func (o *PlatformTokenRefreshV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *PlatformTokenRefreshV3Forbidden) GetPayload() *iamclientmodels.Oauthmod
 }
 
 func (o *PlatformTokenRefreshV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *PlatformTokenRefreshV3ServiceUnavailable) GetPayload() *iamclientmodels
 }
 
 func (o *PlatformTokenRefreshV3ServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

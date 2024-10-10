@@ -87,6 +87,7 @@ func (o *GetPaymentOrderChargeStatusOK) GetPayload() *platformclientmodels.Payme
 }
 
 func (o *GetPaymentOrderChargeStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetPaymentOrderChargeStatusNotFound) GetPayload() *platformclientmodels
 }
 
 func (o *GetPaymentOrderChargeStatusNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

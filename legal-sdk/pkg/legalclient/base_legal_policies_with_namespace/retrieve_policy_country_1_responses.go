@@ -87,6 +87,7 @@ func (o *RetrievePolicyCountry1OK) GetPayload() *legalclientmodels.RetrievePolic
 }
 
 func (o *RetrievePolicyCountry1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *RetrievePolicyCountry1NotFound) GetPayload() *legalclientmodels.ErrorEn
 }
 
 func (o *RetrievePolicyCountry1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

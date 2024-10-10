@@ -93,6 +93,7 @@ func (o *GetActiveCustomGameSessionsOK) GetPayload() *sessionbrowserclientmodels
 }
 
 func (o *GetActiveCustomGameSessionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetActiveCustomGameSessionsBadRequest) GetPayload() *sessionbrowserclie
 }
 
 func (o *GetActiveCustomGameSessionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetActiveCustomGameSessionsInternalServerError) GetPayload() *sessionbr
 }
 
 func (o *GetActiveCustomGameSessionsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

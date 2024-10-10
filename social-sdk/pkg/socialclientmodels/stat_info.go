@@ -95,6 +95,10 @@ type StatInfo struct {
 	// Required: true
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updatedAt"`
+
+	// visibility
+	// Enum: ['SERVERONLY', 'SHOWALL']
+	Visibility string `json:"visibility,omitempty"`
 }
 
 // Validate validates this Stat info
@@ -360,6 +364,35 @@ func (m *StatInfo) validateUpdatedAt(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var statInfoTypeVisibilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["SERVERONLY", "SHOWALL"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		statInfoTypeVisibilityPropEnum = append(statInfoTypeVisibilityPropEnum, v)
+	}
+}
+
+const (
+
+	// StatInfoVisibilitySERVERONLY captures enum value "SERVERONLY"
+	StatInfoVisibilitySERVERONLY string = "SERVERONLY"
+
+	// StatInfoVisibilitySHOWALL captures enum value "SHOWALL"
+	StatInfoVisibilitySHOWALL string = "SHOWALL"
+)
+
+// prop value enum
+func (m *StatInfo) validateVisibilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, statInfoTypeVisibilityPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

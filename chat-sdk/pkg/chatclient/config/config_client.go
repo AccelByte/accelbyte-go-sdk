@@ -175,7 +175,12 @@ func (a *Client) AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, aut
 Deprecated: 2022-08-10 - Use AdminGetLogConfigShort instead.
 
 AdminGetLogConfig get log configuration
-Get Log Configuration.
+
+Get Log Configuration
+logLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic
+socketLogEnabled is use for enable socket log
+logLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic
+slowQueryThreshold use for logging slow threshold in time measure is nano second
 */
 func (a *Client) AdminGetLogConfig(params *AdminGetLogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLogConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -224,7 +229,12 @@ func (a *Client) AdminGetLogConfig(params *AdminGetLogConfigParams, authInfo run
 
 /*
 AdminGetLogConfigShort get log configuration
-Get Log Configuration.
+
+Get Log Configuration
+logLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic
+socketLogEnabled is use for enable socket log
+logLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic
+slowQueryThreshold use for logging slow threshold in time measure is nano second
 */
 func (a *Client) AdminGetLogConfigShort(params *AdminGetLogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLogConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -271,7 +281,12 @@ func (a *Client) AdminGetLogConfigShort(params *AdminGetLogConfigParams, authInf
 Deprecated: 2022-08-10 - Use AdminPatchUpdateLogConfigShort instead.
 
 AdminPatchUpdateLogConfig patch update log configuration
-Update Log Configuration.
+
+Update Log Configuration
+logLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic
+socketLogEnabled is use for enable socket log
+logLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic
+slowQueryThreshold use for logging slow threshold in time measure is nano second
 */
 func (a *Client) AdminPatchUpdateLogConfig(params *AdminPatchUpdateLogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPatchUpdateLogConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -320,7 +335,12 @@ func (a *Client) AdminPatchUpdateLogConfig(params *AdminPatchUpdateLogConfigPara
 
 /*
 AdminPatchUpdateLogConfigShort patch update log configuration
-Update Log Configuration.
+
+Update Log Configuration
+logLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic
+socketLogEnabled is use for enable socket log
+logLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic
+slowQueryThreshold use for logging slow threshold in time measure is nano second
 */
 func (a *Client) AdminPatchUpdateLogConfigShort(params *AdminPatchUpdateLogConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminPatchUpdateLogConfigOK, error) {
 	// TODO: Validate the params before sending

@@ -111,6 +111,7 @@ func (o *PlatformTokenGrantV4OK) GetPayload() *iamclientmodels.OauthmodelTokenRe
 }
 
 func (o *PlatformTokenGrantV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *PlatformTokenGrantV4Accepted) GetPayload() *iamclientmodels.OauthmodelL
 }
 
 func (o *PlatformTokenGrantV4Accepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *PlatformTokenGrantV4BadRequest) GetPayload() *iamclientmodels.Oauthmode
 }
 
 func (o *PlatformTokenGrantV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *PlatformTokenGrantV4Unauthorized) GetPayload() *iamclientmodels.Oauthmo
 }
 
 func (o *PlatformTokenGrantV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *PlatformTokenGrantV4Forbidden) GetPayload() *iamclientmodels.Oauthmodel
 }
 
 func (o *PlatformTokenGrantV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *PlatformTokenGrantV4ServiceUnavailable) GetPayload() *iamclientmodels.O
 }
 
 func (o *PlatformTokenGrantV4ServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -22,7 +22,7 @@ type APIAvailableInstanceTypesResponse struct {
 
 	// availableinstancetypes
 	// Required: true
-	AvailableInstanceTypes []*APIInstanceTypeDescriptionResponse `json:"availableInstanceTypes"`
+	AvailableInstanceTypes []*APIAvailableInstanceType `json:"availableInstanceTypes"`
 }
 
 // Validate validates this Api available instance types response

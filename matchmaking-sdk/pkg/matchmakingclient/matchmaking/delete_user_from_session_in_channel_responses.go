@@ -97,6 +97,7 @@ func (o *DeleteUserFromSessionInChannelOK) Error() string {
 }
 
 func (o *DeleteUserFromSessionInChannelOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -123,6 +124,7 @@ func (o *DeleteUserFromSessionInChannelNoContent) Error() string {
 }
 
 func (o *DeleteUserFromSessionInChannelNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -169,6 +171,7 @@ func (o *DeleteUserFromSessionInChannelBadRequest) GetPayload() *matchmakingclie
 }
 
 func (o *DeleteUserFromSessionInChannelBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -222,6 +225,7 @@ func (o *DeleteUserFromSessionInChannelUnauthorized) GetPayload() *matchmakingcl
 }
 
 func (o *DeleteUserFromSessionInChannelUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -275,6 +279,7 @@ func (o *DeleteUserFromSessionInChannelForbidden) GetPayload() *matchmakingclien
 }
 
 func (o *DeleteUserFromSessionInChannelForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -328,6 +333,7 @@ func (o *DeleteUserFromSessionInChannelNotFound) GetPayload() *matchmakingclient
 }
 
 func (o *DeleteUserFromSessionInChannelNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -381,6 +387,7 @@ func (o *DeleteUserFromSessionInChannelInternalServerError) GetPayload() *matchm
 }
 
 func (o *DeleteUserFromSessionInChannelInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

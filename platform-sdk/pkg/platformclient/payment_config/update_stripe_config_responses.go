@@ -87,6 +87,7 @@ func (o *UpdateStripeConfigOK) GetPayload() *platformclientmodels.PaymentMerchan
 }
 
 func (o *UpdateStripeConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateStripeConfigNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *UpdateStripeConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

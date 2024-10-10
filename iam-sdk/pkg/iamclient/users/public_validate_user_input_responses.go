@@ -87,6 +87,7 @@ func (o *PublicValidateUserInputOK) GetPayload() *iamclientmodels.ModelUserInput
 }
 
 func (o *PublicValidateUserInputOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PublicValidateUserInputInternalServerError) GetPayload() *iamclientmode
 }
 
 func (o *PublicValidateUserInputInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

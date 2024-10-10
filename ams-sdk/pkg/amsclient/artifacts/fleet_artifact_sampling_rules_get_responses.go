@@ -111,6 +111,7 @@ func (o *FleetArtifactSamplingRulesGetOK) GetPayload() *amsclientmodels.APIFleet
 }
 
 func (o *FleetArtifactSamplingRulesGetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *FleetArtifactSamplingRulesGetBadRequest) GetPayload() *amsclientmodels.
 }
 
 func (o *FleetArtifactSamplingRulesGetBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *FleetArtifactSamplingRulesGetUnauthorized) GetPayload() *amsclientmodel
 }
 
 func (o *FleetArtifactSamplingRulesGetUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *FleetArtifactSamplingRulesGetForbidden) GetPayload() *amsclientmodels.R
 }
 
 func (o *FleetArtifactSamplingRulesGetForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *FleetArtifactSamplingRulesGetNotFound) GetPayload() *amsclientmodels.Re
 }
 
 func (o *FleetArtifactSamplingRulesGetNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *FleetArtifactSamplingRulesGetInternalServerError) GetPayload() *amsclie
 }
 
 func (o *FleetArtifactSamplingRulesGetInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

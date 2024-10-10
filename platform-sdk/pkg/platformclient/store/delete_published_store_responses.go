@@ -87,6 +87,7 @@ func (o *DeletePublishedStoreOK) GetPayload() *platformclientmodels.StoreInfo {
 }
 
 func (o *DeletePublishedStoreOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *DeletePublishedStoreNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *DeletePublishedStoreNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

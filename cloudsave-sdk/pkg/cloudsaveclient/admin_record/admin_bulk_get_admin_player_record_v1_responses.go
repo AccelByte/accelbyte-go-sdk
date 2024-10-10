@@ -111,6 +111,7 @@ func (o *AdminBulkGetAdminPlayerRecordV1OK) GetPayload() *cloudsaveclientmodels.
 }
 
 func (o *AdminBulkGetAdminPlayerRecordV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminBulkGetAdminPlayerRecordV1BadRequest) GetPayload() *cloudsaveclien
 }
 
 func (o *AdminBulkGetAdminPlayerRecordV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminBulkGetAdminPlayerRecordV1Unauthorized) GetPayload() *cloudsavecli
 }
 
 func (o *AdminBulkGetAdminPlayerRecordV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminBulkGetAdminPlayerRecordV1Forbidden) GetPayload() *cloudsaveclient
 }
 
 func (o *AdminBulkGetAdminPlayerRecordV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminBulkGetAdminPlayerRecordV1NotFound) GetPayload() *cloudsaveclientm
 }
 
 func (o *AdminBulkGetAdminPlayerRecordV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminBulkGetAdminPlayerRecordV1InternalServerError) GetPayload() *cloud
 }
 
 func (o *AdminBulkGetAdminPlayerRecordV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

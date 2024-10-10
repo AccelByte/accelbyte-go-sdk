@@ -105,6 +105,7 @@ func (o *GetServerSessionTimeoutOK) GetPayload() *dsmcclientmodels.ModelsServerD
 }
 
 func (o *GetServerSessionTimeoutOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *GetServerSessionTimeoutBadRequest) GetPayload() *dsmcclientmodels.Respo
 }
 
 func (o *GetServerSessionTimeoutBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *GetServerSessionTimeoutUnauthorized) GetPayload() *dsmcclientmodels.Res
 }
 
 func (o *GetServerSessionTimeoutUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *GetServerSessionTimeoutNotFound) GetPayload() *dsmcclientmodels.Respons
 }
 
 func (o *GetServerSessionTimeoutNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *GetServerSessionTimeoutInternalServerError) GetPayload() *dsmcclientmod
 }
 
 func (o *GetServerSessionTimeoutInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

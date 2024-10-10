@@ -99,6 +99,7 @@ func (o *AcquireUserTicketOK) GetPayload() *platformclientmodels.TicketAcquireRe
 }
 
 func (o *AcquireUserTicketOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AcquireUserTicketNotFound) GetPayload() *platformclientmodels.ErrorEnti
 }
 
 func (o *AcquireUserTicketNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AcquireUserTicketConflict) GetPayload() *platformclientmodels.ErrorEnti
 }
 
 func (o *AcquireUserTicketConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AcquireUserTicketUnprocessableEntity) GetPayload() *platformclientmodel
 }
 
 func (o *AcquireUserTicketUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

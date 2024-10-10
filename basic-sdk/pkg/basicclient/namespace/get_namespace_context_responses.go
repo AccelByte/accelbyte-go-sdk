@@ -93,6 +93,7 @@ func (o *GetNamespaceContextOK) GetPayload() *basicclientmodels.NamespaceContext
 }
 
 func (o *GetNamespaceContextOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetNamespaceContextUnauthorized) GetPayload() *basicclientmodels.ErrorE
 }
 
 func (o *GetNamespaceContextUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetNamespaceContextForbidden) GetPayload() *basicclientmodels.ErrorEnti
 }
 
 func (o *GetNamespaceContextForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

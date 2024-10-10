@@ -99,6 +99,7 @@ func (o *AdminBulkRemoveItemsOK) GetPayload() []*inventoryclientmodels.Apimodels
 }
 
 func (o *AdminBulkRemoveItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *AdminBulkRemoveItemsBadRequest) GetPayload() *inventoryclientmodels.Api
 }
 
 func (o *AdminBulkRemoveItemsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *AdminBulkRemoveItemsNotFound) GetPayload() *inventoryclientmodels.Apimo
 }
 
 func (o *AdminBulkRemoveItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -256,6 +259,7 @@ func (o *AdminBulkRemoveItemsInternalServerError) GetPayload() *inventoryclientm
 }
 
 func (o *AdminBulkRemoveItemsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

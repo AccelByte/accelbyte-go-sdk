@@ -87,6 +87,7 @@ func (o *DebugMatchedPaymentMerchantConfigOK) GetPayload() *platformclientmodels
 }
 
 func (o *DebugMatchedPaymentMerchantConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *DebugMatchedPaymentMerchantConfigNotFound) GetPayload() *platformclient
 }
 
 func (o *DebugMatchedPaymentMerchantConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

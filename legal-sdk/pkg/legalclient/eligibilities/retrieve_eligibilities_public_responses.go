@@ -93,6 +93,7 @@ func (o *RetrieveEligibilitiesPublicOK) GetPayload() []*legalclientmodels.Retrie
 }
 
 func (o *RetrieveEligibilitiesPublicOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *RetrieveEligibilitiesPublicBadRequest) GetPayload() *legalclientmodels.
 }
 
 func (o *RetrieveEligibilitiesPublicBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *RetrieveEligibilitiesPublicNotFound) GetPayload() *legalclientmodels.Er
 }
 
 func (o *RetrieveEligibilitiesPublicNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -18,16 +18,16 @@ import (
 // swagger:model Model goal schedule.
 type ModelGoalSchedule struct {
 
-	// endtime
+	// this field will be deprecated
 	// Format: date-time
 	EndTime *strfmt.DateTime `json:"endTime,omitempty"`
 
-	// order
+	// this field will be deprecated
 	// Required: true
 	// Format: int32
 	Order *int32 `json:"order"`
 
-	// starttime
+	// this field will be deprecated
 	// Required: true
 	// Format: date-time
 	StartTime strfmt.DateTime `json:"startTime"`

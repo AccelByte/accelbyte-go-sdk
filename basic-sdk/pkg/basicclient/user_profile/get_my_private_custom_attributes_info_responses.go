@@ -99,6 +99,7 @@ func (o *GetMyPrivateCustomAttributesInfoOK) GetPayload() map[string]interface{}
 }
 
 func (o *GetMyPrivateCustomAttributesInfoOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *GetMyPrivateCustomAttributesInfoUnauthorized) GetPayload() *basicclient
 }
 
 func (o *GetMyPrivateCustomAttributesInfoUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *GetMyPrivateCustomAttributesInfoForbidden) GetPayload() *basicclientmod
 }
 
 func (o *GetMyPrivateCustomAttributesInfoForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -256,6 +259,7 @@ func (o *GetMyPrivateCustomAttributesInfoNotFound) GetPayload() *basicclientmode
 }
 
 func (o *GetMyPrivateCustomAttributesInfoNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

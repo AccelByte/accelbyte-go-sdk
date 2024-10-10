@@ -22,6 +22,16 @@ type GoogleIAPConfigRequest struct {
 	// Required: true
 	ApplicationName *string `json:"applicationName"`
 
+	// notificationTokenAudience, it's used to verify the aud in the notification jwt token, empty will skip to validate aud
+	NotificationTokenAudience string `json:"notificationTokenAudience,omitempty"`
+
+	// notificationTokenEmail, it's used to verify the email in the notification jwt token,empty will skip to validate email
+	NotificationTokenEmail string `json:"notificationTokenEmail,omitempty"`
+
+	// package
+	// Required: true
+	PackageName *string `json:"packageName"`
+
 	// serviceAccountId
 	// Required: true
 	ServiceAccountID *string `json:"serviceAccountId"`
@@ -32,6 +42,9 @@ func (m *GoogleIAPConfigRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApplicationName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePackageName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateServiceAccountID(formats); err != nil {
@@ -47,6 +60,15 @@ func (m *GoogleIAPConfigRequest) Validate(formats strfmt.Registry) error {
 func (m *GoogleIAPConfigRequest) validateApplicationName(formats strfmt.Registry) error {
 
 	if err := validate.Required("applicationName", "body", m.ApplicationName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GoogleIAPConfigRequest) validatePackageName(formats strfmt.Registry) error {
+
+	if err := validate.Required("packageName", "body", m.PackageName); err != nil {
 		return err
 	}
 

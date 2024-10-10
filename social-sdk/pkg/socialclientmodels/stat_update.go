@@ -47,6 +47,10 @@ type StatUpdate struct {
 	// tags
 	// Unique: true
 	Tags []string `json:"tags"`
+
+	// visibility
+	// Enum: ['SERVERONLY', 'SHOWALL']
+	Visibility string `json:"visibility,omitempty"`
 }
 
 // Validate validates this Stat update
@@ -89,6 +93,35 @@ const (
 // prop value enum
 func (m *StatUpdate) validateGlobalAggregationMethodEnum(path, location string, value string) error {
 	if err := validate.EnumCase(path, location, value, statUpdateTypeGlobalAggregationMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+var statUpdateTypeVisibilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["SERVERONLY", "SHOWALL"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		statUpdateTypeVisibilityPropEnum = append(statUpdateTypeVisibilityPropEnum, v)
+	}
+}
+
+const (
+
+	// StatUpdateVisibilitySERVERONLY captures enum value "SERVERONLY"
+	StatUpdateVisibilitySERVERONLY string = "SERVERONLY"
+
+	// StatUpdateVisibilitySHOWALL captures enum value "SHOWALL"
+	StatUpdateVisibilitySHOWALL string = "SHOWALL"
+)
+
+// prop value enum
+func (m *StatUpdate) validateVisibilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, statUpdateTypeVisibilityPropEnum, true); err != nil {
 		return err
 	}
 	return nil

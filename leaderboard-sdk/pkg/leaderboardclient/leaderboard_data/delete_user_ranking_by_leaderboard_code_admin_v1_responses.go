@@ -85,6 +85,7 @@ func (o *DeleteUserRankingByLeaderboardCodeAdminV1NoContent) Error() string {
 }
 
 func (o *DeleteUserRankingByLeaderboardCodeAdminV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized) GetPayload() *le
 }
 
 func (o *DeleteUserRankingByLeaderboardCodeAdminV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden) GetPayload() *leade
 }
 
 func (o *DeleteUserRankingByLeaderboardCodeAdminV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *DeleteUserRankingByLeaderboardCodeAdminV1NotFound) GetPayload() *leader
 }
 
 func (o *DeleteUserRankingByLeaderboardCodeAdminV1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError) GetPayloa
 }
 
 func (o *DeleteUserRankingByLeaderboardCodeAdminV1InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

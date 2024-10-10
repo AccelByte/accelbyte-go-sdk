@@ -87,6 +87,7 @@ func (o *RevokeEntitlementsOK) GetPayload() *platformclientmodels.BulkEntitlemen
 }
 
 func (o *RevokeEntitlementsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *RevokeEntitlementsUnprocessableEntity) GetPayload() *platformclientmode
 }
 
 func (o *RevokeEntitlementsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

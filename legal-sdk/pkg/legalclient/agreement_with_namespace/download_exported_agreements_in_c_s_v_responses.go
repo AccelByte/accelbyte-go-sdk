@@ -87,6 +87,7 @@ func (o *DownloadExportedAgreementsInCSVOK) GetPayload() *legalclientmodels.Down
 }
 
 func (o *DownloadExportedAgreementsInCSVOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *DownloadExportedAgreementsInCSVNotFound) GetPayload() *legalclientmodel
 }
 
 func (o *DownloadExportedAgreementsInCSVNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

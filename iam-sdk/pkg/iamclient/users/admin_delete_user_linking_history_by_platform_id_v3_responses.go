@@ -91,6 +91,7 @@ func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent) Error() string {
 }
 
 func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest) GetPayload() *ia
 }
 
 func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized) GetPayload() *
 }
 
 func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden) GetPayload() *iam
 }
 
 func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound) GetPayload() *iamc
 }
 
 func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError) GetPayl
 }
 
 func (o *AdminDeleteUserLinkingHistoryByPlatformIDV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -91,6 +91,7 @@ func (o *PublicValidateUserByUserIDAndPasswordV3NoContent) Error() string {
 }
 
 func (o *PublicValidateUserByUserIDAndPasswordV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *PublicValidateUserByUserIDAndPasswordV3BadRequest) GetPayload() *iamcli
 }
 
 func (o *PublicValidateUserByUserIDAndPasswordV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *PublicValidateUserByUserIDAndPasswordV3Unauthorized) GetPayload() *iamc
 }
 
 func (o *PublicValidateUserByUserIDAndPasswordV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *PublicValidateUserByUserIDAndPasswordV3Forbidden) GetPayload() *iamclie
 }
 
 func (o *PublicValidateUserByUserIDAndPasswordV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *PublicValidateUserByUserIDAndPasswordV3NotFound) GetPayload() *iamclien
 }
 
 func (o *PublicValidateUserByUserIDAndPasswordV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *PublicValidateUserByUserIDAndPasswordV3InternalServerError) GetPayload(
 }
 
 func (o *PublicValidateUserByUserIDAndPasswordV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

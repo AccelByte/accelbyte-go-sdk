@@ -28,7 +28,7 @@ type AppleIAPReceipt struct {
 	// Required: true
 	ProductID *string `json:"productId"`
 
-	// The base64 encoded receipt data.
+	// The base64 encoded receipt data
 	// Required: true
 	ReceiptData *string `json:"receiptData"`
 

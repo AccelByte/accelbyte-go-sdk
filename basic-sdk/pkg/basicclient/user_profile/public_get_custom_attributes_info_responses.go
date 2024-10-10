@@ -87,6 +87,7 @@ func (o *PublicGetCustomAttributesInfoOK) GetPayload() map[string]interface{} {
 }
 
 func (o *PublicGetCustomAttributesInfoOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -138,6 +139,7 @@ func (o *PublicGetCustomAttributesInfoNotFound) GetPayload() *basicclientmodels.
 }
 
 func (o *PublicGetCustomAttributesInfoNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

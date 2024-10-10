@@ -93,6 +93,7 @@ func (o *AdminBulkGetUsersPlatformOK) GetPayload() *iamclientmodels.ModelListBul
 }
 
 func (o *AdminBulkGetUsersPlatformOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminBulkGetUsersPlatformBadRequest) GetPayload() *iamclientmodels.Rest
 }
 
 func (o *AdminBulkGetUsersPlatformBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminBulkGetUsersPlatformInternalServerError) GetPayload() *iamclientmo
 }
 
 func (o *AdminBulkGetUsersPlatformInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

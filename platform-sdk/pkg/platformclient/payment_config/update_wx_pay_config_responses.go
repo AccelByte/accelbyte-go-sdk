@@ -87,6 +87,7 @@ func (o *UpdateWxPayConfigOK) GetPayload() *platformclientmodels.PaymentMerchant
 }
 
 func (o *UpdateWxPayConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateWxPayConfigNotFound) GetPayload() *platformclientmodels.ErrorEnti
 }
 
 func (o *UpdateWxPayConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

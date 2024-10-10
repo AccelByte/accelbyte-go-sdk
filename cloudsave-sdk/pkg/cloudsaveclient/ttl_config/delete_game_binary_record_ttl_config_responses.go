@@ -91,6 +91,7 @@ func (o *DeleteGameBinaryRecordTTLConfigNoContent) Error() string {
 }
 
 func (o *DeleteGameBinaryRecordTTLConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *DeleteGameBinaryRecordTTLConfigBadRequest) GetPayload() *cloudsaveclien
 }
 
 func (o *DeleteGameBinaryRecordTTLConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *DeleteGameBinaryRecordTTLConfigUnauthorized) GetPayload() *cloudsavecli
 }
 
 func (o *DeleteGameBinaryRecordTTLConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *DeleteGameBinaryRecordTTLConfigForbidden) GetPayload() *cloudsaveclient
 }
 
 func (o *DeleteGameBinaryRecordTTLConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *DeleteGameBinaryRecordTTLConfigNotFound) GetPayload() *cloudsaveclientm
 }
 
 func (o *DeleteGameBinaryRecordTTLConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *DeleteGameBinaryRecordTTLConfigInternalServerError) GetPayload() *cloud
 }
 
 func (o *DeleteGameBinaryRecordTTLConfigInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

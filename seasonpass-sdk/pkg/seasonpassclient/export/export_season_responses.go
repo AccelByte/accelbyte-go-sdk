@@ -90,6 +90,7 @@ func (o *ExportSeasonOK) GetPayload() io.Writer {
 }
 
 func (o *ExportSeasonOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -141,6 +142,7 @@ func (o *ExportSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntit
 }
 
 func (o *ExportSeasonBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

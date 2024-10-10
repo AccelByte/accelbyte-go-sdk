@@ -93,6 +93,7 @@ func (o *GetListBanReasonOK) GetPayload() *iamclientmodels.AccountcommonBanReaso
 }
 
 func (o *GetListBanReasonOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *GetListBanReasonUnauthorized) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *GetListBanReasonUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *GetListBanReasonForbidden) GetPayload() *iamclientmodels.RestErrorRespo
 }
 
 func (o *GetListBanReasonForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

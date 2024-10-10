@@ -87,6 +87,7 @@ func (o *UploadSectionPluginConfigCertOK) GetPayload() *platformclientmodels.Sec
 }
 
 func (o *UploadSectionPluginConfigCertOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UploadSectionPluginConfigCertUnprocessableEntity) GetPayload() *platfor
 }
 
 func (o *UploadSectionPluginConfigCertUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

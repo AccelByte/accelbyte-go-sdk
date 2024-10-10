@@ -9,7 +9,6 @@ package payment_station
 import (
 	"context"
 	"fmt"
-	"io"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -45,8 +44,8 @@ type ClientService interface {
 	PublicCheckPaymentOrderPaidStatusShort(params *PublicCheckPaymentOrderPaidStatusParams) (*PublicCheckPaymentOrderPaidStatusOK, error)
 	GetPaymentPublicConfig(params *GetPaymentPublicConfigParams) (*GetPaymentPublicConfigOK, error)
 	GetPaymentPublicConfigShort(params *GetPaymentPublicConfigParams) (*GetPaymentPublicConfigOK, error)
-	PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer) (*PublicGetQRCodeOK, error)
-	PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.Writer) (*PublicGetQRCodeOK, error)
+	PublicGetQRCode(params *PublicGetQRCodeParams) (*PublicGetQRCodeOK, error)
+	PublicGetQRCodeShort(params *PublicGetQRCodeParams) (*PublicGetQRCodeOK, error)
 	PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, *PublicNormalizePaymentReturnURLTemporaryRedirect, error)
 	PublicNormalizePaymentReturnURLShort(params *PublicNormalizePaymentReturnURLParams) (*PublicNormalizePaymentReturnURLNoContent, error)
 	GetPaymentTaxValue(params *GetPaymentTaxValueParams) (*GetPaymentTaxValueOK, *GetPaymentTaxValueBadRequest, *GetPaymentTaxValueNotFound, error)
@@ -816,7 +815,7 @@ Other detail info:
 
   * Returns : QRCode image stream
 */
-func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer) (*PublicGetQRCodeOK, error) {
+func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams) (*PublicGetQRCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetQRCodeParams()
@@ -842,7 +841,7 @@ func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicGetQRCodeReader{formats: a.formats, writer: writer},
+		Reader:             &PublicGetQRCodeReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -867,7 +866,7 @@ Other detail info:
 
   * Returns : QRCode image stream
 */
-func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.Writer) (*PublicGetQRCodeOK, error) {
+func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams) (*PublicGetQRCodeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetQRCodeParams()
@@ -889,7 +888,7 @@ func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.W
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicGetQRCodeReader{formats: a.formats, writer: writer},
+		Reader:             &PublicGetQRCodeReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})

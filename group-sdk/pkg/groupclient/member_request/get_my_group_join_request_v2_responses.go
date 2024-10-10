@@ -105,6 +105,7 @@ func (o *GetMyGroupJoinRequestV2OK) GetPayload() *groupclientmodels.ModelsGetMem
 }
 
 func (o *GetMyGroupJoinRequestV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -158,6 +159,7 @@ func (o *GetMyGroupJoinRequestV2BadRequest) GetPayload() *groupclientmodels.Resp
 }
 
 func (o *GetMyGroupJoinRequestV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -211,6 +213,7 @@ func (o *GetMyGroupJoinRequestV2Unauthorized) GetPayload() *groupclientmodels.Re
 }
 
 func (o *GetMyGroupJoinRequestV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -264,6 +267,7 @@ func (o *GetMyGroupJoinRequestV2Forbidden) GetPayload() *groupclientmodels.Respo
 }
 
 func (o *GetMyGroupJoinRequestV2Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -317,6 +321,7 @@ func (o *GetMyGroupJoinRequestV2InternalServerError) GetPayload() *groupclientmo
 }
 
 func (o *GetMyGroupJoinRequestV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

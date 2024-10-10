@@ -67,6 +67,7 @@ func (o *UnselectAllRecordsNoContent) Error() string {
 }
 
 func (o *UnselectAllRecordsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -113,6 +114,7 @@ func (o *UnselectAllRecordsNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *UnselectAllRecordsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

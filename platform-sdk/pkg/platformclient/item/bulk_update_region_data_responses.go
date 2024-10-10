@@ -85,6 +85,7 @@ func (o *BulkUpdateRegionDataNoContent) Error() string {
 }
 
 func (o *BulkUpdateRegionDataNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -131,6 +132,7 @@ func (o *BulkUpdateRegionDataBadRequest) GetPayload() *platformclientmodels.Erro
 }
 
 func (o *BulkUpdateRegionDataBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -184,6 +186,7 @@ func (o *BulkUpdateRegionDataNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *BulkUpdateRegionDataNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -237,6 +240,7 @@ func (o *BulkUpdateRegionDataConflict) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *BulkUpdateRegionDataConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -290,6 +294,7 @@ func (o *BulkUpdateRegionDataUnprocessableEntity) GetPayload() *platformclientmo
 }
 
 func (o *BulkUpdateRegionDataUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

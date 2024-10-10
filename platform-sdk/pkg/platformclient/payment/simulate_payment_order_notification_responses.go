@@ -93,6 +93,7 @@ func (o *SimulatePaymentOrderNotificationOK) GetPayload() *platformclientmodels.
 }
 
 func (o *SimulatePaymentOrderNotificationOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *SimulatePaymentOrderNotificationBadRequest) GetPayload() *platformclien
 }
 
 func (o *SimulatePaymentOrderNotificationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *SimulatePaymentOrderNotificationNotFound) GetPayload() *platformclientm
 }
 
 func (o *SimulatePaymentOrderNotificationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

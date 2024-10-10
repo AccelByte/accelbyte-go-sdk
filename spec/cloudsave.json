@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.21.0"
+    "version": "3.21.1"
   },
   "schemes": [
     "https"
@@ -10287,7 +10287,9 @@
         },
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
-          "type": "string"
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "description": "Record data, should be in valid json format",
@@ -10311,7 +10313,9 @@
         },
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
-          "type": "string"
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "description": "Admin game record data, should be in valid json format",
@@ -10377,7 +10381,9 @@
         },
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
-          "type": "string"
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "description": "Admin player record data, should be in valid json format",
@@ -10798,7 +10804,9 @@
       "properties": {
         "updatedAt": {
           "description": "Precondition for concurrent request, updatedAt should be the same as record's updatedAt",
-          "type": "string"
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "description": "Record data, should be in valid json format",
@@ -11801,11 +11809,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T01:35:26+00:00",
-    "gitHash": "0ad504affc6b58a474e0b9e90b675421be74aa58",
+    "buildDate": "2024-10-01T08:27:15+00:00",
+    "gitHash": "fda6620300b5f9af1cc40385e645770451204a4b",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.21.0",
-    "version": "3.21.0",
+    "revisionID": "3.21.1",
+    "version": "3.21.1",
     "version-roles-seeding": "0.0.46"
   }
 }

@@ -111,6 +111,7 @@ func (o *AdminListUserAllPlatformAccountsDistinctV3OK) GetPayload() *iamclientmo
 }
 
 func (o *AdminListUserAllPlatformAccountsDistinctV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *AdminListUserAllPlatformAccountsDistinctV3BadRequest) GetPayload() *iam
 }
 
 func (o *AdminListUserAllPlatformAccountsDistinctV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *AdminListUserAllPlatformAccountsDistinctV3Unauthorized) GetPayload() *i
 }
 
 func (o *AdminListUserAllPlatformAccountsDistinctV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *AdminListUserAllPlatformAccountsDistinctV3Forbidden) GetPayload() *iamc
 }
 
 func (o *AdminListUserAllPlatformAccountsDistinctV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *AdminListUserAllPlatformAccountsDistinctV3NotFound) GetPayload() *iamcl
 }
 
 func (o *AdminListUserAllPlatformAccountsDistinctV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *AdminListUserAllPlatformAccountsDistinctV3InternalServerError) GetPaylo
 }
 
 func (o *AdminListUserAllPlatformAccountsDistinctV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

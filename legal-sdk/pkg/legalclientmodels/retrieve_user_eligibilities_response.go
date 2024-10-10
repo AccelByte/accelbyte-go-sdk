@@ -31,9 +31,6 @@ type RetrieveUserEligibilitiesResponse struct {
 	// description
 	Description string `json:"description,omitempty"`
 
-	// hiddenpublic
-	HiddenPublic bool `json:"hiddenPublic"`
-
 	// isaccepted
 	// Required: true
 	IsAccepted *bool `json:"isAccepted"`

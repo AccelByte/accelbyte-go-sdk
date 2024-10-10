@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 // NewAdminDisableUserMFAV4Params creates a new AdminDisableUserMFAV4Params object
@@ -64,6 +66,8 @@ type AdminDisableUserMFAV4Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *iamclientmodels.ModelDisableMFARequest
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -140,6 +144,17 @@ func (o *AdminDisableUserMFAV4Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the admin disable user mfav4 params
+func (o *AdminDisableUserMFAV4Params) WithBody(body *iamclientmodels.ModelDisableMFARequest) *AdminDisableUserMFAV4Params {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the admin disable user mfav4 params
+func (o *AdminDisableUserMFAV4Params) SetBody(body *iamclientmodels.ModelDisableMFARequest) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the admin disable user mfav4 params
 func (o *AdminDisableUserMFAV4Params) WithNamespace(namespace string) *AdminDisableUserMFAV4Params {
 	o.SetNamespace(namespace)
@@ -169,6 +184,12 @@ func (o *AdminDisableUserMFAV4Params) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

@@ -87,6 +87,7 @@ func (o *UpdateWxPayConfigCertOK) GetPayload() *platformclientmodels.PaymentMerc
 }
 
 func (o *UpdateWxPayConfigCertOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateWxPayConfigCertNotFound) GetPayload() *platformclientmodels.Error
 }
 
 func (o *UpdateWxPayConfigCertNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

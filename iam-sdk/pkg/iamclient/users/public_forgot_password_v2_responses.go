@@ -81,6 +81,7 @@ func (o *PublicForgotPasswordV2NoContent) Error() string {
 }
 
 func (o *PublicForgotPasswordV2NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -107,6 +108,7 @@ func (o *PublicForgotPasswordV2BadRequest) Error() string {
 }
 
 func (o *PublicForgotPasswordV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -133,6 +135,7 @@ func (o *PublicForgotPasswordV2NotFound) Error() string {
 }
 
 func (o *PublicForgotPasswordV2NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -159,6 +162,7 @@ func (o *PublicForgotPasswordV2TooManyRequests) Error() string {
 }
 
 func (o *PublicForgotPasswordV2TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -185,6 +189,7 @@ func (o *PublicForgotPasswordV2InternalServerError) Error() string {
 }
 
 func (o *PublicForgotPasswordV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

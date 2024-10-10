@@ -87,6 +87,7 @@ func (o *UpdateSectionPluginConfigOK) GetPayload() *platformclientmodels.Section
 }
 
 func (o *UpdateSectionPluginConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateSectionPluginConfigUnprocessableEntity) GetPayload() *platformcli
 }
 
 func (o *UpdateSectionPluginConfigUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

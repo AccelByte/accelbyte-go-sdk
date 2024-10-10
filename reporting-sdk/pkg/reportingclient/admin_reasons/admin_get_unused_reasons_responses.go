@@ -93,6 +93,7 @@ func (o *AdminGetUnusedReasonsOK) GetPayload() *reportingclientmodels.RestapiUnu
 }
 
 func (o *AdminGetUnusedReasonsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminGetUnusedReasonsNotFound) GetPayload() *reportingclientmodels.Rest
 }
 
 func (o *AdminGetUnusedReasonsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminGetUnusedReasonsInternalServerError) GetPayload() *reportingclient
 }
 
 func (o *AdminGetUnusedReasonsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

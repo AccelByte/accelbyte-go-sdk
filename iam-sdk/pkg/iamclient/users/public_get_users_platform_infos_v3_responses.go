@@ -99,6 +99,7 @@ func (o *PublicGetUsersPlatformInfosV3OK) GetPayload() *iamclientmodels.ModelUse
 }
 
 func (o *PublicGetUsersPlatformInfosV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicGetUsersPlatformInfosV3BadRequest) GetPayload() *iamclientmodels.
 }
 
 func (o *PublicGetUsersPlatformInfosV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicGetUsersPlatformInfosV3Unauthorized) GetPayload() *iamclientmodel
 }
 
 func (o *PublicGetUsersPlatformInfosV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicGetUsersPlatformInfosV3InternalServerError) GetPayload() *iamclie
 }
 
 func (o *PublicGetUsersPlatformInfosV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

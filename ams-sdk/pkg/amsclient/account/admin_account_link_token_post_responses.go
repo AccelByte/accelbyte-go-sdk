@@ -99,6 +99,7 @@ func (o *AdminAccountLinkTokenPostCreated) GetPayload() *amsclientmodels.APIAcco
 }
 
 func (o *AdminAccountLinkTokenPostCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminAccountLinkTokenPostUnauthorized) GetPayload() *amsclientmodels.Re
 }
 
 func (o *AdminAccountLinkTokenPostUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminAccountLinkTokenPostForbidden) GetPayload() *amsclientmodels.Respo
 }
 
 func (o *AdminAccountLinkTokenPostForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminAccountLinkTokenPostInternalServerError) GetPayload() *amsclientmo
 }
 
 func (o *AdminAccountLinkTokenPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

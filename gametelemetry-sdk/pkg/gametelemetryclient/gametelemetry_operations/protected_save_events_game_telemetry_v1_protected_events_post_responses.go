@@ -79,6 +79,7 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent) Error()
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -125,6 +126,7 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntit
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -178,6 +180,7 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerErro
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -231,6 +234,7 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorag
 }
 
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostInsufficientStorage) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

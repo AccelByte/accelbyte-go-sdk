@@ -535,6 +535,8 @@ Deprecated: 2022-08-10 - Use AcceptBackfillShort instead.
 
 AcceptBackfill accept a backfill proposal
 Accept backfill proposal.
+Field **acceptedTicketIds** can be used to accept specific tickets within a backfill proposal. If the ticketIDs are not mentioned in this field, those tickets will be rejected and reactivated for future proposals.
+If **acceptedTicketIds** is nil or not specified, then all tickets in the proposal will be accepted.
 */
 func (a *Client) AcceptBackfill(params *AcceptBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptBackfillOK, *AcceptBackfillBadRequest, *AcceptBackfillUnauthorized, *AcceptBackfillForbidden, *AcceptBackfillNotFound, *AcceptBackfillInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -599,6 +601,8 @@ func (a *Client) AcceptBackfill(params *AcceptBackfillParams, authInfo runtime.C
 /*
 AcceptBackfillShort accept a backfill proposal
 Accept backfill proposal.
+Field **acceptedTicketIds** can be used to accept specific tickets within a backfill proposal. If the ticketIDs are not mentioned in this field, those tickets will be rejected and reactivated for future proposals.
+If **acceptedTicketIds** is nil or not specified, then all tickets in the proposal will be accepted.
 */
 func (a *Client) AcceptBackfillShort(params *AcceptBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptBackfillOK, error) {
 	// TODO: Validate the params before sending

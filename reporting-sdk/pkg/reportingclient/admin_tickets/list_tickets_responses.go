@@ -87,6 +87,7 @@ func (o *ListTicketsOK) GetPayload() *reportingclientmodels.RestapiTicketListRes
 }
 
 func (o *ListTicketsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *ListTicketsInternalServerError) GetPayload() *reportingclientmodels.Res
 }
 
 func (o *ListTicketsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *GetUserBanHistoryOK) GetPayload() []*iamclientmodels.ModelUserBanRespon
 }
 
 func (o *GetUserBanHistoryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -150,6 +151,7 @@ func (o *GetUserBanHistoryUnauthorized) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *GetUserBanHistoryUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -203,6 +205,7 @@ func (o *GetUserBanHistoryForbidden) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *GetUserBanHistoryForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -236,6 +239,7 @@ func (o *GetUserBanHistoryNotFound) Error() string {
 }
 
 func (o *GetUserBanHistoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

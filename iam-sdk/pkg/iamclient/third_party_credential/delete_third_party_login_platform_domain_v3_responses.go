@@ -91,6 +91,7 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3NoContent) Error() string {
 }
 
 func (o *DeleteThirdPartyLoginPlatformDomainV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -137,6 +138,7 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3BadRequest) GetPayload() *iamclien
 }
 
 func (o *DeleteThirdPartyLoginPlatformDomainV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -190,6 +192,7 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3Unauthorized) GetPayload() *iamcli
 }
 
 func (o *DeleteThirdPartyLoginPlatformDomainV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -243,6 +246,7 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3Forbidden) GetPayload() *iamclient
 }
 
 func (o *DeleteThirdPartyLoginPlatformDomainV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -296,6 +300,7 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3NotFound) GetPayload() *iamclientm
 }
 
 func (o *DeleteThirdPartyLoginPlatformDomainV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -349,6 +354,7 @@ func (o *DeleteThirdPartyLoginPlatformDomainV3InternalServerError) GetPayload() 
 }
 
 func (o *DeleteThirdPartyLoginPlatformDomainV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

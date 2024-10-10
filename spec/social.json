@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "2.17.1"
+    "version": "2.18.1"
   },
   "schemes": [
     "https"
@@ -3806,7 +3806,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod will be ignored when the stat is not set as global\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod is not updatable when the stat status is TIED\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod will be ignored when the stat is not set as global\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field globalAggregationMethod is not updatable when the stat status is TIED\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Field visibility is not updatable when the stat status is TIED\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateStat",
         "parameters": [
           {
@@ -9599,6 +9599,14 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "visibility": {
+          "description": "The visibility for a stat, the default SHOWALL",
+          "enum": [
+            "SERVERONLY",
+            "SHOWALL"
+          ],
+          "type": "string"
         }
       },
       "required": [
@@ -9974,6 +9982,13 @@
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "visibility": {
+          "enum": [
+            "SERVERONLY",
+            "SHOWALL"
+          ],
+          "type": "string"
         }
       },
       "required": [
@@ -10156,6 +10171,13 @@
           },
           "type": "array",
           "uniqueItems": true
+        },
+        "visibility": {
+          "enum": [
+            "SERVERONLY",
+            "SHOWALL"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -10377,17 +10399,17 @@
     "path": "/social/swagger.json"
   },
   "x-version": {
-    "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-08-28T01:35:07+00:00",
-    "buildID": "2.17.1",
-    "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.223-211.872.amzn2.x86_64",
+    "buildBy": "Gradle 8.5",
+    "buildDate": "2024-10-02T10:31:32+00:00",
+    "buildID": "2.18.1",
+    "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
+    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "28c104b88e",
-    "gitTag": "2.17.1",
+    "gitHash": "0687ba988f",
+    "gitTag": "2.18.1",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "2.17.1",
+    "version": "2.18.1",
     "version-roles-seeding": "0.0.12"
   }
 }

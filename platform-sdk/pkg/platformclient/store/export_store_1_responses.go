@@ -90,6 +90,7 @@ func (o *ExportStore1OK) GetPayload() io.Writer {
 }
 
 func (o *ExportStore1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -141,6 +142,7 @@ func (o *ExportStore1NotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *ExportStore1NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

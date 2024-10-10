@@ -99,6 +99,7 @@ func (o *PublicFulfillGoogleIAPItemOK) GetPayload() *platformclientmodels.Google
 }
 
 func (o *PublicFulfillGoogleIAPItemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *PublicFulfillGoogleIAPItemBadRequest) GetPayload() *platformclientmodel
 }
 
 func (o *PublicFulfillGoogleIAPItemBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *PublicFulfillGoogleIAPItemNotFound) GetPayload() *platformclientmodels.
 }
 
 func (o *PublicFulfillGoogleIAPItemNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *PublicFulfillGoogleIAPItemConflict) GetPayload() *platformclientmodels.
 }
 
 func (o *PublicFulfillGoogleIAPItemConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

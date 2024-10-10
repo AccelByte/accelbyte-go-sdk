@@ -73,6 +73,7 @@ func (o *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent) Error() st
 }
 
 func (o *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -119,6 +120,7 @@ func (o *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest) GetPayloa
 }
 
 func (o *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -172,6 +174,7 @@ func (o *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNotFound) GetPayload(
 }
 
 func (o *PublicSyncPsnDLCInventoryWithMultipleServiceLabelsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

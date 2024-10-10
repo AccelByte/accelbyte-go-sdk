@@ -87,6 +87,7 @@ func (o *UpdateAliPayConfigOK) GetPayload() *platformclientmodels.PaymentMerchan
 }
 
 func (o *UpdateAliPayConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateAliPayConfigNotFound) GetPayload() *platformclientmodels.ErrorEnt
 }
 
 func (o *UpdateAliPayConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

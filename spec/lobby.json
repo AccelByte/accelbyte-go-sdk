@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.36.0"
+    "version": "3.36.1"
   },
   "schemes": [
     "https"
@@ -1387,7 +1387,7 @@
     },
     "/lobby/v1/admin/config/log": {
       "get": {
-        "description": "Get Log Configuration.\u0026lt;br\u0026gt;",
+        "description": "\n\t\t\tGet Log Configuration\n\t\t\tlogLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\tsocketLogEnabled is use for enable socket log\n\t\t\tlogLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\tslowQueryThreshold use for logging slow threshold in time measure is nano second\n\t\t\t",
         "operationId": "adminGetLogConfig",
         "produces": [
           "application/json"
@@ -1422,7 +1422,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update Log Configuration.\u0026lt;br\u0026gt;",
+        "description": "\n\t\t\t\tUpdate Log Configuration\n\t\t\t\tlogLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\t\tsocketLogEnabled is use for enable socket log\n\t\t\t\tlogLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\t\tslowQueryThreshold use for logging slow threshold in time measure is nano second\n\t\t\t",
         "operationId": "adminPatchUpdateLogConfig",
         "parameters": [
           {
@@ -8752,6 +8752,22 @@
           ],
           "type": "string"
         },
+        "logLevelDB": {
+          "enum": [
+            "debug",
+            "error",
+            "fatal",
+            "info",
+            "panic",
+            "trace",
+            "warning"
+          ],
+          "type": "string"
+        },
+        "slowQueryThreshold": {
+          "format": "int64",
+          "type": "integer"
+        },
         "socketLogEnabled": {
           "type": "boolean",
           "x-omitempty": false
@@ -15451,11 +15467,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-08-28T03:30:27+00:00",
-    "gitHash": "1764e6a9d111b8889c080fc3664e44d2b3bae0fe",
+    "buildDate": "2024-10-02T04:50:37+00:00",
+    "gitHash": "2aaac9b4db4d3046584a8813f9dd3c1e46f18887",
     "name": "justice-lobby-server",
-    "revisionID": "3.36.0",
-    "version": "3.36.0",
+    "revisionID": "3.36.1",
+    "version": "3.36.1",
     "version-justice": "3.45.0",
     "version-roles-seeding": "1.2.52"
   }

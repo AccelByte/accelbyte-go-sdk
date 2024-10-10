@@ -93,6 +93,7 @@ func (o *SyncEpicGamesInventoryOK) GetPayload() []*platformclientmodels.EpicGame
 }
 
 func (o *SyncEpicGamesInventoryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *SyncEpicGamesInventoryBadRequest) GetPayload() *platformclientmodels.Er
 }
 
 func (o *SyncEpicGamesInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *SyncEpicGamesInventoryNotFound) GetPayload() *platformclientmodels.Erro
 }
 
 func (o *SyncEpicGamesInventoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

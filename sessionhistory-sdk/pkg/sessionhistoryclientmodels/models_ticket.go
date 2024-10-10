@@ -27,6 +27,10 @@ type ModelsTicket struct {
 	// matchpool
 	MatchPool string `json:"MatchPool,omitempty"`
 
+	// matchedat
+	// Format: date-time
+	MatchedAt *strfmt.DateTime `json:"MatchedAt,omitempty"`
+
 	// namespace
 	Namespace string `json:"Namespace,omitempty"`
 

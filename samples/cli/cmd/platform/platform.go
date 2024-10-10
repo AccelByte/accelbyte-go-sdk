@@ -19,6 +19,8 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/platform/fulfillment"
 	"github.com/AccelByte/sample-apps/cmd/platform/fulfillmentScript"
 	"github.com/AccelByte/sample-apps/cmd/platform/iap"
+	"github.com/AccelByte/sample-apps/cmd/platform/iapNotification"
+	"github.com/AccelByte/sample-apps/cmd/platform/iapSubscription"
 	"github.com/AccelByte/sample-apps/cmd/platform/invoice"
 	"github.com/AccelByte/sample-apps/cmd/platform/item"
 	"github.com/AccelByte/sample-apps/cmd/platform/keyGroup"
@@ -114,8 +116,8 @@ func init() {
 	PlatformCmd.AddCommand(dlc.GetPlatformDLCConfigCmd)
 	PlatformCmd.AddCommand(dlc.UpdatePlatformDLCConfigCmd)
 	PlatformCmd.AddCommand(dlc.DeletePlatformDLCConfigCmd)
-	PlatformCmd.AddCommand(entitlement.QueryEntitlementsCmd)
 	PlatformCmd.AddCommand(entitlement.QueryEntitlements1Cmd)
+	PlatformCmd.AddCommand(entitlement.QueryEntitlementsCmd)
 	PlatformCmd.AddCommand(entitlement.EnableEntitlementOriginFeatureCmd)
 	PlatformCmd.AddCommand(entitlement.GetEntitlementConfigInfoCmd)
 	PlatformCmd.AddCommand(entitlement.GrantEntitlementsCmd)
@@ -127,6 +129,7 @@ func init() {
 	PlatformCmd.AddCommand(iap.GetAppleIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateAppleIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteAppleIAPConfigCmd)
+	PlatformCmd.AddCommand(iap.UpdateAppleP8FileCmd)
 	PlatformCmd.AddCommand(iap.GetEpicGamesIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateEpicGamesIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteEpicGamesIAPConfigCmd)
@@ -155,6 +158,8 @@ func init() {
 	PlatformCmd.AddCommand(iap.UpdateXblIAPConfigCmd)
 	PlatformCmd.AddCommand(iap.DeleteXblAPConfigCmd)
 	PlatformCmd.AddCommand(iap.UpdateXblBPCertFileCmd)
+	PlatformCmd.AddCommand(iapNotification.QueryThirdPartyNotificationsCmd)
+	PlatformCmd.AddCommand(iapSubscription.QueryThirdPartySubscriptionCmd)
 	PlatformCmd.AddCommand(invoice.DownloadInvoiceDetailsCmd)
 	PlatformCmd.AddCommand(invoice.GenerateInvoiceSummaryCmd)
 	PlatformCmd.AddCommand(item.SyncInGameItemCmd)
@@ -326,6 +331,15 @@ func init() {
 	PlatformCmd.AddCommand(iap.QueryAllUserIAPOrdersCmd)
 	PlatformCmd.AddCommand(iap.QueryUserIAPConsumeHistoryCmd)
 	PlatformCmd.AddCommand(iap.MockFulfillIAPItemCmd)
+	PlatformCmd.AddCommand(iapSubscription.QueryUserThirdPartySubscriptionCmd)
+	PlatformCmd.AddCommand(iapSubscription.GetThirdPartyPlatformSubscriptionOwnershipByGroupIdCmd)
+	PlatformCmd.AddCommand(iapSubscription.GetThirdPartyPlatformSubscriptionOwnershipByProductIdCmd)
+	PlatformCmd.AddCommand(iapSubscription.QueryUserThirdPartySubscriptionTransactionsCmd)
+	PlatformCmd.AddCommand(iapSubscription.GetThirdPartySubscriptionDetailsCmd)
+	PlatformCmd.AddCommand(iapSubscription.GetSubscriptionHistoryCmd)
+	PlatformCmd.AddCommand(iapSubscription.SyncSubscriptionTransactionCmd)
+	PlatformCmd.AddCommand(iapSubscription.GetThirdPartyUserSubscriptionDetailsCmd)
+	PlatformCmd.AddCommand(iapSubscription.SyncSubscriptionCmd)
 	PlatformCmd.AddCommand(order.QueryUserOrdersCmd)
 	PlatformCmd.AddCommand(order.AdminCreateUserOrderCmd)
 	PlatformCmd.AddCommand(order.CountOfPurchasedItemCmd)
@@ -421,6 +435,7 @@ func init() {
 	PlatformCmd.AddCommand(category.PublicGetDescendantCategoriesCmd)
 	PlatformCmd.AddCommand(currency.PublicListCurrenciesCmd)
 	PlatformCmd.AddCommand(dlc.GeDLCDurableRewardShortMapCmd)
+	PlatformCmd.AddCommand(iap.GetAppleConfigVersionCmd)
 	PlatformCmd.AddCommand(iap.GetIAPItemMappingCmd)
 	PlatformCmd.AddCommand(item.PublicGetItemByAppIdCmd)
 	PlatformCmd.AddCommand(item.PublicQueryItemsCmd)
@@ -484,6 +499,7 @@ func init() {
 	PlatformCmd.AddCommand(iap.PublicReconcilePlayStationStoreCmd)
 	PlatformCmd.AddCommand(iap.PublicReconcilePlayStationStoreWithMultipleServiceLabelsCmd)
 	PlatformCmd.AddCommand(iap.SyncSteamInventoryCmd)
+	PlatformCmd.AddCommand(iapSubscription.PublicQueryUserThirdPartySubscriptionCmd)
 	PlatformCmd.AddCommand(iap.SyncTwitchDropsEntitlement1Cmd)
 	PlatformCmd.AddCommand(iap.SyncXboxInventoryCmd)
 	PlatformCmd.AddCommand(order.PublicQueryUserOrdersCmd)
@@ -513,5 +529,7 @@ func init() {
 	PlatformCmd.AddCommand(store.ExportStore1Cmd)
 	PlatformCmd.AddCommand(fulfillment.FulfillRewardsV2Cmd)
 	PlatformCmd.AddCommand(fulfillment.FulfillItemsCmd)
+	PlatformCmd.AddCommand(fulfillment.RetryFulfillItemsCmd)
 	PlatformCmd.AddCommand(fulfillment.RevokeItemsCmd)
+	PlatformCmd.AddCommand(iap.V2PublicFulfillAppleIAPItemCmd)
 }

@@ -81,6 +81,7 @@ func (o *TestAdyenConfigOK) GetPayload() *platformclientmodels.TestResult {
 }
 
 func (o *TestAdyenConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

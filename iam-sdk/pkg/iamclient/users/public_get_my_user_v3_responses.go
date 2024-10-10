@@ -93,6 +93,7 @@ func (o *PublicGetMyUserV3OK) GetPayload() *iamclientmodels.ModelUserResponseV3 
 }
 
 func (o *PublicGetMyUserV3OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *PublicGetMyUserV3Unauthorized) GetPayload() *iamclientmodels.RestErrorR
 }
 
 func (o *PublicGetMyUserV3Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *PublicGetMyUserV3InternalServerError) GetPayload() *iamclientmodels.Res
 }
 
 func (o *PublicGetMyUserV3InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

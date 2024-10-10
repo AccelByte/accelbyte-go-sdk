@@ -111,6 +111,7 @@ func (o *BulkFetchOrDefaultStatItemsOK) GetPayload() []*socialclientmodels.ADTOO
 }
 
 func (o *BulkFetchOrDefaultStatItemsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *BulkFetchOrDefaultStatItemsUnauthorized) GetPayload() *socialclientmode
 }
 
 func (o *BulkFetchOrDefaultStatItemsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *BulkFetchOrDefaultStatItemsForbidden) GetPayload() *socialclientmodels.
 }
 
 func (o *BulkFetchOrDefaultStatItemsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *BulkFetchOrDefaultStatItemsNotFound) GetPayload() *socialclientmodels.E
 }
 
 func (o *BulkFetchOrDefaultStatItemsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *BulkFetchOrDefaultStatItemsUnprocessableEntity) GetPayload() *socialcli
 }
 
 func (o *BulkFetchOrDefaultStatItemsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *BulkFetchOrDefaultStatItemsInternalServerError) GetPayload() *socialcli
 }
 
 func (o *BulkFetchOrDefaultStatItemsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -99,6 +99,7 @@ func (o *GetPublicFollowersOK) GetPayload() *ugcclientmodels.ModelsPaginatedCrea
 }
 
 func (o *GetPublicFollowersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *GetPublicFollowersBadRequest) GetPayload() *ugcclientmodels.ResponseErr
 }
 
 func (o *GetPublicFollowersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *GetPublicFollowersUnauthorized) GetPayload() *ugcclientmodels.ResponseE
 }
 
 func (o *GetPublicFollowersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *GetPublicFollowersInternalServerError) GetPayload() *ugcclientmodels.Re
 }
 
 func (o *GetPublicFollowersInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

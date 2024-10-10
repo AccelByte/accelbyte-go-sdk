@@ -99,6 +99,7 @@ func (o *ListTerminatedServersWithNamespaceOK) GetPayload() *dsartifactclientmod
 }
 
 func (o *ListTerminatedServersWithNamespaceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *ListTerminatedServersWithNamespaceBadRequest) GetPayload() *dsartifactc
 }
 
 func (o *ListTerminatedServersWithNamespaceBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *ListTerminatedServersWithNamespaceUnauthorized) GetPayload() *dsartifac
 }
 
 func (o *ListTerminatedServersWithNamespaceUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *ListTerminatedServersWithNamespaceInternalServerError) GetPayload() *ds
 }
 
 func (o *ListTerminatedServersWithNamespaceInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

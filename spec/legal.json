@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.44.0"
+    "version": "2.0.0"
   },
   "schemes": [
     "https"
@@ -5090,10 +5090,6 @@
         "description": {
           "type": "string"
         },
-        "hiddenPublic": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
         "isAccepted": {
           "type": "boolean",
           "x-omitempty": false
@@ -5558,17 +5554,17 @@
     "path": "/agreement/swagger.json"
   },
   "x-version": {
-    "buildBy": "Gradle 6.9.1",
-    "buildDate": "2024-08-28T05:34:52+00:00",
-    "buildID": "1.44.0",
-    "buildJDK": "1.8.0_232 (Eclipse OpenJ9 openj9-0.17.0)",
-    "buildOS": "Linux amd64 5.10.223-211.872.amzn2.x86_64",
+    "buildBy": "Gradle 8.5",
+    "buildDate": "2024-10-01T09:37:55+00:00",
+    "buildID": "2.0.0",
+    "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
+    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "1fd6cd66fc",
-    "gitTag": "1.44.0",
+    "gitHash": "fe8d57a303",
+    "gitTag": "2.0.0",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "1.44.0",
+    "version": "2.0.0",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -93,6 +93,7 @@ func (o *QueryRewardsOK) GetPayload() []*seasonpassclientmodels.RewardInfo {
 }
 
 func (o *QueryRewardsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *QueryRewardsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntit
 }
 
 func (o *QueryRewardsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *QueryRewardsNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity 
 }
 
 func (o *QueryRewardsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

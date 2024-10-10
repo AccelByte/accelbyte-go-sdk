@@ -117,6 +117,7 @@ func (o *AdminBulkSaveItemToInventoryOK) GetPayload() []*inventoryclientmodels.A
 }
 
 func (o *AdminBulkSaveItemToInventoryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -168,6 +169,7 @@ func (o *AdminBulkSaveItemToInventoryBadRequest) GetPayload() *inventoryclientmo
 }
 
 func (o *AdminBulkSaveItemToInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -221,6 +223,7 @@ func (o *AdminBulkSaveItemToInventoryUnauthorized) GetPayload() *inventoryclient
 }
 
 func (o *AdminBulkSaveItemToInventoryUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -274,6 +277,7 @@ func (o *AdminBulkSaveItemToInventoryForbidden) GetPayload() *inventoryclientmod
 }
 
 func (o *AdminBulkSaveItemToInventoryForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -327,6 +331,7 @@ func (o *AdminBulkSaveItemToInventoryNotFound) GetPayload() *inventoryclientmode
 }
 
 func (o *AdminBulkSaveItemToInventoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -380,6 +385,7 @@ func (o *AdminBulkSaveItemToInventoryUnprocessableEntity) GetPayload() *inventor
 }
 
 func (o *AdminBulkSaveItemToInventoryUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -433,6 +439,7 @@ func (o *AdminBulkSaveItemToInventoryInternalServerError) GetPayload() *inventor
 }
 
 func (o *AdminBulkSaveItemToInventoryInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

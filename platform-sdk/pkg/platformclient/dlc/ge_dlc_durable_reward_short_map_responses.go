@@ -87,6 +87,7 @@ func (o *GeDLCDurableRewardShortMapOK) GetPayload() *platformclientmodels.DLCCon
 }
 
 func (o *GeDLCDurableRewardShortMapOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GeDLCDurableRewardShortMapNotFound) GetPayload() *platformclientmodels.
 }
 
 func (o *GeDLCDurableRewardShortMapNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

@@ -93,6 +93,7 @@ func (o *AdminSaveItemToInventoryOK) GetPayload() *inventoryclientmodels.Apimode
 }
 
 func (o *AdminSaveItemToInventoryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminSaveItemToInventoryBadRequest) GetPayload() *inventoryclientmodels
 }
 
 func (o *AdminSaveItemToInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminSaveItemToInventoryInternalServerError) GetPayload() *inventorycli
 }
 
 func (o *AdminSaveItemToInventoryInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

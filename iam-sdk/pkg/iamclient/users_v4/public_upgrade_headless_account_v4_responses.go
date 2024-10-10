@@ -111,6 +111,7 @@ func (o *PublicUpgradeHeadlessAccountV4OK) GetPayload() *iamclientmodels.Account
 }
 
 func (o *PublicUpgradeHeadlessAccountV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *PublicUpgradeHeadlessAccountV4BadRequest) GetPayload() *iamclientmodels
 }
 
 func (o *PublicUpgradeHeadlessAccountV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *PublicUpgradeHeadlessAccountV4Unauthorized) GetPayload() *iamclientmode
 }
 
 func (o *PublicUpgradeHeadlessAccountV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *PublicUpgradeHeadlessAccountV4NotFound) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicUpgradeHeadlessAccountV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *PublicUpgradeHeadlessAccountV4Conflict) GetPayload() *iamclientmodels.R
 }
 
 func (o *PublicUpgradeHeadlessAccountV4Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *PublicUpgradeHeadlessAccountV4InternalServerError) GetPayload() *iamcli
 }
 
 func (o *PublicUpgradeHeadlessAccountV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

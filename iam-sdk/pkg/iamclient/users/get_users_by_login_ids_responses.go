@@ -99,6 +99,7 @@ func (o *GetUsersByLoginIdsOK) GetPayload() *iamclientmodels.ModelPublicUsersRes
 }
 
 func (o *GetUsersByLoginIdsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *GetUsersByLoginIdsBadRequest) GetPayload() *iamclientmodels.RestErrorRe
 }
 
 func (o *GetUsersByLoginIdsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *GetUsersByLoginIdsUnauthorized) GetPayload() *iamclientmodels.RestError
 }
 
 func (o *GetUsersByLoginIdsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *GetUsersByLoginIdsForbidden) GetPayload() *iamclientmodels.RestErrorRes
 }
 
 func (o *GetUsersByLoginIdsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

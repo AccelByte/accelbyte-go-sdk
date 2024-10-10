@@ -33,17 +33,6 @@ var SessionCmd = &cobra.Command{
 
 func init() {
 	SessionCmd.AddCommand(operations.GetHealthcheckInfoCmd)
-	SessionCmd.AddCommand(operations.PprofHandlerCmd)
-	SessionCmd.AddCommand(operations.AllocsHandlerCmd)
-	SessionCmd.AddCommand(operations.BlockHandlerCmd)
-	SessionCmd.AddCommand(operations.CmdlineHandlerCmd)
-	SessionCmd.AddCommand(operations.GoroutineHandlerCmd)
-	SessionCmd.AddCommand(operations.HeapHandlerCmd)
-	SessionCmd.AddCommand(operations.MutexHandlerCmd)
-	SessionCmd.AddCommand(operations.ProfileCmd)
-	SessionCmd.AddCommand(operations.SymbolHandlerCmd)
-	SessionCmd.AddCommand(operations.ThreadcreateHandlerCmd)
-	SessionCmd.AddCommand(operations.TraceHandlerCmd)
 	SessionCmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
 	SessionCmd.AddCommand(config.AdminGetLogConfigCmd)
 	SessionCmd.AddCommand(config.AdminPatchUpdateLogConfigCmd)

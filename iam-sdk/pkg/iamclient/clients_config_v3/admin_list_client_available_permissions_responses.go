@@ -93,6 +93,7 @@ func (o *AdminListClientAvailablePermissionsOK) GetPayload() *iamclientmodels.Cl
 }
 
 func (o *AdminListClientAvailablePermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminListClientAvailablePermissionsUnauthorized) GetPayload() *iamclien
 }
 
 func (o *AdminListClientAvailablePermissionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminListClientAvailablePermissionsForbidden) GetPayload() *iamclientmo
 }
 
 func (o *AdminListClientAvailablePermissionsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

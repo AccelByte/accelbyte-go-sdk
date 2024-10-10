@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.23.0"
+    "version": "2.23.1"
   },
   "schemes": [
     "https"
@@ -2510,7 +2510,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; Global achievement should be unlocked to claim the reward. Only contributor of global achievement are eligible for rewards",
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; Global achievement should be unlocked to claim the reward. Only contributor of global achievement are eligible for rewards",
         "operationId": "ClaimGlobalAchievementReward",
         "parameters": [
           {
@@ -2579,7 +2579,7 @@
           },
           {
             "userPermissions": [
-              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
             ]
           }
         ]
@@ -3466,11 +3466,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T01:36:48+00:00",
-    "gitHash": "458374620ff45e6a3179016b65535b22d15c6089",
+    "buildDate": "2024-10-01T08:27:32+00:00",
+    "gitHash": "1c392bb0f748d9cf599944a78474110266fc21e3",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.23.0",
+    "version": "2.23.1",
     "version-roles-seeding": "1.0.7"
   }
 }

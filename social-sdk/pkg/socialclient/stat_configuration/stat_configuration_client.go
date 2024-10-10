@@ -898,6 +898,7 @@ Other detail info:
                       *  Returns : updated stat
                       *  Field globalAggregationMethod will be ignored when the stat is not set as global
                       *  Field globalAggregationMethod is not updatable when the stat status is TIED
+                      *  Field visibility is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -966,6 +967,7 @@ Other detail info:
                       *  Returns : updated stat
                       *  Field globalAggregationMethod will be ignored when the stat is not set as global
                       *  Field globalAggregationMethod is not updatable when the stat status is TIED
+                      *  Field visibility is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
 	// TODO: Validate the params before sending

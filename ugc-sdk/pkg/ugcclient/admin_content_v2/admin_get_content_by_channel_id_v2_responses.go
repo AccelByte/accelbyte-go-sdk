@@ -99,6 +99,7 @@ func (o *AdminGetContentByChannelIDV2OK) GetPayload() *ugcclientmodels.ModelsPag
 }
 
 func (o *AdminGetContentByChannelIDV2OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -152,6 +153,7 @@ func (o *AdminGetContentByChannelIDV2BadRequest) GetPayload() *ugcclientmodels.R
 }
 
 func (o *AdminGetContentByChannelIDV2BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -205,6 +207,7 @@ func (o *AdminGetContentByChannelIDV2Unauthorized) GetPayload() *ugcclientmodels
 }
 
 func (o *AdminGetContentByChannelIDV2Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -258,6 +261,7 @@ func (o *AdminGetContentByChannelIDV2InternalServerError) GetPayload() *ugcclien
 }
 
 func (o *AdminGetContentByChannelIDV2InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

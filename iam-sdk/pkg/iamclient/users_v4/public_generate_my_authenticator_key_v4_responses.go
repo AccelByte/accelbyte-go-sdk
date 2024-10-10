@@ -111,6 +111,7 @@ func (o *PublicGenerateMyAuthenticatorKeyV4OK) GetPayload() *iamclientmodels.Mod
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -164,6 +165,7 @@ func (o *PublicGenerateMyAuthenticatorKeyV4BadRequest) GetPayload() *iamclientmo
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -217,6 +219,7 @@ func (o *PublicGenerateMyAuthenticatorKeyV4Unauthorized) GetPayload() *iamclient
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -270,6 +273,7 @@ func (o *PublicGenerateMyAuthenticatorKeyV4Forbidden) GetPayload() *iamclientmod
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -323,6 +327,7 @@ func (o *PublicGenerateMyAuthenticatorKeyV4NotFound) GetPayload() *iamclientmode
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -376,6 +381,7 @@ func (o *PublicGenerateMyAuthenticatorKeyV4InternalServerError) GetPayload() *ia
 }
 
 func (o *PublicGenerateMyAuthenticatorKeyV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

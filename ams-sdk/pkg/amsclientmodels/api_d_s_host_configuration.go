@@ -22,6 +22,10 @@ type APIDSHostConfiguration struct {
 	// Required: true
 	InstanceID *string `json:"instanceId"`
 
+	// instanceprovider
+	// Required: true
+	InstanceProvider *string `json:"instanceProvider"`
+
 	// instancetype
 	// Required: true
 	InstanceType *string `json:"instanceType"`
@@ -37,6 +41,9 @@ func (m *APIDSHostConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateInstanceID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateInstanceProvider(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateInstanceType(formats); err != nil {
@@ -55,6 +62,15 @@ func (m *APIDSHostConfiguration) Validate(formats strfmt.Registry) error {
 func (m *APIDSHostConfiguration) validateInstanceID(formats strfmt.Registry) error {
 
 	if err := validate.Required("instanceId", "body", m.InstanceID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIDSHostConfiguration) validateInstanceProvider(formats strfmt.Registry) error {
+
+	if err := validate.Required("instanceProvider", "body", m.InstanceProvider); err != nil {
 		return err
 	}
 

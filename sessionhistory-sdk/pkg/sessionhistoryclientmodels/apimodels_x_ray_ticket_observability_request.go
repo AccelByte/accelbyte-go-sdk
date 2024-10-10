@@ -54,10 +54,6 @@ type ApimodelsXRayTicketObservabilityRequest struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// partyid
-	// Required: true
-	PartyID *string `json:"partyID"`
-
 	// remainingplayersperticket
 	// Format: int32
 	RemainingPlayersPerTicket []int32 `json:"remainingPlayersPerTicket,omitempty"`
@@ -74,6 +70,10 @@ type ApimodelsXRayTicketObservabilityRequest struct {
 	// Required: true
 	// Format: int64
 	TickID *int64 `json:"tickID"`
+
+	// ticketid
+	// Required: true
+	TicketID *string `json:"ticketID"`
 
 	// timetomatchsec
 	// Format: double
@@ -110,13 +110,13 @@ func (m *ApimodelsXRayTicketObservabilityRequest) Validate(formats strfmt.Regist
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validatePartyID(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateSessionTickID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTickID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTicketID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTimestamp(formats); err != nil {
@@ -174,15 +174,6 @@ func (m *ApimodelsXRayTicketObservabilityRequest) validateNamespace(formats strf
 	return nil
 }
 
-func (m *ApimodelsXRayTicketObservabilityRequest) validatePartyID(formats strfmt.Registry) error {
-
-	if err := validate.Required("partyID", "body", m.PartyID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ApimodelsXRayTicketObservabilityRequest) validateSessionTickID(formats strfmt.Registry) error {
 
 	if err := validate.Required("sessionTickID", "body", m.SessionTickID); err != nil {
@@ -195,6 +186,15 @@ func (m *ApimodelsXRayTicketObservabilityRequest) validateSessionTickID(formats 
 func (m *ApimodelsXRayTicketObservabilityRequest) validateTickID(formats strfmt.Registry) error {
 
 	if err := validate.Required("tickID", "body", m.TickID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsXRayTicketObservabilityRequest) validateTicketID(formats strfmt.Registry) error {
+
+	if err := validate.Required("ticketID", "body", m.TicketID); err != nil {
 		return err
 	}
 

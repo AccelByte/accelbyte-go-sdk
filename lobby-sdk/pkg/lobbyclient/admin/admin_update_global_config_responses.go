@@ -93,6 +93,7 @@ func (o *AdminUpdateGlobalConfigOK) GetPayload() *lobbyclientmodels.ModelGlobalC
 }
 
 func (o *AdminUpdateGlobalConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -146,6 +147,7 @@ func (o *AdminUpdateGlobalConfigUnauthorized) GetPayload() *lobbyclientmodels.Re
 }
 
 func (o *AdminUpdateGlobalConfigUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -199,6 +201,7 @@ func (o *AdminUpdateGlobalConfigForbidden) GetPayload() *lobbyclientmodels.Resta
 }
 
 func (o *AdminUpdateGlobalConfigForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

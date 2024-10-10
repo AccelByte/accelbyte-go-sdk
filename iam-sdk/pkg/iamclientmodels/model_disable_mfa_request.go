@@ -17,6 +17,9 @@ import (
 // swagger:model Model disable MFA request.
 type ModelDisableMFARequest struct {
 
+	// factor
+	Factor string `json:"factor,omitempty"`
+
 	// mfatoken
 	MFAToken string `json:"mfaToken,omitempty"`
 }

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.21.0"
+    "version": "7.22.0"
   },
   "schemes": [
     "https"
@@ -1376,10 +1376,8 @@
         },
         "security": [
           {
+            "authorization": [],
             "basic": []
-          },
-          {
-            "authorization": []
           }
         ],
         "summary": "Request Password Reset Code",
@@ -1513,10 +1511,8 @@
         },
         "security": [
           {
+            "authorization": [],
             "basic": []
-          },
-          {
-            "authorization": []
           }
         ],
         "summary": "Reset User Password",
@@ -10227,6 +10223,154 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/loginAllowlist": {
+      "get": {
+        "description": "This endpoint return login allowlist configuration from specific namespace.",
+        "operationId": "AdminGetLoginAllowlistV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.LoginAllowlistResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get login allowlist",
+        "tags": [
+          "Login Allowlist"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:LOGINALLOWLIST [READ]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint update login allowlist configuration from specific game namespace.\nroleIds: are list of role that allowed to login\nNote: only accept game namespace\n",
+        "operationId": "AdminUpdateLoginAllowlistV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.LoginAllowlistRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.LoginAllowlistResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10240\u003c/td\u003e\u003ctd\u003enamespace is not game namespace\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10470\u003c/td\u003e\u003ctd\u003erole is empty\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin update login allowlist",
+        "tags": [
+          "Login Allowlist"
+        ],
+        "x-errorCodes": {
+          "10240": "namespace is not game namespace",
+          "10470": "role is empty",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions",
+          "20019": "unable to parse request body"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:LOGINALLOWLIST [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/platforms/all/clients": {
       "get": {
         "description": "This is the API to Get All Active 3rd Platform Credential.",
@@ -11519,6 +11663,184 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:USER [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/profileUpdateStrategies": {
+      "get": {
+        "description": "This API is for admin to get profile update strategy by namespace and field.\nNote: If the config is not found, this API will return a config with unlimited.\n",
+        "operationId": "AdminGetProfileUpdateStrategyV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Target field",
+            "enum": [
+              "country",
+              "display_name",
+              "dob",
+              "username"
+            ],
+            "in": "query",
+            "name": "field",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.GetProfileUpdateStrategyConfigResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get profile update strategy by namespace and field.",
+        "tags": [
+          "Profile Update Strategy"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:PROFILESTRATEGY [READ]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API includes upsert behavior.\nNote: \n\t1. field \u0026#39;config\u0026#39;\u0026#39; in request body will only work when type is limited\n",
+        "operationId": "AdminUpdateProfileUpdateStrategyV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.UpdateProfileUpdateStrategyConfigRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Target field",
+            "enum": [
+              "country",
+              "display_name",
+              "dob",
+              "username"
+            ],
+            "in": "query",
+            "name": "field",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.SimpleProfileUpdateStrategyConfigs"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin update profile update strategy by namespace and field.",
+        "tags": [
+          "Profile Update Strategy"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:PROFILESTRATEGY [UPDATE]"
             ]
           }
         ]
@@ -15429,7 +15751,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/platforms/link/histories": {
       "get": {
-        "description": "This API is for admin to get user\u0026#39;s link history.\n\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "description": "This API is for admin to get user\u0026#39;s link history.\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
         "operationId": "AdminGetUserLinkHistoriesV3",
         "parameters": [
           {
@@ -21002,6 +21324,83 @@
         "x-security": {}
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/profileUpdateStrategies": {
+      "get": {
+        "description": "This API is for public user to get profile update strategy by namespace and field.\nNote: If the config is not found, this API will return a config with unlimited.\n",
+        "operationId": "PublicGetProfileUpdateStrategyV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Target field",
+            "enum": [
+              "country",
+              "display_name",
+              "dob",
+              "username"
+            ],
+            "in": "query",
+            "name": "field",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.GetProfileUpdateStrategyConfigResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Public get profile update strategy by namespace and field.",
+        "tags": [
+          "Profile Update Strategy"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        }
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/requests/{requestId}/async/status": {
       "get": {
         "description": "This endpoint is used to get linking status.\nThis API need logged user and user can only request its own linking status.",
@@ -21837,7 +22236,7 @@
             }
           },
           "403": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10235\u003c/td\u003e\u003ctd\u003edate of birth not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10236\u003c/td\u003e\u003ctd\u003eusername not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10237\u003c/td\u003e\u003ctd\u003edisplay name not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10238\u003c/td\u003e\u003ctd\u003ecountry not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -21870,10 +22269,13 @@
           "10154": "country not found",
           "10213": "country is blocked",
           "10222": "unique display name already exists",
+          "10235": "date of birth not allowed to update",
+          "10236": "username not allowed to update",
+          "10237": "display name not allowed to update",
+          "10238": "country not allowed to update",
           "20000": "internal server error",
           "20001": "unauthorized access",
           "20002": "validation error",
-          "20003": "forbidden access",
           "20019": "unable to parse request body",
           "20022": "token is not user token"
         },
@@ -21925,7 +22327,7 @@
             }
           },
           "403": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10235\u003c/td\u003e\u003ctd\u003edate of birth not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10236\u003c/td\u003e\u003ctd\u003eusername not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10237\u003c/td\u003e\u003ctd\u003edisplay name not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10238\u003c/td\u003e\u003ctd\u003ecountry not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -21958,6 +22360,10 @@
           "10154": "country not found",
           "10213": "country is blocked",
           "10222": "unique display name already exists",
+          "10235": "date of birth not allowed to update",
+          "10236": "username not allowed to update",
+          "10237": "display name not allowed to update",
+          "10238": "country not allowed to update",
           "20000": "internal server error",
           "20001": "unauthorized access",
           "20002": "validation error",
@@ -24426,6 +24832,62 @@
         "x-security": {}
       }
     },
+    "/iam/v3/public/users/me/profileStatus": {
+      "get": {
+        "description": "This API is for user to get self profile update allow status.\nNote: If the config is not found, this API will return a config with unlimited.\n",
+        "operationId": "PublicGetMyProfileAllowUpdateStatusV3",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation succeeded",
+            "schema": {
+              "$ref": "#/definitions/model.UserProfileUpdateAllowStatus"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Public get my profile allowed update status.",
+        "tags": [
+          "Users"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20013": "insufficient permissions"
+        }
+      }
+    },
     "/iam/v3/public/users/me/verify_link/request": {
       "post": {
         "consumes": [
@@ -25613,6 +26075,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "This is the endpoint for an admin to decrypt device id",
         "operationId": "AdminDecryptDeviceV4",
         "parameters": [
@@ -26023,7 +26486,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create test users and not send verification code email.\nEnter the number of test users you want to create in the count field.\nThe maximum value of the user count is 100. \n",
+        "description": "Create test users and not send verification code email.\nNote: \n- count : Enter the number of test users you want to create in the count field. The maximum value of the user count is 100.\n- userInfo(optional) : \n\t- country: you can specify country for the test user. Country use ISO3166-1 alpha-2 two letter, e.g. US \n",
         "operationId": "AdminCreateTestUsersV4",
         "parameters": [
           {
@@ -26577,9 +27040,20 @@
     },
     "/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/disable": {
       "delete": {
-        "description": "**This endpoint is used to disable user 2FA.**",
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint is used to disable user 2FA.\n-----------\n**Note**: if the factor is not specified, will disable all 2FA methods.\n",
         "operationId": "AdminDisableUserMFAV4",
         "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.DisableMFARequest"
+            }
+          },
           {
             "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
@@ -26658,6 +27132,86 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/status": {
+      "get": {
+        "description": "**This endpoint is used to get user\u0026#39;s 2FA status.**",
+        "operationId": "AdminGetUserMFAStatusV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.UserMFAStatusResponseV4"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get User 2FA Status",
+        "tags": [
+          "Users V4"
+        ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]"
             ]
           }
         ]
@@ -30760,7 +31314,7 @@
             }
           },
           "403": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10213\u003c/td\u003e\u003ctd\u003ecountry is blocked\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10235\u003c/td\u003e\u003ctd\u003edate of birth not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10236\u003c/td\u003e\u003ctd\u003eusername not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10237\u003c/td\u003e\u003ctd\u003edisplay name not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10238\u003c/td\u003e\u003ctd\u003ecountry not allowed to update\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -30791,11 +31345,15 @@
           "10130": "user under age",
           "10133": "email already used",
           "10154": "country not found",
+          "10213": "country is blocked",
           "10222": "unique display name already exists",
+          "10235": "date of birth not allowed to update",
+          "10236": "username not allowed to update",
+          "10237": "display name not allowed to update",
+          "10238": "country not allowed to update",
           "20000": "internal server error",
           "20001": "unauthorized access",
           "20002": "validation error",
-          "20003": "forbidden access",
           "20019": "unable to parse request body",
           "20022": "token is not user token"
         },
@@ -33262,10 +33820,14 @@
         "count": {
           "format": "int32",
           "type": "integer"
+        },
+        "userInfo": {
+          "$ref": "#/definitions/account.userInfo"
         }
       },
       "required": [
-        "count"
+        "count",
+        "userInfo"
       ]
     },
     "account.createTestUsersResponseV4": {
@@ -33437,6 +33999,13 @@
         "password",
         "username"
       ]
+    },
+    "account.userInfo": {
+      "properties": {
+        "country": {
+          "type": "string"
+        }
+      }
     },
     "accountcommon.AllowedPermission": {
       "properties": {
@@ -34200,6 +34769,15 @@
         "platformId",
         "platformUserId"
       ]
+    },
+    "accountcommon.ProfileUpdateConfig": {
+      "properties": {
+        "minimumAllowedInterval": {
+          "description": "max value is 366*24=8784 hours",
+          "format": "int64",
+          "type": "integer"
+        }
+      }
     },
     "accountcommon.RegisteredDomain": {
       "properties": {
@@ -36091,6 +36669,9 @@
     },
     "model.DisableMFARequest": {
       "properties": {
+        "factor": {
+          "type": "string"
+        },
         "mfaToken": {
           "type": "string"
         }
@@ -36127,6 +36708,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "remainingBackupCodeCount": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
@@ -36146,6 +36731,32 @@
       "required": [
         "reason",
         "userId"
+      ]
+    },
+    "model.FieldUpdateAllowStatus": {
+      "properties": {
+        "field": {
+          "description": "allow value [dob, username, display_name, country]",
+          "type": "string"
+        },
+        "nextAvailableEditTime": {
+          "description": "1. will have value if the type is limited 2. the milliseconds time of next available edit time 3. if it does not have value, it means it is allow to edit now",
+          "format": "int64",
+          "type": "integer"
+        },
+        "remainingTimeInSeconds": {
+          "description": "1. will have value if the type is limited 2. the remaining seconds that need wait until user can edit this field. 3. the value O means it is allow to edit now",
+          "format": "int64",
+          "type": "integer"
+        },
+        "type": {
+          "description": "allow value [initial_only, limited, unlimited]",
+          "type": "string"
+        }
+      },
+      "required": [
+        "field",
+        "type"
       ]
     },
     "model.ForgotPasswordRequestV3": {
@@ -36219,6 +36830,19 @@
         "platformAlreadyLinked",
         "platformId",
         "platformLinkConflict"
+      ]
+    },
+    "model.GetProfileUpdateStrategyConfigResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.SimpleProfileUpdateStrategyConfigs"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
       ]
     },
     "model.GetPublisherUserResponse": {
@@ -36937,6 +37561,46 @@
       },
       "required": [
         "data"
+      ]
+    },
+    "model.LoginAllowlistRequest": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "roleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "active",
+        "roleIds"
+      ]
+    },
+    "model.LoginAllowlistResponse": {
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "roleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "active",
+        "namespace",
+        "roleIds"
       ]
     },
     "model.LoginHistoriesResponse": {
@@ -38327,6 +38991,38 @@
         }
       }
     },
+    "model.SimpleProfileUpdateStrategyConfigs": {
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/accountcommon.ProfileUpdateConfig",
+          "description": "only work when type is limited"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "field": {
+          "description": "allow value [dob, username, display_name, country]",
+          "type": "string"
+        },
+        "type": {
+          "description": "allow value [initial_only, limited, unlimited]",
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "field",
+        "type",
+        "updatedAt"
+      ]
+    },
     "model.ThirdPartyLoginPlatformCredentialRequest": {
       "properties": {
         "ACSURL": {
@@ -38689,6 +39385,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      }
+    },
+    "model.UpdateProfileUpdateStrategyConfigRequest": {
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/accountcommon.ProfileUpdateConfig",
+          "description": "only work when type is limited"
+        },
+        "type": {
+          "description": "allow value [initial_only, limited, unlimited]",
+          "type": "string"
         }
       }
     },
@@ -39675,6 +40383,19 @@
         "userId"
       ]
     },
+    "model.UserProfileUpdateAllowStatus": {
+      "properties": {
+        "status": {
+          "items": {
+            "$ref": "#/definitions/model.FieldUpdateAllowStatus"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
     "model.UserPublicInfoResponseV4": {
       "properties": {
         "displayName": {
@@ -40578,6 +41299,10 @@
         "platformId": {
           "type": "string"
         },
+        "remainingBackupCodeCount": {
+          "format": "int32",
+          "type": "integer"
+        },
         "userBan": {
           "$ref": "#/definitions/oauthmodel.UserBan"
         }
@@ -41126,11 +41851,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T01:54:58+00:00",
-    "gitHash": "e5058dac6aa8d74aae3c882e2c359b149a8e7310",
+    "buildDate": "2024-10-09T06:39:42+00:00",
+    "gitHash": "250711186d57be505c521905cd40fb658ff8dbe0",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.21.0",
-    "version-roles-seeding": "1.2.61"
+    "version": "7.22.0",
+    "version-roles-seeding": "1.2.71"
   }
 }

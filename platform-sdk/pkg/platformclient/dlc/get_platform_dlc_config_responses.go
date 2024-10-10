@@ -87,6 +87,7 @@ func (o *GetPlatformDLCConfigOK) GetPayload() *platformclientmodels.PlatformDLCC
 }
 
 func (o *GetPlatformDLCConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *GetPlatformDLCConfigNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *GetPlatformDLCConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

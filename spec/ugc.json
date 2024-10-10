@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.21.0"
+    "version": "2.22.0"
   },
   "schemes": [
     "https"
@@ -9373,6 +9373,7 @@
         "consumes": [
           "application/json"
         ],
+        "description": "Copy existing content from source channel to target channel.",
         "operationId": "AdminCopyContent",
         "parameters": [
           {
@@ -16763,11 +16764,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-08-28T01:35:26+00:00",
-    "gitHash": "27d8200496fd30060c4078ec2b0591c5be176056",
+    "buildDate": "2024-10-02T04:32:24+00:00",
+    "gitHash": "8ecb50876d51e1962c25d241bb8d6194a5a001f1",
     "name": "justice-ugc-service",
     "realm": "staging",
-    "version": "2.21.0",
+    "version": "2.22.0",
     "version-roles-seeding": "1.0.21"
   }
 }

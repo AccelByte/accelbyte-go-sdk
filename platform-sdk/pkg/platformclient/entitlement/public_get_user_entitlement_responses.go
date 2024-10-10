@@ -87,6 +87,7 @@ func (o *PublicGetUserEntitlementOK) GetPayload() *platformclientmodels.Entitlem
 }
 
 func (o *PublicGetUserEntitlementOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *PublicGetUserEntitlementNotFound) GetPayload() *platformclientmodels.Er
 }
 
 func (o *PublicGetUserEntitlementNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

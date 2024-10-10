@@ -93,6 +93,7 @@ func (o *BulkGetUserSeasonProgressionOK) GetPayload() []*seasonpassclientmodels.
 }
 
 func (o *BulkGetUserSeasonProgressionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *BulkGetUserSeasonProgressionBadRequest) GetPayload() *seasonpassclientm
 }
 
 func (o *BulkGetUserSeasonProgressionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *BulkGetUserSeasonProgressionNotFound) GetPayload() *seasonpassclientmod
 }
 
 func (o *BulkGetUserSeasonProgressionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

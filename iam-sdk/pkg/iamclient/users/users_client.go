@@ -368,6 +368,8 @@ type ClientService interface {
 	PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, error)
 	LinkHeadlessAccountToMyAccountV3(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, *LinkHeadlessAccountToMyAccountV3BadRequest, *LinkHeadlessAccountToMyAccountV3Unauthorized, *LinkHeadlessAccountToMyAccountV3Forbidden, *LinkHeadlessAccountToMyAccountV3InternalServerError, error)
 	LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, error)
+	PublicGetMyProfileAllowUpdateStatusV3(params *PublicGetMyProfileAllowUpdateStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyProfileAllowUpdateStatusV3OK, *PublicGetMyProfileAllowUpdateStatusV3BadRequest, *PublicGetMyProfileAllowUpdateStatusV3Unauthorized, *PublicGetMyProfileAllowUpdateStatusV3Forbidden, *PublicGetMyProfileAllowUpdateStatusV3InternalServerError, error)
+	PublicGetMyProfileAllowUpdateStatusV3Short(params *PublicGetMyProfileAllowUpdateStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyProfileAllowUpdateStatusV3OK, error)
 	PublicSendVerificationLinkV3(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, *PublicSendVerificationLinkV3BadRequest, *PublicSendVerificationLinkV3Unauthorized, *PublicSendVerificationLinkV3Conflict, *PublicSendVerificationLinkV3TooManyRequests, error)
 	PublicSendVerificationLinkV3Short(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, error)
 	PublicVerifyUserByLinkV3(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error)
@@ -14380,7 +14382,6 @@ Deprecated: 2022-08-10 - Use AdminGetUserLinkHistoriesV3Short instead.
 AdminGetUserLinkHistoriesV3 admin get user's platform link histories.
 This API is for admin to get user's link history.
 
-
 **Supported Platforms:**
 - Steam group (steamnetwork):
 - steam
@@ -14477,7 +14478,6 @@ func (a *Client) AdminGetUserLinkHistoriesV3(params *AdminGetUserLinkHistoriesV3
 /*
 AdminGetUserLinkHistoriesV3Short admin get user's platform link histories.
 This API is for admin to get user's link history.
-
 
 **Supported Platforms:**
 - Steam group (steamnetwork):
@@ -23025,6 +23025,124 @@ func (a *Client) LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccou
 	case *LinkHeadlessAccountToMyAccountV3Forbidden:
 		return nil, v
 	case *LinkHeadlessAccountToMyAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetMyProfileAllowUpdateStatusV3Short instead.
+
+PublicGetMyProfileAllowUpdateStatusV3 public get my profile allowed update status.
+This API is for user to get self profile update allow status.
+Note: If the config is not found, this API will return a config with unlimited.
+*/
+func (a *Client) PublicGetMyProfileAllowUpdateStatusV3(params *PublicGetMyProfileAllowUpdateStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyProfileAllowUpdateStatusV3OK, *PublicGetMyProfileAllowUpdateStatusV3BadRequest, *PublicGetMyProfileAllowUpdateStatusV3Unauthorized, *PublicGetMyProfileAllowUpdateStatusV3Forbidden, *PublicGetMyProfileAllowUpdateStatusV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyProfileAllowUpdateStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyProfileAllowUpdateStatusV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me/profileStatus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyProfileAllowUpdateStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyProfileAllowUpdateStatusV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetMyProfileAllowUpdateStatusV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetMyProfileAllowUpdateStatusV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetMyProfileAllowUpdateStatusV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetMyProfileAllowUpdateStatusV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetMyProfileAllowUpdateStatusV3Short public get my profile allowed update status.
+This API is for user to get self profile update allow status.
+Note: If the config is not found, this API will return a config with unlimited.
+*/
+func (a *Client) PublicGetMyProfileAllowUpdateStatusV3Short(params *PublicGetMyProfileAllowUpdateStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyProfileAllowUpdateStatusV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyProfileAllowUpdateStatusV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyProfileAllowUpdateStatusV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me/profileStatus",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyProfileAllowUpdateStatusV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyProfileAllowUpdateStatusV3OK:
+		return v, nil
+	case *PublicGetMyProfileAllowUpdateStatusV3BadRequest:
+		return nil, v
+	case *PublicGetMyProfileAllowUpdateStatusV3Unauthorized:
+		return nil, v
+	case *PublicGetMyProfileAllowUpdateStatusV3Forbidden:
+		return nil, v
+	case *PublicGetMyProfileAllowUpdateStatusV3InternalServerError:
 		return nil, v
 
 	default:

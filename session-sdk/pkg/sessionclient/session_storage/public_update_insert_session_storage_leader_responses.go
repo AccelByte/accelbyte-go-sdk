@@ -111,6 +111,7 @@ func (o *PublicUpdateInsertSessionStorageLeaderOK) GetPayload() map[string]inter
 }
 
 func (o *PublicUpdateInsertSessionStorageLeaderOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -162,6 +163,7 @@ func (o *PublicUpdateInsertSessionStorageLeaderBadRequest) GetPayload() *session
 }
 
 func (o *PublicUpdateInsertSessionStorageLeaderBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -215,6 +217,7 @@ func (o *PublicUpdateInsertSessionStorageLeaderUnauthorized) GetPayload() *sessi
 }
 
 func (o *PublicUpdateInsertSessionStorageLeaderUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -268,6 +271,7 @@ func (o *PublicUpdateInsertSessionStorageLeaderForbidden) GetPayload() *sessionc
 }
 
 func (o *PublicUpdateInsertSessionStorageLeaderForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -321,6 +325,7 @@ func (o *PublicUpdateInsertSessionStorageLeaderNotFound) GetPayload() *sessioncl
 }
 
 func (o *PublicUpdateInsertSessionStorageLeaderNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -374,6 +379,7 @@ func (o *PublicUpdateInsertSessionStorageLeaderInternalServerError) GetPayload()
 }
 
 func (o *PublicUpdateInsertSessionStorageLeaderInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

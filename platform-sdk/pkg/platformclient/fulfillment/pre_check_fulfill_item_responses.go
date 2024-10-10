@@ -93,6 +93,7 @@ func (o *PreCheckFulfillItemOK) GetPayload() []*platformclientmodels.Fulfillment
 }
 
 func (o *PreCheckFulfillItemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -144,6 +145,7 @@ func (o *PreCheckFulfillItemBadRequest) GetPayload() *platformclientmodels.Error
 }
 
 func (o *PreCheckFulfillItemBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -197,6 +199,7 @@ func (o *PreCheckFulfillItemNotFound) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *PreCheckFulfillItemNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

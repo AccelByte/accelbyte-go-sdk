@@ -46,6 +46,8 @@ type ClientService interface {
 	GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, error)
 	AdminGetMatchPoolTickets(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, *AdminGetMatchPoolTicketsUnauthorized, *AdminGetMatchPoolTicketsForbidden, *AdminGetMatchPoolTicketsNotFound, *AdminGetMatchPoolTicketsInternalServerError, error)
 	AdminGetMatchPoolTicketsShort(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, error)
+	PublicGetPlayerMetric(params *PublicGetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerMetricOK, *PublicGetPlayerMetricUnauthorized, *PublicGetPlayerMetricForbidden, *PublicGetPlayerMetricNotFound, *PublicGetPlayerMetricInternalServerError, error)
+	PublicGetPlayerMetricShort(params *PublicGetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerMetricOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1045,6 +1047,122 @@ func (a *Client) AdminGetMatchPoolTicketsShort(params *AdminGetMatchPoolTicketsP
 	case *AdminGetMatchPoolTicketsNotFound:
 		return nil, v
 	case *AdminGetMatchPoolTicketsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetPlayerMetricShort instead.
+
+PublicGetPlayerMetric get metrics player for a specific match pool
+Public get player metric for a specific match pool
+*/
+func (a *Client) PublicGetPlayerMetric(params *PublicGetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerMetricOK, *PublicGetPlayerMetricUnauthorized, *PublicGetPlayerMetricForbidden, *PublicGetPlayerMetricNotFound, *PublicGetPlayerMetricInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetPlayerMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetPlayerMetric",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/public/namespaces/{namespace}/match-pools/{pool}/metrics/player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetPlayerMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetPlayerMetricOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetPlayerMetricUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetPlayerMetricForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetPlayerMetricNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetPlayerMetricInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetPlayerMetricShort get metrics player for a specific match pool
+Public get player metric for a specific match pool
+*/
+func (a *Client) PublicGetPlayerMetricShort(params *PublicGetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerMetricOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetPlayerMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetPlayerMetric",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/public/namespaces/{namespace}/match-pools/{pool}/metrics/player",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetPlayerMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetPlayerMetricOK:
+		return v, nil
+	case *PublicGetPlayerMetricUnauthorized:
+		return nil, v
+	case *PublicGetPlayerMetricForbidden:
+		return nil, v
+	case *PublicGetPlayerMetricNotFound:
+		return nil, v
+	case *PublicGetPlayerMetricInternalServerError:
 		return nil, v
 
 	default:

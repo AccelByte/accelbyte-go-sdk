@@ -87,6 +87,7 @@ func (o *UpdateXsollaUIConfigOK) GetPayload() *platformclientmodels.PaymentMerch
 }
 
 func (o *UpdateXsollaUIConfigOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -140,6 +141,7 @@ func (o *UpdateXsollaUIConfigNotFound) GetPayload() *platformclientmodels.ErrorE
 }
 
 func (o *UpdateXsollaUIConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

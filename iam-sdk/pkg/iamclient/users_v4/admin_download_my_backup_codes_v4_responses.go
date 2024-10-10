@@ -114,6 +114,7 @@ func (o *AdminDownloadMyBackupCodesV4OK) GetPayload() io.Writer {
 }
 
 func (o *AdminDownloadMyBackupCodesV4OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -165,6 +166,7 @@ func (o *AdminDownloadMyBackupCodesV4BadRequest) GetPayload() *iamclientmodels.R
 }
 
 func (o *AdminDownloadMyBackupCodesV4BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -218,6 +220,7 @@ func (o *AdminDownloadMyBackupCodesV4Unauthorized) GetPayload() *iamclientmodels
 }
 
 func (o *AdminDownloadMyBackupCodesV4Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -271,6 +274,7 @@ func (o *AdminDownloadMyBackupCodesV4Forbidden) GetPayload() *iamclientmodels.Re
 }
 
 func (o *AdminDownloadMyBackupCodesV4Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -324,6 +328,7 @@ func (o *AdminDownloadMyBackupCodesV4NotFound) GetPayload() *iamclientmodels.Res
 }
 
 func (o *AdminDownloadMyBackupCodesV4NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
@@ -377,6 +382,7 @@ func (o *AdminDownloadMyBackupCodesV4InternalServerError) GetPayload() *iamclien
 }
 
 func (o *AdminDownloadMyBackupCodesV4InternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {

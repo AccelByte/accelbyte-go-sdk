@@ -43,6 +43,10 @@ type APIDSHistoryEvent struct {
 	// Required: true
 	ServerID *string `json:"serverId"`
 
+	// sessionid
+	// Required: true
+	SessionID *string `json:"sessionId"`
+
 	// status
 	// Required: true
 	Status *string `json:"status"`
@@ -68,6 +72,9 @@ func (m *APIDSHistoryEvent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateServerID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSessionID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
@@ -128,6 +135,15 @@ func (m *APIDSHistoryEvent) validateRegion(formats strfmt.Registry) error {
 func (m *APIDSHistoryEvent) validateServerID(formats strfmt.Registry) error {
 
 	if err := validate.Required("serverId", "body", m.ServerID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIDSHistoryEvent) validateSessionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("sessionId", "body", m.SessionID); err != nil {
 		return err
 	}
 

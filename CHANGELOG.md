@@ -9,6 +9,7 @@
 - **integration:** add player record cloudsave test
 - **integration:** update game record cloudsave test
 - **docs:** add update game record cloudsave integration test
+- **:** update CHANGELOG.md and go sum getting started
 ### feat
 - **ws:** add WithScheme WSConnectionOption
 - **ws:** add on status changed callback
@@ -32,6 +33,7 @@
 - **:** disable lint for test for now
 ### docs
 - **common use cases:** remove deprecated services
+- **migrations:** add migration-guide-v0.72-to-v0.73.md
 
 
 <a name="v0.73.0"></a>

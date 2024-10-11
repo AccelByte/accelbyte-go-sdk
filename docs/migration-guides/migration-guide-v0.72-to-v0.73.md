@@ -1,4 +1,4 @@
-# [v0.72.0]
+# [v0.73.0]
 
 ## BREAKING CHANGE
 

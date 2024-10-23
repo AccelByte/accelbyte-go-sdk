@@ -25,67 +25,69 @@ import (
 )
 
 var (
-	challengeCode		= "go-" + RandStringBytes(6) +  "-challenge"
-	challengeName		= "Go Challenge Test"
-	updateChallengeName	= challengeName + " UPDATED"
-	goalCode			= "go-" + RandStringBytes(6) + "-goal"
-	goalName			= "Go Goal Test"
-	currentTime			= time.Now()
-	aStartTime			= strfmt.DateTime(currentTime)
-	assignmentRule		= challengeclientmodels.ModelCreateChallengeRequestAssignmentRuleFIXED
-	goalsVisibility		= challengeclientmodels.ModelCreateChallengeRequestGoalsVisibilitySHOWALL
-	rotation			= challengeclientmodels.ModelCreateChallengeRequestRotationDAILY
-	predicateMatcher	= challengeclientmodels.ModelPredicateMatcherEQUAL
-	predicateType		= challengeclientmodels.ModelPredicateParameterTypeUSERACCOUNT
-	predicateName		= "userAccountVerified"
-	requirementOp		= challengeclientmodels.ModelRequirementOperatorAND
-	preTarget float64	= 1
-	scheduleOrder int32	= 1
+	challengeCode               = "go-" + RandStringBytes(6) + "-challenge"
+	challengeName               = "Go Challenge Test"
+	updateChallengeName         = challengeName + " UPDATED"
+	goalCode                    = "go-" + RandStringBytes(6) + "-goal"
+	goalName                    = "Go Goal Test"
+	currentTime                 = time.Now()
+	aStartTime                  = strfmt.DateTime(currentTime)
+	assignmentRule              = challengeclientmodels.ModelCreateChallengeRequestAssignmentRuleFIXED
+	goalsVisibility             = challengeclientmodels.ModelCreateChallengeRequestGoalsVisibilitySHOWALL
+	rotation                    = challengeclientmodels.ModelCreateChallengeRequestRotationDAILY
+	predicateMatcher            = challengeclientmodels.ModelPredicateMatcherEQUAL
+	predicateType               = challengeclientmodels.ModelPredicateParameterTypeUSERACCOUNT
+	predicateName               = "userAccountVerified"
+	requirementOp               = challengeclientmodels.ModelRequirementOperatorAND
+	preTarget           float64 = 1
+	scheduleOrder       int32   = 1
 
-
-	challengeConfigSvc	= &challenge.ChallengeConfigurationService{
+	challengeConfigSvc = &challenge.ChallengeConfigurationService{
 		Client:          factory.NewChallengeClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepository,
 	}
-	goalConfigSvc		= &challenge.GoalConfigurationService{
+	goalConfigSvc = &challenge.GoalConfigurationService{
 		Client:          factory.NewChallengeClient(auth.DefaultConfigRepositoryImpl()),
 		TokenRepository: tokenRepository,
 	}
 
-	bodyNewChallenge	= &challengeclientmodels.ModelCreateChallengeRequest{
-		Code: &challengeCode,
-		Name: &challengeName,
-		Description: "",
-		AssignmentRule: &assignmentRule,
+	bodyNewChallenge = &challengeclientmodels.ModelCreateChallengeRequest{
+		Code:            &challengeCode,
+		Name:            &challengeName,
+		Description:     "",
+		AssignmentRule:  &assignmentRule,
 		GoalsVisibility: &goalsVisibility,
-		Rotation: &rotation,
-		StartDate: aStartTime,
+		Rotation:        &rotation,
+		StartDate:       aStartTime,
+		ResetConfig: &challengeclientmodels.ModelResetConfig{
+			ResetTime: "07:00",
+		},
 	}
-	bodyUpdateChallenge	= &challengeclientmodels.ModelUpdateChallengeRequest{
+	bodyUpdateChallenge = &challengeclientmodels.ModelUpdateChallengeRequest{
 		Name: updateChallengeName,
 	}
 
-	goalPredicates		[]*challengeclientmodels.ModelPredicate
-	goalPredicate		= &challengeclientmodels.ModelPredicate{
+	goalPredicates []*challengeclientmodels.ModelPredicate
+	goalPredicate  = &challengeclientmodels.ModelPredicate{
 		ParameterType: &predicateType,
 		ParameterName: &predicateName,
-		Matcher: &predicateMatcher,
-		TargetValue: &preTarget,
+		Matcher:       &predicateMatcher,
+		TargetValue:   &preTarget,
 	}
 
-	goalReqGroups		[]*challengeclientmodels.ModelRequirement
-	goalReqGroup		= &challengeclientmodels.ModelRequirement{
-		Operator: &requirementOp,
+	goalReqGroups []*challengeclientmodels.ModelRequirement
+	goalReqGroup  = &challengeclientmodels.ModelRequirement{
+		Operator:   &requirementOp,
 		Predicates: goalPredicates,
 	}
 
-	bodyNewGoal			= &challengeclientmodels.ModelCreateGoalRequest{
-		Code: &goalCode,
-		Name: &goalName,
+	bodyNewGoal = &challengeclientmodels.ModelCreateGoalRequest{
+		Code:        &goalCode,
+		Name:        &goalName,
 		Description: "",
 		Schedule: &challengeclientmodels.ModelGoalSchedule{
 			StartTime: aStartTime,
-			Order: &scheduleOrder,
+			Order:     &scheduleOrder,
 		},
 		RequirementGroups: goalReqGroups,
 	}
@@ -100,8 +102,8 @@ func TestIntegrationChallenge(t *testing.T) {
 
 	// CASE Create a new challenge
 	challengeCreateParams := &challenge_configuration.AdminCreateChallengeParams{
-		Namespace	: integration.NamespaceTest,
-		Body		: bodyNewChallenge,
+		Namespace: integration.NamespaceTest,
+		Body:      bodyNewChallenge,
 	}
 
 	created, errCreate := challengeConfigSvc.AdminCreateChallengeShort(challengeCreateParams)
@@ -117,7 +119,7 @@ func TestIntegrationChallenge(t *testing.T) {
 
 	// CASE Get challenge
 	getParam := &challenge_configuration.AdminGetChallengeParams{
-		Namespace: integration.NamespaceTest,
+		Namespace:     integration.NamespaceTest,
 		ChallengeCode: challengeCode,
 	}
 
@@ -134,9 +136,9 @@ func TestIntegrationChallenge(t *testing.T) {
 
 	// CASE Update a challenge
 	updateParam := &challenge_configuration.AdminUpdateChallengeParams{
-		Namespace: integration.NamespaceTest,
+		Namespace:     integration.NamespaceTest,
 		ChallengeCode: challengeCode,
-		Body: bodyUpdateChallenge,
+		Body:          bodyUpdateChallenge,
 	}
 
 	challengeUpdate, errUpdate := challengeConfigSvc.AdminUpdateChallengeShort(updateParam)
@@ -152,9 +154,9 @@ func TestIntegrationChallenge(t *testing.T) {
 
 	// CASE Create a new goal
 	goalCreateParams := &goal_configuration.AdminCreateGoalParams{
-		Namespace: integration.NamespaceTest,
+		Namespace:     integration.NamespaceTest,
 		ChallengeCode: challengeCode,
-		Body: bodyNewGoal,
+		Body:          bodyNewGoal,
 	}
 
 	newGoal, errCreate := goalConfigSvc.AdminCreateGoalShort(goalCreateParams)
@@ -170,9 +172,9 @@ func TestIntegrationChallenge(t *testing.T) {
 
 	// CASE Delete a goal
 	goalDelParams := &goal_configuration.AdminDeleteGoalParams{
-		Namespace: integration.NamespaceTest,
+		Namespace:     integration.NamespaceTest,
 		ChallengeCode: challengeCode,
-		Code: goalCode,
+		Code:          goalCode,
 	}
 
 	errDelete := goalConfigSvc.AdminDeleteGoalShort(goalDelParams)
@@ -182,11 +184,11 @@ func TestIntegrationChallenge(t *testing.T) {
 	// ESAC
 
 	// Assert
-	assert.Nil(t, errDelete, "err should be nil")	
+	assert.Nil(t, errDelete, "err should be nil")
 
 	// CASE Delete a challenge
 	delParams := &challenge_configuration.AdminDeleteChallengeParams{
-		Namespace: integration.NamespaceTest,
+		Namespace:     integration.NamespaceTest,
 		ChallengeCode: challengeCode,
 	}
 
@@ -197,5 +199,5 @@ func TestIntegrationChallenge(t *testing.T) {
 	// ESAC
 
 	// Assert
-	assert.Nil(t, errDelete, "err should be nil")	
+	assert.Nil(t, errDelete, "err should be nil")
 }

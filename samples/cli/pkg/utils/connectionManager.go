@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
+	"github.com/gorilla/websocket"
 )
 
 type ConnectionManagerImpl struct {
@@ -28,5 +29,5 @@ func (connManager *ConnectionManagerImpl) Close() error {
 		return fmt.Errorf("no websocket connection can be closed")
 	}
 
-	return wsConn.Conn.Close()
+	return wsConn.Close(websocket.CloseNormalClosure, "Closing websocket cli.")
 }

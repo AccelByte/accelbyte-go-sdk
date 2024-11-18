@@ -20,6 +20,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/challenge"
 	"github.com/AccelByte/sample-apps/cmd/chat"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave"
+	"github.com/AccelByte/sample-apps/cmd/csm"
 	"github.com/AccelByte/sample-apps/cmd/dsartifact"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager"
 	"github.com/AccelByte/sample-apps/cmd/dsmc"
@@ -89,6 +90,7 @@ func init() {
 	RootCmd.AddCommand(challenge.ChallengeCmd)
 	RootCmd.AddCommand(chat.ChatCmd)
 	RootCmd.AddCommand(cloudsave.CloudsaveCmd)
+	RootCmd.AddCommand(csm.CsmCmd)
 	RootCmd.AddCommand(dsmc.DsmcCmd)
 	RootCmd.AddCommand(dsartifact.DsartifactCmd)
 	RootCmd.AddCommand(dslogmanager.DslogmanagerCmd)

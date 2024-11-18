@@ -60,7 +60,7 @@ var (
 		Rotation:        &rotation,
 		StartDate:       aStartTime,
 		ResetConfig: &challengeclientmodels.ModelResetConfig{
-			ResetTime: "07:00",
+			ResetTime: time.Now().Add(time.Hour * 3).Format("15:04"),
 		},
 	}
 	bodyUpdateChallenge = &challengeclientmodels.ModelUpdateChallengeRequest{

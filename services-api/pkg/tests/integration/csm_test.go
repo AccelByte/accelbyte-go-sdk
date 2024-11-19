@@ -46,6 +46,8 @@ var (
 	updatedEnvVarValue = "hellosekai!"
 
 	appDownNotification = "app-down"
+
+	forced = "true"
 )
 
 const (
@@ -85,8 +87,20 @@ func TestIntegrationExtendApp(t *testing.T) {
 	})
 	// ESAC
 
+	// Assert
 	assert.NoError(t, err, "should not return an error")
 	assert.Equal(t, extendAppName, app.AppName)
+
+	// CASE Delete extend app
+	err = csmAppService.DeleteAppV2Short(&app_v2.DeleteAppV2Params{
+		Namespace: namespace,
+		App:       extendAppName,
+		Forced:    &forced,
+	})
+	// ESAC
+
+	// Assert
+	assert.NoError(t, err, "should not return an error")
 }
 
 func TestIntegrationSecretVariable(t *testing.T) {

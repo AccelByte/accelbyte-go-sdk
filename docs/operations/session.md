@@ -51,7 +51,7 @@
 ### Certificate Wrapper:  [Certificate](../../services-api/pkg/service/session/certificate.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl` | PUT | HandleUploadXboxPFXCertificateShort | [HandleUploadXboxPFXCertificateShort](../../session-sdk/pkg/sessionclient/certificate/certificate_client.go) | [HandleUploadXboxPFXCertificateShort](../../services-api/pkg/service/session/certificate.go) | [HandleUploadXboxPFXCertificateShort](../../samples/cli/cmd/session/certificate/handleUploadXboxPFXCertificate.go) |
+| [DEPRECATED] `/session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl` | PUT | AdminUploadXBoxCertificateShort | [AdminUploadXBoxCertificateShort](../../session-sdk/pkg/sessionclient/certificate/certificate_client.go) | [AdminUploadXBoxCertificateShort](../../services-api/pkg/service/session/certificate.go) | [AdminUploadXBoxCertificateShort](../../samples/cli/cmd/session/certificate/adminUploadXBoxCertificate.go) |
 
 ### Max Active Wrapper:  [MaxActive](../../services-api/pkg/service/session/maxActive.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -99,6 +99,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/session/v1/admin/namespaces/{namespace}/parties` | GET | AdminQueryPartiesShort | [AdminQueryPartiesShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [AdminQueryPartiesShort](../../services-api/pkg/service/session/party.go) | [AdminQueryPartiesShort](../../samples/cli/cmd/session/party/adminQueryParties.go) |
+| `/session/v1/admin/namespaces/{namespace}/parties/bulk` | DELETE | AdminDeleteBulkPartiesShort | [AdminDeleteBulkPartiesShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [AdminDeleteBulkPartiesShort](../../services-api/pkg/service/session/party.go) | [AdminDeleteBulkPartiesShort](../../samples/cli/cmd/session/party/adminDeleteBulkParties.go) |
 | `/session/v1/admin/namespaces/{namespace}/users/{userId}/native-sync` | POST | AdminSyncNativeSessionShort | [AdminSyncNativeSessionShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [AdminSyncNativeSessionShort](../../services-api/pkg/service/session/party.go) | [AdminSyncNativeSessionShort](../../samples/cli/cmd/session/party/adminSyncNativeSession.go) |
 | `/session/v1/public/namespaces/{namespace}/parties/users/me/join/code` | POST | PublicPartyJoinCodeShort | [PublicPartyJoinCodeShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [PublicPartyJoinCodeShort](../../services-api/pkg/service/session/party.go) | [PublicPartyJoinCodeShort](../../samples/cli/cmd/session/party/publicPartyJoinCode.go) |
 | `/session/v1/public/namespaces/{namespace}/parties/{partyId}` | GET | PublicGetPartyShort | [PublicGetPartyShort](../../session-sdk/pkg/sessionclient/party/party_client.go) | [PublicGetPartyShort](../../services-api/pkg/service/session/party.go) | [PublicGetPartyShort](../../samples/cli/cmd/session/party/publicGetParty.go) |
@@ -122,6 +123,8 @@
 | `/session/v1/admin/namespaces/{namespace}/platform-credentials` | GET | AdminGetPlatformCredentialsShort | [AdminGetPlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminGetPlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminGetPlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminGetPlatformCredentials.go) |
 | `/session/v1/admin/namespaces/{namespace}/platform-credentials` | PUT | AdminUpdatePlatformCredentialsShort | [AdminUpdatePlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminUpdatePlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminUpdatePlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminUpdatePlatformCredentials.go) |
 | `/session/v1/admin/namespaces/{namespace}/platform-credentials` | DELETE | AdminDeletePlatformCredentialsShort | [AdminDeletePlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminDeletePlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminDeletePlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminDeletePlatformCredentials.go) |
+| `/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}` | DELETE | AdminDeletePlatformCredentialsByPlatformIdShort | [AdminDeletePlatformCredentialsByPlatformIdShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminDeletePlatformCredentialsByPlatformIdShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminDeletePlatformCredentialsByPlatformIdShort](../../samples/cli/cmd/session/platformCredential/adminDeletePlatformCredentialsByPlatformId.go) |
+| `/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}/sync` | PUT | AdminSyncPlatformCredentialsShort | [AdminSyncPlatformCredentialsShort](../../session-sdk/pkg/sessionclient/platform_credential/platform_credential_client.go) | [AdminSyncPlatformCredentialsShort](../../services-api/pkg/service/session/platformCredential.go) | [AdminSyncPlatformCredentialsShort](../../samples/cli/cmd/session/platformCredential/adminSyncPlatformCredentials.go) |
 
 ### Recent Player Wrapper:  [RecentPlayer](../../services-api/pkg/service/session/recentPlayer.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -168,6 +171,8 @@
 | `apimodels.DSInformationResponse` | [ApimodelsDSInformationResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_d_s_information_response.go) |
 | `apimodels.DeleteBulkGameSessionRequest` | [ApimodelsDeleteBulkGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_game_session_request.go) |
 | `apimodels.DeleteBulkGameSessionsAPIResponse` | [ApimodelsDeleteBulkGameSessionsAPIResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_game_sessions_api_response.go) |
+| `apimodels.DeleteBulkPartySessionRequest` | [ApimodelsDeleteBulkPartySessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_party_session_request.go) |
+| `apimodels.DeleteBulkPartySessionsAPIResponse` | [ApimodelsDeleteBulkPartySessionsAPIResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_delete_bulk_party_sessions_api_response.go) |
 | `apimodels.EnvironmentVariableListResponse` | [ApimodelsEnvironmentVariableListResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_environment_variable_list_response.go) |
 | `apimodels.EnvironmentVariableResponse` | [ApimodelsEnvironmentVariableResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_environment_variable_response.go) |
 | `apimodels.GameSessionQueryResponse` | [ApimodelsGameSessionQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_game_session_query_response.go) |
@@ -176,6 +181,7 @@
 | `apimodels.JoinByCodeRequest` | [ApimodelsJoinByCodeRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_join_by_code_request.go) |
 | `apimodels.KickResponse` | [ApimodelsKickResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_kick_response.go) |
 | `apimodels.NativeSessionPagingResponse` | [ApimodelsNativeSessionPagingResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_native_session_paging_response.go) |
+| `apimodels.PSNAppServerCredentialRecord` | [ApimodelsPSNAppServerCredentialRecord ](../../session-sdk/pkg/sessionclientmodels/apimodels_p_s_n_app_server_credential_record.go) |
 | `apimodels.Pagination` | [ApimodelsPagination ](../../session-sdk/pkg/sessionclientmodels/apimodels_pagination.go) |
 | `apimodels.PartyQueryResponse` | [ApimodelsPartyQueryResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_party_query_response.go) |
 | `apimodels.PartySessionResponse` | [ApimodelsPartySessionResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_party_session_response.go) |
@@ -190,6 +196,7 @@
 | `apimodels.PutPlatformCredentialsRequest` | [ApimodelsPutPlatformCredentialsRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_put_platform_credentials_request.go) |
 | `apimodels.RequestMember` | [ApimodelsRequestMember ](../../session-sdk/pkg/sessionclientmodels/apimodels_request_member.go) |
 | `apimodels.ResponseDeleteBulkGameSessions` | [ApimodelsResponseDeleteBulkGameSessions ](../../session-sdk/pkg/sessionclientmodels/apimodels_response_delete_bulk_game_sessions.go) |
+| `apimodels.ResponseDeleteBulkPartySessions` | [ApimodelsResponseDeleteBulkPartySessions ](../../session-sdk/pkg/sessionclientmodels/apimodels_response_delete_bulk_party_sessions.go) |
 | `apimodels.ServerSecret` | [ApimodelsServerSecret ](../../session-sdk/pkg/sessionclientmodels/apimodels_server_secret.go) |
 | `apimodels.SessionInviteRequest` | [ApimodelsSessionInviteRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_session_invite_request.go) |
 | `apimodels.SessionInviteResponse` | [ApimodelsSessionInviteResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_session_invite_response.go) |
@@ -201,6 +208,7 @@
 | `apimodels.UpdateGameSessionRequest` | [ApimodelsUpdateGameSessionRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_game_session_request.go) |
 | `apimodels.UpdatePartyRequest` | [ApimodelsUpdatePartyRequest ](../../session-sdk/pkg/sessionclientmodels/apimodels_update_party_request.go) |
 | `apimodels.UserResponse` | [ApimodelsUserResponse ](../../session-sdk/pkg/sessionclientmodels/apimodels_user_response.go) |
+| `apimodels.XblCertificateResponseBody` | [ApimodelsXblCertificateResponseBody ](../../session-sdk/pkg/sessionclientmodels/apimodels_xbl_certificate_response_body.go) |
 | `logconfig.Configuration` | [LogconfigConfiguration ](../../session-sdk/pkg/sessionclientmodels/logconfig_configuration.go) |
 | `model.NativeSession` | [ModelNativeSession ](../../session-sdk/pkg/sessionclientmodels/model_native_session.go) |
 | `model.NativeSessionMember` | [ModelNativeSessionMember ](../../session-sdk/pkg/sessionclientmodels/model_native_session_member.go) |
@@ -219,4 +227,5 @@
 | `models.Team` | [ModelsTeam ](../../session-sdk/pkg/sessionclientmodels/models_team.go) |
 | `models.UserInfoResponse` | [ModelsUserInfoResponse ](../../session-sdk/pkg/sessionclientmodels/models_user_info_response.go) |
 | `models.UserPlatformInfo` | [ModelsUserPlatformInfo ](../../session-sdk/pkg/sessionclientmodels/models_user_platform_info.go) |
+| `models.XBLCertificateCredential` | [ModelsXBLCertificateCredential ](../../session-sdk/pkg/sessionclientmodels/models_x_b_l_certificate_credential.go) |
 | `response.Error` | [ResponseError ](../../session-sdk/pkg/sessionclientmodels/response_error.go) |

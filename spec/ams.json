@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.27.1"
+    "version": "1.30.0"
   },
   "schemes": [
     "https"
@@ -281,8 +281,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This route will attempt to register the account to namespace linkage in AMS and requires a valid account link token. This route fails if an account is already linked\n\nAdminAccountLink\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
-        "operationId": "AdminAccountLinkTokenPost",
+        "description": "This route will attempt to register the account to namespace linkage in AMS and requires a valid account link token. This route fails if an account is already linked\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:ACCOUNT [CREATE]",
+        "operationId": "AdminAccountLink",
         "parameters": [
           {
             "in": "body",
@@ -496,6 +496,24 @@
             "description": "id of the server (ds) where the artifact was collected",
             "in": "query",
             "name": "serverId",
+            "type": "string"
+          },
+          {
+            "default": "created_on",
+            "description": "field name to sort the artifact",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "the sort direction",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDirection",
             "type": "string"
           },
           {
@@ -1054,6 +1072,25 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter fleets by active status",
+            "in": "query",
+            "name": "active",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "filter fleets by name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "description": "filter fleets by region",
+            "in": "query",
+            "name": "region",
             "type": "string"
           }
         ],
@@ -1799,6 +1836,65 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "default": 100,
+            "description": "the count of image list",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "description": "the inUse filter",
+            "in": "query",
+            "name": "inUse",
+            "type": "string"
+          },
+          {
+            "description": "the image protected",
+            "in": "query",
+            "name": "isProtected",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "the image name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "the offset of image list",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": "uploadedAt",
+            "description": "the sortBy parameter specifies the attribute by which to sort the results",
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "the sort direction parameter",
+            "in": "query",
+            "name": "sortDirection",
+            "type": "string"
+          },
+          {
+            "description": "the image status",
+            "in": "query",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "the image tag",
+            "in": "query",
+            "name": "tag",
             "type": "string"
           }
         ],
@@ -2639,7 +2735,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/api.AvailableInstanceTypesResponse"
+              "$ref": "#/definitions/api.InstanceTypesForNamespaceResponse"
             }
           },
           "401": {
@@ -3287,6 +3383,9 @@
         },
         "success": {
           "$ref": "#/definitions/api.ArtifactSamplingRule"
+        },
+        "unclaimed": {
+          "$ref": "#/definitions/api.ArtifactSamplingRule"
         }
       },
       "required": [
@@ -3325,66 +3424,6 @@
         "usedBytes"
       ]
     },
-    "api.AvailableInstanceType": {
-      "properties": {
-        "capacity": {
-          "items": {
-            "$ref": "#/definitions/api.Capacity"
-          },
-          "type": "array"
-        },
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "memoryGiB": {
-          "format": "double",
-          "type": "number"
-        },
-        "minSpeed": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "ownerAccountId": {
-          "type": "string"
-        },
-        "provider": {
-          "type": "string"
-        },
-        "virtualCpu": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "capacity",
-        "description",
-        "id",
-        "memoryGiB",
-        "minSpeed",
-        "name",
-        "ownerAccountId",
-        "provider",
-        "virtualCpu"
-      ]
-    },
-    "api.AvailableInstanceTypesResponse": {
-      "properties": {
-        "availableInstanceTypes": {
-          "items": {
-            "$ref": "#/definitions/api.AvailableInstanceType"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "availableInstanceTypes"
-      ]
-    },
     "api.Capacity": {
       "properties": {
         "region": {
@@ -3398,6 +3437,16 @@
       "required": [
         "region",
         "vmCount"
+      ]
+    },
+    "api.CoredumpSamplingRules": {
+      "properties": {
+        "crashed": {
+          "$ref": "#/definitions/api.ArtifactSamplingRule"
+        }
+      },
+      "required": [
+        "crashed"
       ]
     },
     "api.DSHistoryEvent": {
@@ -3577,7 +3626,7 @@
     "api.FleetArtifactsSampleRules": {
       "properties": {
         "coredumps": {
-          "$ref": "#/definitions/api.ArtifactTypeSamplingRules"
+          "$ref": "#/definitions/api.CoredumpSamplingRules"
         },
         "logs": {
           "$ref": "#/definitions/api.ArtifactTypeSamplingRules"
@@ -4045,8 +4094,7 @@
       "required": [
         "commandLine",
         "imageId",
-        "portConfigurations",
-        "timeout"
+        "portConfigurations"
       ]
     },
     "api.ImageDetails": {
@@ -4118,10 +4166,14 @@
             "$ref": "#/definitions/api.ImageListItem"
           },
           "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/api.PagingInfo"
         }
       },
       "required": [
-        "images"
+        "images",
+        "paging"
       ]
     },
     "api.ImageListItem": {
@@ -4144,6 +4196,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "referencingConfigs": {
+          "format": "int32",
+          "type": "integer"
         },
         "referencingFleets": {
           "format": "int32",
@@ -4176,6 +4232,7 @@
         "id",
         "isProtected",
         "name",
+        "referencingConfigs",
         "referencingFleets",
         "sizeInByte",
         "status",
@@ -4232,6 +4289,66 @@
         "isProtected",
         "name",
         "removedTags"
+      ]
+    },
+    "api.InstanceTypeForNamespaceResponse": {
+      "properties": {
+        "capacity": {
+          "items": {
+            "$ref": "#/definitions/api.Capacity"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "memoryGiB": {
+          "format": "double",
+          "type": "number"
+        },
+        "minSpeed": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "ownerAccountId": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "virtualCpu": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "capacity",
+        "description",
+        "id",
+        "memoryGiB",
+        "minSpeed",
+        "name",
+        "ownerAccountId",
+        "provider",
+        "virtualCpu"
+      ]
+    },
+    "api.InstanceTypesForNamespaceResponse": {
+      "properties": {
+        "availableInstanceTypes": {
+          "items": {
+            "$ref": "#/definitions/api.InstanceTypeForNamespaceResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "availableInstanceTypes"
       ]
     },
     "api.PagingInfo": {
@@ -4409,6 +4526,10 @@
     },
     "api.Timeout": {
       "properties": {
+        "claim": {
+          "format": "int64",
+          "type": "integer"
+        },
         "creation": {
           "format": "int64",
           "type": "integer"
@@ -4425,13 +4546,7 @@
           "format": "int64",
           "type": "integer"
         }
-      },
-      "required": [
-        "creation",
-        "drain",
-        "session",
-        "unresponsive"
-      ]
+      }
     },
     "api.UpdateServerRequest": {
       "properties": {
@@ -4560,10 +4675,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-04T13:45:43+00:00",
-    "gitHash": "1bfe42012e9314e3b8d7b2703d696f41a51a6ef0",
+    "buildDate": "2024-11-05T14:05:58+00:00",
+    "gitHash": "ef756dbe32e883d3e1190e8453f757ecff8e603f",
     "name": "fleet-commander",
-    "version": "1.27.1",
+    "version": "1.30.0",
     "version-roles-seeding": "1.2.70"
   }
 }

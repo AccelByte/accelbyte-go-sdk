@@ -74,7 +74,7 @@ type IAPOrderInfo struct {
 	Sandbox bool `json:"sandbox"`
 
 	// status
-	// Enum: ['FAILED', 'FULFILLED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
 	// Required: true
 	Status *string `json:"status"`
 
@@ -166,7 +166,7 @@ var iapOrderInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -181,6 +181,12 @@ const (
 
 	// IAPOrderInfoStatusFULFILLED captures enum value "FULFILLED"
 	IAPOrderInfoStatusFULFILLED string = "FULFILLED"
+
+	// IAPOrderInfoStatusPARTIALREVOKED captures enum value "PARTIAL_REVOKED"
+	IAPOrderInfoStatusPARTIALREVOKED string = "PARTIAL_REVOKED"
+
+	// IAPOrderInfoStatusREVOKED captures enum value "REVOKED"
+	IAPOrderInfoStatusREVOKED string = "REVOKED"
 
 	// IAPOrderInfoStatusVERIFIED captures enum value "VERIFIED"
 	IAPOrderInfoStatusVERIFIED string = "VERIFIED"

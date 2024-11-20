@@ -17,11 +17,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// HandleUploadXboxPFXCertificateCmd represents the HandleUploadXboxPFXCertificate command
-var HandleUploadXboxPFXCertificateCmd = &cobra.Command{
-	Use:   "handleUploadXboxPFXCertificate",
-	Short: "Handle upload xbox PFX certificate",
-	Long:  `Handle upload xbox PFX certificate`,
+// AdminUploadXBoxCertificateCmd represents the AdminUploadXBoxCertificate command
+var AdminUploadXBoxCertificateCmd = &cobra.Command{
+	Use:   "adminUploadXBoxCertificate",
+	Short: "Admin upload X box certificate",
+	Long:  `Admin upload X box certificate`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		certificateService := &session.CertificateService{
 			Client:          factory.NewSessionClient(&repository.ConfigRepositoryImpl{}),
@@ -37,14 +37,14 @@ var HandleUploadXboxPFXCertificateCmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		description, _ := cmd.Flags().GetString("description")
-		input := &certificate.HandleUploadXboxPFXCertificateParams{
+		input := &certificate.AdminUploadXBoxCertificateParams{
 			Description: &description,
 			Certname:    certname,
 			File:        file,
 			Password:    password,
 			Namespace:   namespace,
 		}
-		ok, errOK := certificateService.HandleUploadXboxPFXCertificateShort(input)
+		ok, errOK := certificateService.AdminUploadXBoxCertificateShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
@@ -58,13 +58,13 @@ var HandleUploadXboxPFXCertificateCmd = &cobra.Command{
 }
 
 func init() {
-	HandleUploadXboxPFXCertificateCmd.Flags().String("description", "", "Description")
-	HandleUploadXboxPFXCertificateCmd.Flags().String("certname", "", "Certname")
-	_ = HandleUploadXboxPFXCertificateCmd.MarkFlagRequired("certname")
-	HandleUploadXboxPFXCertificateCmd.Flags().String("file", "", "File")
-	_ = HandleUploadXboxPFXCertificateCmd.MarkFlagRequired("file")
-	HandleUploadXboxPFXCertificateCmd.Flags().String("password", "", "Password")
-	_ = HandleUploadXboxPFXCertificateCmd.MarkFlagRequired("password")
-	HandleUploadXboxPFXCertificateCmd.Flags().String("namespace", "", "Namespace")
-	_ = HandleUploadXboxPFXCertificateCmd.MarkFlagRequired("namespace")
+	AdminUploadXBoxCertificateCmd.Flags().String("description", "", "Description")
+	AdminUploadXBoxCertificateCmd.Flags().String("certname", "", "Certname")
+	_ = AdminUploadXBoxCertificateCmd.MarkFlagRequired("certname")
+	AdminUploadXBoxCertificateCmd.Flags().String("file", "", "File")
+	_ = AdminUploadXBoxCertificateCmd.MarkFlagRequired("file")
+	AdminUploadXBoxCertificateCmd.Flags().String("password", "", "Password")
+	_ = AdminUploadXBoxCertificateCmd.MarkFlagRequired("password")
+	AdminUploadXBoxCertificateCmd.Flags().String("namespace", "", "Namespace")
+	_ = AdminUploadXBoxCertificateCmd.MarkFlagRequired("namespace")
 }

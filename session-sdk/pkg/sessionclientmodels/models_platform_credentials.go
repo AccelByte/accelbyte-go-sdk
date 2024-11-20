@@ -25,6 +25,9 @@ type ModelsPlatformCredentials struct {
 	// updatedat
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
+
+	// xbox
+	Xbox *ModelsXBLCertificateCredential `json:"xbox,omitempty"`
 }
 
 // Validate validates this Models platform credentials

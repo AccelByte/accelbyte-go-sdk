@@ -45,6 +45,9 @@ type ModelGoalProgressionResponse struct {
 	// Enum: ['ACTIVE', 'COMPLETED', 'NOT_STARTED', 'RETIRED']
 	// Required: true
 	Status *string `json:"status"`
+
+	// toclaimrewards
+	ToClaimRewards []*ModelClaimableUserReward `json:"toClaimRewards,omitempty"`
 }
 
 // Validate validates this Model goal progression response

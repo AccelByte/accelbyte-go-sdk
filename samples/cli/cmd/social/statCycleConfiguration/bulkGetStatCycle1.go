@@ -28,13 +28,13 @@ var BulkGetStatCycle1Cmd = &cobra.Command{
 			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *socialclientmodels.BulkStatCycleRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &stat_cycle_configuration.BulkGetStatCycle1Params{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var BulkGetStatCycle1Cmd = &cobra.Command{
 
 func init() {
 	BulkGetStatCycle1Cmd.Flags().String("body", "", "Body")
+	_ = BulkGetStatCycle1Cmd.MarkFlagRequired("body")
 	BulkGetStatCycle1Cmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkGetStatCycle1Cmd.MarkFlagRequired("namespace")
 }

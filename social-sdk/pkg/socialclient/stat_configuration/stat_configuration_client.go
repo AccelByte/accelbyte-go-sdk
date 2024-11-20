@@ -45,7 +45,7 @@ type ClientService interface {
 	GetStatShort(params *GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatOK, error)
 	DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, *DeleteStatUnauthorized, *DeleteStatForbidden, *DeleteStatNotFound, *DeleteStatInternalServerError, error)
 	DeleteStatShort(params *DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatNoContent, error)
-	UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error)
+	UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatUnprocessableEntity, *UpdateStatInternalServerError, error)
 	UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error)
 	DeleteTiedStat(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, *DeleteTiedStatUnauthorized, *DeleteTiedStatForbidden, *DeleteTiedStatNotFound, *DeleteTiedStatConflict, *DeleteTiedStatInternalServerError, error)
 	DeleteTiedStatShort(params *DeleteTiedStatParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTiedStatNoContent, error)
@@ -900,7 +900,7 @@ Other detail info:
                       *  Field globalAggregationMethod is not updatable when the stat status is TIED
                       *  Field visibility is not updatable when the stat status is TIED
 */
-func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatInternalServerError, error) {
+func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatUnprocessableEntity, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateStatParams()
@@ -932,31 +932,34 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *UpdateStatOK:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *UpdateStatBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *UpdateStatUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *UpdateStatForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *UpdateStatNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateStatUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *UpdateStatInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1011,6 +1014,8 @@ func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.Clie
 	case *UpdateStatForbidden:
 		return nil, v
 	case *UpdateStatNotFound:
+		return nil, v
+	case *UpdateStatUnprocessableEntity:
 		return nil, v
 	case *UpdateStatInternalServerError:
 		return nil, v

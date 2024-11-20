@@ -22,7 +22,7 @@
 | `/ams/v1/admin/namespaces/{namespace}/account` | GET | AdminAccountGetShort | [AdminAccountGetShort](../../ams-sdk/pkg/amsclient/account/account_client.go) | [AdminAccountGetShort](../../services-api/pkg/service/ams/account.go) | [AdminAccountGetShort](../../samples/cli/cmd/ams/account/adminAccountGet.go) |
 | `/ams/v1/admin/namespaces/{namespace}/account` | POST | AdminAccountCreateShort | [AdminAccountCreateShort](../../ams-sdk/pkg/amsclient/account/account_client.go) | [AdminAccountCreateShort](../../services-api/pkg/service/ams/account.go) | [AdminAccountCreateShort](../../samples/cli/cmd/ams/account/adminAccountCreate.go) |
 | `/ams/v1/admin/namespaces/{namespace}/account/link` | GET | AdminAccountLinkTokenGetShort | [AdminAccountLinkTokenGetShort](../../ams-sdk/pkg/amsclient/account/account_client.go) | [AdminAccountLinkTokenGetShort](../../services-api/pkg/service/ams/account.go) | [AdminAccountLinkTokenGetShort](../../samples/cli/cmd/ams/account/adminAccountLinkTokenGet.go) |
-| `/ams/v1/admin/namespaces/{namespace}/account/link` | POST | AdminAccountLinkTokenPostShort | [AdminAccountLinkTokenPostShort](../../ams-sdk/pkg/amsclient/account/account_client.go) | [AdminAccountLinkTokenPostShort](../../services-api/pkg/service/ams/account.go) | [AdminAccountLinkTokenPostShort](../../samples/cli/cmd/ams/account/adminAccountLinkTokenPost.go) |
+| `/ams/v1/admin/namespaces/{namespace}/account/link` | POST | AdminAccountLinkShort | [AdminAccountLinkShort](../../ams-sdk/pkg/amsclient/account/account_client.go) | [AdminAccountLinkShort](../../services-api/pkg/service/ams/account.go) | [AdminAccountLinkShort](../../samples/cli/cmd/ams/account/adminAccountLink.go) |
 | `/ams/v1/namespaces/{namespace}/account` | GET | AccountGetShort | [AccountGetShort](../../ams-sdk/pkg/amsclient/account/account_client.go) | [AccountGetShort](../../services-api/pkg/service/ams/account.go) | [AccountGetShort](../../samples/cli/cmd/ams/account/accountGet.go) |
 
 ### Artifacts Wrapper:  [Artifacts](../../services-api/pkg/service/ams/artifacts.go)
@@ -114,9 +114,8 @@
 | `api.ArtifactTypeSamplingRules` | [ApiArtifactTypeSamplingRules ](../../ams-sdk/pkg/amsclientmodels/api_artifact_type_sampling_rules.go) |
 | `api.ArtifactURLResponse` | [ApiArtifactURLResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_url_response.go) |
 | `api.ArtifactUsageResponse` | [ApiArtifactUsageResponse ](../../ams-sdk/pkg/amsclientmodels/api_artifact_usage_response.go) |
-| `api.AvailableInstanceType` | [ApiAvailableInstanceType ](../../ams-sdk/pkg/amsclientmodels/api_available_instance_type.go) |
-| `api.AvailableInstanceTypesResponse` | [ApiAvailableInstanceTypesResponse ](../../ams-sdk/pkg/amsclientmodels/api_available_instance_types_response.go) |
 | `api.Capacity` | [ApiCapacity ](../../ams-sdk/pkg/amsclientmodels/api_capacity.go) |
+| `api.CoredumpSamplingRules` | [ApiCoredumpSamplingRules ](../../ams-sdk/pkg/amsclientmodels/api_coredump_sampling_rules.go) |
 | `api.DSHistoryEvent` | [ApiDSHistoryEvent ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_event.go) |
 | `api.DSHistoryList` | [ApiDSHistoryList ](../../ams-sdk/pkg/amsclientmodels/api_d_s_history_list.go) |
 | `api.DSHostConfiguration` | [ApiDSHostConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_d_s_host_configuration.go) |
@@ -146,6 +145,8 @@
 | `api.ImageListItem` | [ApiImageListItem ](../../ams-sdk/pkg/amsclientmodels/api_image_list_item.go) |
 | `api.ImageStorage` | [ApiImageStorage ](../../ams-sdk/pkg/amsclientmodels/api_image_storage.go) |
 | `api.ImageUpdate` | [ApiImageUpdate ](../../ams-sdk/pkg/amsclientmodels/api_image_update.go) |
+| `api.InstanceTypeForNamespaceResponse` | [ApiInstanceTypeForNamespaceResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_for_namespace_response.go) |
+| `api.InstanceTypesForNamespaceResponse` | [ApiInstanceTypesForNamespaceResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_types_for_namespace_response.go) |
 | `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |
 | `api.PortConfiguration` | [ApiPortConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_port_configuration.go) |
 | `api.QoSEndpointResponse` | [ApiQoSEndpointResponse ](../../ams-sdk/pkg/amsclientmodels/api_qo_s_endpoint_response.go) |

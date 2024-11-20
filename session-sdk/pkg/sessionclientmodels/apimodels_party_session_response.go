@@ -24,7 +24,8 @@ type ApimodelsPartySessionResponse struct {
 	Attributes interface{} `json:"attributes,omitempty"`
 
 	// code
-	Code string `json:"code,omitempty"`
+	// Required: true
+	Code *string `json:"code"`
 
 	// configuration
 	// Required: true
@@ -82,6 +83,9 @@ type ApimodelsPartySessionResponse struct {
 func (m *ApimodelsPartySessionResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCode(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateConfiguration(formats); err != nil {
 		res = append(res, err)
 	}
@@ -119,6 +123,15 @@ func (m *ApimodelsPartySessionResponse) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsPartySessionResponse) validateCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("code", "body", m.Code); err != nil {
+		return err
+	}
+
 	return nil
 }
 

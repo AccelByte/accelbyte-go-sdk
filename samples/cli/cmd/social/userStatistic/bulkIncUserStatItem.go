@@ -28,13 +28,13 @@ var BulkIncUserStatItemCmd = &cobra.Command{
 			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		bodyString := cmd.Flag("body").Value.String()
 		var body []*socialclientmodels.BulkUserStatItemInc
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &user_statistic.BulkIncUserStatItemParams{
 			Body:      body,
 			Namespace: namespace,
@@ -54,6 +54,7 @@ var BulkIncUserStatItemCmd = &cobra.Command{
 
 func init() {
 	BulkIncUserStatItemCmd.Flags().String("body", "", "Body")
+	_ = BulkIncUserStatItemCmd.MarkFlagRequired("body")
 	BulkIncUserStatItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkIncUserStatItemCmd.MarkFlagRequired("namespace")
 }

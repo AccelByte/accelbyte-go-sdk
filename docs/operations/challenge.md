@@ -75,6 +75,7 @@
 | `model.ClaimUserRewardsReq` | [ModelClaimUserRewardsReq ](../../challenge-sdk/pkg/challengeclientmodels/model_claim_user_rewards_req.go) |
 | `model.ClaimUsersRewardsRequest` | [ModelClaimUsersRewardsRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_claim_users_rewards_request.go) |
 | `model.ClaimUsersRewardsResponse` | [ModelClaimUsersRewardsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_claim_users_rewards_response.go) |
+| `model.ClaimableUserReward` | [ModelClaimableUserReward ](../../challenge-sdk/pkg/challengeclientmodels/model_claimable_user_reward.go) |
 | `model.CreateChallengeRequest` | [ModelCreateChallengeRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_create_challenge_request.go) |
 | `model.CreateGoalRequest` | [ModelCreateGoalRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_create_goal_request.go) |
 | `model.EvaluatePlayerProgressionRequest` | [ModelEvaluatePlayerProgressionRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_evaluate_player_progression_request.go) |

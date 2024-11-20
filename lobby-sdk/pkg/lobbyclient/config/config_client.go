@@ -666,7 +666,8 @@ JSON Schema of the exported file:
 "allowInviteNonConnectedUser",
 "keepPresenceActivityOnDisconnect",
 "maxDSWaitTime",
-"maxFriendsLimit"
+"maxFriendsLimit",
+"requestMetadataMaxSize"
 ],
 "properties": {
 "allowInviteNonConnectedUser": {
@@ -741,6 +742,10 @@ JSON Schema of the exported file:
 "readyConsentTimeout": {
 "type": "integer",
 "format": "int64"
+},
+"requestMetadataMaxSize": {
+"type": "integer",
+"format": "int32"
 },
 "unregisterDelay": {
 "type": "integer",
@@ -832,7 +837,8 @@ JSON Schema of the exported file:
 "allowInviteNonConnectedUser",
 "keepPresenceActivityOnDisconnect",
 "maxDSWaitTime",
-"maxFriendsLimit"
+"maxFriendsLimit",
+"requestMetadataMaxSize"
 ],
 "properties": {
 "allowInviteNonConnectedUser": {
@@ -907,6 +913,10 @@ JSON Schema of the exported file:
 "readyConsentTimeout": {
 "type": "integer",
 "format": "int64"
+},
+"requestMetadataMaxSize": {
+"type": "integer",
+"format": "int32"
 },
 "unregisterDelay": {
 "type": "integer",

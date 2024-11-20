@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // XblIAPConfigRequest Xbl IAP config request
@@ -18,31 +17,29 @@ import (
 // swagger:model Xbl IAP config request.
 type XblIAPConfigRequest struct {
 
+	// enable XBL stream event job, will enable stream event job to sync XBL refund chargeback etc event if it's true
+	EnableClawback bool `json:"enableClawback"`
+
+	// entraAppClientId
+	EntraAppClientID string `json:"entraAppClientId,omitempty"`
+
+	// entraAppClientSecret
+	EntraAppClientSecret string `json:"entraAppClientSecret,omitempty"`
+
+	// entraTenantId
+	EntraTenantID string `json:"entraTenantId,omitempty"`
+
 	// deprecated - relyingPartyCert
-	// Required: true
-	RelyingPartyCert *string `json:"relyingPartyCert"`
+	RelyingPartyCert string `json:"relyingPartyCert,omitempty"`
 }
 
 // Validate validates this Xbl IAP config request
 func (m *XblIAPConfigRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateRelyingPartyCert(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *XblIAPConfigRequest) validateRelyingPartyCert(formats strfmt.Registry) error {
-
-	if err := validate.Required("relyingPartyCert", "body", m.RelyingPartyCert); err != nil {
-		return err
-	}
-
 	return nil
 }
 

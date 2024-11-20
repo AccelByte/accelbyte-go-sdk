@@ -21,6 +21,13 @@
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords/{key}` | POST | AdminPostPlayerAdminRecordV1Short | [AdminPostPlayerAdminRecordV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_record/admin_record_client.go) | [AdminPostPlayerAdminRecordV1Short](../../services-api/pkg/service/cloudsave/adminRecord.go) | [AdminPostPlayerAdminRecordV1Short](../../samples/cli/cmd/cloudsave/adminRecord/adminPostPlayerAdminRecordV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/adminrecords/{key}` | DELETE | AdminDeleteAdminPlayerRecordV1Short | [AdminDeleteAdminPlayerRecordV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_record/admin_record_client.go) | [AdminDeleteAdminPlayerRecordV1Short](../../services-api/pkg/service/cloudsave/adminRecord.go) | [AdminDeleteAdminPlayerRecordV1Short](../../samples/cli/cmd/cloudsave/adminRecord/adminDeleteAdminPlayerRecordV1.go) |
 
+### TTLConfig Wrapper:  [TTLConfig](../../services-api/pkg/service/cloudsave/ttlConfig.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/cloudsave/v1/admin/namespaces/{namespace}/adminrecords/{key}/ttl` | DELETE | DeleteAdminGameRecordTTLConfigShort | [DeleteAdminGameRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteAdminGameRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteAdminGameRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteAdminGameRecordTTLConfig.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/ttl` | DELETE | DeleteGameBinaryRecordTTLConfigShort | [DeleteGameBinaryRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteGameBinaryRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteGameBinaryRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteGameBinaryRecordTTLConfig.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/records/{key}/ttl` | DELETE | DeleteGameRecordTTLConfigShort | [DeleteGameRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteGameRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteGameRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteGameRecordTTLConfig.go) |
+
 ### AdminGameBinaryRecord Wrapper:  [AdminGameBinaryRecord](../../services-api/pkg/service/cloudsave/adminGameBinaryRecord.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -31,12 +38,6 @@
 | `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}` | DELETE | AdminDeleteGameBinaryRecordV1Short | [AdminDeleteGameBinaryRecordV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_binary_record/admin_game_binary_record_client.go) | [AdminDeleteGameBinaryRecordV1Short](../../services-api/pkg/service/cloudsave/adminGameBinaryRecord.go) | [AdminDeleteGameBinaryRecordV1Short](../../samples/cli/cmd/cloudsave/adminGameBinaryRecord/adminDeleteGameBinaryRecordV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/metadata` | PUT | AdminPutGameBinaryRecorMetadataV1Short | [AdminPutGameBinaryRecorMetadataV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_binary_record/admin_game_binary_record_client.go) | [AdminPutGameBinaryRecorMetadataV1Short](../../services-api/pkg/service/cloudsave/adminGameBinaryRecord.go) | [AdminPutGameBinaryRecorMetadataV1Short](../../samples/cli/cmd/cloudsave/adminGameBinaryRecord/adminPutGameBinaryRecorMetadataV1.go) |
 | `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/presigned` | POST | AdminPostGameBinaryPresignedURLV1Short | [AdminPostGameBinaryPresignedURLV1Short](../../cloudsave-sdk/pkg/cloudsaveclient/admin_game_binary_record/admin_game_binary_record_client.go) | [AdminPostGameBinaryPresignedURLV1Short](../../services-api/pkg/service/cloudsave/adminGameBinaryRecord.go) | [AdminPostGameBinaryPresignedURLV1Short](../../samples/cli/cmd/cloudsave/adminGameBinaryRecord/adminPostGameBinaryPresignedURLV1.go) |
-
-### TTLConfig Wrapper:  [TTLConfig](../../services-api/pkg/service/cloudsave/ttlConfig.go)
-| Endpoint | Method | ID | Class | Wrapper | Example |
-|---|---|---|---|---|---|
-| `/cloudsave/v1/admin/namespaces/{namespace}/binaries/{key}/ttl` | DELETE | DeleteGameBinaryRecordTTLConfigShort | [DeleteGameBinaryRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteGameBinaryRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteGameBinaryRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteGameBinaryRecordTTLConfig.go) |
-| `/cloudsave/v1/admin/namespaces/{namespace}/records/{key}/ttl` | DELETE | DeleteGameRecordTTLConfigShort | [DeleteGameRecordTTLConfigShort](../../cloudsave-sdk/pkg/cloudsaveclient/ttl_config/ttl_config_client.go) | [DeleteGameRecordTTLConfigShort](../../services-api/pkg/service/cloudsave/ttlConfig.go) | [DeleteGameRecordTTLConfigShort](../../samples/cli/cmd/cloudsave/ttlConfig/deleteGameRecordTTLConfig.go) |
 
 ### AdminConcurrentRecord Wrapper:  [AdminConcurrentRecord](../../services-api/pkg/service/cloudsave/adminConcurrentRecord.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |

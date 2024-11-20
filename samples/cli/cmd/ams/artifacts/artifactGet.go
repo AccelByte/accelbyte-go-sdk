@@ -36,22 +36,26 @@ var ArtifactGetCmd = &cobra.Command{
 		offset, _ := cmd.Flags().GetInt64("offset")
 		region, _ := cmd.Flags().GetString("region")
 		serverId, _ := cmd.Flags().GetString("serverId")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
+		sortDirection, _ := cmd.Flags().GetString("sortDirection")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		status, _ := cmd.Flags().GetString("status")
 		input := &artifacts.ArtifactGetParams{
-			Namespace:    namespace,
-			ArtifactType: &artifactType,
-			Count:        &count,
-			EndDate:      &endDate,
-			FleetID:      &fleetID,
-			ImageID:      &imageID,
-			MaxSize:      &maxSize,
-			MinSize:      &minSize,
-			Offset:       &offset,
-			Region:       &region,
-			ServerID:     &serverId,
-			StartDate:    &startDate,
-			Status:       &status,
+			Namespace:     namespace,
+			ArtifactType:  &artifactType,
+			Count:         &count,
+			EndDate:       &endDate,
+			FleetID:       &fleetID,
+			ImageID:       &imageID,
+			MaxSize:       &maxSize,
+			MinSize:       &minSize,
+			Offset:        &offset,
+			Region:        &region,
+			ServerID:      &serverId,
+			SortBy:        &sortBy,
+			SortDirection: &sortDirection,
+			StartDate:     &startDate,
+			Status:        &status,
 		}
 		ok, errOK := artifactsService.ArtifactGetShort(input)
 		if errOK != nil {
@@ -79,6 +83,8 @@ func init() {
 	ArtifactGetCmd.Flags().Int64("offset", 0, "Offset")
 	ArtifactGetCmd.Flags().String("region", "", "Region")
 	ArtifactGetCmd.Flags().String("serverId", "", "Server id")
+	ArtifactGetCmd.Flags().String("sortBy", "", "Sort by")
+	ArtifactGetCmd.Flags().String("sortDirection", "", "Sort direction")
 	ArtifactGetCmd.Flags().String("startDate", "", "Start date")
 	ArtifactGetCmd.Flags().String("status", "", "Status")
 }

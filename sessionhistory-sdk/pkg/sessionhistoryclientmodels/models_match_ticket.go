@@ -17,6 +17,9 @@ import (
 // swagger:model Models match ticket.
 type ModelsMatchTicket struct {
 
+	// actualtimetomatch
+	ActualTimeToMatch string `json:"ActualTimeToMatch,omitempty"`
+
 	// createdat
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"CreatedAt,omitempty"`

@@ -38,10 +38,10 @@ type ClientService interface {
 	SubscribeAppNotificationV2Short(params *SubscribeAppNotificationV2Params, authInfo runtime.ClientAuthInfoWriter) (*SubscribeAppNotificationV2OK, error)
 	GetSubscriptionV2Handler(params *GetSubscriptionV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetSubscriptionV2HandlerOK, *GetSubscriptionV2HandlerUnauthorized, *GetSubscriptionV2HandlerForbidden, *GetSubscriptionV2HandlerNotFound, *GetSubscriptionV2HandlerInternalServerError, error)
 	GetSubscriptionV2HandlerShort(params *GetSubscriptionV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*GetSubscriptionV2HandlerOK, error)
-	SubscribeV2Handler(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerOK, *SubscribeV2HandlerUnauthorized, *SubscribeV2HandlerForbidden, *SubscribeV2HandlerNotFound, *SubscribeV2HandlerInternalServerError, error)
-	SubscribeV2HandlerShort(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerOK, error)
-	UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerOK, *UnsubscribeV2HandlerUnauthorized, *UnsubscribeV2HandlerForbidden, *UnsubscribeV2HandlerNotFound, *UnsubscribeV2HandlerInternalServerError, error)
-	UnsubscribeV2HandlerShort(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerOK, error)
+	SubscribeV2Handler(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerNoContent, *SubscribeV2HandlerUnauthorized, *SubscribeV2HandlerForbidden, *SubscribeV2HandlerNotFound, *SubscribeV2HandlerInternalServerError, error)
+	SubscribeV2HandlerShort(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerNoContent, error)
+	UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerNoContent, *UnsubscribeV2HandlerUnauthorized, *UnsubscribeV2HandlerForbidden, *UnsubscribeV2HandlerNotFound, *UnsubscribeV2HandlerInternalServerError, error)
+	UnsubscribeV2HandlerShort(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerNoContent, error)
 	DeleteSubscriptionAppNotificationByUserIDV2(params *DeleteSubscriptionAppNotificationByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSubscriptionAppNotificationByUserIDV2OK, *DeleteSubscriptionAppNotificationByUserIDV2Unauthorized, *DeleteSubscriptionAppNotificationByUserIDV2Forbidden, *DeleteSubscriptionAppNotificationByUserIDV2NotFound, *DeleteSubscriptionAppNotificationByUserIDV2InternalServerError, error)
 	DeleteSubscriptionAppNotificationByUserIDV2Short(params *DeleteSubscriptionAppNotificationByUserIDV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSubscriptionAppNotificationByUserIDV2OK, error)
 	DeleteSubscriptionAppNotificationV2(params *DeleteSubscriptionAppNotificationV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSubscriptionAppNotificationV2OK, *DeleteSubscriptionAppNotificationV2Unauthorized, *DeleteSubscriptionAppNotificationV2Forbidden, *DeleteSubscriptionAppNotificationV2NotFound, *DeleteSubscriptionAppNotificationV2InternalServerError, error)
@@ -590,7 +590,7 @@ Request body:
 - "app-down"
 - "critical-vulnerability"
 */
-func (a *Client) SubscribeV2Handler(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerOK, *SubscribeV2HandlerUnauthorized, *SubscribeV2HandlerForbidden, *SubscribeV2HandlerNotFound, *SubscribeV2HandlerInternalServerError, error) {
+func (a *Client) SubscribeV2Handler(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerNoContent, *SubscribeV2HandlerUnauthorized, *SubscribeV2HandlerForbidden, *SubscribeV2HandlerNotFound, *SubscribeV2HandlerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSubscribeV2HandlerParams()
@@ -627,7 +627,7 @@ func (a *Client) SubscribeV2Handler(params *SubscribeV2HandlerParams, authInfo r
 
 	switch v := result.(type) {
 
-	case *SubscribeV2HandlerOK:
+	case *SubscribeV2HandlerNoContent:
 		return v, nil, nil, nil, nil, nil
 
 	case *SubscribeV2HandlerUnauthorized:
@@ -659,7 +659,7 @@ Request body:
 - "app-down"
 - "critical-vulnerability"
 */
-func (a *Client) SubscribeV2HandlerShort(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerOK, error) {
+func (a *Client) SubscribeV2HandlerShort(params *SubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*SubscribeV2HandlerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSubscribeV2HandlerParams()
@@ -692,7 +692,7 @@ func (a *Client) SubscribeV2HandlerShort(params *SubscribeV2HandlerParams, authI
 
 	switch v := result.(type) {
 
-	case *SubscribeV2HandlerOK:
+	case *SubscribeV2HandlerNoContent:
 		return v, nil
 	case *SubscribeV2HandlerUnauthorized:
 		return nil, v
@@ -716,7 +716,7 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRI
 
 Unsubscribe to app down notification
 */
-func (a *Client) UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerOK, *UnsubscribeV2HandlerUnauthorized, *UnsubscribeV2HandlerForbidden, *UnsubscribeV2HandlerNotFound, *UnsubscribeV2HandlerInternalServerError, error) {
+func (a *Client) UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerNoContent, *UnsubscribeV2HandlerUnauthorized, *UnsubscribeV2HandlerForbidden, *UnsubscribeV2HandlerNotFound, *UnsubscribeV2HandlerInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnsubscribeV2HandlerParams()
@@ -753,7 +753,7 @@ func (a *Client) UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authIn
 
 	switch v := result.(type) {
 
-	case *UnsubscribeV2HandlerOK:
+	case *UnsubscribeV2HandlerNoContent:
 		return v, nil, nil, nil, nil, nil
 
 	case *UnsubscribeV2HandlerUnauthorized:
@@ -779,7 +779,7 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRI
 
 Unsubscribe to app down notification
 */
-func (a *Client) UnsubscribeV2HandlerShort(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerOK, error) {
+func (a *Client) UnsubscribeV2HandlerShort(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnsubscribeV2HandlerParams()
@@ -812,7 +812,7 @@ func (a *Client) UnsubscribeV2HandlerShort(params *UnsubscribeV2HandlerParams, a
 
 	switch v := result.(type) {
 
-	case *UnsubscribeV2HandlerOK:
+	case *UnsubscribeV2HandlerNoContent:
 		return v, nil
 	case *UnsubscribeV2HandlerUnauthorized:
 		return nil, v

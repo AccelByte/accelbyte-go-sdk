@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in PublicListUserAchievementsParams
+const (
+	PublicListUserAchievementsAchievedAtConstant     = "achievedAt"
+	PublicListUserAchievementsAchievedAtAscConstant  = "achievedAt:asc"
+	PublicListUserAchievementsAchievedAtDescConstant = "achievedAt:desc"
+	PublicListUserAchievementsCreatedAtConstant      = "createdAt"
+	PublicListUserAchievementsCreatedAtAscConstant   = "createdAt:asc"
+	PublicListUserAchievementsCreatedAtDescConstant  = "createdAt:desc"
+)
+
 // NewPublicListUserAchievementsParams creates a new PublicListUserAchievementsParams object
 // with the default values initialized.
 func NewPublicListUserAchievementsParams() *PublicListUserAchievementsParams {

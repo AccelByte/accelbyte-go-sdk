@@ -113,13 +113,13 @@ func (aaa *AccountService) AdminAccountLinkTokenGet(input *account.AdminAccountL
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use AdminAccountLinkTokenPostShort instead.
-func (aaa *AccountService) AdminAccountLinkTokenPost(input *account.AdminAccountLinkTokenPostParams) (*amsclientmodels.APIAccountLinkResponse, error) {
+// Deprecated: 2022-01-10 - please use AdminAccountLinkShort instead.
+func (aaa *AccountService) AdminAccountLink(input *account.AdminAccountLinkParams) (*amsclientmodels.APIAccountLinkResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, forbidden, internalServerError, err := aaa.Client.Account.AdminAccountLinkTokenPost(input, client.BearerToken(*token.AccessToken))
+	created, unauthorized, forbidden, internalServerError, err := aaa.Client.Account.AdminAccountLink(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -252,7 +252,7 @@ func (aaa *AccountService) AdminAccountLinkTokenGetShort(input *account.AdminAcc
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AccountService) AdminAccountLinkTokenPostShort(input *account.AdminAccountLinkTokenPostParams) (*amsclientmodels.APIAccountLinkResponse, error) {
+func (aaa *AccountService) AdminAccountLinkShort(input *account.AdminAccountLinkParams) (*amsclientmodels.APIAccountLinkResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -274,7 +274,7 @@ func (aaa *AccountService) AdminAccountLinkTokenPostShort(input *account.AdminAc
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	created, err := aaa.Client.Account.AdminAccountLinkTokenPostShort(input, authInfoWriter)
+	created, err := aaa.Client.Account.AdminAccountLinkShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

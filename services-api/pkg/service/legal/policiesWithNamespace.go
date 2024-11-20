@@ -37,6 +37,23 @@ func (aaa *PoliciesWithNamespaceService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use DeletePolicyShort instead.
+func (aaa *PoliciesWithNamespaceService) DeletePolicy(input *policies_with_namespace.DeletePolicyParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.PoliciesWithNamespace.DeletePolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use UpdatePolicy1Short instead.
 func (aaa *PoliciesWithNamespaceService) UpdatePolicy1(input *policies_with_namespace.UpdatePolicy1Params) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -64,6 +81,36 @@ func (aaa *PoliciesWithNamespaceService) SetDefaultPolicy3(input *policies_with_
 	if badRequest != nil {
 		return badRequest
 	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *PoliciesWithNamespaceService) DeletePolicyShort(input *policies_with_namespace.DeletePolicyParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPoliciesWithNamespace != nil {
+		input.XFlightId = tempFlightIdPoliciesWithNamespace
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.PoliciesWithNamespace.DeletePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

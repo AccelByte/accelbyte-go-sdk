@@ -228,7 +228,7 @@ func (aaa *StatConfigurationService) UpdateStat(input *stat_configuration.Update
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.StatConfiguration.UpdateStat(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.StatConfiguration.UpdateStat(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -240,6 +240,9 @@ func (aaa *StatConfigurationService) UpdateStat(input *stat_configuration.Update
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

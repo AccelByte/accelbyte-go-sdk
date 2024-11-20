@@ -67,6 +67,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/gdpr/s2s/namespaces/{namespace}/requests/finished` | GET | S2SGetListFinishedPersonalDataRequestShort | [S2SGetListFinishedPersonalDataRequestShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SGetListFinishedPersonalDataRequestShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SGetListFinishedPersonalDataRequestShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sGetListFinishedPersonalDataRequest.go) |
+| `/gdpr/s2s/namespaces/{namespace}/requests/{requestId}` | GET | S2SGetDataRequestByRequestIDShort | [S2SGetDataRequestByRequestIDShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SGetDataRequestByRequestIDShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SGetDataRequestByRequestIDShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sGetDataRequestByRequestID.go) |
 | `/gdpr/s2s/namespaces/{namespace}/users/{userId}/requests` | POST | S2SRequestDataRetrievalShort | [S2SRequestDataRetrievalShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SRequestDataRetrievalShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SRequestDataRetrievalShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sRequestDataRetrieval.go) |
 | `/gdpr/s2s/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate` | POST | S2SGeneratePersonalDataURLShort | [S2SGeneratePersonalDataURLShort](../../gdpr-sdk/pkg/gdprclient/data_retrieval_s2_s/data_retrieval_s2s_client.go) | [S2SGeneratePersonalDataURLShort](../../services-api/pkg/service/gdpr/dataRetrievalS2S.go) | [S2SGeneratePersonalDataURLShort](../../samples/cli/cmd/gdpr/dataRetrievalS2S/s2sGeneratePersonalDataURL.go) |
 
@@ -84,6 +85,7 @@
 | `dto.ListFinishedDataRequests` | [DtoListFinishedDataRequests ](../../gdpr-sdk/pkg/gdprclientmodels/dto_list_finished_data_requests.go) |
 | `dto.PlatformAccountClosureClientRequest` | [DtoPlatformAccountClosureClientRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_request.go) |
 | `dto.PlatformAccountClosureClientResponse` | [DtoPlatformAccountClosureClientResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_response.go) |
+| `dto.S2SDataRequestSummary` | [DtoS2SDataRequestSummary ](../../gdpr-sdk/pkg/gdprclientmodels/dto_s2_s_data_request_summary.go) |
 | `dto.ServiceConfigDTO` | [DtoServiceConfigDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_config_dto.go) |
 | `dto.ServiceConfigurationDTO` | [DtoServiceConfigurationDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_configuration_dto.go) |
 | `dto.ServiceConfigurationUpdateRequest` | [DtoServiceConfigurationUpdateRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_configuration_update_request.go) |

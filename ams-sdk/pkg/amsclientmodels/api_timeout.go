@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // APITimeout Api timeout
@@ -18,83 +17,34 @@ import (
 // swagger:model Api timeout.
 type APITimeout struct {
 
-	// creation
-	// Required: true
+	// claim
 	// Format: int64
-	Creation *int64 `json:"creation"`
+	Claim int64 `json:"claim,omitempty"`
+
+	// creation
+	// Format: int64
+	Creation int64 `json:"creation,omitempty"`
 
 	// drain
-	// Required: true
 	// Format: int64
-	Drain *int64 `json:"drain"`
+	Drain int64 `json:"drain,omitempty"`
 
 	// session
-	// Required: true
 	// Format: int64
-	Session *int64 `json:"session"`
+	Session int64 `json:"session,omitempty"`
 
 	// unresponsive
-	// Required: true
 	// Format: int64
-	Unresponsive *int64 `json:"unresponsive"`
+	Unresponsive int64 `json:"unresponsive,omitempty"`
 }
 
 // Validate validates this Api timeout
 func (m *APITimeout) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCreation(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateDrain(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSession(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUnresponsive(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *APITimeout) validateCreation(formats strfmt.Registry) error {
-
-	if err := validate.Required("creation", "body", m.Creation); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APITimeout) validateDrain(formats strfmt.Registry) error {
-
-	if err := validate.Required("drain", "body", m.Drain); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APITimeout) validateSession(formats strfmt.Registry) error {
-
-	if err := validate.Required("session", "body", m.Session); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APITimeout) validateUnresponsive(formats strfmt.Registry) error {
-
-	if err := validate.Required("unresponsive", "body", m.Unresponsive); err != nil {
-		return err
-	}
-
 	return nil
 }
 

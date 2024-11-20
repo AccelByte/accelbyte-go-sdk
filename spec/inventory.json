@@ -1,9 +1,14 @@
 {
   "host": "demo.accelbyte.io",
   "info": {
-    "description": "justice-inventory-service",
+    "contact": {
+      "email": "engineering@accelbyte.io",
+      "name": "Engineering Team at AccelByte",
+      "url": "https://accelbyte.io"
+    },
+    "description": "Justice Inventory Service",
     "title": "justice-inventory-service",
-    "version": "0.2.4"
+    "version": "0.2.7"
   },
   "schemes": [
     "https"
@@ -1634,7 +1639,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tConsume user\u0026#39;s own item\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
+        "description": "\n\t\t\tConsume user\u0026#39;s own item\n\t\t\tClient should pass item ID in options if item type is OPTIONBOX\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]\n\t\t",
         "operationId": "AdminConsumeUserItem",
         "parameters": [
           {
@@ -1796,7 +1801,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item to specific inventory.\n\t\t\tThe item will be saved in specific user\u0026#39;s inventory,\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tFor Ecommerce item, this fields will be override by ecommerce configuration \n\t\t\t(slotUsed, serverCustomAttributes, customAttributes, type)\n\n\t\t\tFor Ecommerce items, the quantity saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount.\n\t\t\ti.e. If the store item is configured with a useCount of 5 \n\t\t\tand the quantity of a particular item is set to 2 during saving, it will be stored as 10.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "**This endpoint is used to save purchased items to a specific inventory of the player, with the following conditions for E-commerce items:**\n- Attributes such as slotUsed, serverCustomAttributes, customAttributes, and type will be overridden by the attributes configured in the AccelByte Gaming Services (AGS) Store.\n- Storing E-commerce items in a particular slot will follow its entitlement and item configuration, such as durable, consumable, stackable and non-stackable.\n- The quantity is dynamically set based on an item’s useCount configured in Store. When saving an item, the specified quantity will be multiplied by configured useCount for that particular item. For example, if an Item is configured with a useCount of 5 in  the AGS Store and it is saved with a qty of 2, the item’s quantity will be stored as 2 in the player’s inventory.\n\n**When configuring your request, note the following:**\n- The source field is mandatory for determining the source of the item. The supported values are OTHER (for items coming from other sources) and E-commerce for items coming from the E-commerce integration.\n- For other-sourced items, the type can be manually defined when saving the item.\nYou must have this permission to access this endpoint:\n\n**Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]**",
         "operationId": "AdminSaveItemToInventory",
         "parameters": [
           {
@@ -1841,6 +1846,24 @@
           },
           "400": {
             "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/apimodels.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "schema": {
               "$ref": "#/definitions/apimodels.ErrorResponse"
             }
@@ -1952,7 +1975,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tThis endpoint will be used by client to save the purchased item to user\u0026#39;s inventory, \n\t\t\tsince want to integrate the inventory service to e-commerce, source field will be mandatory to determine the item, \n\t\t\tsupported field “OTHER” and “ECOMMERCE”\n\n\t\t\tNotes :\n\t\t\tsource ECOMMERCE, the quantity of ecommerce items saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount \n\t\t\ti.e. If the store item is configured with a useCount of 5 and the quantity of a particular item is set to 2 during saving, it will be stored as 10\n\n\t\t\tType:\n\t\t\t- ingame\n\t\t\t- app\n\t\t\t- coin\n\t\t\tetc..\n\n\t\t\tMax length of the payload is 10 items\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "**This endpoint is used for bulk saving purchased items to a specific inventory of the player, with the following conditions for E-commerce items:**\n- Attributes such as slotUsed, serverCustomAttributes, customAttributes, and type will be overridden by the attributes configured in the AccelByte Gaming Services (AGS) Store.\n- Storing E-commerce items in a particular slot will follow its entitlement and item configuration, such as durable, consumable, stackable and non-stackable.\n- The quantity is dynamically set based on an item’s useCount configured in Store. When saving an item, the specified quantity will be multiplied by configured useCount for that particular item. For example, if an Item is configured with a useCount of 5 in  the AGS Store and it is saved with a qty of 2, the item’s quantity will be stored as 2 in the player’s inventory.\n\n**When configuring your request, note the following:**\n- The source field is mandatory for determining the source of the item. The supported values are OTHER (for items coming from other sources) and E-commerce for items coming from the E-commerce integration.\n- For other-sourced items, the type can be manually defined when saving the item.\n- A maximum of 10 items can be saved in a single bulk call.\n\nYou must have this permission to access this endpoint: \n**Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM[CREATE]**",
         "operationId": "AdminBulkSaveItemToInventory",
         "parameters": [
           {
@@ -2149,7 +2172,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tSaving an item.\n\t\t\tThe item will be saved in user\u0026#39;s inventory,\n\t\t\tIf it doesn\u0026#39;t exist it\u0026#39;ll be created.\n\t\t\t\n\t\t\tIf the item already exists, its qty will be increased,\n\t\t\tso no new item with same sourceItemId will be created\n\n\t\t\tTags will be auto-created.\n\t\t\tItemType will be auto-created.\n\n\t\t\tFor Ecommerce item, this fields will be override by ecommerce configuration \n\t\t\t(slotUsed, serverCustomAttributes, customAttributes, type)\n\n\t\t\tFor Ecommerce items, the quantity saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount.\n\t\t\ti.e. If the store item is configured with a useCount of 5 \n\t\t\tand the quantity of a particular item is set to 2 during saving, it will be stored as 10.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "**This endpoint is used to save items to the player’s inventory based on the inventoryConfigurationCode with the following conditions:**\n- If the player doesn\u0026#39;t have the inventory for the specified inventoryConfigurationCode, a new inventory will be created.\n- If the user already has one, it will be added to the existing inventory.\n- If the same item exists within the inventory, the quantity (qty) will be increased.\n- If the inventory is full, the item cannot be added and the request will return the “Failed” response.\n- If a player has more than one inventory and the initial inventory is full, the service will check the available slot in the other inventory following the order of their creation date and time (createdAt).\n- For Ecommerce items:\n\u0026gt;- Attributes such as slotUsed, serverCustomAttributes, customAttributes, and type will be overridden by the attributes configured in the AccelByte Gaming Services (AGS) Store.\n\u0026gt;- Storing E-commerce items in a particular slot will follow its entitlement and item configuration, such as durable, consumable, stackable and non-stackable.\n\u0026gt;- The quantity is dynamically set based on an item’s useCount configured in Store. When saving an item, the specified quantity will be multiplied by configured useCount for that particular item. For example, if an Item is configured with a useCount of 5 in  the AGS Store and it is saved with a qty of 2, the item’s quantity will be stored as 2 in the player’s inventory.\n\nYou must have this permission to access this endpoint: \n**Permission:ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]**",
         "operationId": "AdminSaveItem",
         "parameters": [
           {
@@ -2215,7 +2238,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tThis endpoint will be used by client to save the purchased item to user\u0026#39;s inventory, \n\t\t\tsince want to integrate the inventory service to e-commerce, source field will be mandatory to determine the item, \n\t\t\tsupported field “OTHER” and “ECOMMERCE”\n\n\t\t\tNotes :\n\t\t\tsource ECOMMERCE, the quantity of ecommerce items saved is dynamically adjusted based on an item\u0026#39;s useCount configured in Store. \n\t\t\tWhen saving items, the quantity specified for each item will be multiplied by the useCount \n\t\t\ti.e. If the store item is configured with a useCount of 5 and the quantity of a particular item is set to 2 during saving, it will be stored as 10\n\n\t\t\tTarget inventory will be based on the specified inventoryConfigurationCode. If the inventory exist then will put to the existing one, \n\t\t\tif not exist at all then will create at least one inventory, if full then will return failed at the response. \n\t\t\tWe implement the logic as proportional to store the item to inventory, will loop from createdAt until find the available slots at inventory.\n\n\t\t\tType:\n\t\t\t- ingame\n\t\t\t- app\n\t\t\t- coin\n\t\t\tetc..\n\n\t\t\tMax length of the payload is 10 items\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "description": "**This endpoint is used used for bulk saving purchased items to the player’s inventory based on the inventoryConfigurationCode with the following conditions:**\n- If the player doesn\u0026#39;t have the inventory for the specified inventoryConfigurationCode, a new inventory will be created for the player.\n- If the player already has one, it will be added to the existing inventory.\n\u0026gt;- If the same item exists within the inventory, the quantity (qty) will be increased.\n\u0026gt;- If the inventory is full, the item cannot be added and the request will return the “Failed” response.\n\u0026gt;- If a player has more than one inventory and the initial inventory is full, the service will check the available slot in the other inventory following the order of their creation date and time (createdAt).\n\n- For E-commerce items:\n\u0026gt;- Attributes such as slotUsed, serverCustomAttributes, customAttributes, and type will be overridden by the attributes configured in the  AccelByte Gaming Services (AGS) Store.\n\u0026gt;- Storing E-commerce items in a particular slot will follow its entitlement and item configuration, such as durable, consumable, stackable and non-stackable.\n\u0026gt;- The quantity is dynamically set based on an item’s useCount configured in Store. When saving an item, the specified quantity will be multiplied by configured useCount for that particular item. For example, if an Item is configured with a useCount of 5 in  the AGS Store and it is saved with a qty of 2, the item’s quantity will be stored as 2 in the player’s inventory.\n\n**When configuring your request, note the following:**\n- The source field is mandatory for determining the source of the item. The supported values are OTHER (for items coming from other sources) and E-commerce for items coming from the E-commerce integration.\n- For other-sourced items, the type can be manually defined when saving the item.\n- A maximum of 10 items can be saved in a single bulk call.\n\nYou must have this permission to access this endpoint:\n**Permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]**",
         "operationId": "AdminBulkSaveItem",
         "parameters": [
           {
@@ -2783,7 +2806,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tConsume user\u0026#39;s own item.\n\t\t",
+        "description": "\n\t\t\tConsume user\u0026#39;s own item.\n\t\t\tClient should pass item ID in options if item type is OPTIONBOX\t\t\n\t\t",
         "operationId": "PublicConsumeMyItem",
         "parameters": [
           {
@@ -3363,6 +3386,12 @@
         "inventoryId": {
           "type": "string"
         },
+        "options": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "qty": {
           "format": "int32",
           "type": "integer"
@@ -3383,6 +3412,13 @@
     },
     "apimodels.ConsumeItemReq": {
       "properties": {
+        "options": {
+          "description": "options, it is only available when item type is OPTIONBOX and value should be item id.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "qty": {
           "format": "int32",
           "type": "integer"
@@ -4513,11 +4549,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-01T08:28:09+00:00",
-    "gitHash": "c27e23cd8f2ba500e23a428781375c81dfa5a69b",
+    "buildDate": "2024-11-11T07:48:13+00:00",
+    "gitHash": "99f21d39616339bca8b8b06159338e3fcc366ef4",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.4",
+    "version": "0.2.7",
     "version-roles-seeding": "1.2.34"
   }
 }

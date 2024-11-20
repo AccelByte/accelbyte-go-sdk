@@ -28,15 +28,15 @@ var UpdateUserStatItemValueCmd = &cobra.Command{
 			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		statCode, _ := cmd.Flags().GetString("statCode")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *socialclientmodels.StatItemUpdate
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		statCode, _ := cmd.Flags().GetString("statCode")
+		userId, _ := cmd.Flags().GetString("userId")
 		additionalKey, _ := cmd.Flags().GetString("additionalKey")
 		input := &user_statistic.UpdateUserStatItemValueParams{
 			Body:          body,
@@ -60,6 +60,7 @@ var UpdateUserStatItemValueCmd = &cobra.Command{
 
 func init() {
 	UpdateUserStatItemValueCmd.Flags().String("body", "", "Body")
+	_ = UpdateUserStatItemValueCmd.MarkFlagRequired("body")
 	UpdateUserStatItemValueCmd.Flags().String("namespace", "", "Namespace")
 	_ = UpdateUserStatItemValueCmd.MarkFlagRequired("namespace")
 	UpdateUserStatItemValueCmd.Flags().String("statCode", "", "Stat code")

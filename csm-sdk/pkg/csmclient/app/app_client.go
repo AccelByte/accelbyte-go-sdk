@@ -59,9 +59,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
 Gets the List of Apps for AB-Extend Customer
 
 Available scenario:
+- scenario 1: `function-override`
 - scenario 2: `service-extension`
 - scenario 3: `event-handler`
-- scenario 1: `function-override`
 */
 func (a *Client) GetAppListV1(params *GetAppListV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAppListV1OK, *GetAppListV1BadRequest, *GetAppListV1Unauthorized, *GetAppListV1Forbidden, *GetAppListV1NotFound, *GetAppListV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -130,9 +130,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
 Gets the List of Apps for AB-Extend Customer
 
 Available scenario:
+- scenario 1: `function-override`
 - scenario 2: `service-extension`
 - scenario 3: `event-handler`
-- scenario 1: `function-override`
 */
 func (a *Client) GetAppListV1Short(params *GetAppListV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAppListV1OK, error) {
 	// TODO: Validate the params before sending
@@ -314,9 +314,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]`
 Creates new App for AB-Extend Customers
 
 Available scenario:
-- scenario 1: `function-override`
 - scenario 2: `service-extension`
 - scenario 3: `event-handler`
+- scenario 1: `function-override`
 
 Default: `function-override`
 */
@@ -390,9 +390,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]`
 Creates new App for AB-Extend Customers
 
 Available scenario:
-- scenario 1: `function-override`
 - scenario 2: `service-extension`
 - scenario 3: `event-handler`
+- scenario 1: `function-override`
 
 Default: `function-override`
 */

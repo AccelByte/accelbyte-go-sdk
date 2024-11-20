@@ -57,16 +57,18 @@ const (
 // with the default values initialized.
 func NewQueryUserEntitlementsParams() *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault     = bool(true)
-		fuzzyMatchNameDefault = bool(false)
-		limitDefault          = int32(20)
-		offsetDefault         = int32(0)
+		activeOnlyDefault       = bool(true)
+		fuzzyMatchNameDefault   = bool(false)
+		ignoreActiveDateDefault = bool(false)
+		limitDefault            = int32(20)
+		offsetDefault           = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly:     &activeOnlyDefault,
-		FuzzyMatchName: &fuzzyMatchNameDefault,
-		Limit:          &limitDefault,
-		Offset:         &offsetDefault,
+		ActiveOnly:       &activeOnlyDefault,
+		FuzzyMatchName:   &fuzzyMatchNameDefault,
+		IgnoreActiveDate: &ignoreActiveDateDefault,
+		Limit:            &limitDefault,
+		Offset:           &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -76,16 +78,18 @@ func NewQueryUserEntitlementsParams() *QueryUserEntitlementsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewQueryUserEntitlementsParamsWithTimeout(timeout time.Duration) *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault     = bool(true)
-		fuzzyMatchNameDefault = bool(false)
-		limitDefault          = int32(20)
-		offsetDefault         = int32(0)
+		activeOnlyDefault       = bool(true)
+		fuzzyMatchNameDefault   = bool(false)
+		ignoreActiveDateDefault = bool(false)
+		limitDefault            = int32(20)
+		offsetDefault           = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly:     &activeOnlyDefault,
-		FuzzyMatchName: &fuzzyMatchNameDefault,
-		Limit:          &limitDefault,
-		Offset:         &offsetDefault,
+		ActiveOnly:       &activeOnlyDefault,
+		FuzzyMatchName:   &fuzzyMatchNameDefault,
+		IgnoreActiveDate: &ignoreActiveDateDefault,
+		Limit:            &limitDefault,
+		Offset:           &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -95,16 +99,18 @@ func NewQueryUserEntitlementsParamsWithTimeout(timeout time.Duration) *QueryUser
 // with the default values initialized, and the ability to set a context for a request
 func NewQueryUserEntitlementsParamsWithContext(ctx context.Context) *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault     = bool(true)
-		fuzzyMatchNameDefault = bool(false)
-		limitDefault          = int32(20)
-		offsetDefault         = int32(0)
+		activeOnlyDefault       = bool(true)
+		fuzzyMatchNameDefault   = bool(false)
+		ignoreActiveDateDefault = bool(false)
+		limitDefault            = int32(20)
+		offsetDefault           = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly:     &activeOnlyDefault,
-		FuzzyMatchName: &fuzzyMatchNameDefault,
-		Limit:          &limitDefault,
-		Offset:         &offsetDefault,
+		ActiveOnly:       &activeOnlyDefault,
+		FuzzyMatchName:   &fuzzyMatchNameDefault,
+		IgnoreActiveDate: &ignoreActiveDateDefault,
+		Limit:            &limitDefault,
+		Offset:           &offsetDefault,
 
 		Context: ctx,
 	}
@@ -114,17 +120,19 @@ func NewQueryUserEntitlementsParamsWithContext(ctx context.Context) *QueryUserEn
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewQueryUserEntitlementsParamsWithHTTPClient(client *http.Client) *QueryUserEntitlementsParams {
 	var (
-		activeOnlyDefault     = bool(true)
-		fuzzyMatchNameDefault = bool(false)
-		limitDefault          = int32(20)
-		offsetDefault         = int32(0)
+		activeOnlyDefault       = bool(true)
+		fuzzyMatchNameDefault   = bool(false)
+		ignoreActiveDateDefault = bool(false)
+		limitDefault            = int32(20)
+		offsetDefault           = int32(0)
 	)
 	return &QueryUserEntitlementsParams{
-		ActiveOnly:     &activeOnlyDefault,
-		FuzzyMatchName: &fuzzyMatchNameDefault,
-		Limit:          &limitDefault,
-		Offset:         &offsetDefault,
-		HTTPClient:     client,
+		ActiveOnly:       &activeOnlyDefault,
+		FuzzyMatchName:   &fuzzyMatchNameDefault,
+		IgnoreActiveDate: &ignoreActiveDateDefault,
+		Limit:            &limitDefault,
+		Offset:           &offsetDefault,
+		HTTPClient:       client,
 	}
 }
 
@@ -153,6 +161,12 @@ type QueryUserEntitlementsParams struct {
 	Features []string
 	/*FuzzyMatchName*/
 	FuzzyMatchName *bool
+	/*IgnoreActiveDate
+	    This param will work only with activeOnly=true.
+	When fetching entitlement with active status, this param will ignore the startDate and endDate of an entitlement.
+
+	*/
+	IgnoreActiveDate *bool
 	/*ItemID*/
 	ItemID []string
 	/*Limit*/
@@ -326,6 +340,17 @@ func (o *QueryUserEntitlementsParams) SetFuzzyMatchName(fuzzyMatchName *bool) {
 	o.FuzzyMatchName = fuzzyMatchName
 }
 
+// WithIgnoreActiveDate adds the ignoreActiveDate to the query user entitlements params
+func (o *QueryUserEntitlementsParams) WithIgnoreActiveDate(ignoreActiveDate *bool) *QueryUserEntitlementsParams {
+	o.SetIgnoreActiveDate(ignoreActiveDate)
+	return o
+}
+
+// SetIgnoreActiveDate adds the ignoreActiveDate to the query user entitlements params
+func (o *QueryUserEntitlementsParams) SetIgnoreActiveDate(ignoreActiveDate *bool) {
+	o.IgnoreActiveDate = ignoreActiveDate
+}
+
 // WithItemID adds the itemID to the query user entitlements params
 func (o *QueryUserEntitlementsParams) WithItemID(itemID []string) *QueryUserEntitlementsParams {
 	o.SetItemID(itemID)
@@ -486,6 +511,22 @@ func (o *QueryUserEntitlementsParams) WriteToRequest(r runtime.ClientRequest, re
 		qFuzzyMatchName := swag.FormatBool(qrFuzzyMatchName)
 		if qFuzzyMatchName != "" {
 			if err := r.SetQueryParam("fuzzyMatchName", qFuzzyMatchName); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IgnoreActiveDate != nil {
+
+		// query param ignoreActiveDate
+		var qrIgnoreActiveDate bool
+		if o.IgnoreActiveDate != nil {
+			qrIgnoreActiveDate = *o.IgnoreActiveDate
+		}
+		qIgnoreActiveDate := swag.FormatBool(qrIgnoreActiveDate)
+		if qIgnoreActiveDate != "" {
+			if err := r.SetQueryParam("ignoreActiveDate", qIgnoreActiveDate); err != nil {
 				return err
 			}
 		}

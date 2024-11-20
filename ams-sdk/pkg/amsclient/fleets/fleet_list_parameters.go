@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFleetListParams creates a new FleetListParams object
@@ -69,6 +70,21 @@ type FleetListParams struct {
 
 	*/
 	Namespace string
+	/*Active
+	  filter fleets by active status
+
+	*/
+	Active *bool
+	/*Name
+	  filter fleets by name
+
+	*/
+	Name *string
+	/*Region
+	  filter fleets by region
+
+	*/
+	Region *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -146,6 +162,39 @@ func (o *FleetListParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithActive adds the active to the fleet list params
+func (o *FleetListParams) WithActive(active *bool) *FleetListParams {
+	o.SetActive(active)
+	return o
+}
+
+// SetActive adds the active to the fleet list params
+func (o *FleetListParams) SetActive(active *bool) {
+	o.Active = active
+}
+
+// WithName adds the name to the fleet list params
+func (o *FleetListParams) WithName(name *string) *FleetListParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the fleet list params
+func (o *FleetListParams) SetName(name *string) {
+	o.Name = name
+}
+
+// WithRegion adds the region to the fleet list params
+func (o *FleetListParams) WithRegion(region *string) *FleetListParams {
+	o.SetRegion(region)
+	return o
+}
+
+// SetRegion adds the region to the fleet list params
+func (o *FleetListParams) SetRegion(region *string) {
+	o.Region = region
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -157,6 +206,54 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Active != nil {
+
+		// query param active
+		var qrActive bool
+		if o.Active != nil {
+			qrActive = *o.Active
+		}
+		qActive := swag.FormatBool(qrActive)
+		if qActive != "" {
+			if err := r.SetQueryParam("active", qActive); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Region != nil {
+
+		// query param region
+		var qrRegion string
+		if o.Region != nil {
+			qrRegion = *o.Region
+		}
+		qRegion := qrRegion
+		if qRegion != "" {
+			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

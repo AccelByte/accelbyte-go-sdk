@@ -25,6 +25,9 @@ type APIArtifactTypeSamplingRules struct {
 	// success
 	// Required: true
 	Success *APIArtifactSamplingRule `json:"success"`
+
+	// unclaimed
+	Unclaimed *APIArtifactSamplingRule `json:"unclaimed,omitempty"`
 }
 
 // Validate validates this Api artifact type sampling rules

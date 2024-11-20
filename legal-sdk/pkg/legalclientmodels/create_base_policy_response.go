@@ -7,6 +7,8 @@
 package legalclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -24,6 +26,13 @@ type CreateBasePolicyResponse struct {
 
 	// affectedcountries
 	AffectedCountries []string `json:"affectedCountries,omitempty"`
+
+	// countrygroupname
+	CountryGroupName string `json:"countryGroupName,omitempty"`
+
+	// countrytype
+	// Enum: ['COUNTRY', 'COUNTRY_GROUP']
+	CountryType string `json:"countryType,omitempty"`
 
 	// createdat
 	// Format: date-time
@@ -73,6 +82,35 @@ func (m *CreateBasePolicyResponse) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var createBasePolicyResponseTypeCountryTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["COUNTRY", "COUNTRY_GROUP"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		createBasePolicyResponseTypeCountryTypePropEnum = append(createBasePolicyResponseTypeCountryTypePropEnum, v)
+	}
+}
+
+const (
+
+	// CreateBasePolicyResponseCountryTypeCOUNTRY captures enum value "COUNTRY"
+	CreateBasePolicyResponseCountryTypeCOUNTRY string = "COUNTRY"
+
+	// CreateBasePolicyResponseCountryTypeCOUNTRYGROUP captures enum value "COUNTRY_GROUP"
+	CreateBasePolicyResponseCountryTypeCOUNTRYGROUP string = "COUNTRY_GROUP"
+)
+
+// prop value enum
+func (m *CreateBasePolicyResponse) validateCountryTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, createBasePolicyResponseTypeCountryTypePropEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

@@ -608,7 +608,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: unique within a challenge.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the goal.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing the goal (optional).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups: list of conditions that conform with the goal progressions.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;predicates: list of progression parameters to be tracked.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;parameterType: the type of parameter for challenge to be progressed with. the available options are:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: progress by user statistic item value.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: progress by user achievement.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: progress by user account event.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;parameterName: the name of the parameter for challenge to be progressed with.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: refers to stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: refers to achievement code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: one of the user account event. current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;targetValue: the target number to be reached by the parameter.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX.\nNumber of goals per challenge is \u0026lt;b\u0026gt;limited to 100 goals\u0026lt;/b\u0026gt;.",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: unique within a challenge.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the goal.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing the goal (optional).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;predicates: list of progression parameters to be tracked.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;parameterType: the type of parameter for challenge to be progressed with. the available options are:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: progress by user statistic item value.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: progress by user achievement.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: progress by user account event.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;parameterName: the name of the parameter for challenge to be progressed with.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: refers to stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: refers to achievement code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: refers to a specific event related to user accounts. The current possible events include: userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded, thirdPartyAccountCreated, and userLoggedIn.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;For the \u0026lt;b\u0026gt;userAccountLinked\u0026lt;/b\u0026gt; event, \u0026lt;b\u0026gt;parameterName\u0026lt;/b\u0026gt; will utilize \u0026lt;b\u0026gt;platformId\u0026lt;/b\u0026gt; rather than the event name. This will be validated against the list of active third-party accounts configuration within the namespace, such as \u0026lt;i\u0026gt;psn\u0026lt;/i\u0026gt;, \u0026lt;i\u0026gt;steam\u0026lt;/i\u0026gt;, or \u0026lt;i\u0026gt;device\u0026lt;/i\u0026gt;.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;targetValue: the target number to be reached by the parameter.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX.\nNumber of goals per challenge is \u0026lt;b\u0026gt;limited to 100 goals\u0026lt;/b\u0026gt;.",
         "operationId": "adminCreateGoal",
         "parameters": [
           {
@@ -854,7 +854,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: name of the goal.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing the goal (optional).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups: list of conditions that conform with the goal progressions.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;predicates: list of progression parameters to be tracked.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;parameterType: the type of parameter for challenge to be progressed with. the available options are:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: progress by user statistic item value.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: progress by user achievement.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: progress by user account event.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;parameterName: the name of the parameter for challenge to be progressed with.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: refers to stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: refers to achievement code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: one of the user account event. Current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;targetValue: the target number to be reached by the parameter.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX",
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: name of the goal.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing the goal (optional).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;predicates: list of progression parameters to be tracked.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;parameterType: the type of parameter for challenge to be progressed with. the available options are:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: progress by user statistic item value.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: progress by user achievement.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: progress by user account event.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;parameterName: the name of the parameter for challenge to be progressed with.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: refers to stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: refers to achievement code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: one of the user account event. Current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;targetValue: the target number to be reached by the parameter.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX",
         "operationId": "adminUpdateGoals",
         "parameters": [
           {
@@ -3099,6 +3099,49 @@
         "userId"
       ]
     },
+    "model.ClaimableUserReward": {
+      "properties": {
+        "goalProgressionId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "itemName": {
+          "type": "string"
+        },
+        "qty": {
+          "format": "float",
+          "type": "number"
+        },
+        "status": {
+          "enum": [
+            "CLAIMED",
+            "UNCLAIMED"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "ENTITLEMENT",
+            "STATISTIC"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "goalProgressionId",
+        "id",
+        "itemId",
+        "itemName",
+        "qty",
+        "status",
+        "type"
+      ]
+    },
     "model.CreateChallengeRequest": {
       "properties": {
         "activeGoalsPerRotation": {
@@ -3330,6 +3373,12 @@
             "RETIRED"
           ],
           "type": "string"
+        },
+        "toClaimRewards": {
+          "items": {
+            "$ref": "#/definitions/model.ClaimableUserReward"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -3943,6 +3992,9 @@
         "goalCode": {
           "type": "string"
         },
+        "goalProgressionId": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -3981,6 +4033,7 @@
         "challengeCode",
         "createdAt",
         "goalCode",
+        "goalProgressionId",
         "id",
         "itemId",
         "itemName",
@@ -4051,11 +4104,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-07T06:33:06+00:00",
-    "gitHash": "0461256b321454bca3fffc6de0093eeeaa52e6f5",
+    "buildDate": "2024-11-18T09:05:54+00:00",
+    "gitHash": "977f3ff35ec7f1b20440e567a3a2ab0c6494c2c8",
     "name": "justice-challenge-service",
     "realm": "stage",
-    "version": "1.10.0",
+    "version": "1.11.1",
     "version-roles-seeding": "1.2.74"
   }
 }

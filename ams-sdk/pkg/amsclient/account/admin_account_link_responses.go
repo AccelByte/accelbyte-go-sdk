@@ -19,34 +19,34 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ams-sdk/pkg/amsclientmodels"
 )
 
-// AdminAccountLinkTokenPostReader is a Reader for the AdminAccountLinkTokenPost structure.
-type AdminAccountLinkTokenPostReader struct {
+// AdminAccountLinkReader is a Reader for the AdminAccountLink structure.
+type AdminAccountLinkReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *AdminAccountLinkTokenPostReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *AdminAccountLinkReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 201:
-		result := NewAdminAccountLinkTokenPostCreated()
+		result := NewAdminAccountLinkCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 401:
-		result := NewAdminAccountLinkTokenPostUnauthorized()
+		result := NewAdminAccountLinkUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewAdminAccountLinkTokenPostForbidden()
+		result := NewAdminAccountLinkForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 500:
-		result := NewAdminAccountLinkTokenPostInternalServerError()
+		result := NewAdminAccountLinkInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -62,24 +62,24 @@ func (o *AdminAccountLinkTokenPostReader) ReadResponse(response runtime.ClientRe
 	}
 }
 
-// NewAdminAccountLinkTokenPostCreated creates a AdminAccountLinkTokenPostCreated with default headers values
-func NewAdminAccountLinkTokenPostCreated() *AdminAccountLinkTokenPostCreated {
-	return &AdminAccountLinkTokenPostCreated{}
+// NewAdminAccountLinkCreated creates a AdminAccountLinkCreated with default headers values
+func NewAdminAccountLinkCreated() *AdminAccountLinkCreated {
+	return &AdminAccountLinkCreated{}
 }
 
-/*AdminAccountLinkTokenPostCreated handles this case with default header values.
+/*AdminAccountLinkCreated handles this case with default header values.
 
   success
 */
-type AdminAccountLinkTokenPostCreated struct {
+type AdminAccountLinkCreated struct {
 	Payload *amsclientmodels.APIAccountLinkResponse
 }
 
-func (o *AdminAccountLinkTokenPostCreated) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenPostCreated  %+v", 201, o.ToJSONString())
+func (o *AdminAccountLinkCreated) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkCreated  %+v", 201, o.ToJSONString())
 }
 
-func (o *AdminAccountLinkTokenPostCreated) ToJSONString() string {
+func (o *AdminAccountLinkCreated) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -94,11 +94,11 @@ func (o *AdminAccountLinkTokenPostCreated) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminAccountLinkTokenPostCreated) GetPayload() *amsclientmodels.APIAccountLinkResponse {
+func (o *AdminAccountLinkCreated) GetPayload() *amsclientmodels.APIAccountLinkResponse {
 	return o.Payload
 }
 
-func (o *AdminAccountLinkTokenPostCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
@@ -116,24 +116,24 @@ func (o *AdminAccountLinkTokenPostCreated) readResponse(response runtime.ClientR
 	return nil
 }
 
-// NewAdminAccountLinkTokenPostUnauthorized creates a AdminAccountLinkTokenPostUnauthorized with default headers values
-func NewAdminAccountLinkTokenPostUnauthorized() *AdminAccountLinkTokenPostUnauthorized {
-	return &AdminAccountLinkTokenPostUnauthorized{}
+// NewAdminAccountLinkUnauthorized creates a AdminAccountLinkUnauthorized with default headers values
+func NewAdminAccountLinkUnauthorized() *AdminAccountLinkUnauthorized {
+	return &AdminAccountLinkUnauthorized{}
 }
 
-/*AdminAccountLinkTokenPostUnauthorized handles this case with default header values.
+/*AdminAccountLinkUnauthorized handles this case with default header values.
 
   no authorization provided
 */
-type AdminAccountLinkTokenPostUnauthorized struct {
+type AdminAccountLinkUnauthorized struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AdminAccountLinkTokenPostUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenPostUnauthorized  %+v", 401, o.ToJSONString())
+func (o *AdminAccountLinkUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkUnauthorized  %+v", 401, o.ToJSONString())
 }
 
-func (o *AdminAccountLinkTokenPostUnauthorized) ToJSONString() string {
+func (o *AdminAccountLinkUnauthorized) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -148,11 +148,11 @@ func (o *AdminAccountLinkTokenPostUnauthorized) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminAccountLinkTokenPostUnauthorized) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkUnauthorized) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AdminAccountLinkTokenPostUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
@@ -170,24 +170,24 @@ func (o *AdminAccountLinkTokenPostUnauthorized) readResponse(response runtime.Cl
 	return nil
 }
 
-// NewAdminAccountLinkTokenPostForbidden creates a AdminAccountLinkTokenPostForbidden with default headers values
-func NewAdminAccountLinkTokenPostForbidden() *AdminAccountLinkTokenPostForbidden {
-	return &AdminAccountLinkTokenPostForbidden{}
+// NewAdminAccountLinkForbidden creates a AdminAccountLinkForbidden with default headers values
+func NewAdminAccountLinkForbidden() *AdminAccountLinkForbidden {
+	return &AdminAccountLinkForbidden{}
 }
 
-/*AdminAccountLinkTokenPostForbidden handles this case with default header values.
+/*AdminAccountLinkForbidden handles this case with default header values.
 
   insufficient permissions
 */
-type AdminAccountLinkTokenPostForbidden struct {
+type AdminAccountLinkForbidden struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AdminAccountLinkTokenPostForbidden) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenPostForbidden  %+v", 403, o.ToJSONString())
+func (o *AdminAccountLinkForbidden) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkForbidden  %+v", 403, o.ToJSONString())
 }
 
-func (o *AdminAccountLinkTokenPostForbidden) ToJSONString() string {
+func (o *AdminAccountLinkForbidden) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -202,11 +202,11 @@ func (o *AdminAccountLinkTokenPostForbidden) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminAccountLinkTokenPostForbidden) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkForbidden) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AdminAccountLinkTokenPostForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")
@@ -224,24 +224,24 @@ func (o *AdminAccountLinkTokenPostForbidden) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewAdminAccountLinkTokenPostInternalServerError creates a AdminAccountLinkTokenPostInternalServerError with default headers values
-func NewAdminAccountLinkTokenPostInternalServerError() *AdminAccountLinkTokenPostInternalServerError {
-	return &AdminAccountLinkTokenPostInternalServerError{}
+// NewAdminAccountLinkInternalServerError creates a AdminAccountLinkInternalServerError with default headers values
+func NewAdminAccountLinkInternalServerError() *AdminAccountLinkInternalServerError {
+	return &AdminAccountLinkInternalServerError{}
 }
 
-/*AdminAccountLinkTokenPostInternalServerError handles this case with default header values.
+/*AdminAccountLinkInternalServerError handles this case with default header values.
 
   internal server error
 */
-type AdminAccountLinkTokenPostInternalServerError struct {
+type AdminAccountLinkInternalServerError struct {
 	Payload *amsclientmodels.ResponseErrorResponse
 }
 
-func (o *AdminAccountLinkTokenPostInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkTokenPostInternalServerError  %+v", 500, o.ToJSONString())
+func (o *AdminAccountLinkInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /ams/v1/admin/namespaces/{namespace}/account/link][%d] adminAccountLinkInternalServerError  %+v", 500, o.ToJSONString())
 }
 
-func (o *AdminAccountLinkTokenPostInternalServerError) ToJSONString() string {
+func (o *AdminAccountLinkInternalServerError) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -256,11 +256,11 @@ func (o *AdminAccountLinkTokenPostInternalServerError) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *AdminAccountLinkTokenPostInternalServerError) GetPayload() *amsclientmodels.ResponseErrorResponse {
+func (o *AdminAccountLinkInternalServerError) GetPayload() *amsclientmodels.ResponseErrorResponse {
 	return o.Payload
 }
 
-func (o *AdminAccountLinkTokenPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *AdminAccountLinkInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

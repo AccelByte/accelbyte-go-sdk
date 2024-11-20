@@ -30,16 +30,129 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	DeletePolicyVersion(params *DeletePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyVersionNoContent, *DeletePolicyVersionBadRequest, error)
+	DeletePolicyVersionShort(params *DeletePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyVersionNoContent, error)
 	UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, *UpdatePolicyVersion1BadRequest, *UpdatePolicyVersion1Conflict, error)
 	UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, error)
 	PublishPolicyVersion1(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, *PublishPolicyVersion1BadRequest, *PublishPolicyVersion1Conflict, error)
 	PublishPolicyVersion1Short(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, error)
+	UnpublishPolicyVersion(params *UnpublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishPolicyVersionNoContent, *UnpublishPolicyVersionBadRequest, error)
+	UnpublishPolicyVersionShort(params *UnpublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishPolicyVersionNoContent, error)
 	RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, *RetrieveSinglePolicyVersion1NotFound, error)
 	RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, error)
 	CreatePolicyVersion1(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, *CreatePolicyVersion1BadRequest, error)
 	CreatePolicyVersion1Short(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeletePolicyVersionShort instead.
+
+DeletePolicyVersion delete a version of policy
+Delete a policy version from policy.Can only be deleted if match these criteria:
+
+
+  * Policy version is not published
+  * Policy version has never been accepted by any user
+*/
+func (a *Client) DeletePolicyVersion(params *DeletePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyVersionNoContent, *DeletePolicyVersionBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePolicyVersionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePolicyVersion",
+		Method:             "DELETE",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePolicyVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePolicyVersionNoContent:
+		return v, nil, nil
+
+	case *DeletePolicyVersionBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeletePolicyVersionShort delete a version of policy
+Delete a policy version from policy.Can only be deleted if match these criteria:
+
+
+  * Policy version is not published
+  * Policy version has never been accepted by any user
+*/
+func (a *Client) DeletePolicyVersionShort(params *DeletePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyVersionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePolicyVersionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePolicyVersion",
+		Method:             "DELETE",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePolicyVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePolicyVersionNoContent:
+		return v, nil
+	case *DeletePolicyVersionBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -247,6 +360,113 @@ func (a *Client) PublishPolicyVersion1Short(params *PublishPolicyVersion1Params,
 	case *PublishPolicyVersion1BadRequest:
 		return nil, v
 	case *PublishPolicyVersion1Conflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UnpublishPolicyVersionShort instead.
+
+UnpublishPolicyVersion un-publish version from policy
+Un-publish a policy version from policy.Can only be un-publish if match these criteria:
+
+
+  * Policy version has never been accepted by any user
+*/
+func (a *Client) UnpublishPolicyVersion(params *UnpublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishPolicyVersionNoContent, *UnpublishPolicyVersionBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUnpublishPolicyVersionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "unpublishPolicyVersion",
+		Method:             "PATCH",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/unpublish",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UnpublishPolicyVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UnpublishPolicyVersionNoContent:
+		return v, nil, nil
+
+	case *UnpublishPolicyVersionBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UnpublishPolicyVersionShort un-publish version from policy
+Un-publish a policy version from policy.Can only be un-publish if match these criteria:
+
+
+  * Policy version has never been accepted by any user
+*/
+func (a *Client) UnpublishPolicyVersionShort(params *UnpublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishPolicyVersionNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUnpublishPolicyVersionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "unpublishPolicyVersion",
+		Method:             "PATCH",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/unpublish",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UnpublishPolicyVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UnpublishPolicyVersionNoContent:
+		return v, nil
+	case *UnpublishPolicyVersionBadRequest:
 		return nil, v
 
 	default:

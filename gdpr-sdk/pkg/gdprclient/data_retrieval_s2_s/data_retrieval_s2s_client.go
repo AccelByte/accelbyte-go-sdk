@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	S2SGetListFinishedPersonalDataRequest(params *S2SGetListFinishedPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGetListFinishedPersonalDataRequestOK, *S2SGetListFinishedPersonalDataRequestBadRequest, *S2SGetListFinishedPersonalDataRequestUnauthorized, *S2SGetListFinishedPersonalDataRequestForbidden, *S2SGetListFinishedPersonalDataRequestInternalServerError, error)
 	S2SGetListFinishedPersonalDataRequestShort(params *S2SGetListFinishedPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGetListFinishedPersonalDataRequestOK, error)
+	S2SGetDataRequestByRequestID(params *S2SGetDataRequestByRequestIDParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGetDataRequestByRequestIDOK, *S2SGetDataRequestByRequestIDUnauthorized, *S2SGetDataRequestByRequestIDNotFound, *S2SGetDataRequestByRequestIDInternalServerError, error)
+	S2SGetDataRequestByRequestIDShort(params *S2SGetDataRequestByRequestIDParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGetDataRequestByRequestIDOK, error)
 	S2SRequestDataRetrieval(params *S2SRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*S2SRequestDataRetrievalCreated, *S2SRequestDataRetrievalBadRequest, *S2SRequestDataRetrievalUnauthorized, *S2SRequestDataRetrievalNotFound, *S2SRequestDataRetrievalInternalServerError, error)
 	S2SRequestDataRetrievalShort(params *S2SRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*S2SRequestDataRetrievalCreated, error)
 	S2SGeneratePersonalDataURL(params *S2SGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGeneratePersonalDataURLOK, *S2SGeneratePersonalDataURLBadRequest, *S2SGeneratePersonalDataURLUnauthorized, *S2SGeneratePersonalDataURLNotFound, *S2SGeneratePersonalDataURLInternalServerError, error)
@@ -169,6 +171,129 @@ func (a *Client) S2SGetListFinishedPersonalDataRequestShort(params *S2SGetListFi
 	case *S2SGetListFinishedPersonalDataRequestForbidden:
 		return nil, v
 	case *S2SGetListFinishedPersonalDataRequestInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use S2SGetDataRequestByRequestIDShort instead.
+
+S2SGetDataRequestByRequestID get personal data request by request id
+Scope: account
+
+Get Personal Data Request by Request Id.
+If the request has been completed, it will return a download url for the data package.
+
+---
+## This API for S2S integration purpose only
+*/
+func (a *Client) S2SGetDataRequestByRequestID(params *S2SGetDataRequestByRequestIDParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGetDataRequestByRequestIDOK, *S2SGetDataRequestByRequestIDUnauthorized, *S2SGetDataRequestByRequestIDNotFound, *S2SGetDataRequestByRequestIDInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewS2SGetDataRequestByRequestIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "S2SGetDataRequestByRequestID",
+		Method:             "GET",
+		PathPattern:        "/gdpr/s2s/namespaces/{namespace}/requests/{requestId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &S2SGetDataRequestByRequestIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *S2SGetDataRequestByRequestIDOK:
+		return v, nil, nil, nil, nil
+
+	case *S2SGetDataRequestByRequestIDUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *S2SGetDataRequestByRequestIDNotFound:
+		return nil, nil, v, nil, nil
+
+	case *S2SGetDataRequestByRequestIDInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+S2SGetDataRequestByRequestIDShort get personal data request by request id
+Scope: account
+
+Get Personal Data Request by Request Id.
+If the request has been completed, it will return a download url for the data package.
+
+---
+## This API for S2S integration purpose only
+*/
+func (a *Client) S2SGetDataRequestByRequestIDShort(params *S2SGetDataRequestByRequestIDParams, authInfo runtime.ClientAuthInfoWriter) (*S2SGetDataRequestByRequestIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewS2SGetDataRequestByRequestIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "S2SGetDataRequestByRequestID",
+		Method:             "GET",
+		PathPattern:        "/gdpr/s2s/namespaces/{namespace}/requests/{requestId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &S2SGetDataRequestByRequestIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *S2SGetDataRequestByRequestIDOK:
+		return v, nil
+	case *S2SGetDataRequestByRequestIDUnauthorized:
+		return nil, v
+	case *S2SGetDataRequestByRequestIDNotFound:
+		return nil, v
+	case *S2SGetDataRequestByRequestIDInternalServerError:
 		return nil, v
 
 	default:

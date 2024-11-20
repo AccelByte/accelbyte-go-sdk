@@ -22,6 +22,9 @@ type ApimodelsConsumeItem struct {
 	// Required: true
 	InventoryID *string `json:"inventoryId"`
 
+	// options
+	Options []string `json:"options,omitempty"`
+
 	// qty
 	// Required: true
 	// Format: int32

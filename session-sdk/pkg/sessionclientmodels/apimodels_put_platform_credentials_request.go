@@ -20,7 +20,7 @@ type ApimodelsPutPlatformCredentialsRequest struct {
 
 	// psn
 	// Required: true
-	Psn *ModelsPSNAppServerCredentials `json:"psn"`
+	Psn *ApimodelsPSNAppServerCredentialRecord `json:"psn"`
 }
 
 // Validate validates this Apimodels put platform credentials request

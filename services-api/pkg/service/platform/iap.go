@@ -507,6 +507,20 @@ func (aaa *IAPService) UpdateXblBPCertFile(input *iap.UpdateXblBPCertFileParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetIAPOrderConsumeDetailsShort instead.
+func (aaa *IAPService) GetIAPOrderConsumeDetails(input *iap.GetIAPOrderConsumeDetailsParams) ([]*platformclientmodels.IAPOrderConsumeDetailInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.IAP.GetIAPOrderConsumeDetails(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use QueryUserIAPOrdersShort instead.
 func (aaa *IAPService) QueryUserIAPOrders(input *iap.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1782,6 +1796,36 @@ func (aaa *IAPService) UpdateXblBPCertFileShort(input *iap.UpdateXblBPCertFilePa
 	}
 
 	ok, err := aaa.Client.IAP.UpdateXblBPCertFileShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) GetIAPOrderConsumeDetailsShort(input *iap.GetIAPOrderConsumeDetailsParams) ([]*platformclientmodels.IAPOrderConsumeDetailInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.IAP.GetIAPOrderConsumeDetailsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

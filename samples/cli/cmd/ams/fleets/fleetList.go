@@ -26,8 +26,14 @@ var FleetListCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		active, _ := cmd.Flags().GetBool("active")
+		name, _ := cmd.Flags().GetString("name")
+		region, _ := cmd.Flags().GetString("region")
 		input := &fleets.FleetListParams{
 			Namespace: namespace,
+			Active:    &active,
+			Name:      &name,
+			Region:    &region,
 		}
 		ok, errOK := fleetsService.FleetListShort(input)
 		if errOK != nil {
@@ -45,4 +51,7 @@ var FleetListCmd = &cobra.Command{
 func init() {
 	FleetListCmd.Flags().String("namespace", "", "Namespace")
 	_ = FleetListCmd.MarkFlagRequired("namespace")
+	FleetListCmd.Flags().Bool("active", false, "Active")
+	FleetListCmd.Flags().String("name", "", "Name")
+	FleetListCmd.Flags().String("region", "", "Region")
 }

@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels session invite request.
 type ApimodelsSessionInviteRequest struct {
 
+	// metadata
+	Metadata map[string]string `json:"metadata,omitempty"`
+
 	// platformid
 	// Required: true
 	PlatformID *string `json:"platformID"`

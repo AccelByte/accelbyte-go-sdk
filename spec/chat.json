@@ -10042,11 +10042,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-10-02T03:15:42+00:00",
-    "gitHash": "55ff4446a78d3ffb50d6d0f5a36b17b536a21e83",
+    "buildDate": "2024-11-06T06:22:47+00:00",
+    "gitHash": "fb2e8c4129e543472cb8e3a9f8c60b051d692c75",
     "name": "justice-chat-service",
-    "revisionID": "0.4.34",
-    "version": "0.4.34",
+    "revisionID": "0.4.36",
+    "version": "0.4.36",
     "version-roles-seeding": "1.2.15"
   }
 }

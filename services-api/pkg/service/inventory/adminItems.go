@@ -133,9 +133,18 @@ func (aaa *AdminItemsService) AdminSaveItemToInventory(input *admin_items.AdminS
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := aaa.Client.AdminItems.AdminSaveItemToInventory(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.AdminItems.AdminSaveItemToInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

@@ -34,7 +34,7 @@ type DTOFinishedDataDeletion struct {
 	RequestDate strfmt.DateTime `json:"requestDate"`
 
 	// Status of request
-	// Enum: ['Completed,Failed']
+	// Enum: ['Completed', 'Failed']
 	// Required: true
 	Status *string `json:"status"`
 
@@ -96,7 +96,7 @@ var dtoFinishedDataDeletionTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["COMPLETED,FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["COMPLETED", "FAILED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -106,8 +106,11 @@ func init() {
 
 const (
 
-	// DTOFinishedDataDeletionStatusCOMPLETEDFAILED captures enum value "COMPLETED,FAILED"
-	DTOFinishedDataDeletionStatusCOMPLETEDFAILED string = "COMPLETED,FAILED"
+	// DTOFinishedDataDeletionStatusCOMPLETED captures enum value "COMPLETED"
+	DTOFinishedDataDeletionStatusCOMPLETED string = "COMPLETED"
+
+	// DTOFinishedDataDeletionStatusFAILED captures enum value "FAILED"
+	DTOFinishedDataDeletionStatusFAILED string = "FAILED"
 )
 
 // prop value enum

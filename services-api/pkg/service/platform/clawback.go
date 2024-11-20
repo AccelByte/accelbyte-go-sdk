@@ -66,6 +66,20 @@ func (aaa *ClawbackService) MockPlayStationStreamEvent(input *clawback.MockPlayS
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use MockXblClawbackEventShort instead.
+func (aaa *ClawbackService) MockXblClawbackEvent(input *clawback.MockXblClawbackEventParams) (*platformclientmodels.ClawbackInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Clawback.MockXblClawbackEvent(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *ClawbackService) QueryIAPClawbackHistoryShort(input *clawback.QueryIAPClawbackHistoryParams) (*platformclientmodels.IAPClawbackPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -119,6 +133,36 @@ func (aaa *ClawbackService) MockPlayStationStreamEventShort(input *clawback.Mock
 	}
 
 	ok, err := aaa.Client.Clawback.MockPlayStationStreamEventShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ClawbackService) MockXblClawbackEventShort(input *clawback.MockXblClawbackEventParams) (*platformclientmodels.ClawbackInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdClawback != nil {
+		input.XFlightId = tempFlightIdClawback
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Clawback.MockXblClawbackEventShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

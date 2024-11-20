@@ -32,6 +32,10 @@ type ModelUserReward struct {
 	// Required: true
 	GoalCode *string `json:"goalCode"`
 
+	// goalprogressionid
+	// Required: true
+	GoalProgressionID *string `json:"goalProgressionId"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -79,6 +83,9 @@ func (m *ModelUserReward) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateGoalCode(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateGoalProgressionID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateID(formats); err != nil {
@@ -133,6 +140,15 @@ func (m *ModelUserReward) validateCreatedAt(formats strfmt.Registry) error {
 func (m *ModelUserReward) validateGoalCode(formats strfmt.Registry) error {
 
 	if err := validate.Required("goalCode", "body", m.GoalCode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserReward) validateGoalProgressionID(formats strfmt.Registry) error {
+
+	if err := validate.Required("goalProgressionId", "body", m.GoalProgressionID); err != nil {
 		return err
 	}
 

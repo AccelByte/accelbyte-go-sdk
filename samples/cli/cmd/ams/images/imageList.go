@@ -26,8 +26,26 @@ var ImageListCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		count, _ := cmd.Flags().GetInt64("count")
+		inUse, _ := cmd.Flags().GetString("inUse")
+		isProtected, _ := cmd.Flags().GetBool("isProtected")
+		name, _ := cmd.Flags().GetString("name")
+		offset, _ := cmd.Flags().GetInt64("offset")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
+		sortDirection, _ := cmd.Flags().GetString("sortDirection")
+		status, _ := cmd.Flags().GetString("status")
+		tag, _ := cmd.Flags().GetString("tag")
 		input := &images.ImageListParams{
-			Namespace: namespace,
+			Namespace:     namespace,
+			Count:         &count,
+			InUse:         &inUse,
+			IsProtected:   &isProtected,
+			Name:          &name,
+			Offset:        &offset,
+			SortBy:        &sortBy,
+			SortDirection: &sortDirection,
+			Status:        &status,
+			Tag:           &tag,
 		}
 		ok, errOK := imagesService.ImageListShort(input)
 		if errOK != nil {
@@ -45,4 +63,13 @@ var ImageListCmd = &cobra.Command{
 func init() {
 	ImageListCmd.Flags().String("namespace", "", "Namespace")
 	_ = ImageListCmd.MarkFlagRequired("namespace")
+	ImageListCmd.Flags().Int64("count", 1, "Count")
+	ImageListCmd.Flags().String("inUse", "", "In use")
+	ImageListCmd.Flags().Bool("isProtected", false, "Is protected")
+	ImageListCmd.Flags().String("name", "", "Name")
+	ImageListCmd.Flags().Int64("offset", 0, "Offset")
+	ImageListCmd.Flags().String("sortBy", "", "Sort by")
+	ImageListCmd.Flags().String("sortDirection", "", "Sort direction")
+	ImageListCmd.Flags().String("status", "", "Status")
+	ImageListCmd.Flags().String("tag", "", "Tag")
 }

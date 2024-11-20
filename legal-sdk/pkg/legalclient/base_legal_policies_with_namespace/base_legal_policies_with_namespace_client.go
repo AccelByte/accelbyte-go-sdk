@@ -36,10 +36,16 @@ type ClientService interface {
 	CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, error)
 	RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, *RetrieveSinglePolicy1NotFound, error)
 	RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, error)
+	DeleteBasePolicy(params *DeleteBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBasePolicyNoContent, *DeleteBasePolicyBadRequest, error)
+	DeleteBasePolicyShort(params *DeleteBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBasePolicyNoContent, error)
 	PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, *PartialUpdatePolicy1BadRequest, error)
 	PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, error)
 	RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, *RetrievePolicyCountry1NotFound, error)
 	RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, error)
+	RetrieveAllPoliciesFromBasePolicy(params *RetrieveAllPoliciesFromBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPoliciesFromBasePolicyOK, *RetrieveAllPoliciesFromBasePolicyNotFound, error)
+	RetrieveAllPoliciesFromBasePolicyShort(params *RetrieveAllPoliciesFromBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPoliciesFromBasePolicyOK, error)
+	CreatePolicyUnderBasePolicy(params *CreatePolicyUnderBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyUnderBasePolicyCreated, *CreatePolicyUnderBasePolicyBadRequest, error)
+	CreatePolicyUnderBasePolicyShort(params *CreatePolicyUnderBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyUnderBasePolicyCreated, error)
 	RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error)
 	RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error)
 
@@ -147,6 +153,14 @@ Deprecated: 2022-08-10 - Use CreatePolicy1Short instead.
 
 CreatePolicy1 create a base legal policy
 Create a legal policy.
+Note:
+
+
+  *  countryType field only accept COUNTRY or COUNTRY_GROUP.
+  * COUNTRY_GROUP countryType requires the countryGroupName and affectedCountries fields to be provided.
+
+
+* policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
 func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, *CreatePolicy1BadRequest, *CreatePolicy1Conflict, *CreatePolicy1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -205,6 +219,14 @@ func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.Cli
 /*
 CreatePolicy1Short create a base legal policy
 Create a legal policy.
+Note:
+
+
+  *  countryType field only accept COUNTRY or COUNTRY_GROUP.
+  * COUNTRY_GROUP countryType requires the countryGroupName and affectedCountries fields to be provided.
+
+
+* policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
 func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, error) {
 	// TODO: Validate the params before sending
@@ -355,10 +377,127 @@ func (a *Client) RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params,
 }
 
 /*
+Deprecated: 2022-08-10 - Use DeleteBasePolicyShort instead.
+
+DeleteBasePolicy delete base legal policy
+Delete base legal policy.Can only be deleted if match these criteria:
+
+
+  * Base policy don't have published policy version
+  * Policy version under base policy has never been accepted by any user
+*/
+func (a *Client) DeleteBasePolicy(params *DeleteBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBasePolicyNoContent, *DeleteBasePolicyBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteBasePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteBasePolicy",
+		Method:             "DELETE",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteBasePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteBasePolicyNoContent:
+		return v, nil, nil
+
+	case *DeleteBasePolicyBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteBasePolicyShort delete base legal policy
+Delete base legal policy.Can only be deleted if match these criteria:
+
+
+  * Base policy don't have published policy version
+  * Policy version under base policy has never been accepted by any user
+*/
+func (a *Client) DeleteBasePolicyShort(params *DeleteBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBasePolicyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteBasePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteBasePolicy",
+		Method:             "DELETE",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteBasePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteBasePolicyNoContent:
+		return v, nil
+	case *DeleteBasePolicyBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PartialUpdatePolicy1Short instead.
 
 PartialUpdatePolicy1 update base legal policy
 Update an existing base policy.
+Note:
+
+
+  *  countryType field only accept COUNTRY or COUNTRY_GROUP.
+  * COUNTRY_GROUP countryType requires the countryGroupName and affectedCountries fields to be provided.
+
+
+* policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
 func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, *PartialUpdatePolicy1BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -411,6 +550,14 @@ func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authIn
 /*
 PartialUpdatePolicy1Short update base legal policy
 Update an existing base policy.
+Note:
+
+
+  *  countryType field only accept COUNTRY or COUNTRY_GROUP.
+  * COUNTRY_GROUP countryType requires the countryGroupName and affectedCountries fields to be provided.
+
+
+* policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
 func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, error) {
 	// TODO: Validate the params before sending
@@ -549,6 +696,224 @@ func (a *Client) RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Param
 	case *RetrievePolicyCountry1OK:
 		return v, nil
 	case *RetrievePolicyCountry1NotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use RetrieveAllPoliciesFromBasePolicyShort instead.
+
+RetrieveAllPoliciesFromBasePolicy retrieve all policies from base legal policy
+Retrieve all policies from Base Legal Policy.
+*/
+func (a *Client) RetrieveAllPoliciesFromBasePolicy(params *RetrieveAllPoliciesFromBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPoliciesFromBasePolicyOK, *RetrieveAllPoliciesFromBasePolicyNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllPoliciesFromBasePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveAllPoliciesFromBasePolicy",
+		Method:             "GET",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllPoliciesFromBasePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllPoliciesFromBasePolicyOK:
+		return v, nil, nil
+
+	case *RetrieveAllPoliciesFromBasePolicyNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+RetrieveAllPoliciesFromBasePolicyShort retrieve all policies from base legal policy
+Retrieve all policies from Base Legal Policy.
+*/
+func (a *Client) RetrieveAllPoliciesFromBasePolicyShort(params *RetrieveAllPoliciesFromBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPoliciesFromBasePolicyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRetrieveAllPoliciesFromBasePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "retrieveAllPoliciesFromBasePolicy",
+		Method:             "GET",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RetrieveAllPoliciesFromBasePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RetrieveAllPoliciesFromBasePolicyOK:
+		return v, nil
+	case *RetrieveAllPoliciesFromBasePolicyNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use CreatePolicyUnderBasePolicyShort instead.
+
+CreatePolicyUnderBasePolicy create policy under base policy
+Create policy under base policy.
+Note:
+
+
+  *  countryType field only accept COUNTRY or COUNTRY_GROUP.
+  * COUNTRY_GROUP policy requires the countryGroupName and countries fields to be provided.
+
+
+* policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
+*/
+func (a *Client) CreatePolicyUnderBasePolicy(params *CreatePolicyUnderBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyUnderBasePolicyCreated, *CreatePolicyUnderBasePolicyBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePolicyUnderBasePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createPolicyUnderBasePolicy",
+		Method:             "POST",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePolicyUnderBasePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePolicyUnderBasePolicyCreated:
+		return v, nil, nil
+
+	case *CreatePolicyUnderBasePolicyBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+CreatePolicyUnderBasePolicyShort create policy under base policy
+Create policy under base policy.
+Note:
+
+
+  *  countryType field only accept COUNTRY or COUNTRY_GROUP.
+  * COUNTRY_GROUP policy requires the countryGroupName and countries fields to be provided.
+
+
+* policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
+*/
+func (a *Client) CreatePolicyUnderBasePolicyShort(params *CreatePolicyUnderBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyUnderBasePolicyCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePolicyUnderBasePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createPolicyUnderBasePolicy",
+		Method:             "POST",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePolicyUnderBasePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreatePolicyUnderBasePolicyCreated:
+		return v, nil
+	case *CreatePolicyUnderBasePolicyBadRequest:
 		return nil, v
 
 	default:

@@ -19,6 +19,13 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in ListUserContributionsParams
+const (
+	ListUserContributionsContributedValueConstant     = "contributedValue"
+	ListUserContributionsContributedValueAscConstant  = "contributedValue:asc"
+	ListUserContributionsContributedValueDescConstant = "contributedValue:desc"
+)
+
 // NewListUserContributionsParams creates a new ListUserContributionsParams object
 // with the default values initialized.
 func NewListUserContributionsParams() *ListUserContributionsParams {

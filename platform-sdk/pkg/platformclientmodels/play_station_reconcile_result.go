@@ -30,7 +30,7 @@ type PlayStationReconcileResult struct {
 	Sku string `json:"sku,omitempty"`
 
 	// status
-	// Enum: ['FAILED', 'FULFILLED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
 	Status string `json:"status,omitempty"`
 
 	// transactionid
@@ -51,7 +51,7 @@ var playStationReconcileResultTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -66,6 +66,12 @@ const (
 
 	// PlayStationReconcileResultStatusFULFILLED captures enum value "FULFILLED"
 	PlayStationReconcileResultStatusFULFILLED string = "FULFILLED"
+
+	// PlayStationReconcileResultStatusPARTIALREVOKED captures enum value "PARTIAL_REVOKED"
+	PlayStationReconcileResultStatusPARTIALREVOKED string = "PARTIAL_REVOKED"
+
+	// PlayStationReconcileResultStatusREVOKED captures enum value "REVOKED"
+	PlayStationReconcileResultStatusREVOKED string = "REVOKED"
 
 	// PlayStationReconcileResultStatusVERIFIED captures enum value "VERIFIED"
 	PlayStationReconcileResultStatusVERIFIED string = "VERIFIED"

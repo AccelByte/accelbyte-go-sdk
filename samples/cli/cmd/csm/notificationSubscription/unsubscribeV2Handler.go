@@ -31,11 +31,11 @@ var UnsubscribeV2HandlerCmd = &cobra.Command{
 			App:       app,
 			Namespace: namespace,
 		}
-		errOK := notificationSubscriptionService.UnsubscribeV2HandlerShort(input)
-		if errOK != nil {
-			logrus.Error(errOK)
+		errNoContent := notificationSubscriptionService.UnsubscribeV2HandlerShort(input)
+		if errNoContent != nil {
+			logrus.Error(errNoContent)
 
-			return errOK
+			return errNoContent
 		}
 
 		logrus.Infof("Response CLI success.")

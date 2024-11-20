@@ -19,16 +19,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in ArtifactGetParams
+const (
+	ArtifactGetAscConstant  = "asc"
+	ArtifactGetDescConstant = "desc"
+)
+
 // NewArtifactGetParams creates a new ArtifactGetParams object
 // with the default values initialized.
 func NewArtifactGetParams() *ArtifactGetParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault         = int64(100)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_on")
+		sortDirectionDefault = string("desc")
 	)
 	return &ArtifactGetParams{
-		Count:  &countDefault,
-		Offset: &offsetDefault,
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -38,12 +48,16 @@ func NewArtifactGetParams() *ArtifactGetParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewArtifactGetParamsWithTimeout(timeout time.Duration) *ArtifactGetParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault         = int64(100)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_on")
+		sortDirectionDefault = string("desc")
 	)
 	return &ArtifactGetParams{
-		Count:  &countDefault,
-		Offset: &offsetDefault,
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		timeout: timeout,
 	}
@@ -53,12 +67,16 @@ func NewArtifactGetParamsWithTimeout(timeout time.Duration) *ArtifactGetParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewArtifactGetParamsWithContext(ctx context.Context) *ArtifactGetParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault         = int64(100)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_on")
+		sortDirectionDefault = string("desc")
 	)
 	return &ArtifactGetParams{
-		Count:  &countDefault,
-		Offset: &offsetDefault,
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
 
 		Context: ctx,
 	}
@@ -68,13 +86,17 @@ func NewArtifactGetParamsWithContext(ctx context.Context) *ArtifactGetParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewArtifactGetParamsWithHTTPClient(client *http.Client) *ArtifactGetParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault         = int64(100)
+		offsetDefault        = int64(0)
+		sortByDefault        = string("created_on")
+		sortDirectionDefault = string("desc")
 	)
 	return &ArtifactGetParams{
-		Count:      &countDefault,
-		Offset:     &offsetDefault,
-		HTTPClient: client,
+		Count:         &countDefault,
+		Offset:        &offsetDefault,
+		SortBy:        &sortByDefault,
+		SortDirection: &sortDirectionDefault,
+		HTTPClient:    client,
 	}
 }
 
@@ -140,6 +162,16 @@ type ArtifactGetParams struct {
 
 	*/
 	ServerID *string
+	/*SortBy
+	  field name to sort the artifact
+
+	*/
+	SortBy *string
+	/*SortDirection
+	  the sort direction
+
+	*/
+	SortDirection *string
 	/*StartDate
 	  omit artifacts with collection dates older than
 
@@ -337,6 +369,28 @@ func (o *ArtifactGetParams) SetServerID(serverID *string) {
 	o.ServerID = serverID
 }
 
+// WithSortBy adds the sortBy to the artifact get params
+func (o *ArtifactGetParams) WithSortBy(sortBy *string) *ArtifactGetParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the artifact get params
+func (o *ArtifactGetParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
+// WithSortDirection adds the sortDirection to the artifact get params
+func (o *ArtifactGetParams) WithSortDirection(sortDirection *string) *ArtifactGetParams {
+	o.SetSortDirection(sortDirection)
+	return o
+}
+
+// SetSortDirection adds the sortDirection to the artifact get params
+func (o *ArtifactGetParams) SetSortDirection(sortDirection *string) {
+	o.SortDirection = sortDirection
+}
+
 // WithStartDate adds the startDate to the artifact get params
 func (o *ArtifactGetParams) WithStartDate(startDate *string) *ArtifactGetParams {
 	o.SetStartDate(startDate)
@@ -526,6 +580,38 @@ func (o *ArtifactGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		qServerID := qrServerID
 		if qServerID != "" {
 			if err := r.SetQueryParam("serverId", qServerID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortDirection != nil {
+
+		// query param sortDirection
+		var qrSortDirection string
+		if o.SortDirection != nil {
+			qrSortDirection = *o.SortDirection
+		}
+		qSortDirection := qrSortDirection
+		if qSortDirection != "" {
+			if err := r.SetQueryParam("sortDirection", qSortDirection); err != nil {
 				return err
 			}
 		}

@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "3.0.0"
+    "version": "4.0.0"
   },
   "schemes": [
     "https"
@@ -108,7 +108,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a namespace.\u0026lt;br\u0026gt;By default the namespace is enabled.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned. \u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11301\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create a namespace.\u0026lt;br\u0026gt;By default the namespace is enabled.\u0026lt;br\u0026gt;In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned. \u0026lt;br\u0026gt;displayName rule: \u0026lt;br/\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Alphanumeric lowercase and uppercase are allowed\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Allowed Special Character: \u0026#39;,. -\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Must start and end with alphanumeric\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Spaces and special character are allowed but cannot appear twice in a row\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11301\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createNamespace",
         "parameters": [
           {
@@ -334,7 +334,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update namespace basic info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11302\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update namespace basic info.\u0026lt;br\u0026gt;displayName rule: \u0026lt;br/\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Alphanumeric lowercase and uppercase are allowed\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Allowed Special Character: \u0026#39;,. -\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Must start and end with alphanumeric\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Spaces and special character are allowed but cannot appear twice in a row\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11302\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateNamespace",
         "parameters": [
           {
@@ -5204,16 +5204,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-10-01T09:37:16+00:00",
-    "buildID": "3.0.0",
+    "buildDate": "2024-11-06T04:07:31+00:00",
+    "buildID": "4.0.0",
     "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
-    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.226-214.880.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "d2d59c101d",
-    "gitTag": "3.0.0",
+    "gitHash": "20816149c3",
+    "gitTag": "4.0.0",
     "name": "justice-basic-service",
     "realm": "staging",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "version-roles-seeding": "0.0.10"
   }
 }

@@ -64,6 +64,29 @@ func (aaa *DataRetrievalS2SService) S2SGetListFinishedPersonalDataRequest(input 
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use S2SGetDataRequestByRequestIDShort instead.
+func (aaa *DataRetrievalS2SService) S2SGetDataRequestByRequestID(input *data_retrieval_s2_s.S2SGetDataRequestByRequestIDParams) (*gdprclientmodels.DTOS2SDataRequestSummary, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.DataRetrievalS2s.S2SGetDataRequestByRequestID(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use S2SRequestDataRetrievalShort instead.
 func (aaa *DataRetrievalS2SService) S2SRequestDataRetrieval(input *data_retrieval_s2_s.S2SRequestDataRetrievalParams) (*gdprclientmodels.ModelsS2SDataRetrievalResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -139,6 +162,36 @@ func (aaa *DataRetrievalS2SService) S2SGetListFinishedPersonalDataRequestShort(i
 	}
 
 	ok, err := aaa.Client.DataRetrievalS2s.S2SGetListFinishedPersonalDataRequestShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *DataRetrievalS2SService) S2SGetDataRequestByRequestIDShort(input *data_retrieval_s2_s.S2SGetDataRequestByRequestIDParams) (*gdprclientmodels.DTOS2SDataRequestSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDataRetrievalS2S != nil {
+		input.XFlightId = tempFlightIdDataRetrievalS2S
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.DataRetrievalS2s.S2SGetDataRequestByRequestIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

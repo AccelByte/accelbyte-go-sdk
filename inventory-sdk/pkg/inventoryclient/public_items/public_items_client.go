@@ -52,6 +52,7 @@ Deprecated: 2022-08-10 - Use PublicConsumeMyItemShort instead.
 PublicConsumeMyItem to consume item
 
 Consume user's own item.
+Client should pass item ID in options if item type is OPTIONBOX
 */
 func (a *Client) PublicConsumeMyItem(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, *PublicConsumeMyItemBadRequest, *PublicConsumeMyItemNotFound, *PublicConsumeMyItemInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -111,6 +112,7 @@ func (a *Client) PublicConsumeMyItem(params *PublicConsumeMyItemParams, authInfo
 PublicConsumeMyItemShort to consume item
 
 Consume user's own item.
+Client should pass item ID in options if item type is OPTIONBOX
 */
 func (a *Client) PublicConsumeMyItemShort(params *PublicConsumeMyItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicConsumeMyItemOK, error) {
 	// TODO: Validate the params before sending

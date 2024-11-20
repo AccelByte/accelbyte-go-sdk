@@ -27,6 +27,10 @@ type ModelsS2SDataRetrievalResponse struct {
 	// Format: date-time
 	RequestDate strfmt.DateTime `json:"requestDate"`
 
+	// requestid
+	// Required: true
+	RequestID *string `json:"requestId"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`
@@ -40,6 +44,9 @@ func (m *ModelsS2SDataRetrievalResponse) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 	if err := m.validateRequestDate(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRequestID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUserID(formats); err != nil {
@@ -68,6 +75,15 @@ func (m *ModelsS2SDataRetrievalResponse) validateRequestDate(formats strfmt.Regi
 	}
 
 	if err := validate.FormatOf("requestDate", "body", "date-time", m.RequestDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsS2SDataRetrievalResponse) validateRequestID(formats strfmt.Registry) error {
+
+	if err := validate.Required("requestId", "body", m.RequestID); err != nil {
 		return err
 	}
 

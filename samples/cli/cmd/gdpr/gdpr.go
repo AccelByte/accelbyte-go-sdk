@@ -59,6 +59,7 @@ func init() {
 	GdprCmd.AddCommand(dataDeletion.PublicGetMyAccountDeletionStatusCmd)
 	GdprCmd.AddCommand(dataDeletionS2S.S2SGetListFinishedAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataRetrievalS2S.S2SGetListFinishedPersonalDataRequestCmd)
+	GdprCmd.AddCommand(dataRetrievalS2S.S2SGetDataRequestByRequestIDCmd)
 	GdprCmd.AddCommand(dataDeletionS2S.S2SSubmitUserAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataRetrievalS2S.S2SRequestDataRetrievalCmd)
 	GdprCmd.AddCommand(dataRetrievalS2S.S2SGeneratePersonalDataURLCmd)

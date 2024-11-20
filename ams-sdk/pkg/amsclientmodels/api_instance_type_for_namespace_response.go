@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIAvailableInstanceType Api available instance type
+// APIInstanceTypeForNamespaceResponse Api instance type for namespace response
 //
-// swagger:model Api available instance type.
-type APIAvailableInstanceType struct {
+// swagger:model Api instance type for namespace response.
+type APIInstanceTypeForNamespaceResponse struct {
 
 	// capacity
 	// Required: true
@@ -59,8 +59,8 @@ type APIAvailableInstanceType struct {
 	VirtualCPU *int32 `json:"virtualCpu"`
 }
 
-// Validate validates this Api available instance type
-func (m *APIAvailableInstanceType) Validate(formats strfmt.Registry) error {
+// Validate validates this Api instance type for namespace response
+func (m *APIInstanceTypeForNamespaceResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCapacity(formats); err != nil {
@@ -97,7 +97,7 @@ func (m *APIAvailableInstanceType) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateCapacity(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateCapacity(formats strfmt.Registry) error {
 
 	if err := validate.Required("capacity", "body", m.Capacity); err != nil {
 		return err
@@ -122,7 +122,7 @@ func (m *APIAvailableInstanceType) validateCapacity(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateDescription(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
@@ -131,7 +131,7 @@ func (m *APIAvailableInstanceType) validateDescription(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateID(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
@@ -140,7 +140,7 @@ func (m *APIAvailableInstanceType) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateMemoryGiB(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateMemoryGiB(formats strfmt.Registry) error {
 
 	if err := validate.Required("memoryGiB", "body", m.MemoryGiB); err != nil {
 		return err
@@ -149,7 +149,7 @@ func (m *APIAvailableInstanceType) validateMemoryGiB(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateMinSpeed(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateMinSpeed(formats strfmt.Registry) error {
 
 	if err := validate.Required("minSpeed", "body", m.MinSpeed); err != nil {
 		return err
@@ -158,7 +158,7 @@ func (m *APIAvailableInstanceType) validateMinSpeed(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateName(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -167,7 +167,7 @@ func (m *APIAvailableInstanceType) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateOwnerAccountID(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateOwnerAccountID(formats strfmt.Registry) error {
 
 	if err := validate.Required("ownerAccountId", "body", m.OwnerAccountID); err != nil {
 		return err
@@ -176,7 +176,7 @@ func (m *APIAvailableInstanceType) validateOwnerAccountID(formats strfmt.Registr
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateProvider(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateProvider(formats strfmt.Registry) error {
 
 	if err := validate.Required("provider", "body", m.Provider); err != nil {
 		return err
@@ -185,7 +185,7 @@ func (m *APIAvailableInstanceType) validateProvider(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *APIAvailableInstanceType) validateVirtualCPU(formats strfmt.Registry) error {
+func (m *APIInstanceTypeForNamespaceResponse) validateVirtualCPU(formats strfmt.Registry) error {
 
 	if err := validate.Required("virtualCpu", "body", m.VirtualCPU); err != nil {
 		return err
@@ -195,7 +195,7 @@ func (m *APIAvailableInstanceType) validateVirtualCPU(formats strfmt.Registry) e
 }
 
 // MarshalBinary interface implementation
-func (m *APIAvailableInstanceType) MarshalBinary() ([]byte, error) {
+func (m *APIInstanceTypeForNamespaceResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -203,8 +203,8 @@ func (m *APIAvailableInstanceType) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *APIAvailableInstanceType) UnmarshalBinary(b []byte) error {
-	var res APIAvailableInstanceType
+func (m *APIInstanceTypeForNamespaceResponse) UnmarshalBinary(b []byte) error {
+	var res APIInstanceTypeForNamespaceResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

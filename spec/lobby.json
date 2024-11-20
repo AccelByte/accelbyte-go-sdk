@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.36.1"
+    "version": "3.36.5"
   },
   "schemes": [
     "https"
@@ -533,7 +533,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.\nThis endpoint will only send a pending invite that can be either rejected/accepted\n",
+        "description": "Client should provide either friendID or friendPublicID. If both are provided, friendID will be chosen to be used.\nThis endpoint will only send a pending invite that can be either rejected/accepted.\nMetadata is optional parameter which will be sent over via friend request notification.\n",
         "operationId": "userRequestFriend",
         "parameters": [
           {
@@ -1632,7 +1632,7 @@
     },
     "/lobby/v1/admin/config/namespaces/{namespace}/export": {
       "get": {
-        "description": "\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\t\nJSON Schema of the exported file:\n{\n \u0026#34;required\u0026#34;: [\n  \u0026#34;namespace\u0026#34;,\n  \u0026#34;entitlementItemID\u0026#34;,\n  \u0026#34;chatRateLimitDuration\u0026#34;,\n  \u0026#34;unregisterDelay\u0026#34;,\n  \u0026#34;generalRateLimitDuration\u0026#34;,\n  \u0026#34;autoKickOnDisconnectDelay\u0026#34;,\n  \u0026#34;chatRateLimitBurst\u0026#34;,\n  \u0026#34;generalRateLimitBurst\u0026#34;,\n  \u0026#34;maxPartyMember\u0026#34;,\n  \u0026#34;autoKickOnDisconnect\u0026#34;,\n  \u0026#34;profanityFilter\u0026#34;,\n  \u0026#34;enableChat\u0026#34;,\n  \u0026#34;entitlementCheck\u0026#34;,\n  \u0026#34;cancelTicketOnDisconnect\u0026#34;,\n  \u0026#34;concurrentUsersLimit\u0026#34;,\n  \u0026#34;readyConsentTimeout\u0026#34;,\n  \u0026#34;disableInvitationOnJoinParty\u0026#34;,\n  \u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;,\n  \u0026#34;allowInviteNonConnectedUser\u0026#34;,\n  \u0026#34;keepPresenceActivityOnDisconnect\u0026#34;,\n  \u0026#34;maxDSWaitTime\u0026#34;,\n  \u0026#34;maxFriendsLimit\u0026#34;\n ],\n \u0026#34;properties\u0026#34;: {\n  \u0026#34;allowInviteNonConnectedUser\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;autoKickOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;autoKickOnDisconnectDelay\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;cancelTicketOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;chatRateLimitBurst\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;chatRateLimitDuration\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;concurrentUsersLimit\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;disableInvitationOnJoinParty\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;enableChat\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;entitlementCheck\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;entitlementItemID\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;string\u0026#34;\n  },\n  \u0026#34;generalRateLimitBurst\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;generalRateLimitDuration\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;keepPresenceActivityOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;maxDSWaitTime\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;maxFriendsLimit\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;maxPartyMember\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;namespace\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;string\u0026#34;\n  },\n  \u0026#34;profanityFilter\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;readyConsentTimeout\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;unregisterDelay\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  }\n }\n}",
+        "description": "\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t\t\nJSON Schema of the exported file:\n{\n \u0026#34;required\u0026#34;: [\n  \u0026#34;namespace\u0026#34;,\n  \u0026#34;entitlementItemID\u0026#34;,\n  \u0026#34;chatRateLimitDuration\u0026#34;,\n  \u0026#34;unregisterDelay\u0026#34;,\n  \u0026#34;generalRateLimitDuration\u0026#34;,\n  \u0026#34;autoKickOnDisconnectDelay\u0026#34;,\n  \u0026#34;chatRateLimitBurst\u0026#34;,\n  \u0026#34;generalRateLimitBurst\u0026#34;,\n  \u0026#34;maxPartyMember\u0026#34;,\n  \u0026#34;autoKickOnDisconnect\u0026#34;,\n  \u0026#34;profanityFilter\u0026#34;,\n  \u0026#34;enableChat\u0026#34;,\n  \u0026#34;entitlementCheck\u0026#34;,\n  \u0026#34;cancelTicketOnDisconnect\u0026#34;,\n  \u0026#34;concurrentUsersLimit\u0026#34;,\n  \u0026#34;readyConsentTimeout\u0026#34;,\n  \u0026#34;disableInvitationOnJoinParty\u0026#34;,\n  \u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;,\n  \u0026#34;allowInviteNonConnectedUser\u0026#34;,\n  \u0026#34;keepPresenceActivityOnDisconnect\u0026#34;,\n  \u0026#34;maxDSWaitTime\u0026#34;,\n  \u0026#34;maxFriendsLimit\u0026#34;,\n  \u0026#34;requestMetadataMaxSize\u0026#34;\n ],\n \u0026#34;properties\u0026#34;: {\n  \u0026#34;allowInviteNonConnectedUser\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;allowJoinPartyDuringMatchmaking\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;autoKickOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;autoKickOnDisconnectDelay\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;cancelTicketOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;chatRateLimitBurst\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;chatRateLimitDuration\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;concurrentUsersLimit\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;disableInvitationOnJoinParty\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;enableChat\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;entitlementCheck\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;entitlementItemID\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;string\u0026#34;\n  },\n  \u0026#34;generalRateLimitBurst\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;generalRateLimitDuration\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;keepPresenceActivityOnDisconnect\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;maxDSWaitTime\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;maxFriendsLimit\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;maxPartyMember\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;namespace\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;string\u0026#34;\n  },\n  \u0026#34;profanityFilter\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;boolean\u0026#34;\n  },\n  \u0026#34;readyConsentTimeout\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  },\n  \u0026#34;requestMetadataMaxSize\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int32\u0026#34;\n  },\n  \u0026#34;unregisterDelay\u0026#34;: {\n   \u0026#34;type\u0026#34;: \u0026#34;integer\u0026#34;,\n   \u0026#34;format\u0026#34;: \u0026#34;int64\u0026#34;\n  }\n }\n}",
         "operationId": "adminExportConfigV1",
         "parameters": [
           {
@@ -1648,7 +1648,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK\nJSON Schema of the exported file:\n{\n \"required\": [\n  \"namespace\",\n  \"entitlementItemID\",\n  \"chatRateLimitDuration\",\n  \"unregisterDelay\",\n  \"generalRateLimitDuration\",\n  \"autoKickOnDisconnectDelay\",\n  \"chatRateLimitBurst\",\n  \"generalRateLimitBurst\",\n  \"maxPartyMember\",\n  \"autoKickOnDisconnect\",\n  \"profanityFilter\",\n  \"enableChat\",\n  \"entitlementCheck\",\n  \"cancelTicketOnDisconnect\",\n  \"concurrentUsersLimit\",\n  \"readyConsentTimeout\",\n  \"disableInvitationOnJoinParty\",\n  \"allowJoinPartyDuringMatchmaking\",\n  \"allowInviteNonConnectedUser\",\n  \"keepPresenceActivityOnDisconnect\",\n  \"maxDSWaitTime\",\n  \"maxFriendsLimit\"\n ],\n \"properties\": {\n  \"allowInviteNonConnectedUser\": {\n   \"type\": \"boolean\"\n  },\n  \"allowJoinPartyDuringMatchmaking\": {\n   \"type\": \"boolean\"\n  },\n  \"autoKickOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"autoKickOnDisconnectDelay\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"cancelTicketOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"chatRateLimitBurst\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"chatRateLimitDuration\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"concurrentUsersLimit\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"disableInvitationOnJoinParty\": {\n   \"type\": \"boolean\"\n  },\n  \"enableChat\": {\n   \"type\": \"boolean\"\n  },\n  \"entitlementCheck\": {\n   \"type\": \"boolean\"\n  },\n  \"entitlementItemID\": {\n   \"type\": \"string\"\n  },\n  \"generalRateLimitBurst\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"generalRateLimitDuration\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"keepPresenceActivityOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"maxDSWaitTime\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"maxFriendsLimit\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"maxPartyMember\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"namespace\": {\n   \"type\": \"string\"\n  },\n  \"profanityFilter\": {\n   \"type\": \"boolean\"\n  },\n  \"readyConsentTimeout\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"unregisterDelay\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  }\n }\n}",
+            "description": "OK\nJSON Schema of the exported file:\n{\n \"required\": [\n  \"namespace\",\n  \"entitlementItemID\",\n  \"chatRateLimitDuration\",\n  \"unregisterDelay\",\n  \"generalRateLimitDuration\",\n  \"autoKickOnDisconnectDelay\",\n  \"chatRateLimitBurst\",\n  \"generalRateLimitBurst\",\n  \"maxPartyMember\",\n  \"autoKickOnDisconnect\",\n  \"profanityFilter\",\n  \"enableChat\",\n  \"entitlementCheck\",\n  \"cancelTicketOnDisconnect\",\n  \"concurrentUsersLimit\",\n  \"readyConsentTimeout\",\n  \"disableInvitationOnJoinParty\",\n  \"allowJoinPartyDuringMatchmaking\",\n  \"allowInviteNonConnectedUser\",\n  \"keepPresenceActivityOnDisconnect\",\n  \"maxDSWaitTime\",\n  \"maxFriendsLimit\",\n  \"requestMetadataMaxSize\"\n ],\n \"properties\": {\n  \"allowInviteNonConnectedUser\": {\n   \"type\": \"boolean\"\n  },\n  \"allowJoinPartyDuringMatchmaking\": {\n   \"type\": \"boolean\"\n  },\n  \"autoKickOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"autoKickOnDisconnectDelay\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"cancelTicketOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"chatRateLimitBurst\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"chatRateLimitDuration\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"concurrentUsersLimit\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"disableInvitationOnJoinParty\": {\n   \"type\": \"boolean\"\n  },\n  \"enableChat\": {\n   \"type\": \"boolean\"\n  },\n  \"entitlementCheck\": {\n   \"type\": \"boolean\"\n  },\n  \"entitlementItemID\": {\n   \"type\": \"string\"\n  },\n  \"generalRateLimitBurst\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"generalRateLimitDuration\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"keepPresenceActivityOnDisconnect\": {\n   \"type\": \"boolean\"\n  },\n  \"maxDSWaitTime\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"maxFriendsLimit\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"maxPartyMember\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"namespace\": {\n   \"type\": \"string\"\n  },\n  \"profanityFilter\": {\n   \"type\": \"boolean\"\n  },\n  \"readyConsentTimeout\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  },\n  \"requestMetadataMaxSize\": {\n   \"type\": \"integer\",\n   \"format\": \"int32\"\n  },\n  \"unregisterDelay\": {\n   \"type\": \"integer\",\n   \"format\": \"int64\"\n  }\n }\n}",
             "schema": {
               "type": "file"
             }
@@ -9735,6 +9735,12 @@
         },
         "friendPublicId": {
           "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       }
     },
@@ -10069,6 +10075,10 @@
           "format": "int64",
           "type": "integer"
         },
+        "requestMetadataMaxSize": {
+          "format": "int32",
+          "type": "integer"
+        },
         "unregisterDelay": {
           "format": "int64",
           "type": "integer"
@@ -10171,6 +10181,10 @@
         },
         "readyConsentTimeout": {
           "format": "int64",
+          "type": "integer"
+        },
+        "requestMetadataMaxSize": {
+          "format": "int32",
           "type": "integer"
         },
         "unregisterDelay": {
@@ -13847,6 +13861,14 @@
       "Text": "can not request friend, incoming request already exist from friendId: {{friendID}}"
     },
     {
+      "Attributes": [],
+      "Code": "11975",
+      "CodeName": "UserRequestFriendMetadataLimitReached",
+      "Section": "user request friend",
+      "Service": "lobby",
+      "Text": "can not request friend, metadata limit reached"
+    },
+    {
       "Attributes": [
         "friendID",
         "userID"
@@ -15467,12 +15489,12 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-10-02T04:50:37+00:00",
-    "gitHash": "2aaac9b4db4d3046584a8813f9dd3c1e46f18887",
+    "buildDate": "2024-11-06T07:21:15+00:00",
+    "gitHash": "48bf430307f13e12a1970207f050f1a10fca556c",
     "name": "justice-lobby-server",
-    "revisionID": "3.36.1",
-    "version": "3.36.1",
-    "version-justice": "3.45.0",
-    "version-roles-seeding": "1.2.52"
+    "revisionID": "3.36.5",
+    "version": "3.36.5",
+    "version-justice": "2024.2/3.79",
+    "version-roles-seeding": "1.2.77"
   }
 }

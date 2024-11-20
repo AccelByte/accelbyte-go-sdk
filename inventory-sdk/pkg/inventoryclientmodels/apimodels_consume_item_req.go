@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels consume item req.
 type ApimodelsConsumeItemReq struct {
 
+	// options, it is only available when item type is OPTIONBOX and value should be item id.
+	Options []string `json:"options,omitempty"`
+
 	// qty
 	// Required: true
 	// Format: int32

@@ -94,6 +94,8 @@ type ClientService interface {
 	DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
 	UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, *UpdateXblBPCertFileBadRequest, error)
 	UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error)
+	GetIAPOrderConsumeDetails(params *GetIAPOrderConsumeDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPOrderConsumeDetailsOK, error)
+	GetIAPOrderConsumeDetailsShort(params *GetIAPOrderConsumeDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPOrderConsumeDetailsOK, error)
 	QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
 	QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error)
@@ -3321,6 +3323,102 @@ func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, aut
 		return v, nil
 	case *UpdateXblBPCertFileBadRequest:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetIAPOrderConsumeDetailsShort instead.
+
+GetIAPOrderConsumeDetails get iap order consume details by iap order number.
+Get IAP Order Consume Details by IAP Order Number.
+*/
+func (a *Client) GetIAPOrderConsumeDetails(params *GetIAPOrderConsumeDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPOrderConsumeDetailsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIAPOrderConsumeDetailsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIAPOrderConsumeDetails",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/{iapOrderNo}/consumedetails",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIAPOrderConsumeDetailsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIAPOrderConsumeDetailsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetIAPOrderConsumeDetailsShort get iap order consume details by iap order number.
+Get IAP Order Consume Details by IAP Order Number.
+*/
+func (a *Client) GetIAPOrderConsumeDetailsShort(params *GetIAPOrderConsumeDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPOrderConsumeDetailsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIAPOrderConsumeDetailsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIAPOrderConsumeDetails",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/{iapOrderNo}/consumedetails",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIAPOrderConsumeDetailsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetIAPOrderConsumeDetailsOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

@@ -28,15 +28,15 @@ var PublicIncUserStatItemValueCmd = &cobra.Command{
 			Client:          factory.NewSocialClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		statCode, _ := cmd.Flags().GetString("statCode")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body *socialclientmodels.StatItemInc
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
+		namespace, _ := cmd.Flags().GetString("namespace")
+		statCode, _ := cmd.Flags().GetString("statCode")
+		userId, _ := cmd.Flags().GetString("userId")
 		input := &user_statistic.PublicIncUserStatItemValueParams{
 			Body:      body,
 			Namespace: namespace,
@@ -58,6 +58,7 @@ var PublicIncUserStatItemValueCmd = &cobra.Command{
 
 func init() {
 	PublicIncUserStatItemValueCmd.Flags().String("body", "", "Body")
+	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("body")
 	PublicIncUserStatItemValueCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("namespace")
 	PublicIncUserStatItemValueCmd.Flags().String("statCode", "", "Stat code")

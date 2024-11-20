@@ -38,6 +38,23 @@ func (aaa *PolicyVersionsWithNamespaceService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use DeletePolicyVersionShort instead.
+func (aaa *PolicyVersionsWithNamespaceService) DeletePolicyVersion(input *policy_versions_with_namespace.DeletePolicyVersionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.PolicyVersionsWithNamespace.DeletePolicyVersion(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use UpdatePolicyVersion1Short instead.
 func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion1(input *policy_versions_with_namespace.UpdatePolicyVersion1Params) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -78,6 +95,23 @@ func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersion1(input *poli
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use UnpublishPolicyVersionShort instead.
+func (aaa *PolicyVersionsWithNamespaceService) UnpublishPolicyVersion(input *policy_versions_with_namespace.UnpublishPolicyVersionParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.PolicyVersionsWithNamespace.UnpublishPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use RetrieveSinglePolicyVersion1Short instead.
 func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersion1(input *policy_versions_with_namespace.RetrieveSinglePolicyVersion1Params) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -110,6 +144,36 @@ func (aaa *PolicyVersionsWithNamespaceService) CreatePolicyVersion1(input *polic
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *PolicyVersionsWithNamespaceService) DeletePolicyVersionShort(input *policy_versions_with_namespace.DeletePolicyVersionParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPolicyVersionsWithNamespace != nil {
+		input.XFlightId = tempFlightIdPolicyVersionsWithNamespace
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.PolicyVersionsWithNamespace.DeletePolicyVersionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion1Short(input *policy_versions_with_namespace.UpdatePolicyVersion1Params) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
@@ -165,6 +229,36 @@ func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersion1Short(input 
 	}
 
 	_, err := aaa.Client.PolicyVersionsWithNamespace.PublishPolicyVersion1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *PolicyVersionsWithNamespaceService) UnpublishPolicyVersionShort(input *policy_versions_with_namespace.UnpublishPolicyVersionParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPolicyVersionsWithNamespace != nil {
+		input.XFlightId = tempFlightIdPolicyVersionsWithNamespace
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.PolicyVersionsWithNamespace.UnpublishPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

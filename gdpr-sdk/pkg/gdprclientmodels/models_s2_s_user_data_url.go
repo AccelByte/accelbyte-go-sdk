@@ -18,7 +18,7 @@ import (
 // swagger:model Models S2S user data URL.
 type ModelsS2SUserDataURL struct {
 
-	// url
+	// Download url if status is Completed
 	// Required: true
 	URL *string `json:"url"`
 }

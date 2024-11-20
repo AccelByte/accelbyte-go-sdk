@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in AdminListUserAchievementsParams
+const (
+	AdminListUserAchievementsAchievedAtConstant     = "achievedAt"
+	AdminListUserAchievementsAchievedAtAscConstant  = "achievedAt:asc"
+	AdminListUserAchievementsAchievedAtDescConstant = "achievedAt:desc"
+	AdminListUserAchievementsCreatedAtConstant      = "createdAt"
+	AdminListUserAchievementsCreatedAtAscConstant   = "createdAt:asc"
+	AdminListUserAchievementsCreatedAtDescConstant  = "createdAt:desc"
+)
+
 // NewAdminListUserAchievementsParams creates a new AdminListUserAchievementsParams object
 // with the default values initialized.
 func NewAdminListUserAchievementsParams() *AdminListUserAchievementsParams {

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.19.0"
+    "version": "3.20.0"
   },
   "schemes": [
     "https"
@@ -754,8 +754,9 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "Upload certificates for xbox. Certificate must be in the valid form of PFX format.",
-        "operationId": "HandleUploadXboxPFXCertificate",
+        "deprecated": true,
+        "description": "Upload certificates for XBox. Certificate must be in the valid form of PFX format.",
+        "operationId": "adminUploadXBoxCertificate",
         "parameters": [
           {
             "description": "the file to upload",
@@ -838,7 +839,7 @@
             "authorization": []
           }
         ],
-        "summary": "Upload certificates for xbox.",
+        "summary": "Upload certificates for XBox.",
         "tags": [
           "Certificate"
         ],
@@ -2404,11 +2405,87 @@
         ]
       }
     },
-    "/session/v1/admin/namespaces/{namespace}/platform-credentials": {
+    "/session/v1/admin/namespaces/{namespace}/parties/bulk": {
       "delete": {
         "consumes": [
           "application/json"
         ],
+        "description": "Delete bulk parties.",
+        "operationId": "adminDeleteBulkParties",
+        "parameters": [
+          {
+            "description": "Create Delete bulk party Request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.DeleteBulkPartySessionRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.DeleteBulkPartySessionsAPIResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete bulk parties.",
+        "tags": [
+          "Party"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PARTY [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/platform-credentials": {
+      "delete": {
         "description": "Delete platform credentials used for Native Session sync.",
         "operationId": "adminDeletePlatformCredentials",
         "parameters": [
@@ -2477,10 +2554,7 @@
         ]
       },
       "get": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Get platform credentials used for Native Session sync.\nPSN:\n- clientID: Auth Server (Client Credential) ClientID\n- clientSecret: Auth Server (Client Credential) Secret. For security, only the first few characters are shown.\n- scope: should be psn:s2s.service (For Sync non PSN member to PSN Session)\n",
+        "description": "Get platform credentials used for Native Session sync.\nPSN:\n- clientID: Auth Server (Client Credential) ClientID\n- clientSecret: Auth Server (Client Credential) Secret. For security, only the first few characters are shown.\n- scope: should be psn:s2s.service (For Sync non PSN member to PSN Session)\n\nXBOX:\n- namespace: namespace of the configuration\n- businessPartnerCertFileName: name of pfx xbox configuration file\n- businessPartnerCertFileBytes: the pfx configuration file\n- updatedAt: date time when the record is updated\n- createdAt: date time when the record is created\n- createdBy: the actor who trigger the xbox configuration sync\n",
         "operationId": "adminGetPlatformCredentials",
         "parameters": [
           {
@@ -2621,6 +2695,170 @@
           }
         ],
         "summary": "Update platform credentials. Currently only used to sync PSN sessions.",
+        "tags": [
+          "Platform Credential"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}": {
+      "delete": {
+        "description": "Delete platform credentials for specific platform used for Native Session sync. Supported platforms: XBOX, PSN",
+        "operationId": "adminDeletePlatformCredentialsByPlatformId",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "enum": [
+              "PSN",
+              "XBOX"
+            ],
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete platform credentials by platformId",
+        "tags": [
+          "Platform Credential"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [DELETE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}/sync": {
+      "put": {
+        "description": "Sync Platform Credentials. \n\nSupported Platforms:\n1. XBOX\nWith this method, we will be performing sync to Platform Service to retrieve the existing PFX certificate which uploaded through IAP.\nIf the API returns Not Found, alternatively what you can do is either:\na. upload PFX file to IAP. You can access it from Admin Portal {BASE_URL}/admin/namespaces/{NAMESPACE}/in-app-purchase/xbox, or directly through API /platform/admin/namespaces/{NAMESPACE}/iap/config/xbl/cert.\nb. upload PFX file through Session API /session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl\nWe recommend approach #a, since you need to only upload the file once, and the service will do the sync. \nIf you set the PFX through Session service, when this API is invoked, we will sync and replace the existing PFX file with the one from Platform (IAP).\n",
+        "operationId": "adminSyncPlatformCredentials",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "enum": [
+              "XBOX"
+            ],
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XblCertificateResponseBody"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sync Platform Credentials.",
         "tags": [
           "Platform Credential"
         ],
@@ -3037,9 +3275,6 @@
     },
     "/session/v1/admin/namespaces/{namespace}/users/attributes": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "Admin get attributes of players.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t\t- PSN_PUSH_CONTEXT_ID: if provided, session will refer to this when performing session sync with PSN, otherwise will populate from session attributes, otherwise will populate from session attributes\n\t- currentPlatform  : latest user game platform.\n\t- roles\t\t\t   : user role for matchmaking role base support.\n",
         "operationId": "adminQueryPlayerAttributes",
         "parameters": [
@@ -3116,9 +3351,6 @@
     },
     "/session/v1/admin/namespaces/{namespace}/users/{userId}/attributes": {
       "get": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "Admin get attributes of a player.\n\nField descriptions:\n\t- userID           : user who owns the attributes.\n\t- crossplayEnabled : set to true if the player wants to enable crossplay to their session (default: false).\n\t- platforms        : list of the player\u0026#39;s 3rd party platform account information.\n\t\t- name   : platform name. supported platforms: STEAM, XBOX, PSN\n\t\t- userID : platform userID\n\t- data             : other data that the player wants to store.\n\t\t- PSN_PUSH_CONTEXT_ID: if provided, session will refer to this when performing session sync with PSN, otherwise will populate from session attributes\n\t- currentPlatform  : latest user game platform.\n\t- roles\t\t\t   : user role for matchmaking role base support.\n",
         "operationId": "adminGetPlayerAttributes",
         "parameters": [
@@ -4176,7 +4408,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Invite a user to a game session.\nplatformID represents the native platform of the invitee. API will return the corresponding native platform\u0026#39;s userID.\nsupported platforms:\n\t- STEAM\n\t- XBOX\n\t- PSN\n",
+        "description": "Invite a user to a game session.\nplatformID represents the native platform of the invitee. API will return the corresponding native platform\u0026#39;s userID.\nsupported platforms:\n\t- STEAM\n\t- XBOX\n\t- PSN\nMetadata is optional parameter which will be sent over via invitation notification and is not permanently stored in the game session storage.\n",
         "operationId": "publicGameSessionInvite",
         "parameters": [
           {
@@ -5431,7 +5663,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Invite a user to a party.\nplatformID represents the native platform of the invitee. API will return the corresponding native platform\u0026#39;s userID.\nsupported platforms:\n\t- STEAM\n\t- XBOX\n\t- PSN\n",
+        "description": "Invite a user to a party.\nplatformID represents the native platform of the invitee. API will return the corresponding native platform\u0026#39;s userID.\nsupported platforms:\n\t- STEAM\n\t- XBOX\n\t- PSN\nMetadata is optional parameter which will be sent over via invitation notification and is not permanently stored in the party storage.\n",
         "operationId": "publicPartyInvite",
         "parameters": [
           {
@@ -7467,6 +7699,35 @@
         }
       }
     },
+    "apimodels.DeleteBulkPartySessionRequest": {
+      "properties": {
+        "ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ids"
+      ]
+    },
+    "apimodels.DeleteBulkPartySessionsAPIResponse": {
+      "properties": {
+        "failed": {
+          "items": {
+            "$ref": "#/definitions/apimodels.ResponseDeleteBulkPartySessions"
+          },
+          "type": "array"
+        },
+        "success": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      }
+    },
     "apimodels.EnvironmentVariableListResponse": {
       "properties": {
         "data": {
@@ -7707,6 +7968,24 @@
         "paging"
       ]
     },
+    "apimodels.PSNAppServerCredentialRecord": {
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "clientId",
+        "clientSecret",
+        "scope"
+      ]
+    },
     "apimodels.Pagination": {
       "properties": {
         "first": {
@@ -7801,6 +8080,7 @@
         }
       },
       "required": [
+        "code",
         "configuration",
         "createdAt",
         "createdBy",
@@ -8128,7 +8408,7 @@
     "apimodels.PutPlatformCredentialsRequest": {
       "properties": {
         "psn": {
-          "$ref": "#/definitions/models.PSNAppServerCredentials"
+          "$ref": "#/definitions/apimodels.PSNAppServerCredentialRecord"
         }
       },
       "required": [
@@ -8167,6 +8447,20 @@
         "id"
       ]
     },
+    "apimodels.ResponseDeleteBulkPartySessions": {
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "error",
+        "id"
+      ]
+    },
     "apimodels.ServerSecret": {
       "properties": {
         "secret": {
@@ -8179,6 +8473,12 @@
     },
     "apimodels.SessionInviteRequest": {
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
         "platformID": {
           "type": "string"
         },
@@ -8558,6 +8858,34 @@
         "updatedAt"
       ]
     },
+    "apimodels.XblCertificateResponseBody": {
+      "properties": {
+        "businessPartnerCertFileBytes": {
+          "type": "string"
+        },
+        "businessPartnerCertFileName": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "businessPartnerCertFileBytes",
+        "businessPartnerCertFileName",
+        "createdBy",
+        "namespace",
+        "updatedAt"
+      ]
+    },
     "logconfig.Configuration": {
       "properties": {
         "logLevel": {
@@ -8899,14 +9227,26 @@
         "clientSecret": {
           "type": "string"
         },
+        "createdAt": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
         "scope": {
+          "type": "string"
+        },
+        "updatedAt": {
           "type": "string"
         }
       },
       "required": [
         "clientId",
         "clientSecret",
-        "scope"
+        "createdAt",
+        "createdBy",
+        "scope",
+        "updatedAt"
       ]
     },
     "models.PartyMembers": {
@@ -8929,6 +9269,9 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "xbox": {
+          "$ref": "#/definitions/models.XBLCertificateCredential"
         }
       },
       "required": [
@@ -9027,6 +9370,40 @@
         "userID"
       ]
     },
+    "models.XBLCertificateCredential": {
+      "properties": {
+        "businessPartnerCertFileBytes": {
+          "type": "string"
+        },
+        "businessPartnerCertFileName": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "businessPartnerCertFileBytes",
+        "businessPartnerCertFileName",
+        "createdAt",
+        "createdBy",
+        "namespace",
+        "updatedAt"
+      ]
+    },
     "response.Error": {
       "properties": {
         "attributes": {
@@ -9064,9 +9441,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-02T03:24:28+00:00",
-    "gitHash": "51f34fe7f4a1e57c079ff0c2f8ee2c3bf57cadd5",
-    "version": "3.19.0",
-    "version-roles-seeding": "1.2.37"
+    "buildDate": "2024-11-06T07:11:44+00:00",
+    "gitHash": "5292618a10b7bc4c36d523fe6897860a79a32c84",
+    "version": "3.20.0",
+    "version-roles-seeding": "1.2.77"
   }
 }

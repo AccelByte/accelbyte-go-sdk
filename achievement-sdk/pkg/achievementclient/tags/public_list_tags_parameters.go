@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in PublicListTagsParams
+const (
+	PublicListTagsCreatedAtConstant     = "createdAt"
+	PublicListTagsCreatedAtAscConstant  = "createdAt:asc"
+	PublicListTagsCreatedAtDescConstant = "createdAt:desc"
+	PublicListTagsNameConstant          = "name"
+	PublicListTagsNameAscConstant       = "name:asc"
+	PublicListTagsNameDescConstant      = "name:desc"
+)
+
 // NewPublicListTagsParams creates a new PublicListTagsParams object
 // with the default values initialized.
 func NewPublicListTagsParams() *PublicListTagsParams {

@@ -2398,6 +2398,7 @@ supported platforms:
 - STEAM
 - XBOX
 - PSN
+Metadata is optional parameter which will be sent over via invitation notification and is not permanently stored in the game session storage.
 */
 func (a *Client) PublicGameSessionInvite(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, *PublicGameSessionInviteNoContent, *PublicGameSessionInviteBadRequest, *PublicGameSessionInviteUnauthorized, *PublicGameSessionInviteNotFound, *PublicGameSessionInviteInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -2467,6 +2468,7 @@ supported platforms:
 - STEAM
 - XBOX
 - PSN
+Metadata is optional parameter which will be sent over via invitation notification and is not permanently stored in the game session storage.
 */
 func (a *Client) PublicGameSessionInviteShort(params *PublicGameSessionInviteParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionInviteCreated, error) {
 	// TODO: Validate the params before sending

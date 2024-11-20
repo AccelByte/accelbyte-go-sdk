@@ -22,6 +22,9 @@ type ModelUserRequestFriendRequest struct {
 
 	// friendpublicid
 	FriendPublicID string `json:"friendPublicId,omitempty"`
+
+	// metadata
+	Metadata map[string]string `json:"metadata,omitempty"`
 }
 
 // Validate validates this Model user request friend request

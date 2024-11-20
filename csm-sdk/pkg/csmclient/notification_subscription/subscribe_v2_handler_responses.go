@@ -27,8 +27,8 @@ type SubscribeV2HandlerReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *SubscribeV2HandlerReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewSubscribeV2HandlerOK()
+	case 204:
+		result := NewSubscribeV2HandlerNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -68,23 +68,23 @@ func (o *SubscribeV2HandlerReader) ReadResponse(response runtime.ClientResponse,
 	}
 }
 
-// NewSubscribeV2HandlerOK creates a SubscribeV2HandlerOK with default headers values
-func NewSubscribeV2HandlerOK() *SubscribeV2HandlerOK {
-	return &SubscribeV2HandlerOK{}
+// NewSubscribeV2HandlerNoContent creates a SubscribeV2HandlerNoContent with default headers values
+func NewSubscribeV2HandlerNoContent() *SubscribeV2HandlerNoContent {
+	return &SubscribeV2HandlerNoContent{}
 }
 
-/*SubscribeV2HandlerOK handles this case with default header values.
+/*SubscribeV2HandlerNoContent handles this case with default header values.
 
   successfully submitted request to subcribe from app down notification
 */
-type SubscribeV2HandlerOK struct {
+type SubscribeV2HandlerNoContent struct {
 }
 
-func (o *SubscribeV2HandlerOK) Error() string {
-	return fmt.Sprintf("[POST /csm/v2/admin/namespaces/{namespace}/apps/{app}/subscriptions/me][%d] subscribeV2HandlerOK ", 200)
+func (o *SubscribeV2HandlerNoContent) Error() string {
+	return fmt.Sprintf("[POST /csm/v2/admin/namespaces/{namespace}/apps/{app}/subscriptions/me][%d] subscribeV2HandlerNoContent ", 204)
 }
 
-func (o *SubscribeV2HandlerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *SubscribeV2HandlerNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

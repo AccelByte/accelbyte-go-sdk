@@ -19,6 +19,13 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in ListGlobalAchievementContributorsParams
+const (
+	ListGlobalAchievementContributorsContributedValueConstant     = "contributedValue"
+	ListGlobalAchievementContributorsContributedValueAscConstant  = "contributedValue:asc"
+	ListGlobalAchievementContributorsContributedValueDescConstant = "contributedValue:desc"
+)
+
 // NewListGlobalAchievementContributorsParams creates a new ListGlobalAchievementContributorsParams object
 // with the default values initialized.
 func NewListGlobalAchievementContributorsParams() *ListGlobalAchievementContributorsParams {

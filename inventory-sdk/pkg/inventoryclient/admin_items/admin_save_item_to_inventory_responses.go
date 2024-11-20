@@ -39,6 +39,24 @@ func (o *AdminSaveItemToInventoryReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewAdminSaveItemToInventoryUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewAdminSaveItemToInventoryForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 404:
+		result := NewAdminSaveItemToInventoryNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminSaveItemToInventoryInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -147,6 +165,168 @@ func (o *AdminSaveItemToInventoryBadRequest) GetPayload() *inventoryclientmodels
 }
 
 func (o *AdminSaveItemToInventoryBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(inventoryclientmodels.ApimodelsErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminSaveItemToInventoryUnauthorized creates a AdminSaveItemToInventoryUnauthorized with default headers values
+func NewAdminSaveItemToInventoryUnauthorized() *AdminSaveItemToInventoryUnauthorized {
+	return &AdminSaveItemToInventoryUnauthorized{}
+}
+
+/*AdminSaveItemToInventoryUnauthorized handles this case with default header values.
+
+  Unauthorized
+*/
+type AdminSaveItemToInventoryUnauthorized struct {
+	Payload *inventoryclientmodels.ApimodelsErrorResponse
+}
+
+func (o *AdminSaveItemToInventoryUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items][%d] adminSaveItemToInventoryUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *AdminSaveItemToInventoryUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSaveItemToInventoryUnauthorized) GetPayload() *inventoryclientmodels.ApimodelsErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminSaveItemToInventoryUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(inventoryclientmodels.ApimodelsErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminSaveItemToInventoryForbidden creates a AdminSaveItemToInventoryForbidden with default headers values
+func NewAdminSaveItemToInventoryForbidden() *AdminSaveItemToInventoryForbidden {
+	return &AdminSaveItemToInventoryForbidden{}
+}
+
+/*AdminSaveItemToInventoryForbidden handles this case with default header values.
+
+  Forbidden
+*/
+type AdminSaveItemToInventoryForbidden struct {
+	Payload *inventoryclientmodels.ApimodelsErrorResponse
+}
+
+func (o *AdminSaveItemToInventoryForbidden) Error() string {
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items][%d] adminSaveItemToInventoryForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *AdminSaveItemToInventoryForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSaveItemToInventoryForbidden) GetPayload() *inventoryclientmodels.ApimodelsErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminSaveItemToInventoryForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(inventoryclientmodels.ApimodelsErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminSaveItemToInventoryNotFound creates a AdminSaveItemToInventoryNotFound with default headers values
+func NewAdminSaveItemToInventoryNotFound() *AdminSaveItemToInventoryNotFound {
+	return &AdminSaveItemToInventoryNotFound{}
+}
+
+/*AdminSaveItemToInventoryNotFound handles this case with default header values.
+
+  Not Found
+*/
+type AdminSaveItemToInventoryNotFound struct {
+	Payload *inventoryclientmodels.ApimodelsErrorResponse
+}
+
+func (o *AdminSaveItemToInventoryNotFound) Error() string {
+	return fmt.Sprintf("[POST /inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items][%d] adminSaveItemToInventoryNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminSaveItemToInventoryNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSaveItemToInventoryNotFound) GetPayload() *inventoryclientmodels.ApimodelsErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminSaveItemToInventoryNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

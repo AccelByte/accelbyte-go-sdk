@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "2.0.0"
+    "version": "4.0.0"
   },
   "schemes": [
     "https"
@@ -300,7 +300,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a legal policy.",
+        "description": "Create a legal policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
         "operationId": "createPolicy",
         "parameters": [
           {
@@ -411,7 +411,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update an existing base policy.",
+        "description": "Update an existing base policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
         "operationId": "partialUpdatePolicy",
         "parameters": [
           {
@@ -1225,7 +1225,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create a legal policy.",
+        "description": "Create a legal policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
         "operationId": "createPolicy_1",
         "parameters": [
           {
@@ -1294,6 +1294,57 @@
       }
     },
     "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}": {
+      "delete": {
+        "description": "Delete base legal policy.Can only be deleted if match these criteria:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Base policy don\u0026#39;t have published policy version\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Policy version under base policy has never been accepted by any user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteBasePolicy",
+        "parameters": [
+          {
+            "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_base_policy\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40068\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_have_published_policy_version_and_already_accepted_by_user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40069\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.base_policy_already_have_published_policy_version\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Base Legal Policy",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ],
+        "x-errorCodes": {
+          "40032": "errors.net.accelbyte.platform.legal.invalid_base_policy",
+          "40068": "errors.net.accelbyte.platform.legal.base_policy_have_published_policy_version_and_already_accepted_by_user",
+          "40069": "errors.net.accelbyte.platform.legal.base_policy_already_have_published_policy_version"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [DELETE]"
+        }
+      },
       "get": {
         "description": "Retrieve a base policy.",
         "operationId": "retrieveSinglePolicy_1",
@@ -1350,7 +1401,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update an existing base policy.",
+        "description": "Update an existing base policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
         "operationId": "partialUpdatePolicy_1",
         "parameters": [
           {
@@ -1468,6 +1519,178 @@
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/policies": {
+      "get": {
+        "description": "Retrieve all policies from Base Legal Policy.",
+        "operationId": "retrieveAllPoliciesFromBasePolicy",
+        "parameters": [
+          {
+            "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrievePoliciesFromBasePolicyResponse"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40041\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_not_found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Retrieve all policies from Base Legal Policy",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ],
+        "x-errorCodes": {
+          "40041": "errors.net.accelbyte.platform.legal.policy_not_found"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [READ]"
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create policy under base policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP policy requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
+        "operationId": "createPolicyUnderBasePolicy",
+        "parameters": [
+          {
+            "description": "BasePolicy Id",
+            "in": "path",
+            "name": "basePolicyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreatePolicyRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreatePolicyResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40032\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_base_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create policy under base policy",
+        "tags": [
+          "Base Legal Policies With Namespace"
+        ],
+        "x-errorCodes": {
+          "40032": "errors.net.accelbyte.platform.legal.invalid_base_policy"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [CREATE]"
+        }
+      }
+    },
+    "/agreement/admin/namespaces/{namespace}/localized-policy-versions/versions/{localizedPolicyVersionId}": {
+      "delete": {
+        "description": "Delete localized version policy.\u0026lt;br\u0026gt;Can only be deleted if match these criteria:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Policy Version that this localized policy version belongs to is not active\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Has never been accepted by any user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteLocalizedPolicy",
+        "parameters": [
+          {
+            "description": "Localized Policy Version Id",
+            "in": "path",
+            "name": "localizedPolicyVersionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40075\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_is_published_and_already_accepted_by_user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40076\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.localized_policy_version_is_active\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Localized Policy",
+        "tags": [
+          "Localized Policy Versions With Namespace"
+        ],
+        "x-errorCodes": {
+          "40075": "errors.net.accelbyte.platform.legal.localized_policy_version_is_published_and_already_accepted_by_user",
+          "40076": "errors.net.accelbyte.platform.legal.localized_policy_version_is_active"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [DELETE]"
         }
       }
     },
@@ -1818,6 +2041,57 @@
       }
     },
     "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}": {
+      "delete": {
+        "description": "Delete a policy version from policy.Can only be deleted if match these criteria:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Policy version is not published\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Policy version has never been accepted by any user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deletePolicyVersion",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40070\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_is_published_and_already_accepted_by_user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40071\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_is_active\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete a Version of Policy",
+        "tags": [
+          "Policy Versions With Namespace"
+        ],
+        "x-errorCodes": {
+          "40035": "errors.net.accelbyte.platform.legal.invalid_policy_version",
+          "40070": "errors.net.accelbyte.platform.legal.policy_version_is_published_and_already_accepted_by_user",
+          "40071": "errors.net.accelbyte.platform.legal.policy_version_is_active"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [DELETE]"
+        }
+      },
       "patch": {
         "consumes": [
           "application/json"
@@ -1960,12 +2234,116 @@
         }
       }
     },
+    "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/unpublish": {
+      "patch": {
+        "description": "Un-publish a policy version from policy.Can only be un-publish if match these criteria:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Policy version has never been accepted by any user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "unpublishPolicyVersion",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Version Id",
+            "in": "path",
+            "name": "policyVersionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40035\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40070\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_version_is_published_and_already_accepted_by_user\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Un-publish Version from Policy",
+        "tags": [
+          "Policy Versions With Namespace"
+        ],
+        "x-errorCodes": {
+          "40035": "errors.net.accelbyte.platform.legal.invalid_policy_version",
+          "40070": "errors.net.accelbyte.platform.legal.policy_version_is_published_and_already_accepted_by_user"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [UPDATE]"
+        }
+      }
+    },
     "/agreement/admin/namespaces/{namespace}/policies/{policyId}": {
+      "delete": {
+        "description": "Delete policy.Can only be deleted if match these criteria:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Policy is not default policy\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Policy version under policy has never been accepted by any user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deletePolicy",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Policy Id",
+            "in": "path",
+            "name": "policyId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eNumericErrorCode\u003c/td\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40033\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.invalid_policy_id\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40072\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_have_published_policy_version\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40073\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_have_published_policy_version_and_already_accepted_by_user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e40074\u003c/td\u003e\u003ctd\u003eerrors.net.accelbyte.platform.legal.policy_is_default_policy\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Policy",
+        "tags": [
+          "Policies With Namespace"
+        ],
+        "x-errorCodes": {
+          "40033": "errors.net.accelbyte.platform.legal.invalid_policy_id",
+          "40072": "errors.net.accelbyte.platform.legal.policy_have_published_policy_version",
+          "40073": "errors.net.accelbyte.platform.legal.policy_have_published_policy_version_and_already_accepted_by_user",
+          "40074": "errors.net.accelbyte.platform.legal.policy_is_default_policy"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:LEGAL [DELETE]"
+        }
+      },
       "patch": {
         "consumes": [
           "application/json"
         ],
-        "description": "Update country-specific policy.",
+        "description": "Update country-specific and country-group policy.",
         "operationId": "updatePolicy_1",
         "parameters": [
           {
@@ -2590,7 +2968,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update country-specific policy.",
+        "description": "Update country-specific and country-group policy.",
         "operationId": "updatePolicy",
         "parameters": [
           {
@@ -3925,6 +4303,17 @@
         "basePolicyName": {
           "type": "string"
         },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "description": "country type, only accept COUNTRY or COUNTRY_GROUP",
+          "enum": [
+            "COUNTRY",
+            "COUNTRY_GROUP"
+          ],
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
@@ -3973,6 +4362,17 @@
         "basePolicyName": {
           "type": "string"
         },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "description": "country type, only accept COUNTRY or COUNTRY_GROUP",
+          "enum": [
+            "COUNTRY",
+            "COUNTRY_GROUP"
+          ],
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
@@ -4013,6 +4413,16 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "enum": [
+            "COUNTRY",
+            "COUNTRY_GROUP"
+          ],
+          "type": "string"
         },
         "createdAt": {
           "format": "date-time",
@@ -4103,6 +4513,119 @@
       },
       "required": [
         "id"
+      ],
+      "type": "object"
+    },
+    "CreatePolicyRequest": {
+      "properties": {
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "description": "country type, only accept COUNTRY or COUNTRY_GROUP",
+          "enum": [
+            "COUNTRY",
+            "COUNTRY_GROUP"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isDefaultSelection": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isMandatory": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "shouldNotifyOnUpdate": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "type": "object"
+    },
+    "CreatePolicyResponse": {
+      "properties": {
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultSelection": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isMandatory": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "policyVersions": {
+          "items": {
+            "$ref": "#/definitions/PolicyVersionObject"
+          },
+          "type": "array"
+        },
+        "readableId": {
+          "type": "string"
+        },
+        "shouldNotifyOnUpdate": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "countryCode",
+        "id",
+        "isDefaultSelection",
+        "isMandatory",
+        "policyName",
+        "shouldNotifyOnUpdate"
       ],
       "type": "object"
     },
@@ -4347,10 +4870,23 @@
     },
     "PolicyObject": {
       "properties": {
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
         "countryCode": {
           "type": "string"
         },
         "countryGroupCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
           "type": "string"
         },
         "createdAt": {
@@ -4504,6 +5040,12 @@
     "RetrieveAcceptedAgreementResponse": {
       "properties": {
         "countryCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
           "type": "string"
         },
         "createdAt": {
@@ -4759,6 +5301,70 @@
       ],
       "type": "object"
     },
+    "RetrievePoliciesFromBasePolicyResponse": {
+      "properties": {
+        "activeVersion": {
+          "type": "string"
+        },
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isActive": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "lastPublished": {
+          "type": "string"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "policyVersions": {
+          "items": {
+            "$ref": "#/definitions/PolicyVersionObject"
+          },
+          "type": "array"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "countryCode",
+        "id",
+        "policyName"
+      ],
+      "type": "object"
+    },
     "RetrievePolicyPublicResponse": {
       "properties": {
         "basePolicyId": {
@@ -4850,10 +5456,23 @@
     },
     "RetrievePolicyResponse": {
       "properties": {
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
         "countryCode": {
           "type": "string"
         },
         "countryGroupCode": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
           "type": "string"
         },
         "createdAt": {
@@ -5171,6 +5790,17 @@
         "basePolicyName": {
           "type": "string"
         },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "description": "country type, only accept COUNTRY or COUNTRY_GROUP",
+          "enum": [
+            "COUNTRY",
+            "COUNTRY_GROUP"
+          ],
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
@@ -5214,6 +5844,17 @@
           "uniqueItems": true
         },
         "basePolicyName": {
+          "type": "string"
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
+        "countryType": {
+          "description": "country type, only accept COUNTRY or COUNTRY_GROUP",
+          "enum": [
+            "COUNTRY",
+            "COUNTRY_GROUP"
+          ],
           "type": "string"
         },
         "description": {
@@ -5366,6 +6007,16 @@
     },
     "UpdatePolicyRequest": {
       "properties": {
+        "countries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "countryGroupName": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
@@ -5555,16 +6206,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-10-01T09:37:55+00:00",
-    "buildID": "2.0.0",
+    "buildDate": "2024-11-19T07:36:03+00:00",
+    "buildID": "4.0.0",
     "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
-    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.227-219.884.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "fe8d57a303",
-    "gitTag": "2.0.0",
+    "gitHash": "ce9dbb07c7",
+    "gitTag": "4.0.0",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "2.0.0",
+    "version": "4.0.0",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -33,8 +33,7 @@ type APIImageDeploymentProfile struct {
 	PortConfigurations []*APIPortConfiguration `json:"portConfigurations"`
 
 	// timeout
-	// Required: true
-	Timeout *APITimeout `json:"timeout"`
+	Timeout *APITimeout `json:"timeout,omitempty"`
 }
 
 // Validate validates this Api image deployment profile
@@ -48,9 +47,6 @@ func (m *APIImageDeploymentProfile) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validatePortConfigurations(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateTimeout(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,24 +94,6 @@ func (m *APIImageDeploymentProfile) validatePortConfigurations(formats strfmt.Re
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *APIImageDeploymentProfile) validateTimeout(formats strfmt.Registry) error {
-
-	if err := validate.Required("timeout", "body", m.Timeout); err != nil {
-		return err
-	}
-
-	if m.Timeout != nil {
-		if err := m.Timeout.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("timeout")
-			}
-			return err
-		}
 	}
 
 	return nil

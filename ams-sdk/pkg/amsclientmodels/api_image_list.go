@@ -23,6 +23,10 @@ type APIImageList struct {
 	// images
 	// Required: true
 	Images []*APIImageListItem `json:"images"`
+
+	// paging
+	// Required: true
+	Paging *APIPagingInfo `json:"paging"`
 }
 
 // Validate validates this Api image list
@@ -30,6 +34,9 @@ func (m *APIImageList) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateImages(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePaging(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,6 +66,24 @@ func (m *APIImageList) validateImages(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIImageList) validatePaging(formats strfmt.Registry) error {
+
+	if err := validate.Required("paging", "body", m.Paging); err != nil {
+		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -26,9 +26,21 @@ type ModelsPSNAppServerCredentials struct {
 	// Required: true
 	ClientSecret *string `json:"clientSecret"`
 
+	// createdat
+	// Required: true
+	CreatedAt *string `json:"createdAt"`
+
+	// createdby
+	// Required: true
+	CreatedBy *string `json:"createdBy"`
+
 	// scope
 	// Required: true
 	Scope *string `json:"scope"`
+
+	// updatedat
+	// Required: true
+	UpdatedAt *string `json:"updatedAt"`
 }
 
 // Validate validates this Models PSN app server credentials
@@ -41,7 +53,16 @@ func (m *ModelsPSNAppServerCredentials) Validate(formats strfmt.Registry) error 
 	if err := m.validateClientSecret(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateCreatedBy(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateScope(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -69,9 +90,36 @@ func (m *ModelsPSNAppServerCredentials) validateClientSecret(formats strfmt.Regi
 	return nil
 }
 
+func (m *ModelsPSNAppServerCredentials) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsPSNAppServerCredentials) validateCreatedBy(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdBy", "body", m.CreatedBy); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsPSNAppServerCredentials) validateScope(formats strfmt.Registry) error {
 
 	if err := validate.Required("scope", "body", m.Scope); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsPSNAppServerCredentials) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
 		return err
 	}
 

@@ -38,6 +38,7 @@ func init() {
 	CloudsaveCmd.AddCommand(adminRecord.AdminPutAdminGameRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminPostAdminGameRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminRecord.AdminDeleteAdminGameRecordV1Cmd)
+	CloudsaveCmd.AddCommand(ttlConfig.DeleteAdminGameRecordTTLConfigCmd)
 	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminListGameBinaryRecordsV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminPostGameBinaryRecordV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameBinaryRecord.AdminGetGameBinaryRecordV1Cmd)

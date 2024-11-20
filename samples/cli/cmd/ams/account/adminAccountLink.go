@@ -18,11 +18,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// AdminAccountLinkTokenPostCmd represents the AdminAccountLinkTokenPost command
-var AdminAccountLinkTokenPostCmd = &cobra.Command{
-	Use:   "adminAccountLinkTokenPost",
-	Short: "Admin account link token post",
-	Long:  `Admin account link token post`,
+// AdminAccountLinkCmd represents the AdminAccountLink command
+var AdminAccountLinkCmd = &cobra.Command{
+	Use:   "adminAccountLink",
+	Short: "Admin account link",
+	Long:  `Admin account link`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		accountService := &ams.AccountService{
 			Client:          factory.NewAmsClient(&repository.ConfigRepositoryImpl{}),
@@ -35,11 +35,11 @@ var AdminAccountLinkTokenPostCmd = &cobra.Command{
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &account.AdminAccountLinkTokenPostParams{
+		input := &account.AdminAccountLinkParams{
 			Body:      body,
 			Namespace: namespace,
 		}
-		created, errCreated := accountService.AdminAccountLinkTokenPostShort(input)
+		created, errCreated := accountService.AdminAccountLinkShort(input)
 		if errCreated != nil {
 			logrus.Error(errCreated)
 
@@ -53,8 +53,8 @@ var AdminAccountLinkTokenPostCmd = &cobra.Command{
 }
 
 func init() {
-	AdminAccountLinkTokenPostCmd.Flags().String("body", "", "Body")
-	_ = AdminAccountLinkTokenPostCmd.MarkFlagRequired("body")
-	AdminAccountLinkTokenPostCmd.Flags().String("namespace", "", "Namespace")
-	_ = AdminAccountLinkTokenPostCmd.MarkFlagRequired("namespace")
+	AdminAccountLinkCmd.Flags().String("body", "", "Body")
+	_ = AdminAccountLinkCmd.MarkFlagRequired("body")
+	AdminAccountLinkCmd.Flags().String("namespace", "", "Namespace")
+	_ = AdminAccountLinkCmd.MarkFlagRequired("namespace")
 }

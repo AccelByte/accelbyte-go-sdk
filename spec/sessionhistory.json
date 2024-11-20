@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.12.2"
+    "version": "1.12.3"
   },
   "schemes": [
     "https"
@@ -182,7 +182,7 @@
             "type": "string"
           },
           {
-            "description": "End date time in RFC 3339 format: 2024-10-02T04:06:06Z",
+            "description": "End date time in RFC 3339 format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -220,7 +220,7 @@
             "type": "string"
           },
           {
-            "description": "Start date time in RFC 3339 format: 2024-10-02T04:06:06Z",
+            "description": "Start date time in RFC 3339 format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -844,7 +844,7 @@
             "type": "string"
           },
           {
-            "description": "End Date 2024-10-02T04:06:06Z",
+            "description": "End Date 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -888,7 +888,7 @@
             "type": "string"
           },
           {
-            "description": "Start Date 2024-10-02T04:06:06Z",
+            "description": "Start Date 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -1154,14 +1154,14 @@
             "type": "array"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1258,14 +1258,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1827,14 +1827,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1927,14 +1927,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2027,14 +2027,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2127,14 +2127,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2227,14 +2227,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2333,14 +2333,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2433,14 +2433,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2533,14 +2533,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2633,14 +2633,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2733,14 +2733,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2833,14 +2833,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3098,14 +3098,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3209,14 +3209,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2024-10-02T04:06:06Z",
+            "description": "End date time: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2024-10-02T04:06:06Z",
+            "description": "Start date time. Format: 2024-11-19T01:06:50Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -4272,6 +4272,9 @@
     },
     "apimodels.XRayTicketMatchesResult": {
       "properties": {
+        "ActualTimeToMatch": {
+          "type": "string"
+        },
         "CreatedAt": {
           "format": "date-time",
           "type": "string",
@@ -4854,6 +4857,9 @@
     },
     "models.MatchTicket": {
       "properties": {
+        "ActualTimeToMatch": {
+          "type": "string"
+        },
         "CreatedAt": {
           "format": "date-time",
           "type": "string",
@@ -5546,9 +5552,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-02T03:26:54+00:00",
-    "gitHash": "e73c94541ac73c31556adc60c81fbc64ef2bb2cc",
-    "version": "1.12.2",
-    "version-roles-seeding": "1.2.61"
+    "buildDate": "2024-11-06T07:10:53+00:00",
+    "gitHash": "f28d0ef3671187bb4f688d7f3adb40980f3d17fa",
+    "version": "1.12.3",
+    "version-roles-seeding": "1.2.76"
   }
 }

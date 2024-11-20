@@ -37,8 +37,12 @@ type DTOFinishedDataRequest struct {
 	// Format: date-time
 	RequestDate strfmt.DateTime `json:"requestDate"`
 
+	// Request id
+	// Required: true
+	RequestID *string `json:"requestId"`
+
 	// Status of request
-	// Enum: ['Completed,Failed']
+	// Enum: ['Completed', 'Failed']
 	// Required: true
 	Status *string `json:"status"`
 
@@ -55,6 +59,9 @@ func (m *DTOFinishedDataRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateRequestDate(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRequestID(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateStatus(formats); err != nil {
@@ -96,11 +103,20 @@ func (m *DTOFinishedDataRequest) validateRequestDate(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *DTOFinishedDataRequest) validateRequestID(formats strfmt.Registry) error {
+
+	if err := validate.Required("requestId", "body", m.RequestID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var dtoFinishedDataRequestTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["COMPLETED,FAILED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["COMPLETED", "FAILED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -110,8 +126,11 @@ func init() {
 
 const (
 
-	// DTOFinishedDataRequestStatusCOMPLETEDFAILED captures enum value "COMPLETED,FAILED"
-	DTOFinishedDataRequestStatusCOMPLETEDFAILED string = "COMPLETED,FAILED"
+	// DTOFinishedDataRequestStatusCOMPLETED captures enum value "COMPLETED"
+	DTOFinishedDataRequestStatusCOMPLETED string = "COMPLETED"
+
+	// DTOFinishedDataRequestStatusFAILED captures enum value "FAILED"
+	DTOFinishedDataRequestStatusFAILED string = "FAILED"
 )
 
 // prop value enum

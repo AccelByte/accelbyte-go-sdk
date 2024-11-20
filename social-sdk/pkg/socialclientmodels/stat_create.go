@@ -24,6 +24,10 @@ type StatCreate struct {
 	// Unique: true
 	CycleIds []string `json:"cycleIds"`
 
+	// cycleoverrides
+	// Unique: true
+	CycleOverrides []*CycleOverrideRequest `json:"cycleOverrides"`
+
 	// defaultvalue
 	// Required: true
 	// Format: double

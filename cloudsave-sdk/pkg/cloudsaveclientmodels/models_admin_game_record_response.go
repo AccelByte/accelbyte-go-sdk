@@ -34,6 +34,9 @@ type ModelsAdminGameRecordResponse struct {
 	// Tagging for admin game record
 	Tags []string `json:"tags,omitempty"`
 
+	// TTL configuration for the admin record
+	TTLConfig *ModelsTTLConfigDTO `json:"ttl_config,omitempty"`
+
 	// updated_at
 	// Required: true
 	// Format: date-time

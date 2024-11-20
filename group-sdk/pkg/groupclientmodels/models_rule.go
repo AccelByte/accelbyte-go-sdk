@@ -7,6 +7,7 @@
 package groupclientmodels
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -21,6 +22,7 @@ import (
 type ModelsRule struct {
 
 	// allowedaction
+	// Enum: ['createGroup', 'joinGroup']
 	// Required: true
 	AllowedAction *string `json:"allowedAction"`
 
@@ -46,9 +48,43 @@ func (m *ModelsRule) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+var modelsRuleTypeAllowedActionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CREATEGROUP", "JOINGROUP"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsRuleTypeAllowedActionPropEnum = append(modelsRuleTypeAllowedActionPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsRuleAllowedActionCREATEGROUP captures enum value "CREATEGROUP"
+	ModelsRuleAllowedActionCREATEGROUP string = "CREATEGROUP"
+
+	// ModelsRuleAllowedActionJOINGROUP captures enum value "JOINGROUP"
+	ModelsRuleAllowedActionJOINGROUP string = "JOINGROUP"
+)
+
+// prop value enum
+func (m *ModelsRule) validateAllowedActionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsRuleTypeAllowedActionPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsRule) validateAllowedAction(formats strfmt.Registry) error {
 
 	if err := validate.Required("allowedAction", "body", m.AllowedAction); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateAllowedActionEnum("allowedAction", "body", *m.AllowedAction); err != nil {
 		return err
 	}
 

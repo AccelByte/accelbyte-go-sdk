@@ -38,13 +38,13 @@ func (aaa *CertificateService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use HandleUploadXboxPFXCertificateShort instead.
-func (aaa *CertificateService) HandleUploadXboxPFXCertificate(input *certificate.HandleUploadXboxPFXCertificateParams) (*sessionclientmodels.ModelsPlatformCredentials, error) {
+// Deprecated: 2022-01-10 - please use AdminUploadXBoxCertificateShort instead.
+func (aaa *CertificateService) AdminUploadXBoxCertificate(input *certificate.AdminUploadXBoxCertificateParams) (*sessionclientmodels.ModelsPlatformCredentials, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Certificate.HandleUploadXboxPFXCertificate(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Certificate.AdminUploadXBoxCertificate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -67,7 +67,7 @@ func (aaa *CertificateService) HandleUploadXboxPFXCertificate(input *certificate
 	return ok.GetPayload(), nil
 }
 
-func (aaa *CertificateService) HandleUploadXboxPFXCertificateShort(input *certificate.HandleUploadXboxPFXCertificateParams) (*sessionclientmodels.ModelsPlatformCredentials, error) {
+func (aaa *CertificateService) AdminUploadXBoxCertificateShort(input *certificate.AdminUploadXBoxCertificateParams) (*sessionclientmodels.ModelsPlatformCredentials, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -89,7 +89,7 @@ func (aaa *CertificateService) HandleUploadXboxPFXCertificateShort(input *certif
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.Certificate.HandleUploadXboxPFXCertificateShort(input, authInfoWriter)
+	ok, err := aaa.Client.Certificate.AdminUploadXBoxCertificateShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

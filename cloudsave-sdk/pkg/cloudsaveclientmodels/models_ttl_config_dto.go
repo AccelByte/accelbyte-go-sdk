@@ -20,7 +20,7 @@ import (
 // swagger:model Models TTL config DTO.
 type ModelsTTLConfigDTO struct {
 
-	// Incidate what action will be done after the record expires
+	// Indicate what action will be done after the record expires
 	// Enum: ['DELETE']
 	// Required: true
 	Action *string `json:"action"`

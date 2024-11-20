@@ -15,18 +15,18 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIAvailableInstanceTypesResponse Api available instance types response
+// APIInstanceTypesForNamespaceResponse Api instance types for namespace response
 //
-// swagger:model Api available instance types response.
-type APIAvailableInstanceTypesResponse struct {
+// swagger:model Api instance types for namespace response.
+type APIInstanceTypesForNamespaceResponse struct {
 
 	// availableinstancetypes
 	// Required: true
-	AvailableInstanceTypes []*APIAvailableInstanceType `json:"availableInstanceTypes"`
+	AvailableInstanceTypes []*APIInstanceTypeForNamespaceResponse `json:"availableInstanceTypes"`
 }
 
-// Validate validates this Api available instance types response
-func (m *APIAvailableInstanceTypesResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this Api instance types for namespace response
+func (m *APIInstanceTypesForNamespaceResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAvailableInstanceTypes(formats); err != nil {
@@ -39,7 +39,7 @@ func (m *APIAvailableInstanceTypesResponse) Validate(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *APIAvailableInstanceTypesResponse) validateAvailableInstanceTypes(formats strfmt.Registry) error {
+func (m *APIInstanceTypesForNamespaceResponse) validateAvailableInstanceTypes(formats strfmt.Registry) error {
 
 	if err := validate.Required("availableInstanceTypes", "body", m.AvailableInstanceTypes); err != nil {
 		return err
@@ -65,7 +65,7 @@ func (m *APIAvailableInstanceTypesResponse) validateAvailableInstanceTypes(forma
 }
 
 // MarshalBinary interface implementation
-func (m *APIAvailableInstanceTypesResponse) MarshalBinary() ([]byte, error) {
+func (m *APIInstanceTypesForNamespaceResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -73,8 +73,8 @@ func (m *APIAvailableInstanceTypesResponse) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *APIAvailableInstanceTypesResponse) UnmarshalBinary(b []byte) error {
-	var res APIAvailableInstanceTypesResponse
+func (m *APIInstanceTypesForNamespaceResponse) UnmarshalBinary(b []byte) error {
+	var res APIInstanceTypesForNamespaceResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

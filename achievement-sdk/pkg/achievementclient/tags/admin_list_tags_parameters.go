@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in AdminListTagsParams
+const (
+	AdminListTagsCreatedAtConstant     = "createdAt"
+	AdminListTagsCreatedAtAscConstant  = "createdAt:asc"
+	AdminListTagsCreatedAtDescConstant = "createdAt:desc"
+	AdminListTagsNameConstant          = "name"
+	AdminListTagsNameAscConstant       = "name:asc"
+	AdminListTagsNameDescConstant      = "name:desc"
+)
+
 // NewAdminListTagsParams creates a new AdminListTagsParams object
 // with the default values initialized.
 func NewAdminListTagsParams() *AdminListTagsParams {

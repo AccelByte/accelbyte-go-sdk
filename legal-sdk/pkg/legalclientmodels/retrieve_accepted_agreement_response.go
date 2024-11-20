@@ -21,6 +21,12 @@ type RetrieveAcceptedAgreementResponse struct {
 	// countrycode
 	CountryCode string `json:"countryCode,omitempty"`
 
+	// countrygroupname
+	CountryGroupName string `json:"countryGroupName,omitempty"`
+
+	// countrytype
+	CountryType string `json:"countryType,omitempty"`
+
 	// createdat
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`

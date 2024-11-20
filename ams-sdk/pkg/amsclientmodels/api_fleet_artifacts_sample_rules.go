@@ -20,7 +20,7 @@ type APIFleetArtifactsSampleRules struct {
 
 	// coredumps
 	// Required: true
-	Coredumps *APIArtifactTypeSamplingRules `json:"coredumps"`
+	Coredumps *APICoredumpSamplingRules `json:"coredumps"`
 
 	// logs
 	// Required: true

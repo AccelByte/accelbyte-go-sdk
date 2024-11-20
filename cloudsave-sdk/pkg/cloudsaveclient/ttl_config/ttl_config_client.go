@@ -30,12 +30,139 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	DeleteAdminGameRecordTTLConfig(params *DeleteAdminGameRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminGameRecordTTLConfigNoContent, *DeleteAdminGameRecordTTLConfigBadRequest, *DeleteAdminGameRecordTTLConfigUnauthorized, *DeleteAdminGameRecordTTLConfigForbidden, *DeleteAdminGameRecordTTLConfigNotFound, *DeleteAdminGameRecordTTLConfigInternalServerError, error)
+	DeleteAdminGameRecordTTLConfigShort(params *DeleteAdminGameRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminGameRecordTTLConfigNoContent, error)
 	DeleteGameBinaryRecordTTLConfig(params *DeleteGameBinaryRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameBinaryRecordTTLConfigNoContent, *DeleteGameBinaryRecordTTLConfigBadRequest, *DeleteGameBinaryRecordTTLConfigUnauthorized, *DeleteGameBinaryRecordTTLConfigForbidden, *DeleteGameBinaryRecordTTLConfigNotFound, *DeleteGameBinaryRecordTTLConfigInternalServerError, error)
 	DeleteGameBinaryRecordTTLConfigShort(params *DeleteGameBinaryRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameBinaryRecordTTLConfigNoContent, error)
 	DeleteGameRecordTTLConfig(params *DeleteGameRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordTTLConfigNoContent, *DeleteGameRecordTTLConfigBadRequest, *DeleteGameRecordTTLConfigUnauthorized, *DeleteGameRecordTTLConfigForbidden, *DeleteGameRecordTTLConfigNotFound, *DeleteGameRecordTTLConfigInternalServerError, error)
 	DeleteGameRecordTTLConfigShort(params *DeleteGameRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordTTLConfigNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use DeleteAdminGameRecordTTLConfigShort instead.
+
+DeleteAdminGameRecordTTLConfig delete admin game record ttl config
+## Description
+
+This endpoints will delete the ttl config of the admin game record
+*/
+func (a *Client) DeleteAdminGameRecordTTLConfig(params *DeleteAdminGameRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminGameRecordTTLConfigNoContent, *DeleteAdminGameRecordTTLConfigBadRequest, *DeleteAdminGameRecordTTLConfigUnauthorized, *DeleteAdminGameRecordTTLConfigForbidden, *DeleteAdminGameRecordTTLConfigNotFound, *DeleteAdminGameRecordTTLConfigInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAdminGameRecordTTLConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAdminGameRecordTTLConfig",
+		Method:             "DELETE",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/adminrecords/{key}/ttl",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAdminGameRecordTTLConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteAdminGameRecordTTLConfigNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteAdminGameRecordTTLConfigBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteAdminGameRecordTTLConfigUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteAdminGameRecordTTLConfigForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteAdminGameRecordTTLConfigNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteAdminGameRecordTTLConfigInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeleteAdminGameRecordTTLConfigShort delete admin game record ttl config
+## Description
+
+This endpoints will delete the ttl config of the admin game record
+*/
+func (a *Client) DeleteAdminGameRecordTTLConfigShort(params *DeleteAdminGameRecordTTLConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAdminGameRecordTTLConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAdminGameRecordTTLConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAdminGameRecordTTLConfig",
+		Method:             "DELETE",
+		PathPattern:        "/cloudsave/v1/admin/namespaces/{namespace}/adminrecords/{key}/ttl",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAdminGameRecordTTLConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteAdminGameRecordTTLConfigNoContent:
+		return v, nil
+	case *DeleteAdminGameRecordTTLConfigBadRequest:
+		return nil, v
+	case *DeleteAdminGameRecordTTLConfigUnauthorized:
+		return nil, v
+	case *DeleteAdminGameRecordTTLConfigForbidden:
+		return nil, v
+	case *DeleteAdminGameRecordTTLConfigNotFound:
+		return nil, v
+	case *DeleteAdminGameRecordTTLConfigInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

@@ -33,7 +33,7 @@ func init() {
 	AmsCmd.AddCommand(account.AdminAccountGetCmd)
 	AmsCmd.AddCommand(account.AdminAccountCreateCmd)
 	AmsCmd.AddCommand(account.AdminAccountLinkTokenGetCmd)
-	AmsCmd.AddCommand(account.AdminAccountLinkTokenPostCmd)
+	AmsCmd.AddCommand(account.AdminAccountLinkCmd)
 	AmsCmd.AddCommand(artifacts.ArtifactGetCmd)
 	AmsCmd.AddCommand(artifacts.ArtifactBulkDeleteCmd)
 	AmsCmd.AddCommand(artifacts.ArtifactUsageGetCmd)

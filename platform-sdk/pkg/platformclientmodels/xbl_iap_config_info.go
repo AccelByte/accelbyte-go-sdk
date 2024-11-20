@@ -25,6 +25,18 @@ type XblIAPConfigInfo struct {
 	// businessPartnerCertFileName
 	BusinessPartnerCertFileName string `json:"businessPartnerCertFileName,omitempty"`
 
+	// enable XBL stream event job, will enable stream event job to sync XBL refund chargeback etc event if it's true
+	EnableClawback bool `json:"enableClawback"`
+
+	// entraAppClientId
+	EntraAppClientID string `json:"entraAppClientId,omitempty"`
+
+	// entraAppClientSecret
+	EntraAppClientSecret string `json:"entraAppClientSecret,omitempty"`
+
+	// entraTenantId
+	EntraTenantID string `json:"entraTenantId,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

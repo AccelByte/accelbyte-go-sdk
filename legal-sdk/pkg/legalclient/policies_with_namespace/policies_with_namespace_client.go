@@ -30,6 +30,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, *DeletePolicyBadRequest, error)
+	DeletePolicyShort(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, error)
 	UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, *UpdatePolicy1BadRequest, error)
 	UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, error)
 	SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy3OK, *SetDefaultPolicy3BadRequest, error)
@@ -39,10 +41,119 @@ type ClientService interface {
 }
 
 /*
+Deprecated: 2022-08-10 - Use DeletePolicyShort instead.
+
+DeletePolicy delete policy
+Delete policy.Can only be deleted if match these criteria:
+
+
+  * Policy is not default policy
+  * Policy version under policy has never been accepted by any user
+*/
+func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, *DeletePolicyBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePolicy",
+		Method:             "DELETE",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePolicyNoContent:
+		return v, nil, nil
+
+	case *DeletePolicyBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DeletePolicyShort delete policy
+Delete policy.Can only be deleted if match these criteria:
+
+
+  * Policy is not default policy
+  * Policy version under policy has never been accepted by any user
+*/
+func (a *Client) DeletePolicyShort(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeletePolicyParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deletePolicy",
+		Method:             "DELETE",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeletePolicyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeletePolicyNoContent:
+		return v, nil
+	case *DeletePolicyBadRequest:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use UpdatePolicy1Short instead.
 
 UpdatePolicy1 update country-specific policy
-Update country-specific policy.
+Update country-specific and country-group policy.
 */
 func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, *UpdatePolicy1BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -94,7 +205,7 @@ func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.Cli
 
 /*
 UpdatePolicy1Short update country-specific policy
-Update country-specific policy.
+Update country-specific and country-group policy.
 */
 func (a *Client) UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, error) {
 	// TODO: Validate the params before sending

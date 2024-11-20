@@ -21,9 +21,11 @@ import (
 
 // Get the enum in QueryUserIAPOrdersParams
 const (
-	QueryUserIAPOrdersFAILEDConstant    = "FAILED"
-	QueryUserIAPOrdersFULFILLEDConstant = "FULFILLED"
-	QueryUserIAPOrdersVERIFIEDConstant  = "VERIFIED"
+	QueryUserIAPOrdersFAILEDConstant         = "FAILED"
+	QueryUserIAPOrdersFULFILLEDConstant      = "FULFILLED"
+	QueryUserIAPOrdersPARTIALREVOKEDConstant = "PARTIAL_REVOKED"
+	QueryUserIAPOrdersREVOKEDConstant        = "REVOKED"
+	QueryUserIAPOrdersVERIFIEDConstant       = "VERIFIED"
 )
 
 // Get the enum in QueryUserIAPOrdersParams

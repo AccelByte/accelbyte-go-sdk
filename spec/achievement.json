@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.23.1"
+    "version": "2.23.3"
   },
   "schemes": [
     "https"
@@ -766,6 +766,14 @@
           },
           {
             "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "enum": [
+              "achievedAt",
+              "achievedAt:asc",
+              "achievedAt:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -879,6 +887,11 @@
           {
             "default": "contributedValue:desc",
             "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "enum": [
+              "contributedValue",
+              "contributedValue:asc",
+              "contributedValue:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -1125,6 +1138,14 @@
           {
             "default": "name:asc",
             "description": "sort by, default is 'name:asc', allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "name",
+              "name:asc",
+              "name:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -1235,6 +1256,14 @@
           },
           {
             "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "enum": [
+              "achievedAt",
+              "achievedAt:asc",
+              "achievedAt:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -1588,6 +1617,11 @@
           {
             "default": "contributedValue:desc",
             "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "enum": [
+              "contributedValue",
+              "contributedValue:asc",
+              "contributedValue:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -1913,6 +1947,14 @@
           },
           {
             "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "enum": [
+              "achievedAt",
+              "achievedAt:asc",
+              "achievedAt:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2026,6 +2068,11 @@
           {
             "default": "contributedValue:desc",
             "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "enum": [
+              "contributedValue",
+              "contributedValue:asc",
+              "contributedValue:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2122,6 +2169,14 @@
           {
             "default": "name:asc",
             "description": "sort by, default is 'name:asc', allow values: [name, name:asc, name:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "name",
+              "name:asc",
+              "name:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2232,6 +2287,14 @@
           },
           {
             "description": "sort by, allow values: [achievedAt, achievedAt:asc, achievedAt:desc, createdAt, createdAt:asc, createdAt:desc]",
+            "enum": [
+              "achievedAt",
+              "achievedAt:asc",
+              "achievedAt:desc",
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2437,6 +2500,11 @@
           {
             "default": "contributedValue:desc",
             "description": "sort by, default is 'contributedValue:desc', allow values: [contributedValue, contributedValue:asc, contributedValue:desc]",
+            "enum": [
+              "contributedValue",
+              "contributedValue:asc",
+              "contributedValue:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -3466,11 +3534,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-01T08:27:32+00:00",
-    "gitHash": "1c392bb0f748d9cf599944a78474110266fc21e3",
+    "buildDate": "2024-11-05T09:58:25+00:00",
+    "gitHash": "7ef6de521e39401eead90820295edce874947a59",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.23.1",
+    "version": "2.23.3",
     "version-roles-seeding": "1.0.7"
   }
 }

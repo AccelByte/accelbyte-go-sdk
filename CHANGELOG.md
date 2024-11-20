@@ -1,3 +1,19 @@
+<a name="v0.75.0"></a>
+## [v0.75.0]
+### feat
+- **:** add challenge service integration tests
+- **:** generate csm service in go sdk, cli test and docs
+### chore
+- **test:** add reset time in challenge integration test
+- **sample:** cli - enable websocket reconnect
+- **samples:** cli - use the same close handler
+- **test:** integration - update challenge reset time
+### test
+- **:** add integration test for csm
+- **:** add delete extend app in the integration test
+- **:** temporary disable notification subscription test
+
+
 <a name="v0.74.0"></a>
 ## [v0.74.0]
 ### chore

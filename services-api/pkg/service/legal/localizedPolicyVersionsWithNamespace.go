@@ -38,6 +38,23 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) GetAuthSession() auth.Se
 	}
 }
 
+// Deprecated: 2022-01-10 - please use DeleteLocalizedPolicyShort instead.
+func (aaa *LocalizedPolicyVersionsWithNamespaceService) DeleteLocalizedPolicy(input *localized_policy_versions_with_namespace.DeleteLocalizedPolicyParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := aaa.Client.LocalizedPolicyVersionsWithNamespace.DeleteLocalizedPolicy(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use RetrieveLocalizedPolicyVersions1Short instead.
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveLocalizedPolicyVersions1(input *localized_policy_versions_with_namespace.RetrieveLocalizedPolicyVersions1Params) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -151,6 +168,36 @@ func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveSingleLocalizedP
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *LocalizedPolicyVersionsWithNamespaceService) DeleteLocalizedPolicyShort(input *localized_policy_versions_with_namespace.DeleteLocalizedPolicyParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdLocalizedPolicyVersionsWithNamespace != nil {
+		input.XFlightId = tempFlightIdLocalizedPolicyVersionsWithNamespace
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.LocalizedPolicyVersionsWithNamespace.DeleteLocalizedPolicyShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *LocalizedPolicyVersionsWithNamespaceService) RetrieveLocalizedPolicyVersions1Short(input *localized_policy_versions_with_namespace.RetrieveLocalizedPolicyVersions1Params) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {

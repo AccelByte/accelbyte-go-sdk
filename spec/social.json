@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "2.18.1"
+    "version": "2.18.3"
   },
   "schemes": [
     "https"
@@ -2015,19 +2015,19 @@
         "operationId": "createStatCycle",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatCycleCreate"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatCycleCreate"
-            }
           }
         ],
         "produces": [
@@ -2109,19 +2109,19 @@
         "operationId": "bulkGetStatCycle",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BulkStatCycleRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/BulkStatCycleRequest"
-            }
           }
         ],
         "produces": [
@@ -2480,6 +2480,14 @@
         "operationId": "updateStatCycle",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatCycleUpdate"
+            }
+          },
+          {
             "description": "cycle id",
             "in": "path",
             "name": "cycleId",
@@ -2492,14 +2500,6 @@
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatCycleUpdate"
-            }
           }
         ],
         "produces": [
@@ -2588,6 +2588,14 @@
         "operationId": "bulkAddStats",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BulkCycleStatsAdd"
+            }
+          },
+          {
             "description": "cycle id",
             "in": "path",
             "name": "cycleId",
@@ -2600,14 +2608,6 @@
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/BulkCycleStatsAdd"
-            }
           }
         ],
         "produces": [
@@ -2860,22 +2860,22 @@
         "operationId": "bulkIncUserStatItemValue",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemInc"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -2949,22 +2949,22 @@
         "operationId": "bulkIncUserStatItem",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemInc"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3136,22 +3136,22 @@
         "operationId": "bulkResetUserStatItem",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemReset"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -3325,19 +3325,19 @@
         "operationId": "createStat",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatCreate"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatCreate"
-            }
           }
         ],
         "produces": [
@@ -3810,6 +3810,14 @@
         "operationId": "updateStat",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatUpdate"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -3822,14 +3830,6 @@
             "name": "statCode",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatUpdate"
-            }
           }
         ],
         "produces": [
@@ -3866,6 +3866,12 @@
               "$ref": "#/definitions/ErrorEntity"
             }
           },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
           "500": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003eInternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -3887,6 +3893,7 @@
           "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
           "20000": "Internal server error",
           "20001": "Unauthorized",
+          "20002": "validation error",
           "20013": "insufficient permission"
         },
         "x-security": {
@@ -4319,6 +4326,17 @@
         "operationId": "bulkCreateUserStatItems",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemCreate"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -4331,17 +4349,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemCreate"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -4417,6 +4424,17 @@
         "operationId": "bulkIncUserStatItemValue_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemInc"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -4429,17 +4447,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemInc"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -4513,6 +4520,17 @@
         "operationId": "bulkIncUserStatItem_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemInc"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -4525,17 +4543,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemInc"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -4611,6 +4618,17 @@
         "operationId": "bulkResetUserStatItem_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemReset"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -4623,17 +4641,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemReset"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -4889,6 +4896,14 @@
         "operationId": "incUserStatItemValue",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatItemInc"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -4908,14 +4923,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatItemInc"
-            }
           }
         ],
         "produces": [
@@ -5005,6 +5012,14 @@
         "operationId": "resetUserStatItemValue",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatResetInfo"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -5024,14 +5039,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatResetInfo"
-            }
           },
           {
             "description": "additional key",
@@ -5393,19 +5400,19 @@
         "operationId": "bulkGetStatCycle_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BulkStatCycleRequest"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/BulkStatCycleRequest"
-            }
           }
         ],
         "produces": [
@@ -5638,22 +5645,22 @@
         "operationId": "publicBulkIncUserStatItemValue",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemInc"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5727,22 +5734,22 @@
         "operationId": "publicBulkIncUserStatItem",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemInc"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5818,22 +5825,22 @@
         "operationId": "bulkResetUserStatItem_2",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemReset"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -5909,19 +5916,19 @@
         "operationId": "createStat_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatCreate"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatCreate"
-            }
           }
         ],
         "produces": [
@@ -6568,6 +6575,17 @@
         "operationId": "publicBulkCreateUserStatItems",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemCreate"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -6580,17 +6598,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemCreate"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -6785,6 +6792,17 @@
         "operationId": "bulkIncUserStatItemValue_2",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemInc"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -6797,17 +6815,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemInc"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -6881,6 +6888,17 @@
         "operationId": "publicBulkIncUserStatItem_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemInc"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -6893,17 +6911,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemInc"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -6979,6 +6986,17 @@
         "operationId": "bulkResetUserStatItem_3",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemReset"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -6991,17 +7009,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemReset"
-              },
-              "type": "array"
-            }
           }
         ],
         "produces": [
@@ -7257,6 +7264,14 @@
         "operationId": "publicIncUserStatItemValue",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatItemInc"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -7276,14 +7291,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatItemInc"
-            }
           }
         ],
         "produces": [
@@ -7371,6 +7378,14 @@
         "operationId": "publicIncUserStatItem",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatItemInc"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -7390,14 +7405,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatItemInc"
-            }
           }
         ],
         "produces": [
@@ -7586,22 +7593,22 @@
         "operationId": "bulkUpdateUserStatItemV2",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemUpdate"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -7899,6 +7906,17 @@
         "operationId": "bulkUpdateUserStatItem",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemUpdate"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -7911,17 +7929,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemUpdate"
-              },
-              "type": "array"
-            }
           },
           {
             "description": "additional key",
@@ -8004,6 +8011,14 @@
         "operationId": "bulkGetOrDefaultByUserId",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BulkUserStatItemByStatCodes"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -8016,14 +8031,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/BulkUserStatItemByStatCodes"
-            }
           },
           {
             "description": "additional key",
@@ -8100,6 +8107,17 @@
         "operationId": "bulkResetUserStatItemValues",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for resetting user stat items"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -8112,17 +8130,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/A DTO object for resetting user stat items"
-              },
-              "type": "array"
-            }
           },
           {
             "description": "additional key",
@@ -8298,6 +8305,14 @@
         "operationId": "updateUserStatItemValue",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatItemUpdate"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -8317,14 +8332,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatItemUpdate"
-            }
           },
           {
             "description": "additional key",
@@ -8420,22 +8427,22 @@
         "operationId": "bulkUpdateUserStatItem_1",
         "parameters": [
           {
-            "description": "namespace",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "type": "string"
-          },
-          {
             "in": "body",
             "name": "body",
-            "required": false,
+            "required": true,
             "schema": {
               "items": {
                 "$ref": "#/definitions/BulkUserStatItemUpdate"
               },
               "type": "array"
             }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
           }
         ],
         "produces": [
@@ -8630,6 +8637,17 @@
         "operationId": "bulkUpdateUserStatItem_2",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemUpdate"
+              },
+              "type": "array"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -8642,17 +8660,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/BulkStatItemUpdate"
-              },
-              "type": "array"
-            }
           },
           {
             "description": "additional key",
@@ -8735,6 +8742,14 @@
         "operationId": "updateUserStatItemValue_1",
         "parameters": [
           {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StatItemUpdate"
+            }
+          },
+          {
             "description": "namespace",
             "in": "path",
             "name": "namespace",
@@ -8754,14 +8769,6 @@
             "name": "userId",
             "required": true,
             "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/StatItemUpdate"
-            }
           },
           {
             "description": "additional key",
@@ -9131,6 +9138,41 @@
         "updateStrategy",
         "userId",
         "value"
+      ],
+      "type": "object"
+    },
+    "CycleOverride": {
+      "properties": {
+        "cycleId": {
+          "type": "string"
+        },
+        "maximum": {
+          "format": "double",
+          "type": "number"
+        },
+        "minimum": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CycleOverrideRequest": {
+      "properties": {
+        "cycleId": {
+          "type": "string"
+        },
+        "maximum": {
+          "format": "double",
+          "type": "number"
+        },
+        "minimum": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "cycleId"
       ],
       "type": "object"
     },
@@ -9537,6 +9579,13 @@
           "type": "array",
           "uniqueItems": true
         },
+        "cycleOverrides": {
+          "items": {
+            "$ref": "#/definitions/CycleOverrideRequest"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
         "defaultValue": {
           "format": "double",
           "type": "number"
@@ -9908,6 +9957,13 @@
           "type": "array",
           "uniqueItems": true
         },
+        "cycleOverrides": {
+          "items": {
+            "$ref": "#/definitions/CycleOverride"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
         "defaultValue": {
           "format": "double",
           "type": "number"
@@ -10134,6 +10190,13 @@
         "cycleIds": {
           "items": {
             "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "cycleOverrides": {
+          "items": {
+            "$ref": "#/definitions/CycleOverrideRequest"
           },
           "type": "array",
           "uniqueItems": true
@@ -10400,16 +10463,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-10-02T10:31:32+00:00",
-    "buildID": "2.18.1",
+    "buildDate": "2024-11-05T10:04:09+00:00",
+    "buildID": "2.18.3",
     "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
-    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.226-214.880.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "0687ba988f",
-    "gitTag": "2.18.1",
+    "gitHash": "0fd578be9a",
+    "gitTag": "2.18.3",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "2.18.1",
+    "version": "2.18.3",
     "version-roles-seeding": "0.0.12"
   }
 }

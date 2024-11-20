@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.14.0"
+    "version": "2.15.0"
   },
   "schemes": [
     "https"
@@ -2694,6 +2694,77 @@
         ]
       }
     },
+    "/gdpr/s2s/namespaces/{namespace}/requests/{requestId}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Scope: account\n\nGet Personal Data Request by Request Id.\nIf the request has been completed, it will return a download url for the data package.\n\n---\n## This API for S2S integration purpose only\n",
+        "operationId": "S2SGetDataRequestByRequestID",
+        "parameters": [
+          {
+            "description": "Publisher Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Request Id",
+            "in": "path",
+            "name": "requestId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dto.S2SDataRequestSummary"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Personal Data Request by Request Id",
+        "tags": [
+          "Data Retrieval (S2S)"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:S2S:INFORMATION:USER [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/gdpr/s2s/namespaces/{namespace}/users/{userId}/deletions": {
       "post": {
         "consumes": [
@@ -2977,7 +3048,8 @@
         "status": {
           "description": "Status of request",
           "enum": [
-            "Completed,Failed"
+            "Completed",
+            "Failed"
           ],
           "type": "string"
         },
@@ -3017,10 +3089,15 @@
           "type": "string",
           "x-nullable": false
         },
+        "requestId": {
+          "description": "Request id",
+          "type": "string"
+        },
         "status": {
           "description": "Status of request",
           "enum": [
-            "Completed,Failed"
+            "Completed",
+            "Failed"
           ],
           "type": "string"
         },
@@ -3031,6 +3108,7 @@
       "required": [
         "finishedDate",
         "requestDate",
+        "requestId",
         "status",
         "userId"
       ]
@@ -3100,6 +3178,32 @@
         "platform",
         "secret",
         "updatedAt"
+      ]
+    },
+    "dto.S2SDataRequestSummary": {
+      "properties": {
+        "failedMessage": {
+          "description": "Failed message if status is Failed",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the request",
+          "enum": [
+            "Canceled",
+            "Completed",
+            "Failed",
+            "In-Progress",
+            "Pending"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "Download url if status is Completed",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
       ]
     },
     "dto.ServiceConfigDTO": {
@@ -3434,6 +3538,9 @@
           "type": "string",
           "x-nullable": false
         },
+        "requestId": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
@@ -3441,6 +3548,7 @@
       "required": [
         "namespace",
         "requestDate",
+        "requestId",
         "userId"
       ]
     },
@@ -3461,6 +3569,7 @@
     "models.S2SUserDataURL": {
       "properties": {
         "url": {
+          "description": "Download url if status is Completed",
           "type": "string"
         }
       },
@@ -3539,11 +3648,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-03T13:09:45+00:00",
-    "gitHash": "c2c5f1ce476f7c910dc8645e12ac7cf33b6ea685",
+    "buildDate": "2024-11-06T04:07:51+00:00",
+    "gitHash": "7805dff0f5800af1d2d3985befeefe5491ff39ae",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.14.0",
+    "version": "2.15.0",
     "version-roles-seeding": "1.2.39"
   }
 }

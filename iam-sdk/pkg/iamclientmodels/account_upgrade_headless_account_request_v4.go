@@ -18,6 +18,12 @@ import (
 // swagger:model Account upgrade headless account request V4.
 type AccountUpgradeHeadlessAccountRequestV4 struct {
 
+	// dateofbirth
+	DateOfBirth string `json:"dateOfBirth,omitempty"`
+
+	// displayname
+	DisplayName string `json:"displayName,omitempty"`
+
 	// emailaddress
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`
@@ -25,6 +31,9 @@ type AccountUpgradeHeadlessAccountRequestV4 struct {
 	// password
 	// Required: true
 	Password *string `json:"password"`
+
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 
 	// username
 	// Required: true

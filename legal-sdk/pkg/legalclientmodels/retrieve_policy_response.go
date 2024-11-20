@@ -18,12 +18,22 @@ import (
 // swagger:model Retrieve policy response.
 type RetrievePolicyResponse struct {
 
+	// countries
+	// Unique: true
+	Countries []string `json:"countries"`
+
 	// countrycode
 	// Required: true
 	CountryCode *string `json:"countryCode"`
 
 	// countrygroupcode
 	CountryGroupCode string `json:"countryGroupCode,omitempty"`
+
+	// countrygroupname
+	CountryGroupName string `json:"countryGroupName,omitempty"`
+
+	// countrytype
+	CountryType string `json:"countryType,omitempty"`
 
 	// createdat
 	// Format: date-time

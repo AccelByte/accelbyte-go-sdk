@@ -27,8 +27,8 @@ type UnsubscribeV2HandlerReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UnsubscribeV2HandlerReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 200:
-		result := NewUnsubscribeV2HandlerOK()
+	case 204:
+		result := NewUnsubscribeV2HandlerNoContent()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -68,23 +68,23 @@ func (o *UnsubscribeV2HandlerReader) ReadResponse(response runtime.ClientRespons
 	}
 }
 
-// NewUnsubscribeV2HandlerOK creates a UnsubscribeV2HandlerOK with default headers values
-func NewUnsubscribeV2HandlerOK() *UnsubscribeV2HandlerOK {
-	return &UnsubscribeV2HandlerOK{}
+// NewUnsubscribeV2HandlerNoContent creates a UnsubscribeV2HandlerNoContent with default headers values
+func NewUnsubscribeV2HandlerNoContent() *UnsubscribeV2HandlerNoContent {
+	return &UnsubscribeV2HandlerNoContent{}
 }
 
-/*UnsubscribeV2HandlerOK handles this case with default header values.
+/*UnsubscribeV2HandlerNoContent handles this case with default header values.
 
   successfully submitted request to unsubcribe from app down notification
 */
-type UnsubscribeV2HandlerOK struct {
+type UnsubscribeV2HandlerNoContent struct {
 }
 
-func (o *UnsubscribeV2HandlerOK) Error() string {
-	return fmt.Sprintf("[DELETE /csm/v2/admin/namespaces/{namespace}/apps/{app}/subscriptions/me][%d] unsubscribeV2HandlerOK ", 200)
+func (o *UnsubscribeV2HandlerNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /csm/v2/admin/namespaces/{namespace}/apps/{app}/subscriptions/me][%d] unsubscribeV2HandlerNoContent ", 204)
 }
 
-func (o *UnsubscribeV2HandlerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *UnsubscribeV2HandlerNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

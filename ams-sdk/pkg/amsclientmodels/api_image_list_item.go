@@ -42,6 +42,11 @@ type APIImageListItem struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// referencingconfigs
+	// Required: true
+	// Format: int32
+	ReferencingConfigs *int32 `json:"referencingConfigs"`
+
 	// referencingfleets
 	// Required: true
 	// Format: int32
@@ -89,6 +94,9 @@ func (m *APIImageListItem) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateReferencingConfigs(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateReferencingFleets(formats); err != nil {
@@ -173,6 +181,15 @@ func (m *APIImageListItem) validateIsProtected(formats strfmt.Registry) error {
 func (m *APIImageListItem) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIImageListItem) validateReferencingConfigs(formats strfmt.Registry) error {
+
+	if err := validate.Required("referencingConfigs", "body", m.ReferencingConfigs); err != nil {
 		return err
 	}
 

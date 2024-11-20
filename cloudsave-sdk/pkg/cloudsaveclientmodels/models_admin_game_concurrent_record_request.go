@@ -21,6 +21,9 @@ type ModelsAdminGameConcurrentRecordRequest struct {
 	// Tagging for admin game record
 	Tags []string `json:"tags,omitempty"`
 
+	// TTL configuration for the admin game record
+	TTLConfig *ModelsTTLConfigDTO `json:"ttl_config,omitempty"`
+
 	// Precondition for concurrent request, updatedAt should be the same as record's updatedAt
 	// Required: true
 	// Format: date-time

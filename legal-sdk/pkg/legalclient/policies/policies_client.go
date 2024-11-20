@@ -148,7 +148,7 @@ func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo 
 Deprecated: 2022-08-10 - Use UpdatePolicyShort instead.
 
 UpdatePolicy update country-specific policy
-Update country-specific policy.
+Update country-specific and country-group policy.
 */
 func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -200,7 +200,7 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 
 /*
 UpdatePolicyShort update country-specific policy
-Update country-specific policy.
+Update country-specific and country-group policy.
 */
 func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error) {
 	// TODO: Validate the params before sending

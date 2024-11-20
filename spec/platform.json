@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "5.0.1"
+    "version": "6.0.0"
   },
   "schemes": [
     "https"
@@ -4054,7 +4054,8 @@
               "CHARGEBACK",
               "CHARGEBACK_REVERSED",
               "OTHER",
-              "REFUND"
+              "REFUND",
+              "REVOKED"
             ],
             "in": "query",
             "name": "eventType",
@@ -4178,6 +4179,55 @@
           }
         ],
         "summary": "Mock Sync PlayStation Clawback event.",
+        "tags": [
+          "Clawback"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK[CREATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/iap/clawback/xbl/mock": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Mock Sync XBox Clawback event.",
+        "operationId": "mockXblClawbackEvent",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/XblClawbackEvent"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ClawbackInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Mock Sync XBox Clawback event.",
         "tags": [
           "Clawback"
         ],
@@ -5740,6 +5790,53 @@
         "summary": "Query subscriptions.",
         "tags": [
           "IAP(Subscription)"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/iap/{iapOrderNo}/consumedetails": {
+      "get": {
+        "description": "Get IAP Order Consume Details by IAP Order Number.",
+        "operationId": "getIAPOrderConsumeDetails",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "iapOrderNo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/IAPOrderConsumeDetailInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get IAP Order Consume Details by IAP Order Number.",
+        "tags": [
+          "IAP"
         ],
         "x-errorCodes": {},
         "x-security": {
@@ -15168,6 +15265,15 @@
             "x-omitempty": false
           },
           {
+            "default": false,
+            "description": "This param will work only with activeOnly=true.\nWhen fetching entitlement with active status, this param will ignore the startDate and endDate of an entitlement.",
+            "in": "query",
+            "name": "ignoreActiveDate",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
             "collectionFormat": "multi",
             "in": "query",
             "items": {
@@ -15450,6 +15556,63 @@
           }
         ],
         "summary": "Query app entitlements by appType",
+        "tags": [
+          "Entitlement"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byIds": {
+      "get": {
+        "description": "Get user entitlements by ids. This will return all entitlements regardless of its status\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getUserEntitlementsByIds",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "ids",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/EntitlementInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get user entitlements by ids.",
         "tags": [
           "Entitlement"
         ],
@@ -17333,6 +17496,8 @@
             "enum": [
               "FAILED",
               "FULFILLED",
+              "PARTIAL_REVOKED",
+              "REVOKED",
               "VERIFIED"
             ],
             "in": "query",
@@ -37035,6 +37200,8 @@
           "enum": [
             "FAILED",
             "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
             "VERIFIED"
           ],
           "type": "string"
@@ -39328,6 +39495,74 @@
       },
       "type": "object"
     },
+    "IAPOrderConsumeDetailInfo": {
+      "properties": {
+        "correlationId": {
+          "description": "correlationId",
+          "type": "string"
+        },
+        "iapOrderNo": {
+          "description": "iapOrderNo",
+          "type": "string"
+        },
+        "id": {
+          "description": "id",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "itemId",
+          "type": "string"
+        },
+        "itemSku": {
+          "description": "itemSku",
+          "type": "string"
+        },
+        "lineItemOrderId": {
+          "description": "lineItemOrderId",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "orderId",
+          "type": "string"
+        },
+        "platform": {
+          "description": "platform",
+          "type": "string"
+        },
+        "productId": {
+          "description": "productId",
+          "type": "string"
+        },
+        "quantityConsumed": {
+          "description": "quantityConsumed",
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantityRevoked": {
+          "description": "quantityRevoked",
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "description": "status",
+          "enum": [
+            "FULFILLED",
+            "RECONNECTED",
+            "REVOKED"
+          ],
+          "type": "string"
+        },
+        "userId": {
+          "description": "userId",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IAPOrderInfo": {
       "properties": {
         "createdAt": {
@@ -39409,6 +39644,8 @@
           "enum": [
             "FAILED",
             "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
             "VERIFIED"
           ],
           "type": "string"
@@ -41892,6 +42129,8 @@
           "enum": [
             "FAILED",
             "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
             "VERIFIED"
           ],
           "type": "string"
@@ -45168,6 +45407,8 @@
           "enum": [
             "FAILED",
             "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
             "VERIFIED"
           ],
           "type": "string"
@@ -49950,6 +50191,8 @@
           "enum": [
             "FAILED",
             "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
             "VERIFIED"
           ],
           "type": "string"
@@ -50545,6 +50788,104 @@
       },
       "type": "object"
     },
+    "XblClawbackContractV2": {
+      "properties": {
+        "eventDate": {
+          "type": "string"
+        },
+        "eventState": {
+          "type": "string"
+        },
+        "lineItemId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "productType": {
+          "type": "string"
+        },
+        "purchasedDate": {
+          "type": "string"
+        },
+        "sandboxId": {
+          "type": "string"
+        },
+        "skuId": {
+          "type": "string"
+        },
+        "subscriptionData": {
+          "$ref": "#/definitions/XblClawbackEventSubscriptionData"
+        }
+      },
+      "required": [
+        "eventState",
+        "lineItemId",
+        "orderId",
+        "productId"
+      ],
+      "type": "object"
+    },
+    "XblClawbackEvent": {
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/XblClawbackContractV2"
+        },
+        "datacontenttype": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "specVersion": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "traceparent": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data",
+        "id",
+        "source",
+        "type"
+      ],
+      "type": "object"
+    },
+    "XblClawbackEventSubscriptionData": {
+      "properties": {
+        "consumedDurationInDays": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dateTime": {
+          "type": "string"
+        },
+        "durationInDays": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "recurrenceId": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "XblDLCSyncRequest": {
       "properties": {
         "xstsToken": {
@@ -50577,6 +50918,23 @@
           "description": "businessPartnerCertFileName",
           "type": "string"
         },
+        "enableClawback": {
+          "description": "enable XBL stream event job, will enable stream event job to sync XBL refund chargeback etc event if it's true",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "entraAppClientId": {
+          "description": "entraAppClientId",
+          "type": "string"
+        },
+        "entraAppClientSecret": {
+          "description": "entraAppClientSecret",
+          "type": "string"
+        },
+        "entraTenantId": {
+          "description": "entraTenantId",
+          "type": "string"
+        },
         "namespace": {
           "description": "namespace",
           "type": "string"
@@ -50597,14 +50955,28 @@
     },
     "XblIAPConfigRequest": {
       "properties": {
+        "enableClawback": {
+          "description": "enable XBL stream event job, will enable stream event job to sync XBL refund chargeback etc event if it's true",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "entraAppClientId": {
+          "description": "entraAppClientId",
+          "type": "string"
+        },
+        "entraAppClientSecret": {
+          "description": "entraAppClientSecret",
+          "type": "string"
+        },
+        "entraTenantId": {
+          "description": "entraTenantId",
+          "type": "string"
+        },
         "relyingPartyCert": {
           "description": "deprecated - relyingPartyCert",
           "type": "string"
         }
       },
-      "required": [
-        "relyingPartyCert"
-      ],
       "type": "object"
     },
     "XblReconcileRequest": {
@@ -50635,6 +51007,8 @@
           "enum": [
             "FAILED",
             "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
             "VERIFIED"
           ],
           "type": "string"
@@ -50824,16 +51198,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-10-09T05:23:50+00:00",
-    "buildID": "5.0.1",
+    "buildDate": "2024-11-06T04:10:23+00:00",
+    "buildID": "6.0.0",
     "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
-    "buildOS": "Linux amd64 5.10.225-213.878.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.226-214.880.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "9b173c94b3",
-    "gitTag": "5.0.1",
+    "gitHash": "562ffe03b3",
+    "gitTag": "6.0.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "5.0.1",
+    "version": "6.0.0",
     "version-roles-seeding": "1.2.74"
   }
 }

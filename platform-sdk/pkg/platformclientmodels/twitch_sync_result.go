@@ -21,7 +21,7 @@ import (
 type TwitchSyncResult struct {
 
 	// order status
-	// Enum: ['FAILED', 'FULFILLED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
 	IAPOrderStatus string `json:"iapOrderStatus,omitempty"`
 
 	// Item sku
@@ -45,7 +45,7 @@ var twitchSyncResultTypeIAPOrderStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -60,6 +60,12 @@ const (
 
 	// TwitchSyncResultIAPOrderStatusFULFILLED captures enum value "FULFILLED"
 	TwitchSyncResultIAPOrderStatusFULFILLED string = "FULFILLED"
+
+	// TwitchSyncResultIAPOrderStatusPARTIALREVOKED captures enum value "PARTIAL_REVOKED"
+	TwitchSyncResultIAPOrderStatusPARTIALREVOKED string = "PARTIAL_REVOKED"
+
+	// TwitchSyncResultIAPOrderStatusREVOKED captures enum value "REVOKED"
+	TwitchSyncResultIAPOrderStatusREVOKED string = "REVOKED"
 
 	// TwitchSyncResultIAPOrderStatusVERIFIED captures enum value "VERIFIED"
 	TwitchSyncResultIAPOrderStatusVERIFIED string = "VERIFIED"

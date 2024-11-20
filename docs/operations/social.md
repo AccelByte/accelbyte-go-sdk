@@ -157,6 +157,8 @@
 | `BulkUserStatItemInc` | [BulkUserStatItemInc ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_inc.go) |
 | `BulkUserStatItemReset` | [BulkUserStatItemReset ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_reset.go) |
 | `BulkUserStatItemUpdate` | [BulkUserStatItemUpdate ](../../social-sdk/pkg/socialclientmodels/bulk_user_stat_item_update.go) |
+| `CycleOverride` | [CycleOverride ](../../social-sdk/pkg/socialclientmodels/cycle_override.go) |
+| `CycleOverrideRequest` | [CycleOverrideRequest ](../../social-sdk/pkg/socialclientmodels/cycle_override_request.go) |
 | `ErrorEntity` | [ErrorEntity ](../../social-sdk/pkg/socialclientmodels/error_entity.go) |
 | `FieldValidationError` | [FieldValidationError ](../../social-sdk/pkg/socialclientmodels/field_validation_error.go) |
 | `GameProfileHeader` | [GameProfileHeader ](../../social-sdk/pkg/socialclientmodels/game_profile_header.go) |

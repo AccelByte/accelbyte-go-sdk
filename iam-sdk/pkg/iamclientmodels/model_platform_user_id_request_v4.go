@@ -18,6 +18,9 @@ import (
 // swagger:model Model platform user ID request V4.
 type ModelPlatformUserIDRequestV4 struct {
 
+	// type of the platform user ids, supported values: OCULUS_APP_USER_ID
+	PidType string `json:"pidType,omitempty"`
+
 	// max length is 100, min length is 1
 	// Required: true
 	PlatformUserIds []string `json:"platformUserIds"`

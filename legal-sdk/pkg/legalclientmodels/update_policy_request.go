@@ -18,6 +18,13 @@ import (
 // swagger:model Update policy request.
 type UpdatePolicyRequest struct {
 
+	// countries
+	// Unique: true
+	Countries []string `json:"countries"`
+
+	// countrygroupname
+	CountryGroupName string `json:"countryGroupName,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty"`
 

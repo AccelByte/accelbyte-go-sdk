@@ -41,6 +41,7 @@ var QueryUserEntitlementsCmd = &cobra.Command{
 			return errFeatures
 		}
 		fuzzyMatchName, _ := cmd.Flags().GetBool("fuzzyMatchName")
+		ignoreActiveDate, _ := cmd.Flags().GetBool("ignoreActiveDate")
 		itemIdString := cmd.Flag("itemId").Value.String()
 		var itemId []string
 		errItemId := json.Unmarshal([]byte(itemIdString), &itemId)
@@ -60,6 +61,7 @@ var QueryUserEntitlementsCmd = &cobra.Command{
 			EntitlementName:  &entitlementName,
 			Features:         features,
 			FuzzyMatchName:   &fuzzyMatchName,
+			IgnoreActiveDate: &ignoreActiveDate,
 			ItemID:           itemId,
 			Limit:            &limit,
 			Offset:           &offset,
@@ -90,6 +92,7 @@ func init() {
 	QueryUserEntitlementsCmd.Flags().String("entitlementName", "", "Entitlement name")
 	QueryUserEntitlementsCmd.Flags().String("features", "", "Features")
 	QueryUserEntitlementsCmd.Flags().Bool("fuzzyMatchName", false, "Fuzzy match name")
+	QueryUserEntitlementsCmd.Flags().Bool("ignoreActiveDate", false, "Ignore active date")
 	QueryUserEntitlementsCmd.Flags().String("itemId", "", "Item id")
 	QueryUserEntitlementsCmd.Flags().Int32("limit", 20, "Limit")
 	QueryUserEntitlementsCmd.Flags().Int32("offset", 0, "Offset")

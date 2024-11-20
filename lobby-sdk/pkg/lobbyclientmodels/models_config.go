@@ -95,6 +95,10 @@ type ModelsConfig struct {
 	// Format: int64
 	ReadyConsentTimeout int64 `json:"readyConsentTimeout,omitempty"`
 
+	// requestmetadatamaxsize
+	// Format: int32
+	RequestMetadataMaxSize int32 `json:"requestMetadataMaxSize,omitempty"`
+
 	// unregisterdelay
 	// Required: true
 	// Format: int64

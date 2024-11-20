@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.22.0"
+    "version": "7.24.2"
   },
   "schemes": [
     "https"
@@ -20909,7 +20909,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/config/{configKey}": {
       "get": {
-        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\nNote: this endpoint does not need any authorization.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n * mandatoryEmailVerificationEnabled\n",
+        "description": "This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.\nNote: this endpoint does not need any authorization.\n\n**Supported config key:**\n * uniqueDisplayNameEnabled\n * usernameDisabled\n * mandatoryEmailVerificationEnabled\n * verificationCodeType\n\nIf the key is verificationCodeType, then possible value format will be \u0026#39;{collection}:{N}\u0026#39;; example: \u0026#39;ABCDEFGHI:6\u0026#39;, \u0026#39;ABCDEFGHI1234:8\u0026#39;,\u0026#39;01234567894:7\u0026#39;\n",
         "operationId": "PublicGetConfigValueV3",
         "parameters": [
           {
@@ -30910,7 +30910,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "List User ID By Platform User ID\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID, the max count is 100. \n\nSupported platform:\n- steam\n- steamopenid\n- ps4web\n- ps4\n- ps5 \n- live\n- xblweb \n- oculus\n- oculusweb\n- facebook\n- google\n- googleplaygames\n- twitch\n- discord\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote:\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1 \u0026lt;br\u0026gt;\nIf the request body exceed the max limitation, the max count will be in response body\u0026#39;s messageVariables: \u0026#34;messageVariables\u0026#34;: {\u0026#34;maxCount\u0026#34;: \u0026#34;100\u0026#34;}",
+        "description": "List User ID By Platform User ID\nThis endpoint intended to list game user ID from the given namespace\nThis endpoint return list of user ID by given platform ID and list of platform user ID, the max count is 100. \n\nSupported platform:\n- steam\n- steamopenid\n- ps4web\n- ps4\n- ps5 \n- live\n- xblweb \n- oculus\n\t- if query by app user id, please set the param **pidType** to **OCULUS_APP_USER_ID**\n- oculusweb\n- facebook\n- google\n- googleplaygames\n- twitch\n- discord\n- apple\n- device\n- justice\n- epicgames\n- nintendo\n- awscognito\n- netflix\n- snapchat\n- oidc platform id\n\nNote:\n**nintendo platform user ID**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1 \u0026lt;br\u0026gt;\nIf the request body exceed the max limitation, the max count will be in response body\u0026#39;s messageVariables: \u0026#34;messageVariables\u0026#34;: {\u0026#34;maxCount\u0026#34;: \u0026#34;100\u0026#34;}",
         "operationId": "PublicListUserIDByPlatformUserIDsV4",
         "parameters": [
           {
@@ -33942,10 +33942,19 @@
     },
     "account.upgradeHeadlessAccountRequestV4": {
       "properties": {
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
         "emailAddress": {
           "type": "string"
         },
         "password": {
+          "type": "string"
+        },
+        "uniqueDisplayName": {
           "type": "string"
         },
         "username": {
@@ -37733,6 +37742,10 @@
     },
     "model.PlatformUserIDRequestV4": {
       "properties": {
+        "pidType": {
+          "description": "type of the platform user ids, supported values: OCULUS_APP_USER_ID",
+          "type": "string"
+        },
         "platformUserIds": {
           "description": "max length is 100, min length is 1",
           "items": {
@@ -41851,11 +41864,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-09T06:39:42+00:00",
-    "gitHash": "250711186d57be505c521905cd40fb658ff8dbe0",
+    "buildDate": "2024-11-12T10:52:40+00:00",
+    "gitHash": "37ce121045856d5ee628bb1d0b732de14813b181",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.22.0",
-    "version-roles-seeding": "1.2.71"
+    "version": "7.24.2",
+    "version-roles-seeding": "1.2.80"
   }
 }

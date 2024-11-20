@@ -80,7 +80,6 @@ func main() {
 			configRepo, tokenRepo,
 			connectionutils.WithScheme("ws"),
 			connectionutils.WithMessageHandler(messageHandler),
-			connectionutils.WithEnableAutoReconnect(),
 		)
 		if err != nil {
 			panic(err)
@@ -125,7 +124,6 @@ func main() {
 			configRepo, tokenRepo,
 			connectionutils.WithScheme("ws"),
 			connectionutils.WithMessageHandler(messageHandler),
-			connectionutils.WithEnableAutoReconnect(),
 		)
 		if err != nil {
 			panic(err)

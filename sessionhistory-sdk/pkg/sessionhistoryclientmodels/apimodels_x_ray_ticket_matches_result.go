@@ -17,6 +17,9 @@ import (
 // swagger:model Apimodels X ray ticket matches result.
 type ApimodelsXRayTicketMatchesResult struct {
 
+	// actualtimetomatch
+	ActualTimeToMatch string `json:"ActualTimeToMatch,omitempty"`
+
 	// createdat
 	// Format: date-time
 	CreatedAt *strfmt.DateTime `json:"CreatedAt,omitempty"`

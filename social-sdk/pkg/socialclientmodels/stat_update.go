@@ -24,6 +24,10 @@ type StatUpdate struct {
 	// Unique: true
 	CycleIds []string `json:"cycleIds"`
 
+	// cycleoverrides
+	// Unique: true
+	CycleOverrides []*CycleOverrideRequest `json:"cycleOverrides"`
+
 	// defaultvalue
 	// Format: double
 	DefaultValue float64 `json:"defaultValue,omitempty"`

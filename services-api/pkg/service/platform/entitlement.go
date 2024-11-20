@@ -241,6 +241,20 @@ func (aaa *EntitlementService) QueryUserEntitlementsByAppType(input *entitlement
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetUserEntitlementsByIdsShort instead.
+func (aaa *EntitlementService) GetUserEntitlementsByIds(input *entitlement.GetUserEntitlementsByIdsParams) ([]*platformclientmodels.EntitlementInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Entitlement.GetUserEntitlementsByIds(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetUserEntitlementByItemIDShort instead.
 func (aaa *EntitlementService) GetUserEntitlementByItemID(input *entitlement.GetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1336,6 +1350,36 @@ func (aaa *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitl
 	}
 
 	ok, err := aaa.Client.Entitlement.QueryUserEntitlementsByAppTypeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *EntitlementService) GetUserEntitlementsByIdsShort(input *entitlement.GetUserEntitlementsByIdsParams) ([]*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdEntitlement != nil {
+		input.XFlightId = tempFlightIdEntitlement
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Entitlement.GetUserEntitlementsByIdsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -25,6 +25,7 @@ const (
 	QueryIAPClawbackHistoryCHARGEBACKREVERSEDConstant = "CHARGEBACK_REVERSED"
 	QueryIAPClawbackHistoryOTHERConstant              = "OTHER"
 	QueryIAPClawbackHistoryREFUNDConstant             = "REFUND"
+	QueryIAPClawbackHistoryREVOKEDConstant            = "REVOKED"
 )
 
 // Get the enum in QueryIAPClawbackHistoryParams

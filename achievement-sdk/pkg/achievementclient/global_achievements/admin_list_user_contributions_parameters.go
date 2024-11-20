@@ -19,6 +19,13 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in AdminListUserContributionsParams
+const (
+	AdminListUserContributionsContributedValueConstant     = "contributedValue"
+	AdminListUserContributionsContributedValueAscConstant  = "contributedValue:asc"
+	AdminListUserContributionsContributedValueDescConstant = "contributedValue:desc"
+)
+
 // NewAdminListUserContributionsParams creates a new AdminListUserContributionsParams object
 // with the default values initialized.
 func NewAdminListUserContributionsParams() *AdminListUserContributionsParams {

@@ -36,6 +36,10 @@ type ClientService interface {
 	AdminUpdatePlatformCredentialsShort(params *AdminUpdatePlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePlatformCredentialsOK, error)
 	AdminDeletePlatformCredentials(params *AdminDeletePlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsNoContent, *AdminDeletePlatformCredentialsBadRequest, *AdminDeletePlatformCredentialsUnauthorized, *AdminDeletePlatformCredentialsForbidden, *AdminDeletePlatformCredentialsNotFound, *AdminDeletePlatformCredentialsInternalServerError, error)
 	AdminDeletePlatformCredentialsShort(params *AdminDeletePlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsNoContent, error)
+	AdminDeletePlatformCredentialsByPlatformID(params *AdminDeletePlatformCredentialsByPlatformIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsByPlatformIDNoContent, *AdminDeletePlatformCredentialsByPlatformIDBadRequest, *AdminDeletePlatformCredentialsByPlatformIDUnauthorized, *AdminDeletePlatformCredentialsByPlatformIDForbidden, *AdminDeletePlatformCredentialsByPlatformIDNotFound, *AdminDeletePlatformCredentialsByPlatformIDInternalServerError, error)
+	AdminDeletePlatformCredentialsByPlatformIDShort(params *AdminDeletePlatformCredentialsByPlatformIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsByPlatformIDNoContent, error)
+	AdminSyncPlatformCredentials(params *AdminSyncPlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncPlatformCredentialsOK, *AdminSyncPlatformCredentialsBadRequest, *AdminSyncPlatformCredentialsUnauthorized, *AdminSyncPlatformCredentialsForbidden, *AdminSyncPlatformCredentialsNotFound, *AdminSyncPlatformCredentialsInternalServerError, error)
+	AdminSyncPlatformCredentialsShort(params *AdminSyncPlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncPlatformCredentialsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -49,6 +53,14 @@ PSN:
 - clientID: Auth Server (Client Credential) ClientID
 - clientSecret: Auth Server (Client Credential) Secret. For security, only the first few characters are shown.
 - scope: should be psn:s2s.service (For Sync non PSN member to PSN Session)
+
+XBOX:
+- namespace: namespace of the configuration
+- businessPartnerCertFileName: name of pfx xbox configuration file
+- businessPartnerCertFileBytes: the pfx configuration file
+- updatedAt: date time when the record is updated
+- createdAt: date time when the record is created
+- createdBy: the actor who trigger the xbox configuration sync
 */
 func (a *Client) AdminGetPlatformCredentials(params *AdminGetPlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlatformCredentialsOK, *AdminGetPlatformCredentialsBadRequest, *AdminGetPlatformCredentialsUnauthorized, *AdminGetPlatformCredentialsForbidden, *AdminGetPlatformCredentialsNotFound, *AdminGetPlatformCredentialsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -117,6 +129,14 @@ PSN:
 - clientID: Auth Server (Client Credential) ClientID
 - clientSecret: Auth Server (Client Credential) Secret. For security, only the first few characters are shown.
 - scope: should be psn:s2s.service (For Sync non PSN member to PSN Session)
+
+XBOX:
+- namespace: namespace of the configuration
+- businessPartnerCertFileName: name of pfx xbox configuration file
+- businessPartnerCertFileBytes: the pfx configuration file
+- updatedAt: date time when the record is updated
+- createdAt: date time when the record is created
+- createdBy: the actor who trigger the xbox configuration sync
 */
 func (a *Client) AdminGetPlatformCredentialsShort(params *AdminGetPlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPlatformCredentialsOK, error) {
 	// TODO: Validate the params before sending
@@ -414,6 +434,266 @@ func (a *Client) AdminDeletePlatformCredentialsShort(params *AdminDeletePlatform
 	case *AdminDeletePlatformCredentialsNotFound:
 		return nil, v
 	case *AdminDeletePlatformCredentialsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminDeletePlatformCredentialsByPlatformIDShort instead.
+
+AdminDeletePlatformCredentialsByPlatformID delete platform credentials by platformid
+Delete platform credentials for specific platform used for Native Session sync. Supported platforms: XBOX, PSN
+*/
+func (a *Client) AdminDeletePlatformCredentialsByPlatformID(params *AdminDeletePlatformCredentialsByPlatformIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsByPlatformIDNoContent, *AdminDeletePlatformCredentialsByPlatformIDBadRequest, *AdminDeletePlatformCredentialsByPlatformIDUnauthorized, *AdminDeletePlatformCredentialsByPlatformIDForbidden, *AdminDeletePlatformCredentialsByPlatformIDNotFound, *AdminDeletePlatformCredentialsByPlatformIDInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeletePlatformCredentialsByPlatformIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeletePlatformCredentialsByPlatformId",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeletePlatformCredentialsByPlatformIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeletePlatformCredentialsByPlatformIDNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDeletePlatformCredentialsByPlatformIDBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminDeletePlatformCredentialsByPlatformIDUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDeletePlatformCredentialsByPlatformIDForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDeletePlatformCredentialsByPlatformIDNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDeletePlatformCredentialsByPlatformIDInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminDeletePlatformCredentialsByPlatformIDShort delete platform credentials by platformid
+Delete platform credentials for specific platform used for Native Session sync. Supported platforms: XBOX, PSN
+*/
+func (a *Client) AdminDeletePlatformCredentialsByPlatformIDShort(params *AdminDeletePlatformCredentialsByPlatformIDParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlatformCredentialsByPlatformIDNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDeletePlatformCredentialsByPlatformIDParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminDeletePlatformCredentialsByPlatformId",
+		Method:             "DELETE",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDeletePlatformCredentialsByPlatformIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDeletePlatformCredentialsByPlatformIDNoContent:
+		return v, nil
+	case *AdminDeletePlatformCredentialsByPlatformIDBadRequest:
+		return nil, v
+	case *AdminDeletePlatformCredentialsByPlatformIDUnauthorized:
+		return nil, v
+	case *AdminDeletePlatformCredentialsByPlatformIDForbidden:
+		return nil, v
+	case *AdminDeletePlatformCredentialsByPlatformIDNotFound:
+		return nil, v
+	case *AdminDeletePlatformCredentialsByPlatformIDInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminSyncPlatformCredentialsShort instead.
+
+AdminSyncPlatformCredentials sync platform credentials.
+Sync Platform Credentials.
+
+Supported Platforms:
+1. XBOX
+With this method, we will be performing sync to Platform Service to retrieve the existing PFX certificate which uploaded through IAP.
+If the API returns Not Found, alternatively what you can do is either:
+a. upload PFX file to IAP. You can access it from Admin Portal {BASE_URL}/admin/namespaces/{NAMESPACE}/in-app-purchase/xbox, or directly through API /platform/admin/namespaces/{NAMESPACE}/iap/config/xbl/cert.
+b. upload PFX file through Session API /session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl
+We recommend approach #a, since you need to only upload the file once, and the service will do the sync.
+If you set the PFX through Session service, when this API is invoked, we will sync and replace the existing PFX file with the one from Platform (IAP).
+*/
+func (a *Client) AdminSyncPlatformCredentials(params *AdminSyncPlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncPlatformCredentialsOK, *AdminSyncPlatformCredentialsBadRequest, *AdminSyncPlatformCredentialsUnauthorized, *AdminSyncPlatformCredentialsForbidden, *AdminSyncPlatformCredentialsNotFound, *AdminSyncPlatformCredentialsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncPlatformCredentialsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncPlatformCredentials",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncPlatformCredentialsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncPlatformCredentialsOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminSyncPlatformCredentialsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminSyncPlatformCredentialsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminSyncPlatformCredentialsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminSyncPlatformCredentialsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminSyncPlatformCredentialsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncPlatformCredentialsShort sync platform credentials.
+Sync Platform Credentials.
+
+Supported Platforms:
+1. XBOX
+With this method, we will be performing sync to Platform Service to retrieve the existing PFX certificate which uploaded through IAP.
+If the API returns Not Found, alternatively what you can do is either:
+a. upload PFX file to IAP. You can access it from Admin Portal {BASE_URL}/admin/namespaces/{NAMESPACE}/in-app-purchase/xbox, or directly through API /platform/admin/namespaces/{NAMESPACE}/iap/config/xbl/cert.
+b. upload PFX file through Session API /session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl
+We recommend approach #a, since you need to only upload the file once, and the service will do the sync.
+If you set the PFX through Session service, when this API is invoked, we will sync and replace the existing PFX file with the one from Platform (IAP).
+*/
+func (a *Client) AdminSyncPlatformCredentialsShort(params *AdminSyncPlatformCredentialsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncPlatformCredentialsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncPlatformCredentialsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncPlatformCredentials",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncPlatformCredentialsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncPlatformCredentialsOK:
+		return v, nil
+	case *AdminSyncPlatformCredentialsBadRequest:
+		return nil, v
+	case *AdminSyncPlatformCredentialsUnauthorized:
+		return nil, v
+	case *AdminSyncPlatformCredentialsForbidden:
+		return nil, v
+	case *AdminSyncPlatformCredentialsNotFound:
+		return nil, v
+	case *AdminSyncPlatformCredentialsInternalServerError:
 		return nil, v
 
 	default:

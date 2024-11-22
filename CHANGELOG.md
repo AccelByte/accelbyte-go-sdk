@@ -8,10 +8,13 @@
 - **sample:** cli - enable websocket reconnect
 - **samples:** cli - use the same close handler
 - **test:** integration - update challenge reset time
+- **:** update CHANGELOG.md and go sum getting started
 ### test
 - **:** add integration test for csm
 - **:** add delete extend app in the integration test
 - **:** temporary disable notification subscription test
+### docs
+- **migrations:** add migration guide from v0.73.0 to v0.74.0
 
 
 <a name="v0.74.0"></a>

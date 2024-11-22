@@ -9,6 +9,8 @@
 - **samples:** cli - use the same close handler
 - **test:** integration - update challenge reset time
 - **:** update CHANGELOG.md and go sum getting started
+- **:** update CHANGELOG.md (again)
+- **test:** integration - remove code pointer in session service
 ### test
 - **:** add integration test for csm
 - **:** add delete extend app in the integration test

@@ -5,17 +5,18 @@
 package integration_test
 
 import (
+	"strings"
 	"testing"
 
-	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/strfmt"
 	"github.com/stretchr/testify/assert"
 
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gametelemetry"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
 var (
@@ -39,6 +40,10 @@ var (
 )
 
 func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 
@@ -59,6 +64,10 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 }
 
 func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 
@@ -79,6 +88,10 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 }
 
 func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet_WithRetry(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 
@@ -106,6 +119,10 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 }
 
 func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags starter")
+	}
+
 	// Login User - Arrange
 	Init()
 

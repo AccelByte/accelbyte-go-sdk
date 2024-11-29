@@ -1315,7 +1315,7 @@ if errCreated != nil {
 
 ```go
 inputJoined := &partySession.PublicPartyJoinCodeParams{
-	Body:      &sessionclientmodels.ApimodelsJoinByCodeRequest{Code: &created.Code},
+	Body:      &sessionclientmodels.ApimodelsJoinByCodeRequest{Code: created.Code},
 	Namespace: integration.NamespaceTest,
 }
 joined, errJoined := partyServiceFor2ndPlayer.PublicPartyJoinCodeShort(inputJoined)
@@ -1695,5 +1695,147 @@ ok, err := allTerminatedServersService.ListTerminatedServersShort(input)
 if err != nil {
 	t.Skipf("temporarily disabled") // Armada is deprecated
 }
+```
+## CSM
+
+Source: [csm_test.go](../services-api/pkg/tests/integration/csm_test.go)
+
+### Create extend app
+
+```go
+input := &app_v2.CreateAppV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Body: &csmclientmodels.ApimodelCreateAppV2Request{
+		CPU: &csmclientmodels.ApimodelCPURequest{
+			RequestCPU: &cpu,
+		},
+		Description: "test integration create extend app for extend sdk",
+		Memory: &csmclientmodels.ApimodelMemoryRequest{
+			RequestMemory: 100,
+		},
+		Scenario: &scenario,
+	},
+}
+ok, err := csmAppService.CreateAppV2Short(input)
+```
+
+### Get extend app detail
+
+```go
+app, err := csmAppService.GetAppV2Short(&app_v2.GetAppV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+})
+```
+
+### Save extend app secret
+
+```go
+input := &configuration_v2.SaveSecretV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Body: &csmclientmodels.ApimodelSaveConfigurationV2Request{
+		ApplyMask:  true,
+		ConfigName: &secretName,
+		Value:      &secretValue,
+		Source:     &configSource,
+	},
+}
+
+secret, err := csmConfigService.SaveSecretV2Short(input)
+```
+
+### Get extend app secrets list
+
+```go
+secrets, err := csmConfigService.GetListOfSecretsV2Short(&configuration_v2.GetListOfSecretsV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+})
+```
+
+### Update extend app secret
+
+```go
+updatedSecret, err := csmConfigService.UpdateSecretV2Short(&configuration_v2.UpdateSecretV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  *secret.ConfigID,
+	Body: &csmclientmodels.ApimodelUpdateConfigurationV2Request{
+		ApplyMask: true,
+		Value:     &updatedSecretValue,
+	},
+})
+```
+
+### Save extend app environment variable
+
+```go
+input := &configuration_v2.SaveVariableV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Body: &csmclientmodels.ApimodelSaveConfigurationV2Request{
+		ApplyMask:  true,
+		ConfigName: &envVarName,
+		Value:      &envVarValue,
+		Source:     &configSource,
+	},
+}
+
+envVar, err := csmConfigService.SaveVariableV2Short(input)
+```
+
+### Get extend app environment variables list
+
+```go
+envVars, err := csmConfigService.GetListOfVariablesV2Short(&configuration_v2.GetListOfVariablesV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+})
+```
+
+### Update extend app environment variable
+
+```go
+updatedVariable, err := csmConfigService.UpdateVariableV2Short(&configuration_v2.UpdateVariableV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  *envVar.ConfigID,
+	Body: &csmclientmodels.ApimodelUpdateConfigurationV2Request{
+		ApplyMask: true,
+		Value:     &updatedEnvVarValue,
+	},
+})
+```
+
+### Delete extend app secret
+
+```go
+err := csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  secretConfigID,
+})
+```
+
+### Delete extend app environment variable
+
+```go
+err = csmConfigService.DeleteVariableV2Short(&configuration_v2.DeleteVariableV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  envVarConfigID,
+})
+```
+
+### Delete extend app
+
+```go
+err = csmAppService.DeleteAppV2Short(&app_v2.DeleteAppV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Forced:    &forced,
+})
 ```
 

@@ -209,7 +209,6 @@ func TestIntegrationEnvironmentVariable(t *testing.T) {
 // 	// Login User - Arrange
 // 	Init()
 
-// 	// CASE Save extend app environment variable
 // 	input := notification_subscription.SubscribeV2HandlerParams{
 // 		Namespace: namespace,
 // 		App:       extendAppName,
@@ -219,18 +218,15 @@ func TestIntegrationEnvironmentVariable(t *testing.T) {
 // 	}
 
 // 	err := csmNotificationSubscriptionService.SubscribeV2HandlerShort(&input)
-// 	// ESAC
 
 // 	// Assert
 // 	assert.NoError(t, err, "should not return an error")
 
-// 	// CASE Get notification subscriber list
 // 	notifs, err := csmNotificationSubscriptionService.GetNotificationSubscriberListV2Short(&notification_subscription.GetNotificationSubscriberListV2Params{
 // 		Namespace:        namespace,
 // 		App:              extendAppName,
 // 		NotificationType: &appDownNotification,
 // 	})
-// 	// ESAC
 
 // 	assert.NoError(t, err, "should not return an error")
 // 	assert.NotNil(t, notifs, "response should not be nil")
@@ -259,12 +255,10 @@ func TestIntegrationCleanupExtendApp(t *testing.T) {
 	// Assert
 	assert.NoError(t, err, "should not return an error")
 
-	// // CASE Unsubscribe notification
 	// err = csmNotificationSubscriptionService.UnsubscribeV2HandlerShort(&notification_subscription.UnsubscribeV2HandlerParams{
 	// 	Namespace: namespace,
 	// 	App:       extendAppName,
 	// })
-	// // ESAC
 
 	// assert.NoError(t, err, "should not return an error")
 

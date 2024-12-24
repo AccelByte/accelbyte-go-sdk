@@ -74,16 +74,17 @@ var (
 	dynamicUsername     = RandStringBytes(5)
 	emailAdd            = fmt.Sprint(dynamicUsername + "@test.com")
 	createUserBody      = &iamclientmodels.AccountCreateUserRequestV4{
-		AuthType:        &authType,
-		Code:            "",
-		Country:         &country,
-		DateOfBirth:     "1990-01-01",
-		DisplayName:     displayName,
-		EmailAddress:    &emailAdd,
-		Password:        pwd,
-		PasswordMD5Sum:  "",
-		ReachMinimumAge: true,
-		Username:        &dynamicUsername,
+		AuthType:          &authType,
+		Code:              "",
+		Country:           &country,
+		DateOfBirth:       "1990-01-01",
+		DisplayName:       displayName,
+		EmailAddress:      &emailAdd,
+		Password:          pwd,
+		PasswordMD5Sum:    "",
+		ReachMinimumAge:   true,
+		Username:          &dynamicUsername,
+		UniqueDisplayName: dynamicUsername,
 	}
 	updateUserBody = &iamclientmodels.ModelUserUpdateRequestV3{
 		DisplayName: "Golang Update Test",

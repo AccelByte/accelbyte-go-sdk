@@ -78,30 +78,10 @@ func NewAdminUpdateLoginAllowlistV3NoContent() *AdminUpdateLoginAllowlistV3NoCon
   Operation succeeded
 */
 type AdminUpdateLoginAllowlistV3NoContent struct {
-	Payload *iamclientmodels.ModelLoginAllowlistResponse
 }
 
 func (o *AdminUpdateLoginAllowlistV3NoContent) Error() string {
-	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/loginAllowlist][%d] adminUpdateLoginAllowlistV3NoContent  %+v", 204, o.ToJSONString())
-}
-
-func (o *AdminUpdateLoginAllowlistV3NoContent) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminUpdateLoginAllowlistV3NoContent) GetPayload() *iamclientmodels.ModelLoginAllowlistResponse {
-	return o.Payload
+	return fmt.Sprintf("[PUT /iam/v3/admin/namespaces/{namespace}/loginAllowlist][%d] adminUpdateLoginAllowlistV3NoContent ", 204)
 }
 
 func (o *AdminUpdateLoginAllowlistV3NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -110,13 +90,6 @@ func (o *AdminUpdateLoginAllowlistV3NoContent) readResponse(response runtime.Cli
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(iamclientmodels.ModelLoginAllowlistResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
 	}
 
 	return nil

@@ -28,6 +28,15 @@ type ModelAccountProgressionInfo struct {
 	// Required: true
 	LinkedGames []string `json:"linkedGames"`
 
+	// platformid
+	PlatformID string `json:"platformId,omitempty"`
+
+	// progression data of each game account
+	Progressions []*ModelProgressionInfo `json:"progressions,omitempty"`
+
+	// uniquedisplayname
+	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
+
 	// username
 	UserName string `json:"userName,omitempty"`
 }

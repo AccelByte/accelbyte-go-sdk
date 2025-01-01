@@ -39,14 +39,14 @@ var AdminUpdateLoginAllowlistV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		noContent, errNoContent := loginAllowlistService.AdminUpdateLoginAllowlistV3Short(input)
+		errNoContent := loginAllowlistService.AdminUpdateLoginAllowlistV3Short(input)
 		if errNoContent != nil {
 			logrus.Error(errNoContent)
 
 			return errNoContent
 		}
 
-		logrus.Infof("Response CLI success: %+v", noContent)
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

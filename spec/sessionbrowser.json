@@ -23,6 +23,7 @@
   "paths": {
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession": {
       "get": {
+        "deprecated": true,
         "description": "Query to available game session",
         "operationId": "AdminQuerySession",
         "parameters": [
@@ -141,6 +142,7 @@
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/count": {
       "get": {
+        "deprecated": true,
         "description": "Get all active session",
         "operationId": "GetTotalActiveSession",
         "parameters": [
@@ -202,6 +204,7 @@
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/custom-game": {
       "get": {
+        "deprecated": true,
         "description": "Get all active session for custom game, this return only dedicated session type",
         "operationId": "GetActiveCustomGameSessions",
         "parameters": [
@@ -283,6 +286,7 @@
     },
     "/sessionbrowser/admin/namespaces/{namespace}/gamesession/active/matchmaking-game": {
       "get": {
+        "deprecated": true,
         "description": "Get all active session for matchmaking game, this return only dedicated session type",
         "operationId": "GetActiveMatchmakingGameSessions",
         "parameters": [
@@ -373,6 +377,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Admin delete the session by session ID",
         "operationId": "AdminDeleteSession",
         "parameters": [
@@ -442,6 +447,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get the session by session ID for admin user",
         "operationId": "AdminGetSession",
         "parameters": [
@@ -507,6 +513,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Search sessions. Optimize the query by differentiating query with filter namespace only and filter with namespace \u0026amp; other filter (partyID, userID, matchID).\nQuery with filter namespace only will not group whole session data while query with filter namespace \u0026amp; other filter will include session data.",
         "operationId": "AdminSearchSessionsV2",
         "parameters": [
@@ -642,6 +649,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get session history detailed.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetSessionHistoryDetailed",
         "parameters": [
@@ -730,6 +738,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Query available game session",
         "operationId": "UserQuerySession",
         "parameters": [
@@ -850,6 +859,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "This end point intended to be called directly by P2P game client host or by DSMC",
         "operationId": "CreateSession",
         "parameters": [
@@ -929,6 +939,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Query game sessions by comma separated user ids",
         "operationId": "GetSessionByUserIDs",
         "parameters": [
@@ -995,6 +1006,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Delete the session (p2p) by session ID",
         "operationId": "DeleteSession",
         "parameters": [
@@ -1065,6 +1077,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get the session by session ID",
         "operationId": "GetSession",
         "parameters": [
@@ -1129,6 +1142,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update game session, used to update the current player",
         "operationId": "UpdateSession",
         "parameters": [
@@ -1209,6 +1223,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Join the specified session by session ID. Possible the game required a password to join",
         "operationId": "JoinSession",
         "parameters": [
@@ -1295,6 +1310,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Only use for local DS entry, will error when calling non local DS entry",
         "operationId": "DeleteSessionLocalDS",
         "parameters": [
@@ -1367,6 +1383,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Add player to game session",
         "operationId": "AddPlayerToSession",
         "parameters": [
@@ -1447,6 +1464,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Remove player from game session",
         "operationId": "RemovePlayerFromSession",
         "parameters": [
@@ -1526,6 +1544,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update game session, used to update OtherSettings",
         "operationId": "UpdateSettings",
         "parameters": [
@@ -1606,6 +1625,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Query recent player by user ID",
         "operationId": "GetRecentPlayer",
         "parameters": [
@@ -2810,11 +2830,11 @@
     "path": "/sessionbrowser/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-10-02T03:25:56+00:00",
-    "gitHash": "b921cbe058cd3c9ff27fdaad34311121eaa2151f",
+    "buildDate": "2024-12-10T09:47:22+00:00",
+    "gitHash": "67aaf04521df11428e878b5b78fb4ce3b464947c",
     "name": "justice-session-browser-service",
-    "revisionID": "1.18.9",
-    "version": "1.18.9",
+    "revisionID": "1.18.10",
+    "version": "1.18.10",
     "version-roles-seeding": "0.0.3"
   }
 }

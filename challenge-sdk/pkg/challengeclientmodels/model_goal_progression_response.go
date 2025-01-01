@@ -25,6 +25,9 @@ type ModelGoalProgressionResponse struct {
 	// Required: true
 	ChallengeCode *string `json:"challengeCode"`
 
+	// completedat
+	CompletedAt string `json:"completedAt,omitempty"`
+
 	// goal
 	// Required: true
 	Goal *ModelGoalMeta `json:"goal"`

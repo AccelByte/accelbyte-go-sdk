@@ -42,10 +42,13 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetPaymentCallbackConfigShort instead.
 
 GetPaymentCallbackConfig get payment callback configuration
- [Not supported yet in AGS Shared Cloud] Get payment callback configuration.
-Other detail info:
 
-  * Returns : Payment callback config
+
+### The endpoint is going to be deprecated
+
+[Not supported yet in AGS Shared Cloud] Get payment callback configuration.
+Other detail info:
+                          * Returns : Payment callback config
 */
 func (a *Client) GetPaymentCallbackConfig(params *GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfigOK, *GetPaymentCallbackConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -97,10 +100,13 @@ func (a *Client) GetPaymentCallbackConfig(params *GetPaymentCallbackConfigParams
 
 /*
 GetPaymentCallbackConfigShort get payment callback configuration
- [Not supported yet in AGS Shared Cloud] Get payment callback configuration.
-Other detail info:
 
-  * Returns : Payment callback config
+
+### The endpoint is going to be deprecated
+
+[Not supported yet in AGS Shared Cloud] Get payment callback configuration.
+Other detail info:
+                          * Returns : Payment callback config
 */
 func (a *Client) GetPaymentCallbackConfigShort(params *GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPaymentCallbackConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -149,10 +155,13 @@ func (a *Client) GetPaymentCallbackConfigShort(params *GetPaymentCallbackConfigP
 Deprecated: 2022-08-10 - Use UpdatePaymentCallbackConfigShort instead.
 
 UpdatePaymentCallbackConfig update payment callback configuration
- [Not supported yet in AGS Shared Cloud] Update payment callback configuration.
-Other detail info:
 
-  * Returns : Payment callback config
+
+### The endpoint is going to be deprecated
+
+[Not supported yet in AGS Shared Cloud] Update payment callback configuration.
+Other detail info:
+                          * Returns : Payment callback config
 */
 func (a *Client) UpdatePaymentCallbackConfig(params *UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentCallbackConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -201,10 +210,13 @@ func (a *Client) UpdatePaymentCallbackConfig(params *UpdatePaymentCallbackConfig
 
 /*
 UpdatePaymentCallbackConfigShort update payment callback configuration
- [Not supported yet in AGS Shared Cloud] Update payment callback configuration.
-Other detail info:
 
-  * Returns : Payment callback config
+
+### The endpoint is going to be deprecated
+
+[Not supported yet in AGS Shared Cloud] Update payment callback configuration.
+Other detail info:
+                          * Returns : Payment callback config
 */
 func (a *Client) UpdatePaymentCallbackConfigShort(params *UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePaymentCallbackConfigOK, error) {
 	// TODO: Validate the params before sending

@@ -64,6 +64,10 @@ type ApimodelAppItem struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// gamename
+	// Required: true
+	GameName *string `json:"gameName"`
+
 	// memory
 	Memory *ApimodelMemoryResponse `json:"memory,omitempty"`
 
@@ -102,6 +106,9 @@ func (m *ApimodelAppItem) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateGameName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateScenario(formats); err != nil {
@@ -147,6 +154,15 @@ func (m *ApimodelAppItem) validateAppStatus(formats strfmt.Registry) error {
 func (m *ApimodelAppItem) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelAppItem) validateGameName(formats strfmt.Registry) error {
+
+	if err := validate.Required("gameName", "body", m.GameName); err != nil {
 		return err
 	}
 

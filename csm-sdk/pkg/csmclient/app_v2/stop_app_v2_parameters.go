@@ -65,7 +65,7 @@ type StopAppV2Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*App
-	  App Name. Expected format: (^[A-Za-z0-9\-]*$)
+	  App Name. Expected format: (^[A-Za-z](?:[A-Za-z0-9\-]*[A-Za-z0-9])?$)
 
 	*/
 	App string

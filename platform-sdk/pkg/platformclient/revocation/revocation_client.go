@@ -38,7 +38,7 @@ type ClientService interface {
 	DeleteRevocationConfigShort(params *DeleteRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRevocationConfigNoContent, error)
 	QueryRevocationHistories(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error)
 	QueryRevocationHistoriesShort(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error)
-	DoRevocation(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error)
+	DoRevocation(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, *DoRevocationConflict, error)
 	DoRevocationShort(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -50,8 +50,7 @@ Deprecated: 2022-08-10 - Use GetRevocationConfigShort instead.
 GetRevocationConfig get revocation configuration
 Get revocation configuration.
 Other detail info:
-
-  * Returns : Revocation config
+                      * Returns : Revocation config
 */
 func (a *Client) GetRevocationConfig(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, *GetRevocationConfigNotFound, error) {
 	// TODO: Validate the params before sending
@@ -105,8 +104,7 @@ func (a *Client) GetRevocationConfig(params *GetRevocationConfigParams, authInfo
 GetRevocationConfigShort get revocation configuration
 Get revocation configuration.
 Other detail info:
-
-  * Returns : Revocation config
+                      * Returns : Revocation config
 */
 func (a *Client) GetRevocationConfigShort(params *GetRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -157,8 +155,7 @@ Deprecated: 2022-08-10 - Use UpdateRevocationConfigShort instead.
 UpdateRevocationConfig update revocation configuration
 Update revocation configuration.
 Other detail info:
-
-  * Returns : Revocation config
+                      * Returns : Revocation config
 */
 func (a *Client) UpdateRevocationConfig(params *UpdateRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -209,8 +206,7 @@ func (a *Client) UpdateRevocationConfig(params *UpdateRevocationConfigParams, au
 UpdateRevocationConfigShort update revocation configuration
 Update revocation configuration.
 Other detail info:
-
-  * Returns : Revocation config
+                      * Returns : Revocation config
 */
 func (a *Client) UpdateRevocationConfigShort(params *UpdateRevocationConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRevocationConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -355,8 +351,7 @@ Deprecated: 2022-08-10 - Use QueryRevocationHistoriesShort instead.
 QueryRevocationHistories query revocation histories
 Query revocation histories in a namespace.
 Other detail info:
-
-  * Returns : query revocation history
+                      * Returns : query revocation history
 */
 func (a *Client) QueryRevocationHistories(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -407,8 +402,7 @@ func (a *Client) QueryRevocationHistories(params *QueryRevocationHistoriesParams
 QueryRevocationHistoriesShort query revocation histories
 Query revocation histories in a namespace.
 Other detail info:
-
-  * Returns : query revocation history
+                      * Returns : query revocation history
 */
 func (a *Client) QueryRevocationHistoriesShort(params *QueryRevocationHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRevocationHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -457,10 +451,9 @@ Deprecated: 2022-08-10 - Use DoRevocationShort instead.
 DoRevocation do revocation.
 Do revocation.
 Other detail info:
-
-  * Returns : revocation results
+                      * Returns : revocation results
 */
-func (a *Client) DoRevocation(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error) {
+func (a *Client) DoRevocation(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, *DoRevocationConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDoRevocationParams()
@@ -492,16 +485,19 @@ func (a *Client) DoRevocation(params *DoRevocationParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DoRevocationOK:
-		return v, nil
+		return v, nil, nil
+
+	case *DoRevocationConflict:
+		return nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -509,8 +505,7 @@ func (a *Client) DoRevocation(params *DoRevocationParams, authInfo runtime.Clien
 DoRevocationShort do revocation.
 Do revocation.
 Other detail info:
-
-  * Returns : revocation results
+                      * Returns : revocation results
 */
 func (a *Client) DoRevocationShort(params *DoRevocationParams, authInfo runtime.ClientAuthInfoWriter) (*DoRevocationOK, error) {
 	// TODO: Validate the params before sending
@@ -547,6 +542,8 @@ func (a *Client) DoRevocationShort(params *DoRevocationParams, authInfo runtime.
 
 	case *DoRevocationOK:
 		return v, nil
+	case *DoRevocationConflict:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

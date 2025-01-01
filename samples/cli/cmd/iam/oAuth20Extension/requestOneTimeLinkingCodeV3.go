@@ -26,8 +26,12 @@ var RequestOneTimeLinkingCodeV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		platformId, _ := cmd.Flags().GetString("platformId")
+		redirectUri, _ := cmd.Flags().GetString("redirectUri")
+		state, _ := cmd.Flags().GetString("state")
 		input := &o_auth2_0_extension.RequestOneTimeLinkingCodeV3Params{
-			PlatformID: platformId,
+			RedirectURI: &redirectUri,
+			State:       &state,
+			PlatformID:  platformId,
 		}
 		ok, errOK := oAuth20ExtensionService.RequestOneTimeLinkingCodeV3Short(input)
 		if errOK != nil {
@@ -43,6 +47,8 @@ var RequestOneTimeLinkingCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
+	RequestOneTimeLinkingCodeV3Cmd.Flags().String("redirectUri", "", "Redirect uri")
+	RequestOneTimeLinkingCodeV3Cmd.Flags().String("state", "", "State")
 	RequestOneTimeLinkingCodeV3Cmd.Flags().String("platformId", "", "Platform id")
 	_ = RequestOneTimeLinkingCodeV3Cmd.MarkFlagRequired("platformId")
 }

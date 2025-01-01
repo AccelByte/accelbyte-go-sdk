@@ -20,6 +20,9 @@ type ModelsTeam struct {
 	// parties
 	Parties []*ModelsPartyTeam `json:"Parties,omitempty"`
 
+	// teamid
+	TeamID string `json:"TeamID,omitempty"`
+
 	// userids
 	UserIDs []string `json:"UserIDs,omitempty"`
 }

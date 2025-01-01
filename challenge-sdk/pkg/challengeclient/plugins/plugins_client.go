@@ -46,8 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetAssignmentPluginShort instead.
 
 AdminGetAssignmentPlugin get assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]
 */
 func (a *Client) AdminGetAssignmentPlugin(params *AdminGetAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAssignmentPluginOK, *AdminGetAssignmentPluginBadRequest, *AdminGetAssignmentPluginUnauthorized, *AdminGetAssignmentPluginForbidden, *AdminGetAssignmentPluginNotFound, *AdminGetAssignmentPluginInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -111,8 +110,7 @@ func (a *Client) AdminGetAssignmentPlugin(params *AdminGetAssignmentPluginParams
 
 /*
 AdminGetAssignmentPluginShort get assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]
 */
 func (a *Client) AdminGetAssignmentPluginShort(params *AdminGetAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAssignmentPluginOK, error) {
 	// TODO: Validate the params before sending
@@ -169,8 +167,7 @@ func (a *Client) AdminGetAssignmentPluginShort(params *AdminGetAssignmentPluginP
 Deprecated: 2022-08-10 - Use AdminUpdateAssignmentPluginShort instead.
 
 AdminUpdateAssignmentPlugin update assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]
 */
 func (a *Client) AdminUpdateAssignmentPlugin(params *AdminUpdateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAssignmentPluginOK, *AdminUpdateAssignmentPluginBadRequest, *AdminUpdateAssignmentPluginUnauthorized, *AdminUpdateAssignmentPluginForbidden, *AdminUpdateAssignmentPluginNotFound, *AdminUpdateAssignmentPluginInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -234,8 +231,7 @@ func (a *Client) AdminUpdateAssignmentPlugin(params *AdminUpdateAssignmentPlugin
 
 /*
 AdminUpdateAssignmentPluginShort update assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]
 */
 func (a *Client) AdminUpdateAssignmentPluginShort(params *AdminUpdateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAssignmentPluginOK, error) {
 	// TODO: Validate the params before sending
@@ -292,8 +288,7 @@ func (a *Client) AdminUpdateAssignmentPluginShort(params *AdminUpdateAssignmentP
 Deprecated: 2022-08-10 - Use AdminCreateAssignmentPluginShort instead.
 
 AdminCreateAssignmentPlugin create assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]
 */
 func (a *Client) AdminCreateAssignmentPlugin(params *AdminCreateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateAssignmentPluginCreated, *AdminCreateAssignmentPluginBadRequest, *AdminCreateAssignmentPluginUnauthorized, *AdminCreateAssignmentPluginForbidden, *AdminCreateAssignmentPluginInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -354,8 +349,7 @@ func (a *Client) AdminCreateAssignmentPlugin(params *AdminCreateAssignmentPlugin
 
 /*
 AdminCreateAssignmentPluginShort create assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]
 */
 func (a *Client) AdminCreateAssignmentPluginShort(params *AdminCreateAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateAssignmentPluginCreated, error) {
 	// TODO: Validate the params before sending
@@ -410,8 +404,7 @@ func (a *Client) AdminCreateAssignmentPluginShort(params *AdminCreateAssignmentP
 Deprecated: 2022-08-10 - Use AdminDeleteAssignmentPluginShort instead.
 
 AdminDeleteAssignmentPlugin delete assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]
 */
 func (a *Client) AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginNoContent, *AdminDeleteAssignmentPluginBadRequest, *AdminDeleteAssignmentPluginUnauthorized, *AdminDeleteAssignmentPluginForbidden, *AdminDeleteAssignmentPluginNotFound, *AdminDeleteAssignmentPluginInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -475,8 +468,7 @@ func (a *Client) AdminDeleteAssignmentPlugin(params *AdminDeleteAssignmentPlugin
 
 /*
 AdminDeleteAssignmentPluginShort delete assignment plugin
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]
 */
 func (a *Client) AdminDeleteAssignmentPluginShort(params *AdminDeleteAssignmentPluginParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteAssignmentPluginNoContent, error) {
 	// TODO: Validate the params before sending

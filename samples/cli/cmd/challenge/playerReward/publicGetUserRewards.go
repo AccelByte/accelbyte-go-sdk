@@ -26,16 +26,20 @@ var PublicGetUserRewardsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		challengeCode, _ := cmd.Flags().GetString("challengeCode")
+		goalProgressionId, _ := cmd.Flags().GetString("goalProgressionId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
 		status, _ := cmd.Flags().GetString("status")
 		input := &player_reward.PublicGetUserRewardsParams{
-			Namespace: namespace,
-			Limit:     &limit,
-			Offset:    &offset,
-			SortBy:    &sortBy,
-			Status:    &status,
+			Namespace:         namespace,
+			ChallengeCode:     &challengeCode,
+			GoalProgressionID: &goalProgressionId,
+			Limit:             &limit,
+			Offset:            &offset,
+			SortBy:            &sortBy,
+			Status:            &status,
 		}
 		ok, errOK := playerRewardService.PublicGetUserRewardsShort(input)
 		if errOK != nil {
@@ -53,6 +57,8 @@ var PublicGetUserRewardsCmd = &cobra.Command{
 func init() {
 	PublicGetUserRewardsCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicGetUserRewardsCmd.MarkFlagRequired("namespace")
+	PublicGetUserRewardsCmd.Flags().String("challengeCode", "", "Challenge code")
+	PublicGetUserRewardsCmd.Flags().String("goalProgressionId", "", "Goal progression id")
 	PublicGetUserRewardsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicGetUserRewardsCmd.Flags().Int64("offset", 0, "Offset")
 	PublicGetUserRewardsCmd.Flags().String("sortBy", "", "Sort by")

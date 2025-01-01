@@ -30,9 +30,12 @@ var AuthorizeV3Cmd = &cobra.Command{
 		}
 		clientId, _ := cmd.Flags().GetString("clientId")
 		responseType, _ := cmd.Flags().GetString("responseType")
+		blockedPlatformId, _ := cmd.Flags().GetString("blockedPlatformId")
 		codeChallenge, _ := cmd.Flags().GetString("codeChallenge")
 		codeChallengeMethod, _ := cmd.Flags().GetString("codeChallengeMethod")
 		createHeadless, _ := cmd.Flags().GetBool("createHeadless")
+		loginWebBased, _ := cmd.Flags().GetBool("loginWebBased")
+		nonce, _ := cmd.Flags().GetString("nonce")
 		oneTimeLinkCode, _ := cmd.Flags().GetString("oneTimeLinkCode")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		scope, _ := cmd.Flags().GetString("scope")
@@ -45,9 +48,12 @@ var AuthorizeV3Cmd = &cobra.Command{
 			},
 		}
 		input := &o_auth2_0.AuthorizeV3Params{
+			BlockedPlatformID:                  &blockedPlatformId,
 			CodeChallenge:                      &codeChallenge,
 			CodeChallengeMethod:                &codeChallengeMethod,
 			CreateHeadless:                     &createHeadless,
+			LoginWebBased:                      &loginWebBased,
+			Nonce:                              &nonce,
 			OneTimeLinkCode:                    &oneTimeLinkCode,
 			RedirectURI:                        &redirectUri,
 			Scope:                              &scope,
@@ -72,9 +78,12 @@ var AuthorizeV3Cmd = &cobra.Command{
 }
 
 func init() {
+	AuthorizeV3Cmd.Flags().String("blockedPlatformId", "", "Blocked platform id")
 	AuthorizeV3Cmd.Flags().String("codeChallenge", "", "Code challenge")
 	AuthorizeV3Cmd.Flags().String("codeChallengeMethod", "", "Code challenge method")
 	AuthorizeV3Cmd.Flags().Bool("createHeadless", false, "Create headless")
+	AuthorizeV3Cmd.Flags().Bool("loginWebBased", false, "Login web based")
+	AuthorizeV3Cmd.Flags().String("nonce", "", "Nonce")
 	AuthorizeV3Cmd.Flags().String("oneTimeLinkCode", "", "One time link code")
 	AuthorizeV3Cmd.Flags().String("redirectUri", "", "Redirect uri")
 	AuthorizeV3Cmd.Flags().String("scope", "", "Scope")

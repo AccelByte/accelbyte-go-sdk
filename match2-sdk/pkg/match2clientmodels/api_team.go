@@ -20,6 +20,9 @@ type APITeam struct {
 	// parties
 	Parties []*APIParty `json:"parties,omitempty"`
 
+	// teamid
+	TeamID string `json:"teamID,omitempty"`
+
 	// userids
 	UserIDs []string `json:"userIDs,omitempty"`
 }

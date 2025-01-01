@@ -61,7 +61,7 @@ Deprecated: 2022-08-10 - Use QueryThirdPartySubscriptionShort instead.
 
 QueryThirdPartySubscription query subscriptions.
 Query subscriptions, default sort by updatedAt Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) QueryThirdPartySubscription(params *QueryThirdPartySubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*QueryThirdPartySubscriptionOK, error) {
 	// TODO: Validate the params before sending
@@ -111,7 +111,7 @@ func (a *Client) QueryThirdPartySubscription(params *QueryThirdPartySubscription
 /*
 QueryThirdPartySubscriptionShort query subscriptions.
 Query subscriptions, default sort by updatedAt Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) QueryThirdPartySubscriptionShort(params *QueryThirdPartySubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*QueryThirdPartySubscriptionOK, error) {
 	// TODO: Validate the params before sending
@@ -159,7 +159,7 @@ Deprecated: 2022-08-10 - Use QueryUserThirdPartySubscriptionShort instead.
 
 QueryUserThirdPartySubscription query user subscription.
 Query user subscription, default sort by updatedAtOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) QueryUserThirdPartySubscription(params *QueryUserThirdPartySubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserThirdPartySubscriptionOK, error) {
 	// TODO: Validate the params before sending
@@ -209,7 +209,7 @@ func (a *Client) QueryUserThirdPartySubscription(params *QueryUserThirdPartySubs
 /*
 QueryUserThirdPartySubscriptionShort query user subscription.
 Query user subscription, default sort by updatedAtOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) QueryUserThirdPartySubscriptionShort(params *QueryUserThirdPartySubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserThirdPartySubscriptionOK, error) {
 	// TODO: Validate the params before sending
@@ -449,7 +449,7 @@ Deprecated: 2022-08-10 - Use QueryUserThirdPartySubscriptionTransactionsShort in
 
 QueryUserThirdPartySubscriptionTransactions admin query user subscription transactions.
 Admin query user subscription transactions, default sort by startAt timeOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) QueryUserThirdPartySubscriptionTransactions(params *QueryUserThirdPartySubscriptionTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserThirdPartySubscriptionTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -499,7 +499,7 @@ func (a *Client) QueryUserThirdPartySubscriptionTransactions(params *QueryUserTh
 /*
 QueryUserThirdPartySubscriptionTransactionsShort admin query user subscription transactions.
 Admin query user subscription transactions, default sort by startAt timeOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) QueryUserThirdPartySubscriptionTransactionsShort(params *QueryUserThirdPartySubscriptionTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserThirdPartySubscriptionTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -547,7 +547,7 @@ Deprecated: 2022-08-10 - Use GetThirdPartySubscriptionDetailsShort instead.
 
 GetThirdPartySubscriptionDetails admin get user subscription transaction details.
 Admin get user subscription details.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) GetThirdPartySubscriptionDetails(params *GetThirdPartySubscriptionDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetThirdPartySubscriptionDetailsOK, *GetThirdPartySubscriptionDetailsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -600,7 +600,7 @@ func (a *Client) GetThirdPartySubscriptionDetails(params *GetThirdPartySubscript
 /*
 GetThirdPartySubscriptionDetailsShort admin get user subscription transaction details.
 Admin get user subscription details.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) GetThirdPartySubscriptionDetailsShort(params *GetThirdPartySubscriptionDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetThirdPartySubscriptionDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -852,7 +852,7 @@ Deprecated: 2022-08-10 - Use GetThirdPartyUserSubscriptionDetailsShort instead.
 
 GetThirdPartyUserSubscriptionDetails admin get user subscription details.
 Admin get user subscription details.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) GetThirdPartyUserSubscriptionDetails(params *GetThirdPartyUserSubscriptionDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetThirdPartyUserSubscriptionDetailsOK, *GetThirdPartyUserSubscriptionDetailsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -905,7 +905,7 @@ func (a *Client) GetThirdPartyUserSubscriptionDetails(params *GetThirdPartyUserS
 /*
 GetThirdPartyUserSubscriptionDetailsShort admin get user subscription details.
 Admin get user subscription details.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) GetThirdPartyUserSubscriptionDetailsShort(params *GetThirdPartyUserSubscriptionDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetThirdPartyUserSubscriptionDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -1061,7 +1061,7 @@ Deprecated: 2022-08-10 - Use PublicQueryUserThirdPartySubscriptionShort instead.
 
 PublicQueryUserThirdPartySubscription query user subscription.
 Query user subscription, default sort by updatedAtOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) PublicQueryUserThirdPartySubscription(params *PublicQueryUserThirdPartySubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserThirdPartySubscriptionOK, error) {
 	// TODO: Validate the params before sending
@@ -1111,7 +1111,7 @@ func (a *Client) PublicQueryUserThirdPartySubscription(params *PublicQueryUserTh
 /*
 PublicQueryUserThirdPartySubscriptionShort query user subscription.
 Query user subscription, default sort by updatedAtOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) PublicQueryUserThirdPartySubscriptionShort(params *PublicQueryUserThirdPartySubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserThirdPartySubscriptionOK, error) {
 	// TODO: Validate the params before sending

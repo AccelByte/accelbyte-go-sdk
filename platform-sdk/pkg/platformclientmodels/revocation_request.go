@@ -26,6 +26,9 @@ type RevocationRequest struct {
 	// reason why the entries need to be revoked
 	Reason string `json:"reason,omitempty"`
 
+	// revoke request id, unique identifier for a request to perform at most once execution, when a requestid is resubmitted, it won't perform the revocation again
+	RequestID string `json:"requestId,omitempty"`
+
 	// revoke entries
 	RevokeEntries []*RevokeEntry `json:"revokeEntries,omitempty"`
 
@@ -33,7 +36,7 @@ type RevocationRequest struct {
 	// Enum: ['DLC', 'IAP', 'ORDER', 'OTHER']
 	Source string `json:"source,omitempty"`
 
-	// transaction id: DLC Order No, Order No.
+	// transaction id: DLC Order No, Order No. This is for external reference id , use request_id for idempotent request
 	TransactionID string `json:"transactionId,omitempty"`
 }
 

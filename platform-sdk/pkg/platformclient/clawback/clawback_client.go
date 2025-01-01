@@ -46,8 +46,7 @@ Deprecated: 2022-08-10 - Use QueryIAPClawbackHistoryShort instead.
 QueryIAPClawbackHistory query clawback history
 Query clawback history.
 Other detail info:
-
-  * Returns : paginated clawback history
+                          * Returns : paginated clawback history
 */
 func (a *Client) QueryIAPClawbackHistory(params *QueryIAPClawbackHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryIAPClawbackHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -98,8 +97,7 @@ func (a *Client) QueryIAPClawbackHistory(params *QueryIAPClawbackHistoryParams, 
 QueryIAPClawbackHistoryShort query clawback history
 Query clawback history.
 Other detail info:
-
-  * Returns : paginated clawback history
+                          * Returns : paginated clawback history
 */
 func (a *Client) QueryIAPClawbackHistoryShort(params *QueryIAPClawbackHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryIAPClawbackHistoryOK, error) {
 	// TODO: Validate the params before sending

@@ -27,13 +27,21 @@ var FleetListCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		active, _ := cmd.Flags().GetBool("active")
+		count, _ := cmd.Flags().GetInt64("count")
+		desc, _ := cmd.Flags().GetString("desc")
 		name, _ := cmd.Flags().GetString("name")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		region, _ := cmd.Flags().GetString("region")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
 		input := &fleets.FleetListParams{
 			Namespace: namespace,
 			Active:    &active,
+			Count:     &count,
+			Desc:      &desc,
 			Name:      &name,
+			Offset:    &offset,
 			Region:    &region,
+			SortBy:    &sortBy,
 		}
 		ok, errOK := fleetsService.FleetListShort(input)
 		if errOK != nil {
@@ -52,6 +60,10 @@ func init() {
 	FleetListCmd.Flags().String("namespace", "", "Namespace")
 	_ = FleetListCmd.MarkFlagRequired("namespace")
 	FleetListCmd.Flags().Bool("active", false, "Active")
+	FleetListCmd.Flags().Int64("count", 1, "Count")
+	FleetListCmd.Flags().String("desc", "", "Desc")
 	FleetListCmd.Flags().String("name", "", "Name")
+	FleetListCmd.Flags().Int64("offset", 0, "Offset")
 	FleetListCmd.Flags().String("region", "", "Region")
+	FleetListCmd.Flags().String("sortBy", "", "Sort by")
 }

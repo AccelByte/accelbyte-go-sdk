@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "4.0.0"
+    "version": "4.1.0"
   },
   "schemes": [
     "https"
@@ -6206,16 +6206,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-11-19T07:36:03+00:00",
-    "buildID": "4.0.0",
-    "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
-    "buildOS": "Linux amd64 5.10.227-219.884.amzn2.x86_64",
+    "buildDate": "2024-12-11T05:53:43+00:00",
+    "buildID": "4.1.0",
+    "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
+    "buildOS": "Linux amd64 5.10.228-219.884.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "ce9dbb07c7",
-    "gitTag": "4.0.0",
+    "gitHash": "fcbca58e1d",
+    "gitTag": "4.1.0",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "version-roles-seeding": "0.0.3"
   }
 }

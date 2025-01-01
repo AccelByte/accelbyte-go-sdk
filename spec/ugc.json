@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.23.1"
+    "version": "2.23.2"
   },
   "schemes": [
     "https"
@@ -16764,11 +16764,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-05T10:01:56+00:00",
-    "gitHash": "c98177e800482169c5d82e79e2ee5b7da3c9c3e9",
+    "buildDate": "2024-12-10T08:28:38+00:00",
+    "gitHash": "ed5ea9c8b96394c9b20636dd9ecd799dc674e966",
     "name": "justice-ugc-service",
     "realm": "staging",
-    "version": "2.23.1",
+    "version": "2.23.2",
     "version-roles-seeding": "1.0.21"
   }
 }

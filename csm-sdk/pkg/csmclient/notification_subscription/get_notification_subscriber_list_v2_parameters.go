@@ -78,7 +78,7 @@ type GetNotificationSubscriberListV2Params struct {
 	  Notification Type
 
 	*/
-	NotificationType *string
+	NotificationType string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -168,13 +168,13 @@ func (o *GetNotificationSubscriberListV2Params) SetNamespace(namespace string) {
 }
 
 // WithNotificationType adds the notificationType to the get notification subscriber list v2 params
-func (o *GetNotificationSubscriberListV2Params) WithNotificationType(notificationType *string) *GetNotificationSubscriberListV2Params {
+func (o *GetNotificationSubscriberListV2Params) WithNotificationType(notificationType string) *GetNotificationSubscriberListV2Params {
 	o.SetNotificationType(notificationType)
 	return o
 }
 
 // SetNotificationType adds the notificationType to the get notification subscriber list v2 params
-func (o *GetNotificationSubscriberListV2Params) SetNotificationType(notificationType *string) {
+func (o *GetNotificationSubscriberListV2Params) SetNotificationType(notificationType string) {
 	o.NotificationType = notificationType
 }
 
@@ -196,20 +196,13 @@ func (o *GetNotificationSubscriberListV2Params) WriteToRequest(r runtime.ClientR
 		return err
 	}
 
-	if o.NotificationType != nil {
-
-		// query param notificationType
-		var qrNotificationType string
-		if o.NotificationType != nil {
-			qrNotificationType = *o.NotificationType
+	// query param notificationType
+	qrNotificationType := o.NotificationType
+	qNotificationType := qrNotificationType
+	if qNotificationType != "" {
+		if err := r.SetQueryParam("notificationType", qNotificationType); err != nil {
+			return err
 		}
-		qNotificationType := qrNotificationType
-		if qNotificationType != "" {
-			if err := r.SetQueryParam("notificationType", qNotificationType); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// setting the default header value

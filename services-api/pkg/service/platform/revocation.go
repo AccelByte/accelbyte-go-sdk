@@ -103,7 +103,10 @@ func (aaa *RevocationService) DoRevocation(input *revocation.DoRevocationParams)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Revocation.DoRevocation(input, client.BearerToken(*token.AccessToken))
+	ok, conflict, err := aaa.Client.Revocation.DoRevocation(input, client.BearerToken(*token.AccessToken))
+	if conflict != nil {
+		return nil, conflict
+	}
 	if err != nil {
 		return nil, err
 	}

@@ -76,12 +76,12 @@ type QueryTotalMatchmakingMatchTicketParams struct {
 	*/
 	MatchPool []string
 	/*EndDate
-	  End date time: 2024-11-19T01:06:50Z
+	  End date time: 2024-12-30T04:06:30Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2024-11-19T01:06:50Z
+	  Start date time. Format: 2024-12-30T04:06:30Z
 
 	*/
 	StartDate string

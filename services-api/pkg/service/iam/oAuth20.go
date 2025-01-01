@@ -221,6 +221,20 @@ func (aaa *OAuth20Service) Verify2FACode(input *o_auth2_0.Verify2FACodeParams) (
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use Verify2FACodeForwardShort instead.
+func (aaa *OAuth20Service) Verify2FACodeForward(input *o_auth2_0.Verify2FACodeForwardParams) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return "", err
+	}
+	found, err := aaa.Client.OAuth20.Verify2FACodeForward(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
+}
+
 // Deprecated: 2022-01-10 - please use RetrieveUserThirdPartyPlatformTokenV3Short instead.
 func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -636,6 +650,36 @@ func (aaa *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodePara
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20Service) Verify2FACodeForwardShort(input *o_auth2_0.Verify2FACodeForwardParams) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdOAuth20 != nil {
+		input.XFlightId = tempFlightIdOAuth20
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	found, err := aaa.Client.OAuth20.Verify2FACodeForwardShort(input, authInfoWriter)
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
 }
 
 func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {

@@ -23,7 +23,7 @@
   "paths": {
     "/challenge/v1/admin/namespaces/{namespace}/challenges": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "adminGetChallenges",
         "parameters": [
           {
@@ -48,7 +48,15 @@
             "type": "integer"
           },
           {
-            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.\n\t\t\tavailable value:\n\t\t\t\t\u003cli\u003ecreatedAt, createdAt:desc, createdAt:asc\u003c/li\u003e\n\t\t\t\t\u003cli\u003eupdatedAt, updatedAt:desc, updatedAt:asc\u003c/li\u003e\n\t\t\t",
+            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -107,13 +115,20 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing about the challenge (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;startDate: timestamp of when the challenge is started\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endDate: timestamp of when the challenge is ended (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endAfter: describe number of period challenge will be retired after (optional)\u0026lt;/li\u0026gt;To configure challenge that never end, leave the endDate and endAfter field null/empty.\u0026lt;li\u0026gt;repeatAfter: describe number of period challenge\u0026#39;s goals will be repeated after. Leave it empty if you don\u0026#39;t want to repeat the challenge.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetConfig: describe when rotation reset will happen (optional).\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to \u0026#34;00:00\u0026#34;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;randomizedPerRotation:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;true: each goal will be randomly assigned to multiple periods\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;false: a goal will only be assigned to one period \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\nChallenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.\n#### Request body:\n- code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter\n- name: name of the challenge\n- description: text describing about the challenge (optional)\n- startDate: timestamp of when the challenge is started\n- endDate: timestamp of when the challenge is ended (optional)\n- endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.\n- repeatAfter: describe number of period challenge\u0026#39;s goals will be repeated after. Leave it empty if you don\u0026#39;t want to repeat the challenge.\n- rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\n- activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\n- assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)\n- goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\n- resetConfig: describe when rotation reset will happen (optional).\n\t- resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to \u0026#34;00:00\u0026#34;\n\t- resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.\n\t- resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.\n- randomizedPerRotation:\n\t- true: each goal will be randomly assigned to multiple periods\n\t- false: a goal will only be assigned to one period",
         "operationId": "adminCreateChallenge",
         "parameters": [
           {
@@ -195,12 +210,19 @@
           "20018": "bad request: {{message}}",
           "99002": "duplicate key error: {{message}}",
           "99003": "challenge validation error: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/users/{userId}": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\nThe endpoint provides you an access to list of currently active challenges in which the player is participating\n",
         "operationId": "adminGetActiveChallenges",
         "parameters": [
           {
@@ -274,12 +296,19 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}": {
       "delete": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]",
         "operationId": "adminDeleteChallenge",
         "parameters": [
           {
@@ -350,10 +379,17 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]"
+            ]
+          }
+        ]
       },
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "adminGetChallenge",
         "parameters": [
           {
@@ -420,13 +456,20 @@
           "20001": "unauthorized access",
           "20013": "insufficient permission",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: name of the challenge\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing about the challenge (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;startDate: timestamp of when the challenge is started\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endDate: timestamp of when the challenge is ended (optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;endAfter: describe number of period challenge will be retired after (optional)\u0026lt;/li\u0026gt;To configure challenge that never end, leave the endDate and endAfter field null/empty.\u0026lt;li\u0026gt;repeatAfter: describe number of period challenge\u0026#39;s goals will be repeated after. Leave it empty if you don\u0026#39;t want to repeat the challenge.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetConfig: describe when rotation reset will happen (optional).\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to \u0026#34;00:00\u0026#34;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;randomizedPerRotation:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;true: each goal will be randomly assigned to multiple periods\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;false: a goal will only be assigned to one period \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/p\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\nRequest body:\n- name: name of the challenge\n- description: text describing about the challenge (optional)\n- startDate: timestamp of when the challenge is started\n- endDate: timestamp of when the challenge is ended (optional)\n- endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.\n- repeatAfter: describe number of period challenge\u0026#39;s goals will be repeated after. Leave it empty if you don\u0026#39;t want to repeat the challenge.\n- rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)\n- activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)\n- assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)\n- goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)\n- resetConfig: describe when rotation reset will happen (optional).\n\t- resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to \u0026#34;00:00\u0026#34;\n\t- resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.\n\t- resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.\n- randomizedPerRotation:\n\t- true: each goal will be randomly assigned to multiple periods\n\t- false: a goal will only be assigned to one period",
         "operationId": "adminUpdateChallenge",
         "parameters": [
           {
@@ -510,12 +553,19 @@
         ],
         "x-errorCodes": {
           "20018": "bad request: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "adminGetGoals",
         "parameters": [
           {
@@ -547,7 +597,15 @@
             "type": "integer"
           },
           {
-            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.\n\t\t\tavailable value:\n\t\t\t\t\u003cli\u003ecreatedAt, createdAt:desc, createdAt:asc\u003c/li\u003e\n\t\t\t\t\u003cli\u003eupdatedAt, updatedAt:desc, updatedAt:asc\u003c/li\u003e\n\t\t\t",
+            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -602,13 +660,20 @@
           "20001": "unauthorized access",
           "20013": "insufficient permission",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\u0026lt;/li\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;code: unique within a challenge.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;name: name of the goal.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing the goal (optional).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;predicates: list of progression parameters to be tracked.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;parameterType: the type of parameter for challenge to be progressed with. the available options are:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: progress by user statistic item value.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: progress by user achievement.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: progress by user account event.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;parameterName: the name of the parameter for challenge to be progressed with.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: refers to stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: refers to achievement code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: refers to a specific event related to user accounts. The current possible events include: userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded, thirdPartyAccountCreated, and userLoggedIn.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;For the \u0026lt;b\u0026gt;userAccountLinked\u0026lt;/b\u0026gt; event, \u0026lt;b\u0026gt;parameterName\u0026lt;/b\u0026gt; will utilize \u0026lt;b\u0026gt;platformId\u0026lt;/b\u0026gt; rather than the event name. This will be validated against the list of active third-party accounts configuration within the namespace, such as \u0026lt;i\u0026gt;psn\u0026lt;/i\u0026gt;, \u0026lt;i\u0026gt;steam\u0026lt;/i\u0026gt;, or \u0026lt;i\u0026gt;device\u0026lt;/i\u0026gt;.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;targetValue: the target number to be reached by the parameter.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX.\nNumber of goals per challenge is \u0026lt;b\u0026gt;limited to 100 goals\u0026lt;/b\u0026gt;.",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]\nRequest body:\n- code: unique within a challenge.\n- name: name of the goal.\n- description: text describing the goal (optional).\n- schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\n- requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator.\n\tAfter all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\n\t- operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\n\t- predicates: list of progression parameters to be tracked.\n\t\t- parameterType: the type of parameter for challenge to be progressed with. the available options are:\n\t\t\t- STATISTIC: progress by user statistic item value.\n\t\t\t- STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\n\t\t\t- ACHIEVEMENT: progress by user achievement.\n\t\t\t- USERACCOUNT: progress by user account event.\n\t\t\t- ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\n\t\t- parameterName: the name of the parameter for challenge to be progressed with.\n\t\t\t- STATISTIC: refers to stat code.\n\t\t\t- STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\n\t\t\t- ACHIEVEMENT: refers to achievement code.\n\t\t\t- USERACCOUNT: refers to a specific event related to user accounts. The current possible events include: userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded, thirdPartyAccountCreated, userLoggedIn, userThirdPartyLoggedIn and fullAccount.\n\t\t\t\t- For the **userAccountLinked** event, **parameterName** will utilize **platformId** rather than the event name. This will be validated against the list of active third-party accounts configuration within the namespace, such as *psn*, *steam*, or *device*.\n\t\t\t- ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\n\t\t- matcher: the comparison operator used to compare the current value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\n\t\t- targetValue: the target number to be reached by the parameter.\n\t\t- statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\n- rewards: list of rewards that will be claimable once a goal is complete.\n- tag: goal\u0026#39;s labels.\n- isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.\nGoal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX.\nNumber of goals per challenge is **limited to 100 goals**.",
         "operationId": "adminCreateGoal",
         "parameters": [
           {
@@ -704,12 +769,19 @@
           "20029": "not found",
           "99002": "duplicate key error: {{message}}",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}": {
       "delete": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]",
         "operationId": "adminDeleteGoal",
         "parameters": [
           {
@@ -773,10 +845,17 @@
           "20000": "internal server error: {{message}}",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]"
+            ]
+          }
+        ]
       },
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "adminGetGoal",
         "parameters": [
           {
@@ -848,13 +927,20 @@
         "x-errorCodes": {
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;name: name of the goal.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;description: text describing the goal (optional).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;predicates: list of progression parameters to be tracked.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;parameterType: the type of parameter for challenge to be progressed with. the available options are:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: progress by user statistic item value.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: progress by user achievement.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: progress by user account event.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;parameterName: the name of the parameter for challenge to be progressed with.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt; STATISTIC: refers to stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ACHIEVEMENT: refers to achievement code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; USERACCOUNT: one of the user account event. Current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt; ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;targetValue: the target number to be reached by the parameter.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;rewards: list of rewards that will be claimable once a goal is complete.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;tag: goal\u0026#39;s labels.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.The requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.Supported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\n### Request body:\n- name: name of the goal.\n- description: text describing the goal (optional).\n- schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\n- requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\n\t- operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\n\t- predicates: list of progression parameters to be tracked.\n\t\t- parameterType: the type of parameter for challenge to be progressed with. the available options are:\n\t\t\t- STATISTIC: progress by user statistic item value.\n\t\t\t- STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\n\t\t\t- ACHIEVEMENT: progress by user achievement.\n\t\t\t- USERACCOUNT: progress by user account event.\n\t\t\t- ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\n\t\t- parameterName: the name of the parameter for challenge to be progressed with.\n\t\t\t- STATISTIC: refers to stat code.\n\t\t\t- STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\n\t\t\t- ACHIEVEMENT: refers to achievement code.\n\t\t\t- USERACCOUNT: one of the user account event. Current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\n\t\t\t- ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\n\t- matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\n\t- targetValue: the target number to be reached by the parameter.\n\t- statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\n- rewards: list of rewards that will be claimable once a goal is complete.\n- tag: goal\u0026#39;s labels.\n- isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).\nGoal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX",
         "operationId": "adminUpdateGoals",
         "parameters": [
           {
@@ -934,12 +1020,125 @@
         "x-errorCodes": {
           "20018": "bad request: {{message}}",
           "99004": "unprocessable entity: {{message}}"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}/schedules": {
+      "get": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;List schedules of given goal in a challenge for specific user.",
+        "operationId": "adminListSchedulesByGoal",
+        "parameters": [
+          {
+            "description": "challenge code",
+            "in": "path",
+            "name": "challengeCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "goal code",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit the amount of data retrieved",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "userId, UUIDv4 format without hyphen, required when querying CUSTOM challenge schedule",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ListScheduleByGoalResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20029\u003c/td\u003e\u003ctd\u003enot found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get goal's schedules",
+        "tags": [
+          "Schedules"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
         }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/periods": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "adminGetPeriods",
         "parameters": [
           {
@@ -1020,12 +1219,19 @@
           "20001": "unauthorized access",
           "20013": "insufficient permission",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/randomize": {
       "post": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;This is a utility endpoint to execute randomize goals schedule on challenge that the assignmentRule is RANDOMIZED and RandomizePerRotation assigned with true.",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\nThis is a utility endpoint to execute randomize goals schedule on challenge that the assignmentRule is RANDOMIZED and RandomizePerRotation assigned with true.",
         "operationId": "adminRandomizeChallenge",
         "parameters": [
           {
@@ -1102,12 +1308,126 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/schedules": {
+      "get": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;List schedules of given challenge for specific user. To query schedules prior to specific date time, use dateTime parameter.",
+        "operationId": "adminListSchedules",
+        "parameters": [
+          {
+            "description": "challenge code",
+            "in": "path",
+            "name": "challengeCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "use RFC3339 format(2006-01-02T15:04:05Z).",
+            "format": "date-time",
+            "in": "query",
+            "name": "dateTime",
+            "type": "string",
+            "x-nullable": true
+          },
+          {
+            "default": 20,
+            "description": "limit the amount of data retrieved",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "userId, UUIDv4 format without hyphen, required when querying CUSTOM challenge schedule",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ListSchedulesResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20029\u003c/td\u003e\u003ctd\u003enot found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Challenge's schedules",
+        "tags": [
+          "Schedules"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
         }
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/tied": {
       "delete": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]\n- This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS\n",
         "operationId": "adminDeleteTiedChallenge",
         "parameters": [
           {
@@ -1178,7 +1498,14 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/tied/schedule": {
@@ -1186,7 +1513,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;p\u0026gt;Request body:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;action: Update the challenge schedule. The available options are:\u0026lt;/li\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;STOP: Ends the challenge, changing its status to RETIRED. This option supports all types of challenges.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;ACCELERATE: Speeds up the challenge\u0026#39;s end time. Note that this option does not apply to challenges with an \u0026#39;endAfter\u0026#39; value.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;endDate: The timestamp specifying when the challenge should end (required if the action is ACCELERATE).\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\n### Request body:\n- action: Update the challenge schedule. The available options are:\n\t- STOP: Ends the challenge, changing its status to RETIRED. This option supports all types of challenges.\n\t- ACCELERATE: Speeds up the challenge\u0026#39;s end time. Note that this option does not apply to challenges with an \u0026#39;endAfter\u0026#39; value.\n- endDate: The timestamp specifying when the challenge should end (required if the action is ACCELERATE).\n",
         "operationId": "adminUpdateTiedChallengeSchedule",
         "parameters": [
           {
@@ -1264,12 +1591,19 @@
         ],
         "x-errorCodes": {
           "20018": "bad request: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/plugins/assignment": {
       "delete": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]",
         "operationId": "adminDeleteAssignmentPlugin",
         "parameters": [
           {
@@ -1333,10 +1667,17 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [DELETE]"
+            ]
+          }
+        ]
       },
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]",
         "operationId": "adminGetAssignmentPlugin",
         "parameters": [
           {
@@ -1403,13 +1744,20 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]",
         "operationId": "adminCreateAssignmentPlugin",
         "parameters": [
           {
@@ -1477,13 +1825,20 @@
           "20001": "unauthorized access",
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [CREATE]"
+            ]
+          }
+        ]
       },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]",
         "operationId": "adminUpdateAssignmentPlugin",
         "parameters": [
           {
@@ -1558,7 +1913,14 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PLUGIN [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/progress/evaluate": {
@@ -1566,7 +1928,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Limited up to 10 users per request\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]\n- Limited up to 10 users per request",
         "operationId": "adminEvaluateProgress",
         "parameters": [
           {
@@ -1638,7 +2000,14 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/users/rewards/claim": {
@@ -1646,7 +2015,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]",
         "operationId": "adminClaimUsersRewards",
         "parameters": [
           {
@@ -1727,7 +2096,14 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/users/{userId}/challenges/{challengeCode}/rewards/claim": {
@@ -1735,7 +2111,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]",
         "operationId": "adminClaimUserRewardsByGoalCode",
         "parameters": [
           {
@@ -1832,12 +2208,19 @@
           "20018": "bad request: {{message}}",
           "20029": "not found",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/users/{userId}/progress/{challengeCode}": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]",
         "operationId": "adminGetUserProgression",
         "parameters": [
           {
@@ -1963,12 +2346,19 @@
           "20018": "bad request: {{message}}",
           "20029": "not found",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/users/{userId}/rewards": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]",
         "operationId": "adminGetUserRewards",
         "parameters": [
           {
@@ -1986,6 +2376,18 @@
             "type": "string"
           },
           {
+            "description": "reward's challenge code",
+            "in": "query",
+            "name": "challengeCode",
+            "type": "string"
+          },
+          {
+            "description": "reward's goal progression id",
+            "in": "query",
+            "name": "goalProgressionId",
+            "type": "string"
+          },
+          {
             "default": 20,
             "description": "limit the amount of data retrieved",
             "in": "query",
@@ -2000,7 +2402,15 @@
             "type": "integer"
           },
           {
-            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.\n\t\t\tavailable value:\n\t\t\t\t\u003cli\u003ecreatedAt, createdAt:desc, createdAt:asc\u003c/li\u003e\n\t\t\t\t\u003cli\u003eupdatedAt, updatedAt:desc, updatedAt:asc\u003c/li\u003e\n\t\t\t",
+            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2058,7 +2468,14 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/admin/namespaces/{namespace}/users/{userId}/rewards/claim": {
@@ -2066,7 +2483,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]",
         "operationId": "adminClaimUserRewards",
         "parameters": [
           {
@@ -2151,12 +2568,19 @@
           "20013": "insufficient permission",
           "20029": "not found",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/challenges": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "GetChallenges",
         "parameters": [
           {
@@ -2181,7 +2605,15 @@
             "type": "integer"
           },
           {
-            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.\n\t\t\tavailable value:\n\t\t\t\t\u003cli\u003ecreatedAt, createdAt:desc, createdAt:asc\u003c/li\u003e\n\t\t\t\t\u003cli\u003eupdatedAt, updatedAt:desc, updatedAt:asc\u003c/li\u003e\n\t\t\t",
+            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2240,12 +2672,19 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/challenges/{challengeCode}/goals": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]",
         "operationId": "publicGetScheduledGoals",
         "parameters": [
           {
@@ -2336,6 +2775,214 @@
           "20001": "unauthorized access",
           "20013": "insufficient permission",
           "20029": "not found"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/challenge/v1/public/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}/schedules": {
+      "get": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;List schedules of given goal in a challenge for specific user.",
+        "operationId": "publicListSchedulesByGoal",
+        "parameters": [
+          {
+            "description": "challenge code",
+            "in": "path",
+            "name": "challengeCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "goal code",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "limit the amount of data retrieved",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ListScheduleByGoalResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20029\u003c/td\u003e\u003ctd\u003enot found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get goal's schedules",
+        "tags": [
+          "Schedules"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
+        }
+      }
+    },
+    "/challenge/v1/public/namespaces/{namespace}/challenges/{challengeCode}/schedules": {
+      "get": {
+        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;List schedules of given challenge for specific user. To query schedules prior to specific date time, use dateTime parameter.",
+        "operationId": "publicListSchedules",
+        "parameters": [
+          {
+            "description": "challenge code",
+            "in": "path",
+            "name": "challengeCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "use RFC3339 format(2006-01-02T15:04:05Z).",
+            "format": "date-time",
+            "in": "query",
+            "name": "dateTime",
+            "type": "string",
+            "x-nullable": true
+          },
+          {
+            "default": 20,
+            "description": "limit the amount of data retrieved",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ListSchedulesResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20029\u003c/td\u003e\u003ctd\u003enot found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Challenge's schedules",
+        "tags": [
+          "Schedules"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
+          "20029": "not found"
         }
       }
     },
@@ -2344,7 +2991,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]",
         "operationId": "publicClaimUserRewardsByGoalCode",
         "parameters": [
           {
@@ -2383,7 +3030,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/iam.ErrorResponse"
             }
@@ -2432,14 +3079,22 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission",
+          "20018": "bad request: {{message}}",
           "20029": "not found",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/evaluate": {
       "post": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]",
         "operationId": "EvaluateMyProgress",
         "parameters": [
           {
@@ -2489,12 +3144,19 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/{challengeCode}": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]",
         "operationId": "publicGetUserProgression",
         "parameters": [
           {
@@ -2613,12 +3275,19 @@
           "20018": "bad request: {{message}}",
           "20029": "not found",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/progress/{challengeCode}/index/{index}": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]",
         "operationId": "publicGetPastUserProgression",
         "parameters": [
           {
@@ -2729,12 +3398,19 @@
           "20013": "insufficient permission",
           "20018": "bad request: {{message}}",
           "20029": "not found"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/rewards": {
       "get": {
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]",
         "operationId": "publicGetUserRewards",
         "parameters": [
           {
@@ -2742,6 +3418,18 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "reward's challenge code",
+            "in": "query",
+            "name": "challengeCode",
+            "type": "string"
+          },
+          {
+            "description": "reward's goal progression id",
+            "in": "query",
+            "name": "goalProgressionId",
             "type": "string"
           },
           {
@@ -2759,7 +3447,15 @@
             "type": "integer"
           },
           {
-            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.\n\t\t\tavailable value:\n\t\t\t\t\u003cli\u003ecreatedAt, createdAt:desc, createdAt:asc\u003c/li\u003e\n\t\t\t\t\u003cli\u003eupdatedAt, updatedAt:desc, updatedAt:asc\u003c/li\u003e\n\t\t\t",
+            "description": "sort list by attributes.\n\t\t\tdefault value: updatedAt:desc.",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
             "in": "query",
             "name": "sortBy",
             "type": "string"
@@ -2817,7 +3513,14 @@
           "20000": "internal server error: {{message}}",
           "20001": "unauthorized access",
           "20013": "insufficient permission"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]"
+            ]
+          }
+        ]
       }
     },
     "/challenge/v1/public/namespaces/{namespace}/users/me/rewards/claim": {
@@ -2825,7 +3528,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]",
         "operationId": "publicClaimUserRewards",
         "parameters": [
           {
@@ -2903,7 +3606,14 @@
           "20013": "insufficient permission",
           "20029": "not found",
           "99004": "unprocessable entity: {{message}}"
-        }
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]"
+            ]
+          }
+        ]
       }
     }
   },
@@ -3292,6 +4002,65 @@
         "paging"
       ]
     },
+    "model.GoalInSchedulesResponse": {
+      "properties": {
+        "challengeCode": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "requirementGroups": {
+          "items": {
+            "$ref": "#/definitions/model.Requirement"
+          },
+          "type": "array"
+        },
+        "rewards": {
+          "items": {
+            "$ref": "#/definitions/model.Reward"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "challengeCode",
+        "code",
+        "createdAt",
+        "description",
+        "isActive",
+        "name",
+        "namespace",
+        "requirementGroups",
+        "rewards",
+        "updatedAt"
+      ]
+    },
     "model.GoalMeta": {
       "properties": {
         "code": {
@@ -3348,6 +4117,9 @@
     "model.GoalProgressionResponse": {
       "properties": {
         "challengeCode": {
+          "type": "string"
+        },
+        "completedAt": {
           "type": "string"
         },
         "goal": {
@@ -3500,6 +4272,40 @@
         "data": {
           "items": {
             "$ref": "#/definitions/models.Period"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "model.ListScheduleByGoalResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.ScheduleByGoalResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/model.Pagination"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "model.ListSchedulesResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.ScheduleResponse"
           },
           "type": "array"
         },
@@ -3789,6 +4595,49 @@
         "namespace",
         "startTime",
         "updatedAt"
+      ]
+    },
+    "model.ScheduleByGoalResponse": {
+      "properties": {
+        "endTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "startTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "endTime",
+        "startTime"
+      ]
+    },
+    "model.ScheduleResponse": {
+      "properties": {
+        "endTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "goals": {
+          "items": {
+            "$ref": "#/definitions/model.GoalInSchedulesResponse"
+          },
+          "type": "array"
+        },
+        "startTime": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "endTime",
+        "goals",
+        "startTime"
       ]
     },
     "model.UpdateChallengeRequest": {
@@ -4104,11 +4953,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-18T09:05:54+00:00",
-    "gitHash": "977f3ff35ec7f1b20440e567a3a2ab0c6494c2c8",
+    "buildDate": "2024-12-24T02:47:28+00:00",
+    "gitHash": "f36a8ca2e1167b00167bcfbac41abcc3e758815f",
     "name": "justice-challenge-service",
     "realm": "stage",
-    "version": "1.11.1",
+    "version": "1.12.1",
     "version-roles-seeding": "1.2.74"
   }
 }

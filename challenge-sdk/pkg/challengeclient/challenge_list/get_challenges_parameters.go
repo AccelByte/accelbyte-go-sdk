@@ -21,6 +21,16 @@ import (
 
 // Get the enum in GetChallengesParams
 const (
+	GetChallengesCreatedAtConstant     = "createdAt"
+	GetChallengesCreatedAtAscConstant  = "createdAt:asc"
+	GetChallengesCreatedAtDescConstant = "createdAt:desc"
+	GetChallengesUpdatedAtConstant     = "updatedAt"
+	GetChallengesUpdatedAtAscConstant  = "updatedAt:asc"
+	GetChallengesUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in GetChallengesParams
+const (
 	GetChallengesINITConstant    = "INIT"
 	GetChallengesRETIREDConstant = "RETIRED"
 	GetChallengesTIEDConstant    = "TIED"
@@ -110,10 +120,6 @@ type GetChallengesParams struct {
 	/*SortBy
 	    sort list by attributes.
 				default value: updatedAt:desc.
-				available value:
-					<li>createdAt, createdAt:desc, createdAt:asc</li>
-					<li>updatedAt, updatedAt:desc, updatedAt:asc</li>
-
 
 	*/
 	SortBy *string

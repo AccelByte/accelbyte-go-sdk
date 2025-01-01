@@ -2010,6 +2010,20 @@ func (aaa *UsersV4Service) PublicInviteUserV4(input *users_v4.PublicInviteUserV4
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicUpgradeHeadlessWithCodeV4ForwardShort instead.
+func (aaa *UsersV4Service) PublicUpgradeHeadlessWithCodeV4Forward(input *users_v4.PublicUpgradeHeadlessWithCodeV4ForwardParams) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return "", err
+	}
+	found, err := aaa.Client.UsersV4.PublicUpgradeHeadlessWithCodeV4Forward(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
+}
+
 func (aaa *UsersV4Service) AdminListInvitationHistoriesV4Short(input *users_v4.AdminListInvitationHistoriesV4Params) (*iamclientmodels.ModelListInvitationHistoriesV4Response, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -4018,4 +4032,34 @@ func (aaa *UsersV4Service) PublicInviteUserV4Short(input *users_v4.PublicInviteU
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *UsersV4Service) PublicUpgradeHeadlessWithCodeV4ForwardShort(input *users_v4.PublicUpgradeHeadlessWithCodeV4ForwardParams) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	found, err := aaa.Client.UsersV4.PublicUpgradeHeadlessWithCodeV4ForwardShort(input, authInfoWriter)
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
 }

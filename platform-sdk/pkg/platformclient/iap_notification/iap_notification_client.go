@@ -42,8 +42,7 @@ Deprecated: 2022-08-10 - Use QueryThirdPartyNotificationsShort instead.
 QueryThirdPartyNotifications query third party notifications
 Query third party notifications.
 Other detail info:
-
-  * Returns : Third Party Platform notifications
+                          * Returns : Third Party Platform notifications
 */
 func (a *Client) QueryThirdPartyNotifications(params *QueryThirdPartyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryThirdPartyNotificationsOK, error) {
 	// TODO: Validate the params before sending
@@ -94,8 +93,7 @@ func (a *Client) QueryThirdPartyNotifications(params *QueryThirdPartyNotificatio
 QueryThirdPartyNotificationsShort query third party notifications
 Query third party notifications.
 Other detail info:
-
-  * Returns : Third Party Platform notifications
+                          * Returns : Third Party Platform notifications
 */
 func (a *Client) QueryThirdPartyNotificationsShort(params *QueryThirdPartyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryThirdPartyNotificationsOK, error) {
 	// TODO: Validate the params before sending

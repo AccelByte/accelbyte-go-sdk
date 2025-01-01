@@ -18,9 +18,15 @@ import (
 // swagger:model Dto platform account closure client response.
 type DTOPlatformAccountClosureClientResponse struct {
 
+	// bpcertexpireat
+	// Format: int64
+	BpCertExpireAt int64 `json:"bpCertExpireAt,omitempty"`
+
+	// bpcertfilename
+	BpCertFileName string `json:"bpCertFileName,omitempty"`
+
 	// clientid
-	// Required: true
-	ClientID *string `json:"clientId"`
+	ClientID string `json:"clientId,omitempty"`
 
 	// namespace
 	// Required: true
@@ -30,9 +36,14 @@ type DTOPlatformAccountClosureClientResponse struct {
 	// Required: true
 	Platform *string `json:"platform"`
 
+	// publisherkey
+	PublisherKey string `json:"publisherKey,omitempty"`
+
+	// sandboxid
+	SandboxID string `json:"sandboxId,omitempty"`
+
 	// secret
-	// Required: true
-	Secret *string `json:"secret"`
+	Secret string `json:"secret,omitempty"`
 
 	// updatedat
 	// Required: true
@@ -44,16 +55,10 @@ type DTOPlatformAccountClosureClientResponse struct {
 func (m *DTOPlatformAccountClosureClientResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateClientID(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validatePlatform(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSecret(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
@@ -63,15 +68,6 @@ func (m *DTOPlatformAccountClosureClientResponse) Validate(formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DTOPlatformAccountClosureClientResponse) validateClientID(formats strfmt.Registry) error {
-
-	if err := validate.Required("clientId", "body", m.ClientID); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -87,15 +83,6 @@ func (m *DTOPlatformAccountClosureClientResponse) validateNamespace(formats strf
 func (m *DTOPlatformAccountClosureClientResponse) validatePlatform(formats strfmt.Registry) error {
 
 	if err := validate.Required("platform", "body", m.Platform); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DTOPlatformAccountClosureClientResponse) validateSecret(formats strfmt.Registry) error {
-
-	if err := validate.Required("secret", "body", m.Secret); err != nil {
 		return err
 	}
 

@@ -86,8 +86,7 @@ Deprecated: 2022-08-10 - Use GetPlatformWalletConfigShort instead.
 GetPlatformWalletConfig get platform wallet config list
 Get platform wallet config list.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) GetPlatformWalletConfig(params *GetPlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -138,8 +137,7 @@ func (a *Client) GetPlatformWalletConfig(params *GetPlatformWalletConfigParams, 
 GetPlatformWalletConfigShort get platform wallet config list
 Get platform wallet config list.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) GetPlatformWalletConfigShort(params *GetPlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -188,8 +186,7 @@ Deprecated: 2022-08-10 - Use UpdatePlatformWalletConfigShort instead.
 UpdatePlatformWalletConfig update platform wallet config
 Update platform wallet config.
 Other detail info:
-
-  * Returns : platform wallet config
+                      * Returns : platform wallet config
 */
 func (a *Client) UpdatePlatformWalletConfig(params *UpdatePlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -240,8 +237,7 @@ func (a *Client) UpdatePlatformWalletConfig(params *UpdatePlatformWalletConfigPa
 UpdatePlatformWalletConfigShort update platform wallet config
 Update platform wallet config.
 Other detail info:
-
-  * Returns : platform wallet config
+                      * Returns : platform wallet config
 */
 func (a *Client) UpdatePlatformWalletConfigShort(params *UpdatePlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -290,8 +286,7 @@ Deprecated: 2022-08-10 - Use ResetPlatformWalletConfigShort instead.
 ResetPlatformWalletConfig reset platform wallet config
 Reset platform wallet config to default config.
 Other detail info:
-
-  * Returns : platform wallet config
+                      * Returns : platform wallet config
 */
 func (a *Client) ResetPlatformWalletConfig(params *ResetPlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -342,8 +337,7 @@ func (a *Client) ResetPlatformWalletConfig(params *ResetPlatformWalletConfigPara
 ResetPlatformWalletConfigShort reset platform wallet config
 Reset platform wallet config to default config.
 Other detail info:
-
-  * Returns : platform wallet config
+                      * Returns : platform wallet config
 */
 func (a *Client) ResetPlatformWalletConfigShort(params *ResetPlatformWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ResetPlatformWalletConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -391,10 +385,8 @@ Deprecated: 2022-08-10 - Use QueryUserCurrencyWalletsShort instead.
 
 QueryUserCurrencyWallets get user currency wallet summary
 Get user currency wallet summary.
-Other detail info:
-
-(READ)
-  *  Returns : currency wallet summary
+Other detail info: (READ)
+                      *  Returns : currency wallet summary
 */
 func (a *Client) QueryUserCurrencyWallets(params *QueryUserCurrencyWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserCurrencyWalletsOK, error) {
 	// TODO: Validate the params before sending
@@ -444,10 +436,8 @@ func (a *Client) QueryUserCurrencyWallets(params *QueryUserCurrencyWalletsParams
 /*
 QueryUserCurrencyWalletsShort get user currency wallet summary
 Get user currency wallet summary.
-Other detail info:
-
-(READ)
-  *  Returns : currency wallet summary
+Other detail info: (READ)
+                      *  Returns : currency wallet summary
 */
 func (a *Client) QueryUserCurrencyWalletsShort(params *QueryUserCurrencyWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserCurrencyWalletsOK, error) {
 	// TODO: Validate the params before sending
@@ -607,8 +597,7 @@ Deprecated: 2022-08-10 - Use ListUserCurrencyTransactionsShort instead.
 ListUserCurrencyTransactions list user currency transactions
 List user currency transactions ordered by create time desc.
 Other detail info:
-
-  * Returns : currency transaction info
+                      * Returns : currency transaction info
 */
 func (a *Client) ListUserCurrencyTransactions(params *ListUserCurrencyTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserCurrencyTransactionsOK, *ListUserCurrencyTransactionsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -662,8 +651,7 @@ func (a *Client) ListUserCurrencyTransactions(params *ListUserCurrencyTransactio
 ListUserCurrencyTransactionsShort list user currency transactions
 List user currency transactions ordered by create time desc.
 Other detail info:
-
-  * Returns : currency transaction info
+                      * Returns : currency transaction info
 */
 func (a *Client) ListUserCurrencyTransactionsShort(params *ListUserCurrencyTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserCurrencyTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -714,8 +702,7 @@ Deprecated: 2022-08-10 - Use CheckBalanceShort instead.
 CheckBalance check if a user has enough balance
 Checks if the user has enough balance based on the provided criteria.
 Other detail info:
-
-  * Returns : boolean value indicating if the user has enough balance
+                      * Returns : boolean value indicating if the user has enough balance
 */
 func (a *Client) CheckBalance(params *CheckBalanceParams, authInfo runtime.ClientAuthInfoWriter) (*CheckBalanceOK, *CheckBalanceBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -769,8 +756,7 @@ func (a *Client) CheckBalance(params *CheckBalanceParams, authInfo runtime.Clien
 CheckBalanceShort check if a user has enough balance
 Checks if the user has enough balance based on the provided criteria.
 Other detail info:
-
-  * Returns : boolean value indicating if the user has enough balance
+                      * Returns : boolean value indicating if the user has enough balance
 */
 func (a *Client) CheckBalanceShort(params *CheckBalanceParams, authInfo runtime.ClientAuthInfoWriter) (*CheckBalanceOK, error) {
 	// TODO: Validate the params before sending
@@ -931,9 +917,7 @@ Deprecated: 2022-08-10 - Use CreditUserWalletShort instead.
 
 CreditUserWallet credit a user wallet by currency code and balance origin
 Credit a user wallet by currency code and balance origin, if wallet not exists, it will create a new wallet.
-Other detail info:
-
-(UPDATE)
+Other detail info: (UPDATE)
 */
 func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -989,9 +973,7 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 /*
 CreditUserWalletShort credit a user wallet by currency code and balance origin
 Credit a user wallet by currency code and balance origin, if wallet not exists, it will create a new wallet.
-Other detail info:
-
-(UPDATE)
+Other detail info: (UPDATE)
 */
 func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -1041,12 +1023,9 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 /*
 Deprecated: 2022-08-10 - Use DebitByWalletPlatformShort instead.
 
-DebitByWalletPlatform pay with user wallet by currency code and client platform
-Pay with user wallet by currency code and client platform.
+DebitByWalletPlatform debit user wallet by currency code and client platform
+Debit user wallet by currency code and client platform.
 Other detail info:
-
-
-
 
 ## Restrictions for metadata
 
@@ -1054,15 +1033,13 @@ Other detail info:
 1. Cannot use "." as the key name
 -
 
-
-    { "data.2": "value" }
+                                                                                { "data.2": "value" }
 
 
 2. Cannot use "$" as the prefix in key names
 -
 
-
-    { "$data": "value" }
+                                                                                { "$data": "value" }
 */
 func (a *Client) DebitByWalletPlatform(params *DebitByWalletPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*DebitByWalletPlatformOK, *DebitByWalletPlatformBadRequest, *DebitByWalletPlatformUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1116,12 +1093,9 @@ func (a *Client) DebitByWalletPlatform(params *DebitByWalletPlatformParams, auth
 }
 
 /*
-DebitByWalletPlatformShort pay with user wallet by currency code and client platform
-Pay with user wallet by currency code and client platform.
+DebitByWalletPlatformShort debit user wallet by currency code and client platform
+Debit user wallet by currency code and client platform.
 Other detail info:
-
-
-
 
 ## Restrictions for metadata
 
@@ -1129,15 +1103,13 @@ Other detail info:
 1. Cannot use "." as the key name
 -
 
-
-    { "data.2": "value" }
+                                                                                { "data.2": "value" }
 
 
 2. Cannot use "$" as the prefix in key names
 -
 
-
-    { "$data": "value" }
+                                                                                { "$data": "value" }
 */
 func (a *Client) DebitByWalletPlatformShort(params *DebitByWalletPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*DebitByWalletPlatformOK, error) {
 	// TODO: Validate the params before sending
@@ -1296,8 +1268,7 @@ Deprecated: 2022-08-10 - Use GetUserWalletShort instead.
 GetUserWallet get a user wallet
 get a user wallet.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, *GetUserWalletNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1351,8 +1322,7 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 GetUserWalletShort get a user wallet
 get a user wallet.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -1731,8 +1701,7 @@ Deprecated: 2022-08-10 - Use ListUserWalletTransactionsShort instead.
 ListUserWalletTransactions list user wallet transactions
 List user wallet transactions ordered by create time desc.
 Other detail info:
-
-  * Returns : wallet transaction info
+                      * Returns : wallet transaction info
 */
 func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, *ListUserWalletTransactionsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1786,8 +1755,7 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 ListUserWalletTransactionsShort list user wallet transactions
 List user wallet transactions ordered by create time desc.
 Other detail info:
-
-  * Returns : wallet transaction info
+                      * Returns : wallet transaction info
 */
 func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -1838,8 +1806,7 @@ Deprecated: 2022-08-10 - Use QueryWalletsShort instead.
 QueryWallets query wallets
 Query wallets.
 Other detail info:
-
-  * Returns : paginated wallets info
+                      * Returns : paginated wallets info
 */
 func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error) {
 	// TODO: Validate the params before sending
@@ -1890,8 +1857,7 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 QueryWalletsShort query wallets
 Query wallets.
 Other detail info:
-
-  * Returns : paginated wallets info
+                      * Returns : paginated wallets info
 */
 func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error) {
 	// TODO: Validate the params before sending
@@ -1940,8 +1906,7 @@ Deprecated: 2022-08-10 - Use BulkCreditShort instead.
 BulkCredit credit different users' wallets
 Credit different users' wallets.
 Other detail info:
-
-  * Returns : bulk credit result
+                      * Returns : bulk credit result
 */
 func (a *Client) BulkCredit(params *BulkCreditParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreditOK, *BulkCreditUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1995,8 +1960,7 @@ func (a *Client) BulkCredit(params *BulkCreditParams, authInfo runtime.ClientAut
 BulkCreditShort credit different users' wallets
 Credit different users' wallets.
 Other detail info:
-
-  * Returns : bulk credit result
+                      * Returns : bulk credit result
 */
 func (a *Client) BulkCreditShort(params *BulkCreditParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreditOK, error) {
 	// TODO: Validate the params before sending
@@ -2047,8 +2011,7 @@ Deprecated: 2022-08-10 - Use BulkDebitShort instead.
 BulkDebit debit different users' wallets
 Debit different users' wallets.
 Other detail info:
-
-  * Returns : bulk credit result
+                      * Returns : bulk credit result
 */
 func (a *Client) BulkDebit(params *BulkDebitParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDebitOK, *BulkDebitUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -2102,8 +2065,7 @@ func (a *Client) BulkDebit(params *BulkDebitParams, authInfo runtime.ClientAuthI
 BulkDebitShort debit different users' wallets
 Debit different users' wallets.
 Other detail info:
-
-  * Returns : bulk credit result
+                      * Returns : bulk credit result
 */
 func (a *Client) BulkDebitShort(params *BulkDebitParams, authInfo runtime.ClientAuthInfoWriter) (*BulkDebitOK, error) {
 	// TODO: Validate the params before sending
@@ -2154,8 +2116,7 @@ Deprecated: 2022-08-10 - Use GetWalletShort instead.
 GetWallet get a wallet by wallet id
 get a wallet by wallet id.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, *GetWalletNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2209,8 +2170,7 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 GetWalletShort get a wallet by wallet id
 get a wallet by wallet id.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -2261,11 +2221,10 @@ Deprecated: 2022-08-10 - Use PublicGetMyWalletShort instead.
 PublicGetMyWallet get my wallet by currency code and namespace
 get my wallet by currency code and namespace.
 Other detail info:
-
-  * Returns : wallet info
-  *  Path's namespace :
-    * can be filled with publisher namespace in order to get publisher user wallet
-    * can be filled with game namespace in order to get game user wallet
+                      * Returns : wallet info
+                      *  Path's namespace :
+                        * can be filled with publisher namespace in order to get publisher user wallet
+                        * can be filled with game namespace in order to get game user wallet
 */
 func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -2316,11 +2275,10 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 PublicGetMyWalletShort get my wallet by currency code and namespace
 get my wallet by currency code and namespace.
 Other detail info:
-
-  * Returns : wallet info
-  *  Path's namespace :
-    * can be filled with publisher namespace in order to get publisher user wallet
-    * can be filled with game namespace in order to get game user wallet
+                      * Returns : wallet info
+                      *  Path's namespace :
+                        * can be filled with publisher namespace in order to get publisher user wallet
+                        * can be filled with game namespace in order to get game user wallet
 */
 func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -2369,8 +2327,7 @@ Deprecated: 2022-08-10 - Use PublicGetWalletShort instead.
 PublicGetWallet get a wallet by currency code
 get a wallet by currency code.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -2421,8 +2378,7 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 PublicGetWalletShort get a wallet by currency code
 get a wallet by currency code.
 Other detail info:
-
-  * Returns : wallet info
+                      * Returns : wallet info
 */
 func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetWalletOK, error) {
 	// TODO: Validate the params before sending
@@ -2471,8 +2427,7 @@ Deprecated: 2022-08-10 - Use PublicListUserWalletTransactionsShort instead.
 PublicListUserWalletTransactions list wallet transactions by currency code
 List wallet transactions by currency code ordered by create time desc.
 Other detail info:
-
-  * Returns : currency transaction info
+                      * Returns : currency transaction info
 */
 func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -2523,8 +2478,7 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 PublicListUserWalletTransactionsShort list wallet transactions by currency code
 List wallet transactions by currency code ordered by create time desc.
 Other detail info:
-
-  * Returns : currency transaction info
+                      * Returns : currency transaction info
 */
 func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserWalletTransactionsOK, error) {
 	// TODO: Validate the params before sending

@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.15.0"
+    "version": "2.16.1"
   },
   "schemes": [
     "https"
@@ -415,12 +415,172 @@
         ]
       }
     },
+    "/gdpr/admin/namespaces/{namespace}/platforms/closure/clients": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get platform account closure configs.\n------\nPlatform:\n\t- steamnetwork\n\t- xbox\n\t- psn\nScope: account",
+        "operationId": "AdminGetPlatformAccountClosureClients",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dto.PlatformAccountClosureClientsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Platform Account Closure Configs",
+        "tags": [
+          "Platform Account Closure Client"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/gdpr/admin/namespaces/{namespace}/platforms/xbox/closure/cert/validation": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Check xbox BP cert file whether it\u0026#39;s expired and return expiration date",
+        "operationId": "AdminValidateXboxBPCertFile",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dto.XboxBPCertValidationRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dto.XboxBPCertValidationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Validate Xbox BP cert file",
+        "tags": [
+          "Platform Account Closure Client"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client": {
       "delete": {
         "consumes": [
           "application/json"
         ],
-        "description": "Delete platform account closure client.",
+        "description": "Delete platform account closure client.\nThe namespace should be **publisher or studio namespace**\n-------\nPlatform:\n\t- steamnetwork\n\t- xbox\n\t- psn\n",
         "operationId": "AdminDeletePlatformAccountClosureClient",
         "parameters": [
           {
@@ -498,7 +658,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get platform account closure config.\nScope: account",
+        "description": "Get platform account closure config.\nThe namespace should be **publisher or studio namespace**\n----------\nPlatform:\n\t- steamnetwork\n\t- xbox\n\t- psn\nScope: account",
         "operationId": "AdminGetPlatformAccountClosureClient",
         "parameters": [
           {
@@ -579,7 +739,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update platform account closure client.\nScope: account",
+        "description": "Update platform account closure client.\nThe namespace should be the **publisher or studio namespace**.\n------\nPlatform:\n\t- steamnetwork\n\t- xbox\n\t- psn\nScope: account",
         "operationId": "AdminUpdatePlatformAccountClosureClient",
         "parameters": [
           {
@@ -643,6 +803,88 @@
           }
         ],
         "summary": "Update Platform Account Closure Client",
+        "tags": [
+          "Platform Account Closure Client"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:GDPR:CONFIGURATION [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/mock": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Mock platform account closure data.\n-----\n**This is only for testing**\nPlatform:\n- steamnetwork\n- xbox\n- psn\nScope: account",
+        "operationId": "AdminMockPlatformAccountClosureData",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dto.PlatformAccountClosureMockRequest"
+            }
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "3rd party platform",
+            "in": "path",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Mock Platform Account Closure Data",
         "tags": [
           "Platform Account Closure Client"
         ],
@@ -1131,7 +1373,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get user\u0026#39;s platform account closure histories.\nScope: account\n\n------\nSupported platforms:\n* psn",
+        "description": "Get user\u0026#39;s platform account closure histories.\nScope: account\n\n------\nSupported platforms:\n- psn\n- steamnetwork\n- xbox\n",
         "operationId": "AdminGetUserPlatformAccountClosureHistories",
         "parameters": [
           {
@@ -3141,20 +3383,45 @@
     },
     "dto.PlatformAccountClosureClientRequest": {
       "properties": {
+        "bpCert": {
+          "description": "required for xbox",
+          "type": "string"
+        },
+        "bpCertFileName": {
+          "description": "required for xbox",
+          "type": "string"
+        },
         "clientId": {
+          "description": "required for psn",
+          "type": "string"
+        },
+        "password": {
+          "description": "required for xbox",
+          "type": "string"
+        },
+        "publisherKey": {
+          "description": "required for steam",
+          "type": "string"
+        },
+        "sandboxId": {
+          "description": "required for xbox",
           "type": "string"
         },
         "secret": {
+          "description": "required for psn",
           "type": "string"
         }
-      },
-      "required": [
-        "clientId",
-        "secret"
-      ]
+      }
     },
     "dto.PlatformAccountClosureClientResponse": {
       "properties": {
+        "bpCertExpireAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "bpCertFileName": {
+          "type": "string"
+        },
         "clientId": {
           "type": "string"
         },
@@ -3162,6 +3429,12 @@
           "type": "string"
         },
         "platform": {
+          "type": "string"
+        },
+        "publisherKey": {
+          "type": "string"
+        },
+        "sandboxId": {
           "type": "string"
         },
         "secret": {
@@ -3173,11 +3446,42 @@
         }
       },
       "required": [
-        "clientId",
         "namespace",
         "platform",
-        "secret",
         "updatedAt"
+      ]
+    },
+    "dto.PlatformAccountClosureClientsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/dto.PlatformAccountClosureClientResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "dto.PlatformAccountClosureMockRequest": {
+      "properties": {
+        "platformUserId": {
+          "type": "string"
+        },
+        "sandbox": {
+          "type": "string"
+        },
+        "startImmediately": {
+          "description": "start the account closure process immediately",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "platformUserId",
+        "sandbox",
+        "startImmediately"
       ]
     },
     "dto.S2SDataRequestSummary": {
@@ -3332,6 +3636,36 @@
         "platform",
         "platformUserId",
         "userId"
+      ]
+    },
+    "dto.XboxBPCertValidationRequest": {
+      "properties": {
+        "bpCert": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "bpCert",
+        "password"
+      ]
+    },
+    "dto.XboxBPCertValidationResponse": {
+      "properties": {
+        "expirationDate": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "expired": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "expirationDate",
+        "expired"
       ]
     },
     "models.DataRetrievalResponse": {
@@ -3634,6 +3968,12 @@
         },
         "errorMessage": {
           "type": "string"
+        },
+        "messageVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "required": [
@@ -3648,11 +3988,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-06T04:07:51+00:00",
-    "gitHash": "7805dff0f5800af1d2d3985befeefe5491ff39ae",
+    "buildDate": "2024-12-18T10:36:37+00:00",
+    "gitHash": "176dfeaf3080465a5f63fe153e587f8648b08272",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.15.0",
-    "version-roles-seeding": "1.2.39"
+    "version": "2.16.1",
+    "version-roles-seeding": "1.2.82"
   }
 }

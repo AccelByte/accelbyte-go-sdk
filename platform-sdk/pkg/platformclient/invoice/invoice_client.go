@@ -45,8 +45,7 @@ Deprecated: 2022-08-10 - Use DownloadInvoiceDetailsShort instead.
 DownloadInvoiceDetails download invoice details
 Download invoice details as a csv file.
 Other detail info:
-
-  * Returns : invoice details csv file
+                          * Returns : invoice details csv file
 */
 func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -97,8 +96,7 @@ func (a *Client) DownloadInvoiceDetails(params *DownloadInvoiceDetailsParams, au
 DownloadInvoiceDetailsShort download invoice details
 Download invoice details as a csv file.
 Other detail info:
-
-  * Returns : invoice details csv file
+                          * Returns : invoice details csv file
 */
 func (a *Client) DownloadInvoiceDetailsShort(params *DownloadInvoiceDetailsParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadInvoiceDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -147,8 +145,7 @@ Deprecated: 2022-08-10 - Use GenerateInvoiceSummaryShort instead.
 GenerateInvoiceSummary generate invoice summary
 Generate invoice summary.
 Other detail info:
-
-  * Returns : query orders
+                          * Returns : query orders
 */
 func (a *Client) GenerateInvoiceSummary(params *GenerateInvoiceSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GenerateInvoiceSummaryOK, *GenerateInvoiceSummaryUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -202,8 +199,7 @@ func (a *Client) GenerateInvoiceSummary(params *GenerateInvoiceSummaryParams, au
 GenerateInvoiceSummaryShort generate invoice summary
 Generate invoice summary.
 Other detail info:
-
-  * Returns : query orders
+                          * Returns : query orders
 */
 func (a *Client) GenerateInvoiceSummaryShort(params *GenerateInvoiceSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GenerateInvoiceSummaryOK, error) {
 	// TODO: Validate the params before sending

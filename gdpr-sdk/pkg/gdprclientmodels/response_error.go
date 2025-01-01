@@ -26,6 +26,9 @@ type ResponseError struct {
 	// errormessage
 	// Required: true
 	ErrorMessage *string `json:"errorMessage"`
+
+	// messagevariables
+	MessageVariables map[string]string `json:"messageVariables,omitempty"`
 }
 
 // Validate validates this Response error

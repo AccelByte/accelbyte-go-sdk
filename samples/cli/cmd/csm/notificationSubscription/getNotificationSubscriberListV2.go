@@ -31,7 +31,7 @@ var GetNotificationSubscriberListV2Cmd = &cobra.Command{
 		input := &notification_subscription.GetNotificationSubscriberListV2Params{
 			App:              app,
 			Namespace:        namespace,
-			NotificationType: &notificationType,
+			NotificationType: notificationType,
 		}
 		ok, errOK := notificationSubscriptionService.GetNotificationSubscriberListV2Short(input)
 		if errOK != nil {
@@ -52,4 +52,5 @@ func init() {
 	GetNotificationSubscriberListV2Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetNotificationSubscriberListV2Cmd.MarkFlagRequired("namespace")
 	GetNotificationSubscriberListV2Cmd.Flags().String("notificationType", "", "Notification type")
+	_ = GetNotificationSubscriberListV2Cmd.MarkFlagRequired("notificationType")
 }

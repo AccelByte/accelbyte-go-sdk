@@ -44,8 +44,7 @@ Deprecated: 2022-08-10 - Use PublicGetPaymentAccountsShort instead.
 PublicGetPaymentAccounts get payment accounts
  [Not supported yet in AGS Shared Cloud] Get payment accounts.
 Other detail info:
-
-  * Returns : Payment account list
+                      * Returns : Payment account list
 */
 func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPaymentAccountsOK, error) {
 	// TODO: Validate the params before sending
@@ -96,8 +95,7 @@ func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams
 PublicGetPaymentAccountsShort get payment accounts
  [Not supported yet in AGS Shared Cloud] Get payment accounts.
 Other detail info:
-
-  * Returns : Payment account list
+                      * Returns : Payment account list
 */
 func (a *Client) PublicGetPaymentAccountsShort(params *PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPaymentAccountsOK, error) {
 	// TODO: Validate the params before sending
@@ -146,8 +144,7 @@ Deprecated: 2022-08-10 - Use PublicDeletePaymentAccountShort instead.
 PublicDeletePaymentAccount delete payment account
  [Not supported yet in AGS Shared Cloud] Delete payment account.
 Other detail info:
-
-  * Returns :
+                      * Returns :
 */
 func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePaymentAccountNoContent, error) {
 	// TODO: Validate the params before sending
@@ -198,8 +195,7 @@ func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountPa
 PublicDeletePaymentAccountShort delete payment account
  [Not supported yet in AGS Shared Cloud] Delete payment account.
 Other detail info:
-
-  * Returns :
+                      * Returns :
 */
 func (a *Client) PublicDeletePaymentAccountShort(params *PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePaymentAccountNoContent, error) {
 	// TODO: Validate the params before sending

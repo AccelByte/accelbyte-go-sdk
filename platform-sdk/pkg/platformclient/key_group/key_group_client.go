@@ -56,8 +56,7 @@ Deprecated: 2022-08-10 - Use QueryKeyGroupsShort instead.
 QueryKeyGroups query key groups
 Query key groups, if name is presented, it's fuzzy match.
 Other detail info:
-
-  * Returns : slice of key group
+                          * Returns : slice of key group
 */
 func (a *Client) QueryKeyGroups(params *QueryKeyGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryKeyGroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -108,8 +107,7 @@ func (a *Client) QueryKeyGroups(params *QueryKeyGroupsParams, authInfo runtime.C
 QueryKeyGroupsShort query key groups
 Query key groups, if name is presented, it's fuzzy match.
 Other detail info:
-
-  * Returns : slice of key group
+                          * Returns : slice of key group
 */
 func (a *Client) QueryKeyGroupsShort(params *QueryKeyGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryKeyGroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -158,8 +156,7 @@ Deprecated: 2022-08-10 - Use CreateKeyGroupShort instead.
 CreateKeyGroup create key group
 Create key group.
 Other detail info:
-
-  * Returns : created key group
+                          * Returns : created key group
 */
 func (a *Client) CreateKeyGroup(params *CreateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateKeyGroupCreated, *CreateKeyGroupConflict, *CreateKeyGroupUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -216,8 +213,7 @@ func (a *Client) CreateKeyGroup(params *CreateKeyGroupParams, authInfo runtime.C
 CreateKeyGroupShort create key group
 Create key group.
 Other detail info:
-
-  * Returns : created key group
+                          * Returns : created key group
 */
 func (a *Client) CreateKeyGroupShort(params *CreateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*CreateKeyGroupCreated, error) {
 	// TODO: Validate the params before sending
@@ -270,8 +266,7 @@ Deprecated: 2022-08-10 - Use GetKeyGroupByBoothNameShort instead.
 GetKeyGroupByBoothName get key group by booth name
 Get key group.
 Other detail info:
-
-  * Returns : key group info
+                          * Returns : key group info
 */
 func (a *Client) GetKeyGroupByBoothName(params *GetKeyGroupByBoothNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupByBoothNameOK, *GetKeyGroupByBoothNameNotFound, error) {
 	// TODO: Validate the params before sending
@@ -325,8 +320,7 @@ func (a *Client) GetKeyGroupByBoothName(params *GetKeyGroupByBoothNameParams, au
 GetKeyGroupByBoothNameShort get key group by booth name
 Get key group.
 Other detail info:
-
-  * Returns : key group info
+                          * Returns : key group info
 */
 func (a *Client) GetKeyGroupByBoothNameShort(params *GetKeyGroupByBoothNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupByBoothNameOK, error) {
 	// TODO: Validate the params before sending
@@ -377,8 +371,7 @@ Deprecated: 2022-08-10 - Use GetKeyGroupShort instead.
 GetKeyGroup get key group
 Get key group.
 Other detail info:
-
-  * Returns : key group info
+                          * Returns : key group info
 */
 func (a *Client) GetKeyGroup(params *GetKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupOK, *GetKeyGroupNotFound, error) {
 	// TODO: Validate the params before sending
@@ -432,8 +425,7 @@ func (a *Client) GetKeyGroup(params *GetKeyGroupParams, authInfo runtime.ClientA
 GetKeyGroupShort get key group
 Get key group.
 Other detail info:
-
-  * Returns : key group info
+                          * Returns : key group info
 */
 func (a *Client) GetKeyGroupShort(params *GetKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -484,8 +476,7 @@ Deprecated: 2022-08-10 - Use UpdateKeyGroupShort instead.
 UpdateKeyGroup update key group
 Update key group.
 Other detail info:
-
-  * Returns : updated key group
+                          * Returns : updated key group
 */
 func (a *Client) UpdateKeyGroup(params *UpdateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateKeyGroupOK, *UpdateKeyGroupNotFound, *UpdateKeyGroupConflict, *UpdateKeyGroupUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -545,8 +536,7 @@ func (a *Client) UpdateKeyGroup(params *UpdateKeyGroupParams, authInfo runtime.C
 UpdateKeyGroupShort update key group
 Update key group.
 Other detail info:
-
-  * Returns : updated key group
+                          * Returns : updated key group
 */
 func (a *Client) UpdateKeyGroupShort(params *UpdateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateKeyGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -601,8 +591,7 @@ Deprecated: 2022-08-10 - Use GetKeyGroupDynamicShort instead.
 GetKeyGroupDynamic get key group dynamic
 Get key group dynamic.
 Other detail info:
-
-  * Returns : key group info
+                          * Returns : key group info
 */
 func (a *Client) GetKeyGroupDynamic(params *GetKeyGroupDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupDynamicOK, *GetKeyGroupDynamicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -656,8 +645,7 @@ func (a *Client) GetKeyGroupDynamic(params *GetKeyGroupDynamicParams, authInfo r
 GetKeyGroupDynamicShort get key group dynamic
 Get key group dynamic.
 Other detail info:
-
-  * Returns : key group info
+                          * Returns : key group info
 */
 func (a *Client) GetKeyGroupDynamicShort(params *GetKeyGroupDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetKeyGroupDynamicOK, error) {
 	// TODO: Validate the params before sending
@@ -708,8 +696,7 @@ Deprecated: 2022-08-10 - Use ListKeysShort instead.
 ListKeys list keys of a key group
 This API is used to list keys of a key group.
 Other detail info:
-
-  * Returns : keys
+                          * Returns : keys
 */
 func (a *Client) ListKeys(params *ListKeysParams, authInfo runtime.ClientAuthInfoWriter) (*ListKeysOK, error) {
 	// TODO: Validate the params before sending
@@ -760,8 +747,7 @@ func (a *Client) ListKeys(params *ListKeysParams, authInfo runtime.ClientAuthInf
 ListKeysShort list keys of a key group
 This API is used to list keys of a key group.
 Other detail info:
-
-  * Returns : keys
+                          * Returns : keys
 */
 func (a *Client) ListKeysShort(params *ListKeysParams, authInfo runtime.ClientAuthInfoWriter) (*ListKeysOK, error) {
 	// TODO: Validate the params before sending
@@ -811,8 +797,7 @@ UploadKeys upload keys to key group
 This API is used to upload keys with csv format to a key group.
 
 Other detail info:
-
-  * Returns : item data
+                          * Returns : item data
 */
 func (a *Client) UploadKeys(params *UploadKeysParams, authInfo runtime.ClientAuthInfoWriter) (*UploadKeysOK, *UploadKeysBadRequest, *UploadKeysNotFound, error) {
 	// TODO: Validate the params before sending
@@ -870,8 +855,7 @@ UploadKeysShort upload keys to key group
 This API is used to upload keys with csv format to a key group.
 
 Other detail info:
-
-  * Returns : item data
+                          * Returns : item data
 */
 func (a *Client) UploadKeysShort(params *UploadKeysParams, authInfo runtime.ClientAuthInfoWriter) (*UploadKeysOK, error) {
 	// TODO: Validate the params before sending

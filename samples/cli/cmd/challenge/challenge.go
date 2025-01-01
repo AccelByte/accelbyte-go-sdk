@@ -13,6 +13,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/challenge/goalConfiguration"
 	"github.com/AccelByte/sample-apps/cmd/challenge/playerReward"
 	"github.com/AccelByte/sample-apps/cmd/challenge/plugins"
+	"github.com/AccelByte/sample-apps/cmd/challenge/schedules"
 	"github.com/spf13/cobra"
 )
 
@@ -34,8 +35,10 @@ func init() {
 	ChallengeCmd.AddCommand(goalConfiguration.AdminGetGoalCmd)
 	ChallengeCmd.AddCommand(goalConfiguration.AdminUpdateGoalsCmd)
 	ChallengeCmd.AddCommand(goalConfiguration.AdminDeleteGoalCmd)
+	ChallengeCmd.AddCommand(schedules.AdminListSchedulesByGoalCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminGetPeriodsCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminRandomizeChallengeCmd)
+	ChallengeCmd.AddCommand(schedules.AdminListSchedulesCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminDeleteTiedChallengeCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminUpdateTiedChallengeScheduleCmd)
 	ChallengeCmd.AddCommand(plugins.AdminGetAssignmentPluginCmd)
@@ -50,6 +53,8 @@ func init() {
 	ChallengeCmd.AddCommand(playerReward.AdminClaimUserRewardsCmd)
 	ChallengeCmd.AddCommand(challengeList.GetChallengesCmd)
 	ChallengeCmd.AddCommand(challengeList.PublicGetScheduledGoalsCmd)
+	ChallengeCmd.AddCommand(schedules.PublicListSchedulesByGoalCmd)
+	ChallengeCmd.AddCommand(schedules.PublicListSchedulesCmd)
 	ChallengeCmd.AddCommand(playerReward.PublicClaimUserRewardsByGoalCodeCmd)
 	ChallengeCmd.AddCommand(challengeProgression.EvaluateMyProgressCmd)
 	ChallengeCmd.AddCommand(challengeProgression.PublicGetUserProgressionCmd)

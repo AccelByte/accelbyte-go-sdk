@@ -30,8 +30,14 @@ type RevocationResult struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// true if request id is already processed and return the existing result
+	IsReplayed bool `json:"isReplayed"`
+
 	// item revocations
 	ItemRevocations []*ItemRevocation `json:"itemRevocations,omitempty"`
+
+	// revocation request id
+	RequestID string `json:"requestId,omitempty"`
 
 	// revocation status
 	// Enum: ['FAIL', 'SUCCESS']

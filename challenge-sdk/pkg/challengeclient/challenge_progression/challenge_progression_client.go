@@ -48,9 +48,8 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminEvaluateProgressShort instead.
 
 AdminEvaluateProgress evaluate user's progressions
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
-      * Limited up to 10 users per request
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+- Limited up to 10 users per request
 */
 func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, *AdminEvaluateProgressBadRequest, *AdminEvaluateProgressUnauthorized, *AdminEvaluateProgressForbidden, *AdminEvaluateProgressNotFound, *AdminEvaluateProgressInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -114,9 +113,8 @@ func (a *Client) AdminEvaluateProgress(params *AdminEvaluateProgressParams, auth
 
 /*
 AdminEvaluateProgressShort evaluate user's progressions
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
-      * Limited up to 10 users per request
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+- Limited up to 10 users per request
 */
 func (a *Client) AdminEvaluateProgressShort(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -173,8 +171,7 @@ func (a *Client) AdminEvaluateProgressShort(params *AdminEvaluateProgressParams,
 Deprecated: 2022-08-10 - Use AdminGetUserProgressionShort instead.
 
 AdminGetUserProgression list user's progressions
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) AdminGetUserProgression(params *AdminGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserProgressionOK, *AdminGetUserProgressionBadRequest, *AdminGetUserProgressionUnauthorized, *AdminGetUserProgressionForbidden, *AdminGetUserProgressionNotFound, *AdminGetUserProgressionUnprocessableEntity, *AdminGetUserProgressionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -241,8 +238,7 @@ func (a *Client) AdminGetUserProgression(params *AdminGetUserProgressionParams, 
 
 /*
 AdminGetUserProgressionShort list user's progressions
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) AdminGetUserProgressionShort(params *AdminGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserProgressionOK, error) {
 	// TODO: Validate the params before sending
@@ -301,8 +297,7 @@ func (a *Client) AdminGetUserProgressionShort(params *AdminGetUserProgressionPar
 Deprecated: 2022-08-10 - Use EvaluateMyProgressShort instead.
 
 EvaluateMyProgress evaluate user's challenge progressions
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
 func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, *EvaluateMyProgressUnauthorized, *EvaluateMyProgressForbidden, *EvaluateMyProgressInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -360,8 +355,7 @@ func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo r
 
 /*
 EvaluateMyProgressShort evaluate user's challenge progressions
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
 func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -414,8 +408,7 @@ func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authI
 Deprecated: 2022-08-10 - Use PublicGetUserProgressionShort instead.
 
 PublicGetUserProgression list user's progressions
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionBadRequest, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionUnprocessableEntity, *PublicGetUserProgressionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -482,8 +475,7 @@ func (a *Client) PublicGetUserProgression(params *PublicGetUserProgressionParams
 
 /*
 PublicGetUserProgressionShort list user's progressions
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) PublicGetUserProgressionShort(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, error) {
 	// TODO: Validate the params before sending
@@ -542,8 +534,7 @@ func (a *Client) PublicGetUserProgressionShort(params *PublicGetUserProgressionP
 Deprecated: 2022-08-10 - Use PublicGetPastUserProgressionShort instead.
 
 PublicGetPastUserProgression list user's progressions in the previous rotation.
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) PublicGetPastUserProgression(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, *PublicGetPastUserProgressionBadRequest, *PublicGetPastUserProgressionUnauthorized, *PublicGetPastUserProgressionForbidden, *PublicGetPastUserProgressionNotFound, *PublicGetPastUserProgressionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -607,8 +598,7 @@ func (a *Client) PublicGetPastUserProgression(params *PublicGetPastUserProgressi
 
 /*
 PublicGetPastUserProgressionShort list user's progressions in the previous rotation.
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [READ]
 */
 func (a *Client) PublicGetPastUserProgressionShort(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, error) {
 	// TODO: Validate the params before sending

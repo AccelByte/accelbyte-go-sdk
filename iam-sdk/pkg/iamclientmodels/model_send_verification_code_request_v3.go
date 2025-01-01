@@ -27,6 +27,9 @@ type ModelSendVerificationCodeRequestV3 struct {
 
 	// languagetag
 	LanguageTag string `json:"languageTag,omitempty"`
+
+	// required when in /me/code/request/forward
+	UpgradeToken string `json:"upgradeToken,omitempty"`
 }
 
 // Validate validates this Model send verification code request V3

@@ -140,8 +140,7 @@ Deprecated: 2022-08-10 - Use GetAppleIAPConfigShort instead.
 GetAppleIAPConfig get apple iap config
 Get apple iap config.
 Other detail info:
-
-  * Returns : apple iap config
+                          * Returns : apple iap config
 */
 func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -192,8 +191,7 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 GetAppleIAPConfigShort get apple iap config
 Get apple iap config.
 Other detail info:
-
-  * Returns : apple iap config
+                          * Returns : apple iap config
 */
 func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -241,7 +239,7 @@ Deprecated: 2022-08-10 - Use UpdateAppleIAPConfigShort instead.
 
 UpdateAppleIAPConfig update apple iap config
 Update apple iap config. Other detail info:
-  * Returns : updated apple iap config
+                          * Returns : updated apple iap config
 */
 func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -291,7 +289,7 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 /*
 UpdateAppleIAPConfigShort update apple iap config
 Update apple iap config. Other detail info:
-  * Returns : updated apple iap config
+                          * Returns : updated apple iap config
 */
 func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -436,8 +434,7 @@ Deprecated: 2022-08-10 - Use UpdateAppleP8FileShort instead.
 UpdateAppleP8File upload apple store p8 file
 Upload Apple Store p8 file.
 Other detail info:
-
-  * Returns : updated apple iap config
+                          * Returns : updated apple iap config
 */
 func (a *Client) UpdateAppleP8File(params *UpdateAppleP8FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleP8FileOK, error) {
 	// TODO: Validate the params before sending
@@ -488,8 +485,7 @@ func (a *Client) UpdateAppleP8File(params *UpdateAppleP8FileParams, authInfo run
 UpdateAppleP8FileShort upload apple store p8 file
 Upload Apple Store p8 file.
 Other detail info:
-
-  * Returns : updated apple iap config
+                          * Returns : updated apple iap config
 */
 func (a *Client) UpdateAppleP8FileShort(params *UpdateAppleP8FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleP8FileOK, error) {
 	// TODO: Validate the params before sending
@@ -538,8 +534,7 @@ Deprecated: 2022-08-10 - Use GetEpicGamesIAPConfigShort instead.
 GetEpicGamesIAPConfig get epicgames iap config
 Get epic games iap config.
 Other detail info:
-
-  * Returns : epic games iap config
+                          * Returns : epic games iap config
 */
 func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -590,8 +585,7 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 GetEpicGamesIAPConfigShort get epicgames iap config
 Get epic games iap config.
 Other detail info:
-
-  * Returns : epic games iap config
+                          * Returns : epic games iap config
 */
 func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -639,7 +633,7 @@ Deprecated: 2022-08-10 - Use UpdateEpicGamesIAPConfigShort instead.
 
 UpdateEpicGamesIAPConfig update epic games iap config
 Update epic games iap config. Other detail info:
-  * Returns : updated epic games iap config
+                          * Returns : updated epic games iap config
 */
 func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -689,7 +683,7 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 /*
 UpdateEpicGamesIAPConfigShort update epic games iap config
 Update epic games iap config. Other detail info:
-  * Returns : updated epic games iap config
+                          * Returns : updated epic games iap config
 */
 func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateEpicGamesIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -834,8 +828,7 @@ Deprecated: 2022-08-10 - Use GetGoogleIAPConfigShort instead.
 GetGoogleIAPConfig get google iap config
 Get google iap config.
 Other detail info:
-
-  * Returns : google iap config
+                          * Returns : google iap config
 */
 func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -886,8 +879,7 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 GetGoogleIAPConfigShort get google iap config
 Get google iap config.
 Other detail info:
-
-  * Returns : google iap config
+                          * Returns : google iap config
 */
 func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -935,7 +927,7 @@ Deprecated: 2022-08-10 - Use UpdateGoogleIAPConfigShort instead.
 
 UpdateGoogleIAPConfig update google iap config
 Update google iap config. Other detail info:
-  * Returns : updated google iap config
+                          * Returns : updated google iap config
 */
 func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -985,7 +977,7 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 /*
 UpdateGoogleIAPConfigShort update google iap config
 Update google iap config. Other detail info:
-  * Returns : updated google iap config
+                          * Returns : updated google iap config
 */
 func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1130,8 +1122,7 @@ Deprecated: 2022-08-10 - Use UpdateGoogleP12FileShort instead.
 UpdateGoogleP12File upload google play p12 file
 Upload google play p12 file.
 Other detail info:
-
-  * Returns : updated google iap config
+                          * Returns : updated google iap config
 */
 func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error) {
 	// TODO: Validate the params before sending
@@ -1182,8 +1173,7 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 UpdateGoogleP12FileShort upload google play p12 file
 Upload google play p12 file.
 Other detail info:
-
-  * Returns : updated google iap config
+                          * Returns : updated google iap config
 */
 func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGoogleP12FileOK, error) {
 	// TODO: Validate the params before sending
@@ -1332,7 +1322,7 @@ Deprecated: 2022-08-10 - Use UpdateIAPItemConfigShort instead.
 
 UpdateIAPItemConfig update iap item config
 Update iap item config. Other detail info:
-  * Returns : updated iap item config
+                          * Returns : updated iap item config
 */
 func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, *UpdateIAPItemConfigBadRequest, *UpdateIAPItemConfigConflict, *UpdateIAPItemConfigUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1391,7 +1381,7 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 /*
 UpdateIAPItemConfigShort update iap item config
 Update iap item config. Other detail info:
-  * Returns : updated iap item config
+                          * Returns : updated iap item config
 */
 func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIAPItemConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1542,8 +1532,7 @@ Deprecated: 2022-08-10 - Use GetOculusIAPConfigShort instead.
 GetOculusIAPConfig get oculus iap config
 Get oculus iap config.
 Other detail info:
-
-  * Returns : steam iap config
+                          * Returns : steam iap config
 */
 func (a *Client) GetOculusIAPConfig(params *GetOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetOculusIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1594,8 +1583,7 @@ func (a *Client) GetOculusIAPConfig(params *GetOculusIAPConfigParams, authInfo r
 GetOculusIAPConfigShort get oculus iap config
 Get oculus iap config.
 Other detail info:
-
-  * Returns : steam iap config
+                          * Returns : steam iap config
 */
 func (a *Client) GetOculusIAPConfigShort(params *GetOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetOculusIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1643,7 +1631,7 @@ Deprecated: 2022-08-10 - Use UpdateOculusIAPConfigShort instead.
 
 UpdateOculusIAPConfig update oculus iap config
 Update oculus iap config. Other detail info:
-  * Returns : updated steam iap config
+                          * Returns : updated steam iap config
 */
 func (a *Client) UpdateOculusIAPConfig(params *UpdateOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOculusIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1693,7 +1681,7 @@ func (a *Client) UpdateOculusIAPConfig(params *UpdateOculusIAPConfigParams, auth
 /*
 UpdateOculusIAPConfigShort update oculus iap config
 Update oculus iap config. Other detail info:
-  * Returns : updated steam iap config
+                          * Returns : updated steam iap config
 */
 func (a *Client) UpdateOculusIAPConfigShort(params *UpdateOculusIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOculusIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1838,8 +1826,7 @@ Deprecated: 2022-08-10 - Use GetPlayStationIAPConfigShort instead.
 GetPlayStationIAPConfig get playstation iap config
 Get playstation iap config.
 Other detail info:
-
-  * Returns : playstation iap config
+                          * Returns : playstation iap config
 */
 func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1890,8 +1877,7 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 GetPlayStationIAPConfigShort get playstation iap config
 Get playstation iap config.
 Other detail info:
-
-  * Returns : playstation iap config
+                          * Returns : playstation iap config
 */
 func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayStationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1939,7 +1925,7 @@ Deprecated: 2022-08-10 - Use UpdatePlaystationIAPConfigShort instead.
 
 UpdatePlaystationIAPConfig update playstation iap config
 Update playstation iap config. Other detail info:
-  * Returns : updated playstation iap config
+                          * Returns : updated playstation iap config
 */
 func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, *UpdatePlaystationIAPConfigBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1992,7 +1978,7 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 /*
 UpdatePlaystationIAPConfigShort update playstation iap config
 Update playstation iap config. Other detail info:
-  * Returns : updated playstation iap config
+                          * Returns : updated playstation iap config
 */
 func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2138,7 +2124,7 @@ Deprecated: 2022-08-10 - Use ValidateExistedPlaystationIAPConfigShort instead.
 
 ValidateExistedPlaystationIAPConfig validate existed playstation iap config
 Validate playstation iap config. Other detail info:
-  * Returns : Test Results
+                          * Returns : Test Results
 */
 func (a *Client) ValidateExistedPlaystationIAPConfig(params *ValidateExistedPlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateExistedPlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2188,7 +2174,7 @@ func (a *Client) ValidateExistedPlaystationIAPConfig(params *ValidateExistedPlay
 /*
 ValidateExistedPlaystationIAPConfigShort validate existed playstation iap config
 Validate playstation iap config. Other detail info:
-  * Returns : Test Results
+                          * Returns : Test Results
 */
 func (a *Client) ValidateExistedPlaystationIAPConfigShort(params *ValidateExistedPlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidateExistedPlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2236,7 +2222,7 @@ Deprecated: 2022-08-10 - Use ValidatePlaystationIAPConfigShort instead.
 
 ValidatePlaystationIAPConfig validate playstation iap config
 Validate playstation iap config. Other detail info:
-  * Returns : Test Results
+                          * Returns : Test Results
 */
 func (a *Client) ValidatePlaystationIAPConfig(params *ValidatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidatePlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2286,7 +2272,7 @@ func (a *Client) ValidatePlaystationIAPConfig(params *ValidatePlaystationIAPConf
 /*
 ValidatePlaystationIAPConfigShort validate playstation iap config
 Validate playstation iap config. Other detail info:
-  * Returns : Test Results
+                          * Returns : Test Results
 */
 func (a *Client) ValidatePlaystationIAPConfigShort(params *ValidatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ValidatePlaystationIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2335,8 +2321,7 @@ Deprecated: 2022-08-10 - Use GetSteamIAPConfigShort instead.
 GetSteamIAPConfig get steam iap config
 Get steam iap config.
 Other detail info:
-
-  * Returns : steam iap config
+                          * Returns : steam iap config
 */
 func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2387,8 +2372,7 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 GetSteamIAPConfigShort get steam iap config
 Get steam iap config.
 Other detail info:
-
-  * Returns : steam iap config
+                          * Returns : steam iap config
 */
 func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2436,7 +2420,7 @@ Deprecated: 2022-08-10 - Use UpdateSteamIAPConfigShort instead.
 
 UpdateSteamIAPConfig update steam iap config
 Update steam iap config. Other detail info:
-  * Returns : updated steam iap config
+                          * Returns : updated steam iap config
 */
 func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, *UpdateSteamIAPConfigBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -2489,7 +2473,7 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 /*
 UpdateSteamIAPConfigShort update steam iap config
 Update steam iap config. Other detail info:
-  * Returns : updated steam iap config
+                          * Returns : updated steam iap config
 */
 func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2636,8 +2620,7 @@ Deprecated: 2022-08-10 - Use GetTwitchIAPConfigShort instead.
 GetTwitchIAPConfig get twitch iap config
 Get twitch iap config.
 Other detail info:
-
-  * Returns : twitch iap config
+                          * Returns : twitch iap config
 */
 func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2688,8 +2671,7 @@ func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo r
 GetTwitchIAPConfigShort get twitch iap config
 Get twitch iap config.
 Other detail info:
-
-  * Returns : twitch iap config
+                          * Returns : twitch iap config
 */
 func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2737,7 +2719,7 @@ Deprecated: 2022-08-10 - Use UpdateTwitchIAPConfigShort instead.
 
 UpdateTwitchIAPConfig update twitch iap config
 Update twitch iap config. Other detail info:
-  * Returns : updated twitch iap config
+                          * Returns : updated twitch iap config
 */
 func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2787,7 +2769,7 @@ func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, auth
 /*
 UpdateTwitchIAPConfigShort update twitch iap config
 Update twitch iap config. Other detail info:
-  * Returns : updated twitch iap config
+                          * Returns : updated twitch iap config
 */
 func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2932,8 +2914,7 @@ Deprecated: 2022-08-10 - Use GetXblIAPConfigShort instead.
 GetXblIAPConfig get xbox iap config
 Get xbox iap config.
 Other detail info:
-
-  * Returns : xbox iap config
+                          * Returns : xbox iap config
 */
 func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -2984,8 +2965,7 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 GetXblIAPConfigShort get xbox iap config
 Get xbox iap config.
 Other detail info:
-
-  * Returns : xbox iap config
+                          * Returns : xbox iap config
 */
 func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -3033,7 +3013,7 @@ Deprecated: 2022-08-10 - Use UpdateXblIAPConfigShort instead.
 
 UpdateXblIAPConfig update xbl iap config
 Update xbl iap config. Other detail info:
-  * Returns : updated xbl iap config
+                          * Returns : updated xbl iap config
 */
 func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -3083,7 +3063,7 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 /*
 UpdateXblIAPConfigShort update xbl iap config
 Update xbl iap config. Other detail info:
-  * Returns : updated xbl iap config
+                          * Returns : updated xbl iap config
 */
 func (a *Client) UpdateXblIAPConfigShort(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -3228,8 +3208,7 @@ Deprecated: 2022-08-10 - Use UpdateXblBPCertFileShort instead.
 UpdateXblBPCertFile upload xbl business partner cert file
 Upload xbl business partner cert file.
 Other detail info:
-
-  * Returns : updated xbl iap config
+                          * Returns : updated xbl iap config
 */
 func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, *UpdateXblBPCertFileBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -3283,8 +3262,7 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 UpdateXblBPCertFileShort upload xbl business partner cert file
 Upload xbl business partner cert file.
 Other detail info:
-
-  * Returns : updated xbl iap config
+                          * Returns : updated xbl iap config
 */
 func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error) {
 	// TODO: Validate the params before sending
@@ -3431,8 +3409,7 @@ Deprecated: 2022-08-10 - Use QueryUserIAPOrdersShort instead.
 QueryUserIAPOrders query iap orders
 Query IAP orders.
 Other detail info:
-
-  * Returns : paginated iap orders
+                          * Returns : paginated iap orders
 */
 func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -3483,8 +3460,7 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 QueryUserIAPOrdersShort query iap orders
 Query IAP orders.
 Other detail info:
-
-  * Returns : paginated iap orders
+                          * Returns : paginated iap orders
 */
 func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -3533,8 +3509,7 @@ Deprecated: 2022-08-10 - Use QueryAllUserIAPOrdersShort instead.
 QueryAllUserIAPOrders query all user iap orders
 Query all user IAP orders.
 Other detail info:
-
-  * Returns : list of iap orders
+                          * Returns : list of iap orders
 */
 func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -3585,8 +3560,7 @@ func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, auth
 QueryAllUserIAPOrdersShort query all user iap orders
 Query all user IAP orders.
 Other detail info:
-
-  * Returns : list of iap orders
+                          * Returns : list of iap orders
 */
 func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -3635,8 +3609,7 @@ Deprecated: 2022-08-10 - Use QueryUserIAPConsumeHistoryShort instead.
 QueryUserIAPConsumeHistory query iap consume history
 Query IAP consume history.
 Other detail info:
-
-  * Returns : paginated iap consume history
+                          * Returns : paginated iap consume history
 */
 func (a *Client) QueryUserIAPConsumeHistory(params *QueryUserIAPConsumeHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPConsumeHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -3687,8 +3660,7 @@ func (a *Client) QueryUserIAPConsumeHistory(params *QueryUserIAPConsumeHistoryPa
 QueryUserIAPConsumeHistoryShort query iap consume history
 Query IAP consume history.
 Other detail info:
-
-  * Returns : paginated iap consume history
+                          * Returns : paginated iap consume history
 */
 func (a *Client) QueryUserIAPConsumeHistoryShort(params *QueryUserIAPConsumeHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPConsumeHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -3736,8 +3708,7 @@ Deprecated: 2022-08-10 - Use MockFulfillIAPItemShort instead.
 
 MockFulfillIAPItem mock fulfill iap item.
  [TEST FACILITY ONLY] Forbidden in live environment. Mock fulfill iap item without validate receipt.Other detail info:
-
-  * Returns :
+                          * Returns :
 */
 func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -3796,8 +3767,7 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 /*
 MockFulfillIAPItemShort mock fulfill iap item.
 [TEST FACILITY ONLY] Forbidden in live environment. Mock fulfill iap item without validate receipt.Other detail info:
-
-  * Returns :
+                          * Returns :
 */
 func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error) {
 	// TODO: Validate the params before sending
@@ -4154,7 +4124,7 @@ Deprecated: 2022-08-10 - Use PublicFulfillAppleIAPItemShort instead.
 
 PublicFulfillAppleIAPItem fulfill apple iap item.
 Verify apple iap receipt and fulfill item. don't support subscriptionOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, *PublicFulfillAppleIAPItemBadRequest, *PublicFulfillAppleIAPItemNotFound, *PublicFulfillAppleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -4213,7 +4183,7 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 /*
 PublicFulfillAppleIAPItemShort fulfill apple iap item.
 Verify apple iap receipt and fulfill item. don't support subscriptionOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error) {
 	// TODO: Validate the params before sending
@@ -4267,7 +4237,7 @@ Deprecated: 2022-08-10 - Use SyncEpicGamesInventoryShort instead.
 
 SyncEpicGamesInventory sync epic games inventory.
 Sync epic games inventory's items.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, *SyncEpicGamesInventoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4323,7 +4293,7 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 /*
 SyncEpicGamesInventoryShort sync epic games inventory.
 Sync epic games inventory's items.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error) {
 	// TODO: Validate the params before sending
@@ -4375,7 +4345,7 @@ Deprecated: 2022-08-10 - Use PublicFulfillGoogleIAPItemShort instead.
 
 PublicFulfillGoogleIAPItem fulfill google iap item.
 Verify google iap receipt and fulfill item.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -4434,7 +4404,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 /*
 PublicFulfillGoogleIAPItemShort fulfill google iap item.
 Verify google iap receipt and fulfill item.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error) {
 	// TODO: Validate the params before sending
@@ -4488,7 +4458,7 @@ Deprecated: 2022-08-10 - Use SyncOculusConsumableEntitlementsShort instead.
 
 SyncOculusConsumableEntitlements sync oculus entitlements.
 Sync Oculus entitlements.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, *SyncOculusConsumableEntitlementsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4544,7 +4514,7 @@ func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEn
 /*
 SyncOculusConsumableEntitlementsShort sync oculus entitlements.
 Sync Oculus entitlements.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncOculusConsumableEntitlementsShort(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, error) {
 	// TODO: Validate the params before sending
@@ -4596,7 +4566,7 @@ Deprecated: 2022-08-10 - Use PublicReconcilePlayStationStoreShort instead.
 
 PublicReconcilePlayStationStore synchronize with entitlements in psn store.
 Synchronize with entitlements in PSN Store.Other detail info:
-  * Returns : result of synchronization
+                          * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, *PublicReconcilePlayStationStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4652,7 +4622,7 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 /*
 PublicReconcilePlayStationStoreShort synchronize with entitlements in psn store.
 Synchronize with entitlements in PSN Store.Other detail info:
-  * Returns : result of synchronization
+                          * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -4704,7 +4674,7 @@ Deprecated: 2022-08-10 - Use PublicReconcilePlayStationStoreWithMultipleServiceL
 
 PublicReconcilePlayStationStoreWithMultipleServiceLabels synchronize with entitlements in psn store with multiple service labels.
 Synchronize with entitlements in PSN Store with multiple service labels.Other detail info:
-  * Returns : result of synchronization
+                          * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4760,7 +4730,7 @@ func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params
 /*
 PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort synchronize with entitlements in psn store with multiple service labels.
 Synchronize with entitlements in PSN Store with multiple service labels.Other detail info:
-  * Returns : result of synchronization
+                          * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, error) {
 	// TODO: Validate the params before sending
@@ -4812,7 +4782,7 @@ Deprecated: 2022-08-10 - Use SyncSteamInventoryShort instead.
 
 SyncSteamInventory sync steam inventory.
 Sync steam inventory's items.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, *SyncSteamInventoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -4868,7 +4838,7 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 /*
 SyncSteamInventoryShort sync steam inventory.
 Sync steam inventory's items.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error) {
 	// TODO: Validate the params before sending
@@ -4920,7 +4890,7 @@ Deprecated: 2022-08-10 - Use SyncTwitchDropsEntitlement1Short instead.
 
 SyncTwitchDropsEntitlement1 sync twitch drops entitlements.
 Sync twitch drops entitlements.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, *SyncTwitchDropsEntitlement1BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -4973,7 +4943,7 @@ func (a *Client) SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1
 /*
 SyncTwitchDropsEntitlement1Short sync twitch drops entitlements.
 Sync twitch drops entitlements.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, error) {
 	// TODO: Validate the params before sending
@@ -5023,7 +4993,7 @@ Deprecated: 2022-08-10 - Use SyncXboxInventoryShort instead.
 
 SyncXboxInventory sync xbox inventory.
 Sync Xbox inventory's items.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, *SyncXboxInventoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5079,7 +5049,7 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 /*
 SyncXboxInventoryShort sync xbox inventory.
 Sync Xbox inventory's items.Other detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error) {
 	// TODO: Validate the params before sending
@@ -5131,7 +5101,7 @@ Deprecated: 2022-08-10 - Use V2PublicFulfillAppleIAPItemShort instead.
 
 V2PublicFulfillAppleIAPItem fulfill apple iap item v2.
 Verify apple iap transaction and fulfill item, support subscriptionOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) V2PublicFulfillAppleIAPItem(params *V2PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*V2PublicFulfillAppleIAPItemNoContent, *V2PublicFulfillAppleIAPItemBadRequest, *V2PublicFulfillAppleIAPItemNotFound, *V2PublicFulfillAppleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -5190,7 +5160,7 @@ func (a *Client) V2PublicFulfillAppleIAPItem(params *V2PublicFulfillAppleIAPItem
 /*
 V2PublicFulfillAppleIAPItemShort fulfill apple iap item v2.
 Verify apple iap transaction and fulfill item, support subscriptionOther detail info:
-  * Returns :
+                          * Returns :
 */
 func (a *Client) V2PublicFulfillAppleIAPItemShort(params *V2PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*V2PublicFulfillAppleIAPItemNoContent, error) {
 	// TODO: Validate the params before sending

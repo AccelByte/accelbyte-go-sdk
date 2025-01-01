@@ -267,6 +267,60 @@ func (aaa *FulfillmentService) RevokeItems(input *fulfillment.RevokeItemsParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use FulfillItemsV3Short instead.
+func (aaa *FulfillmentService) FulfillItemsV3(input *fulfillment.FulfillItemsV3Params) (*platformclientmodels.FulfillmentV2Result, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, err := aaa.Client.Fulfillment.FulfillItemsV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use RetryFulfillItemsV3Short instead.
+func (aaa *FulfillmentService) RetryFulfillItemsV3(input *fulfillment.RetryFulfillItemsV3Params) (*platformclientmodels.FulfillmentV2Result, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Fulfillment.RetryFulfillItemsV3(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use RevokeItemsV3Short instead.
+func (aaa *FulfillmentService) RevokeItemsV3(input *fulfillment.RevokeItemsV3Params) (*platformclientmodels.RevokeFulfillmentV2Result, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Fulfillment.RevokeItemsV3(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -590,6 +644,96 @@ func (aaa *FulfillmentService) RevokeItemsShort(input *fulfillment.RevokeItemsPa
 	}
 
 	ok, err := aaa.Client.Fulfillment.RevokeItemsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FulfillmentService) FulfillItemsV3Short(input *fulfillment.FulfillItemsV3Params) (*platformclientmodels.FulfillmentV2Result, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdFulfillment != nil {
+		input.XFlightId = tempFlightIdFulfillment
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Fulfillment.FulfillItemsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FulfillmentService) RetryFulfillItemsV3Short(input *fulfillment.RetryFulfillItemsV3Params) (*platformclientmodels.FulfillmentV2Result, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdFulfillment != nil {
+		input.XFlightId = tempFlightIdFulfillment
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Fulfillment.RetryFulfillItemsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FulfillmentService) RevokeItemsV3Short(input *fulfillment.RevokeItemsV3Params) (*platformclientmodels.RevokeFulfillmentV2Result, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdFulfillment != nil {
+		input.XFlightId = tempFlightIdFulfillment
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Fulfillment.RevokeItemsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

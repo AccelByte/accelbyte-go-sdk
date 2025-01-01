@@ -64,6 +64,16 @@ type RequestOneTimeLinkingCodeV3Params struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*RedirectURI
+	  Redirect uri
+
+	*/
+	RedirectURI *string
+	/*State
+	  State
+
+	*/
+	State *string
 	/*PlatformID
 	  Target platform ID for linking
 
@@ -135,6 +145,28 @@ func (o *RequestOneTimeLinkingCodeV3Params) SetFlightId(flightId string) {
 	}
 }
 
+// WithRedirectURI adds the redirectURI to the request one time linking code v3 params
+func (o *RequestOneTimeLinkingCodeV3Params) WithRedirectURI(redirectURI *string) *RequestOneTimeLinkingCodeV3Params {
+	o.SetRedirectURI(redirectURI)
+	return o
+}
+
+// SetRedirectURI adds the redirectUri to the request one time linking code v3 params
+func (o *RequestOneTimeLinkingCodeV3Params) SetRedirectURI(redirectURI *string) {
+	o.RedirectURI = redirectURI
+}
+
+// WithState adds the state to the request one time linking code v3 params
+func (o *RequestOneTimeLinkingCodeV3Params) WithState(state *string) *RequestOneTimeLinkingCodeV3Params {
+	o.SetState(state)
+	return o
+}
+
+// SetState adds the state to the request one time linking code v3 params
+func (o *RequestOneTimeLinkingCodeV3Params) SetState(state *string) {
+	o.State = state
+}
+
 // WithPlatformID adds the platformID to the request one time linking code v3 params
 func (o *RequestOneTimeLinkingCodeV3Params) WithPlatformID(platformID string) *RequestOneTimeLinkingCodeV3Params {
 	o.SetPlatformID(platformID)
@@ -153,6 +185,38 @@ func (o *RequestOneTimeLinkingCodeV3Params) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
+
+	if o.RedirectURI != nil {
+
+		// form param redirectUri
+		var frRedirectURI string
+		if o.RedirectURI != nil {
+			frRedirectURI = *o.RedirectURI
+		}
+		fRedirectURI := frRedirectURI
+		if fRedirectURI != "" {
+			if err := r.SetFormParam("redirectUri", fRedirectURI); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.State != nil {
+
+		// form param state
+		var frState string
+		if o.State != nil {
+			frState = *o.State
+		}
+		fState := frState
+		if fState != "" {
+			if err := r.SetFormParam("state", fState); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// form param platformId
 	frPlatformID := o.PlatformID

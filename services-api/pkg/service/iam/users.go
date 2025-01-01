@@ -4460,6 +4460,20 @@ func (aaa *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicSendCodeForwardV3Short instead.
+func (aaa *UsersService) PublicSendCodeForwardV3(input *users.PublicSendCodeForwardV3Params) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return "", err
+	}
+	found, err := aaa.Client.Users.PublicSendCodeForwardV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead.
 func (aaa *UsersService) PublicGetLinkHeadlessAccountToMyAccountConflictV3(input *users.PublicGetLinkHeadlessAccountToMyAccountConflictV3Params) (*iamclientmodels.ModelGetLinkHeadlessAccountConflictResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -4512,6 +4526,29 @@ func (aaa *UsersService) LinkHeadlessAccountToMyAccountV3(input *users.LinkHeadl
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetMyRedirectionAfterLinkV3Short instead.
+func (aaa *UsersService) PublicGetMyRedirectionAfterLinkV3(input *users.PublicGetMyRedirectionAfterLinkV3Params) (*iamclientmodels.ModelOneTimeCodeLinkRedirectionResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := aaa.Client.Users.PublicGetMyRedirectionAfterLinkV3(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetMyProfileAllowUpdateStatusV3Short instead.
 func (aaa *UsersService) PublicGetMyProfileAllowUpdateStatusV3(input *users.PublicGetMyProfileAllowUpdateStatusV3Params) (*iamclientmodels.ModelUserProfileUpdateAllowStatus, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -4562,6 +4599,26 @@ func (aaa *UsersService) PublicSendVerificationLinkV3(input *users.PublicSendVer
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetOpenidUserInfoV3Short instead.
+func (aaa *UsersService) PublicGetOpenidUserInfoV3(input *users.PublicGetOpenidUserInfoV3Params) (*iamclientmodels.ModelPublicOpenIDUserInfoResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, internalServerError, err := aaa.Client.Users.PublicGetOpenidUserInfoV3(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicVerifyUserByLinkV3Short instead.
@@ -9590,6 +9647,36 @@ func (aaa *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Pa
 	return ok.GetPayload(), nil
 }
 
+func (aaa *UsersService) PublicSendCodeForwardV3Short(input *users.PublicSendCodeForwardV3Params) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	found, err := aaa.Client.Users.PublicSendCodeForwardV3Short(input, authInfoWriter)
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
+}
+
 func (aaa *UsersService) PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(input *users.PublicGetLinkHeadlessAccountToMyAccountConflictV3Params) (*iamclientmodels.ModelGetLinkHeadlessAccountConflictResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -9650,6 +9737,36 @@ func (aaa *UsersService) LinkHeadlessAccountToMyAccountV3Short(input *users.Link
 	return nil
 }
 
+func (aaa *UsersService) PublicGetMyRedirectionAfterLinkV3Short(input *users.PublicGetMyRedirectionAfterLinkV3Params) (*iamclientmodels.ModelOneTimeCodeLinkRedirectionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.PublicGetMyRedirectionAfterLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *UsersService) PublicGetMyProfileAllowUpdateStatusV3Short(input *users.PublicGetMyProfileAllowUpdateStatusV3Params) (*iamclientmodels.ModelUserProfileUpdateAllowStatus, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -9708,6 +9825,36 @@ func (aaa *UsersService) PublicSendVerificationLinkV3Short(input *users.PublicSe
 	}
 
 	return nil
+}
+
+func (aaa *UsersService) PublicGetOpenidUserInfoV3Short(input *users.PublicGetOpenidUserInfoV3Params) (*iamclientmodels.ModelPublicOpenIDUserInfoResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.PublicGetOpenidUserInfoV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) PublicVerifyUserByLinkV3Short(input *users.PublicVerifyUserByLinkV3Params) (string, error) {

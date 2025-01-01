@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.36.5"
+    "version": "3.37.1"
   },
   "schemes": [
     "https"
@@ -2166,6 +2166,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Delete of global configuration data.",
         "operationId": "adminDeleteGlobalConfig",
         "produces": [
@@ -2214,6 +2215,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get dsmc global configuration.",
         "operationId": "adminGetGlobalConfig",
         "produces": [
@@ -2280,6 +2282,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Upsert global configuration data.",
         "operationId": "adminUpdateGlobalConfig",
         "parameters": [
@@ -2487,6 +2490,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Sends notification to a party.",
         "operationId": "sendPartyFreeformNotificationV1Admin",
         "parameters": [
@@ -2570,6 +2574,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Sends templated notification to a party.\n\t\t\t\u0026lt;br\u0026gt;In the request body, specify which template slug (template identifier) to use and the template language.\n\t\t\t\u0026lt;br\u0026gt;NotificationTemplate context is the key-value pair defining the value of each handlebar specified in the template content.\n\t\t\tTemplate need to be published before it can be use to send notifications\u0026lt;br\u0026gt;",
         "operationId": "sendPartyTemplatedNotificationV1Admin",
         "parameters": [
@@ -3950,6 +3955,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get party data in a namespace.",
         "operationId": "adminGetPartyDataV1",
         "parameters": [
@@ -4033,6 +4039,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update party attributes in a namespace.",
         "operationId": "adminUpdatePartyAttributesV1",
         "parameters": [
@@ -4128,6 +4135,7 @@
     },
     "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}": {
       "post": {
+        "deprecated": true,
         "description": "Admin join a player into a party.",
         "operationId": "adminJoinPartyV1",
         "parameters": [
@@ -4221,6 +4229,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get party data in a namespace.",
         "operationId": "adminGetUserPartyV1",
         "parameters": [
@@ -4465,6 +4474,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get all player\u0026#39;s session attribute by user id in a namespace.",
         "operationId": "adminGetAllPlayerSessionAttribute",
         "parameters": [
@@ -4534,6 +4544,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Set player\u0026#39;s session attribute by user id in a namespace.",
         "operationId": "adminSetPlayerSessionAttribute",
         "parameters": [
@@ -4623,6 +4634,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get player\u0026#39;s specific session attribute by user id in a namespace.",
         "operationId": "adminGetPlayerSessionAttribute",
         "parameters": [
@@ -5045,6 +5057,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get the list of filters that would modify the phrase",
         "operationId": "adminDebugProfanityFilters",
         "parameters": [
@@ -5133,6 +5146,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get the list of filters inside the list.",
         "operationId": "adminGetProfanityListFiltersV1",
         "parameters": [
@@ -5214,6 +5228,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Add a single filter into the list",
         "operationId": "adminAddProfanityFilterIntoList",
         "parameters": [
@@ -5303,6 +5318,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Add multiple filters into the list",
         "operationId": "adminAddProfanityFilters",
         "parameters": [
@@ -5392,6 +5408,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Import a file with filters",
         "operationId": "adminImportProfanityFiltersFromFile",
         "parameters": [
@@ -5484,6 +5501,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Delete the filter from the list",
         "operationId": "adminDeleteProfanityFilter",
         "parameters": [
@@ -5579,6 +5597,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get lists",
         "operationId": "adminGetProfanityLists",
         "parameters": [
@@ -5656,6 +5675,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Create a new list",
         "operationId": "adminCreateProfanityList",
         "parameters": [
@@ -5738,6 +5758,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Delete a list include all filters inside of it",
         "operationId": "adminDeleteProfanityList",
         "parameters": [
@@ -5816,6 +5837,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update the list",
         "operationId": "adminUpdateProfanityList",
         "parameters": [
@@ -5905,6 +5927,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get current profanity rule",
         "operationId": "adminGetProfanityRule",
         "parameters": [
@@ -5979,6 +6002,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Set current profanity rule",
         "operationId": "adminSetProfanityRuleForNamespace",
         "parameters": [
@@ -6061,6 +6085,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Verify a message directly from the UI or other services",
         "operationId": "adminVerifyMessageProfanityResponse",
         "parameters": [
@@ -6143,6 +6168,7 @@
     },
     "/lobby/v1/admin/thirdparty/namespaces/{namespace}/config/steam": {
       "delete": {
+        "deprecated": true,
         "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;delete third party config in a namespace.",
         "operationId": "adminDeleteThirdPartyConfig",
         "parameters": [
@@ -6208,6 +6234,7 @@
         ]
       },
       "get": {
+        "deprecated": true,
         "description": "Get third party config for specified namespace.",
         "operationId": "adminGetThirdPartyConfig",
         "parameters": [
@@ -6276,6 +6303,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Create third party config in a namespace.",
         "operationId": "adminCreateThirdPartyConfig",
         "parameters": [
@@ -6359,6 +6387,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update third party config in a namespace.",
         "operationId": "adminUpdateThirdPartyConfig",
         "parameters": [
@@ -6477,6 +6506,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;load personal party data in a namespace based on Party ID \u0026lt;br/\u0026gt;\n\t\t\t\tAction Code: 50101",
         "operationId": "publicGetPartyDataV1",
         "parameters": [
@@ -6554,6 +6584,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;update party attributes in a namespace.",
         "operationId": "publicUpdatePartyAttributesV1",
         "parameters": [
@@ -6646,6 +6677,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Required valid user authorization \u0026lt;br/\u0026gt;\n\t\t\t\t\u0026lt;br\u0026gt;Set party limit, only party leader can call this endpoint.",
         "operationId": "publicSetPartyLimitV1",
         "parameters": [
@@ -15489,11 +15521,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-11-06T07:21:15+00:00",
-    "gitHash": "48bf430307f13e12a1970207f050f1a10fca556c",
+    "buildDate": "2024-12-17T05:07:46+00:00",
+    "gitHash": "6f107c3698679fbdf902e996743789d5a3820749",
     "name": "justice-lobby-server",
-    "revisionID": "3.36.5",
-    "version": "3.36.5",
+    "revisionID": "3.37.1",
+    "version": "3.37.1",
     "version-justice": "2024.2/3.79",
     "version-roles-seeding": "1.2.77"
   }

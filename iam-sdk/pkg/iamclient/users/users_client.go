@@ -364,14 +364,20 @@ type ClientService interface {
 	PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error)
 	PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error)
 	PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error)
+	PublicSendCodeForwardV3(params *PublicSendCodeForwardV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendCodeForwardV3Found, error)
+	PublicSendCodeForwardV3Short(params *PublicSendCodeForwardV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendCodeForwardV3Found, error)
 	PublicGetLinkHeadlessAccountToMyAccountConflictV3(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, *PublicGetLinkHeadlessAccountToMyAccountConflictV3BadRequest, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Unauthorized, *PublicGetLinkHeadlessAccountToMyAccountConflictV3Forbidden, *PublicGetLinkHeadlessAccountToMyAccountConflictV3InternalServerError, error)
 	PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(params *PublicGetLinkHeadlessAccountToMyAccountConflictV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetLinkHeadlessAccountToMyAccountConflictV3OK, error)
 	LinkHeadlessAccountToMyAccountV3(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, *LinkHeadlessAccountToMyAccountV3BadRequest, *LinkHeadlessAccountToMyAccountV3Unauthorized, *LinkHeadlessAccountToMyAccountV3Forbidden, *LinkHeadlessAccountToMyAccountV3InternalServerError, error)
 	LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccountToMyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*LinkHeadlessAccountToMyAccountV3NoContent, error)
+	PublicGetMyRedirectionAfterLinkV3(params *PublicGetMyRedirectionAfterLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyRedirectionAfterLinkV3OK, *PublicGetMyRedirectionAfterLinkV3Unauthorized, *PublicGetMyRedirectionAfterLinkV3NotFound, *PublicGetMyRedirectionAfterLinkV3InternalServerError, error)
+	PublicGetMyRedirectionAfterLinkV3Short(params *PublicGetMyRedirectionAfterLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyRedirectionAfterLinkV3OK, error)
 	PublicGetMyProfileAllowUpdateStatusV3(params *PublicGetMyProfileAllowUpdateStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyProfileAllowUpdateStatusV3OK, *PublicGetMyProfileAllowUpdateStatusV3BadRequest, *PublicGetMyProfileAllowUpdateStatusV3Unauthorized, *PublicGetMyProfileAllowUpdateStatusV3Forbidden, *PublicGetMyProfileAllowUpdateStatusV3InternalServerError, error)
 	PublicGetMyProfileAllowUpdateStatusV3Short(params *PublicGetMyProfileAllowUpdateStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyProfileAllowUpdateStatusV3OK, error)
 	PublicSendVerificationLinkV3(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, *PublicSendVerificationLinkV3BadRequest, *PublicSendVerificationLinkV3Unauthorized, *PublicSendVerificationLinkV3Conflict, *PublicSendVerificationLinkV3TooManyRequests, error)
 	PublicSendVerificationLinkV3Short(params *PublicSendVerificationLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationLinkV3NoContent, error)
+	PublicGetOpenidUserInfoV3(params *PublicGetOpenidUserInfoV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetOpenidUserInfoV3OK, *PublicGetOpenidUserInfoV3Unauthorized, *PublicGetOpenidUserInfoV3InternalServerError, error)
+	PublicGetOpenidUserInfoV3Short(params *PublicGetOpenidUserInfoV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetOpenidUserInfoV3OK, error)
 	PublicVerifyUserByLinkV3(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error)
 	PublicVerifyUserByLinkV3Short(params *PublicVerifyUserByLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyUserByLinkV3Found, error)
 
@@ -17503,6 +17509,15 @@ Step when searching by 3rd party platform display name:
 Note:
 - You can use either platform id or platform group as **platformId** parameter.
 - **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+## IP Rate Limit validation
+
+This API have IP Rate Limit validation, which activates when triggered excessively from the same IP address (throw 429 http error).
+The default rule: 10 max request per 30 seconds (per unique IP address).
+
+To mitigate potential unexpected issues in your implementation, consider adhering to these best practices as illustrated in the following examples:
+* Delay invoking the Search API if the player continues typing in the search box, and only utilize the latest input provided.
+* Prevent players from double-clicking or making multiple clicks within a short time frame.
 */
 func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, *PublicSearchUserV3BadRequest, *PublicSearchUserV3Unauthorized, *PublicSearchUserV3NotFound, *PublicSearchUserV3TooManyRequests, *PublicSearchUserV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -17615,6 +17630,15 @@ Step when searching by 3rd party platform display name:
 Note:
 - You can use either platform id or platform group as **platformId** parameter.
 - **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+
+## IP Rate Limit validation
+
+This API have IP Rate Limit validation, which activates when triggered excessively from the same IP address (throw 429 http error).
+The default rule: 10 max request per 30 seconds (per unique IP address).
+
+To mitigate potential unexpected issues in your implementation, consider adhering to these best practices as illustrated in the following examples:
+* Delay invoking the Search API if the player continues typing in the search box, and only utilize the latest input provided.
+* Prevent players from double-clicking or making multiple clicks within a short time frame.
 */
 func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, error) {
 	// TODO: Validate the params before sending
@@ -22789,6 +22813,110 @@ func (a *Client) PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInf
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicSendCodeForwardV3Short instead.
+
+PublicSendCodeForwardV3 send verification code to user
+This API need the upgradeToken in request body.
+Available contexts for use :
+1. **upgradeHeadlessAccount**
+The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
+If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.
+*/
+func (a *Client) PublicSendCodeForwardV3(params *PublicSendCodeForwardV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendCodeForwardV3Found, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendCodeForwardV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendCodeForwardV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/me/code/request/forward",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendCodeForwardV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendCodeForwardV3Found:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicSendCodeForwardV3Short send verification code to user
+This API need the upgradeToken in request body.
+Available contexts for use :
+1. **upgradeHeadlessAccount**
+The context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.
+If this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.
+*/
+func (a *Client) PublicSendCodeForwardV3Short(params *PublicSendCodeForwardV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendCodeForwardV3Found, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendCodeForwardV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendCodeForwardV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/me/code/request/forward",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendCodeForwardV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendCodeForwardV3Found:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicGetLinkHeadlessAccountToMyAccountConflictV3Short instead.
 
 PublicGetLinkHeadlessAccountToMyAccountConflictV3 get conflict result when link headless account to current full account by one time code
@@ -23033,6 +23161,117 @@ func (a *Client) LinkHeadlessAccountToMyAccountV3Short(params *LinkHeadlessAccou
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicGetMyRedirectionAfterLinkV3Short instead.
+
+PublicGetMyRedirectionAfterLinkV3 get my forward uri link
+Get my redirect uri after link, this endpoint will return NotFound(404) if redirect uri is not found
+*/
+func (a *Client) PublicGetMyRedirectionAfterLinkV3(params *PublicGetMyRedirectionAfterLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyRedirectionAfterLinkV3OK, *PublicGetMyRedirectionAfterLinkV3Unauthorized, *PublicGetMyRedirectionAfterLinkV3NotFound, *PublicGetMyRedirectionAfterLinkV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyRedirectionAfterLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyRedirectionAfterLinkV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me/link/redirection",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyRedirectionAfterLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyRedirectionAfterLinkV3OK:
+		return v, nil, nil, nil, nil
+
+	case *PublicGetMyRedirectionAfterLinkV3Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *PublicGetMyRedirectionAfterLinkV3NotFound:
+		return nil, nil, v, nil, nil
+
+	case *PublicGetMyRedirectionAfterLinkV3InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetMyRedirectionAfterLinkV3Short get my forward uri link
+Get my redirect uri after link, this endpoint will return NotFound(404) if redirect uri is not found
+*/
+func (a *Client) PublicGetMyRedirectionAfterLinkV3Short(params *PublicGetMyRedirectionAfterLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyRedirectionAfterLinkV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyRedirectionAfterLinkV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyRedirectionAfterLinkV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/me/link/redirection",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyRedirectionAfterLinkV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyRedirectionAfterLinkV3OK:
+		return v, nil
+	case *PublicGetMyRedirectionAfterLinkV3Unauthorized:
+		return nil, v
+	case *PublicGetMyRedirectionAfterLinkV3NotFound:
+		return nil, v
+	case *PublicGetMyRedirectionAfterLinkV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicGetMyProfileAllowUpdateStatusV3Short instead.
 
 PublicGetMyProfileAllowUpdateStatusV3 public get my profile allowed update status.
@@ -23261,6 +23500,112 @@ func (a *Client) PublicSendVerificationLinkV3Short(params *PublicSendVerificatio
 	case *PublicSendVerificationLinkV3Conflict:
 		return nil, v
 	case *PublicSendVerificationLinkV3TooManyRequests:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetOpenidUserInfoV3Short instead.
+
+PublicGetOpenidUserInfoV3 get my user info
+This API is created to match openid userinfo standard => https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
+*/
+func (a *Client) PublicGetOpenidUserInfoV3(params *PublicGetOpenidUserInfoV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetOpenidUserInfoV3OK, *PublicGetOpenidUserInfoV3Unauthorized, *PublicGetOpenidUserInfoV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetOpenidUserInfoV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetOpenidUserInfoV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/userinfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetOpenidUserInfoV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetOpenidUserInfoV3OK:
+		return v, nil, nil, nil
+
+	case *PublicGetOpenidUserInfoV3Unauthorized:
+		return nil, v, nil, nil
+
+	case *PublicGetOpenidUserInfoV3InternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetOpenidUserInfoV3Short get my user info
+This API is created to match openid userinfo standard => https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
+*/
+func (a *Client) PublicGetOpenidUserInfoV3Short(params *PublicGetOpenidUserInfoV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetOpenidUserInfoV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetOpenidUserInfoV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetOpenidUserInfoV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/users/userinfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetOpenidUserInfoV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetOpenidUserInfoV3OK:
+		return v, nil
+	case *PublicGetOpenidUserInfoV3Unauthorized:
+		return nil, v
+	case *PublicGetOpenidUserInfoV3InternalServerError:
 		return nil, v
 
 	default:

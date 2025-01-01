@@ -88,7 +88,7 @@ type RequestTokenByOneTimeLinkCodeResponseV3Params struct {
 	*/
 	IsTransient *bool
 	/*ClientID
-	  publisher clientID
+	  client id
 
 	*/
 	ClientID string

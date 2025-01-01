@@ -35,9 +35,12 @@
 ### Platform Account Closure Client Wrapper:  [PlatformAccountClosureClient](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/gdpr/admin/namespaces/{namespace}/platforms/closure/clients` | GET | AdminGetPlatformAccountClosureClientsShort | [AdminGetPlatformAccountClosureClientsShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminGetPlatformAccountClosureClientsShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminGetPlatformAccountClosureClientsShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminGetPlatformAccountClosureClients.go) |
+| `/gdpr/admin/namespaces/{namespace}/platforms/xbox/closure/cert/validation` | POST | AdminValidateXboxBPCertFileShort | [AdminValidateXboxBPCertFileShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminValidateXboxBPCertFileShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminValidateXboxBPCertFileShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminValidateXboxBPCertFile.go) |
 | `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client` | GET | AdminGetPlatformAccountClosureClientShort | [AdminGetPlatformAccountClosureClientShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminGetPlatformAccountClosureClientShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminGetPlatformAccountClosureClientShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminGetPlatformAccountClosureClient.go) |
 | `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client` | POST | AdminUpdatePlatformAccountClosureClientShort | [AdminUpdatePlatformAccountClosureClientShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminUpdatePlatformAccountClosureClientShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminUpdatePlatformAccountClosureClientShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminUpdatePlatformAccountClosureClient.go) |
 | `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/client` | DELETE | AdminDeletePlatformAccountClosureClientShort | [AdminDeletePlatformAccountClosureClientShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminDeletePlatformAccountClosureClientShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminDeletePlatformAccountClosureClientShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminDeletePlatformAccountClosureClient.go) |
+| `/gdpr/admin/namespaces/{namespace}/platforms/{platform}/closure/mock` | POST | AdminMockPlatformAccountClosureDataShort | [AdminMockPlatformAccountClosureDataShort](../../gdpr-sdk/pkg/gdprclient/platform_account_closure_client/platform_account_closure_client_client.go) | [AdminMockPlatformAccountClosureDataShort](../../services-api/pkg/service/gdpr/platformAccountClosureClient.go) | [AdminMockPlatformAccountClosureDataShort](../../samples/cli/cmd/gdpr/platformAccountClosureClient/adminMockPlatformAccountClosureData.go) |
 
 ### Data Retrieval Wrapper:  [DataRetrieval](../../services-api/pkg/service/gdpr/dataRetrieval.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -85,6 +88,8 @@
 | `dto.ListFinishedDataRequests` | [DtoListFinishedDataRequests ](../../gdpr-sdk/pkg/gdprclientmodels/dto_list_finished_data_requests.go) |
 | `dto.PlatformAccountClosureClientRequest` | [DtoPlatformAccountClosureClientRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_request.go) |
 | `dto.PlatformAccountClosureClientResponse` | [DtoPlatformAccountClosureClientResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_client_response.go) |
+| `dto.PlatformAccountClosureClientsResponse` | [DtoPlatformAccountClosureClientsResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_clients_response.go) |
+| `dto.PlatformAccountClosureMockRequest` | [DtoPlatformAccountClosureMockRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_platform_account_closure_mock_request.go) |
 | `dto.S2SDataRequestSummary` | [DtoS2SDataRequestSummary ](../../gdpr-sdk/pkg/gdprclientmodels/dto_s2_s_data_request_summary.go) |
 | `dto.ServiceConfigDTO` | [DtoServiceConfigDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_config_dto.go) |
 | `dto.ServiceConfigurationDTO` | [DtoServiceConfigurationDTO ](../../gdpr-sdk/pkg/gdprclientmodels/dto_service_configuration_dto.go) |
@@ -92,6 +97,8 @@
 | `dto.ServicesConfigurationResponse` | [DtoServicesConfigurationResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_services_configuration_response.go) |
 | `dto.UserPlatformAccountClosureHistoriesResponse` | [DtoUserPlatformAccountClosureHistoriesResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_user_platform_account_closure_histories_response.go) |
 | `dto.UserPlatformAccountClosureHistory` | [DtoUserPlatformAccountClosureHistory ](../../gdpr-sdk/pkg/gdprclientmodels/dto_user_platform_account_closure_history.go) |
+| `dto.XboxBPCertValidationRequest` | [DtoXboxBPCertValidationRequest ](../../gdpr-sdk/pkg/gdprclientmodels/dto_xbox_b_p_cert_validation_request.go) |
+| `dto.XboxBPCertValidationResponse` | [DtoXboxBPCertValidationResponse ](../../gdpr-sdk/pkg/gdprclientmodels/dto_xbox_b_p_cert_validation_response.go) |
 | `models.DataRetrievalResponse` | [ModelsDataRetrievalResponse ](../../gdpr-sdk/pkg/gdprclientmodels/models_data_retrieval_response.go) |
 | `models.DeletionData` | [ModelsDeletionData ](../../gdpr-sdk/pkg/gdprclientmodels/models_deletion_data.go) |
 | `models.DeletionStatus` | [ModelsDeletionStatus ](../../gdpr-sdk/pkg/gdprclientmodels/models_deletion_status.go) |

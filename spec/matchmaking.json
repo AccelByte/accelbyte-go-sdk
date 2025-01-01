@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.30.6"
+    "version": "2.30.7"
   },
   "schemes": [
     "https"
@@ -70,6 +70,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Reads all available channels in a namespace\n",
         "operationId": "GetAllChannelsHandler",
         "parameters": [
@@ -157,6 +158,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Creates a new matchmaking channel.\n\nMatchmaking channels is a list of pool name that is eligible for matchmaking processes. \nGameMode isolates each matchmaking pools.\n\nIf match timeout is set to 0, by default, incoming matchmaking requests will be timed out after 1 hour.\n\nIf max worker delay is set to 0, by default, it will wait for at max ~8 seconds during low volume.\n\nRule Set\n\nMatching Rule used to classify the player. Player that has matched criteria will be grouped together within an ally.\n\nValid value for criteria is \u0026#34;distance\u0026#34;\n",
         "operationId": "CreateChannelHandler",
         "parameters": [
@@ -242,6 +244,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get metric for a specific match pool\n\t\nResult: queue_time in seconds\n",
         "operationId": "GetMatchPoolMetric",
         "parameters": [
@@ -320,6 +323,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Deletes a matchmaking channel. Matchmaking channels is a list of \npool name that is eligible for matchmaking processes. GameMode isolates each matchmaking pools.\n\nTrying to delete non-existent channel will result deletion success\n",
         "operationId": "DeleteChannelHandler",
         "parameters": [
@@ -389,6 +393,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Process match result into final attribute value and stores it to player attribute\n\nWill return final attribute value\n",
         "operationId": "StoreMatchResults",
         "parameters": [
@@ -468,6 +473,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Do rebalance the teams based on MMR from given matchID, \nconsider attribute name \u0026#34;mmr\u0026#34; (case-insensitive), \nor any first attribute with criteria \u0026#34;distance\u0026#34;\n\t\t\nWill return rebalanced mm result",
         "operationId": "Rebalance",
         "parameters": [
@@ -553,6 +559,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Queues joinable session so that it will be matched with player\u0026#39;s match request tickets. \nThe session queued must be in a channel/game mode that is set to have joinable flag. \nThe session will be in queue until it is full or expired. \nBoth the number of players and session queue timeout can be set in the channel\u0026#39;s config.\n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server is ready for receiving more players through matchmaking tickets to its session.\n\nIf a session is already queued, and game server wants to modify the data or \nrenew the queue timeout (e.g. some player left and more empty slot opened up), \nsimply call this endpoint with the updated session data. \n",
         "operationId": "QueueSessionHandler",
         "parameters": [
@@ -629,6 +636,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Dequeues joinable session so that it will not be matched with player\u0026#39;s match request tickets. \n\nThis endpoint is intended to be called by game server to let matchmaker know that \nthe game server does not want more players to its session, even though it is not full. \n",
         "operationId": "DequeueSessionHandler",
         "parameters": [
@@ -711,6 +719,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Queries the specified session\u0026#39;s status. Game servers are expected to \ncall this periodically as long as it has a session in queue to see \nif there are new players being matched to the session.\n\nPossible session statuses are \u0026#34;sessionInQueue\u0026#34;, \u0026#34;sessionFull\u0026#34;, and \u0026#34;sessionTimeout\u0026#34;.\n\nif party_id value empty/null, field will not show in response body.\n",
         "operationId": "QuerySessionHandler",
         "parameters": [
@@ -795,6 +804,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update a connection weight between player and playtime.\n\nThis endpoint is intended to be called by admin for debugging purpose on social matchmaking rule.\n",
         "operationId": "UpdatePlayTimeWeight",
         "parameters": [
@@ -888,6 +898,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get all parties queueing in all channels.",
         "operationId": "GetAllPartyInAllChannel",
         "parameters": [
@@ -979,6 +990,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Bulk get sessions.",
         "operationId": "BulkGetSessions",
         "parameters": [
@@ -1073,6 +1085,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Export channels configuration to file. \n\nAction Code: 510114",
         "operationId": "ExportChannels",
         "parameters": [
@@ -1149,6 +1162,7 @@
         "consumes": [
           "multipart/form-data"
         ],
+        "deprecated": true,
         "description": "Import channels configuration from file. It will merge with existing channels.\nAvailable import strategy:\n- leaveOut: if channel with same key exist, the existing will be used and imported one will be ignored (default)\n- replace: if channel with same key exist, the imported channel will be used and existing one will be removed\n\nAction Code: 510113",
         "operationId": "ImportChannels",
         "parameters": [
@@ -1239,6 +1253,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Reads single channel based on namespace and channel name\n\nAction Code: 510112",
         "operationId": "GetSingleMatchmakingChannel",
         "parameters": [
@@ -1328,6 +1343,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update channel based on namespace and channel name\n\nAction Code: 510111",
         "operationId": "UpdateMatchmakingChannel",
         "parameters": [
@@ -1425,6 +1441,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tDelete all mock tickets and matches in a channel.\n\u0026#39;",
         "operationId": "CleanAllMocks",
         "parameters": [
@@ -1514,6 +1531,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tRead all mock matches in a channel resulted from matching mock tickets.\n\u0026#39;",
         "operationId": "GetAllMockMatches",
         "parameters": [
@@ -1604,6 +1622,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tRead mock matches that has timestamp older than specified timestamp in a channel resulted from matching mock tickets.\n\u0026#39;",
         "operationId": "GetMockMatchesByTimestamp",
         "parameters": [
@@ -1705,6 +1724,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tRead all mock tickets in a channel.\n\u0026#39;",
         "operationId": "GetAllMockTickets",
         "parameters": [
@@ -1795,6 +1815,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tTicket\u0026#39;s MMRs will be randomized using Normal distribution according to the input mean and standard deviation.\n\tAll mock tickets and matches will be cleaned up automatically after 1 day.\n\u0026#39;",
         "operationId": "CreateMockTickets",
         "parameters": [
@@ -1898,6 +1919,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tCreate and queue mock tickets into specified game mode\u0026#39;s pool. \n\tThe tickets input will be used as is.\n\u0026#39;",
         "operationId": "BulkCreateMockTickets",
         "parameters": [
@@ -1998,6 +2020,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tRead mock tickets after the specified timestamp in a channel.\n\u0026#39;",
         "operationId": "GetMockTicketsByTimestamp",
         "parameters": [
@@ -2099,6 +2122,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get all parties queueing in a channel.",
         "operationId": "GetAllPartyInChannel",
         "parameters": [
@@ -2194,6 +2218,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Get all sessions in a channel.\n\nif party_id value empty/null, field will not show in response body.",
         "operationId": "GetAllSessionsInChannel",
         "parameters": [
@@ -2289,6 +2314,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Delete a session in a channel.",
         "operationId": "DeleteSessionInChannel",
         "parameters": [
@@ -2383,6 +2409,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Add user into the session in a channel.",
         "operationId": "AddUserIntoSessionInChannel",
         "parameters": [
@@ -2487,6 +2514,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Delete a user from a session in the channel.",
         "operationId": "DeleteUserFromSessionInChannel",
         "parameters": [
@@ -2593,6 +2621,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "\tGet a channel\u0026#39;s stat data (mean, stddev, min, max) according to the stats collected from statistics service.\n\u0026#39;",
         "operationId": "GetStatData",
         "parameters": [
@@ -2912,6 +2941,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "get the list of messages.",
         "operationId": "publicGetMessages",
         "produces": [
@@ -2951,6 +2981,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Reads all available channels in a namespace\n",
         "operationId": "PublicGetAllMatchmakingChannel",
         "parameters": [
@@ -3023,6 +3054,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Reads single channel based on namespace and channel name\n",
         "operationId": "PublicGetSingleMatchmakingChannel",
         "parameters": [
@@ -6100,9 +6132,9 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-08-28T03:29:04+00:00",
-    "gitHash": "b7391b3883f364dadb46a3cfe84b138b9fae432f",
-    "version": "2.30.6",
+    "buildDate": "2024-12-10T09:48:48+00:00",
+    "gitHash": "5f5e5a3192e1abfebd54edca11c750a3a9c9478f",
+    "version": "2.30.7",
     "version-roles-seeding": "0.0.23"
   }
 }

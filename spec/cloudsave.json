@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "3.24.0"
+    "version": "3.24.1"
   },
   "schemes": [
     "https"
@@ -11906,11 +11906,11 @@
     "path": "/cloudsave/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-05T09:58:30+00:00",
-    "gitHash": "a8085d068fc441ec897af5299d0c9fb4a8da68ae",
+    "buildDate": "2024-12-10T08:26:04+00:00",
+    "gitHash": "d193e5f11f2cb2f7fdd74fad6a22b54ef0fc8e2e",
     "name": "justice-cloudsave-service",
-    "revisionID": "3.24.0",
-    "version": "3.24.0",
+    "revisionID": "3.24.1",
+    "version": "3.24.1",
     "version-roles-seeding": "0.0.46"
   }
 }

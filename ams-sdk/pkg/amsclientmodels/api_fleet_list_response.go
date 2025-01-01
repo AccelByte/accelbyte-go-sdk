@@ -23,6 +23,10 @@ type APIFleetListResponse struct {
 	// fleets
 	// Required: true
 	Fleets []*APIFleetListItemResponse `json:"fleets"`
+
+	// paging
+	// Required: true
+	Paging *PaginationPaginationInfo `json:"paging"`
 }
 
 // Validate validates this Api fleet list response
@@ -30,6 +34,9 @@ func (m *APIFleetListResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateFleets(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePaging(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,6 +66,24 @@ func (m *APIFleetListResponse) validateFleets(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIFleetListResponse) validatePaging(formats strfmt.Registry) error {
+
+	if err := validate.Required("paging", "body", m.Paging); err != nil {
+		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
+			}
+			return err
+		}
 	}
 
 	return nil

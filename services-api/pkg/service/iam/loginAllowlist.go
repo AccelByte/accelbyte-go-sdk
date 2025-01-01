@@ -62,29 +62,29 @@ func (aaa *LoginAllowlistService) AdminGetLoginAllowlistV3(input *login_allowlis
 }
 
 // Deprecated: 2022-01-10 - please use AdminUpdateLoginAllowlistV3Short instead.
-func (aaa *LoginAllowlistService) AdminUpdateLoginAllowlistV3(input *login_allowlist.AdminUpdateLoginAllowlistV3Params) (*iamclientmodels.ModelLoginAllowlistResponse, error) {
+func (aaa *LoginAllowlistService) AdminUpdateLoginAllowlistV3(input *login_allowlist.AdminUpdateLoginAllowlistV3Params) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	noContent, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.LoginAllowlist.AdminUpdateLoginAllowlistV3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.LoginAllowlist.AdminUpdateLoginAllowlistV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 func (aaa *LoginAllowlistService) AdminGetLoginAllowlistV3Short(input *login_allowlist.AdminGetLoginAllowlistV3Params) (*iamclientmodels.ModelLoginAllowlistResponse, error) {
@@ -117,7 +117,7 @@ func (aaa *LoginAllowlistService) AdminGetLoginAllowlistV3Short(input *login_all
 	return ok.GetPayload(), nil
 }
 
-func (aaa *LoginAllowlistService) AdminUpdateLoginAllowlistV3Short(input *login_allowlist.AdminUpdateLoginAllowlistV3Params) (*iamclientmodels.ModelLoginAllowlistResponse, error) {
+func (aaa *LoginAllowlistService) AdminUpdateLoginAllowlistV3Short(input *login_allowlist.AdminUpdateLoginAllowlistV3Params) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -139,10 +139,10 @@ func (aaa *LoginAllowlistService) AdminUpdateLoginAllowlistV3Short(input *login_
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	noContent, err := aaa.Client.LoginAllowlist.AdminUpdateLoginAllowlistV3Short(input, authInfoWriter)
+	_, err := aaa.Client.LoginAllowlist.AdminUpdateLoginAllowlistV3Short(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }

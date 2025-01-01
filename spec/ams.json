@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.30.0"
+    "version": "1.31.1"
   },
   "schemes": [
     "https"
@@ -1082,15 +1082,49 @@
             "x-omitempty": false
           },
           {
+            "default": 100,
+            "description": "the number of fleets to return",
+            "in": "query",
+            "name": "count",
+            "type": "integer"
+          },
+          {
+            "description": "sort direction (ascending or descending)",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "desc",
+            "type": "string"
+          },
+          {
             "description": "filter fleets by name",
             "in": "query",
             "name": "name",
             "type": "string"
           },
           {
+            "default": 0,
+            "description": "the pagination offset",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
             "description": "filter fleets by region",
             "in": "query",
             "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "sort fleets by column name",
+            "enum": [
+              "active",
+              "name"
+            ],
+            "in": "query",
+            "name": "sortBy",
             "type": "string"
           }
         ],
@@ -3823,10 +3857,14 @@
             "$ref": "#/definitions/api.FleetListItemResponse"
           },
           "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/pagination.PaginationInfo"
         }
       },
       "required": [
-        "fleets"
+        "fleets",
+        "paging"
       ]
     },
     "api.FleetParameters": {
@@ -4558,6 +4596,33 @@
         "status"
       ]
     },
+    "pagination.PaginationInfo": {
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "total": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "first",
+        "last",
+        "next",
+        "previous",
+        "total"
+      ]
+    },
     "response.ErrorResponse": {
       "properties": {
         "errorMessage": {
@@ -4675,10 +4740,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-05T14:05:58+00:00",
-    "gitHash": "ef756dbe32e883d3e1190e8453f757ecff8e603f",
+    "buildDate": "2024-12-12T15:28:29+00:00",
+    "gitHash": "c499d351911323a4391c80417550d4cbb5a42e38",
     "name": "fleet-commander",
-    "version": "1.30.0",
+    "version": "1.31.1",
     "version-roles-seeding": "1.2.70"
   }
 }

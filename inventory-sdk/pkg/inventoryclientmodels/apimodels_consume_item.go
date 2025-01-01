@@ -18,6 +18,9 @@ import (
 // swagger:model Apimodels consume item.
 type ApimodelsConsumeItem struct {
 
+	// daterangevalidation
+	DateRangeValidation bool `json:"dateRangeValidation"`
+
 	// inventoryid
 	// Required: true
 	InventoryID *string `json:"inventoryId"`

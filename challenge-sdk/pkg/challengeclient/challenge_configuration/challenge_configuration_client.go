@@ -58,7 +58,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetChallengesShort instead.
 
 AdminGetChallenges list challenges
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, *AdminGetChallengesUnauthorized, *AdminGetChallengesForbidden, *AdminGetChallengesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -116,8 +116,7 @@ func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo r
 
 /*
 AdminGetChallengesShort list challenges
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetChallengesShort(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, error) {
 	// TODO: Validate the params before sending
@@ -170,32 +169,27 @@ func (a *Client) AdminGetChallengesShort(params *AdminGetChallengesParams, authI
 Deprecated: 2022-08-10 - Use AdminCreateChallengeShort instead.
 
 AdminCreateChallenge create new challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
-
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
 Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.
-
-Request body:
-
-  * code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter
-  * name: name of the challenge
-  * description: text describing about the challenge (optional)
-  * startDate: timestamp of when the challenge is started
-  * endDate: timestamp of when the challenge is ended (optional)
-  * endAfter: describe number of period challenge will be retired after (optional)
-To configure challenge that never end, leave the endDate and endAfter field null/empty.
-  * repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
-  * rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
-  * activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
-  * assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
-  * goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
-  * resetConfig: describe when rotation reset will happen (optional).
-    * resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
-    * resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
-    * resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
-  * randomizedPerRotation:
-    * true: each goal will be randomly assigned to multiple periods
-    * false: a goal will only be assigned to one period
+#### Request body:
+- code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter
+- name: name of the challenge
+- description: text describing about the challenge (optional)
+- startDate: timestamp of when the challenge is started
+- endDate: timestamp of when the challenge is ended (optional)
+- endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.
+- repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
+- rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
+- activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
+- assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
+- goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
+- resetConfig: describe when rotation reset will happen (optional).
+- resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
+- resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
+- resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
+- randomizedPerRotation:
+- true: each goal will be randomly assigned to multiple periods
+- false: a goal will only be assigned to one period
 */
 func (a *Client) AdminCreateChallenge(params *AdminCreateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChallengeCreated, *AdminCreateChallengeBadRequest, *AdminCreateChallengeUnauthorized, *AdminCreateChallengeForbidden, *AdminCreateChallengeConflict, *AdminCreateChallengeUnprocessableEntity, *AdminCreateChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -262,33 +256,27 @@ func (a *Client) AdminCreateChallenge(params *AdminCreateChallengeParams, authIn
 
 /*
 AdminCreateChallengeShort create new challenge
-
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
-
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [CREATE]
 Challenge is a collection of goals that can be completed by players. Challenge can have rules that specify what and when goals will be available for players to be taken.
-
-Request body:
-
-  * code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter
-  * name: name of the challenge
-  * description: text describing about the challenge (optional)
-  * startDate: timestamp of when the challenge is started
-  * endDate: timestamp of when the challenge is ended (optional)
-  * endAfter: describe number of period challenge will be retired after (optional)
-To configure challenge that never end, leave the endDate and endAfter field null/empty.
-  * repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
-  * rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
-  * activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
-  * assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
-  * goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
-  * resetConfig: describe when rotation reset will happen (optional).
-    * resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
-    * resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
-    * resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
-  * randomizedPerRotation:
-    * true: each goal will be randomly assigned to multiple periods
-    * false: a goal will only be assigned to one period
+#### Request body:
+- code: only lowercase letters, numbers, and the separator - are allowed; must start and end with letter
+- name: name of the challenge
+- description: text describing about the challenge (optional)
+- startDate: timestamp of when the challenge is started
+- endDate: timestamp of when the challenge is ended (optional)
+- endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.
+- repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
+- rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
+- activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
+- assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
+- goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
+- resetConfig: describe when rotation reset will happen (optional).
+- resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
+- resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
+- resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
+- randomizedPerRotation:
+- true: each goal will be randomly assigned to multiple periods
+- false: a goal will only be assigned to one period
 */
 func (a *Client) AdminCreateChallengeShort(params *AdminCreateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChallengeCreated, error) {
 	// TODO: Validate the params before sending
@@ -347,9 +335,8 @@ func (a *Client) AdminCreateChallengeShort(params *AdminCreateChallengeParams, a
 Deprecated: 2022-08-10 - Use AdminGetActiveChallengesShort instead.
 
 AdminGetActiveChallenges list user's active challenges
-
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+The endpoint provides you an access to list of currently active challenges in which the player is participating
 */
 func (a *Client) AdminGetActiveChallenges(params *AdminGetActiveChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetActiveChallengesOK, *AdminGetActiveChallengesUnauthorized, *AdminGetActiveChallengesForbidden, *AdminGetActiveChallengesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -407,8 +394,8 @@ func (a *Client) AdminGetActiveChallenges(params *AdminGetActiveChallengesParams
 
 /*
 AdminGetActiveChallengesShort list user's active challenges
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+The endpoint provides you an access to list of currently active challenges in which the player is participating
 */
 func (a *Client) AdminGetActiveChallengesShort(params *AdminGetActiveChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetActiveChallengesOK, error) {
 	// TODO: Validate the params before sending
@@ -461,8 +448,7 @@ func (a *Client) AdminGetActiveChallengesShort(params *AdminGetActiveChallengesP
 Deprecated: 2022-08-10 - Use AdminGetChallengeShort instead.
 
 AdminGetChallenge get a challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetChallenge(params *AdminGetChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengeOK, *AdminGetChallengeUnauthorized, *AdminGetChallengeForbidden, *AdminGetChallengeNotFound, *AdminGetChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -523,8 +509,7 @@ func (a *Client) AdminGetChallenge(params *AdminGetChallengeParams, authInfo run
 
 /*
 AdminGetChallengeShort get a challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetChallengeShort(params *AdminGetChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengeOK, error) {
 	// TODO: Validate the params before sending
@@ -579,31 +564,25 @@ func (a *Client) AdminGetChallengeShort(params *AdminGetChallengeParams, authInf
 Deprecated: 2022-08-10 - Use AdminUpdateChallengeShort instead.
 
 AdminUpdateChallenge update a challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
-
-
-
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 Request body:
-
-  * name: name of the challenge
-  * description: text describing about the challenge (optional)
-  * startDate: timestamp of when the challenge is started
-  * endDate: timestamp of when the challenge is ended (optional)
-  * endAfter: describe number of period challenge will be retired after (optional)
-To configure challenge that never end, leave the endDate and endAfter field null/empty.
-  * repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
-  * rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
-  * activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
-  * assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
-  * goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
-  * resetConfig: describe when rotation reset will happen (optional).
-    * resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
-    * resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
-    * resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
-  * randomizedPerRotation:
-    * true: each goal will be randomly assigned to multiple periods
-    * false: a goal will only be assigned to one period
+- name: name of the challenge
+- description: text describing about the challenge (optional)
+- startDate: timestamp of when the challenge is started
+- endDate: timestamp of when the challenge is ended (optional)
+- endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.
+- repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
+- rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
+- activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
+- assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
+- goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
+- resetConfig: describe when rotation reset will happen (optional).
+- resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
+- resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
+- resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
+- randomizedPerRotation:
+- true: each goal will be randomly assigned to multiple periods
+- false: a goal will only be assigned to one period
 */
 func (a *Client) AdminUpdateChallenge(params *AdminUpdateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChallengeOK, *AdminUpdateChallengeBadRequest, *AdminUpdateChallengeUnauthorized, *AdminUpdateChallengeForbidden, *AdminUpdateChallengeNotFound, *AdminUpdateChallengeUnprocessableEntity, *AdminUpdateChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -670,32 +649,25 @@ func (a *Client) AdminUpdateChallenge(params *AdminUpdateChallengeParams, authIn
 
 /*
 AdminUpdateChallengeShort update a challenge
-
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
-
-
-
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 Request body:
-
-  * name: name of the challenge
-  * description: text describing about the challenge (optional)
-  * startDate: timestamp of when the challenge is started
-  * endDate: timestamp of when the challenge is ended (optional)
-  * endAfter: describe number of period challenge will be retired after (optional)
-To configure challenge that never end, leave the endDate and endAfter field null/empty.
-  * repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
-  * rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
-  * activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
-  * assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
-  * goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
-  * resetConfig: describe when rotation reset will happen (optional).
-    * resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
-    * resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
-    * resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
-  * randomizedPerRotation:
-    * true: each goal will be randomly assigned to multiple periods
-    * false: a goal will only be assigned to one period
+- name: name of the challenge
+- description: text describing about the challenge (optional)
+- startDate: timestamp of when the challenge is started
+- endDate: timestamp of when the challenge is ended (optional)
+- endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.
+- repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
+- rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
+- activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
+- assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
+- goalsVisibility: describe whether users can see all goals under challenge, or only active goal in one rotation period only. (SHOWALL|PERIODONLY)
+- resetConfig: describe when rotation reset will happen (optional).
+- resetTime: Reset time must follow hours:minutes in 24 hours format (e.g. 01:30, 23:15) and in UTC timezone. Default to "00:00"
+- resetDay: Reset Day follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday). Default to 1 in WEEKLY rotation.
+- resetDate: Reset Date must be a number 1 - 31. Default to 1 in MONTHLY rotation.
+- randomizedPerRotation:
+- true: each goal will be randomly assigned to multiple periods
+- false: a goal will only be assigned to one period
 */
 func (a *Client) AdminUpdateChallengeShort(params *AdminUpdateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChallengeOK, error) {
 	// TODO: Validate the params before sending
@@ -754,9 +726,7 @@ func (a *Client) AdminUpdateChallengeShort(params *AdminUpdateChallengeParams, a
 Deprecated: 2022-08-10 - Use AdminDeleteChallengeShort instead.
 
 AdminDeleteChallenge delete a challenge
-
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
 */
 func (a *Client) AdminDeleteChallenge(params *AdminDeleteChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChallengeNoContent, *AdminDeleteChallengeBadRequest, *AdminDeleteChallengeUnauthorized, *AdminDeleteChallengeForbidden, *AdminDeleteChallengeNotFound, *AdminDeleteChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -820,8 +790,7 @@ func (a *Client) AdminDeleteChallenge(params *AdminDeleteChallengeParams, authIn
 
 /*
 AdminDeleteChallengeShort delete a challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
 */
 func (a *Client) AdminDeleteChallengeShort(params *AdminDeleteChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChallengeNoContent, error) {
 	// TODO: Validate the params before sending
@@ -878,8 +847,7 @@ func (a *Client) AdminDeleteChallengeShort(params *AdminDeleteChallengeParams, a
 Deprecated: 2022-08-10 - Use AdminGetPeriodsShort instead.
 
 AdminGetPeriods get challenge's periods
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetPeriods(params *AdminGetPeriodsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPeriodsOK, *AdminGetPeriodsUnauthorized, *AdminGetPeriodsForbidden, *AdminGetPeriodsNotFound, *AdminGetPeriodsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -940,8 +908,7 @@ func (a *Client) AdminGetPeriods(params *AdminGetPeriodsParams, authInfo runtime
 
 /*
 AdminGetPeriodsShort get challenge's periods
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
 func (a *Client) AdminGetPeriodsShort(params *AdminGetPeriodsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetPeriodsOK, error) {
 	// TODO: Validate the params before sending
@@ -996,9 +963,7 @@ func (a *Client) AdminGetPeriodsShort(params *AdminGetPeriodsParams, authInfo ru
 Deprecated: 2022-08-10 - Use AdminRandomizeChallengeShort instead.
 
 AdminRandomizeChallenge randomize goals of a challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
-
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 This is a utility endpoint to execute randomize goals schedule on challenge that the assignmentRule is RANDOMIZED and RandomizePerRotation assigned with true.
 */
 func (a *Client) AdminRandomizeChallenge(params *AdminRandomizeChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRandomizeChallengeOK, *AdminRandomizeChallengeBadRequest, *AdminRandomizeChallengeUnauthorized, *AdminRandomizeChallengeForbidden, *AdminRandomizeChallengeNotFound, *AdminRandomizeChallengeInternalServerError, error) {
@@ -1063,9 +1028,7 @@ func (a *Client) AdminRandomizeChallenge(params *AdminRandomizeChallengeParams, 
 
 /*
 AdminRandomizeChallengeShort randomize goals of a challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
-
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
 This is a utility endpoint to execute randomize goals schedule on challenge that the assignmentRule is RANDOMIZED and RandomizePerRotation assigned with true.
 */
 func (a *Client) AdminRandomizeChallengeShort(params *AdminRandomizeChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRandomizeChallengeOK, error) {
@@ -1123,9 +1086,8 @@ func (a *Client) AdminRandomizeChallengeShort(params *AdminRandomizeChallengePar
 Deprecated: 2022-08-10 - Use AdminDeleteTiedChallengeShort instead.
 
 AdminDeleteTiedChallenge delete tied challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
-  * This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
+- This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS
 */
 func (a *Client) AdminDeleteTiedChallenge(params *AdminDeleteTiedChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTiedChallengeNoContent, *AdminDeleteTiedChallengeBadRequest, *AdminDeleteTiedChallengeUnauthorized, *AdminDeleteTiedChallengeForbidden, *AdminDeleteTiedChallengeNotFound, *AdminDeleteTiedChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1189,9 +1151,8 @@ func (a *Client) AdminDeleteTiedChallenge(params *AdminDeleteTiedChallengeParams
 
 /*
 AdminDeleteTiedChallengeShort delete tied challenge
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
-  * This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [DELETE]
+- This endpoint will delete the combination of related data: CHALLENGES, GOALS, SCHEDULES, PLAYER PROGRESSIONS
 */
 func (a *Client) AdminDeleteTiedChallengeShort(params *AdminDeleteTiedChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTiedChallengeNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1248,17 +1209,12 @@ func (a *Client) AdminDeleteTiedChallengeShort(params *AdminDeleteTiedChallengeP
 Deprecated: 2022-08-10 - Use AdminUpdateTiedChallengeScheduleShort instead.
 
 AdminUpdateTiedChallengeSchedule update tied challenge schedule
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
-
-
-
-Request body:
-
-  * action: Update the challenge schedule. The available options are:
-    * STOP: Ends the challenge, changing its status to RETIRED. This option supports all types of challenges.
-    * ACCELERATE: Speeds up the challenge's end time. Note that this option does not apply to challenges with an 'endAfter' value.
-  * endDate: The timestamp specifying when the challenge should end (required if the action is ACCELERATE).
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
+### Request body:
+- action: Update the challenge schedule. The available options are:
+- STOP: Ends the challenge, changing its status to RETIRED. This option supports all types of challenges.
+- ACCELERATE: Speeds up the challenge's end time. Note that this option does not apply to challenges with an 'endAfter' value.
+- endDate: The timestamp specifying when the challenge should end (required if the action is ACCELERATE).
 */
 func (a *Client) AdminUpdateTiedChallengeSchedule(params *AdminUpdateTiedChallengeScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTiedChallengeScheduleOK, *AdminUpdateTiedChallengeScheduleBadRequest, *AdminUpdateTiedChallengeScheduleUnauthorized, *AdminUpdateTiedChallengeScheduleForbidden, *AdminUpdateTiedChallengeScheduleNotFound, *AdminUpdateTiedChallengeScheduleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1322,17 +1278,12 @@ func (a *Client) AdminUpdateTiedChallengeSchedule(params *AdminUpdateTiedChallen
 
 /*
 AdminUpdateTiedChallengeScheduleShort update tied challenge schedule
-
-  * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
-
-
-
-Request body:
-
-  * action: Update the challenge schedule. The available options are:
-    * STOP: Ends the challenge, changing its status to RETIRED. This option supports all types of challenges.
-    * ACCELERATE: Speeds up the challenge's end time. Note that this option does not apply to challenges with an 'endAfter' value.
-  * endDate: The timestamp specifying when the challenge should end (required if the action is ACCELERATE).
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
+### Request body:
+- action: Update the challenge schedule. The available options are:
+- STOP: Ends the challenge, changing its status to RETIRED. This option supports all types of challenges.
+- ACCELERATE: Speeds up the challenge's end time. Note that this option does not apply to challenges with an 'endAfter' value.
+- endDate: The timestamp specifying when the challenge should end (required if the action is ACCELERATE).
 */
 func (a *Client) AdminUpdateTiedChallengeScheduleShort(params *AdminUpdateTiedChallengeScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTiedChallengeScheduleOK, error) {
 	// TODO: Validate the params before sending

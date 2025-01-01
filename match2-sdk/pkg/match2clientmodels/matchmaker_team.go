@@ -20,6 +20,9 @@ type MatchmakerTeam struct {
 	// parties
 	Parties []*MatchmakerParty `json:"Parties,omitempty"`
 
+	// teamid
+	TeamID string `json:"TeamID,omitempty"`
+
 	// userids
 	UserIDs []string `json:"UserIDs,omitempty"`
 }

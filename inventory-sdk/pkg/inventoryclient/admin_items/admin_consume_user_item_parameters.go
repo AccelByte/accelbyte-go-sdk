@@ -83,6 +83,11 @@ type AdminConsumeUserItemParams struct {
 
 	*/
 	UserID string
+	/*DateRangeValidation
+	  default is false
+
+	*/
+	DateRangeValidation *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -193,6 +198,17 @@ func (o *AdminConsumeUserItemParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithDateRangeValidation adds the dateRangeValidation to the admin consume user item params
+func (o *AdminConsumeUserItemParams) WithDateRangeValidation(dateRangeValidation *string) *AdminConsumeUserItemParams {
+	o.SetDateRangeValidation(dateRangeValidation)
+	return o
+}
+
+// SetDateRangeValidation adds the dateRangeValidation to the admin consume user item params
+func (o *AdminConsumeUserItemParams) SetDateRangeValidation(dateRangeValidation *string) {
+	o.DateRangeValidation = dateRangeValidation
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminConsumeUserItemParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -220,6 +236,22 @@ func (o *AdminConsumeUserItemParams) WriteToRequest(r runtime.ClientRequest, reg
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.DateRangeValidation != nil {
+
+		// query param dateRangeValidation
+		var qrDateRangeValidation string
+		if o.DateRangeValidation != nil {
+			qrDateRangeValidation = *o.DateRangeValidation
+		}
+		qDateRangeValidation := qrDateRangeValidation
+		if qDateRangeValidation != "" {
+			if err := r.SetQueryParam("dateRangeValidation", qDateRangeValidation); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

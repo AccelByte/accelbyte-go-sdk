@@ -50,8 +50,7 @@ Deprecated: 2022-08-10 - Use GetTicketDynamicShort instead.
 GetTicketDynamic get ticket dynamic
  [SERVICE COMMUNICATION ONLY] Get ticket(code/key) dynamic based on booth name.
 Other detail info:
-
-  * Returns : ticket dynamic
+                      * Returns : ticket dynamic
 */
 func (a *Client) GetTicketDynamic(params *GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDynamicOK, *GetTicketDynamicNotFound, error) {
 	// TODO: Validate the params before sending
@@ -105,8 +104,7 @@ func (a *Client) GetTicketDynamic(params *GetTicketDynamicParams, authInfo runti
 GetTicketDynamicShort get ticket dynamic
  [SERVICE COMMUNICATION ONLY] Get ticket(code/key) dynamic based on booth name.
 Other detail info:
-
-  * Returns : ticket dynamic
+                      * Returns : ticket dynamic
 */
 func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketDynamicOK, error) {
 	// TODO: Validate the params before sending
@@ -263,8 +261,7 @@ Deprecated: 2022-08-10 - Use GetTicketBoothIDShort instead.
 GetTicketBoothID get ticket booth id
 Get ticket(code/key) booth ID.
 Other detail info:
-
-  * Returns : ticket booth id
+                      * Returns : ticket booth id
 */
 func (a *Client) GetTicketBoothID(params *GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketBoothIDOK, *GetTicketBoothIDNotFound, error) {
 	// TODO: Validate the params before sending
@@ -318,8 +315,7 @@ func (a *Client) GetTicketBoothID(params *GetTicketBoothIDParams, authInfo runti
 GetTicketBoothIDShort get ticket booth id
 Get ticket(code/key) booth ID.
 Other detail info:
-
-  * Returns : ticket booth id
+                      * Returns : ticket booth id
 */
 func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetTicketBoothIDOK, error) {
 	// TODO: Validate the params before sending
@@ -370,8 +366,7 @@ Deprecated: 2022-08-10 - Use IncreaseTicketSaleShort instead.
 IncreaseTicketSale increase ticket sale
  [SERVICE COMMUNICATION ONLY] increase ticket(code/key) sale.
 Other detail info:
-
-  * Returns : Ticket sale increment result
+                      * Returns : Ticket sale increment result
 */
 func (a *Client) IncreaseTicketSale(params *IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*IncreaseTicketSaleOK, *IncreaseTicketSaleNotFound, *IncreaseTicketSaleUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -428,8 +423,7 @@ func (a *Client) IncreaseTicketSale(params *IncreaseTicketSaleParams, authInfo r
 IncreaseTicketSaleShort increase ticket sale
  [SERVICE COMMUNICATION ONLY] increase ticket(code/key) sale.
 Other detail info:
-
-  * Returns : Ticket sale increment result
+                      * Returns : Ticket sale increment result
 */
 func (a *Client) IncreaseTicketSaleShort(params *IncreaseTicketSaleParams, authInfo runtime.ClientAuthInfoWriter) (*IncreaseTicketSaleOK, error) {
 	// TODO: Validate the params before sending
@@ -482,8 +476,7 @@ Deprecated: 2022-08-10 - Use AcquireUserTicketShort instead.
 AcquireUserTicket acquire ticket
  [SERVICE COMMUNICATION ONLY] Acquire ticket(code/key) based on booth name.
 Other detail info:
-
-  * Returns : acquire result
+                      * Returns : acquire result
 */
 func (a *Client) AcquireUserTicket(params *AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireUserTicketOK, *AcquireUserTicketNotFound, *AcquireUserTicketConflict, *AcquireUserTicketUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -543,8 +536,7 @@ func (a *Client) AcquireUserTicket(params *AcquireUserTicketParams, authInfo run
 AcquireUserTicketShort acquire ticket
  [SERVICE COMMUNICATION ONLY] Acquire ticket(code/key) based on booth name.
 Other detail info:
-
-  * Returns : acquire result
+                      * Returns : acquire result
 */
 func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireUserTicketOK, error) {
 	// TODO: Validate the params before sending

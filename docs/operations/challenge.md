@@ -27,6 +27,14 @@
 | `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}` | PUT | AdminUpdateGoalsShort | [AdminUpdateGoalsShort](../../challenge-sdk/pkg/challengeclient/goal_configuration/goal_configuration_client.go) | [AdminUpdateGoalsShort](../../services-api/pkg/service/challenge/goalConfiguration.go) | [AdminUpdateGoalsShort](../../samples/cli/cmd/challenge/goalConfiguration/adminUpdateGoals.go) |
 | `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}` | DELETE | AdminDeleteGoalShort | [AdminDeleteGoalShort](../../challenge-sdk/pkg/challengeclient/goal_configuration/goal_configuration_client.go) | [AdminDeleteGoalShort](../../services-api/pkg/service/challenge/goalConfiguration.go) | [AdminDeleteGoalShort](../../samples/cli/cmd/challenge/goalConfiguration/adminDeleteGoal.go) |
 
+### Schedules Wrapper:  [Schedules](../../services-api/pkg/service/challenge/schedules.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}/schedules` | GET | AdminListSchedulesByGoalShort | [AdminListSchedulesByGoalShort](../../challenge-sdk/pkg/challengeclient/schedules/schedules_client.go) | [AdminListSchedulesByGoalShort](../../services-api/pkg/service/challenge/schedules.go) | [AdminListSchedulesByGoalShort](../../samples/cli/cmd/challenge/schedules/adminListSchedulesByGoal.go) |
+| `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/schedules` | GET | AdminListSchedulesShort | [AdminListSchedulesShort](../../challenge-sdk/pkg/challengeclient/schedules/schedules_client.go) | [AdminListSchedulesShort](../../services-api/pkg/service/challenge/schedules.go) | [AdminListSchedulesShort](../../samples/cli/cmd/challenge/schedules/adminListSchedules.go) |
+| `/challenge/v1/public/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}/schedules` | GET | PublicListSchedulesByGoalShort | [PublicListSchedulesByGoalShort](../../challenge-sdk/pkg/challengeclient/schedules/schedules_client.go) | [PublicListSchedulesByGoalShort](../../services-api/pkg/service/challenge/schedules.go) | [PublicListSchedulesByGoalShort](../../samples/cli/cmd/challenge/schedules/publicListSchedulesByGoal.go) |
+| `/challenge/v1/public/namespaces/{namespace}/challenges/{challengeCode}/schedules` | GET | PublicListSchedulesShort | [PublicListSchedulesShort](../../challenge-sdk/pkg/challengeclient/schedules/schedules_client.go) | [PublicListSchedulesShort](../../services-api/pkg/service/challenge/schedules.go) | [PublicListSchedulesShort](../../samples/cli/cmd/challenge/schedules/publicListSchedules.go) |
+
 ### Plugins Wrapper:  [Plugins](../../services-api/pkg/service/challenge/plugins.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -80,6 +88,7 @@
 | `model.CreateGoalRequest` | [ModelCreateGoalRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_create_goal_request.go) |
 | `model.EvaluatePlayerProgressionRequest` | [ModelEvaluatePlayerProgressionRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_evaluate_player_progression_request.go) |
 | `model.GetGoalsResponse` | [ModelGetGoalsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_get_goals_response.go) |
+| `model.GoalInSchedulesResponse` | [ModelGoalInSchedulesResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_in_schedules_response.go) |
 | `model.GoalMeta` | [ModelGoalMeta ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_meta.go) |
 | `model.GoalOrder` | [ModelGoalOrder ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_order.go) |
 | `model.GoalProgressionResponse` | [ModelGoalProgressionResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_progression_response.go) |
@@ -87,6 +96,8 @@
 | `model.GoalSchedule` | [ModelGoalSchedule ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_schedule.go) |
 | `model.ListChallengeResponse` | [ModelListChallengeResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_challenge_response.go) |
 | `model.ListPeriodsResponse` | [ModelListPeriodsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_periods_response.go) |
+| `model.ListScheduleByGoalResponse` | [ModelListScheduleByGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_schedule_by_goal_response.go) |
+| `model.ListSchedulesResponse` | [ModelListSchedulesResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_schedules_response.go) |
 | `model.ListUserRewardsResponse` | [ModelListUserRewardsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_user_rewards_response.go) |
 | `model.Pagination` | [ModelPagination ](../../challenge-sdk/pkg/challengeclientmodels/model_pagination.go) |
 | `model.PluginAsignmentAppConfig` | [ModelPluginAsignmentAppConfig ](../../challenge-sdk/pkg/challengeclientmodels/model_plugin_asignment_app_config.go) |
@@ -99,6 +110,8 @@
 | `model.ResetConfig` | [ModelResetConfig ](../../challenge-sdk/pkg/challengeclientmodels/model_reset_config.go) |
 | `model.Reward` | [ModelReward ](../../challenge-sdk/pkg/challengeclientmodels/model_reward.go) |
 | `model.Schedule` | [ModelSchedule ](../../challenge-sdk/pkg/challengeclientmodels/model_schedule.go) |
+| `model.ScheduleByGoalResponse` | [ModelScheduleByGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_schedule_by_goal_response.go) |
+| `model.ScheduleResponse` | [ModelScheduleResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_schedule_response.go) |
 | `model.UpdateChallengeRequest` | [ModelUpdateChallengeRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_update_challenge_request.go) |
 | `model.UpdateChallengeScheduleRequest` | [ModelUpdateChallengeScheduleRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_update_challenge_schedule_request.go) |
 | `model.UpdateGoalRequest` | [ModelUpdateGoalRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_update_goal_request.go) |

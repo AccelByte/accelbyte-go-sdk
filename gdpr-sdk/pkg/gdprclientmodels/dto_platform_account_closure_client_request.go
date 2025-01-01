@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // DTOPlatformAccountClosureClientRequest Dto platform account closure client request
@@ -18,47 +17,35 @@ import (
 // swagger:model Dto platform account closure client request.
 type DTOPlatformAccountClosureClientRequest struct {
 
-	// clientid
-	// Required: true
-	ClientID *string `json:"clientId"`
+	// required for xbox
+	BpCert string `json:"bpCert,omitempty"`
 
-	// secret
-	// Required: true
-	Secret *string `json:"secret"`
+	// required for xbox
+	BpCertFileName string `json:"bpCertFileName,omitempty"`
+
+	// required for psn
+	ClientID string `json:"clientId,omitempty"`
+
+	// required for xbox
+	Password string `json:"password,omitempty"`
+
+	// required for steam
+	PublisherKey string `json:"publisherKey,omitempty"`
+
+	// required for xbox
+	SandboxID string `json:"sandboxId,omitempty"`
+
+	// required for psn
+	Secret string `json:"secret,omitempty"`
 }
 
 // Validate validates this Dto platform account closure client request
 func (m *DTOPlatformAccountClosureClientRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateClientID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateSecret(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DTOPlatformAccountClosureClientRequest) validateClientID(formats strfmt.Registry) error {
-
-	if err := validate.Required("clientId", "body", m.ClientID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DTOPlatformAccountClosureClientRequest) validateSecret(formats strfmt.Registry) error {
-
-	if err := validate.Required("secret", "body", m.Secret); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -38,6 +38,64 @@ func (aaa *PlatformAccountClosureClientService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetPlatformAccountClosureClientsShort instead.
+func (aaa *PlatformAccountClosureClientService) AdminGetPlatformAccountClosureClients(input *platform_account_closure_client.AdminGetPlatformAccountClosureClientsParams) (*gdprclientmodels.DTOPlatformAccountClosureClientsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PlatformAccountClosureClient.AdminGetPlatformAccountClosureClients(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminValidateXboxBPCertFileShort instead.
+func (aaa *PlatformAccountClosureClientService) AdminValidateXboxBPCertFile(input *platform_account_closure_client.AdminValidateXboxBPCertFileParams) (*gdprclientmodels.DTOXboxBPCertValidationResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PlatformAccountClosureClient.AdminValidateXboxBPCertFile(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetPlatformAccountClosureClientShort instead.
 func (aaa *PlatformAccountClosureClientService) AdminGetPlatformAccountClosureClient(input *platform_account_closure_client.AdminGetPlatformAccountClosureClientParams) (*gdprclientmodels.DTOPlatformAccountClosureClientResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -120,6 +178,92 @@ func (aaa *PlatformAccountClosureClientService) AdminDeletePlatformAccountClosur
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminMockPlatformAccountClosureDataShort instead.
+func (aaa *PlatformAccountClosureClientService) AdminMockPlatformAccountClosureData(input *platform_account_closure_client.AdminMockPlatformAccountClosureDataParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PlatformAccountClosureClient.AdminMockPlatformAccountClosureData(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *PlatformAccountClosureClientService) AdminGetPlatformAccountClosureClientsShort(input *platform_account_closure_client.AdminGetPlatformAccountClosureClientsParams) (*gdprclientmodels.DTOPlatformAccountClosureClientsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPlatformAccountClosureClient != nil {
+		input.XFlightId = tempFlightIdPlatformAccountClosureClient
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PlatformAccountClosureClient.AdminGetPlatformAccountClosureClientsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PlatformAccountClosureClientService) AdminValidateXboxBPCertFileShort(input *platform_account_closure_client.AdminValidateXboxBPCertFileParams) (*gdprclientmodels.DTOXboxBPCertValidationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPlatformAccountClosureClient != nil {
+		input.XFlightId = tempFlightIdPlatformAccountClosureClient
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.PlatformAccountClosureClient.AdminValidateXboxBPCertFileShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *PlatformAccountClosureClientService) AdminGetPlatformAccountClosureClientShort(input *platform_account_closure_client.AdminGetPlatformAccountClosureClientParams) (*gdprclientmodels.DTOPlatformAccountClosureClientResponse, error) {
@@ -205,6 +349,36 @@ func (aaa *PlatformAccountClosureClientService) AdminDeletePlatformAccountClosur
 	}
 
 	_, err := aaa.Client.PlatformAccountClosureClient.AdminDeletePlatformAccountClosureClientShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *PlatformAccountClosureClientService) AdminMockPlatformAccountClosureDataShort(input *platform_account_closure_client.AdminMockPlatformAccountClosureDataParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdPlatformAccountClosureClient != nil {
+		input.XFlightId = tempFlightIdPlatformAccountClosureClient
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.PlatformAccountClosureClient.AdminMockPlatformAccountClosureDataShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

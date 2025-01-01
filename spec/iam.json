@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.24.2"
+    "version": "7.25.3"
   },
   "schemes": [
     "https"
@@ -10315,10 +10315,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Operation succeeded",
-            "schema": {
-              "$ref": "#/definitions/model.LoginAllowlistResponse"
-            }
+            "description": "Operation succeeded"
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10240\u003c/td\u003e\u003ctd\u003enamespace is not game namespace\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10470\u003c/td\u003e\u003ctd\u003erole is empty\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -19063,6 +19060,76 @@
         }
       }
     },
+    "/iam/v3/authenticateWithLink/forward": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This endpoint is being used to authenticate a user account and perform platform link. \nIt validates user\u0026#39;s email / username and password. \nIf user already enable 2FA, then invoke _/mfa/verify_ using **mfa_token** from this endpoint response.\n\n## Device Cookie Validation\n\nDevice Cookie is used to protect the user account from brute force login attack, [more detail from OWASP](https://owasp.org/www-community/Slow_Down_Online_Guessing_Attacks_with_Device_Cookies).\nThis endpoint will read device cookie from cookie **auth-trust-id**. If device cookie not found, it will generate a new one and set it into cookie when successfully authenticate.",
+        "operationId": "AuthenticateAndLinkForwardV3",
+        "parameters": [
+          {
+            "description": "Client ID",
+            "in": "formData",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform linking Token",
+            "in": "formData",
+            "name": "linkingToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Account password",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Account username",
+            "in": "formData",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirect to clients redirection URL with code or redirect to login web with error on the query parameter",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Authentication with platform link, the response will be a forward",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ],
+        "x-errorCodes": {}
+      }
+    },
     "/iam/v3/headless/token": {
       "post": {
         "consumes": [
@@ -19144,6 +19211,18 @@
             "name": "platformId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Redirect uri",
+            "in": "formData",
+            "name": "redirectUri",
+            "type": "string"
+          },
+          {
+            "description": "State",
+            "in": "formData",
+            "name": "state",
+            "type": "string"
           }
         ],
         "produces": [
@@ -19210,11 +19289,11 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "This endpoint is being used to generate user\u0026#39;s token by one time link code.\nIt require publisher ClientID\nIt required a code which can be generated from \u0026lt;code\u0026gt;/iam/v3/link/code/request\u0026lt;/code\u0026gt;.\n\nThis endpoint support creating transient token by utilizing **isTransient** param:\n**isTransient=true** will generate a transient token with a short Time Expiration and without a refresh token\n**isTransient=false** will consume the one-time code and generate the access token with a refresh token.",
+        "description": "This endpoint is being used to generate user\u0026#39;s token by one time link code.\nIt requires a code which can be generated from \u0026lt;code\u0026gt;/iam/v3/link/code/request\u0026lt;/code\u0026gt; or \u0026lt;code\u0026gt;/iam/v3/public/users/me/link/forward\u0026lt;/code\u0026gt;.\n\nThis endpoint support creating transient token by utilizing **isTransient** param:\n**isTransient=true** will generate a transient token with a short Time Expiration and without a refresh token\n**isTransient=false** will consume the one-time code and generate the access token with a refresh token.",
         "operationId": "RequestTokenByOneTimeLinkCodeResponseV3",
         "parameters": [
           {
-            "description": "publisher clientID",
+            "description": "client id",
             "in": "formData",
             "name": "client_id",
             "required": true,
@@ -19254,7 +19333,7 @@
           }
         },
         "security": [],
-        "summary": "Generate publisher token by headless account's one time link code",
+        "summary": "Generate token by headless account's one time link code",
         "tags": [
           "OAuth2.0 - Extension"
         ],
@@ -19570,6 +19649,12 @@
             "type": "string"
           },
           {
+            "description": "The that platform should be blocked in login website, for example, the platform that generate the one time link code should be blocked in login website",
+            "in": "query",
+            "name": "blockedPlatformId",
+            "type": "string"
+          },
+          {
             "description": "Value generated by transforming code verifier using code challenge method. Mandatory for public client.",
             "in": "query",
             "name": "code_challenge",
@@ -19593,6 +19678,20 @@
             "name": "createHeadless",
             "type": "boolean",
             "x-omitempty": false
+          },
+          {
+            "default": false,
+            "description": "If need use new login web based OAuth flow",
+            "in": "query",
+            "name": "loginWebBased",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "description": "The nonce parameter complies with the OIDC standard documentation: https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest",
+            "in": "query",
+            "name": "nonce",
+            "type": "string"
           },
           {
             "description": "One time link code for headless account to link. Can get from [/iam/v3/link/code/request]",
@@ -19945,6 +20044,89 @@
             "description": "Unauthorized",
             "schema": {
               "$ref": "#/definitions/oauthmodel.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Verify 2FA code",
+        "tags": [
+          "OAuth2.0"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/iam/v3/oauth/mfa/verify/forward": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "This is a forward version for \u0026#39;/mfa/verify\u0026#39;. If there is any error, it will redirect to login website with error details.\nIf success, it will forward to auth request redirect url\nIf got error, it will forward to login website\nVerify 2FA code\nThis endpoint is used for verifying 2FA code.\n## 2FA remember device\nTo remember device for 2FA, should provide cookie: device_token or header: Device-Token",
+        "operationId": "Verify2FACodeForward",
+        "parameters": [
+          {
+            "description": "client id",
+            "in": "formData",
+            "name": "clientId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "code",
+            "in": "formData",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "factor",
+            "in": "formData",
+            "name": "factor",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "mfa token",
+            "in": "formData",
+            "name": "mfaToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "default factor, can be retrieved from the previous step",
+            "in": "formData",
+            "name": "defaultFactor",
+            "type": "string"
+          },
+          {
+            "description": "factors, can be retrieved from the previous step",
+            "in": "formData",
+            "name": "factors",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "remember device",
+            "in": "formData",
+            "name": "rememberDevice",
+            "type": "boolean",
+            "x-omitempty": false
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirect to clients redirection URL with code or redirect to login web with error on the query parameter",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
             }
           }
         },
@@ -21470,7 +21652,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users": {
       "get": {
-        "description": "This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.\nThe query length should between 3-20, otherwise will not query the database. \nThe default limit value is 20.\n\n## Searching by 3rd party platform\n\n**Note: searching by 3rd party platform display name will use exact query, not fuzzy query.**\n\nStep when searching by 3rd party platform display name:\n  1. set __by__ to __thirdPartyPlatform__\n  2. set __platformId__ to the _supported platform id_\n  3. set __platformBy__ to __platformDisplayName__\n\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1\n\n",
+        "description": "This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.\nThe query length should between 3-20, otherwise will not query the database. \nThe default limit value is 20.\n\n## Searching by 3rd party platform\n\n**Note: searching by 3rd party platform display name will use exact query, not fuzzy query.**\n\nStep when searching by 3rd party platform display name:\n  1. set __by__ to __thirdPartyPlatform__\n  2. set __platformId__ to the _supported platform id_\n  3. set __platformBy__ to __platformDisplayName__\n\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1\n\n## IP Rate Limit validation\n\nThis API have IP Rate Limit validation, which activates when triggered excessively from the same IP address (throw 429 http error).\nThe default rule: 10 max request per 30 seconds (per unique IP address).\n\nTo mitigate potential unexpected issues in your implementation, consider adhering to these best practices as illustrated in the following examples:\n* Delay invoking the Search API if the player continues typing in the search box, and only utilize the latest input provided.\n* Prevent players from double-clicking or making multiple clicks within a short time frame.",
         "operationId": "PublicSearchUserV3",
         "parameters": [
           {
@@ -24697,6 +24879,50 @@
         "x-security": {}
       }
     },
+    "/iam/v3/public/users/me/code/request/forward": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This API need the upgradeToken in request body.\nAvailable contexts for use : \n1. **upgradeHeadlessAccount**\n\tThe context is intended to be used whenever the email address wanted to be automatically verified on upgrading a headless account.  \n\tIf this context used, IAM rejects the request if the email address is already used by others by returning HTTP Status Code 409.\n",
+        "operationId": "PublicSendCodeForwardV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.SendVerificationCodeRequestV3"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirected to login website if there is any error.",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Send verification code to user",
+        "tags": [
+          "Users"
+        ],
+        "x-errorCodes": {},
+        "x-security": {}
+      }
+    },
     "/iam/v3/public/users/me/headless/link/conflict": {
       "get": {
         "description": "Note:\n1. My account should be full account\n2. My account not linked to request headless account\u0026#39;s third platform.\n\nAfter client resolving the conflict, it will call endpoint \u0026lt;code\u0026gt;/iam/v3/public/users/me/headless/linkWithProgression [POST]\u0026lt;/code\u0026gt;",
@@ -24789,7 +25015,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -24825,8 +25051,63 @@
         "x-errorCodes": {
           "20000": "internal server error",
           "20001": "unauthorized access",
-          "20002": "validation error",
           "20013": "insufficient permissions",
+          "20022": "token is not user token"
+        },
+        "x-security": {}
+      }
+    },
+    "/iam/v3/public/users/me/link/redirection": {
+      "get": {
+        "description": "Get my redirect uri after link, this endpoint will return NotFound(404) if redirect uri is not found",
+        "operationId": "PublicGetMyRedirectionAfterLinkV3",
+        "parameters": [
+          {
+            "description": "one time link code",
+            "in": "query",
+            "name": "oneTimeLinkCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.OneTimeCodeLinkRedirectionResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get My Forward URI Link",
+        "tags": [
+          "Users"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
           "20022": "token is not user token"
         },
         "x-security": {}
@@ -24885,7 +25166,8 @@
           "20001": "unauthorized access",
           "20002": "validation error",
           "20013": "insufficient permissions"
-        }
+        },
+        "x-security": {}
       }
     },
     "/iam/v3/public/users/me/verify_link/request": {
@@ -24952,6 +25234,50 @@
           "20002": "validation error",
           "20007": "too many requests",
           "20019": "unable to parse request body",
+          "20022": "token is not user token"
+        },
+        "x-security": {}
+      }
+    },
+    "/iam/v3/public/users/userinfo": {
+      "get": {
+        "description": "This API is created to match openid userinfo standard =\u0026gt; https://openid.net/specs/openid-connect-core-1_0.html#UserInfo",
+        "operationId": "PublicGetOpenidUserInfoV3",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.PublicOpenIDUserInfoResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get my user info",
+        "tags": [
+          "Users"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
           "20022": "token is not user token"
         },
         "x-security": {}
@@ -25179,6 +25505,55 @@
           }
         },
         "summary": "Generate target token by code",
+        "tags": [
+          "OAuth2.0 - Extension"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/iam/v3/upgrade/forward": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "In login website based flow, after account upgraded, we need this API to handle the forward\n",
+        "operationId": "UpgradeAndAuthenticateForwardV3",
+        "parameters": [
+          {
+            "description": "Client ID",
+            "in": "formData",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "upgrade success token",
+            "in": "formData",
+            "name": "upgrade_success_token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirect to clients redirection URL with code",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Handle the forward for account upgrade",
         "tags": [
           "OAuth2.0 - Extension"
         ],
@@ -33405,6 +33780,49 @@
           "20019": "unable to parse request body"
         }
       }
+    },
+    "/iam/v4/public/users/me/headless/code/verify/forward": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This is a forward version for code verify.\n     \tThe endpoint upgrades a headless account by linking the headless account with the email address, username, and password. \nBy upgrading the headless account into a full account, the user could use the email address, username, and password for using Justice IAM.\n\nThe endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. \nIn order to get a verification code for the endpoint, please check the [send verification code endpoint](#operations-Users-PublicSendCodeForwardV3).\n\nThis endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.\n",
+        "operationId": "PublicUpgradeHeadlessWithCodeV4Forward",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/account.upgradeHeadlessAccountWithVerificationCodeRequestV4"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "302": {
+            "description": "Found. Redirected to login website with result.\u003c/br\u003e If validateOnly=true, then the redirection with contain validate result;\u003c/br\u003eIf validateOnly=false, then the redirection will contain the upgrade result. If upgrade succeed, then the response will contain upgrade_success_token",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Upgrade the headless account and automatically verify the email address if the upgrade succeeds.",
+        "tags": [
+          "Users V4"
+        ],
+        "x-errorCodes": {}
+      }
     }
   },
   "definitions": {
@@ -35978,6 +36396,19 @@
           },
           "type": "array"
         },
+        "platformId": {
+          "type": "string"
+        },
+        "progressions": {
+          "description": "progression data of each game account",
+          "items": {
+            "$ref": "#/definitions/model.ProgressionInfo"
+          },
+          "type": "array"
+        },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
         "userName": {
           "type": "string"
         }
@@ -37661,6 +38092,16 @@
         "roleId"
       ]
     },
+    "model.OneTimeCodeLinkRedirectionResponse": {
+      "properties": {
+        "redirectUri": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "redirectUri"
+      ]
+    },
     "model.PermissionDeleteRequest": {
       "properties": {
         "Action": {
@@ -37794,6 +38235,37 @@
         "PlatformUserID"
       ]
     },
+    "model.ProgressionInfo": {
+      "properties": {
+        "createdAt": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "dlcs": {
+          "$ref": "#/definitions/platform.DLCAggResponse"
+        },
+        "lastLoginTime": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "userBan": {
+          "$ref": "#/definitions/model.SimpleUserBan"
+        },
+        "wallets": {
+          "items": {
+            "$ref": "#/definitions/platform.WalletAggResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "createdAt",
+        "namespace"
+      ]
+    },
     "model.PublicInviteUserRequestV4": {
       "properties": {
         "additionalData": {
@@ -37816,6 +38288,28 @@
         "emailAddress",
         "namespace",
         "namespaceDisplayName"
+      ]
+    },
+    "model.PublicOpenIDUserInfoResponse": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "picture": {
+          "type": "string"
+        },
+        "sub": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "name",
+        "picture",
+        "sub"
       ]
     },
     "model.PublicThirdPartyPlatformInfo": {
@@ -38991,6 +39485,10 @@
         },
         "languageTag": {
           "type": "string"
+        },
+        "upgradeToken": {
+          "description": "required when in /me/code/request/forward",
+          "type": "string"
         }
       },
       "required": [
@@ -39034,6 +39532,21 @@
         "field",
         "type",
         "updatedAt"
+      ]
+    },
+    "model.SimpleUserBan": {
+      "properties": {
+        "ban": {
+          "type": "string"
+        },
+        "endDate": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ban",
+        "endDate"
       ]
     },
     "model.ThirdPartyLoginPlatformCredentialRequest": {
@@ -41388,6 +41901,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "platformId": {
+          "type": "string"
+        },
         "valid": {
           "type": "boolean",
           "x-omitempty": false
@@ -41796,6 +42312,36 @@
         "reason"
       ]
     },
+    "platform.DLCAggResponse": {
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "totalCount"
+      ]
+    },
+    "platform.WalletAggResponse": {
+      "properties": {
+        "balance": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "currencySymbol": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "balance",
+        "currencyCode",
+        "currencySymbol"
+      ]
+    },
     "rest.ErrorResponse": {
       "properties": {
         "errorCode": {
@@ -41864,11 +42410,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-12T10:52:40+00:00",
-    "gitHash": "37ce121045856d5ee628bb1d0b732de14813b181",
+    "buildDate": "2024-12-27T05:39:52+00:00",
+    "gitHash": "3213c5bceb32c25ac960489379bec2ef1ad03fc9",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.24.2",
+    "version": "7.25.3",
     "version-roles-seeding": "1.2.80"
   }
 }

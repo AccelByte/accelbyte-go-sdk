@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in AdminGetGoalsParams
+const (
+	AdminGetGoalsCreatedAtConstant     = "createdAt"
+	AdminGetGoalsCreatedAtAscConstant  = "createdAt:asc"
+	AdminGetGoalsCreatedAtDescConstant = "createdAt:desc"
+	AdminGetGoalsUpdatedAtConstant     = "updatedAt"
+	AdminGetGoalsUpdatedAtAscConstant  = "updatedAt:asc"
+	AdminGetGoalsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
 // NewAdminGetGoalsParams creates a new AdminGetGoalsParams object
 // with the default values initialized.
 func NewAdminGetGoalsParams() *AdminGetGoalsParams {
@@ -108,10 +118,6 @@ type AdminGetGoalsParams struct {
 	/*SortBy
 	    sort list by attributes.
 				default value: updatedAt:desc.
-				available value:
-					<li>createdAt, createdAt:desc, createdAt:asc</li>
-					<li>updatedAt, updatedAt:desc, updatedAt:asc</li>
-
 
 	*/
 	SortBy *string

@@ -37,11 +37,13 @@ var AdminConsumeUserItemCmd = &cobra.Command{
 		inventoryId, _ := cmd.Flags().GetString("inventoryId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		dateRangeValidation, _ := cmd.Flags().GetString("dateRangeValidation")
 		input := &admin_items.AdminConsumeUserItemParams{
-			Body:        body,
-			InventoryID: inventoryId,
-			Namespace:   namespace,
-			UserID:      userId,
+			Body:                body,
+			InventoryID:         inventoryId,
+			Namespace:           namespace,
+			UserID:              userId,
+			DateRangeValidation: &dateRangeValidation,
 		}
 		ok, errOK := adminItemsService.AdminConsumeUserItemShort(input)
 		if errOK != nil {
@@ -65,4 +67,5 @@ func init() {
 	_ = AdminConsumeUserItemCmd.MarkFlagRequired("namespace")
 	AdminConsumeUserItemCmd.Flags().String("userId", "", "User id")
 	_ = AdminConsumeUserItemCmd.MarkFlagRequired("userId")
+	AdminConsumeUserItemCmd.Flags().String("dateRangeValidation", "", "Date range validation")
 }

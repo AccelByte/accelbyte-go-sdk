@@ -8,7 +8,7 @@
     },
     "description": "Justice Inventory Service",
     "title": "justice-inventory-service",
-    "version": "0.2.7"
+    "version": "0.2.9"
   },
   "schemes": [
     "https"
@@ -100,7 +100,14 @@
         "tags": [
           "Admin Chaining Operations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations": {
@@ -172,7 +179,14 @@
         "tags": [
           "Admin Integration Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
@@ -235,7 +249,14 @@
         "tags": [
           "Admin Integration Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations/{integrationConfigurationId}": {
@@ -313,7 +334,14 @@
         "tags": [
           "Admin Integration Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/integrationConfigurations/{integrationConfigurationId}/status": {
@@ -391,7 +419,14 @@
         "tags": [
           "Admin Integration Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:INTEGRATIONCONFIGURATION [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories": {
@@ -481,7 +516,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
@@ -538,7 +580,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}": {
@@ -607,7 +656,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [DELETE]"
+            ]
+          }
+        ]
       },
       "get": {
         "description": "\n\t\t\tGetting an inventory info.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]\n\t\t",
@@ -666,7 +722,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [READ]"
+            ]
+          }
+        ]
       },
       "put": {
         "consumes": [
@@ -736,7 +799,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/items": {
@@ -830,7 +900,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventories/{inventoryId}/slots/{slotId}/sourceItems/{sourceItemId}": {
@@ -905,7 +982,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [READ]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventoryConfigurations": {
@@ -989,7 +1073,14 @@
         "tags": [
           "Admin Inventory Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
@@ -1052,7 +1143,14 @@
         "tags": [
           "Admin Inventory Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/inventoryConfigurations/{inventoryConfigurationId}": {
@@ -1110,7 +1208,14 @@
         "tags": [
           "Admin Inventory Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [DELETE]"
+            ]
+          }
+        ]
       },
       "get": {
         "description": "\n\t\t\tGetting an inventory configuration info.\n\t\t\t\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]\n\t\t",
@@ -1169,7 +1274,14 @@
         "tags": [
           "Admin Inventory Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [READ]"
+            ]
+          }
+        ]
       },
       "put": {
         "consumes": [
@@ -1245,7 +1357,14 @@
         "tags": [
           "Admin Inventory Configurations"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:CONFIGURATION [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/itemtypes": {
@@ -1320,7 +1439,14 @@
         "tags": [
           "Admin Item Types"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
@@ -1383,7 +1509,14 @@
         "tags": [
           "Admin Item Types"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/itemtypes/{itemTypeName}": {
@@ -1435,7 +1568,14 @@
         "tags": [
           "Admin Item Types"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:ITEMTYPE [DELETE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/tags": {
@@ -1516,7 +1656,14 @@
         "tags": [
           "Admin Tags"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [READ]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
@@ -1579,7 +1726,14 @@
         "tags": [
           "Admin Tags"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/tags/{tagName}": {
@@ -1631,7 +1785,14 @@
         "tags": [
           "Admin Tags"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:INVENTORY:TAG [DELETE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/consume": {
@@ -1669,6 +1830,12 @@
             "in": "path",
             "name": "userId",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "default is false",
+            "in": "query",
+            "name": "dateRangeValidation",
             "type": "string"
           }
         ],
@@ -1710,7 +1877,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items": {
@@ -1795,7 +1969,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [DELETE]"
+            ]
+          }
+        ]
       },
       "post": {
         "consumes": [
@@ -1884,7 +2065,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
+            ]
+          }
+        ]
       },
       "put": {
         "consumes": [
@@ -1967,7 +2155,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventories/{inventoryId}/items/bulk": {
@@ -2070,7 +2265,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/inventoryConfigurations/{inventoryConfigurationCode}/inventories": {
@@ -2164,7 +2366,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items": {
@@ -2230,7 +2439,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/bulk": {
@@ -2326,7 +2542,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/items/entitlements/sync": {
@@ -2396,7 +2619,14 @@
         "tags": [
           "Admin Items"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/admin/namespaces/{namespace}/users/{userId}/purchaseable": {
@@ -2471,7 +2701,14 @@
         "tags": [
           "Admin Inventories"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/inventory/v1/public/namespaces/{namespace}/inventoryConfigurations": {
@@ -3127,7 +3364,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tMove items between inventories that is owned by the same user.\n\t\t",
+        "description": "Move items between inventories that is owned by the same user.\n\nFor Ecommerce items, the *qty* is *useCount*. For example, moving 2 of an item\u0026#39;s *qty* will move 2 of the entitlement\u0026#39;s *useCount*.\n",
         "operationId": "PublicMoveMyItems",
         "parameters": [
           {
@@ -3383,6 +3620,10 @@
     },
     "apimodels.ConsumeItem": {
       "properties": {
+        "dateRangeValidation": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "inventoryId": {
           "type": "string"
         },
@@ -4549,11 +4790,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-11T07:48:13+00:00",
-    "gitHash": "99f21d39616339bca8b8b06159338e3fcc366ef4",
+    "buildDate": "2024-12-23T07:51:12+00:00",
+    "gitHash": "526e312671307d3ce764fcdc425bae0d4ac729a7",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.7",
+    "version": "0.2.9",
     "version-roles-seeding": "1.2.34"
   }
 }

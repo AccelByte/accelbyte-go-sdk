@@ -535,4 +535,7 @@ func init() {
 	PlatformCmd.AddCommand(fulfillment.RetryFulfillItemsCmd)
 	PlatformCmd.AddCommand(fulfillment.RevokeItemsCmd)
 	PlatformCmd.AddCommand(iap.V2PublicFulfillAppleIAPItemCmd)
+	PlatformCmd.AddCommand(fulfillment.FulfillItemsV3Cmd)
+	PlatformCmd.AddCommand(fulfillment.RetryFulfillItemsV3Cmd)
+	PlatformCmd.AddCommand(fulfillment.RevokeItemsV3Cmd)
 }

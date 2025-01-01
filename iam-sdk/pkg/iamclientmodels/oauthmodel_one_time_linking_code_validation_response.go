@@ -22,6 +22,9 @@ type OauthmodelOneTimeLinkingCodeValidationResponse struct {
 	// Required: true
 	Expired *bool `json:"expired"`
 
+	// platformid
+	PlatformID string `json:"platformId,omitempty"`
+
 	// valid
 	// Required: true
 	Valid *bool `json:"valid"`

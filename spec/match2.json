@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.28.0"
+    "version": "2.30.0"
   },
   "schemes": [
     "https"
@@ -3303,6 +3303,9 @@
           },
           "type": "array"
         },
+        "teamID": {
+          "type": "string"
+        },
         "userIDs": {
           "items": {
             "type": "string"
@@ -3520,6 +3523,9 @@
             "$ref": "#/definitions/matchmaker.Party"
           },
           "type": "array"
+        },
+        "TeamID": {
+          "type": "string"
         },
         "UserIDs": {
           "items": {
@@ -3963,9 +3969,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-11-06T07:10:54+00:00",
-    "gitHash": "f0c6d2a41311cb30bf1887b1a267dca69c3b1f67",
-    "version": "2.28.0",
+    "buildDate": "2024-12-18T02:19:43+00:00",
+    "gitHash": "c6f7eca9054e0b89d7e3b69e2329f276a2e17c05",
+    "version": "2.30.0",
     "version-roles-seeding": "1.2.75"
   }
 }

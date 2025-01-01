@@ -45,7 +45,9 @@ Scope: account
 
 ------
 Supported platforms:
-* psn
+- psn
+- steamnetwork
+- xbox
 */
 func (a *Client) AdminGetUserPlatformAccountClosureHistories(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, *AdminGetUserPlatformAccountClosureHistoriesBadRequest, *AdminGetUserPlatformAccountClosureHistoriesUnauthorized, *AdminGetUserPlatformAccountClosureHistoriesForbidden, *AdminGetUserPlatformAccountClosureHistoriesInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -111,7 +113,9 @@ Scope: account
 
 ------
 Supported platforms:
-* psn
+- psn
+- steamnetwork
+- xbox
 */
 func (a *Client) AdminGetUserPlatformAccountClosureHistoriesShort(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, error) {
 	// TODO: Validate the params before sending

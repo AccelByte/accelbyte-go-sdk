@@ -21,6 +21,16 @@ import (
 
 // Get the enum in PublicGetUserRewardsParams
 const (
+	PublicGetUserRewardsCreatedAtConstant     = "createdAt"
+	PublicGetUserRewardsCreatedAtAscConstant  = "createdAt:asc"
+	PublicGetUserRewardsCreatedAtDescConstant = "createdAt:desc"
+	PublicGetUserRewardsUpdatedAtConstant     = "updatedAt"
+	PublicGetUserRewardsUpdatedAtAscConstant  = "updatedAt:asc"
+	PublicGetUserRewardsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in PublicGetUserRewardsParams
+const (
 	PublicGetUserRewardsCLAIMEDConstant   = "CLAIMED"
 	PublicGetUserRewardsUNCLAIMEDConstant = "UNCLAIMED"
 )
@@ -96,6 +106,16 @@ type PublicGetUserRewardsParams struct {
 
 	*/
 	Namespace string
+	/*ChallengeCode
+	  reward's challenge code
+
+	*/
+	ChallengeCode *string
+	/*GoalProgressionID
+	  reward's goal progression id
+
+	*/
+	GoalProgressionID *string
 	/*Limit
 	  limit the amount of data retrieved
 
@@ -109,10 +129,6 @@ type PublicGetUserRewardsParams struct {
 	/*SortBy
 	    sort list by attributes.
 				default value: updatedAt:desc.
-				available value:
-					<li>createdAt, createdAt:desc, createdAt:asc</li>
-					<li>updatedAt, updatedAt:desc, updatedAt:asc</li>
-
 
 	*/
 	SortBy *string
@@ -198,6 +214,28 @@ func (o *PublicGetUserRewardsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithChallengeCode adds the challengeCode to the public get user rewards params
+func (o *PublicGetUserRewardsParams) WithChallengeCode(challengeCode *string) *PublicGetUserRewardsParams {
+	o.SetChallengeCode(challengeCode)
+	return o
+}
+
+// SetChallengeCode adds the challengeCode to the public get user rewards params
+func (o *PublicGetUserRewardsParams) SetChallengeCode(challengeCode *string) {
+	o.ChallengeCode = challengeCode
+}
+
+// WithGoalProgressionID adds the goalProgressionID to the public get user rewards params
+func (o *PublicGetUserRewardsParams) WithGoalProgressionID(goalProgressionID *string) *PublicGetUserRewardsParams {
+	o.SetGoalProgressionID(goalProgressionID)
+	return o
+}
+
+// SetGoalProgressionID adds the goalProgressionId to the public get user rewards params
+func (o *PublicGetUserRewardsParams) SetGoalProgressionID(goalProgressionID *string) {
+	o.GoalProgressionID = goalProgressionID
+}
+
 // WithLimit adds the limit to the public get user rewards params
 func (o *PublicGetUserRewardsParams) WithLimit(limit *int64) *PublicGetUserRewardsParams {
 	o.SetLimit(limit)
@@ -253,6 +291,38 @@ func (o *PublicGetUserRewardsParams) WriteToRequest(r runtime.ClientRequest, reg
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.ChallengeCode != nil {
+
+		// query param challengeCode
+		var qrChallengeCode string
+		if o.ChallengeCode != nil {
+			qrChallengeCode = *o.ChallengeCode
+		}
+		qChallengeCode := qrChallengeCode
+		if qChallengeCode != "" {
+			if err := r.SetQueryParam("challengeCode", qChallengeCode); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.GoalProgressionID != nil {
+
+		// query param goalProgressionId
+		var qrGoalProgressionID string
+		if o.GoalProgressionID != nil {
+			qrGoalProgressionID = *o.GoalProgressionID
+		}
+		qGoalProgressionID := qrGoalProgressionID
+		if qGoalProgressionID != "" {
+			if err := r.SetQueryParam("goalProgressionId", qGoalProgressionID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

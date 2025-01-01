@@ -30,18 +30,160 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminReadPartySessionStorage(params *AdminReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadPartySessionStorageOK, *AdminReadPartySessionStorageBadRequest, *AdminReadPartySessionStorageUnauthorized, *AdminReadPartySessionStorageNotFound, *AdminReadPartySessionStorageInternalServerError, error)
+	AdminReadPartySessionStorageShort(params *AdminReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadPartySessionStorageOK, error)
 	AdminReadSessionStorage(params *AdminReadSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadSessionStorageOK, *AdminReadSessionStorageBadRequest, *AdminReadSessionStorageUnauthorized, *AdminReadSessionStorageNotFound, *AdminReadSessionStorageInternalServerError, error)
 	AdminReadSessionStorageShort(params *AdminReadSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadSessionStorageOK, error)
 	AdminDeleteUserSessionStorage(params *AdminDeleteUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserSessionStorageNoContent, *AdminDeleteUserSessionStorageBadRequest, *AdminDeleteUserSessionStorageUnauthorized, *AdminDeleteUserSessionStorageNotFound, *AdminDeleteUserSessionStorageInternalServerError, error)
 	AdminDeleteUserSessionStorageShort(params *AdminDeleteUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserSessionStorageNoContent, error)
 	AdminReadUserSessionStorage(params *AdminReadUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadUserSessionStorageOK, *AdminReadUserSessionStorageBadRequest, *AdminReadUserSessionStorageUnauthorized, *AdminReadUserSessionStorageNotFound, *AdminReadUserSessionStorageInternalServerError, error)
 	AdminReadUserSessionStorageShort(params *AdminReadUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadUserSessionStorageOK, error)
+	PublicReadPartySessionStorage(params *PublicReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReadPartySessionStorageOK, *PublicReadPartySessionStorageBadRequest, *PublicReadPartySessionStorageUnauthorized, *PublicReadPartySessionStorageNotFound, *PublicReadPartySessionStorageInternalServerError, error)
+	PublicReadPartySessionStorageShort(params *PublicReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReadPartySessionStorageOK, error)
+	PublicUpdateInsertPartySessionStorageReserved(params *PublicUpdateInsertPartySessionStorageReservedParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageReservedOK, *PublicUpdateInsertPartySessionStorageReservedBadRequest, *PublicUpdateInsertPartySessionStorageReservedUnauthorized, *PublicUpdateInsertPartySessionStorageReservedForbidden, *PublicUpdateInsertPartySessionStorageReservedNotFound, *PublicUpdateInsertPartySessionStorageReservedInternalServerError, error)
+	PublicUpdateInsertPartySessionStorageReservedShort(params *PublicUpdateInsertPartySessionStorageReservedParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageReservedOK, error)
 	PublicUpdateInsertSessionStorageLeader(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, *PublicUpdateInsertSessionStorageLeaderBadRequest, *PublicUpdateInsertSessionStorageLeaderUnauthorized, *PublicUpdateInsertSessionStorageLeaderForbidden, *PublicUpdateInsertSessionStorageLeaderNotFound, *PublicUpdateInsertSessionStorageLeaderInternalServerError, error)
 	PublicUpdateInsertSessionStorageLeaderShort(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, error)
 	PublicUpdateInsertSessionStorage(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, *PublicUpdateInsertSessionStorageBadRequest, *PublicUpdateInsertSessionStorageUnauthorized, *PublicUpdateInsertSessionStorageForbidden, *PublicUpdateInsertSessionStorageNotFound, *PublicUpdateInsertSessionStorageInternalServerError, error)
 	PublicUpdateInsertSessionStorageShort(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminReadPartySessionStorageShort instead.
+
+AdminReadPartySessionStorage read party session storage.
+Read Party Session Storage by partyID
+Party Storage example:
+```
+{
+"reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) AdminReadPartySessionStorage(params *AdminReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadPartySessionStorageOK, *AdminReadPartySessionStorageBadRequest, *AdminReadPartySessionStorageUnauthorized, *AdminReadPartySessionStorageNotFound, *AdminReadPartySessionStorageInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminReadPartySessionStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminReadPartySessionStorage",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/parties/{partyId}/storage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminReadPartySessionStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminReadPartySessionStorageOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminReadPartySessionStorageBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminReadPartySessionStorageUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminReadPartySessionStorageNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminReadPartySessionStorageInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminReadPartySessionStorageShort read party session storage.
+Read Party Session Storage by partyID
+Party Storage example:
+```
+{
+"reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) AdminReadPartySessionStorageShort(params *AdminReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadPartySessionStorageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminReadPartySessionStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminReadPartySessionStorage",
+		Method:             "GET",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/parties/{partyId}/storage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminReadPartySessionStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminReadPartySessionStorageOK:
+		return v, nil
+	case *AdminReadPartySessionStorageBadRequest:
+		return nil, v
+	case *AdminReadPartySessionStorageUnauthorized:
+		return nil, v
+	case *AdminReadPartySessionStorageNotFound:
+		return nil, v
+	case *AdminReadPartySessionStorageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*
@@ -397,6 +539,303 @@ func (a *Client) AdminReadUserSessionStorageShort(params *AdminReadUserSessionSt
 	case *AdminReadUserSessionStorageNotFound:
 		return nil, v
 	case *AdminReadUserSessionStorageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicReadPartySessionStorageShort instead.
+
+PublicReadPartySessionStorage read party session storage.
+Read Party Session Storage by partyID
+Party Storage example:
+```
+{
+"reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) PublicReadPartySessionStorage(params *PublicReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReadPartySessionStorageOK, *PublicReadPartySessionStorageBadRequest, *PublicReadPartySessionStorageUnauthorized, *PublicReadPartySessionStorageNotFound, *PublicReadPartySessionStorageInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReadPartySessionStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReadPartySessionStorage",
+		Method:             "GET",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/storage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReadPartySessionStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReadPartySessionStorageOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicReadPartySessionStorageBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicReadPartySessionStorageUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicReadPartySessionStorageNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicReadPartySessionStorageInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicReadPartySessionStorageShort read party session storage.
+Read Party Session Storage by partyID
+Party Storage example:
+```
+{
+"reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) PublicReadPartySessionStorageShort(params *PublicReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReadPartySessionStorageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReadPartySessionStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReadPartySessionStorage",
+		Method:             "GET",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/storage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReadPartySessionStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReadPartySessionStorageOK:
+		return v, nil
+	case *PublicReadPartySessionStorageBadRequest:
+		return nil, v
+	case *PublicReadPartySessionStorageUnauthorized:
+		return nil, v
+	case *PublicReadPartySessionStorageNotFound:
+		return nil, v
+	case *PublicReadPartySessionStorageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicUpdateInsertPartySessionStorageReservedShort instead.
+
+PublicUpdateInsertPartySessionStorageReserved update insert party session storage user.
+**For Internal Use Only**
+Update Insert Party Session Reserved Storage User. User can only update or insert user party session storage data itself.
+can store generic json
+example json can store :
+```
+{
+"key": "value",
+"number": 123,
+}
+```
+The data will be stored on the "reserved" storage field
+example stored data :
+```
+{
+"reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) PublicUpdateInsertPartySessionStorageReserved(params *PublicUpdateInsertPartySessionStorageReservedParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageReservedOK, *PublicUpdateInsertPartySessionStorageReservedBadRequest, *PublicUpdateInsertPartySessionStorageReservedUnauthorized, *PublicUpdateInsertPartySessionStorageReservedForbidden, *PublicUpdateInsertPartySessionStorageReservedNotFound, *PublicUpdateInsertPartySessionStorageReservedInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertPartySessionStorageReservedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertPartySessionStorageReserved",
+		Method:             "PATCH",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/storage/users/{userId}/reserved",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertPartySessionStorageReservedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertPartySessionStorageReservedOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageReservedBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageReservedUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageReservedForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageReservedNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageReservedInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUpdateInsertPartySessionStorageReservedShort update insert party session storage user.
+**For Internal Use Only**
+Update Insert Party Session Reserved Storage User. User can only update or insert user party session storage data itself.
+can store generic json
+example json can store :
+```
+{
+"key": "value",
+"number": 123,
+}
+```
+The data will be stored on the "reserved" storage field
+example stored data :
+```
+{
+"reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) PublicUpdateInsertPartySessionStorageReservedShort(params *PublicUpdateInsertPartySessionStorageReservedParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageReservedOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertPartySessionStorageReservedParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertPartySessionStorageReserved",
+		Method:             "PATCH",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/storage/users/{userId}/reserved",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertPartySessionStorageReservedReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertPartySessionStorageReservedOK:
+		return v, nil
+	case *PublicUpdateInsertPartySessionStorageReservedBadRequest:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageReservedUnauthorized:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageReservedForbidden:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageReservedNotFound:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageReservedInternalServerError:
 		return nil, v
 
 	default:

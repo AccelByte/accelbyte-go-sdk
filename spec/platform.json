@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.0.0"
+    "version": "6.1.1"
   },
   "schemes": [
     "https"
@@ -79,9 +79,6 @@
     },
     {
       "name": "PaymentAccount"
-    },
-    {
-      "name": "PaymentCallbackConfig"
     },
     {
       "name": "PaymentConfig"
@@ -9354,7 +9351,8 @@
     },
     "/platform/admin/namespaces/{namespace}/payment/config/callback": {
       "get": {
-        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt;Get payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h3\u0026gt;The endpoint is going to be deprecated \u0026lt;/h3\u0026gt;\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt;Get payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentCallbackConfig",
         "parameters": [
           {
@@ -9401,7 +9399,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt;Update payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h3\u0026gt;The endpoint is going to be deprecated \u0026lt;/h3\u0026gt;\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt;Update payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updatePaymentCallbackConfig",
         "parameters": [
           {
@@ -19486,6 +19485,12 @@
             "schema": {
               "$ref": "#/definitions/RevocationResult"
             }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e41171\u003c/td\u003e\u003ctd\u003eRequest has different payload on previous call\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e41172\u003c/td\u003e\u003ctd\u003eRequest has different user id on previous call\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -19497,7 +19502,10 @@
         "tags": [
           "Revocation"
         ],
-        "x-errorCodes": {},
+        "x-errorCodes": {
+          "41171": "Request has different payload on previous call",
+          "41172": "Request has different user id on previous call"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION[UPDATE]"
         }
@@ -20828,7 +20836,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Pay with user wallet by currency code and client platform.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for metadata\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
+        "description": "Debit user wallet by currency code and client platform.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for metadata\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
         "operationId": "debitByWalletPlatform",
         "parameters": [
           {
@@ -20888,7 +20896,7 @@
             "authorization": []
           }
         ],
-        "summary": "Pay with user wallet by currency code and client platform",
+        "summary": "Debit user wallet by currency code and client platform",
         "tags": [
           "Wallet"
         ],
@@ -31486,7 +31494,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Fulfill items by transactionId.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: storeId, region, language, and entitlementCollectionId can be ignored.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h3\u0026gt;The endpoint is going to be deprecated \u0026lt;/h3\u0026gt;Description: this endpoint is \u0026lt;b\u0026gt;Not supported yet in AGS Shared Cloud\u0026lt;/b\u0026gt; and it\u0026#39;s used to fulfill items by transaction id.\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: storeId, region, language, and entitlementCollectionId can be ignored.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h3\u0026gt;Endpoint migration guide\u0026lt;/h3\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Substitute endpoint: \u0026lt;em\u0026gt;/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId} [PUT]\u0026lt;/em\u0026gt;\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;ul\u0026gt;",
         "operationId": "fulfillItems",
         "parameters": [
           {
@@ -31571,7 +31580,8 @@
     },
     "/platform/v2/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}/retry": {
       "put": {
-        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Retry fulfill items by transactionId without sending the original payload.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h3\u0026gt;The endpoint is going to be deprecated \u0026lt;/h3\u0026gt;\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Retry fulfill items by transactionId without sending the original payload.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h3\u0026gt;Endpoint migration guide\u0026lt;/h3\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Substitute endpoint: \u0026lt;em\u0026gt;/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}/retry [PUT]\u0026lt;/em\u0026gt;\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;ul\u0026gt;",
         "operationId": "retryFulfillItems",
         "parameters": [
           {
@@ -31638,7 +31648,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Revoke items by transactionId.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h3\u0026gt;The endpoint is going to be deprecated \u0026lt;/h3\u0026gt;\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Revoke items by transactionId.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h3\u0026gt;Endpoint migration guide\u0026lt;/h3\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Substitute endpoint: \u0026lt;em\u0026gt;/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}/revoke [PUT]\u0026lt;/em\u0026gt;\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;ul\u0026gt;",
         "operationId": "revokeItems",
         "parameters": [
           {
@@ -31778,6 +31789,207 @@
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
+    "/platform/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Fulfill items by transactionId.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: storeId, region, language, and entitlementCollectionId can be ignored.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "fulfillItemsV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FulfillmentV2Request"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentV2Result"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38122\u003c/td\u003e\u003ctd\u003eSubscription endDate required\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38128\u003c/td\u003e\u003ctd\u003eCannot retry fulfillment with different payload. Please check the items list.\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38129\u003c/td\u003e\u003ctd\u003eCannot combine same item [{itemId}] with different [{fieldName}] value\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38130\u003c/td\u003e\u003ctd\u003eCannot fulfill item with type [{itemType}] in item [{itemIdentity}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30343\u003c/td\u003e\u003ctd\u003eItem of sku [{sku}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Fulfill items by transactionId",
+        "tags": [
+          "Fulfillment"
+        ],
+        "x-errorCodes": {
+          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
+          "30343": "Item of sku [{sku}] does not exist",
+          "35123": "Wallet [{walletId}] is inactive",
+          "38121": "Duplicate permanent item exists",
+          "38122": "Subscription endDate required",
+          "38128": "Cannot retry fulfillment with different payload. Please check the items list.",
+          "38129": "Cannot combine same item [{itemId}] with different [{fieldName}] value",
+          "38130": "Cannot fulfill item with type [{itemType}] in item [{itemIdentity}]"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
+        }
+      }
+    },
+    "/platform/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}/retry": {
+      "put": {
+        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Retry fulfill items by transactionId without sending the original payload.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retryFulfillItemsV3",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/FulfillmentV2Result"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38145\u003c/td\u003e\u003ctd\u003eFulfillment with transactionId [{transactionId}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Retry fulfill items by transactionId",
+        "tags": [
+          "Fulfillment"
+        ],
+        "x-errorCodes": {
+          "38145": "Fulfillment with transactionId [{transactionId}] does not exist"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
+        }
+      }
+    },
+    "/platform/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}/revoke": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Revoke items by transactionId.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke fulfillment v2 result, storeId field can be ignored.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "revokeItemsV3",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevokeFulfillmentV2Result"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38145\u003c/td\u003e\u003ctd\u003eFulfillment with transactionId [{transactionId}] does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Revoke items by transactionId",
+        "tags": [
+          "Fulfillment"
+        ],
+        "x-errorCodes": {
+          "38145": "Fulfillment with transactionId [{transactionId}] does not exist"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
         }
       }
     }
@@ -46731,6 +46943,10 @@
           "description": "reason why the entries need to be revoked",
           "type": "string"
         },
+        "requestId": {
+          "description": "revoke request id, unique identifier for a request to perform at most once execution, when a requestid is resubmitted, it won't perform the revocation again",
+          "type": "string"
+        },
         "revokeEntries": {
           "description": "revoke entries",
           "items": {
@@ -46749,7 +46965,7 @@
           "type": "string"
         },
         "transactionId": {
-          "description": "transaction id: DLC Order No, Order No.",
+          "description": "transaction id: DLC Order No, Order No. This is for external reference id , use request_id for idempotent request",
           "type": "string"
         }
       },
@@ -46775,12 +46991,21 @@
           "description": "revocation history id",
           "type": "string"
         },
+        "isReplayed": {
+          "description": "true if request id is already processed and return the existing result",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "itemRevocations": {
           "description": "item revocations",
           "items": {
             "$ref": "#/definitions/ItemRevocation"
           },
           "type": "array"
+        },
+        "requestId": {
+          "description": "revocation request id",
+          "type": "string"
         },
         "status": {
           "description": "revocation status",
@@ -51198,16 +51423,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-11-06T04:10:23+00:00",
-    "buildID": "6.0.0",
-    "buildJDK": "21.0.4 (Amazon.com Inc. 21.0.4+7-LTS)",
-    "buildOS": "Linux amd64 5.10.226-214.880.amzn2.x86_64",
+    "buildDate": "2024-12-16T07:15:48+00:00",
+    "buildID": "6.1.1",
+    "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
+    "buildOS": "Linux amd64 5.10.228-219.884.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "562ffe03b3",
-    "gitTag": "6.0.0",
+    "gitHash": "bc1fbae998",
+    "gitTag": "6.1.1",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.0.0",
+    "version": "6.1.1",
     "version-roles-seeding": "1.2.74"
   }
 }

@@ -27,17 +27,21 @@ var AdminGetUserRewardsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		challengeCode, _ := cmd.Flags().GetString("challengeCode")
+		goalProgressionId, _ := cmd.Flags().GetString("goalProgressionId")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
 		status, _ := cmd.Flags().GetString("status")
 		input := &player_reward.AdminGetUserRewardsParams{
-			Namespace: namespace,
-			UserID:    userId,
-			Limit:     &limit,
-			Offset:    &offset,
-			SortBy:    &sortBy,
-			Status:    &status,
+			Namespace:         namespace,
+			UserID:            userId,
+			ChallengeCode:     &challengeCode,
+			GoalProgressionID: &goalProgressionId,
+			Limit:             &limit,
+			Offset:            &offset,
+			SortBy:            &sortBy,
+			Status:            &status,
 		}
 		ok, errOK := playerRewardService.AdminGetUserRewardsShort(input)
 		if errOK != nil {
@@ -57,6 +61,8 @@ func init() {
 	_ = AdminGetUserRewardsCmd.MarkFlagRequired("namespace")
 	AdminGetUserRewardsCmd.Flags().String("userId", "", "User id")
 	_ = AdminGetUserRewardsCmd.MarkFlagRequired("userId")
+	AdminGetUserRewardsCmd.Flags().String("challengeCode", "", "Challenge code")
+	AdminGetUserRewardsCmd.Flags().String("goalProgressionId", "", "Goal progression id")
 	AdminGetUserRewardsCmd.Flags().Int64("limit", 20, "Limit")
 	AdminGetUserRewardsCmd.Flags().Int64("offset", 0, "Offset")
 	AdminGetUserRewardsCmd.Flags().String("sortBy", "", "Sort by")

@@ -139,7 +139,7 @@ func NewPublicClaimUserRewardsByGoalCodeBadRequest() *PublicClaimUserRewardsByGo
 
 /*PublicClaimUserRewardsByGoalCodeBadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20001</td><td>unauthorized access</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20018</td><td>bad request: {{message}}</td></tr></table>
 */
 type PublicClaimUserRewardsByGoalCodeBadRequest struct {
 	Payload *challengeclientmodels.IamErrorResponse

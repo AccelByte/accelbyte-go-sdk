@@ -28,18 +28,18 @@ type ApimodelsPlayerAttributesRequestBody struct {
 	// Required: true
 	CurrentPlatform *string `json:"currentPlatform"`
 
-	// data
+	// the parameter is optional
 	// Required: true
 	Data interface{} `json:"data"`
 
-	// platforms
+	// the parameter is optional and is populated automatically. You can pass an empty array if needed.
 	// Required: true
 	Platforms []*ModelsUserPlatformInfo `json:"platforms"`
 
 	// roles
 	Roles []string `json:"roles,omitempty"`
 
-	// simultaneousplatform
+	// the parameter is optional and is populated automatically. You can pass an empty string if needed.
 	// Required: true
 	SimultaneousPlatform *string `json:"simultaneousPlatform"`
 }

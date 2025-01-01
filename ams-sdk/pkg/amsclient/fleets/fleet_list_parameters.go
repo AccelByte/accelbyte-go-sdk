@@ -19,11 +19,28 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in FleetListParams
+const (
+	FleetListAscConstant  = "asc"
+	FleetListDescConstant = "desc"
+)
+
+// Get the enum in FleetListParams
+const (
+	FleetListActiveConstant = "active"
+	FleetListNameConstant   = "name"
+)
+
 // NewFleetListParams creates a new FleetListParams object
 // with the default values initialized.
 func NewFleetListParams() *FleetListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &FleetListParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +49,13 @@ func NewFleetListParams() *FleetListParams {
 // NewFleetListParamsWithTimeout creates a new FleetListParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewFleetListParamsWithTimeout(timeout time.Duration) *FleetListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &FleetListParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +64,13 @@ func NewFleetListParamsWithTimeout(timeout time.Duration) *FleetListParams {
 // NewFleetListParamsWithContext creates a new FleetListParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewFleetListParamsWithContext(ctx context.Context) *FleetListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &FleetListParams{
+		Count:  &countDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +79,13 @@ func NewFleetListParamsWithContext(ctx context.Context) *FleetListParams {
 // NewFleetListParamsWithHTTPClient creates a new FleetListParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFleetListParamsWithHTTPClient(client *http.Client) *FleetListParams {
-	var ()
+	var (
+		countDefault  = int64(100)
+		offsetDefault = int64(0)
+	)
 	return &FleetListParams{
+		Count:      &countDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -75,16 +107,36 @@ type FleetListParams struct {
 
 	*/
 	Active *bool
+	/*Count
+	  the number of fleets to return
+
+	*/
+	Count *int64
+	/*Desc
+	  sort direction (ascending or descending)
+
+	*/
+	Desc *string
 	/*Name
 	  filter fleets by name
 
 	*/
 	Name *string
+	/*Offset
+	  the pagination offset
+
+	*/
+	Offset *int64
 	/*Region
 	  filter fleets by region
 
 	*/
 	Region *string
+	/*SortBy
+	  sort fleets by column name
+
+	*/
+	SortBy *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -173,6 +225,28 @@ func (o *FleetListParams) SetActive(active *bool) {
 	o.Active = active
 }
 
+// WithCount adds the count to the fleet list params
+func (o *FleetListParams) WithCount(count *int64) *FleetListParams {
+	o.SetCount(count)
+	return o
+}
+
+// SetCount adds the count to the fleet list params
+func (o *FleetListParams) SetCount(count *int64) {
+	o.Count = count
+}
+
+// WithDesc adds the desc to the fleet list params
+func (o *FleetListParams) WithDesc(desc *string) *FleetListParams {
+	o.SetDesc(desc)
+	return o
+}
+
+// SetDesc adds the desc to the fleet list params
+func (o *FleetListParams) SetDesc(desc *string) {
+	o.Desc = desc
+}
+
 // WithName adds the name to the fleet list params
 func (o *FleetListParams) WithName(name *string) *FleetListParams {
 	o.SetName(name)
@@ -184,6 +258,17 @@ func (o *FleetListParams) SetName(name *string) {
 	o.Name = name
 }
 
+// WithOffset adds the offset to the fleet list params
+func (o *FleetListParams) WithOffset(offset *int64) *FleetListParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the fleet list params
+func (o *FleetListParams) SetOffset(offset *int64) {
+	o.Offset = offset
+}
+
 // WithRegion adds the region to the fleet list params
 func (o *FleetListParams) WithRegion(region *string) *FleetListParams {
 	o.SetRegion(region)
@@ -193,6 +278,17 @@ func (o *FleetListParams) WithRegion(region *string) *FleetListParams {
 // SetRegion adds the region to the fleet list params
 func (o *FleetListParams) SetRegion(region *string) {
 	o.Region = region
+}
+
+// WithSortBy adds the sortBy to the fleet list params
+func (o *FleetListParams) WithSortBy(sortBy *string) *FleetListParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the fleet list params
+func (o *FleetListParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -224,6 +320,38 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 	}
 
+	if o.Count != nil {
+
+		// query param count
+		var qrCount int64
+		if o.Count != nil {
+			qrCount = *o.Count
+		}
+		qCount := swag.FormatInt64(qrCount)
+		if qCount != "" {
+			if err := r.SetQueryParam("count", qCount); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Desc != nil {
+
+		// query param desc
+		var qrDesc string
+		if o.Desc != nil {
+			qrDesc = *o.Desc
+		}
+		qDesc := qrDesc
+		if qDesc != "" {
+			if err := r.SetQueryParam("desc", qDesc); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Name != nil {
 
 		// query param name
@@ -240,6 +368,22 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 	}
 
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Region != nil {
 
 		// query param region
@@ -250,6 +394,22 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		qRegion := qrRegion
 		if qRegion != "" {
 			if err := r.SetQueryParam("region", qRegion); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
 				return err
 			}
 		}

@@ -1,3 +1,16 @@
+<a name="v0.76.0"></a>
+## [v0.76.0]
+### chore
+- **test:** integration - gametelemetry disable starter
+- **docs:** regenerate common use case
+- **test:** add upload and download helper function
+- **:** update indirect package for vulnerability issues
+- **test:** integration - add unique display name on iam create user
+- **cli:** add root_generated.go
+### feat
+- **:** add upload and download helper function
+
+
 <a name="v0.75.0"></a>
 ## [v0.75.0]
 ### feat

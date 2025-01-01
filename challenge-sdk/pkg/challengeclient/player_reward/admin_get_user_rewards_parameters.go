@@ -21,6 +21,16 @@ import (
 
 // Get the enum in AdminGetUserRewardsParams
 const (
+	AdminGetUserRewardsCreatedAtConstant     = "createdAt"
+	AdminGetUserRewardsCreatedAtAscConstant  = "createdAt:asc"
+	AdminGetUserRewardsCreatedAtDescConstant = "createdAt:desc"
+	AdminGetUserRewardsUpdatedAtConstant     = "updatedAt"
+	AdminGetUserRewardsUpdatedAtAscConstant  = "updatedAt:asc"
+	AdminGetUserRewardsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in AdminGetUserRewardsParams
+const (
 	AdminGetUserRewardsCLAIMEDConstant   = "CLAIMED"
 	AdminGetUserRewardsUNCLAIMEDConstant = "UNCLAIMED"
 )
@@ -101,6 +111,16 @@ type AdminGetUserRewardsParams struct {
 
 	*/
 	UserID string
+	/*ChallengeCode
+	  reward's challenge code
+
+	*/
+	ChallengeCode *string
+	/*GoalProgressionID
+	  reward's goal progression id
+
+	*/
+	GoalProgressionID *string
 	/*Limit
 	  limit the amount of data retrieved
 
@@ -114,10 +134,6 @@ type AdminGetUserRewardsParams struct {
 	/*SortBy
 	    sort list by attributes.
 				default value: updatedAt:desc.
-				available value:
-					<li>createdAt, createdAt:desc, createdAt:asc</li>
-					<li>updatedAt, updatedAt:desc, updatedAt:asc</li>
-
 
 	*/
 	SortBy *string
@@ -214,6 +230,28 @@ func (o *AdminGetUserRewardsParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithChallengeCode adds the challengeCode to the admin get user rewards params
+func (o *AdminGetUserRewardsParams) WithChallengeCode(challengeCode *string) *AdminGetUserRewardsParams {
+	o.SetChallengeCode(challengeCode)
+	return o
+}
+
+// SetChallengeCode adds the challengeCode to the admin get user rewards params
+func (o *AdminGetUserRewardsParams) SetChallengeCode(challengeCode *string) {
+	o.ChallengeCode = challengeCode
+}
+
+// WithGoalProgressionID adds the goalProgressionID to the admin get user rewards params
+func (o *AdminGetUserRewardsParams) WithGoalProgressionID(goalProgressionID *string) *AdminGetUserRewardsParams {
+	o.SetGoalProgressionID(goalProgressionID)
+	return o
+}
+
+// SetGoalProgressionID adds the goalProgressionId to the admin get user rewards params
+func (o *AdminGetUserRewardsParams) SetGoalProgressionID(goalProgressionID *string) {
+	o.GoalProgressionID = goalProgressionID
+}
+
 // WithLimit adds the limit to the admin get user rewards params
 func (o *AdminGetUserRewardsParams) WithLimit(limit *int64) *AdminGetUserRewardsParams {
 	o.SetLimit(limit)
@@ -274,6 +312,38 @@ func (o *AdminGetUserRewardsParams) WriteToRequest(r runtime.ClientRequest, reg 
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.ChallengeCode != nil {
+
+		// query param challengeCode
+		var qrChallengeCode string
+		if o.ChallengeCode != nil {
+			qrChallengeCode = *o.ChallengeCode
+		}
+		qChallengeCode := qrChallengeCode
+		if qChallengeCode != "" {
+			if err := r.SetQueryParam("challengeCode", qChallengeCode); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.GoalProgressionID != nil {
+
+		// query param goalProgressionId
+		var qrGoalProgressionID string
+		if o.GoalProgressionID != nil {
+			qrGoalProgressionID = *o.GoalProgressionID
+		}
+		qGoalProgressionID := qrGoalProgressionID
+		if qGoalProgressionID != "" {
+			if err := r.SetQueryParam("goalProgressionId", qGoalProgressionID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

@@ -52,8 +52,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminClaimUsersRewardsShort instead.
 
 AdminClaimUsersRewards claim  rewards of multiple users
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) AdminClaimUsersRewards(params *AdminClaimUsersRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminClaimUsersRewardsOK, *AdminClaimUsersRewardsBadRequest, *AdminClaimUsersRewardsUnauthorized, *AdminClaimUsersRewardsForbidden, *AdminClaimUsersRewardsNotFound, *AdminClaimUsersRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -117,8 +116,7 @@ func (a *Client) AdminClaimUsersRewards(params *AdminClaimUsersRewardsParams, au
 
 /*
 AdminClaimUsersRewardsShort claim  rewards of multiple users
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) AdminClaimUsersRewardsShort(params *AdminClaimUsersRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminClaimUsersRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -175,8 +173,7 @@ func (a *Client) AdminClaimUsersRewardsShort(params *AdminClaimUsersRewardsParam
 Deprecated: 2022-08-10 - Use AdminClaimUserRewardsByGoalCodeShort instead.
 
 AdminClaimUserRewardsByGoalCode claim rewards of a single user by goal code
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) AdminClaimUserRewardsByGoalCode(params *AdminClaimUserRewardsByGoalCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminClaimUserRewardsByGoalCodeOK, *AdminClaimUserRewardsByGoalCodeBadRequest, *AdminClaimUserRewardsByGoalCodeUnauthorized, *AdminClaimUserRewardsByGoalCodeForbidden, *AdminClaimUserRewardsByGoalCodeNotFound, *AdminClaimUserRewardsByGoalCodeUnprocessableEntity, *AdminClaimUserRewardsByGoalCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -243,8 +240,7 @@ func (a *Client) AdminClaimUserRewardsByGoalCode(params *AdminClaimUserRewardsBy
 
 /*
 AdminClaimUserRewardsByGoalCodeShort claim rewards of a single user by goal code
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) AdminClaimUserRewardsByGoalCodeShort(params *AdminClaimUserRewardsByGoalCodeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminClaimUserRewardsByGoalCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -303,8 +299,7 @@ func (a *Client) AdminClaimUserRewardsByGoalCodeShort(params *AdminClaimUserRewa
 Deprecated: 2022-08-10 - Use AdminGetUserRewardsShort instead.
 
 AdminGetUserRewards list user's rewards
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) AdminGetUserRewards(params *AdminGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserRewardsOK, *AdminGetUserRewardsUnauthorized, *AdminGetUserRewardsForbidden, *AdminGetUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -362,8 +357,7 @@ func (a *Client) AdminGetUserRewards(params *AdminGetUserRewardsParams, authInfo
 
 /*
 AdminGetUserRewardsShort list user's rewards
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) AdminGetUserRewardsShort(params *AdminGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -416,8 +410,7 @@ func (a *Client) AdminGetUserRewardsShort(params *AdminGetUserRewardsParams, aut
 Deprecated: 2022-08-10 - Use AdminClaimUserRewardsShort instead.
 
 AdminClaimUserRewards claim rewards of a single user
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) AdminClaimUserRewards(params *AdminClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminClaimUserRewardsOK, *AdminClaimUserRewardsUnauthorized, *AdminClaimUserRewardsForbidden, *AdminClaimUserRewardsNotFound, *AdminClaimUserRewardsUnprocessableEntity, *AdminClaimUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -481,8 +474,7 @@ func (a *Client) AdminClaimUserRewards(params *AdminClaimUserRewardsParams, auth
 
 /*
 AdminClaimUserRewardsShort claim rewards of a single user
-
-      * Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) AdminClaimUserRewardsShort(params *AdminClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminClaimUserRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -539,8 +531,7 @@ func (a *Client) AdminClaimUserRewardsShort(params *AdminClaimUserRewardsParams,
 Deprecated: 2022-08-10 - Use PublicClaimUserRewardsByGoalCodeShort instead.
 
 PublicClaimUserRewardsByGoalCode claim user's rewards by goal code
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) PublicClaimUserRewardsByGoalCode(params *PublicClaimUserRewardsByGoalCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsByGoalCodeOK, *PublicClaimUserRewardsByGoalCodeBadRequest, *PublicClaimUserRewardsByGoalCodeUnauthorized, *PublicClaimUserRewardsByGoalCodeForbidden, *PublicClaimUserRewardsByGoalCodeNotFound, *PublicClaimUserRewardsByGoalCodeUnprocessableEntity, *PublicClaimUserRewardsByGoalCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -607,8 +598,7 @@ func (a *Client) PublicClaimUserRewardsByGoalCode(params *PublicClaimUserRewards
 
 /*
 PublicClaimUserRewardsByGoalCodeShort claim user's rewards by goal code
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) PublicClaimUserRewardsByGoalCodeShort(params *PublicClaimUserRewardsByGoalCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsByGoalCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -667,8 +657,7 @@ func (a *Client) PublicClaimUserRewardsByGoalCodeShort(params *PublicClaimUserRe
 Deprecated: 2022-08-10 - Use PublicGetUserRewardsShort instead.
 
 PublicGetUserRewards list user's rewards
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) PublicGetUserRewards(params *PublicGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserRewardsOK, *PublicGetUserRewardsUnauthorized, *PublicGetUserRewardsForbidden, *PublicGetUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -726,8 +715,7 @@ func (a *Client) PublicGetUserRewards(params *PublicGetUserRewardsParams, authIn
 
 /*
 PublicGetUserRewardsShort list user's rewards
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [READ]
 */
 func (a *Client) PublicGetUserRewardsShort(params *PublicGetUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -780,8 +768,7 @@ func (a *Client) PublicGetUserRewardsShort(params *PublicGetUserRewardsParams, a
 Deprecated: 2022-08-10 - Use PublicClaimUserRewardsShort instead.
 
 PublicClaimUserRewards claim user's rewards
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) PublicClaimUserRewards(params *PublicClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsOK, *PublicClaimUserRewardsUnauthorized, *PublicClaimUserRewardsForbidden, *PublicClaimUserRewardsNotFound, *PublicClaimUserRewardsUnprocessableEntity, *PublicClaimUserRewardsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -845,8 +832,7 @@ func (a *Client) PublicClaimUserRewards(params *PublicClaimUserRewardsParams, au
 
 /*
 PublicClaimUserRewardsShort claim user's rewards
-
-      * Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
+- Required permission: NAMESPACE:{namespace}:CHALLENGE:REWARD [UPDATE]
 */
 func (a *Client) PublicClaimUserRewardsShort(params *PublicClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardsOK, error) {
 	// TODO: Validate the params before sending

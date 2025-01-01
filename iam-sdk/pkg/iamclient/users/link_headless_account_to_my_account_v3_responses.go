@@ -102,8 +102,8 @@ func NewLinkHeadlessAccountToMyAccountV3BadRequest() *LinkHeadlessAccountToMyAcc
 
 /*LinkHeadlessAccountToMyAccountV3BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
-*/
+
+ */
 type LinkHeadlessAccountToMyAccountV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
 }

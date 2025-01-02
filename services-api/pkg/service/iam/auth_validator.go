@@ -17,7 +17,7 @@ import (
 
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/override_role_config_v3"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
@@ -44,7 +44,7 @@ type TokenValidator struct {
 	LocalValidationActive bool
 	PublicKeys            map[string]*rsa.PublicKey
 	RevokedUsers          map[string]time.Time
-	Roles                 map[string]*iamclientmodels.ModelRoleResponseV3
+	Roles                 map[string]*iamclientmodels.ModelRolePermissionResponseV3
 	NamespaceContexts     map[string]*NamespaceContext
 
 	rolePermissionCache    *cache.Cache
@@ -190,7 +190,7 @@ func (v *TokenValidator) convertModulus(n string) (*big.Int, error) {
 	return bigN, nil
 }
 
-func (v *TokenValidator) convertToPermission(permission iamclientmodels.AccountcommonPermissionV3) Permission {
+func (v *TokenValidator) convertToPermission(permission iamclientmodels.AccountcommonPermission) Permission {
 	resource := ""
 	action := 0
 
@@ -281,19 +281,21 @@ func (v *TokenValidator) fetchRevocationList() error {
 	return nil
 }
 
-func (v *TokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmodels.ModelRoleResponseV3, error) {
+func (v *TokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmodels.ModelRolePermissionResponseV3, error) {
 	if !forceFetch {
 		if role, found := v.Roles[roleId]; found {
 			return role, nil
 		}
 	}
 
-	roleService := RolesService{
+	overrideRoleService := OverrideRoleConfigv3Service{
 		Client:           v.AuthService.Client,
 		ConfigRepository: v.AuthService.ConfigRepository,
 		TokenRepository:  v.AuthService.TokenRepository,
 	}
-	role, err := roleService.AdminGetRoleV3Short(&roles.AdminGetRoleV3Params{RoleID: roleId})
+	role, err := overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
+		RoleID: roleId,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -590,7 +592,7 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 		PublicKeys:            make(map[string]*rsa.PublicKey),
 		LocalValidationActive: false,
 		RevokedUsers:          make(map[string]time.Time),
-		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
 		NamespaceContexts:     make(map[string]*NamespaceContext),
 
 		rolePermissionCache: cache.New(

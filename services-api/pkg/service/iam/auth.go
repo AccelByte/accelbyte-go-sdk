@@ -499,7 +499,7 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 	// Validate the token if required
 	if validate {
 		var perm *Permission
-		if claims.Permissions != nil && len(tokenResponseV3.Permissions) > 0 {
+		if len(tokenResponseV3.Permissions) > 0 {
 			permission := tokenResponseV3.Permissions[0]
 			perm = &Permission{
 				Resource: *permission.Resource,
@@ -541,7 +541,7 @@ func (o *OAuth20Service) ParseAccessTokenToClaims(accessToken string, validate b
 	// Validate the token if required
 	if validate {
 		var perm *Permission
-		if claims.Permissions != nil && len(claims.Permissions) > 0 {
+		if len(claims.Permissions) > 0 {
 			permission := claims.Permissions[0]
 			perm = &Permission{
 				Resource: permission.Resource,
@@ -593,7 +593,7 @@ func (o *OAuth20Service) initTokenValidator(value bool) {
 		PublicKeys:            make(map[string]*rsa.PublicKey),
 		LocalValidationActive: value,
 		RevokedUsers:          make(map[string]time.Time),
-		Roles:                 make(map[string]*iamclientmodels.ModelRoleResponseV3),
+		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
 		NamespaceContexts:     make(map[string]*NamespaceContext),
 	}
 

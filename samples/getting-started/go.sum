@@ -1,5 +1,5 @@
-github.com/AccelByte/accelbyte-go-sdk v0.74.0 h1:7XVhOVk1C4Uyu9X7rzQnzkiUxxYaBw/5hfQ3D5LFEio=
-github.com/AccelByte/accelbyte-go-sdk v0.74.0/go.mod h1:isRpzftbF2A0+DNjSyS4/O5GRW2QkJE/hs2a6OqziRA=
+github.com/AccelByte/accelbyte-go-sdk v0.75.0 h1:6OjvPSBGBv/gxZS2JyEI2kd6u0lkr2cYZtfsC0ziUuA=
+github.com/AccelByte/accelbyte-go-sdk v0.75.0/go.mod h1:isRpzftbF2A0+DNjSyS4/O5GRW2QkJE/hs2a6OqziRA=
 github.com/AccelByte/bloom v0.0.0-20180915202807-98c052463922 h1:3v15CkYPdxShj9tisD+pU4YihvQCPUISwFrandjwq5A=
 github.com/AccelByte/bloom v0.0.0-20180915202807-98c052463922/go.mod h1:njjI8ZR5oAhtMq8ODchl6GBz8enKQJt+D9WqLn96hLI=
 github.com/AccelByte/go-jose v2.1.4+incompatible h1:jn3BJ0HZAUskWJ042CJGgFXDAwhTsEkOKCX0DIZ5OcQ=

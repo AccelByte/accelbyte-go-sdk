@@ -5,10 +5,15 @@
 - **docs:** regenerate common use case
 - **test:** add upload and download helper function
 - **:** update indirect package for vulnerability issues
+- **:** update CHANGELOG.md and go sum getting started
 - **test:** integration - add unique display name on iam create user
 - **cli:** add root_generated.go
 ### feat
 - **:** add upload and download helper function
+- **:** add token namespace to call get role namespace permission
+- **:** implement role override mechanism for go extend monolith
+### docs
+- **migrations:** add migration guide from v0.75.0 to v0.76.0
 
 
 <a name="v0.75.0"></a>

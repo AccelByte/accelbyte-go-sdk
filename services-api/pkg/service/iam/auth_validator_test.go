@@ -480,23 +480,10 @@ func NewTokenValidatorTest3(authService OAuth20Service, refreshInterval time.Dur
 	}
 }
 
-func findAndCheckResourceFromRole(roleID string, resourceToCheck string) (int, error) {
-	configRepo := auth.DefaultConfigRepositoryImpl()
-	tokenRepo := auth.DefaultTokenRepositoryImpl()
+func findAndCheckResourceFromRole(configRepo *auth.ConfigRepositoryImpl, tokenRepo *auth.TokenRepositoryImpl, roleID string, resourceToCheck string) (int, error) {
 	iamClient := factory.NewIamClient(configRepo)
 
-	authService := OAuth20Service{
-		Client:           iamClient,
-		ConfigRepository: configRepo,
-		TokenRepository:  tokenRepo,
-	}
-
 	resultAction := -1
-
-	err := authService.LoginClient(&configRepo.ClientId, &configRepo.ClientSecret)
-	if err != nil {
-		return resultAction, err
-	}
 
 	overrideRoleService := OverrideRoleConfigv3Service{
 		Client:           iamClient,
@@ -504,8 +491,14 @@ func findAndCheckResourceFromRole(roleID string, resourceToCheck string) (int, e
 		TokenRepository:  tokenRepo,
 	}
 
+	tkn, err := tokenRepo.GetToken()
+	if err != nil {
+		return resultAction, err
+	}
+
 	permissions, err := overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
-		RoleID: roleID,
+		RoleID:    roleID,
+		Namespace: *tkn.Namespace,
 	})
 
 	if err != nil {
@@ -541,9 +534,10 @@ func Test_RoleOverride(t *testing.T) {
 	}
 
 	err := authService.LoginClient(&configRepo.ClientId, &configRepo.ClientSecret)
-	if err != nil {
-		assert.NoError(t, err)
-	}
+	assert.NoError(t, err)
+
+	tkn, err := tokenRepo.GetToken()
+	assert.NoError(t, err)
 
 	roleService := RolesService{
 		Client:           iamClient,
@@ -555,9 +549,7 @@ func Test_RoleOverride(t *testing.T) {
 	roles, err := roleService.AdminGetRolesV4Short(&roles.AdminGetRolesV4Params{
 		AdminRole: &adminRole,
 	})
-	if err != nil {
-		assert.NoError(t, err)
-	}
+	assert.NoError(t, err)
 
 	userRoleID := ""
 
@@ -568,7 +560,7 @@ func Test_RoleOverride(t *testing.T) {
 		}
 	}
 
-	action, err := findAndCheckResourceFromRole(userRoleID, resourceToCheck)
+	action, err := findAndCheckResourceFromRole(configRepo, tokenRepo, userRoleID, resourceToCheck)
 
 	assert.NoError(t, err)
 	assert.Equal(t, actionToCheck, action)
@@ -588,11 +580,10 @@ func Test_RoleOverride(t *testing.T) {
 				},
 			},
 		},
-		Identity: roleIdentityToUpdate,
+		Namespace: *tkn.Namespace,
+		Identity:  roleIdentityToUpdate,
 	})
-	if err != nil {
-		assert.NoError(t, err)
-	}
+	assert.NoError(t, err)
 
 	assert.NotNil(t, updateResponse)
 
@@ -601,11 +592,10 @@ func Test_RoleOverride(t *testing.T) {
 		Body: &iamclientmodels.ModelRoleOverrideStatsUpdateRequest{
 			Active: &active,
 		},
-		Identity: roleIdentityToUpdate,
+		Namespace: *tkn.Namespace,
+		Identity:  roleIdentityToUpdate,
 	})
-	if err != nil {
-		assert.NoError(t, err)
-	}
+	assert.NoError(t, err)
 
 	assert.NotNil(t, activateResponse)
 
@@ -617,7 +607,7 @@ func Test_RoleOverride(t *testing.T) {
 	currentCount := 0
 
 	for currentCount < checkCount {
-		uAction, err := findAndCheckResourceFromRole(userRoleID, resourceToCheck)
+		uAction, err := findAndCheckResourceFromRole(configRepo, tokenRepo, userRoleID, resourceToCheck)
 		assert.NoError(t, err)
 
 		if uAction == updatedActionToCheck {
@@ -636,7 +626,8 @@ func Test_RoleOverride(t *testing.T) {
 		Body: &iamclientmodels.ModelRoleOverrideStatsUpdateRequest{
 			Active: &active,
 		},
-		Identity: roleIdentityToUpdate,
+		Namespace: *tkn.Namespace,
+		Identity:  roleIdentityToUpdate,
 	})
 
 }

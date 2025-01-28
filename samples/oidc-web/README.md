@@ -12,11 +12,11 @@ A sample app to showcase OIDC login using AccelByte Go Extend SDK and PhantAuth.
 
      For example https://test.accelbyte.io
 
-   * [Create an OAuth Client](https://docs.accelbyte.io/gaming-services/services/access/authorization/manage-access-control-for-applications/#manage-iam-clients) with confidential client type
+   * [Create an OAuth Client](https://docs.accelbyte.io/gaming-services/services/access/reference/authorization/manage-access-control-for-applications/#create-an-iam-client) with confidential client type
 
      Keep the `Client ID` and `Client Secret`
 
-   * [Register a third party OIDC provider](https://docs.accelbyte.io/gaming-services/services/access/authentication/oidc-identity/), in this case [PhantAuth](https://phantauth.net/)
+   * [Register a third party OIDC provider](https://docs.accelbyte.io/gaming-services/services/access/reference/authentication/oidc-identity/), in this case [PhantAuth](https://phantauth.net/)
 
      For this sample app, the `Platform ID` MUST BE `phantauth`
 

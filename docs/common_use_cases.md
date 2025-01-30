@@ -1838,4 +1838,26 @@ err = csmAppService.DeleteAppV2Short(&app_v2.DeleteAppV2Params{
 	Forced:    &forced,
 })
 ```
+## LoginQueue
+
+Source: [loginqueue_test.go](../services-api/pkg/tests/integration/loginqueue_test.go)
+
+### Admin Get Configuration
+
+```go
+get, errGet := loginQueueConfigService.AdminGetConfiguration(&config.AdminGetConfigurationParams{
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Update Configuration
+
+```go
+update, errUpdate := loginQueueConfigService.AdminUpdateConfiguration(&config.AdminUpdateConfigurationParams{
+	Body: &loginqueueclientmodels.ModelsConfigurationRequest{
+		MaxLoginRate: updateMaxLoginRate,
+	},
+	Namespace: integration.NamespaceTest,
+})
+```
 

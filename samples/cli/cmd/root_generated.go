@@ -25,6 +25,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/leaderboard"
 	"github.com/AccelByte/sample-apps/cmd/legal"
 	"github.com/AccelByte/sample-apps/cmd/lobby"
+	"github.com/AccelByte/sample-apps/cmd/loginqueue"
 	"github.com/AccelByte/sample-apps/cmd/match2"
 	"github.com/AccelByte/sample-apps/cmd/matchmaking"
 	"github.com/AccelByte/sample-apps/cmd/platform"
@@ -57,6 +58,7 @@ func initGenerated() {
 	RootCmd.AddCommand(leaderboard.LeaderboardCmd)
 	RootCmd.AddCommand(legal.LegalCmd)
 	RootCmd.AddCommand(lobby.LobbyCmd)
+	RootCmd.AddCommand(loginqueue.LoginqueueCmd)
 	RootCmd.AddCommand(match2.Match2Cmd)
 	RootCmd.AddCommand(matchmaking.MatchmakingCmd)
 	RootCmd.AddCommand(platform.PlatformCmd)

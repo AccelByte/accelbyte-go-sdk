@@ -68,6 +68,10 @@ type ApimodelAppItem struct {
 	// Required: true
 	GameName *string `json:"gameName"`
 
+	// isresourceapplied
+	// Required: true
+	IsResourceApplied *bool `json:"isResourceApplied"`
+
 	// memory
 	Memory *ApimodelMemoryResponse `json:"memory,omitempty"`
 
@@ -90,6 +94,10 @@ type ApimodelAppItem struct {
 	// updatedat
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`
+
+	// vmsharingconfiguration
+	// Required: true
+	VMSharingConfiguration *string `json:"vmSharingConfiguration"`
 }
 
 // Validate validates this Apimodel app item
@@ -111,10 +119,16 @@ func (m *ApimodelAppItem) Validate(formats strfmt.Registry) error {
 	if err := m.validateGameName(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateIsResourceApplied(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateScenario(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateVMSharingConfiguration(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -169,6 +183,15 @@ func (m *ApimodelAppItem) validateGameName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ApimodelAppItem) validateIsResourceApplied(formats strfmt.Registry) error {
+
+	if err := validate.Required("isResourceApplied", "body", m.IsResourceApplied); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ApimodelAppItem) validateScenario(formats strfmt.Registry) error {
 
 	if err := validate.Required("scenario", "body", m.Scenario); err != nil {
@@ -181,6 +204,15 @@ func (m *ApimodelAppItem) validateScenario(formats strfmt.Registry) error {
 func (m *ApimodelAppItem) validateUpdatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelAppItem) validateVMSharingConfiguration(formats strfmt.Registry) error {
+
+	if err := validate.Required("vmSharingConfiguration", "body", m.VMSharingConfiguration); err != nil {
 		return err
 	}
 

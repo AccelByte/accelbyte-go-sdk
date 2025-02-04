@@ -307,6 +307,15 @@ AdminBulkPutPlayerRecordsByKeyHandlerV1 bulk update player records by key
 This endpoints will create new player record or replace the existing player record in bulk.
 Maximum number of user ids per request is 10.
 Maximum total size of the request payload is 5 MB.
+
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body for this endpoint does not exceed 10 update request or 250 KB of whole request body.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminBulkPutPlayerRecordsByKeyHandlerV1(params *AdminBulkPutPlayerRecordsByKeyHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkPutPlayerRecordsByKeyHandlerV1OK, *AdminBulkPutPlayerRecordsByKeyHandlerV1BadRequest, *AdminBulkPutPlayerRecordsByKeyHandlerV1Unauthorized, *AdminBulkPutPlayerRecordsByKeyHandlerV1Forbidden, *AdminBulkPutPlayerRecordsByKeyHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -370,6 +379,15 @@ AdminBulkPutPlayerRecordsByKeyHandlerV1Short bulk update player records by key
 This endpoints will create new player record or replace the existing player record in bulk.
 Maximum number of user ids per request is 10.
 Maximum total size of the request payload is 5 MB.
+
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body for this endpoint does not exceed 10 update request or 250 KB of whole request body.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminBulkPutPlayerRecordsByKeyHandlerV1Short(params *AdminBulkPutPlayerRecordsByKeyHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkPutPlayerRecordsByKeyHandlerV1OK, error) {
 	// TODO: Validate the params before sending
@@ -661,6 +679,15 @@ AdminPutPlayerRecordsHandlerV1 bulk update player records
 This endpoints will create new player record or replace the existing player record in bulk.
 Maximum bulk key limit per request 10.
 Maximum total size of the request payload is 5 MB.
+
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body for this endpoint does not exceed 10 update request or 250 KB of whole request body.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPutPlayerRecordsHandlerV1(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, *AdminPutPlayerRecordsHandlerV1BadRequest, *AdminPutPlayerRecordsHandlerV1Unauthorized, *AdminPutPlayerRecordsHandlerV1Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -721,6 +748,15 @@ AdminPutPlayerRecordsHandlerV1Short bulk update player records
 This endpoints will create new player record or replace the existing player record in bulk.
 Maximum bulk key limit per request 10.
 Maximum total size of the request payload is 5 MB.
+
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body for this endpoint does not exceed 10 update request or 250 KB of whole request body.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPutPlayerRecordsHandlerV1Short(params *AdminPutPlayerRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordsHandlerV1OK, error) {
 	// TODO: Validate the params before sending
@@ -1034,14 +1070,6 @@ Example
 
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -1070,6 +1098,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, *AdminPutPlayerRecordHandlerV1BadRequest, *AdminPutPlayerRecordHandlerV1Unauthorized, *AdminPutPlayerRecordHandlerV1Forbidden, *AdminPutPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1152,14 +1188,6 @@ Example
 
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -1188,6 +1216,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
@@ -1276,14 +1312,6 @@ Example 2
 `{ "data1": { "data2": "value", "data3": "new value" }`
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -1312,6 +1340,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPostPlayerRecordHandlerV1(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, *AdminPostPlayerRecordHandlerV1BadRequest, *AdminPostPlayerRecordHandlerV1Unauthorized, *AdminPostPlayerRecordHandlerV1Forbidden, *AdminPostPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1406,14 +1442,6 @@ Example 2
 `{ "data1": { "data2": "value", "data3": "new value" }`
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -1442,6 +1470,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPostPlayerRecordHandlerV1Short(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, error) {
 	// TODO: Validate the params before sending
@@ -1745,14 +1781,6 @@ Example
 
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Warning: This endpoint is going to deprecate
 
 This endpoint is going to deprecate in the future please don't use it.
@@ -1841,14 +1869,6 @@ Example
 
 `{ "data2": "new value" }`
 
-
-
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
 
 
 ## Warning: This endpoint is going to deprecate
@@ -1945,14 +1965,6 @@ Example 2
 - Result:
 
 `{ "data1": { "data2": "value", "data3": "new value" }`
-
-
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
 
 
 ## Warning: This endpoint is going to deprecate
@@ -2055,14 +2067,6 @@ Example 2
 - Result:
 
 `{ "data1": { "data2": "value", "data3": "new value" }`
-
-
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
 
 
 ## Warning: This endpoint is going to deprecate

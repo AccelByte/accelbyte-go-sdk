@@ -67,10 +67,9 @@ func NewAdminGetConfigurationOK() *AdminGetConfigurationOK {
 	return &AdminGetConfigurationOK{}
 }
 
-/*
-AdminGetConfigurationOK handles this case with default header values.
+/*AdminGetConfigurationOK handles this case with default header values.
 
-	OK
+  OK
 */
 type AdminGetConfigurationOK struct {
 	Payload *loginqueueclientmodels.ApimodelsConfigurationResponse
@@ -122,10 +121,9 @@ func NewAdminGetConfigurationUnauthorized() *AdminGetConfigurationUnauthorized {
 	return &AdminGetConfigurationUnauthorized{}
 }
 
-/*
-AdminGetConfigurationUnauthorized handles this case with default header values.
+/*AdminGetConfigurationUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type AdminGetConfigurationUnauthorized struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -177,10 +175,9 @@ func NewAdminGetConfigurationForbidden() *AdminGetConfigurationForbidden {
 	return &AdminGetConfigurationForbidden{}
 }
 
-/*
-AdminGetConfigurationForbidden handles this case with default header values.
+/*AdminGetConfigurationForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type AdminGetConfigurationForbidden struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -232,10 +229,9 @@ func NewAdminGetConfigurationInternalServerError() *AdminGetConfigurationInterna
 	return &AdminGetConfigurationInternalServerError{}
 }
 
-/*
-AdminGetConfigurationInternalServerError handles this case with default header values.
+/*AdminGetConfigurationInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type AdminGetConfigurationInternalServerError struct {
 	Payload *loginqueueclientmodels.ResponseError

@@ -107,6 +107,8 @@ type ClientService interface {
 	AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error)
 	PublicListUserIDByPlatformUserIDsV4(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, *PublicListUserIDByPlatformUserIDsV4BadRequest, *PublicListUserIDByPlatformUserIDsV4Unauthorized, *PublicListUserIDByPlatformUserIDsV4Forbidden, *PublicListUserIDByPlatformUserIDsV4InternalServerError, error)
 	PublicListUserIDByPlatformUserIDsV4Short(params *PublicListUserIDByPlatformUserIDsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserIDByPlatformUserIDsV4OK, error)
+	PublicGetUserByPlatformUserIDV4(params *PublicGetUserByPlatformUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV4OK, *PublicGetUserByPlatformUserIDV4Unauthorized, *PublicGetUserByPlatformUserIDV4Forbidden, *PublicGetUserByPlatformUserIDV4NotFound, *PublicGetUserByPlatformUserIDV4InternalServerError, error)
+	PublicGetUserByPlatformUserIDV4Short(params *PublicGetUserByPlatformUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV4OK, error)
 	PublicCreateTestUserV4(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, *PublicCreateTestUserV4BadRequest, *PublicCreateTestUserV4NotFound, *PublicCreateTestUserV4Conflict, *PublicCreateTestUserV4InternalServerError, error)
 	PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error)
 	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4Forbidden, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4TooManyRequests, *PublicCreateUserV4InternalServerError, error)
@@ -5070,6 +5072,204 @@ func (a *Client) PublicListUserIDByPlatformUserIDsV4Short(params *PublicListUser
 	case *PublicListUserIDByPlatformUserIDsV4Forbidden:
 		return nil, v
 	case *PublicListUserIDByPlatformUserIDsV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetUserByPlatformUserIDV4Short instead.
+
+PublicGetUserByPlatformUserIDV4 get user by platform user id
+Get User By Platform User ID.
+This endpoint return user information by given platform ID and platform user ID.
+Several platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.
+example: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.
+If the target platform is not linked to the current user, will only return public information.
+----------
+
+**Supported Platforms:**
+- Steam group (steamnetwork):
+- steam
+- steamopenid
+- PSN group (psn):
+- ps4web
+- ps4
+- ps5
+- XBOX group(xbox):
+- live
+- xblweb
+- Oculus group (oculusgroup):
+- oculus
+- oculusweb
+- Google group (google):
+- google
+- googleplaygames:
+- epicgames
+- facebook
+- twitch
+- discord
+- android
+- ios
+- apple
+- device
+- nintendo
+- awscognito
+- amazon
+- netflix
+- snapchat
+- _oidc platform id_
+
+Note:
+- You can use either platform id or platform group as **platformId** parameter.
+- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+*/
+func (a *Client) PublicGetUserByPlatformUserIDV4(params *PublicGetUserByPlatformUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV4OK, *PublicGetUserByPlatformUserIDV4Unauthorized, *PublicGetUserByPlatformUserIDV4Forbidden, *PublicGetUserByPlatformUserIDV4NotFound, *PublicGetUserByPlatformUserIDV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserByPlatformUserIDV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserByPlatformUserIDV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserByPlatformUserIDV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserByPlatformUserIDV4OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicGetUserByPlatformUserIDV4Unauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *PublicGetUserByPlatformUserIDV4Forbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *PublicGetUserByPlatformUserIDV4NotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicGetUserByPlatformUserIDV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetUserByPlatformUserIDV4Short get user by platform user id
+Get User By Platform User ID.
+This endpoint return user information by given platform ID and platform user ID.
+Several platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.
+example: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.
+If the target platform is not linked to the current user, will only return public information.
+----------
+
+**Supported Platforms:**
+- Steam group (steamnetwork):
+- steam
+- steamopenid
+- PSN group (psn):
+- ps4web
+- ps4
+- ps5
+- XBOX group(xbox):
+- live
+- xblweb
+- Oculus group (oculusgroup):
+- oculus
+- oculusweb
+- Google group (google):
+- google
+- googleplaygames:
+- epicgames
+- facebook
+- twitch
+- discord
+- android
+- ios
+- apple
+- device
+- nintendo
+- awscognito
+- amazon
+- netflix
+- snapchat
+- _oidc platform id_
+
+Note:
+- You can use either platform id or platform group as **platformId** parameter.
+- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+*/
+func (a *Client) PublicGetUserByPlatformUserIDV4Short(params *PublicGetUserByPlatformUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByPlatformUserIDV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetUserByPlatformUserIDV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetUserByPlatformUserIDV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetUserByPlatformUserIDV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetUserByPlatformUserIDV4OK:
+		return v, nil
+	case *PublicGetUserByPlatformUserIDV4Unauthorized:
+		return nil, v
+	case *PublicGetUserByPlatformUserIDV4Forbidden:
+		return nil, v
+	case *PublicGetUserByPlatformUserIDV4NotFound:
+		return nil, v
+	case *PublicGetUserByPlatformUserIDV4InternalServerError:
 		return nil, v
 
 	default:

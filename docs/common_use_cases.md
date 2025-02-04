@@ -1845,7 +1845,7 @@ Source: [loginqueue_test.go](../services-api/pkg/tests/integration/loginqueue_te
 ### Admin Get Configuration
 
 ```go
-get, errGet := loginQueueConfigService.AdminGetConfiguration(&config.AdminGetConfigurationParams{
+get, errGet := loginQueueAdminV1Service.AdminGetConfigurationShort(&admin_v1.AdminGetConfigurationParams{
 	Namespace: integration.NamespaceTest,
 })
 ```
@@ -1853,9 +1853,9 @@ get, errGet := loginQueueConfigService.AdminGetConfiguration(&config.AdminGetCon
 ### Admin Update Configuration
 
 ```go
-update, errUpdate := loginQueueConfigService.AdminUpdateConfiguration(&config.AdminUpdateConfigurationParams{
-	Body: &loginqueueclientmodels.ModelsConfigurationRequest{
-		MaxLoginRate: updateMaxLoginRate,
+update, errUpdate := loginQueueAdminV1Service.AdminUpdateConfigurationShort(&admin_v1.AdminUpdateConfigurationParams{
+	Body: &loginqueueclientmodels.ApimodelsConfigurationRequest{
+		MaxLoginRate: &updateMaxLoginRate,
 	},
 	Namespace: integration.NamespaceTest,
 })

@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.16.1"
+    "version": "2.17.0"
   },
   "schemes": [
     "https"
@@ -1954,16 +1954,9 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Generate personal data download url.\nScope: account\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If admin request data for themselves, password is need to be set\u0026lt;/p\u0026gt;",
         "operationId": "AdminGeneratePersonalDataURL",
         "parameters": [
-          {
-            "description": "IAM password of the user",
-            "in": "formData",
-            "name": "password",
-            "required": true,
-            "type": "string"
-          },
           {
             "description": "namespace",
             "in": "path",
@@ -1983,6 +1976,12 @@
             "in": "path",
             "name": "userId",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "If admin request data for themselves, then password is required",
+            "in": "formData",
+            "name": "password",
             "type": "string"
           }
         ],
@@ -3988,11 +3987,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-12-18T10:36:37+00:00",
-    "gitHash": "176dfeaf3080465a5f63fe153e587f8648b08272",
+    "buildDate": "2025-01-22T04:28:09+00:00",
+    "gitHash": "24ac63b3d18c232c84555342390be4e1d97ee2ef",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.16.1",
+    "version": "2.17.0",
     "version-roles-seeding": "1.2.82"
   }
 }

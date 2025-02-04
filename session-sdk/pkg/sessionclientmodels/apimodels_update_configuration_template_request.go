@@ -7,6 +7,8 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -26,6 +28,9 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 
 	// appname
 	AppName string `json:"appName,omitempty"`
+
+	// asyncprocessdsrequest
+	AsyncProcessDSRequest *ModelsAsyncProcessDSRequest `json:"asyncProcessDSRequest,omitempty"`
 
 	// attributes
 	Attributes interface{} `json:"attributes,omitempty"`
@@ -124,6 +129,10 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// textchat
 	// Required: true
 	TextChat *bool `json:"textChat"`
+
+	// textchatmode
+	// Enum: ['GAME', 'NONE', 'TEAM']
+	TextChatMode string `json:"textChatMode,omitempty"`
 
 	// tieteamssessionlifetime
 	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
@@ -276,6 +285,38 @@ func (m *ApimodelsUpdateConfigurationTemplateRequest) validateTextChat(formats s
 		return err
 	}
 
+	return nil
+}
+
+var apimodelsUpdateConfigurationTemplateRequestTypeTextChatModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["GAME", "NONE", "TEAM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsUpdateConfigurationTemplateRequestTypeTextChatModePropEnum = append(apimodelsUpdateConfigurationTemplateRequestTypeTextChatModePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsUpdateConfigurationTemplateRequestTextChatModeGAME captures enum value "GAME"
+	ApimodelsUpdateConfigurationTemplateRequestTextChatModeGAME string = "GAME"
+
+	// ApimodelsUpdateConfigurationTemplateRequestTextChatModeNONE captures enum value "NONE"
+	ApimodelsUpdateConfigurationTemplateRequestTextChatModeNONE string = "NONE"
+
+	// ApimodelsUpdateConfigurationTemplateRequestTextChatModeTEAM captures enum value "TEAM"
+	ApimodelsUpdateConfigurationTemplateRequestTextChatModeTEAM string = "TEAM"
+)
+
+// prop value enum
+func (m *ApimodelsUpdateConfigurationTemplateRequest) validateTextChatModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsUpdateConfigurationTemplateRequestTypeTextChatModePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

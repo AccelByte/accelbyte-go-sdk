@@ -22,8 +22,11 @@ import (
 // NewAdminQueryTopicLogParams creates a new AdminQueryTopicLogParams object
 // with the default values initialized.
 func NewAdminQueryTopicLogParams() *AdminQueryTopicLogParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminQueryTopicLogParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminQueryTopicLogParams() *AdminQueryTopicLogParams {
 // NewAdminQueryTopicLogParamsWithTimeout creates a new AdminQueryTopicLogParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminQueryTopicLogParamsWithTimeout(timeout time.Duration) *AdminQueryTopicLogParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminQueryTopicLogParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminQueryTopicLogParamsWithTimeout(timeout time.Duration) *AdminQueryTo
 // NewAdminQueryTopicLogParamsWithContext creates a new AdminQueryTopicLogParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminQueryTopicLogParamsWithContext(ctx context.Context) *AdminQueryTopicLogParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminQueryTopicLogParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewAdminQueryTopicLogParamsWithContext(ctx context.Context) *AdminQueryTopi
 // NewAdminQueryTopicLogParamsWithHTTPClient creates a new AdminQueryTopicLogParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminQueryTopicLogParamsWithHTTPClient(client *http.Client) *AdminQueryTopicLogParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminQueryTopicLogParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }
@@ -76,7 +88,7 @@ type AdminQueryTopicLogParams struct {
 	*/
 	EndCreatedAt *int64
 	/*Limit
-	  default: 1000
+	  limit
 
 	*/
 	Limit *int64

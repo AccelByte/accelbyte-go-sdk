@@ -42,6 +42,8 @@ type ClientService interface {
 	DeleteMatchPoolShort(params *DeleteMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteMatchPoolNoContent, error)
 	MatchPoolMetric(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, *MatchPoolMetricUnauthorized, *MatchPoolMetricForbidden, *MatchPoolMetricNotFound, *MatchPoolMetricInternalServerError, error)
 	MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolMetricOK, error)
+	PostMatchErrorMetric(params *PostMatchErrorMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PostMatchErrorMetricNoContent, *PostMatchErrorMetricBadRequest, *PostMatchErrorMetricUnauthorized, *PostMatchErrorMetricForbidden, *PostMatchErrorMetricNotFound, *PostMatchErrorMetricInternalServerError, error)
+	PostMatchErrorMetricShort(params *PostMatchErrorMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PostMatchErrorMetricNoContent, error)
 	GetPlayerMetric(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, *GetPlayerMetricUnauthorized, *GetPlayerMetricForbidden, *GetPlayerMetricNotFound, *GetPlayerMetricInternalServerError, error)
 	GetPlayerMetricShort(params *GetPlayerMetricParams, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerMetricOK, error)
 	AdminGetMatchPoolTickets(params *AdminGetMatchPoolTicketsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMatchPoolTicketsOK, *AdminGetMatchPoolTicketsUnauthorized, *AdminGetMatchPoolTicketsForbidden, *AdminGetMatchPoolTicketsNotFound, *AdminGetMatchPoolTicketsInternalServerError, error)
@@ -811,6 +813,127 @@ func (a *Client) MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo ru
 	case *MatchPoolMetricNotFound:
 		return nil, v
 	case *MatchPoolMetricInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PostMatchErrorMetricShort instead.
+
+PostMatchErrorMetric post metrics for external flow failure in a specific match pool
+Post metrics for external flow failure in a specific match pool
+*/
+func (a *Client) PostMatchErrorMetric(params *PostMatchErrorMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PostMatchErrorMetricNoContent, *PostMatchErrorMetricBadRequest, *PostMatchErrorMetricUnauthorized, *PostMatchErrorMetricForbidden, *PostMatchErrorMetricNotFound, *PostMatchErrorMetricInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostMatchErrorMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostMatchErrorMetric",
+		Method:             "POST",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/external-failure",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostMatchErrorMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PostMatchErrorMetricNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PostMatchErrorMetricBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PostMatchErrorMetricUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PostMatchErrorMetricForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PostMatchErrorMetricNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PostMatchErrorMetricInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PostMatchErrorMetricShort post metrics for external flow failure in a specific match pool
+Post metrics for external flow failure in a specific match pool
+*/
+func (a *Client) PostMatchErrorMetricShort(params *PostMatchErrorMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PostMatchErrorMetricNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostMatchErrorMetricParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostMatchErrorMetric",
+		Method:             "POST",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/external-failure",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostMatchErrorMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PostMatchErrorMetricNoContent:
+		return v, nil
+	case *PostMatchErrorMetricBadRequest:
+		return nil, v
+	case *PostMatchErrorMetricUnauthorized:
+		return nil, v
+	case *PostMatchErrorMetricForbidden:
+		return nil, v
+	case *PostMatchErrorMetricNotFound:
+		return nil, v
+	case *PostMatchErrorMetricInternalServerError:
 		return nil, v
 
 	default:

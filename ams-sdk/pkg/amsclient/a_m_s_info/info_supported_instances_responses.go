@@ -72,7 +72,7 @@ func NewInfoSupportedInstancesOK() *InfoSupportedInstancesOK {
   success
 */
 type InfoSupportedInstancesOK struct {
-	Payload *amsclientmodels.APIInstanceTypesForNamespaceResponse
+	Payload *amsclientmodels.APIInstanceTypesResponse
 }
 
 func (o *InfoSupportedInstancesOK) Error() string {
@@ -94,7 +94,7 @@ func (o *InfoSupportedInstancesOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *InfoSupportedInstancesOK) GetPayload() *amsclientmodels.APIInstanceTypesForNamespaceResponse {
+func (o *InfoSupportedInstancesOK) GetPayload() *amsclientmodels.APIInstanceTypesResponse {
 	return o.Payload
 }
 
@@ -106,7 +106,7 @@ func (o *InfoSupportedInstancesOK) readResponse(response runtime.ClientResponse,
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(amsclientmodels.APIInstanceTypesForNamespaceResponse)
+	o.Payload = new(amsclientmodels.APIInstanceTypesResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

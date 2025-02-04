@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.25.3"
+    "version": "7.26.0"
   },
   "schemes": [
     "https"
@@ -10945,7 +10945,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This is the API to unregister 3rd Platform domain.",
+        "description": "This is the API to unregister 3rd Platform domain.\nIf there is a ssoGroups in request body, then this request wil only delete the sso group from the target domain, it will not delete domain.",
         "operationId": "DeleteThirdPartyLoginPlatformDomainV3",
         "parameters": [
           {
@@ -11032,11 +11032,105 @@
           }
         ]
       },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This is the API to patch update 3rd Platform domain.\nThis API is a create or partial-update behavior. If it is update, it is a partial update behavior.",
+        "operationId": "PartialUpdateThirdPartyLoginPlatformDomainV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.PlatformDomainPatchRequest"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Domain config partial updated",
+            "schema": {
+              "$ref": "#/definitions/model.PlatformDomainResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10175\u003c/td\u003e\u003ctd\u003ethird party credential not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Partial update third Party Platform Credential's domain",
+        "tags": [
+          "Third Party Credential"
+        ],
+        "x-errorCodes": {
+          "10175": "third party credential not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE]"
+            ]
+          }
+        ]
+      },
       "put": {
         "consumes": [
           "application/json"
         ],
-        "description": "This is the API to set 3rd Platform domain.",
+        "description": "This is the API to set 3rd Platform domain.\nThis API is a create-or-update behavior. If it is update, it is a replacement behavior.",
         "operationId": "UpdateThirdPartyLoginPlatformDomainV3",
         "parameters": [
           {
@@ -16887,6 +16981,96 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/users/{userId}/state": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin Get User State By User Id",
+        "operationId": "AdminGetUserStateByUserIdV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.UserStateResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Get User State By User Id",
+        "tags": [
+          "Users"
+        ],
+        "x-errorCodes": {
+          "10139": "platform account not found",
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20002": "validation error",
+          "20008": "user not found",
+          "20013": "insufficient permissions"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/status": {
       "patch": {
         "consumes": [
@@ -19649,7 +19833,7 @@
             "type": "string"
           },
           {
-            "description": "The that platform should be blocked in login website, for example, the platform that generate the one time link code should be blocked in login website",
+            "description": "The platform should be blocked in login website, for example, the platform that generate the one time link code should be blocked in login website",
             "in": "query",
             "name": "blockedPlatformId",
             "type": "string"
@@ -21427,7 +21611,8 @@
     },
     "/iam/v3/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}": {
       "get": {
-        "description": "Get User By Platform User ID.\nThis endpoint return user information by given platform ID and platform user ID.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.\nexample: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.\n\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "deprecated": true,
+        "description": "Get User By Platform User ID.\nThis endpoint return user information by given platform ID and platform user ID.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.\nexample: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.\n**Note**: this is deprecated, substitute endpoint: /iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId} [GET]\n\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
         "operationId": "PublicGetUserByPlatformUserIDV3",
         "parameters": [
           {
@@ -21922,6 +22107,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Notes:\n- This endpoint bulk get users\u0026#39; basic info by userId, max allowed 100 at a time\n- If namespace is game, will search by game user Id, other wise will search by publisher namespace\n- **Result will include displayName(if it exists)**\n",
         "operationId": "PublicBulkGetUsers",
         "parameters": [
@@ -31374,6 +31560,86 @@
         "x-security": {}
       }
     },
+    "/iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId}": {
+      "get": {
+        "description": "Get User By Platform User ID.\nThis endpoint return user information by given platform ID and platform user ID.\nSeveral platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.\nexample: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.\nIf the target platform is not linked to the current user, will only return public information.\n----------\n\n**Supported Platforms:**\n- Steam group (steamnetwork):\n\t- steam\n\t- steamopenid\n- PSN group (psn):\n\t- ps4web\n\t- ps4\n\t- ps5\n- XBOX group(xbox):\n\t- live\n\t- xblweb\n- Oculus group (oculusgroup):\n\t- oculus\n\t- oculusweb\n- Google group (google):\n\t- google\n\t- googleplaygames:\n- epicgames\n- facebook\n- twitch\n- discord\n- android\n- ios\n- apple\n- device\n- nintendo\n- awscognito\n- amazon\n- netflix\n- snapchat\n- _oidc platform id_\n\nNote:\n- You can use either platform id or platform group as **platformId** parameter.\n- **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1",
+        "operationId": "PublicGetUserByPlatformUserIDV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform User ID",
+            "in": "path",
+            "name": "platformUserId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.UserResponseV3"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get User By Platform User ID",
+        "tags": [
+          "Users V4"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20001": "unauthorized access",
+          "20003": "forbidden access",
+          "20008": "user not found"
+        },
+        "x-security": {}
+      }
+    },
     "/iam/v4/public/namespaces/{namespace}/test_users": {
       "post": {
         "consumes": [
@@ -33794,7 +34060,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/account.upgradeHeadlessAccountWithVerificationCodeRequestV4"
+              "$ref": "#/definitions/account.upgradeHeadlessAccountWithVerificationCodeForwardRequestV4"
             }
           }
         ],
@@ -34385,6 +34651,54 @@
         "username"
       ]
     },
+    "account.upgradeHeadlessAccountWithVerificationCodeForwardRequestV4": {
+      "properties": {
+        "acceptedPolicies": {
+          "items": {
+            "$ref": "#/definitions/legal.AcceptedPoliciesRequest"
+          },
+          "type": "array"
+        },
+        "code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "reachMinimumAge": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "uniqueDisplayName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "validateOnly": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "code",
+        "emailAddress",
+        "password",
+        "username"
+      ]
+    },
     "account.upgradeHeadlessAccountWithVerificationCodeRequestV4": {
       "properties": {
         "code": {
@@ -34851,6 +35165,53 @@
         "platforms"
       ]
     },
+    "accountcommon.GroupAndRoleMappingForPatch": {
+      "properties": {
+        "assignNamespaces": {
+          "description": "role assign namespaces, if empty, then the role must a global and will assign with * as namespace",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "group": {
+          "description": "gmail account group, for now, we only accept email as the group name",
+          "type": "string"
+        },
+        "roleId": {
+          "description": "role that will assign to if match this group",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group"
+      ]
+    },
+    "accountcommon.GroupAndRoleMappingForUpdate": {
+      "properties": {
+        "assignNamespaces": {
+          "description": "role assign namespaces, if empty, then the role must a global and will assign with * as namespace",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "group": {
+          "description": "gmail account group, for now, we only accept email as the group name",
+          "type": "string"
+        },
+        "roleId": {
+          "description": "role that will assign to if match this group",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group",
+        "roleId"
+      ]
+    },
     "accountcommon.InputValidationDescription": {
       "properties": {
         "language": {
@@ -35225,6 +35586,9 @@
         },
         "roleId": {
           "type": "string"
+        },
+        "ssoCfg": {
+          "$ref": "#/definitions/accountcommon.SsoConfig"
         }
       },
       "required": [
@@ -35438,6 +35802,40 @@
         "namespace",
         "originNamespace"
       ]
+    },
+    "accountcommon.SsoConfig": {
+      "properties": {
+        "googleKey": {
+          "description": "Can't be null, If empty, need set it as {}'",
+          "type": "object"
+        },
+        "groupConfigs": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.GroupAndRoleMappingForUpdate"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "googleKey",
+        "groupConfigs"
+      ]
+    },
+    "accountcommon.SsoConfigPatchReq": {
+      "properties": {
+        "googleKey": {
+          "description": "This is optional",
+          "type": "object"
+        },
+        "groupConfigs": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.GroupAndRoleMappingForPatch"
+          },
+          "minItems": 0,
+          "type": "array"
+        }
+      }
     },
     "accountcommon.UserInformationV3": {
       "properties": {
@@ -38121,6 +38519,41 @@
       "properties": {
         "domain": {
           "type": "string"
+        },
+        "ssoGroups": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "domain",
+        "ssoGroups"
+      ]
+    },
+    "model.PlatformDomainPatchRequest": {
+      "properties": {
+        "affectedClientIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "assignedNamespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "roleId": {
+          "type": "string"
+        },
+        "ssoCfg": {
+          "$ref": "#/definitions/accountcommon.SsoConfigPatchReq"
         }
       },
       "required": [
@@ -38159,6 +38592,9 @@
         },
         "roleId": {
           "type": "string"
+        },
+        "ssoCfg": {
+          "$ref": "#/definitions/accountcommon.SsoConfig"
         }
       },
       "required": [
@@ -39676,6 +40112,9 @@
         },
         "UserInfoHTTPMethod": {
           "description": "http method to call third party user info endpoint to validate 3rd party user profile using third party user token. Used for generic oauth flow.",
+          "type": "string"
+        },
+        "googleAdminConsoleKey": {
           "type": "string"
         },
         "scopes": {
@@ -41241,6 +41680,33 @@
         "roleName"
       ]
     },
+    "model.UserStateResponseV3": {
+      "properties": {
+        "emailVerified": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "fullAccount": {
+          "description": "If the account has email address, then it is full account",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "testAccount": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "emailVerified",
+        "enabled",
+        "fullAccount",
+        "testAccount"
+      ]
+    },
     "model.UserUpdateRequest": {
       "properties": {
         "Country": {
@@ -42410,11 +42876,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-12-27T05:39:52+00:00",
-    "gitHash": "3213c5bceb32c25ac960489379bec2ef1ad03fc9",
+    "buildDate": "2025-01-22T04:32:02+00:00",
+    "gitHash": "92a603ec5ed9f1db5d16005b4bfc202a421e09b2",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.25.3",
+    "version": "7.26.0",
     "version-roles-seeding": "1.2.80"
   }
 }

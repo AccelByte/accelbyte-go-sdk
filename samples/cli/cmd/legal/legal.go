@@ -19,6 +19,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/legal/localizedPolicyVersionsWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/policies"
 	"github.com/AccelByte/sample-apps/cmd/legal/policiesWithNamespace"
+	"github.com/AccelByte/sample-apps/cmd/legal/policiesWithNamespaceV2"
 	"github.com/AccelByte/sample-apps/cmd/legal/policyVersions"
 	"github.com/AccelByte/sample-apps/cmd/legal/policyVersionsWithNamespace"
 	"github.com/AccelByte/sample-apps/cmd/legal/userInfo"
@@ -106,4 +107,5 @@ func init() {
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesPublicCmd)
 	LegalCmd.AddCommand(policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd)
 	LegalCmd.AddCommand(utility.CheckReadinessCmd)
+	LegalCmd.AddCommand(policiesWithNamespaceV2.RetrieveLatestPoliciesByNamespaceAndCountryPublic1Cmd)
 }

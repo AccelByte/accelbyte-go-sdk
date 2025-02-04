@@ -84,30 +84,10 @@ func NewAdminProfanityCreateBulkNoContent() *AdminProfanityCreateBulkNoContent {
   No Content
 */
 type AdminProfanityCreateBulkNoContent struct {
-	Payload *chatclientmodels.ModelsDictionary
 }
 
 func (o *AdminProfanityCreateBulkNoContent) Error() string {
-	return fmt.Sprintf("[POST /chat/v1/admin/profanity/namespaces/{namespace}/dictionary/bulk][%d] adminProfanityCreateBulkNoContent  %+v", 204, o.ToJSONString())
-}
-
-func (o *AdminProfanityCreateBulkNoContent) ToJSONString() string {
-	if o.Payload == nil {
-		return "{}"
-	}
-
-	b, err := json.Marshal(o.Payload)
-	if err != nil {
-		fmt.Println(err)
-
-		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
-	}
-
-	return fmt.Sprintf("%+v", string(b))
-}
-
-func (o *AdminProfanityCreateBulkNoContent) GetPayload() *chatclientmodels.ModelsDictionary {
-	return o.Payload
+	return fmt.Sprintf("[POST /chat/v1/admin/profanity/namespaces/{namespace}/dictionary/bulk][%d] adminProfanityCreateBulkNoContent ", 204)
 }
 
 func (o *AdminProfanityCreateBulkNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -116,13 +96,6 @@ func (o *AdminProfanityCreateBulkNoContent) readResponse(response runtime.Client
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
-	}
-
-	o.Payload = new(chatclientmodels.ModelsDictionary)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
 	}
 
 	return nil

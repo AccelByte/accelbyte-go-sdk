@@ -28,6 +28,9 @@ type ModelsPublicConfigResponse struct {
 	// Format: int64
 	ChatRateLimitDuration *int64 `json:"chatRateLimitDuration"`
 
+	// enablepmsendplatformid
+	EnablePmSendPlatformID bool `json:"enablePmSendPlatformId"`
+
 	// generalratelimitburst
 	// Required: true
 	// Format: int32

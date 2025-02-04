@@ -539,11 +539,14 @@ func (a *Client) AdminCancelUserPersonalDataRequestShort(params *AdminCancelUser
 Deprecated: 2022-08-10 - Use AdminGeneratePersonalDataURLShort instead.
 
 AdminGeneratePersonalDataURL generate personal data download url
-Generate personal data download url.
-Scope: account
 
-### Request Header:
-- **Content-Type: application/x-www-form-urlencoded**
+
+Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]` and scope `account`
+
+
+
+
+If admin request data for themselves, password is need to be set
 */
 func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, *AdminGeneratePersonalDataURLBadRequest, *AdminGeneratePersonalDataURLUnauthorized, *AdminGeneratePersonalDataURLNotFound, *AdminGeneratePersonalDataURLInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -604,11 +607,14 @@ func (a *Client) AdminGeneratePersonalDataURL(params *AdminGeneratePersonalDataU
 
 /*
 AdminGeneratePersonalDataURLShort generate personal data download url
-Generate personal data download url.
-Scope: account
 
-### Request Header:
-- **Content-Type: application/x-www-form-urlencoded**
+
+Required permission `ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]` and scope `account`
+
+
+
+
+If admin request data for themselves, password is need to be set
 */
 func (a *Client) AdminGeneratePersonalDataURLShort(params *AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGeneratePersonalDataURLOK, error) {
 	// TODO: Validate the params before sending

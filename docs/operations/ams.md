@@ -145,8 +145,8 @@
 | `api.ImageListItem` | [ApiImageListItem ](../../ams-sdk/pkg/amsclientmodels/api_image_list_item.go) |
 | `api.ImageStorage` | [ApiImageStorage ](../../ams-sdk/pkg/amsclientmodels/api_image_storage.go) |
 | `api.ImageUpdate` | [ApiImageUpdate ](../../ams-sdk/pkg/amsclientmodels/api_image_update.go) |
-| `api.InstanceTypeForNamespaceResponse` | [ApiInstanceTypeForNamespaceResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_type_for_namespace_response.go) |
-| `api.InstanceTypesForNamespaceResponse` | [ApiInstanceTypesForNamespaceResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_types_for_namespace_response.go) |
+| `api.InstanceType` | [ApiInstanceType ](../../ams-sdk/pkg/amsclientmodels/api_instance_type.go) |
+| `api.InstanceTypesResponse` | [ApiInstanceTypesResponse ](../../ams-sdk/pkg/amsclientmodels/api_instance_types_response.go) |
 | `api.PagingInfo` | [ApiPagingInfo ](../../ams-sdk/pkg/amsclientmodels/api_paging_info.go) |
 | `api.PortConfiguration` | [ApiPortConfiguration ](../../ams-sdk/pkg/amsclientmodels/api_port_configuration.go) |
 | `api.QoSEndpointResponse` | [ApiQoSEndpointResponse ](../../ams-sdk/pkg/amsclientmodels/api_qo_s_endpoint_response.go) |

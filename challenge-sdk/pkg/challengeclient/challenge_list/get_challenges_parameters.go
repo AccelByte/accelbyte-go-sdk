@@ -107,6 +107,11 @@ type GetChallengesParams struct {
 
 	*/
 	Namespace string
+	/*Keyword
+	  filter challenges by code with likes behavior
+
+	*/
+	Keyword *string
 	/*Limit
 	  limit the amount of data retrieved
 
@@ -128,6 +133,11 @@ type GetChallengesParams struct {
 
 	*/
 	Status *string
+	/*Tags
+	  filter challenges by tags, comma separated value
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -205,6 +215,17 @@ func (o *GetChallengesParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithKeyword adds the keyword to the get challenges params
+func (o *GetChallengesParams) WithKeyword(keyword *string) *GetChallengesParams {
+	o.SetKeyword(keyword)
+	return o
+}
+
+// SetKeyword adds the keyword to the get challenges params
+func (o *GetChallengesParams) SetKeyword(keyword *string) {
+	o.Keyword = keyword
+}
+
 // WithLimit adds the limit to the get challenges params
 func (o *GetChallengesParams) WithLimit(limit *int64) *GetChallengesParams {
 	o.SetLimit(limit)
@@ -249,6 +270,17 @@ func (o *GetChallengesParams) SetStatus(status *string) {
 	o.Status = status
 }
 
+// WithTags adds the tags to the get challenges params
+func (o *GetChallengesParams) WithTags(tags []string) *GetChallengesParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the get challenges params
+func (o *GetChallengesParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetChallengesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -260,6 +292,22 @@ func (o *GetChallengesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Keyword != nil {
+
+		// query param keyword
+		var qrKeyword string
+		if o.Keyword != nil {
+			qrKeyword = *o.Keyword
+		}
+		qKeyword := qrKeyword
+		if qKeyword != "" {
+			if err := r.SetQueryParam("keyword", qKeyword); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {
@@ -324,6 +372,14 @@ func (o *GetChallengesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

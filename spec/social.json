@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "2.18.6"
+    "version": "2.19.0"
   },
   "schemes": [
     "https"
@@ -9572,6 +9572,11 @@
     },
     "StatCreate": {
       "properties": {
+        "capCycleOverride": {
+          "description": "The field used to define cap behavior of stat cycle min/max override.\nIf set to false, all stat cycle and stat item will continue as is if one stat cycle is capped on its min/max.\nIf set to true, all stat cycle and stat item cannot continue if one of stat cycle is capped on its min/max",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "cycleIds": {
           "items": {
             "type": "string"
@@ -9945,6 +9950,10 @@
     },
     "StatInfo": {
       "properties": {
+        "capCycleOverride": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "createdAt": {
           "format": "date-time",
           "type": "string",
@@ -10187,6 +10196,11 @@
     },
     "StatUpdate": {
       "properties": {
+        "capCycleOverride": {
+          "description": "The field used to define cap behavior of stat cycle min/max override.\nIf set to false, all stat cycle and stat item will continue as is if one stat cycle is capped on its min/max.\nIf set to true, all stat cycle and stat item cannot continue if one of stat cycle is capped on its min/max",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "cycleIds": {
           "items": {
             "type": "string"
@@ -10463,16 +10477,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-12-20T01:06:13+00:00",
-    "buildID": "2.18.6",
+    "buildDate": "2025-01-21T11:09:25+00:00",
+    "buildID": "2.19.0",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.228-219.884.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "592cfebd56",
-    "gitTag": "2.18.6",
+    "gitHash": "1df1c18004",
+    "gitTag": "2.19.0",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "2.18.6",
+    "version": "2.19.0",
     "version-roles-seeding": "0.0.12"
   }
 }

@@ -21,6 +21,10 @@ type ModelPlatformDomainDeleteRequest struct {
 	// domain
 	// Required: true
 	Domain *string `json:"domain"`
+
+	// ssogroups
+	// Required: true
+	SSOGroups []string `json:"ssoGroups"`
 }
 
 // Validate validates this Model platform domain delete request
@@ -28,6 +32,9 @@ func (m *ModelPlatformDomainDeleteRequest) Validate(formats strfmt.Registry) err
 	var res []error
 
 	if err := m.validateDomain(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSSOGroups(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -40,6 +47,15 @@ func (m *ModelPlatformDomainDeleteRequest) Validate(formats strfmt.Registry) err
 func (m *ModelPlatformDomainDeleteRequest) validateDomain(formats strfmt.Registry) error {
 
 	if err := validate.Required("domain", "body", m.Domain); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelPlatformDomainDeleteRequest) validateSSOGroups(formats strfmt.Registry) error {
+
+	if err := validate.Required("ssoGroups", "body", m.SSOGroups); err != nil {
 		return err
 	}
 

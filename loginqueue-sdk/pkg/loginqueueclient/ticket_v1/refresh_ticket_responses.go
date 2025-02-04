@@ -61,10 +61,9 @@ func NewRefreshTicketOK() *RefreshTicketOK {
 	return &RefreshTicketOK{}
 }
 
-/*
-RefreshTicketOK handles this case with default header values.
+/*RefreshTicketOK handles this case with default header values.
 
-	OK
+  OK
 */
 type RefreshTicketOK struct {
 	Payload *loginqueueclientmodels.ApimodelsRefreshTicketResponse
@@ -116,10 +115,9 @@ func NewRefreshTicketUnauthorized() *RefreshTicketUnauthorized {
 	return &RefreshTicketUnauthorized{}
 }
 
-/*
-RefreshTicketUnauthorized handles this case with default header values.
+/*RefreshTicketUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type RefreshTicketUnauthorized struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -171,10 +169,9 @@ func NewRefreshTicketInternalServerError() *RefreshTicketInternalServerError {
 	return &RefreshTicketInternalServerError{}
 }
 
-/*
-RefreshTicketInternalServerError handles this case with default header values.
+/*RefreshTicketInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type RefreshTicketInternalServerError struct {
 	Payload *loginqueueclientmodels.ResponseError

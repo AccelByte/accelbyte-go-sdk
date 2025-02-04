@@ -129,7 +129,7 @@ type AuthorizeV3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*BlockedPlatformID
-	  The that platform should be blocked in login website, for example, the platform that generate the one time link code should be blocked in login website
+	  The platform should be blocked in login website, for example, the platform that generate the one time link code should be blocked in login website
 
 	*/
 	BlockedPlatformID *string

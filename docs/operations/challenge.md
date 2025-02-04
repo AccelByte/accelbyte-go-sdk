@@ -94,6 +94,7 @@
 | `model.GoalProgressionResponse` | [ModelGoalProgressionResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_progression_response.go) |
 | `model.GoalResponse` | [ModelGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_response.go) |
 | `model.GoalSchedule` | [ModelGoalSchedule ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_schedule.go) |
+| `model.GoalScheduleRequest` | [ModelGoalScheduleRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_schedule_request.go) |
 | `model.ListChallengeResponse` | [ModelListChallengeResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_challenge_response.go) |
 | `model.ListPeriodsResponse` | [ModelListPeriodsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_periods_response.go) |
 | `model.ListScheduleByGoalResponse` | [ModelListScheduleByGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_schedule_by_goal_response.go) |

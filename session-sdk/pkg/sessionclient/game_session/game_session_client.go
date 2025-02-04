@@ -38,6 +38,8 @@ type ClientService interface {
 	AdminDeleteBulkGameSessionsShort(params *AdminDeleteBulkGameSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteBulkGameSessionsOK, error)
 	AdminSetDSReady(params *AdminSetDSReadyParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetDSReadyNoContent, *AdminSetDSReadyBadRequest, *AdminSetDSReadyUnauthorized, *AdminSetDSReadyForbidden, *AdminSetDSReadyInternalServerError, error)
 	AdminSetDSReadyShort(params *AdminSetDSReadyParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSetDSReadyNoContent, error)
+	AdminUpdateDSInformation(params *AdminUpdateDSInformationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDSInformationNoContent, *AdminUpdateDSInformationBadRequest, *AdminUpdateDSInformationUnauthorized, *AdminUpdateDSInformationForbidden, *AdminUpdateDSInformationNotFound, *AdminUpdateDSInformationInternalServerError, error)
+	AdminUpdateDSInformationShort(params *AdminUpdateDSInformationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDSInformationNoContent, error)
 	AdminKickGameSessionMember(params *AdminKickGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminKickGameSessionMemberNoContent, *AdminKickGameSessionMemberBadRequest, *AdminKickGameSessionMemberUnauthorized, *AdminKickGameSessionMemberForbidden, *AdminKickGameSessionMemberNotFound, *AdminKickGameSessionMemberInternalServerError, error)
 	AdminKickGameSessionMemberShort(params *AdminKickGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminKickGameSessionMemberNoContent, error)
 	AdminUpdateGameSessionMember(params *AdminUpdateGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGameSessionMemberOK, *AdminUpdateGameSessionMemberBadRequest, *AdminUpdateGameSessionMemberUnauthorized, *AdminUpdateGameSessionMemberForbidden, *AdminUpdateGameSessionMemberNotFound, *AdminUpdateGameSessionMemberInternalServerError, error)
@@ -591,6 +593,127 @@ func (a *Client) AdminSetDSReadyShort(params *AdminSetDSReadyParams, authInfo ru
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminUpdateDSInformationShort instead.
+
+AdminUpdateDSInformation update game session ds information for asynchronous process.
+Update Game Session DS Information for Asynchronous Process
+*/
+func (a *Client) AdminUpdateDSInformation(params *AdminUpdateDSInformationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDSInformationNoContent, *AdminUpdateDSInformationBadRequest, *AdminUpdateDSInformationUnauthorized, *AdminUpdateDSInformationForbidden, *AdminUpdateDSInformationNotFound, *AdminUpdateDSInformationInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateDSInformationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminUpdateDSInformation",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/dsinformation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateDSInformationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateDSInformationNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminUpdateDSInformationBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateDSInformationUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateDSInformationForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminUpdateDSInformationNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateDSInformationInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminUpdateDSInformationShort update game session ds information for asynchronous process.
+Update Game Session DS Information for Asynchronous Process
+*/
+func (a *Client) AdminUpdateDSInformationShort(params *AdminUpdateDSInformationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateDSInformationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminUpdateDSInformationParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminUpdateDSInformation",
+		Method:             "PUT",
+		PathPattern:        "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/dsinformation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminUpdateDSInformationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminUpdateDSInformationNoContent:
+		return v, nil
+	case *AdminUpdateDSInformationBadRequest:
+		return nil, v
+	case *AdminUpdateDSInformationUnauthorized:
+		return nil, v
+	case *AdminUpdateDSInformationForbidden:
+		return nil, v
+	case *AdminUpdateDSInformationNotFound:
+		return nil, v
+	case *AdminUpdateDSInformationInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminKickGameSessionMemberShort instead.
 
 AdminKickGameSessionMember kick member from a game session.
@@ -855,7 +978,6 @@ Session configuration "name" is mandatory, this API will refer following values 
 - textChat
 - autoJoin
 - requestedRegions
-- dsSource
 - preferredClaimKeys
 - fallbackClaimKeys
 - customURLGRPC
@@ -987,7 +1109,6 @@ Session configuration "name" is mandatory, this API will refer following values 
 - textChat
 - autoJoin
 - requestedRegions
-- dsSource
 - preferredClaimKeys
 - fallbackClaimKeys
 - customURLGRPC

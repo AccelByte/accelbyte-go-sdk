@@ -26,7 +26,7 @@ type APIImageDetails struct {
 
 	// deleteat
 	// Required: true
-	DeleteAt *APITime `json:"deleteAt"`
+	DeleteAt *string `json:"deleteAt"`
 
 	// executable
 	// Required: true
@@ -130,15 +130,6 @@ func (m *APIImageDetails) validateDeleteAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("deleteAt", "body", m.DeleteAt); err != nil {
 		return err
-	}
-
-	if m.DeleteAt != nil {
-		if err := m.DeleteAt.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("deleteAt")
-			}
-			return err
-		}
 	}
 
 	return nil

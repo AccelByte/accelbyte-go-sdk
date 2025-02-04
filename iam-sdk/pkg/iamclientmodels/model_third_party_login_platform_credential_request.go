@@ -134,6 +134,9 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	UserInfoHTTPMethod *string `json:"UserInfoHTTPMethod"`
 
+	// googleadminconsolekey
+	GoogleAdminConsoleKey string `json:"googleAdminConsoleKey,omitempty"`
+
 	// scopes for generic OAuth Authorization code flow. Default is [openid, profile, email]
 	// Required: true
 	Scopes []string `json:"scopes"`

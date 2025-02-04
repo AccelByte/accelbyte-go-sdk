@@ -20,6 +20,9 @@ import (
 // swagger:model Stat update.
 type StatUpdate struct {
 
+	// The field used to define cap behavior of stat cycle min/max override. If set to false, all stat cycle and stat item will continue as is if one stat cycle is capped on its min/max. If set to true, all stat cycle and stat item cannot continue if one of stat cycle is capped on its min/max
+	CapCycleOverride bool `json:"capCycleOverride"`
+
 	// cycleids
 	// Unique: true
 	CycleIds []string `json:"cycleIds"`

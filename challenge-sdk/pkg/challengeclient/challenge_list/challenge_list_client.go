@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error)
+	GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesBadRequest, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error)
 	GetChallengesShort(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, error)
 	PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsNotFound, *PublicGetScheduledGoalsInternalServerError, error)
 	PublicGetScheduledGoalsShort(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, error)
@@ -44,7 +44,7 @@ Deprecated: 2022-08-10 - Use GetChallengesShort instead.
 GetChallenges list challenges
 - Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
-func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error) {
+func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesBadRequest, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetChallengesParams()
@@ -76,25 +76,28 @@ func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetChallengesOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetChallengesBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *GetChallengesUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *GetChallengesForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *GetChallengesInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -137,6 +140,8 @@ func (a *Client) GetChallengesShort(params *GetChallengesParams, authInfo runtim
 
 	case *GetChallengesOK:
 		return v, nil
+	case *GetChallengesBadRequest:
+		return nil, v
 	case *GetChallengesUnauthorized:
 		return nil, v
 	case *GetChallengesForbidden:

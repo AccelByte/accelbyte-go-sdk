@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.31.1"
+    "version": "1.32.0"
   },
   "schemes": [
     "https"
@@ -2769,7 +2769,7 @@
           "200": {
             "description": "success",
             "schema": {
-              "$ref": "#/definitions/api.InstanceTypesForNamespaceResponse"
+              "$ref": "#/definitions/api.InstanceTypesResponse"
             }
           },
           "401": {
@@ -2796,7 +2796,7 @@
             "authorization": []
           }
         ],
-        "summary": "get a list of available VM configurations",
+        "summary": "get a list of available instance types for the current account",
         "tags": [
           "AMS Info"
         ],
@@ -4141,7 +4141,7 @@
           "$ref": "#/definitions/time.Time"
         },
         "deleteAt": {
-          "$ref": "#/definitions/api.Time"
+          "type": "string"
         },
         "executable": {
           "type": "string"
@@ -4220,7 +4220,7 @@
           "$ref": "#/definitions/time.Time"
         },
         "deleteAt": {
-          "$ref": "#/definitions/api.Time"
+          "type": "string"
         },
         "executable": {
           "type": "string"
@@ -4329,7 +4329,7 @@
         "removedTags"
       ]
     },
-    "api.InstanceTypeForNamespaceResponse": {
+    "api.InstanceType": {
       "properties": {
         "capacity": {
           "items": {
@@ -4342,6 +4342,10 @@
         },
         "id": {
           "type": "string"
+        },
+        "isBaremetal": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "memoryGiB": {
           "format": "double",
@@ -4368,6 +4372,7 @@
         "capacity",
         "description",
         "id",
+        "isBaremetal",
         "memoryGiB",
         "minSpeed",
         "name",
@@ -4376,11 +4381,11 @@
         "virtualCpu"
       ]
     },
-    "api.InstanceTypesForNamespaceResponse": {
+    "api.InstanceTypesResponse": {
       "properties": {
         "availableInstanceTypes": {
           "items": {
-            "$ref": "#/definitions/api.InstanceTypeForNamespaceResponse"
+            "$ref": "#/definitions/api.InstanceType"
           },
           "type": "array"
         }
@@ -4740,10 +4745,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-12-12T15:28:29+00:00",
-    "gitHash": "c499d351911323a4391c80417550d4cbb5a42e38",
+    "buildDate": "2025-01-13T09:50:48+00:00",
+    "gitHash": "87d25041ae1c2c7cc0855d06cc1b4f3ad4632882",
     "name": "fleet-commander",
-    "version": "1.31.1",
+    "version": "1.32.0",
     "version-roles-seeding": "1.2.70"
   }
 }

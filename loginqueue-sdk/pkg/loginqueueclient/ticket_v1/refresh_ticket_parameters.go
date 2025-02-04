@@ -57,8 +57,7 @@ func NewRefreshTicketParamsWithHTTPClient(client *http.Client) *RefreshTicketPar
 	}
 }
 
-/*
-RefreshTicketParams contains all the parameters to send to the API endpoint
+/*RefreshTicketParams contains all the parameters to send to the API endpoint
 for the refresh ticket operation typically these are written to a http.Request
 */
 type RefreshTicketParams struct {

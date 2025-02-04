@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetChallenges(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, *AdminGetChallengesUnauthorized, *AdminGetChallengesForbidden, *AdminGetChallengesInternalServerError, error)
+	AdminGetChallenges(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, *AdminGetChallengesBadRequest, *AdminGetChallengesUnauthorized, *AdminGetChallengesForbidden, *AdminGetChallengesInternalServerError, error)
 	AdminGetChallengesShort(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, error)
 	AdminCreateChallenge(params *AdminCreateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChallengeCreated, *AdminCreateChallengeBadRequest, *AdminCreateChallengeUnauthorized, *AdminCreateChallengeForbidden, *AdminCreateChallengeConflict, *AdminCreateChallengeUnprocessableEntity, *AdminCreateChallengeInternalServerError, error)
 	AdminCreateChallengeShort(params *AdminCreateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChallengeCreated, error)
@@ -60,7 +60,7 @@ Deprecated: 2022-08-10 - Use AdminGetChallengesShort instead.
 AdminGetChallenges list challenges
 - Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
 */
-func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, *AdminGetChallengesUnauthorized, *AdminGetChallengesForbidden, *AdminGetChallengesInternalServerError, error) {
+func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengesOK, *AdminGetChallengesBadRequest, *AdminGetChallengesUnauthorized, *AdminGetChallengesForbidden, *AdminGetChallengesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetChallengesParams()
@@ -92,25 +92,28 @@ func (a *Client) AdminGetChallenges(params *AdminGetChallengesParams, authInfo r
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetChallengesOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminGetChallengesBadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminGetChallengesUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminGetChallengesForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminGetChallengesInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -153,6 +156,8 @@ func (a *Client) AdminGetChallengesShort(params *AdminGetChallengesParams, authI
 
 	case *AdminGetChallengesOK:
 		return v, nil
+	case *AdminGetChallengesBadRequest:
+		return nil, v
 	case *AdminGetChallengesUnauthorized:
 		return nil, v
 	case *AdminGetChallengesForbidden:
@@ -190,6 +195,7 @@ Challenge is a collection of goals that can be completed by players. Challenge c
 - randomizedPerRotation:
 - true: each goal will be randomly assigned to multiple periods
 - false: a goal will only be assigned to one period
+- tags: challenge's labels.
 */
 func (a *Client) AdminCreateChallenge(params *AdminCreateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChallengeCreated, *AdminCreateChallengeBadRequest, *AdminCreateChallengeUnauthorized, *AdminCreateChallengeForbidden, *AdminCreateChallengeConflict, *AdminCreateChallengeUnprocessableEntity, *AdminCreateChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -277,6 +283,7 @@ Challenge is a collection of goals that can be completed by players. Challenge c
 - randomizedPerRotation:
 - true: each goal will be randomly assigned to multiple periods
 - false: a goal will only be assigned to one period
+- tags: challenge's labels.
 */
 func (a *Client) AdminCreateChallengeShort(params *AdminCreateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateChallengeCreated, error) {
 	// TODO: Validate the params before sending
@@ -583,6 +590,7 @@ Request body:
 - randomizedPerRotation:
 - true: each goal will be randomly assigned to multiple periods
 - false: a goal will only be assigned to one period
+- tags: challenge's labels.
 */
 func (a *Client) AdminUpdateChallenge(params *AdminUpdateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChallengeOK, *AdminUpdateChallengeBadRequest, *AdminUpdateChallengeUnauthorized, *AdminUpdateChallengeForbidden, *AdminUpdateChallengeNotFound, *AdminUpdateChallengeUnprocessableEntity, *AdminUpdateChallengeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -668,6 +676,7 @@ Request body:
 - randomizedPerRotation:
 - true: each goal will be randomly assigned to multiple periods
 - false: a goal will only be assigned to one period
+- tags: challenge's labels.
 */
 func (a *Client) AdminUpdateChallengeShort(params *AdminUpdateChallengeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateChallengeOK, error) {
 	// TODO: Validate the params before sending

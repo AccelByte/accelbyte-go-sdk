@@ -32,7 +32,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\nGets the List of Apps for AB-Extend Customer\n\nAvailable scenario:\n\t- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\n\t",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\nGets the List of Apps for AB-Extend Customer\n\nAvailable scenario:\n\t- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\n\t",
         "operationId": "GetAppListV1",
         "parameters": [
           {
@@ -1842,7 +1842,7 @@
         "operationId": "GetAppListV2",
         "parameters": [
           {
-            "description": "Available scenario:\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
+            "description": "Available scenario:\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
             "in": "body",
             "name": "body",
             "required": true,
@@ -4343,6 +4343,10 @@
         "gameName": {
           "type": "string"
         },
+        "isResourceApplied": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "memory": {
           "$ref": "#/definitions/apimodel.MemoryResponse"
         },
@@ -4363,6 +4367,9 @@
         },
         "updatedAt": {
           "type": "string"
+        },
+        "vmSharingConfiguration": {
+          "type": "string"
         }
       },
       "required": [
@@ -4371,8 +4378,10 @@
         "appStatus",
         "createdAt",
         "gameName",
+        "isResourceApplied",
         "scenario",
-        "updatedAt"
+        "updatedAt",
+        "vmSharingConfiguration"
       ]
     },
     "apimodel.AutoscalingRequest": {
@@ -4512,6 +4521,9 @@
           "$ref": "#/definitions/apimodel.ReplicaRequest"
         },
         "scenario": {
+          "type": "string"
+        },
+        "vmSharingConfiguration": {
           "type": "string"
         }
       },
@@ -5065,6 +5077,9 @@
         },
         "replica": {
           "$ref": "#/definitions/apimodel.ReplicaRequest"
+        },
+        "vmSharingConfiguration": {
+          "type": "string"
         }
       },
       "required": [
@@ -6093,8 +6108,8 @@
     }
   ],
   "x-version": {
-    "buildDate": "Tue Dec 17 07:19:40 UTC 2024",
-    "gitHash": "92062e9d",
+    "buildDate": "Tue Jan 21 05:10:46 UTC 2025",
+    "gitHash": "8b2a3a61",
     "name": "custom-service-manager",
     "version": "1.20.0",
     "version-justice": "3.39.0",

@@ -388,6 +388,8 @@ func init() {
 	PlatformCmd.AddCommand(view.GetViewCmd)
 	PlatformCmd.AddCommand(view.UpdateViewCmd)
 	PlatformCmd.AddCommand(view.DeleteViewCmd)
+	PlatformCmd.AddCommand(wallet.GetWalletConfigCmd)
+	PlatformCmd.AddCommand(wallet.UpdateWalletConfigCmd)
 	PlatformCmd.AddCommand(wallet.QueryWalletsCmd)
 	PlatformCmd.AddCommand(wallet.BulkCreditCmd)
 	PlatformCmd.AddCommand(wallet.BulkDebitCmd)

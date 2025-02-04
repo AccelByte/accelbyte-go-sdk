@@ -1160,6 +1160,32 @@ func (aaa *UsersV4Service) PublicListUserIDByPlatformUserIDsV4(input *users_v4.P
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetUserByPlatformUserIDV4Short instead.
+func (aaa *UsersV4Service) PublicGetUserByPlatformUserIDV4(input *users_v4.PublicGetUserByPlatformUserIDV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.UsersV4.PublicGetUserByPlatformUserIDV4(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicCreateTestUserV4Short instead.
 func (aaa *UsersV4Service) PublicCreateTestUserV4(input *users_v4.PublicCreateTestUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -3157,6 +3183,36 @@ func (aaa *UsersV4Service) PublicListUserIDByPlatformUserIDsV4Short(input *users
 	}
 
 	ok, err := aaa.Client.UsersV4.PublicListUserIDByPlatformUserIDsV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersV4Service) PublicGetUserByPlatformUserIDV4Short(input *users_v4.PublicGetUserByPlatformUserIDV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsersV4 != nil {
+		input.XFlightId = tempFlightIdUsersV4
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UsersV4.PublicGetUserByPlatformUserIDV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

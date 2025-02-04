@@ -7,6 +7,8 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,6 +25,9 @@ type ApimodelsPublicConfiguration struct {
 
 	// appname
 	AppName string `json:"appName,omitempty"`
+
+	// asyncprocessdsrequest
+	AsyncProcessDSRequest *ModelsAsyncProcessDSRequest `json:"asyncProcessDSRequest,omitempty"`
 
 	// attributes
 	Attributes interface{} `json:"attributes,omitempty"`
@@ -121,6 +126,10 @@ type ApimodelsPublicConfiguration struct {
 	// textchat
 	// Required: true
 	TextChat *bool `json:"textChat"`
+
+	// textchatmode
+	// Enum: ['GAME', 'NONE', 'TEAM']
+	TextChatMode string `json:"textChatMode,omitempty"`
 
 	// tieteamssessionlifetime
 	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
@@ -273,6 +282,38 @@ func (m *ApimodelsPublicConfiguration) validateTextChat(formats strfmt.Registry)
 		return err
 	}
 
+	return nil
+}
+
+var apimodelsPublicConfigurationTypeTextChatModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["GAME", "NONE", "TEAM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsPublicConfigurationTypeTextChatModePropEnum = append(apimodelsPublicConfigurationTypeTextChatModePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsPublicConfigurationTextChatModeGAME captures enum value "GAME"
+	ApimodelsPublicConfigurationTextChatModeGAME string = "GAME"
+
+	// ApimodelsPublicConfigurationTextChatModeNONE captures enum value "NONE"
+	ApimodelsPublicConfigurationTextChatModeNONE string = "NONE"
+
+	// ApimodelsPublicConfigurationTextChatModeTEAM captures enum value "TEAM"
+	ApimodelsPublicConfigurationTextChatModeTEAM string = "TEAM"
+)
+
+// prop value enum
+func (m *ApimodelsPublicConfiguration) validateTextChatModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsPublicConfigurationTypeTextChatModePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

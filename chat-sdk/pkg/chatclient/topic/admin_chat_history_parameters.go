@@ -22,8 +22,11 @@ import (
 // NewAdminChatHistoryParams creates a new AdminChatHistoryParams object
 // with the default values initialized.
 func NewAdminChatHistoryParams() *AdminChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChatHistoryParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminChatHistoryParams() *AdminChatHistoryParams {
 // NewAdminChatHistoryParamsWithTimeout creates a new AdminChatHistoryParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminChatHistoryParamsWithTimeout(timeout time.Duration) *AdminChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChatHistoryParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminChatHistoryParamsWithTimeout(timeout time.Duration) *AdminChatHisto
 // NewAdminChatHistoryParamsWithContext creates a new AdminChatHistoryParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminChatHistoryParamsWithContext(ctx context.Context) *AdminChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChatHistoryParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewAdminChatHistoryParamsWithContext(ctx context.Context) *AdminChatHistory
 // NewAdminChatHistoryParamsWithHTTPClient creates a new AdminChatHistoryParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminChatHistoryParamsWithHTTPClient(client *http.Client) *AdminChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChatHistoryParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }

@@ -22,8 +22,11 @@ import (
 // NewAdminChannelTopicListParams creates a new AdminChannelTopicListParams object
 // with the default values initialized.
 func NewAdminChannelTopicListParams() *AdminChannelTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChannelTopicListParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminChannelTopicListParams() *AdminChannelTopicListParams {
 // NewAdminChannelTopicListParamsWithTimeout creates a new AdminChannelTopicListParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminChannelTopicListParamsWithTimeout(timeout time.Duration) *AdminChannelTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChannelTopicListParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminChannelTopicListParamsWithTimeout(timeout time.Duration) *AdminChan
 // NewAdminChannelTopicListParamsWithContext creates a new AdminChannelTopicListParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminChannelTopicListParamsWithContext(ctx context.Context) *AdminChannelTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChannelTopicListParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewAdminChannelTopicListParamsWithContext(ctx context.Context) *AdminChanne
 // NewAdminChannelTopicListParamsWithHTTPClient creates a new AdminChannelTopicListParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminChannelTopicListParamsWithHTTPClient(client *http.Client) *AdminChannelTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminChannelTopicListParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }

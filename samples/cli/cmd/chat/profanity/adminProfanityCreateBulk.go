@@ -39,14 +39,14 @@ var AdminProfanityCreateBulkCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		noContent, errNoContent := profanityService.AdminProfanityCreateBulkShort(input)
+		errNoContent := profanityService.AdminProfanityCreateBulkShort(input)
 		if errNoContent != nil {
 			logrus.Error(errNoContent)
 
 			return errNoContent
 		}
 
-		logrus.Infof("Response CLI success: %+v", noContent)
+		logrus.Infof("Response CLI success.")
 
 		return nil
 	},

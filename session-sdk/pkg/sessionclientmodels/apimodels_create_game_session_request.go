@@ -7,6 +7,7 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -104,6 +105,10 @@ type ApimodelsCreateGameSessionRequest struct {
 	// textchat
 	// Required: true
 	TextChat *bool `json:"textChat"`
+
+	// textchatmode
+	// Enum: ['GAME', 'NONE', 'TEAM']
+	TextChatMode string `json:"textChatMode,omitempty"`
 
 	// ticketids
 	// Required: true
@@ -315,6 +320,38 @@ func (m *ApimodelsCreateGameSessionRequest) validateTextChat(formats strfmt.Regi
 		return err
 	}
 
+	return nil
+}
+
+var apimodelsCreateGameSessionRequestTypeTextChatModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["GAME", "NONE", "TEAM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsCreateGameSessionRequestTypeTextChatModePropEnum = append(apimodelsCreateGameSessionRequestTypeTextChatModePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsCreateGameSessionRequestTextChatModeGAME captures enum value "GAME"
+	ApimodelsCreateGameSessionRequestTextChatModeGAME string = "GAME"
+
+	// ApimodelsCreateGameSessionRequestTextChatModeNONE captures enum value "NONE"
+	ApimodelsCreateGameSessionRequestTextChatModeNONE string = "NONE"
+
+	// ApimodelsCreateGameSessionRequestTextChatModeTEAM captures enum value "TEAM"
+	ApimodelsCreateGameSessionRequestTextChatModeTEAM string = "TEAM"
+)
+
+// prop value enum
+func (m *ApimodelsCreateGameSessionRequest) validateTextChatModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsCreateGameSessionRequestTypeTextChatModePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

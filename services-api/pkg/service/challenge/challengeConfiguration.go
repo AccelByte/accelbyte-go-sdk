@@ -44,7 +44,10 @@ func (aaa *ChallengeConfigurationService) AdminGetChallenges(input *challenge_co
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminGetChallenges(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ChallengeConfiguration.AdminGetChallenges(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

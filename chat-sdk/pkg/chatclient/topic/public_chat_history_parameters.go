@@ -22,8 +22,11 @@ import (
 // NewPublicChatHistoryParams creates a new PublicChatHistoryParams object
 // with the default values initialized.
 func NewPublicChatHistoryParams() *PublicChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicChatHistoryParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewPublicChatHistoryParams() *PublicChatHistoryParams {
 // NewPublicChatHistoryParamsWithTimeout creates a new PublicChatHistoryParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicChatHistoryParamsWithTimeout(timeout time.Duration) *PublicChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicChatHistoryParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewPublicChatHistoryParamsWithTimeout(timeout time.Duration) *PublicChatHis
 // NewPublicChatHistoryParamsWithContext creates a new PublicChatHistoryParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicChatHistoryParamsWithContext(ctx context.Context) *PublicChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicChatHistoryParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewPublicChatHistoryParamsWithContext(ctx context.Context) *PublicChatHisto
 // NewPublicChatHistoryParamsWithHTTPClient creates a new PublicChatHistoryParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicChatHistoryParamsWithHTTPClient(client *http.Client) *PublicChatHistoryParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicChatHistoryParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }

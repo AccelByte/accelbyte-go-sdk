@@ -30,7 +30,7 @@ var PublicUpgradeHeadlessWithCodeV4ForwardCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4
+		var body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeForwardRequestV4
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

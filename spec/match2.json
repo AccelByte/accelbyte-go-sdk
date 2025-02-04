@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.30.0"
+    "version": "2.31.0"
   },
   "schemes": [
     "https"
@@ -1696,6 +1696,95 @@
         ]
       }
     },
+    "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/external-failure": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Post metrics for external flow failure in a specific match pool\n",
+        "operationId": "PostMatchErrorMetric",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.ExternalFailureMetricRecord"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Name of the match pool",
+            "in": "path",
+            "name": "pool",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Post metrics for external flow failure in a specific match pool",
+        "tags": [
+          "Match-Pools",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:POOL:METRICS [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/match2/v1/namespaces/{namespace}/match-pools/{pool}/metrics/player": {
       "get": {
         "consumes": [
@@ -2791,6 +2880,20 @@
           "type": "array"
         }
       }
+    },
+    "api.ExternalFailureMetricRecord": {
+      "properties": {
+        "type": {
+          "enum": [
+            "connectDS",
+            "getExternalDS"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ]
     },
     "api.ListEnvironmentVariablesResponse": {
       "properties": {
@@ -3969,9 +4072,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2024-12-18T02:19:43+00:00",
-    "gitHash": "c6f7eca9054e0b89d7e3b69e2329f276a2e17c05",
-    "version": "2.30.0",
-    "version-roles-seeding": "1.2.75"
+    "buildDate": "2025-01-21T04:37:22+00:00",
+    "gitHash": "4615e7bf4c868267ad532becf5959c94d37050f3",
+    "version": "2.31.0",
+    "version-roles-seeding": "1.2.83"
   }
 }

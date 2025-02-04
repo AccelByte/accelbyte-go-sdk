@@ -22,8 +22,11 @@ import (
 // NewAdminTopicMembersParams creates a new AdminTopicMembersParams object
 // with the default values initialized.
 func NewAdminTopicMembersParams() *AdminTopicMembersParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicMembersParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminTopicMembersParams() *AdminTopicMembersParams {
 // NewAdminTopicMembersParamsWithTimeout creates a new AdminTopicMembersParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminTopicMembersParamsWithTimeout(timeout time.Duration) *AdminTopicMembersParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicMembersParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminTopicMembersParamsWithTimeout(timeout time.Duration) *AdminTopicMem
 // NewAdminTopicMembersParamsWithContext creates a new AdminTopicMembersParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminTopicMembersParamsWithContext(ctx context.Context) *AdminTopicMembersParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicMembersParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewAdminTopicMembersParamsWithContext(ctx context.Context) *AdminTopicMembe
 // NewAdminTopicMembersParamsWithHTTPClient creates a new AdminTopicMembersParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminTopicMembersParamsWithHTTPClient(client *http.Client) *AdminTopicMembersParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicMembersParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }

@@ -191,7 +191,7 @@ After all items evaluated, the results of the evaluation on each item then will 
 - targetValue: the target number to be reached by the parameter.
 - statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).
 - rewards: list of rewards that will be claimable once a goal is complete.
-- tag: goal's labels.
+- tags: goal's labels.
 - isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.
 The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
@@ -293,7 +293,7 @@ After all items evaluated, the results of the evaluation on each item then will 
 - targetValue: the target number to be reached by the parameter.
 - statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).
 - rewards: list of rewards that will be claimable once a goal is complete.
-- tag: goal's labels.
+- tags: goal's labels.
 - isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not.
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.
 The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
@@ -499,7 +499,7 @@ AdminUpdateGoals update goal
 - targetValue: the target number to be reached by the parameter.
 - statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).
 - rewards: list of rewards that will be claimable once a goal is complete.
-- tag: goal's labels.
+- tags: goal's labels.
 - isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.
 The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.
@@ -588,7 +588,7 @@ AdminUpdateGoalsShort update goal
 - targetValue: the target number to be reached by the parameter.
 - statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).
 - rewards: list of rewards that will be claimable once a goal is complete.
-- tag: goal's labels.
+- tags: goal's labels.
 - isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).
 Goal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.
 The requirement will have target value and a operator that will evaluate that against an observable playerâs attribute (e.g. statistic, entitlement). Goal belongs to a challenge.

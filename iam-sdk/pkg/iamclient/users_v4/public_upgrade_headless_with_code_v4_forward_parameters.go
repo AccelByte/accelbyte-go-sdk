@@ -67,7 +67,7 @@ type PublicUpgradeHeadlessWithCodeV4ForwardParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4
+	Body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeForwardRequestV4
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -135,13 +135,13 @@ func (o *PublicUpgradeHeadlessWithCodeV4ForwardParams) SetFlightId(flightId stri
 }
 
 // WithBody adds the body to the public upgrade headless with code v4 forward params
-func (o *PublicUpgradeHeadlessWithCodeV4ForwardParams) WithBody(body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) *PublicUpgradeHeadlessWithCodeV4ForwardParams {
+func (o *PublicUpgradeHeadlessWithCodeV4ForwardParams) WithBody(body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeForwardRequestV4) *PublicUpgradeHeadlessWithCodeV4ForwardParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the public upgrade headless with code v4 forward params
-func (o *PublicUpgradeHeadlessWithCodeV4ForwardParams) SetBody(body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeRequestV4) {
+func (o *PublicUpgradeHeadlessWithCodeV4ForwardParams) SetBody(body *iamclientmodels.AccountUpgradeHeadlessAccountWithVerificationCodeForwardRequestV4) {
 	o.Body = body
 }
 

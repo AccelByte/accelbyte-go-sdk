@@ -30,6 +30,9 @@ type ApimodelUpdateAppResourceRequest struct {
 
 	// replica
 	Replica *ApimodelReplicaRequest `json:"replica,omitempty"`
+
+	// vmsharingconfiguration
+	VMSharingConfiguration string `json:"vmSharingConfiguration,omitempty"`
 }
 
 // Validate validates this Apimodel update app resource request

@@ -20,6 +20,9 @@ import (
 // swagger:model Logconfig configuration.
 type LogconfigConfiguration struct {
 
+	// internalaccesslogenabled
+	InternalAccessLogEnabled bool `json:"internalAccessLogEnabled"`
+
 	// loglevel
 	// Enum: ['debug', 'error', 'fatal', 'info', 'panic', 'trace', 'warning']
 	LogLevel string `json:"logLevel,omitempty"`

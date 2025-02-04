@@ -93,7 +93,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to set/update log queue configuration of a namespace.\nThis endpoint has upsert behavior. Calling the endpoint to a namespace with no configuration will make the service to create a new configuration. \nWhen creating new configuration, empty field will have default value:\n* enabled = false\n* maxConcurrency = 1000000\n* maxLoginRate = 500\n* safetyMarginPercentage = 5\n* minActivationPeriodInSecond = 600 \n* playerReconnectGracePeriodInSecond = 300\n* queueReconnectGracePeriodInSecond = 60\n* playerPollingTimeInSecond = 20\n\nCalling this endpoint with namespace that has configuration will replace the old configuration.\n\nInput validation:\n* maxConcurrency must be \u0026gt; 0 and \u0026lt;= 10000000 (0 \u0026lt; x \u0026lt;= 10000000)\n* maxLoginRate must be \u0026gt; 0 and \u0026lt;= 100000 (0 \u0026lt; x \u0026lt;= 100000)\n* minActivationPeriodInSecond, playerReconnectGracePeriodInSecond, playerPollingTimeInSecond and queueReconnectGracePeriodInSecond must be \u0026gt; 0 and \u0026lt;= 21600 (0 \u0026lt; x \u0026lt;= 21600)\n* playerPollingTimeInSecond must be smaller than queueReconnectGracePeriodInSecond \n* safetyMarginPercentage must be \u0026gt;= 0 and \u0026lt; 100 (0 \u0026lt;= x \u0026lt; 100)\n\n",
+        "description": "This API is used to set/update log queue configuration of a namespace.\nThis endpoint has upsert behavior. Calling the endpoint to a namespace with no configuration will make the service to create a new configuration. \nWhen creating new configuration, empty field will have default value:\n* enabled = false\n* maxConcurrency = 1000000\n* maxLoginRate = 500\n* safetyMarginPercentage = 5\n* minActivationPeriodInSecond = 600 \n* playerReconnectGracePeriodInSecond = 300\n* queueReconnectGracePeriodInSecond = 60\n* playerPollingTimeInSecond = 20\n\nCalling this endpoint with namespace that has configuration will replace the old configuration.\n\nInput validation:\n* maxConcurrency must be \u0026amp;gt; 0 and \u0026amp;lt;= 10000000 (0 \u0026amp;lt; x \u0026amp;lt;= 10000000)\n* maxLoginRate must be \u0026amp;gt; 0 and \u0026amp;lt;= 100000 (0 \u0026amp;lt; x \u0026amp;lt;= 100000)\n* minActivationPeriodInSecond, playerReconnectGracePeriodInSecond, playerPollingTimeInSecond and queueReconnectGracePeriodInSecond must be \u0026amp;gt; 0 and \u0026amp;lt;= 21600 (0 \u0026amp;lt; x \u0026amp;lt;= 21600)\n* playerPollingTimeInSecond must be smaller than queueReconnectGracePeriodInSecond \n* safetyMarginPercentage must be \u0026amp;gt;= 0 and \u0026amp;lt; 100 (0 \u0026amp;lt;= x \u0026amp;lt; 100)\n\n",
         "operationId": "adminUpdateConfiguration",
         "parameters": [
           {
@@ -236,7 +236,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Cancel ticket. This endpoint requires ticket to be placed in the authorization header with this format: \u0026#34;Bearer ticketID\u0026#34;",
+        "description": "Cancel ticket. This endpoint requires ticket to be placed in the authorization header with this format: \u0026amp;#34;Bearer ticketID\u0026amp;#34;",
         "operationId": "cancelTicket",
         "parameters": [
           {
@@ -282,7 +282,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Refresh ticket. This endpoint requires ticket to be placed in the authorization header with this format: \u0026#34;Bearer ticketID\u0026#34;. When the ticketID is empty or not found the response status will be 401",
+        "description": "Refresh ticket. This endpoint requires ticket to be placed in the authorization header with this format: \u0026amp;#34;Bearer ticketID\u0026amp;#34;. When the ticketID is empty or not found the response status will be 401",
         "operationId": "refreshTicket",
         "parameters": [
           {

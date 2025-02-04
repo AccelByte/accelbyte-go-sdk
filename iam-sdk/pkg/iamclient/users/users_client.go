@@ -270,6 +270,8 @@ type ClientService interface {
 	AdminAddUserRoleV3Short(params *AdminAddUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV3NoContent, error)
 	AdminDeleteUserRoleV3(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, *AdminDeleteUserRoleV3BadRequest, *AdminDeleteUserRoleV3Unauthorized, *AdminDeleteUserRoleV3Forbidden, *AdminDeleteUserRoleV3NotFound, *AdminDeleteUserRoleV3InternalServerError, error)
 	AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteUserRoleV3NoContent, error)
+	AdminGetUserStateByUserIDV3(params *AdminGetUserStateByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserStateByUserIDV3OK, *AdminGetUserStateByUserIDV3BadRequest, *AdminGetUserStateByUserIDV3Unauthorized, *AdminGetUserStateByUserIDV3Forbidden, *AdminGetUserStateByUserIDV3NotFound, *AdminGetUserStateByUserIDV3InternalServerError, error)
+	AdminGetUserStateByUserIDV3Short(params *AdminGetUserStateByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserStateByUserIDV3OK, error)
 	AdminUpdateUserStatusV3(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, *AdminUpdateUserStatusV3BadRequest, *AdminUpdateUserStatusV3Unauthorized, *AdminUpdateUserStatusV3Forbidden, *AdminUpdateUserStatusV3NotFound, *AdminUpdateUserStatusV3InternalServerError, error)
 	AdminUpdateUserStatusV3Short(params *AdminUpdateUserStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateUserStatusV3NoContent, error)
 	AdminTrustlyUpdateUserIdentity(params *AdminTrustlyUpdateUserIdentityParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTrustlyUpdateUserIdentityNoContent, *AdminTrustlyUpdateUserIdentityBadRequest, *AdminTrustlyUpdateUserIdentityUnauthorized, *AdminTrustlyUpdateUserIdentityForbidden, *AdminTrustlyUpdateUserIdentityNotFound, *AdminTrustlyUpdateUserIdentityConflict, *AdminTrustlyUpdateUserIdentityInternalServerError, error)
@@ -16351,6 +16353,127 @@ func (a *Client) AdminDeleteUserRoleV3Short(params *AdminDeleteUserRoleV3Params,
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminGetUserStateByUserIDV3Short instead.
+
+AdminGetUserStateByUserIDV3 admin get user state by user id
+Admin Get User State By User Id
+*/
+func (a *Client) AdminGetUserStateByUserIDV3(params *AdminGetUserStateByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserStateByUserIDV3OK, *AdminGetUserStateByUserIDV3BadRequest, *AdminGetUserStateByUserIDV3Unauthorized, *AdminGetUserStateByUserIDV3Forbidden, *AdminGetUserStateByUserIDV3NotFound, *AdminGetUserStateByUserIDV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserStateByUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserStateByUserIdV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/state",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserStateByUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserStateByUserIDV3OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetUserStateByUserIDV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetUserStateByUserIDV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetUserStateByUserIDV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetUserStateByUserIDV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetUserStateByUserIDV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetUserStateByUserIDV3Short admin get user state by user id
+Admin Get User State By User Id
+*/
+func (a *Client) AdminGetUserStateByUserIDV3Short(params *AdminGetUserStateByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserStateByUserIDV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetUserStateByUserIDV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetUserStateByUserIdV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/{userId}/state",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetUserStateByUserIDV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetUserStateByUserIDV3OK:
+		return v, nil
+	case *AdminGetUserStateByUserIDV3BadRequest:
+		return nil, v
+	case *AdminGetUserStateByUserIDV3Unauthorized:
+		return nil, v
+	case *AdminGetUserStateByUserIDV3Forbidden:
+		return nil, v
+	case *AdminGetUserStateByUserIDV3NotFound:
+		return nil, v
+	case *AdminGetUserStateByUserIDV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminUpdateUserStatusV3Short instead.
 
 AdminUpdateUserStatusV3 update user status
@@ -17155,6 +17278,7 @@ Get User By Platform User ID.
 This endpoint return user information by given platform ID and platform user ID.
 Several platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.
 example: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.
+**Note**: this is deprecated, substitute endpoint: /iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId} [GET]
 
 
 **Supported Platforms:**
@@ -17256,6 +17380,7 @@ Get User By Platform User ID.
 This endpoint return user information by given platform ID and platform user ID.
 Several platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.
 example: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.
+**Note**: this is deprecated, substitute endpoint: /iam/v4/public/namespaces/{namespace}/platforms/{platformId}/users/{platformUserId} [GET]
 
 
 **Supported Platforms:**

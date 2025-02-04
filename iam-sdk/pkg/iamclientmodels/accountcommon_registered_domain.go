@@ -33,6 +33,9 @@ type AccountcommonRegisteredDomain struct {
 	// roleid
 	// Required: true
 	RoleID *string `json:"roleId"`
+
+	// ssocfg
+	SSOCfg *AccountcommonSSOConfig `json:"ssoCfg,omitempty"`
 }
 
 // Validate validates this Accountcommon registered domain

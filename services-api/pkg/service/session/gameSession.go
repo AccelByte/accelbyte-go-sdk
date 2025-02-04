@@ -142,6 +142,35 @@ func (aaa *GameSessionService) AdminSetDSReady(input *game_session.AdminSetDSRea
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminUpdateDSInformationShort instead.
+func (aaa *GameSessionService) AdminUpdateDSInformation(input *game_session.AdminUpdateDSInformationParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.GameSession.AdminUpdateDSInformation(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminKickGameSessionMemberShort instead.
 func (aaa *GameSessionService) AdminKickGameSessionMember(input *game_session.AdminKickGameSessionMemberParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -901,6 +930,36 @@ func (aaa *GameSessionService) AdminSetDSReadyShort(input *game_session.AdminSet
 	}
 
 	_, err := aaa.Client.GameSession.AdminSetDSReadyShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *GameSessionService) AdminUpdateDSInformationShort(input *game_session.AdminUpdateDSInformationParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdGameSession != nil {
+		input.XFlightId = tempFlightIdGameSession
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.GameSession.AdminUpdateDSInformationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

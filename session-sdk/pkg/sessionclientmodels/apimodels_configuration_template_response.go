@@ -7,6 +7,8 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,6 +25,9 @@ type ApimodelsConfigurationTemplateResponse struct {
 
 	// appname
 	AppName string `json:"appName,omitempty"`
+
+	// asyncprocessdsrequest
+	AsyncProcessDSRequest *ModelsAsyncProcessDSRequest `json:"asyncProcessDSRequest,omitempty"`
 
 	// attributes
 	Attributes interface{} `json:"attributes,omitempty"`
@@ -135,6 +140,10 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// textchat
 	// Required: true
 	TextChat *bool `json:"textChat"`
+
+	// textchatmode
+	// Enum: ['GAME', 'NONE', 'TEAM']
+	TextChatMode string `json:"textChatMode,omitempty"`
 
 	// tieteamssessionlifetime
 	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
@@ -318,6 +327,38 @@ func (m *ApimodelsConfigurationTemplateResponse) validateTextChat(formats strfmt
 		return err
 	}
 
+	return nil
+}
+
+var apimodelsConfigurationTemplateResponseTypeTextChatModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["GAME", "NONE", "TEAM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsConfigurationTemplateResponseTypeTextChatModePropEnum = append(apimodelsConfigurationTemplateResponseTypeTextChatModePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsConfigurationTemplateResponseTextChatModeGAME captures enum value "GAME"
+	ApimodelsConfigurationTemplateResponseTextChatModeGAME string = "GAME"
+
+	// ApimodelsConfigurationTemplateResponseTextChatModeNONE captures enum value "NONE"
+	ApimodelsConfigurationTemplateResponseTextChatModeNONE string = "NONE"
+
+	// ApimodelsConfigurationTemplateResponseTextChatModeTEAM captures enum value "TEAM"
+	ApimodelsConfigurationTemplateResponseTextChatModeTEAM string = "TEAM"
+)
+
+// prop value enum
+func (m *ApimodelsConfigurationTemplateResponse) validateTextChatModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsConfigurationTemplateResponseTypeTextChatModePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

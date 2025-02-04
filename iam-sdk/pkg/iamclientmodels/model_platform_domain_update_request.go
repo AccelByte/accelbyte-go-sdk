@@ -33,6 +33,9 @@ type ModelPlatformDomainUpdateRequest struct {
 	// roleid
 	// Required: true
 	RoleID *string `json:"roleId"`
+
+	// ssocfg
+	SSOCfg *AccountcommonSSOConfig `json:"ssoCfg,omitempty"`
 }
 
 // Validate validates this Model platform domain update request

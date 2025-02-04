@@ -62,7 +62,7 @@ func (aaa *AMSInfoService) InfoRegions(input *a_m_s_info.InfoRegionsParams) (*am
 }
 
 // Deprecated: 2022-01-10 - please use InfoSupportedInstancesShort instead.
-func (aaa *AMSInfoService) InfoSupportedInstances(input *a_m_s_info.InfoSupportedInstancesParams) (*amsclientmodels.APIInstanceTypesForNamespaceResponse, error) {
+func (aaa *AMSInfoService) InfoSupportedInstances(input *a_m_s_info.InfoSupportedInstancesParams) (*amsclientmodels.APIInstanceTypesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -128,7 +128,7 @@ func (aaa *AMSInfoService) InfoRegionsShort(input *a_m_s_info.InfoRegionsParams)
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AMSInfoService) InfoSupportedInstancesShort(input *a_m_s_info.InfoSupportedInstancesParams) (*amsclientmodels.APIInstanceTypesForNamespaceResponse, error) {
+func (aaa *AMSInfoService) InfoSupportedInstancesShort(input *a_m_s_info.InfoSupportedInstancesParams) (*amsclientmodels.APIInstanceTypesResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

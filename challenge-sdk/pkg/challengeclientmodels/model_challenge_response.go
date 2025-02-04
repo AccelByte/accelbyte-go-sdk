@@ -84,6 +84,9 @@ type ModelChallengeResponse struct {
 	// Required: true
 	Status *string `json:"status"`
 
+	// tags
+	Tags []string `json:"tags,omitempty"`
+
 	// updatedat
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`

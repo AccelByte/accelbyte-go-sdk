@@ -36,6 +36,9 @@ type ApimodelCreateAppV2Request struct {
 	// scenario
 	// Required: true
 	Scenario *string `json:"scenario"`
+
+	// vmsharingconfiguration
+	VMSharingConfiguration string `json:"vmSharingConfiguration,omitempty"`
 }
 
 // Validate validates this Apimodel create app V2 request

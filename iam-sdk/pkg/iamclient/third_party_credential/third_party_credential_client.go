@@ -46,6 +46,8 @@ type ClientService interface {
 	UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error)
 	DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error)
 	DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error)
+	PartialUpdateThirdPartyLoginPlatformDomainV3(params *PartialUpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdateThirdPartyLoginPlatformDomainV3OK, *PartialUpdateThirdPartyLoginPlatformDomainV3BadRequest, *PartialUpdateThirdPartyLoginPlatformDomainV3Unauthorized, *PartialUpdateThirdPartyLoginPlatformDomainV3Forbidden, *PartialUpdateThirdPartyLoginPlatformDomainV3NotFound, *PartialUpdateThirdPartyLoginPlatformDomainV3InternalServerError, error)
+	PartialUpdateThirdPartyLoginPlatformDomainV3Short(params *PartialUpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdateThirdPartyLoginPlatformDomainV3OK, error)
 	AdminCheckThirdPartyLoginPlatformAvailabilityV3(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, *AdminCheckThirdPartyLoginPlatformAvailabilityV3BadRequest, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Unauthorized, *AdminCheckThirdPartyLoginPlatformAvailabilityV3Forbidden, error)
 	AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(params *AdminCheckThirdPartyLoginPlatformAvailabilityV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCheckThirdPartyLoginPlatformAvailabilityV3OK, error)
 	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3(params *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3OK, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Unauthorized, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Forbidden, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3NotFound, *RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3InternalServerError, error)
@@ -846,6 +848,7 @@ Deprecated: 2022-08-10 - Use UpdateThirdPartyLoginPlatformDomainV3Short instead.
 
 UpdateThirdPartyLoginPlatformDomainV3 set third party platform credential's domain
 This is the API to set 3rd Platform domain.
+This API is a create-or-update behavior. If it is update, it is a replacement behavior.
 */
 func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, *UpdateThirdPartyLoginPlatformDomainV3BadRequest, *UpdateThirdPartyLoginPlatformDomainV3Unauthorized, *UpdateThirdPartyLoginPlatformDomainV3Forbidden, *UpdateThirdPartyLoginPlatformDomainV3NotFound, *UpdateThirdPartyLoginPlatformDomainV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -910,6 +913,7 @@ func (a *Client) UpdateThirdPartyLoginPlatformDomainV3(params *UpdateThirdPartyL
 /*
 UpdateThirdPartyLoginPlatformDomainV3Short set third party platform credential's domain
 This is the API to set 3rd Platform domain.
+This API is a create-or-update behavior. If it is update, it is a replacement behavior.
 */
 func (a *Client) UpdateThirdPartyLoginPlatformDomainV3Short(params *UpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformDomainV3OK, error) {
 	// TODO: Validate the params before sending
@@ -967,6 +971,7 @@ Deprecated: 2022-08-10 - Use DeleteThirdPartyLoginPlatformDomainV3Short instead.
 
 DeleteThirdPartyLoginPlatformDomainV3 unregister third party platform credential's domain
 This is the API to unregister 3rd Platform domain.
+If there is a ssoGroups in request body, then this request wil only delete the sso group from the target domain, it will not delete domain.
 */
 func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, *DeleteThirdPartyLoginPlatformDomainV3BadRequest, *DeleteThirdPartyLoginPlatformDomainV3Unauthorized, *DeleteThirdPartyLoginPlatformDomainV3Forbidden, *DeleteThirdPartyLoginPlatformDomainV3NotFound, *DeleteThirdPartyLoginPlatformDomainV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1031,6 +1036,7 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3(params *DeleteThirdPartyL
 /*
 DeleteThirdPartyLoginPlatformDomainV3Short unregister third party platform credential's domain
 This is the API to unregister 3rd Platform domain.
+If there is a ssoGroups in request body, then this request wil only delete the sso group from the target domain, it will not delete domain.
 */
 func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteThirdPartyLoginPlatformDomainV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -1076,6 +1082,129 @@ func (a *Client) DeleteThirdPartyLoginPlatformDomainV3Short(params *DeleteThirdP
 	case *DeleteThirdPartyLoginPlatformDomainV3NotFound:
 		return nil, v
 	case *DeleteThirdPartyLoginPlatformDomainV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PartialUpdateThirdPartyLoginPlatformDomainV3Short instead.
+
+PartialUpdateThirdPartyLoginPlatformDomainV3 partial update third party platform credential's domain
+This is the API to patch update 3rd Platform domain.
+This API is a create or partial-update behavior. If it is update, it is a partial update behavior.
+*/
+func (a *Client) PartialUpdateThirdPartyLoginPlatformDomainV3(params *PartialUpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdateThirdPartyLoginPlatformDomainV3OK, *PartialUpdateThirdPartyLoginPlatformDomainV3BadRequest, *PartialUpdateThirdPartyLoginPlatformDomainV3Unauthorized, *PartialUpdateThirdPartyLoginPlatformDomainV3Forbidden, *PartialUpdateThirdPartyLoginPlatformDomainV3NotFound, *PartialUpdateThirdPartyLoginPlatformDomainV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPartialUpdateThirdPartyLoginPlatformDomainV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PartialUpdateThirdPartyLoginPlatformDomainV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PartialUpdateThirdPartyLoginPlatformDomainV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PartialUpdateThirdPartyLoginPlatformDomainV3Short partial update third party platform credential's domain
+This is the API to patch update 3rd Platform domain.
+This API is a create or partial-update behavior. If it is update, it is a partial update behavior.
+*/
+func (a *Client) PartialUpdateThirdPartyLoginPlatformDomainV3Short(params *PartialUpdateThirdPartyLoginPlatformDomainV3Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdateThirdPartyLoginPlatformDomainV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPartialUpdateThirdPartyLoginPlatformDomainV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PartialUpdateThirdPartyLoginPlatformDomainV3",
+		Method:             "PATCH",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/platforms/{platformId}/clients/domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PartialUpdateThirdPartyLoginPlatformDomainV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3OK:
+		return v, nil
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3BadRequest:
+		return nil, v
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3Unauthorized:
+		return nil, v
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3Forbidden:
+		return nil, v
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3NotFound:
+		return nil, v
+	case *PartialUpdateThirdPartyLoginPlatformDomainV3InternalServerError:
 		return nil, v
 
 	default:

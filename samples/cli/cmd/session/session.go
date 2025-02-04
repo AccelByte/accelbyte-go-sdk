@@ -59,6 +59,7 @@ func init() {
 	SessionCmd.AddCommand(gameSession.AdminQueryGameSessionsByAttributesCmd)
 	SessionCmd.AddCommand(gameSession.AdminDeleteBulkGameSessionsCmd)
 	SessionCmd.AddCommand(gameSession.AdminSetDSReadyCmd)
+	SessionCmd.AddCommand(gameSession.AdminUpdateDSInformationCmd)
 	SessionCmd.AddCommand(gameSession.AdminKickGameSessionMemberCmd)
 	SessionCmd.AddCommand(gameSession.AdminUpdateGameSessionMemberCmd)
 	SessionCmd.AddCommand(nativeSession.AdminGetListNativeSessionCmd)

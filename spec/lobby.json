@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.37.1"
+    "version": "3.37.2"
   },
   "schemes": [
     "https"
@@ -15521,11 +15521,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-12-17T05:07:46+00:00",
-    "gitHash": "6f107c3698679fbdf902e996743789d5a3820749",
+    "buildDate": "2025-01-21T03:19:13+00:00",
+    "gitHash": "a8c8b003537b8e71cdba13732a15b935ae1d0a4e",
     "name": "justice-lobby-server",
-    "revisionID": "3.37.1",
-    "version": "3.37.1",
+    "revisionID": "3.37.2",
+    "version": "3.37.2",
     "version-justice": "2024.2/3.79",
     "version-roles-seeding": "1.2.77"
   }

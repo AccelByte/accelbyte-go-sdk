@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.1.1"
+    "version": "6.3.0"
   },
   "schemes": [
     "https"
@@ -19411,7 +19411,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37172\u003c/td\u003e\u003ctd\u003eCampaign [{campaignId}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37173\u003c/td\u003e\u003ctd\u003eCode [{code}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37174\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37175\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37177\u003c/td\u003e\u003ctd\u003eCode redemption not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37178\u003c/td\u003e\u003ctd\u003eCode redemption already ended\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37172\u003c/td\u003e\u003ctd\u003eCampaign [{campaignId}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37173\u003c/td\u003e\u003ctd\u003eCode [{code}] is inactive in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37174\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37175\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per code per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37177\u003c/td\u003e\u003ctd\u003eCode redemption not started\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37178\u003c/td\u003e\u003ctd\u003eCode redemption already ended\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e37179\u003c/td\u003e\u003ctd\u003eExceeded max redeem count per campaign per user [{maxCount}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -19440,7 +19440,8 @@
           "37174": "Exceeded max redeem count per code [{maxCount}]",
           "37175": "Exceeded max redeem count per code per user [{maxCount}]",
           "37177": "Code redemption not started",
-          "37178": "Code redemption already ended"
+          "37178": "Code redemption already ended",
+          "37179": "Exceeded max redeem count per campaign per user [{maxCount}]"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION [CREATE]"
@@ -21723,6 +21724,93 @@
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/wallet/config": {
+      "get": {
+        "description": "get wallet config",
+        "operationId": "getWalletConfig",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/WalletConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get wallet config of a namespace",
+        "tags": [
+          "Wallet"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update wallet config of a namespace",
+        "operationId": "updateWalletConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletConfigUpdate"
+            }
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/WalletConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update wallet config",
+        "tags": [
+          "Wallet"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]"
         }
       }
     },
@@ -50726,6 +50814,33 @@
       ],
       "type": "object"
     },
+    "WalletConfigInfo": {
+      "properties": {
+        "enablePaidForVCExpiration": {
+          "description": "enablePaidForVCExpiration",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WalletConfigUpdate": {
+      "properties": {
+        "enablePaidForVCExpiration": {
+          "description": "enablePaidForVCExpiration",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "enablePaidForVCExpiration"
+      ],
+      "type": "object"
+    },
     "WalletInfo": {
       "properties": {
         "balance": {
@@ -51423,16 +51538,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-12-16T07:15:48+00:00",
-    "buildID": "6.1.1",
+    "buildDate": "2025-01-28T06:46:19+00:00",
+    "buildID": "6.3.0",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.228-219.884.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "bc1fbae998",
-    "gitTag": "6.1.1",
+    "gitHash": "9221656b89",
+    "gitTag": "6.3.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.1.1",
+    "version": "6.3.0",
     "version-roles-seeding": "1.2.74"
   }
 }

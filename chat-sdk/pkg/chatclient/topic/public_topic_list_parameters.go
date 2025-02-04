@@ -22,8 +22,11 @@ import (
 // NewPublicTopicListParams creates a new PublicTopicListParams object
 // with the default values initialized.
 func NewPublicTopicListParams() *PublicTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicTopicListParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewPublicTopicListParams() *PublicTopicListParams {
 // NewPublicTopicListParamsWithTimeout creates a new PublicTopicListParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicTopicListParamsWithTimeout(timeout time.Duration) *PublicTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicTopicListParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewPublicTopicListParamsWithTimeout(timeout time.Duration) *PublicTopicList
 // NewPublicTopicListParamsWithContext creates a new PublicTopicListParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicTopicListParamsWithContext(ctx context.Context) *PublicTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicTopicListParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewPublicTopicListParamsWithContext(ctx context.Context) *PublicTopicListPa
 // NewPublicTopicListParamsWithHTTPClient creates a new PublicTopicListParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicTopicListParamsWithHTTPClient(client *http.Client) *PublicTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &PublicTopicListParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }

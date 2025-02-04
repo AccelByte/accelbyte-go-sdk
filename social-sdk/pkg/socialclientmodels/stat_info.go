@@ -20,6 +20,9 @@ import (
 // swagger:model Stat info.
 type StatInfo struct {
 
+	// capcycleoverride
+	CapCycleOverride bool `json:"capCycleOverride"`
+
 	// createdat
 	// Required: true
 	// Format: date-time

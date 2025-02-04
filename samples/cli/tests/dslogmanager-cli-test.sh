@@ -51,77 +51,77 @@ touch "tmp.dat"
 #- 2 GetServerLogs
 samples/cli/sample-apps Dslogmanager getServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'ZLgnUr13eXxUQoOZ' \
-    --logType 'pQXy9dA321o38BuL' \
-    --offset '81' \
-    --origin 'OBQxsJ1PWpMT3h46' \
+    --podName '1LSJl6jd5TOA8ARA' \
+    --logType 'OQTrcixw6YDspODC' \
+    --offset '8' \
+    --origin 'Nlu7h7BiJaltA3LN' \
     > test.out 2>&1
 eval_tap $? 2 'GetServerLogs' test.out
 
 #- 3 ListTerminatedServers
 samples/cli/sample-apps Dslogmanager listTerminatedServers \
     --namespace $AB_NAMESPACE \
-    --deployment '7bgwKQmAle3LtnMf' \
-    --endDate 'prcqhMOMwrtEfHRy' \
-    --gameMode 'zzIWaNtknWU7m4ze' \
-    --limit '28' \
-    --next 'SLGgdCz6H8FWfgJo' \
-    --partyId '4eoVzH3HUlllnGYe' \
-    --podName 'veHMtYB7WLkyFryP' \
-    --previous 'AxgdvqE1bbPferqs' \
-    --provider 'MMGZ7BOlZDXBisTS' \
-    --region 'nXahyLAIN1oVr0fD' \
-    --sessionId 'nhAcQcGbpIYKwrA6' \
-    --source 'Up4MeIqxnoUko087' \
-    --startDate 'MhnvxdBJDDAxJdQ5' \
-    --status 'ce8Alxq3cPT3IAX6' \
-    --userId '2UBLI6ulBja8hH1f' \
+    --deployment 'wVCYGBXRzgx1RZ1z' \
+    --endDate '9Fju5F0s3szIKWsu' \
+    --gameMode '9BjY151ZIxtIN6Hd' \
+    --limit '17' \
+    --next 'jq5rUYIynwbw9o9q' \
+    --partyId 'WhzSDMxgNgLFteId' \
+    --podName '577YiaNkh2bdt2ob' \
+    --previous 'OqAusCSZ9Do61yaX' \
+    --provider 'zlHlmqJQ1f1kVkmF' \
+    --region 'hv3e0c3Bc7RVSeHz' \
+    --sessionId 'foOBF5n79kSPRXup' \
+    --source 'pMoutpsddmGr4r2B' \
+    --startDate 'D61kA9idd0iQezUP' \
+    --status 'NbFpCE4lRKDvm2An' \
+    --userId 'V2His0bOGMXKgjmM' \
     > test.out 2>&1
 eval_tap $? 3 'ListTerminatedServers' test.out
 
 #- 4 DownloadServerLogs
 samples/cli/sample-apps Dslogmanager downloadServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'nUdISQ5loZNk19tz' \
+    --podName 'lUjEKWgNXh3CLY0C' \
     > test.out 2>&1
 eval_tap $? 4 'DownloadServerLogs' test.out
 
 #- 5 CheckServerLogs
 samples/cli/sample-apps Dslogmanager checkServerLogs \
     --namespace $AB_NAMESPACE \
-    --podName 'qI7NyOlNIevnicde' \
+    --podName 'q1PGNXavfOwySaxL' \
     > test.out 2>&1
 eval_tap $? 5 'CheckServerLogs' test.out
 
 #- 6 BatchDownloadServerLogs
 samples/cli/sample-apps Dslogmanager batchDownloadServerLogs \
-    --body '{"Downloads": [{"alloc_id": "DmkClEmyQNiHSz1s", "namespace": "9yUjlOSQyPR1QCfB", "pod_name": "riQ6iw342JTiA58S"}, {"alloc_id": "FdwUv3mDBfkA4kJv", "namespace": "tG4z0IMTcgdDTkV7", "pod_name": "fS0sek1TZYY4D1bS"}, {"alloc_id": "oVaN4FPiujIFQb83", "namespace": "ZmmxhTG8DDru8Cau", "pod_name": "0JVwaB0G8KwMvcrh"}]}' \
+    --body '{"Downloads": [{"alloc_id": "uhILX1oREcEFwFf4", "namespace": "gByjiLscYUnxX3RZ", "pod_name": "ciLCKvsImxRm7RQD"}, {"alloc_id": "DHKrVBOrZEVdSiO6", "namespace": "ieEeFnJFwmrS6Pwo", "pod_name": "l74g6CCL4k7SNDIJ"}, {"alloc_id": "UQkEngveYzsCyiLM", "namespace": "2pvYTS9edujVHGrT", "pod_name": "gkgucfUKm0x5Bc4K"}]}' \
     > test.out 2>&1
 eval_tap $? 6 'BatchDownloadServerLogs' test.out
 
 #- 7 ListMetadataServers
 samples/cli/sample-apps Dslogmanager listMetadataServers \
-    --body '{"pod_names": ["tK5pC9yg661QlVQE", "tBJJTIOm2UwqwT3f", "Nx5VOzkHrVhsplJT"]}' \
+    --body '{"pod_names": ["CC9RUeCHnwkjXsiP", "vRblcTbX2W3G8xpt", "6ZsECFv6vdBSGTiX"]}' \
     > test.out 2>&1
 eval_tap $? 7 'ListMetadataServers' test.out
 
 #- 8 ListAllTerminatedServers
 samples/cli/sample-apps Dslogmanager listAllTerminatedServers \
-    --deployment 'PXTxYO3nROZDBVBw' \
-    --endDate 'p68KWWPMYJJnT26w' \
-    --gameMode 'FjIOsNaOYLVO8SCl' \
-    --limit '74' \
-    --namespace 'siGntqIgryErIkDo' \
-    --next 'zAi6u8XRbAll9ivK' \
-    --partyId 'Uzx8Q4Pol6A6Widl' \
-    --podName 'deZ0lboi2xnVa5tm' \
-    --previous 'l82N50tUTqJfWc13' \
-    --provider 'GeeX7AaV1VsNLy6F' \
-    --region 'MJpLmMJGQ6eJtYw2' \
-    --sessionId 'BwE2ccMephqOEmMy' \
-    --startDate 'n0wdOojm8yDCTqRQ' \
-    --status 'njgX2XcbkJ3zwoEK' \
-    --userId 'rQd2I4KrYrWbErXu' \
+    --deployment 'wXnlfZasai03m5AE' \
+    --endDate 'ZXR73kPLeelRnBft' \
+    --gameMode 'seAbP644V5ligFcC' \
+    --limit '86' \
+    --namespace '5KMrkRcMAiyQVBNQ' \
+    --next 'lS2SdtRBd9IvkeXh' \
+    --partyId '09huT8tLp49ruHgF' \
+    --podName 'vh5xlCCHn9jEmp4G' \
+    --previous 'zIxVWPEMc5jErmal' \
+    --provider 'XHjB1wlSp4Zr7BCO' \
+    --region 'U3iqpVWG40VqjeOW' \
+    --sessionId '4Fj3y7nyYKodC2H4' \
+    --startDate 'jp0U7p0wylZI2ugJ' \
+    --status 'd6NYyMLP4Q6qdYZz' \
+    --userId 'HA9oY4PGk72kdtUk' \
     > test.out 2>&1
 eval_tap $? 8 'ListAllTerminatedServers' test.out
 

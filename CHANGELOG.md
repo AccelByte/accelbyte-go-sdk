@@ -1,3 +1,15 @@
+<a name="v0.77.0"></a>
+## [v0.77.0]
+### feat
+- **spec:** add login queue service json
+### chore
+- **test:** integration - add login queue service
+- **sdk:** generate go extend sdk to add login queue service
+- **:** update CHANGELOG.md and go sum getting started
+### docs
+- **readme:** update doc links
+
+
 <a name="v0.76.1"></a>
 ## [v0.76.1]
 ### chore

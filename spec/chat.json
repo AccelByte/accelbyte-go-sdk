@@ -144,6 +144,7 @@
             "type": "string"
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -321,6 +322,7 @@
             "type": "string"
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -464,6 +466,7 @@
             "type": "string"
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -628,7 +631,8 @@
             "type": "integer"
           },
           {
-            "description": "default: 1000",
+            "default": 100,
+            "description": "limit",
             "in": "query",
             "name": "limit",
             "type": "integer"
@@ -1044,6 +1048,7 @@
             "type": "string"
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -1345,6 +1350,7 @@
             "x-omitempty": false
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -2055,6 +2061,7 @@
             "type": "string"
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -2232,6 +2239,7 @@
             "type": "string"
           },
           {
+            "default": 100,
             "description": "limit",
             "in": "query",
             "name": "limit",
@@ -2702,7 +2710,7 @@
     },
     "/chat/v1/admin/config/log": {
       "get": {
-        "description": "\n\t\t\tGet Log Configuration\n\t\t\tlogLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\tsocketLogEnabled is use for enable socket log\n\t\t\tlogLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\tslowQueryThreshold use for logging slow threshold in time measure is nano second\n\t\t\t",
+        "description": "\n\t\t\tGet Log Configuration\n\t\t\tlogLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\tsocketLogEnabled is use for enable socket log\n\t\t\tinternalAccessLogEnabled is for enabling access log for internal endpoint\n\t\t\tlogLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\tslowQueryThreshold use for logging slow threshold in time measure is nano second\n\t\t\t",
         "operationId": "adminGetLogConfig",
         "produces": [
           "application/json"
@@ -2737,7 +2745,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\t\tUpdate Log Configuration\n\t\t\t\tlogLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\t\tsocketLogEnabled is use for enable socket log\n\t\t\t\tlogLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\t\tslowQueryThreshold use for logging slow threshold in time measure is nano second\n\t\t\t",
+        "description": "\n\t\t\t\tUpdate Log Configuration\n\t\t\t\tlogLevel use for logging in service, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\t\tsocketLogEnabled is use for enable socket log\n\t\t\t\tinternalAccessLogEnabled is for enabling access log for internal endpoint\n\t\t\t\tlogLevelDB use for logging in DB, the value can use is trace|debug|info|warning|error|fatal|panic\n\t\t\t\tslowQueryThreshold use for logging slow threshold in time measure is nano second\n\t\t\t",
         "operationId": "adminPatchUpdateLogConfig",
         "parameters": [
           {
@@ -4600,10 +4608,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "schema": {
-              "$ref": "#/definitions/models.Dictionary"
-            }
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
@@ -5503,6 +5508,10 @@
     },
     "logconfig.Configuration": {
       "properties": {
+        "internalAccessLogEnabled": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "logLevel": {
           "enum": [
             "debug",
@@ -5967,6 +5976,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "enablePmSendPlatformId": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "maxChatMessageLength": {
           "format": "int32",
           "type": "integer"
@@ -6014,6 +6027,10 @@
           "x-omitempty": false
         },
         "enableManualTopicCreation": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enablePmSendPlatformId": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -6107,6 +6124,10 @@
           "x-omitempty": false
         },
         "enableManualTopicCreation": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "enablePmSendPlatformId": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -6756,6 +6777,10 @@
         "chatRateLimitDuration": {
           "format": "int64",
           "type": "integer"
+        },
+        "enablePmSendPlatformId": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "generalRateLimitBurst": {
           "format": "int32",
@@ -8552,6 +8577,14 @@
     },
     {
       "Attributes": [],
+      "Code": "511218",
+      "CodeName": "RemoveUserFromTopicCannotRemoveUserFromTeamTopic",
+      "Section": "topic member remove",
+      "Service": "chat",
+      "Text": ""
+    },
+    {
+      "Attributes": [],
       "Code": "511220",
       "CodeName": "QuitTopicSuccess",
       "Section": "topic member remove",
@@ -10042,11 +10075,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2024-12-17T07:26:19+00:00",
-    "gitHash": "1e667f25dc02dd4beac30de405cf9ccf86a9515a",
+    "buildDate": "2025-02-03T03:34:30+00:00",
+    "gitHash": "d80e633dddcd986cb0de00c98c8eb5f44c129984",
     "name": "justice-chat-service",
-    "revisionID": "0.4.38",
-    "version": "0.4.38",
+    "revisionID": "0.4.39",
+    "version": "0.4.39",
     "version-roles-seeding": "1.2.15"
   }
 }

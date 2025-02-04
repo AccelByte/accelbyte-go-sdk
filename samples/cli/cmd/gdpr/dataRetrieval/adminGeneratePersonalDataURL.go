@@ -25,12 +25,12 @@ var AdminGeneratePersonalDataURLCmd = &cobra.Command{
 			Client:          factory.NewGdprClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		password, _ := cmd.Flags().GetString("password")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		requestDate, _ := cmd.Flags().GetString("requestDate")
 		userId, _ := cmd.Flags().GetString("userId")
+		password, _ := cmd.Flags().GetString("password")
 		input := &data_retrieval.AdminGeneratePersonalDataURLParams{
-			Password:    password,
+			Password:    &password,
 			Namespace:   namespace,
 			RequestDate: requestDate,
 			UserID:      userId,
@@ -50,7 +50,6 @@ var AdminGeneratePersonalDataURLCmd = &cobra.Command{
 
 func init() {
 	AdminGeneratePersonalDataURLCmd.Flags().String("password", "", "Password")
-	_ = AdminGeneratePersonalDataURLCmd.MarkFlagRequired("password")
 	AdminGeneratePersonalDataURLCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminGeneratePersonalDataURLCmd.MarkFlagRequired("namespace")
 	AdminGeneratePersonalDataURLCmd.Flags().String("requestDate", "", "Request date")

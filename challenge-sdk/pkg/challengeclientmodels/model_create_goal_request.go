@@ -40,7 +40,7 @@ type ModelCreateGoalRequest struct {
 	Rewards []*ModelReward `json:"rewards,omitempty"`
 
 	// schedule
-	Schedule *ModelGoalSchedule `json:"schedule,omitempty"`
+	Schedule *ModelGoalScheduleRequest `json:"schedule,omitempty"`
 
 	// tags
 	Tags []string `json:"tags,omitempty"`

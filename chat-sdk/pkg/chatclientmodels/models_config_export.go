@@ -39,6 +39,9 @@ type ModelsConfigExport struct {
 	// enablemanualtopiccreation
 	EnableManualTopicCreation bool `json:"enableManualTopicCreation"`
 
+	// enablepmsendplatformid
+	EnablePmSendPlatformID bool `json:"enablePmSendPlatformId"`
+
 	// enableprofanityfilter
 	EnableProfanityFilter bool `json:"enableProfanityFilter"`
 

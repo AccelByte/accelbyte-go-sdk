@@ -102,6 +102,9 @@ type ModelsConfig struct {
 	// enableclanchat
 	EnableClanChat bool `json:"enableClanChat"`
 
+	// enablepmsendplatformid
+	EnablePmSendPlatformID bool `json:"enablePmSendPlatformId"`
+
 	// maxchatmessagelength
 	// Format: int32
 	MaxChatMessageLength int32 `json:"maxChatMessageLength,omitempty"`

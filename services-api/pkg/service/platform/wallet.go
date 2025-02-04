@@ -334,6 +334,34 @@ func (aaa *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalle
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetWalletConfigShort instead.
+func (aaa *WalletService) GetWalletConfig(input *wallet.GetWalletConfigParams) (*platformclientmodels.WalletConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Wallet.GetWalletConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use UpdateWalletConfigShort instead.
+func (aaa *WalletService) UpdateWalletConfig(input *wallet.UpdateWalletConfigParams) (*platformclientmodels.WalletConfigInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Wallet.UpdateWalletConfig(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use QueryWalletsShort instead.
 func (aaa *WalletService) QueryWallets(input *wallet.QueryWalletsParams) (*platformclientmodels.WalletPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -914,6 +942,66 @@ func (aaa *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUser
 	}
 
 	ok, err := aaa.Client.Wallet.ListUserWalletTransactionsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) GetWalletConfigShort(input *wallet.GetWalletConfigParams) (*platformclientmodels.WalletConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Wallet.GetWalletConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *WalletService) UpdateWalletConfigShort(input *wallet.UpdateWalletConfigParams) (*platformclientmodels.WalletConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdWallet != nil {
+		input.XFlightId = tempFlightIdWallet
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Wallet.UpdateWalletConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

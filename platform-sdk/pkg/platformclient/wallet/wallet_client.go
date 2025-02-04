@@ -62,6 +62,10 @@ type ClientService interface {
 	EnableUserWalletShort(params *EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*EnableUserWalletNoContent, error)
 	ListUserWalletTransactions(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, *ListUserWalletTransactionsNotFound, error)
 	ListUserWalletTransactionsShort(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, error)
+	GetWalletConfig(params *GetWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletConfigOK, error)
+	GetWalletConfigShort(params *GetWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletConfigOK, error)
+	UpdateWalletConfig(params *UpdateWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWalletConfigOK, error)
+	UpdateWalletConfigShort(params *UpdateWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWalletConfigOK, error)
 	QueryWallets(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error)
 	QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryWalletsOK, error)
 	BulkCredit(params *BulkCreditParams, authInfo runtime.ClientAuthInfoWriter) (*BulkCreditOK, *BulkCreditUnprocessableEntity, error)
@@ -1794,6 +1798,198 @@ func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransacti
 		return v, nil
 	case *ListUserWalletTransactionsNotFound:
 		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetWalletConfigShort instead.
+
+GetWalletConfig get wallet config of a namespace
+get wallet config
+*/
+func (a *Client) GetWalletConfig(params *GetWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWalletConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getWalletConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallet/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWalletConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetWalletConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetWalletConfigShort get wallet config of a namespace
+get wallet config
+*/
+func (a *Client) GetWalletConfigShort(params *GetWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWalletConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getWalletConfig",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallet/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWalletConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetWalletConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateWalletConfigShort instead.
+
+UpdateWalletConfig update wallet config
+Update wallet config of a namespace
+*/
+func (a *Client) UpdateWalletConfig(params *UpdateWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWalletConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateWalletConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateWalletConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallet/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateWalletConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateWalletConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateWalletConfigShort update wallet config
+Update wallet config of a namespace
+*/
+func (a *Client) UpdateWalletConfigShort(params *UpdateWalletConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateWalletConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateWalletConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateWalletConfig",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallet/config",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateWalletConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateWalletConfigOK:
+		return v, nil
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

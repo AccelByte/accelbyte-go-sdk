@@ -73,10 +73,9 @@ func NewAdminUpdateConfigurationOK() *AdminUpdateConfigurationOK {
 	return &AdminUpdateConfigurationOK{}
 }
 
-/*
-AdminUpdateConfigurationOK handles this case with default header values.
+/*AdminUpdateConfigurationOK handles this case with default header values.
 
-	OK
+  OK
 */
 type AdminUpdateConfigurationOK struct {
 	Payload *loginqueueclientmodels.ApimodelsConfigurationResponse
@@ -128,10 +127,9 @@ func NewAdminUpdateConfigurationBadRequest() *AdminUpdateConfigurationBadRequest
 	return &AdminUpdateConfigurationBadRequest{}
 }
 
-/*
-AdminUpdateConfigurationBadRequest handles this case with default header values.
+/*AdminUpdateConfigurationBadRequest handles this case with default header values.
 
-	Bad Request
+  Bad Request
 */
 type AdminUpdateConfigurationBadRequest struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -183,10 +181,9 @@ func NewAdminUpdateConfigurationUnauthorized() *AdminUpdateConfigurationUnauthor
 	return &AdminUpdateConfigurationUnauthorized{}
 }
 
-/*
-AdminUpdateConfigurationUnauthorized handles this case with default header values.
+/*AdminUpdateConfigurationUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type AdminUpdateConfigurationUnauthorized struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -238,10 +235,9 @@ func NewAdminUpdateConfigurationForbidden() *AdminUpdateConfigurationForbidden {
 	return &AdminUpdateConfigurationForbidden{}
 }
 
-/*
-AdminUpdateConfigurationForbidden handles this case with default header values.
+/*AdminUpdateConfigurationForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type AdminUpdateConfigurationForbidden struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -293,10 +289,9 @@ func NewAdminUpdateConfigurationInternalServerError() *AdminUpdateConfigurationI
 	return &AdminUpdateConfigurationInternalServerError{}
 }
 
-/*
-AdminUpdateConfigurationInternalServerError handles this case with default header values.
+/*AdminUpdateConfigurationInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type AdminUpdateConfigurationInternalServerError struct {
 	Payload *loginqueueclientmodels.ResponseError

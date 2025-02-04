@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "4.1.0"
+    "version": "4.1.1"
   },
   "schemes": [
     "https"
@@ -49,6 +49,9 @@
     },
     {
       "name": "Policies With Namespace"
+    },
+    {
+      "name": "Policies With Namespace V2"
     },
     {
       "name": "Policy Versions"
@@ -4235,6 +4238,54 @@
           "userPermissions": "NAMESPACE:{namespace}:LEGAL [READ]"
         }
       }
+    },
+    "/agreement/v2/public/policies/namespaces/{namespace}/countries/{countryCode}": {
+      "get": {
+        "description": "This API is used to list all the related doc in register page, include optional \u0026amp; mandatory (when env config APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=true).\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;Here are the result of different cases\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1,  Region US (default, mandatory), UA (optional); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2,  Region US (default, optional), UA (mandatory); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3,  Region UA (default, mandatory); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 4,  Region US (default, optional); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 5,  Region US (default, optional); clientID: [client_B]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 6,  Region CA (mandatory, optional), UA (optional); clientID: [client_B]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_A\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA, optional), Document 2 (UA, mandatory), Document 3 (UA, mandatory), Document 4 (US, optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region CA  + client_A\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (US, mandatory), Document 2 (US, mandatory), Document 3 (UA, mandatory), Document 4 (US, optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_B\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 5 (US, optional), Document 6 (UA, optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region CN  + client_B\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 5 (US, optional), Document 6 (CA, mandatory)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Note: If APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=false the behavior will be same with `/agreement/public/policies/namespaces/{namespace}/countries/{country_code}?defaultOnEmpty=true\u0026amp;visibleOnly=true`;Here are the result of different cases\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_A\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA, optional), Document 2 (UA, mandatory), Document 3 (UA, mandatory)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_B\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 5 (US, optional)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic_1",
+        "parameters": [
+          {
+            "description": "Country Code",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "clientId, which used to login",
+            "in": "query",
+            "name": "clientId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/RetrieveSimplePolicyPublicResponseV2"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Retrieve Latest Policies by Namespace and Country",
+        "tags": [
+          "Policies With Namespace V2"
+        ],
+        "x-errorCodes": {}
+      }
     }
   },
   "definitions": {
@@ -5623,6 +5674,76 @@
       ],
       "type": "object"
     },
+    "RetrieveSimplePolicyPublicResponseV2": {
+      "properties": {
+        "basePolicyId": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "countryGroupCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultSelection": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "isMandatory": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "policyType": {
+          "type": "string"
+        },
+        "policyVersions": {
+          "items": {
+            "$ref": "#/definitions/SimplePolicyVersionWithLocalizedVersionObject"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "basePolicyId",
+        "countryCode",
+        "id",
+        "isDefaultSelection",
+        "isMandatory",
+        "namespace",
+        "policyName",
+        "policyType"
+      ],
+      "type": "object"
+    },
     "RetrieveUserAcceptedAgreementResponse": {
       "properties": {
         "createdAt": {
@@ -5769,6 +5890,85 @@
       "required": [
         "lastUpdatedAt",
         "namespace"
+      ],
+      "type": "object"
+    },
+    "SimpleLocalizedPolicyVersionObject": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isDefaultSelection": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "publishedDate": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "id",
+        "isDefaultSelection",
+        "localeCode"
+      ],
+      "type": "object"
+    },
+    "SimplePolicyVersionWithLocalizedVersionObject": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "localizedPolicyVersions": {
+          "items": {
+            "$ref": "#/definitions/SimpleLocalizedPolicyVersionObject"
+          },
+          "type": "array"
+        },
+        "publishedDate": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "id"
       ],
       "type": "object"
     },
@@ -6206,16 +6406,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2024-12-11T05:53:43+00:00",
-    "buildID": "4.1.0",
+    "buildDate": "2025-01-22T04:31:14+00:00",
+    "buildID": "4.1.1",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.228-219.884.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "fcbca58e1d",
-    "gitTag": "4.1.0",
+    "gitHash": "448af7c703",
+    "gitTag": "4.1.1",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "4.1.0",
+    "version": "4.1.1",
     "version-roles-seeding": "0.0.3"
   }
 }

@@ -302,14 +302,6 @@ Example
 
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -343,6 +335,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPutGameRecordHandlerV1(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, *AdminPutGameRecordHandlerV1BadRequest, *AdminPutGameRecordHandlerV1Unauthorized, *AdminPutGameRecordHandlerV1Forbidden, *AdminPutGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -425,14 +425,6 @@ Example
 
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -466,6 +458,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPutGameRecordHandlerV1Short(params *AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutGameRecordHandlerV1OK, error) {
 	// TODO: Validate the params before sending
@@ -554,14 +554,6 @@ Example 2
 `{ "data1": { "data2": "value", "data3": "new value" }`
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -595,6 +587,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPostGameRecordHandlerV1(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, *AdminPostGameRecordHandlerV1BadRequest, *AdminPostGameRecordHandlerV1Unauthorized, *AdminPostGameRecordHandlerV1Forbidden, *AdminPostGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -689,14 +689,6 @@ Example 2
 `{ "data1": { "data2": "value", "data3": "new value" }`
 
 
-## Restriction
-This is the restriction of Key Naming for the record:
-1. Cannot use **"."** as the key name
-- `{ "data.2": "value" }`
-2. Cannot use **"$"** as the prefix in key names
-- `{ "$data": "value" }`
-
-
 ## Record Metadata
 
 Metadata allows user to define the behaviour of the record.
@@ -730,6 +722,14 @@ Indicate the tagging for the game record.
 ...
 }
 ```
+
+## Recommended Request Body Size
+
+To ensure optimal performance and efficient resource utilization, it is recommended that the request body size for this endpoint does not exceed 250 KB.
+
+## Exceeding the recommended limit
+
+While it's possible to handle larger request, exceeding this limit may lead to increased processing time, potential performance degradation, and potential timeout issues.
 */
 func (a *Client) AdminPostGameRecordHandlerV1Short(params *AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostGameRecordHandlerV1Created, error) {
 	// TODO: Validate the params before sending

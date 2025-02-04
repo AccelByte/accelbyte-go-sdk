@@ -154,7 +154,7 @@ func (a *Client) InfoRegionsShort(params *InfoRegionsParams, authInfo runtime.Cl
 /*
 Deprecated: 2022-08-10 - Use InfoSupportedInstancesShort instead.
 
-InfoSupportedInstances get a list of available vm configurations
+InfoSupportedInstances get a list of available instance types for the current account
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [READ]
 */
 func (a *Client) InfoSupportedInstances(params *InfoSupportedInstancesParams, authInfo runtime.ClientAuthInfoWriter) (*InfoSupportedInstancesOK, *InfoSupportedInstancesUnauthorized, *InfoSupportedInstancesForbidden, *InfoSupportedInstancesInternalServerError, error) {
@@ -212,7 +212,7 @@ func (a *Client) InfoSupportedInstances(params *InfoSupportedInstancesParams, au
 }
 
 /*
-InfoSupportedInstancesShort get a list of available vm configurations
+InfoSupportedInstancesShort get a list of available instance types for the current account
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA [READ]
 */
 func (a *Client) InfoSupportedInstancesShort(params *InfoSupportedInstancesParams, authInfo runtime.ClientAuthInfoWriter) (*InfoSupportedInstancesOK, error) {

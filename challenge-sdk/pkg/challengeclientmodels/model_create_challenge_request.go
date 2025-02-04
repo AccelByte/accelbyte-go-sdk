@@ -72,6 +72,9 @@ type ModelCreateChallengeRequest struct {
 	// Required: true
 	// Format: date-time
 	StartDate strfmt.DateTime `json:"startDate"`
+
+	// tags
+	Tags []string `json:"tags,omitempty"`
 }
 
 // Validate validates this Model create challenge request

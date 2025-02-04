@@ -141,6 +141,11 @@
 |---|---|---|---|---|---|
 | `/agreement/public/readiness` | GET | CheckReadinessShort | [CheckReadinessShort](../../legal-sdk/pkg/legalclient/utility/utility_client.go) | [CheckReadinessShort](../../services-api/pkg/service/legal/utility.go) | [CheckReadinessShort](../../samples/cli/cmd/legal/utility/checkReadiness.go) |
 
+### Policies With Namespace V2 Wrapper:  [PoliciesWithNamespaceV2](../../services-api/pkg/service/legal/policiesWithNamespaceV2.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/agreement/v2/public/policies/namespaces/{namespace}/countries/{countryCode}` | GET | RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short | [RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short](../../legal-sdk/pkg/legalclient/policies_with_namespace_v2/policies_with_namespace_v2_client.go) | [RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short](../../services-api/pkg/service/legal/policiesWithNamespaceV2.go) | [RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short](../../samples/cli/cmd/legal/policiesWithNamespaceV2/retrieveLatestPoliciesByNamespaceAndCountryPublic1.go) |
+
 
 &nbsp;  
 
@@ -180,10 +185,13 @@
 | `RetrievePolicyResponse` | [RetrievePolicyResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_policy_response.go) |
 | `RetrievePolicyTypeResponse` | [RetrievePolicyTypeResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_policy_type_response.go) |
 | `RetrievePolicyVersionResponse` | [RetrievePolicyVersionResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_policy_version_response.go) |
+| `RetrieveSimplePolicyPublicResponseV2` | [RetrieveSimplePolicyPublicResponseV2 ](../../legal-sdk/pkg/legalclientmodels/retrieve_simple_policy_public_response_v2.go) |
 | `RetrieveUserAcceptedAgreementResponse` | [RetrieveUserAcceptedAgreementResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_user_accepted_agreement_response.go) |
 | `RetrieveUserEligibilitiesIndirectResponse` | [RetrieveUserEligibilitiesIndirectResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_user_eligibilities_indirect_response.go) |
 | `RetrieveUserEligibilitiesResponse` | [RetrieveUserEligibilitiesResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_user_eligibilities_response.go) |
 | `RetrieveUserInfoCacheStatusResponse` | [RetrieveUserInfoCacheStatusResponse ](../../legal-sdk/pkg/legalclientmodels/retrieve_user_info_cache_status_response.go) |
+| `SimpleLocalizedPolicyVersionObject` | [SimpleLocalizedPolicyVersionObject ](../../legal-sdk/pkg/legalclientmodels/simple_localized_policy_version_object.go) |
+| `SimplePolicyVersionWithLocalizedVersionObject` | [SimplePolicyVersionWithLocalizedVersionObject ](../../legal-sdk/pkg/legalclientmodels/simple_policy_version_with_localized_version_object.go) |
 | `UpdateBasePolicyRequest` | [UpdateBasePolicyRequest ](../../legal-sdk/pkg/legalclientmodels/update_base_policy_request.go) |
 | `UpdateBasePolicyRequestV2` | [UpdateBasePolicyRequestV2 ](../../legal-sdk/pkg/legalclientmodels/update_base_policy_request_v2.go) |
 | `UpdateBasePolicyResponse` | [UpdateBasePolicyResponse ](../../legal-sdk/pkg/legalclientmodels/update_base_policy_response.go) |

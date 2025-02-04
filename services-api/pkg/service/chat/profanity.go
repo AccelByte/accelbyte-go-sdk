@@ -97,32 +97,32 @@ func (aaa *ProfanityService) AdminProfanityCreate(input *profanity.AdminProfanit
 }
 
 // Deprecated: 2022-01-10 - please use AdminProfanityCreateBulkShort instead.
-func (aaa *ProfanityService) AdminProfanityCreateBulk(input *profanity.AdminProfanityCreateBulkParams) (*chatclientmodels.ModelsDictionary, error) {
+func (aaa *ProfanityService) AdminProfanityCreateBulk(input *profanity.AdminProfanityCreateBulkParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return nil, err
+		return err
 	}
-	noContent, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Profanity.AdminProfanityCreateBulk(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Profanity.AdminProfanityCreateBulk(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return nil, badRequest
+		return badRequest
 	}
 	if unauthorized != nil {
-		return nil, unauthorized
+		return unauthorized
 	}
 	if forbidden != nil {
-		return nil, forbidden
+		return forbidden
 	}
 	if notFound != nil {
-		return nil, notFound
+		return notFound
 	}
 	if internalServerError != nil {
-		return nil, internalServerError
+		return internalServerError
 	}
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 // Deprecated: 2022-01-10 - please use AdminProfanityExportShort instead.
@@ -324,7 +324,7 @@ func (aaa *ProfanityService) AdminProfanityCreateShort(input *profanity.AdminPro
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ProfanityService) AdminProfanityCreateBulkShort(input *profanity.AdminProfanityCreateBulkParams) (*chatclientmodels.ModelsDictionary, error) {
+func (aaa *ProfanityService) AdminProfanityCreateBulkShort(input *profanity.AdminProfanityCreateBulkParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -346,12 +346,12 @@ func (aaa *ProfanityService) AdminProfanityCreateBulkShort(input *profanity.Admi
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	noContent, err := aaa.Client.Profanity.AdminProfanityCreateBulkShort(input, authInfoWriter)
+	_, err := aaa.Client.Profanity.AdminProfanityCreateBulkShort(input, authInfoWriter)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return noContent.GetPayload(), nil
+	return nil
 }
 
 func (aaa *ProfanityService) AdminProfanityExportShort(input *profanity.AdminProfanityExportParams) (*chatclientmodels.ModelsDictionaryExport, error) {

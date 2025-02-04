@@ -57,8 +57,7 @@ func NewAdminGetStatusParamsWithHTTPClient(client *http.Client) *AdminGetStatusP
 	}
 }
 
-/*
-AdminGetStatusParams contains all the parameters to send to the API endpoint
+/*AdminGetStatusParams contains all the parameters to send to the API endpoint
 for the admin get status operation typically these are written to a http.Request
 */
 type AdminGetStatusParams struct {

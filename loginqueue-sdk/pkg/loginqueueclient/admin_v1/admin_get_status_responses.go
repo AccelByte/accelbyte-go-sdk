@@ -67,10 +67,9 @@ func NewAdminGetStatusOK() *AdminGetStatusOK {
 	return &AdminGetStatusOK{}
 }
 
-/*
-AdminGetStatusOK handles this case with default header values.
+/*AdminGetStatusOK handles this case with default header values.
 
-	OK
+  OK
 */
 type AdminGetStatusOK struct {
 	Payload *loginqueueclientmodels.ApimodelsQueueStatusResponse
@@ -122,10 +121,9 @@ func NewAdminGetStatusUnauthorized() *AdminGetStatusUnauthorized {
 	return &AdminGetStatusUnauthorized{}
 }
 
-/*
-AdminGetStatusUnauthorized handles this case with default header values.
+/*AdminGetStatusUnauthorized handles this case with default header values.
 
-	Unauthorized
+  Unauthorized
 */
 type AdminGetStatusUnauthorized struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -177,10 +175,9 @@ func NewAdminGetStatusForbidden() *AdminGetStatusForbidden {
 	return &AdminGetStatusForbidden{}
 }
 
-/*
-AdminGetStatusForbidden handles this case with default header values.
+/*AdminGetStatusForbidden handles this case with default header values.
 
-	Forbidden
+  Forbidden
 */
 type AdminGetStatusForbidden struct {
 	Payload *loginqueueclientmodels.ResponseError
@@ -232,10 +229,9 @@ func NewAdminGetStatusInternalServerError() *AdminGetStatusInternalServerError {
 	return &AdminGetStatusInternalServerError{}
 }
 
-/*
-AdminGetStatusInternalServerError handles this case with default header values.
+/*AdminGetStatusInternalServerError handles this case with default header values.
 
-	Internal Server Error
+  Internal Server Error
 */
 type AdminGetStatusInternalServerError struct {
 	Payload *loginqueueclientmodels.ResponseError

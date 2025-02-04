@@ -63,6 +63,9 @@ type ModelUpdateChallengeRequest struct {
 	// startdate
 	// Format: date-time
 	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
+
+	// tags
+	Tags []string `json:"tags,omitempty"`
 }
 
 // Validate validates this Model update challenge request

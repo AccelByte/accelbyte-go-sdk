@@ -194,6 +194,35 @@ func (aaa *MatchPoolsService) MatchPoolMetric(input *match_pools.MatchPoolMetric
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PostMatchErrorMetricShort instead.
+func (aaa *MatchPoolsService) PostMatchErrorMetric(input *match_pools.PostMatchErrorMetricParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchPools.PostMatchErrorMetric(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetPlayerMetricShort instead.
 func (aaa *MatchPoolsService) GetPlayerMetric(input *match_pools.GetPlayerMetricParams) (*match2clientmodels.APIPlayerMetricRecord, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -450,6 +479,36 @@ func (aaa *MatchPoolsService) MatchPoolMetricShort(input *match_pools.MatchPoolM
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *MatchPoolsService) PostMatchErrorMetricShort(input *match_pools.PostMatchErrorMetricParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdMatchPools != nil {
+		input.XFlightId = tempFlightIdMatchPools
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.MatchPools.PostMatchErrorMetricShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *MatchPoolsService) GetPlayerMetricShort(input *match_pools.GetPlayerMetricParams) (*match2clientmodels.APIPlayerMetricRecord, error) {

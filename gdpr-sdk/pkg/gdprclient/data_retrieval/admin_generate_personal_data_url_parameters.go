@@ -65,10 +65,10 @@ type AdminGeneratePersonalDataURLParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Password
-	  IAM password of the user
+	  If admin request data for themselves, then password is required
 
 	*/
-	Password string
+	Password *string
 	/*Namespace
 	  namespace
 
@@ -151,13 +151,13 @@ func (o *AdminGeneratePersonalDataURLParams) SetFlightId(flightId string) {
 }
 
 // WithPassword adds the password to the admin generate personal data url params
-func (o *AdminGeneratePersonalDataURLParams) WithPassword(password string) *AdminGeneratePersonalDataURLParams {
+func (o *AdminGeneratePersonalDataURLParams) WithPassword(password *string) *AdminGeneratePersonalDataURLParams {
 	o.SetPassword(password)
 	return o
 }
 
 // SetPassword adds the password to the admin generate personal data url params
-func (o *AdminGeneratePersonalDataURLParams) SetPassword(password string) {
+func (o *AdminGeneratePersonalDataURLParams) SetPassword(password *string) {
 	o.Password = password
 }
 
@@ -202,13 +202,20 @@ func (o *AdminGeneratePersonalDataURLParams) WriteToRequest(r runtime.ClientRequ
 	}
 	var res []error
 
-	// form param password
-	frPassword := o.Password
-	fPassword := frPassword
-	if fPassword != "" {
-		if err := r.SetFormParam("password", fPassword); err != nil {
-			return err
+	if o.Password != nil {
+
+		// form param password
+		var frPassword string
+		if o.Password != nil {
+			frPassword = *o.Password
 		}
+		fPassword := frPassword
+		if fPassword != "" {
+			if err := r.SetFormParam("password", fPassword); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// path param namespace

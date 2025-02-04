@@ -22,8 +22,11 @@ import (
 // NewAdminTopicListParams creates a new AdminTopicListParams object
 // with the default values initialized.
 func NewAdminTopicListParams() *AdminTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicListParams{
+		Limit: &limitDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewAdminTopicListParams() *AdminTopicListParams {
 // NewAdminTopicListParamsWithTimeout creates a new AdminTopicListParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminTopicListParamsWithTimeout(timeout time.Duration) *AdminTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicListParams{
+		Limit: &limitDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewAdminTopicListParamsWithTimeout(timeout time.Duration) *AdminTopicListPa
 // NewAdminTopicListParamsWithContext creates a new AdminTopicListParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminTopicListParamsWithContext(ctx context.Context) *AdminTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicListParams{
+		Limit: &limitDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +61,11 @@ func NewAdminTopicListParamsWithContext(ctx context.Context) *AdminTopicListPara
 // NewAdminTopicListParamsWithHTTPClient creates a new AdminTopicListParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminTopicListParamsWithHTTPClient(client *http.Client) *AdminTopicListParams {
-	var ()
+	var (
+		limitDefault = int64(100)
+	)
 	return &AdminTopicListParams{
+		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }

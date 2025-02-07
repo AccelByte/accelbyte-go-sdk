@@ -6,8 +6,10 @@
 - **test:** integration - add login queue service
 - **sdk:** generate go extend sdk to add login queue service
 - **:** update CHANGELOG.md and go sum getting started
+- **:** fix the challenge test
 ### docs
 - **readme:** update doc links
+- **:** add migration guide from v0.75.0 to v0.76.0 for ags 2025.1
 
 
 <a name="v0.76.1"></a>

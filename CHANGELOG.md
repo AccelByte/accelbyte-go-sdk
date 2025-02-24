@@ -1,3 +1,10 @@
+<a name="v0.77.1"></a>
+## [v0.77.1]
+### chore
+- **:** update CHANGELOG.md
+- **sdk:** add a clearer message for error in token validation
+
+
 <a name="v0.77.0"></a>
 ## [v0.77.0]
 ### feat

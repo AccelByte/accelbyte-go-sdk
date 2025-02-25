@@ -123,7 +123,7 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 
 		hasValidPermission, errPermission := v.hasValidPermissions(v.JwtClaims, permission, namespace, userId)
 		if !hasValidPermission {
-			return fmt.Errorf("insufficient permissions, %v", errPermission)
+			return fmt.Errorf("insufficient permissions. %v", errPermission)
 		}
 
 		return nil
@@ -375,10 +375,6 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		return true, nil
 	}
 
-	if !v.validatePermissions(originPermissions, modifiedResource, permission.Action) {
-		return false, fmt.Errorf("permission [%s] with action [%v] is required", modifiedResource, permission.Action)
-	}
-
 	claimsUserId := claims.Subject
 	namespaceRoles := claims.NamespaceRoles
 	if claimsUserId != "" && len(namespaceRoles) > 0 {
@@ -418,7 +414,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		}
 	}
 
-	return false, fmt.Errorf("failed to validate permission. claim roles is empty.")
+	return false, fmt.Errorf("failed to validate permission. claim roles is empty")
 }
 
 func (v *TokenValidator) hasValidNamespace(claims JWTClaims, namespace *string) error {
@@ -605,7 +601,7 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
-		LocalValidationActive: false,
+		LocalValidationActive: true,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
 		NamespaceContexts:     make(map[string]*NamespaceContext),

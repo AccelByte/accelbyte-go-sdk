@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"log"
 	"math/big"
+	"os"
 	"strings"
 	"time"
 
@@ -282,11 +283,15 @@ func (v *TokenValidator) fetchRevocationList() error {
 	return nil
 }
 
-func (v *TokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmodels.ModelRolePermissionResponseV3, error) {
+func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*iamclientmodels.ModelRolePermissionResponseV3, error) {
 	if !forceFetch {
 		if role, found := v.Roles[roleId]; found {
 			return role, nil
 		}
+	}
+
+	if namespace == "*" {
+		namespace = os.Getenv("AB_NAMESPACE")
 	}
 
 	overrideRoleService := OverrideRoleConfigv3Service{
@@ -295,7 +300,8 @@ func (v *TokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmode
 		TokenRepository:  v.AuthService.TokenRepository,
 	}
 	role, err := overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
-		RoleID: roleId,
+		RoleID:    roleId,
+		Namespace: namespace,
 	})
 	if err != nil {
 		return nil, err
@@ -306,8 +312,8 @@ func (v *TokenValidator) getRole(roleId string, forceFetch bool) (*iamclientmode
 	return role, nil
 }
 
-func (v *TokenValidator) getRolePermissions(roleId string, forceFetch bool) ([]Permission, error) {
-	role, err := v.getRole(roleId, forceFetch)
+func (v *TokenValidator) getRolePermissions(roleId, namespace string, forceFetch bool) ([]Permission, error) {
+	role, err := v.getRole(roleId, namespace, forceFetch)
 	if err != nil {
 		return nil, err
 	}
@@ -321,7 +327,7 @@ func (v *TokenValidator) getRolePermissions(roleId string, forceFetch bool) ([]P
 }
 
 func (v *TokenValidator) getRolePermissions2(roleId string, namespace string, userId *string, forceFetch bool) ([]Permission, error) {
-	permissions, err := v.getRolePermissions(roleId, forceFetch)
+	permissions, err := v.getRolePermissions(roleId, namespace, forceFetch)
 	if err != nil {
 		return nil, err
 	}
@@ -414,7 +420,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		}
 	}
 
-	return false, fmt.Errorf("failed to validate permission. claim roles is empty")
+	return false, fmt.Errorf("failed to validate permission [%v][%v]", modifiedResource, permission.Action)
 }
 
 func (v *TokenValidator) hasValidNamespace(claims JWTClaims, namespace *string) error {
@@ -601,7 +607,7 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
-		LocalValidationActive: true,
+		LocalValidationActive: false,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
 		NamespaceContexts:     make(map[string]*NamespaceContext),

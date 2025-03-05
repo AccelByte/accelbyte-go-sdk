@@ -32,6 +32,10 @@ type APIFleetGetResponse struct {
 	// Required: true
 	DsHostConfiguration *APIDSHostConfiguration `json:"dsHostConfiguration"`
 
+	// fallbackfleet
+	// Required: true
+	FallbackFleet *string `json:"fallbackFleet"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -51,6 +55,10 @@ type APIFleetGetResponse struct {
 	// ondemand
 	// Required: true
 	OnDemand *bool `json:"onDemand"`
+
+	// primaryfleet
+	// Required: true
+	PrimaryFleet *string `json:"primaryFleet"`
 
 	// regions
 	// Required: true
@@ -74,6 +82,9 @@ func (m *APIFleetGetResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateDsHostConfiguration(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateFallbackFleet(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -87,6 +98,9 @@ func (m *APIFleetGetResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateOnDemand(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePrimaryFleet(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegions(formats); err != nil {
@@ -133,6 +147,15 @@ func (m *APIFleetGetResponse) validateDsHostConfiguration(formats strfmt.Registr
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *APIFleetGetResponse) validateFallbackFleet(formats strfmt.Registry) error {
+
+	if err := validate.Required("fallbackFleet", "body", m.FallbackFleet); err != nil {
+		return err
 	}
 
 	return nil
@@ -186,6 +209,15 @@ func (m *APIFleetGetResponse) validateName(formats strfmt.Registry) error {
 func (m *APIFleetGetResponse) validateOnDemand(formats strfmt.Registry) error {
 
 	if err := validate.Required("onDemand", "body", m.OnDemand); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetGetResponse) validatePrimaryFleet(formats strfmt.Registry) error {
+
+	if err := validate.Required("primaryFleet", "body", m.PrimaryFleet); err != nil {
 		return err
 	}
 

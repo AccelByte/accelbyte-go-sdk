@@ -14,6 +14,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/account_idenfifier_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients_config_v3"
@@ -85,6 +86,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli := new(JusticeIamService)
 	cli.Transport = transport
 	cli.Runtime = runtime
+	cli.AccountIdenfifierTag = account_idenfifier_tag.New(transport, formats)
 	cli.Bans = bans.New(transport, formats)
 	cli.Clients = clients.New(transport, formats)
 	cli.ClientsConfigV3 = clients_config_v3.New(transport, formats)
@@ -166,6 +168,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeIamService is a client for justice iam service
 type JusticeIamService struct {
+	AccountIdenfifierTag account_idenfifier_tag.ClientService
+
 	Bans bans.ClientService
 
 	Clients clients.ClientService
@@ -215,6 +219,7 @@ type JusticeIamService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeIamService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AccountIdenfifierTag.SetTransport(transport)
 	c.Bans.SetTransport(transport)
 	c.Clients.SetTransport(transport)
 	c.ClientsConfigV3.SetTransport(transport)

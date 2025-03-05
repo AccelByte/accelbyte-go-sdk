@@ -74,12 +74,16 @@ type IAPOrderInfo struct {
 	Sandbox bool `json:"sandbox"`
 
 	// status
-	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'REVOKE_FAILED', 'VERIFIED']
 	// Required: true
 	Status *string `json:"status"`
 
 	// status reason
 	StatusReason string `json:"statusReason,omitempty"`
+
+	// sync mode, only steam have this value currently.
+	// Enum: ['INVENTORY', 'TRANSACTION']
+	SyncMode string `json:"syncMode,omitempty"`
 
 	// transaction id
 	TransactionID string `json:"transactionId,omitempty"`
@@ -166,7 +170,7 @@ var iapOrderInfoTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "REVOKE_FAILED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -187,6 +191,9 @@ const (
 
 	// IAPOrderInfoStatusREVOKED captures enum value "REVOKED"
 	IAPOrderInfoStatusREVOKED string = "REVOKED"
+
+	// IAPOrderInfoStatusREVOKEFAILED captures enum value "REVOKE_FAILED"
+	IAPOrderInfoStatusREVOKEFAILED string = "REVOKE_FAILED"
 
 	// IAPOrderInfoStatusVERIFIED captures enum value "VERIFIED"
 	IAPOrderInfoStatusVERIFIED string = "VERIFIED"
@@ -211,6 +218,35 @@ func (m *IAPOrderInfo) validateStatus(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+var iapOrderInfoTypeSyncModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["INVENTORY", "TRANSACTION"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		iapOrderInfoTypeSyncModePropEnum = append(iapOrderInfoTypeSyncModePropEnum, v)
+	}
+}
+
+const (
+
+	// IAPOrderInfoSyncModeINVENTORY captures enum value "INVENTORY"
+	IAPOrderInfoSyncModeINVENTORY string = "INVENTORY"
+
+	// IAPOrderInfoSyncModeTRANSACTION captures enum value "TRANSACTION"
+	IAPOrderInfoSyncModeTRANSACTION string = "TRANSACTION"
+)
+
+// prop value enum
+func (m *IAPOrderInfo) validateSyncModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, iapOrderInfoTypeSyncModePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

@@ -20,8 +20,14 @@ type CampaignIfc struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// items
+	Items []*RedeemableItem `json:"items,omitempty"`
+
 	// name
 	Name string `json:"name,omitempty"`
+
+	// namespace
+	Namespace string `json:"namespace,omitempty"`
 }
 
 // Validate validates this Campaign ifc

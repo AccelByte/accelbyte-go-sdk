@@ -39,10 +39,12 @@ const (
 // with the default values initialized.
 func NewTokenGrantV4Params() *TokenGrantV4Params {
 	var (
+		scopeDefault               = string("commerce account social publishing analytics")
 		grantTypeDefault           = string("authorization_code")
 		codeChallengeMethodDefault = string("plain")
 	)
 	return &TokenGrantV4Params{
+		Scope:               &scopeDefault,
 		GrantType:           grantTypeDefault,
 		CodeChallengeMethod: &codeChallengeMethodDefault,
 
@@ -54,10 +56,12 @@ func NewTokenGrantV4Params() *TokenGrantV4Params {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewTokenGrantV4ParamsWithTimeout(timeout time.Duration) *TokenGrantV4Params {
 	var (
+		scopeDefault               = string("commerce account social publishing analytics")
 		grantTypeDefault           = string("authorization_code")
 		codeChallengeMethodDefault = string("plain")
 	)
 	return &TokenGrantV4Params{
+		Scope:               &scopeDefault,
 		GrantType:           grantTypeDefault,
 		CodeChallengeMethod: &codeChallengeMethodDefault,
 
@@ -69,10 +73,12 @@ func NewTokenGrantV4ParamsWithTimeout(timeout time.Duration) *TokenGrantV4Params
 // with the default values initialized, and the ability to set a context for a request
 func NewTokenGrantV4ParamsWithContext(ctx context.Context) *TokenGrantV4Params {
 	var (
+		scopeDefault               = string("commerce account social publishing analytics")
 		grantTypeDefault           = string("authorization_code")
 		codeChallengeMethodDefault = string("plain")
 	)
 	return &TokenGrantV4Params{
+		Scope:               &scopeDefault,
 		GrantType:           grantTypeDefault,
 		CodeChallengeMethod: &codeChallengeMethodDefault,
 
@@ -84,10 +90,12 @@ func NewTokenGrantV4ParamsWithContext(ctx context.Context) *TokenGrantV4Params {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewTokenGrantV4ParamsWithHTTPClient(client *http.Client) *TokenGrantV4Params {
 	var (
+		scopeDefault               = string("commerce account social publishing analytics")
 		grantTypeDefault           = string("authorization_code")
 		codeChallengeMethodDefault = string("plain")
 	)
 	return &TokenGrantV4Params{
+		Scope:               &scopeDefault,
 		GrantType:           grantTypeDefault,
 		CodeChallengeMethod: &codeChallengeMethodDefault,
 		HTTPClient:          client,
@@ -166,6 +174,11 @@ type TokenGrantV4Params struct {
 
 	*/
 	RefreshToken *string
+	/*Scope
+	  Defines the access token scope when using grant type 'password' or 'client_credentials'. Can be multiple values delimited by whitespace.
+
+	*/
+	Scope *string
 	/*Username
 	  User Name (used with grant type 'password')
 
@@ -393,6 +406,17 @@ func (o *TokenGrantV4Params) WithRefreshToken(refreshToken *string) *TokenGrantV
 // SetRefreshToken adds the refreshToken to the token grant v4 params
 func (o *TokenGrantV4Params) SetRefreshToken(refreshToken *string) {
 	o.RefreshToken = refreshToken
+}
+
+// WithScope adds the scope to the token grant v4 params
+func (o *TokenGrantV4Params) WithScope(scope *string) *TokenGrantV4Params {
+	o.SetScope(scope)
+	return o
+}
+
+// SetScope adds the scope to the token grant v4 params
+func (o *TokenGrantV4Params) SetScope(scope *string) {
+	o.Scope = scope
 }
 
 // WithUsername adds the username to the token grant v4 params
@@ -634,6 +658,22 @@ func (o *TokenGrantV4Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		fRefreshToken := frRefreshToken
 		if fRefreshToken != "" {
 			if err := r.SetFormParam("refresh_token", fRefreshToken); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Scope != nil {
+
+		// form param scope
+		var frScope string
+		if o.Scope != nil {
+			frScope = *o.Scope
+		}
+		fScope := frScope
+		if fScope != "" {
+			if err := r.SetFormParam("scope", fScope); err != nil {
 				return err
 			}
 		}

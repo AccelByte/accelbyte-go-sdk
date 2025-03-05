@@ -8,14 +8,14 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "2.19.0"
+    "version": "2.19.1"
   },
   "schemes": [
     "https"
   ],
   "tags": [
     {
-      "name": "GameProfile"
+      "name": "GameProfile (Deprecated)"
     },
     {
       "name": "GlobalStatistic"
@@ -317,7 +317,8 @@
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
-        "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserProfiles",
         "parameters": [
           {
@@ -388,7 +389,8 @@
     },
     "/social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
       "get": {
-        "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getProfile",
         "parameters": [
           {
@@ -583,7 +585,8 @@
     },
     "/social/public/namespaces/{namespace}/profiles": {
       "get": {
-        "description": "Returns all profiles for specified users.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Returns all profiles for specified users.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserGameProfiles",
         "parameters": [
           {
@@ -665,7 +668,8 @@
     },
     "/social/public/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
-        "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfiles",
         "parameters": [
           {
@@ -737,7 +741,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create new profile for user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/li\u0026gt;: created game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Create new profile for user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/li\u0026gt;: created game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCreateProfile",
         "parameters": [
           {
@@ -823,7 +828,8 @@
     },
     "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
       "delete": {
-        "description": "Deletes game profile.\u0026lt;br\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Deletes game profile.\u0026lt;br\u0026gt;",
         "operationId": "publicDeleteProfile",
         "parameters": [
           {
@@ -898,7 +904,8 @@
         }
       },
       "get": {
-        "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetProfile",
         "parameters": [
           {
@@ -981,7 +988,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates user game profile, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates user game profile, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated game profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateProfile",
         "parameters": [
           {
@@ -1084,7 +1092,8 @@
     },
     "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}": {
       "get": {
-        "description": "Returns game profile attribute.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: attribute info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Returns game profile attribute.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: attribute info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetProfileAttribute",
         "parameters": [
           {
@@ -1174,7 +1183,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates game profile attribute, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated attribute\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "\u0026lt;h2\u0026gt;The endpoint is going to be deprecated\u0026lt;/h2\u0026gt;\u0026lt;br\u0026gt;Updates game profile attribute, returns updated profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated attribute\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicUpdateAttribute",
         "parameters": [
           {
@@ -6457,7 +6467,7 @@
     "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems": {
       "get": {
         "description": "Public list all statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicQueryUserStatItems",
+        "operationId": "publicQueryUserStatItems_1",
         "parameters": [
           {
             "description": "namespace",
@@ -6667,7 +6677,7 @@
     "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "get": {
         "description": "Public list all statItems of user.\u0026lt;br\u0026gt;NOTE: \u0026lt;li\u0026gt;If stat code does not exist, will ignore this stat code.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If stat item does not exist, will return default value\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "publicQueryUserStatItems_1",
+        "operationId": "publicQueryUserStatItems",
         "parameters": [
           {
             "description": "namespace",
@@ -10477,16 +10487,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-01-21T11:09:25+00:00",
-    "buildID": "2.19.0",
+    "buildDate": "2025-02-28T02:06:11+00:00",
+    "buildID": "2.19.1",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.233-224.894.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "1df1c18004",
-    "gitTag": "2.19.0",
+    "gitHash": "f1d8a81b1c",
+    "gitTag": "2.19.1",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "2.19.0",
+    "version": "2.19.1",
     "version-roles-seeding": "0.0.12"
   }
 }

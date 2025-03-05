@@ -39,6 +39,12 @@ func (o *UpdateDLCItemConfigReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewUpdateDLCItemConfigNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 409:
 		result := NewUpdateDLCItemConfigConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -153,6 +159,60 @@ func (o *UpdateDLCItemConfigBadRequest) GetPayload() *platformclientmodels.Error
 }
 
 func (o *UpdateDLCItemConfigBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateDLCItemConfigNotFound creates a UpdateDLCItemConfigNotFound with default headers values
+func NewUpdateDLCItemConfigNotFound() *UpdateDLCItemConfigNotFound {
+	return &UpdateDLCItemConfigNotFound{}
+}
+
+/*UpdateDLCItemConfigNotFound handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30341</td><td>Item [{itemId}] does not exist in namespace [{namespace}]</td></tr><tr><td>30343</td><td>Item of sku [{itemSku}] does not exist </td></tr></table>
+*/
+type UpdateDLCItemConfigNotFound struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *UpdateDLCItemConfigNotFound) Error() string {
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDlcItemConfigNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *UpdateDLCItemConfigNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *UpdateDLCItemConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *UpdateDLCItemConfigNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

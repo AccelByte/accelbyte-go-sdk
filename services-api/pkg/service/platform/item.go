@@ -514,9 +514,12 @@ func (aaa *ItemService) DeleteItem(input *item.DeleteItemParams) error {
 	if err != nil {
 		return err
 	}
-	_, notFound, err := aaa.Client.Item.DeleteItem(input, client.BearerToken(*token.AccessToken))
+	_, notFound, conflict, err := aaa.Client.Item.DeleteItem(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if err != nil {
 		return err
@@ -711,6 +714,23 @@ func (aaa *ItemService) UpdateItemPurchaseCondition(input *item.UpdateItemPurcha
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use QueryItemReferencesShort instead.
+func (aaa *ItemService) QueryItemReferences(input *item.QueryItemReferencesParams) (*platformclientmodels.ItemDependency, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.Item.QueryItemReferences(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
 	}
 	if err != nil {
 		return nil, err
@@ -2001,6 +2021,36 @@ func (aaa *ItemService) UpdateItemPurchaseConditionShort(input *item.UpdateItemP
 	}
 
 	ok, err := aaa.Client.Item.UpdateItemPurchaseConditionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ItemService) QueryItemReferencesShort(input *item.QueryItemReferencesParams) (*platformclientmodels.ItemDependency, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdItem != nil {
+		input.XFlightId = tempFlightIdItem
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Item.QueryItemReferencesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

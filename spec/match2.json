@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.31.0"
+    "version": "2.32.0"
   },
   "schemes": [
     "https"
@@ -382,6 +382,141 @@
       }
     },
     "/match2/v1/namespaces/{namespace}/backfill": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin Query backfill ticket\n",
+        "operationId": "AdminQueryBackfill",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "beginning of backfill ticket creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z",
+            "format": "date-time",
+            "in": "query",
+            "name": "fromTime",
+            "type": "string",
+            "x-nullable": true
+          },
+          {
+            "description": "backfill isActive flag",
+            "in": "query",
+            "name": "isActive",
+            "type": "boolean",
+            "x-omitempty": false
+          },
+          {
+            "default": 20,
+            "description": "limit of the returned data",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "ticket match pool",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
+          },
+          {
+            "description": "offset of the data",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "player ID of the backfilled session (WARNING: slow)",
+            "in": "query",
+            "name": "playerID",
+            "type": "string"
+          },
+          {
+            "description": "preferred region of the backfilled session (WARNING: slow)",
+            "in": "query",
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "description": "backfill Session ID",
+            "in": "query",
+            "name": "sessionID",
+            "type": "string"
+          },
+          {
+            "description": "end of backfill ticket creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z",
+            "format": "date-time",
+            "in": "query",
+            "name": "toTime",
+            "type": "string",
+            "x-nullable": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/api.ListBackfillQueryResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin Query backfill ticket ",
+        "tags": [
+          "Backfill",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:BACKFILL [READ]"
+            ]
+          }
+        ]
+      },
       "post": {
         "consumes": [
           "application/json"
@@ -2895,6 +3030,22 @@
         "type"
       ]
     },
+    "api.ListBackfillQueryResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/api.BackfillGetResponse"
+          },
+          "type": "array"
+        },
+        "pagination": {
+          "$ref": "#/definitions/models.Pagination"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "api.ListEnvironmentVariablesResponse": {
       "properties": {
         "data": {
@@ -4072,9 +4223,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-01-21T04:37:22+00:00",
-    "gitHash": "4615e7bf4c868267ad532becf5959c94d37050f3",
-    "version": "2.31.0",
-    "version-roles-seeding": "1.2.83"
+    "buildDate": "2025-02-28T07:30:08+00:00",
+    "gitHash": "04be4dde16171f191f22ab4ac402ea9f11029c24",
+    "version": "2.32.0",
+    "version-roles-seeding": "1.2.92"
   }
 }

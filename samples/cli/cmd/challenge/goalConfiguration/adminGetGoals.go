@@ -7,6 +7,8 @@
 package goalConfiguration
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/goal_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/challenge"
@@ -30,12 +32,19 @@ var AdminGetGoalsCmd = &cobra.Command{
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &goal_configuration.AdminGetGoalsParams{
 			ChallengeCode: challengeCode,
 			Namespace:     namespace,
 			Limit:         &limit,
 			Offset:        &offset,
 			SortBy:        &sortBy,
+			Tags:          tags,
 		}
 		ok, errOK := goalConfigurationService.AdminGetGoalsShort(input)
 		if errOK != nil {
@@ -58,4 +67,5 @@ func init() {
 	AdminGetGoalsCmd.Flags().Int64("limit", 20, "Limit")
 	AdminGetGoalsCmd.Flags().Int64("offset", 0, "Offset")
 	AdminGetGoalsCmd.Flags().String("sortBy", "", "Sort by")
+	AdminGetGoalsCmd.Flags().String("tags", "", "Tags")
 }

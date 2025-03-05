@@ -36,6 +36,11 @@
 | `/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data` | GET | PublicGetCurrentUserSeasonShort | [PublicGetCurrentUserSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [PublicGetCurrentUserSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [PublicGetCurrentUserSeasonShort](../../samples/cli/cmd/seasonpass/season/publicGetCurrentUserSeason.go) |
 | `/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data` | GET | PublicGetUserSeasonShort | [PublicGetUserSeasonShort](../../seasonpass-sdk/pkg/seasonpassclient/season/season_client.go) | [PublicGetUserSeasonShort](../../services-api/pkg/service/seasonpass/season.go) | [PublicGetUserSeasonShort](../../samples/cli/cmd/seasonpass/season/publicGetUserSeason.go) |
 
+### Utilities Wrapper:  [Utilities](../../services-api/pkg/service/seasonpass/utilities.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/seasonpass/admin/namespaces/{namespace}/seasons/item/references` | GET | GetItemReferencesShort | [GetItemReferencesShort](../../seasonpass-sdk/pkg/seasonpassclient/utilities/utilities_client.go) | [GetItemReferencesShort](../../services-api/pkg/service/seasonpass/utilities.go) | [GetItemReferencesShort](../../samples/cli/cmd/seasonpass/utilities/getItemReferences.go) |
+
 ### Pass Wrapper:  [Pass](../../services-api/pkg/service/seasonpass/pass.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -85,6 +90,8 @@
 | `FieldValidationError` | [FieldValidationError ](../../seasonpass-sdk/pkg/seasonpassclientmodels/field_validation_error.go) |
 | `FullSeasonInfo` | [FullSeasonInfo ](../../seasonpass-sdk/pkg/seasonpassclientmodels/full_season_info.go) |
 | `Image` | [Image ](../../seasonpass-sdk/pkg/seasonpassclientmodels/image.go) |
+| `ItemReference` | [ItemReference ](../../seasonpass-sdk/pkg/seasonpassclientmodels/item_reference.go) |
+| `ItemReferenceInfo` | [ItemReferenceInfo ](../../seasonpass-sdk/pkg/seasonpassclientmodels/item_reference_info.go) |
 | `ListSeasonInfo` | [ListSeasonInfo ](../../seasonpass-sdk/pkg/seasonpassclientmodels/list_season_info.go) |
 | `ListSeasonInfoPagingSlicedResult` | [ListSeasonInfoPagingSlicedResult ](../../seasonpass-sdk/pkg/seasonpassclientmodels/list_season_info_paging_sliced_result.go) |
 | `ListUserSeasonInfo` | [ListUserSeasonInfo ](../../seasonpass-sdk/pkg/seasonpassclientmodels/list_user_season_info.go) |

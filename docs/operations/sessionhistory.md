@@ -13,6 +13,8 @@
 ### Config Wrapper:  [Config](../../services-api/pkg/service/sessionhistory/config.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/sessionhistory/v1/admin/config/env` | GET | AdminGetEnvConfigShort | [AdminGetEnvConfigShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/config/config_client.go) | [AdminGetEnvConfigShort](../../services-api/pkg/service/sessionhistory/config.go) | [AdminGetEnvConfigShort](../../samples/cli/cmd/sessionhistory/config/adminGetEnvConfig.go) |
+| `/sessionhistory/v1/admin/config/env` | PATCH | AdminPatchUpdateEnvConfigShort | [AdminPatchUpdateEnvConfigShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/config/config_client.go) | [AdminPatchUpdateEnvConfigShort](../../services-api/pkg/service/sessionhistory/config.go) | [AdminPatchUpdateEnvConfigShort](../../samples/cli/cmd/sessionhistory/config/adminPatchUpdateEnvConfig.go) |
 | `/sessionhistory/v1/admin/config/log` | GET | AdminGetLogConfigShort | [AdminGetLogConfigShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/config/config_client.go) | [AdminGetLogConfigShort](../../services-api/pkg/service/sessionhistory/config.go) | [AdminGetLogConfigShort](../../samples/cli/cmd/sessionhistory/config/adminGetLogConfig.go) |
 | `/sessionhistory/v1/admin/config/log` | PATCH | AdminPatchUpdateLogConfigShort | [AdminPatchUpdateLogConfigShort](../../sessionhistory-sdk/pkg/sessionhistoryclient/config/config_client.go) | [AdminPatchUpdateLogConfigShort](../../services-api/pkg/service/sessionhistory/config.go) | [AdminPatchUpdateLogConfigShort](../../samples/cli/cmd/sessionhistory/config/adminPatchUpdateLogConfig.go) |
 
@@ -114,6 +116,7 @@
 | `apimodels.XRayTicketResult` | [ApimodelsXRayTicketResult ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/apimodels_x_ray_ticket_result.go) |
 | `apimodels.XRayTotalActiveSessionQueryResponse` | [ApimodelsXRayTotalActiveSessionQueryResponse ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/apimodels_x_ray_total_active_session_query_response.go) |
 | `apimodels.XRayTotalPlayerPersessionAVGQueryResponse` | [ApimodelsXRayTotalPlayerPersessionAVGQueryResponse ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/apimodels_x_ray_total_player_persession_a_v_g_query_response.go) |
+| `envconfig.Configuration` | [EnvconfigConfiguration ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/envconfig_configuration.go) |
 | `logconfig.Configuration` | [LogconfigConfiguration ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/logconfig_configuration.go) |
 | `models.AllianceRule` | [ModelsAllianceRule ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/models_alliance_rule.go) |
 | `models.BackfillProposal` | [ModelsBackfillProposal ](../../sessionhistory-sdk/pkg/sessionhistoryclientmodels/models_backfill_proposal.go) |

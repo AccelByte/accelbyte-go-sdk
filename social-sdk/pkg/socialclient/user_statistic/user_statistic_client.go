@@ -72,12 +72,12 @@ type ClientService interface {
 	PublicListMyStatItemsShort(params *PublicListMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListMyStatItemsOK, error)
 	PublicListAllMyStatItems(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, *PublicListAllMyStatItemsBadRequest, *PublicListAllMyStatItemsForbidden, *PublicListAllMyStatItemsNotFound, *PublicListAllMyStatItemsUnprocessableEntity, error)
 	PublicListAllMyStatItemsShort(params *PublicListAllMyStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListAllMyStatItemsOK, error)
-	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnauthorized, *PublicQueryUserStatItemsForbidden, *PublicQueryUserStatItemsUnprocessableEntity, *PublicQueryUserStatItemsInternalServerError, error)
-	PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
+	PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1Unauthorized, *PublicQueryUserStatItems1Forbidden, *PublicQueryUserStatItems1UnprocessableEntity, *PublicQueryUserStatItems1InternalServerError, error)
+	PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error)
 	PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, *PublicBulkCreateUserStatItemsBadRequest, *PublicBulkCreateUserStatItemsUnauthorized, *PublicBulkCreateUserStatItemsForbidden, *PublicBulkCreateUserStatItemsUnprocessableEntity, *PublicBulkCreateUserStatItemsInternalServerError, error)
 	PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkCreateUserStatItemsOK, error)
-	PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1BadRequest, *PublicQueryUserStatItems1Unauthorized, *PublicQueryUserStatItems1Forbidden, *PublicQueryUserStatItems1NotFound, *PublicQueryUserStatItems1UnprocessableEntity, *PublicQueryUserStatItems1InternalServerError, error)
-	PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error)
+	PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsBadRequest, *PublicQueryUserStatItemsUnauthorized, *PublicQueryUserStatItemsForbidden, *PublicQueryUserStatItemsNotFound, *PublicQueryUserStatItemsUnprocessableEntity, *PublicQueryUserStatItemsInternalServerError, error)
+	PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error)
 	PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, *PublicBulkIncUserStatItem1BadRequest, *PublicBulkIncUserStatItem1Unauthorized, *PublicBulkIncUserStatItem1Forbidden, *PublicBulkIncUserStatItem1UnprocessableEntity, *PublicBulkIncUserStatItem1InternalServerError, error)
 	PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkIncUserStatItem1OK, error)
 	BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItemValue2OK, *BulkIncUserStatItemValue2BadRequest, *BulkIncUserStatItemValue2Unauthorized, *BulkIncUserStatItemValue2Forbidden, *BulkIncUserStatItemValue2UnprocessableEntity, *BulkIncUserStatItemValue2InternalServerError, error)
@@ -2749,17 +2749,17 @@ func (a *Client) PublicListAllMyStatItemsShort(params *PublicListAllMyStatItemsP
 }
 
 /*
-Deprecated: 2022-08-10 - Use PublicQueryUserStatItemsShort instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserStatItems1Short instead.
 
-PublicQueryUserStatItems public list user's statitems
+PublicQueryUserStatItems1 public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
                   *  Returns : stat items
 */
-func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsUnauthorized, *PublicQueryUserStatItemsForbidden, *PublicQueryUserStatItemsUnprocessableEntity, *PublicQueryUserStatItemsInternalServerError, error) {
+func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1Unauthorized, *PublicQueryUserStatItems1Forbidden, *PublicQueryUserStatItems1UnprocessableEntity, *PublicQueryUserStatItems1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicQueryUserStatItemsParams()
+		params = NewPublicQueryUserStatItems1Params()
 	}
 
 	if params.Context == nil {
@@ -2775,14 +2775,14 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicQueryUserStatItems",
+		ID:                 "publicQueryUserStatItems_1",
 		Method:             "GET",
 		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicQueryUserStatItemsReader{formats: a.formats},
+		Reader:             &PublicQueryUserStatItems1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -2793,19 +2793,19 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 
 	switch v := result.(type) {
 
-	case *PublicQueryUserStatItemsOK:
+	case *PublicQueryUserStatItems1OK:
 		return v, nil, nil, nil, nil, nil
 
-	case *PublicQueryUserStatItemsUnauthorized:
+	case *PublicQueryUserStatItems1Unauthorized:
 		return nil, v, nil, nil, nil, nil
 
-	case *PublicQueryUserStatItemsForbidden:
+	case *PublicQueryUserStatItems1Forbidden:
 		return nil, nil, v, nil, nil, nil
 
-	case *PublicQueryUserStatItemsUnprocessableEntity:
+	case *PublicQueryUserStatItems1UnprocessableEntity:
 		return nil, nil, nil, v, nil, nil
 
-	case *PublicQueryUserStatItemsInternalServerError:
+	case *PublicQueryUserStatItems1InternalServerError:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -2814,15 +2814,15 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 }
 
 /*
-PublicQueryUserStatItemsShort public list user's statitems
+PublicQueryUserStatItems1Short public list user's statitems
 Public list all statItems by pagination.
 Other detail info:
                   *  Returns : stat items
 */
-func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
+func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicQueryUserStatItemsParams()
+		params = NewPublicQueryUserStatItems1Params()
 	}
 
 	if params.Context == nil {
@@ -2834,14 +2834,14 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicQueryUserStatItems",
+		ID:                 "publicQueryUserStatItems_1",
 		Method:             "GET",
 		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicQueryUserStatItemsReader{formats: a.formats},
+		Reader:             &PublicQueryUserStatItems1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -2852,15 +2852,15 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 
 	switch v := result.(type) {
 
-	case *PublicQueryUserStatItemsOK:
+	case *PublicQueryUserStatItems1OK:
 		return v, nil
-	case *PublicQueryUserStatItemsUnauthorized:
+	case *PublicQueryUserStatItems1Unauthorized:
 		return nil, v
-	case *PublicQueryUserStatItemsForbidden:
+	case *PublicQueryUserStatItems1Forbidden:
 		return nil, v
-	case *PublicQueryUserStatItemsUnprocessableEntity:
+	case *PublicQueryUserStatItems1UnprocessableEntity:
 		return nil, v
-	case *PublicQueryUserStatItemsInternalServerError:
+	case *PublicQueryUserStatItems1InternalServerError:
 		return nil, v
 
 	default:
@@ -2994,9 +2994,9 @@ func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUser
 }
 
 /*
-Deprecated: 2022-08-10 - Use PublicQueryUserStatItems1Short instead.
+Deprecated: 2022-08-10 - Use PublicQueryUserStatItemsShort instead.
 
-PublicQueryUserStatItems1 public list user's statitems
+PublicQueryUserStatItems public list user's statitems
 Public list all statItems of user.
 NOTE:
                 * If stat code does not exist, will ignore this stat code.
@@ -3004,10 +3004,10 @@ NOTE:
 Other detail info:
                 *  Returns : stat items
 */
-func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, *PublicQueryUserStatItems1BadRequest, *PublicQueryUserStatItems1Unauthorized, *PublicQueryUserStatItems1Forbidden, *PublicQueryUserStatItems1NotFound, *PublicQueryUserStatItems1UnprocessableEntity, *PublicQueryUserStatItems1InternalServerError, error) {
+func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, *PublicQueryUserStatItemsBadRequest, *PublicQueryUserStatItemsUnauthorized, *PublicQueryUserStatItemsForbidden, *PublicQueryUserStatItemsNotFound, *PublicQueryUserStatItemsUnprocessableEntity, *PublicQueryUserStatItemsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicQueryUserStatItems1Params()
+		params = NewPublicQueryUserStatItemsParams()
 	}
 
 	if params.Context == nil {
@@ -3023,14 +3023,14 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicQueryUserStatItems_1",
+		ID:                 "publicQueryUserStatItems",
 		Method:             "GET",
 		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicQueryUserStatItems1Reader{formats: a.formats},
+		Reader:             &PublicQueryUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -3041,25 +3041,25 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 
 	switch v := result.(type) {
 
-	case *PublicQueryUserStatItems1OK:
+	case *PublicQueryUserStatItemsOK:
 		return v, nil, nil, nil, nil, nil, nil, nil
 
-	case *PublicQueryUserStatItems1BadRequest:
+	case *PublicQueryUserStatItemsBadRequest:
 		return nil, v, nil, nil, nil, nil, nil, nil
 
-	case *PublicQueryUserStatItems1Unauthorized:
+	case *PublicQueryUserStatItemsUnauthorized:
 		return nil, nil, v, nil, nil, nil, nil, nil
 
-	case *PublicQueryUserStatItems1Forbidden:
+	case *PublicQueryUserStatItemsForbidden:
 		return nil, nil, nil, v, nil, nil, nil, nil
 
-	case *PublicQueryUserStatItems1NotFound:
+	case *PublicQueryUserStatItemsNotFound:
 		return nil, nil, nil, nil, v, nil, nil, nil
 
-	case *PublicQueryUserStatItems1UnprocessableEntity:
+	case *PublicQueryUserStatItemsUnprocessableEntity:
 		return nil, nil, nil, nil, nil, v, nil, nil
 
-	case *PublicQueryUserStatItems1InternalServerError:
+	case *PublicQueryUserStatItemsInternalServerError:
 		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
@@ -3068,7 +3068,7 @@ func (a *Client) PublicQueryUserStatItems1(params *PublicQueryUserStatItems1Para
 }
 
 /*
-PublicQueryUserStatItems1Short public list user's statitems
+PublicQueryUserStatItemsShort public list user's statitems
 Public list all statItems of user.
 NOTE:
               * If stat code does not exist, will ignore this stat code.
@@ -3076,10 +3076,10 @@ NOTE:
 Other detail info:
               *  Returns : stat items
 */
-func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItems1OK, error) {
+func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserStatItemsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublicQueryUserStatItems1Params()
+		params = NewPublicQueryUserStatItemsParams()
 	}
 
 	if params.Context == nil {
@@ -3091,14 +3091,14 @@ func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publicQueryUserStatItems_1",
+		ID:                 "publicQueryUserStatItems",
 		Method:             "GET",
 		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublicQueryUserStatItems1Reader{formats: a.formats},
+		Reader:             &PublicQueryUserStatItemsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -3109,19 +3109,19 @@ func (a *Client) PublicQueryUserStatItems1Short(params *PublicQueryUserStatItems
 
 	switch v := result.(type) {
 
-	case *PublicQueryUserStatItems1OK:
+	case *PublicQueryUserStatItemsOK:
 		return v, nil
-	case *PublicQueryUserStatItems1BadRequest:
+	case *PublicQueryUserStatItemsBadRequest:
 		return nil, v
-	case *PublicQueryUserStatItems1Unauthorized:
+	case *PublicQueryUserStatItemsUnauthorized:
 		return nil, v
-	case *PublicQueryUserStatItems1Forbidden:
+	case *PublicQueryUserStatItemsForbidden:
 		return nil, v
-	case *PublicQueryUserStatItems1NotFound:
+	case *PublicQueryUserStatItemsNotFound:
 		return nil, v
-	case *PublicQueryUserStatItems1UnprocessableEntity:
+	case *PublicQueryUserStatItemsUnprocessableEntity:
 		return nil, v
-	case *PublicQueryUserStatItems1InternalServerError:
+	case *PublicQueryUserStatItemsInternalServerError:
 		return nil, v
 
 	default:

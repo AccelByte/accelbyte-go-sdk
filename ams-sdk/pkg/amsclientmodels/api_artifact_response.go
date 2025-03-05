@@ -54,6 +54,9 @@ type APIArtifactResponse struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// reason
+	Reason string `json:"reason,omitempty"`
+
 	// region
 	// Required: true
 	Region *string `json:"region"`

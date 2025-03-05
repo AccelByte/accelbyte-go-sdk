@@ -21,7 +21,7 @@ import (
 type XblReconcileResult struct {
 
 	// iaporderstatus
-	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'REVOKE_FAILED', 'VERIFIED']
 	IAPOrderStatus string `json:"iapOrderStatus,omitempty"`
 
 	// itemid
@@ -51,7 +51,7 @@ var xblReconcileResultTypeIAPOrderStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "REVOKE_FAILED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -72,6 +72,9 @@ const (
 
 	// XblReconcileResultIAPOrderStatusREVOKED captures enum value "REVOKED"
 	XblReconcileResultIAPOrderStatusREVOKED string = "REVOKED"
+
+	// XblReconcileResultIAPOrderStatusREVOKEFAILED captures enum value "REVOKE_FAILED"
+	XblReconcileResultIAPOrderStatusREVOKEFAILED string = "REVOKE_FAILED"
 
 	// XblReconcileResultIAPOrderStatusVERIFIED captures enum value "VERIFIED"
 	XblReconcileResultIAPOrderStatusVERIFIED string = "VERIFIED"

@@ -137,6 +137,10 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// tieteamssessionlifetime
 	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
 
+	// ttlhours
+	// Format: int32
+	TTLHours int32 `json:"ttlHours,omitempty"`
+
 	// type
 	// Required: true
 	Type *string `json:"type"`

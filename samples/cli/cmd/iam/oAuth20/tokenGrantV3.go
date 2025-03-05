@@ -39,6 +39,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		refreshToken, _ := cmd.Flags().GetString("refreshToken")
+		scope, _ := cmd.Flags().GetString("scope")
 		username, _ := cmd.Flags().GetString("username")
 		input := &o_auth2_0.TokenGrantV3Params{
 			AuthTrustID:     &authTrustId,
@@ -53,6 +54,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 			Password:        &password,
 			RedirectURI:     &redirectUri,
 			RefreshToken:    &refreshToken,
+			Scope:           &scope,
 			Username:        &username,
 			GrantType:       grantType,
 		}
@@ -82,6 +84,7 @@ func init() {
 	TokenGrantV3Cmd.Flags().String("password", "", "Password")
 	TokenGrantV3Cmd.Flags().String("redirectUri", "", "Redirect uri")
 	TokenGrantV3Cmd.Flags().String("refreshToken", "", "Refresh token")
+	TokenGrantV3Cmd.Flags().String("scope", "", "Scope")
 	TokenGrantV3Cmd.Flags().String("username", "", "Username")
 	TokenGrantV3Cmd.Flags().String("grantType", "", "Grant type")
 	_ = TokenGrantV3Cmd.MarkFlagRequired("grant_type")

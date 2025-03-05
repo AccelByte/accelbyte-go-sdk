@@ -21,14 +21,14 @@ import (
 
 // Get the enum in FleetListParams
 const (
-	FleetListAscConstant  = "asc"
-	FleetListDescConstant = "desc"
+	FleetListActiveConstant = "active"
+	FleetListNameConstant   = "name"
 )
 
 // Get the enum in FleetListParams
 const (
-	FleetListActiveConstant = "active"
-	FleetListNameConstant   = "name"
+	FleetListAscConstant  = "asc"
+	FleetListDescConstant = "desc"
 )
 
 // NewFleetListParams creates a new FleetListParams object
@@ -112,11 +112,6 @@ type FleetListParams struct {
 
 	*/
 	Count *int64
-	/*Desc
-	  sort direction (ascending or descending)
-
-	*/
-	Desc *string
 	/*Name
 	  filter fleets by name
 
@@ -137,6 +132,11 @@ type FleetListParams struct {
 
 	*/
 	SortBy *string
+	/*SortDirection
+	  sort direction (ascending or descending)
+
+	*/
+	SortDirection *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -236,17 +236,6 @@ func (o *FleetListParams) SetCount(count *int64) {
 	o.Count = count
 }
 
-// WithDesc adds the desc to the fleet list params
-func (o *FleetListParams) WithDesc(desc *string) *FleetListParams {
-	o.SetDesc(desc)
-	return o
-}
-
-// SetDesc adds the desc to the fleet list params
-func (o *FleetListParams) SetDesc(desc *string) {
-	o.Desc = desc
-}
-
 // WithName adds the name to the fleet list params
 func (o *FleetListParams) WithName(name *string) *FleetListParams {
 	o.SetName(name)
@@ -291,6 +280,17 @@ func (o *FleetListParams) SetSortBy(sortBy *string) {
 	o.SortBy = sortBy
 }
 
+// WithSortDirection adds the sortDirection to the fleet list params
+func (o *FleetListParams) WithSortDirection(sortDirection *string) *FleetListParams {
+	o.SetSortDirection(sortDirection)
+	return o
+}
+
+// SetSortDirection adds the sortDirection to the fleet list params
+func (o *FleetListParams) SetSortDirection(sortDirection *string) {
+	o.SortDirection = sortDirection
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -330,22 +330,6 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		qCount := swag.FormatInt64(qrCount)
 		if qCount != "" {
 			if err := r.SetQueryParam("count", qCount); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Desc != nil {
-
-		// query param desc
-		var qrDesc string
-		if o.Desc != nil {
-			qrDesc = *o.Desc
-		}
-		qDesc := qrDesc
-		if qDesc != "" {
-			if err := r.SetQueryParam("desc", qDesc); err != nil {
 				return err
 			}
 		}
@@ -410,6 +394,22 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		qSortBy := qrSortBy
 		if qSortBy != "" {
 			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortDirection != nil {
+
+		// query param sortDirection
+		var qrSortDirection string
+		if o.SortDirection != nil {
+			qrSortDirection = *o.SortDirection
+		}
+		qSortDirection := qrSortDirection
+		if qSortDirection != "" {
+			if err := r.SetQueryParam("sortDirection", qSortDirection); err != nil {
 				return err
 			}
 		}

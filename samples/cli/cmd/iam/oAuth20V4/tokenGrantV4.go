@@ -40,6 +40,7 @@ var TokenGrantV4Cmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		refreshToken, _ := cmd.Flags().GetString("refreshToken")
+		scope, _ := cmd.Flags().GetString("scope")
 		username, _ := cmd.Flags().GetString("username")
 		codeChallenge, _ := cmd.Flags().GetString("codeChallenge")
 		codeChallengeMethod, _ := cmd.Flags().GetString("codeChallengeMethod")
@@ -57,6 +58,7 @@ var TokenGrantV4Cmd = &cobra.Command{
 			Password:            &password,
 			RedirectURI:         &redirectUri,
 			RefreshToken:        &refreshToken,
+			Scope:               &scope,
 			Username:            &username,
 			GrantType:           grantType,
 			CodeChallenge:       &codeChallenge,
@@ -89,6 +91,7 @@ func init() {
 	TokenGrantV4Cmd.Flags().String("password", "", "Password")
 	TokenGrantV4Cmd.Flags().String("redirectUri", "", "Redirect uri")
 	TokenGrantV4Cmd.Flags().String("refreshToken", "", "Refresh token")
+	TokenGrantV4Cmd.Flags().String("scope", "", "Scope")
 	TokenGrantV4Cmd.Flags().String("username", "", "Username")
 	TokenGrantV4Cmd.Flags().String("grantType", "", "Grant type")
 	_ = TokenGrantV4Cmd.MarkFlagRequired("grant_type")

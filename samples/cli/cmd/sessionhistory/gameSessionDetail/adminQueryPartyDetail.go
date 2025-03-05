@@ -26,20 +26,28 @@ var AdminQueryPartyDetailCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		endDate, _ := cmd.Flags().GetString("endDate")
+		joinability, _ := cmd.Flags().GetString("joinability")
+		leaderID, _ := cmd.Flags().GetString("leaderID")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		order, _ := cmd.Flags().GetString("order")
 		orderBy, _ := cmd.Flags().GetString("orderBy")
 		partyID, _ := cmd.Flags().GetString("partyID")
+		startDate, _ := cmd.Flags().GetString("startDate")
 		userID, _ := cmd.Flags().GetString("userID")
 		input := &game_session_detail.AdminQueryPartyDetailParams{
-			Namespace: namespace,
-			Limit:     &limit,
-			Offset:    &offset,
-			Order:     &order,
-			OrderBy:   &orderBy,
-			PartyID:   &partyID,
-			UserID:    &userID,
+			Namespace:   namespace,
+			EndDate:     &endDate,
+			Joinability: &joinability,
+			LeaderID:    &leaderID,
+			Limit:       &limit,
+			Offset:      &offset,
+			Order:       &order,
+			OrderBy:     &orderBy,
+			PartyID:     &partyID,
+			StartDate:   &startDate,
+			UserID:      &userID,
 		}
 		ok, errOK := gameSessionDetailService.AdminQueryPartyDetailShort(input)
 		if errOK != nil {
@@ -57,10 +65,14 @@ var AdminQueryPartyDetailCmd = &cobra.Command{
 func init() {
 	AdminQueryPartyDetailCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminQueryPartyDetailCmd.MarkFlagRequired("namespace")
+	AdminQueryPartyDetailCmd.Flags().String("endDate", "", "End date")
+	AdminQueryPartyDetailCmd.Flags().String("joinability", "", "Joinability")
+	AdminQueryPartyDetailCmd.Flags().String("leaderID", "", "Leader ID")
 	AdminQueryPartyDetailCmd.Flags().Int64("limit", 20, "Limit")
 	AdminQueryPartyDetailCmd.Flags().Int64("offset", 0, "Offset")
 	AdminQueryPartyDetailCmd.Flags().String("order", "", "Order")
 	AdminQueryPartyDetailCmd.Flags().String("orderBy", "", "Order by")
 	AdminQueryPartyDetailCmd.Flags().String("partyID", "", "Party ID")
+	AdminQueryPartyDetailCmd.Flags().String("startDate", "", "Start date")
 	AdminQueryPartyDetailCmd.Flags().String("userID", "", "User ID")
 }

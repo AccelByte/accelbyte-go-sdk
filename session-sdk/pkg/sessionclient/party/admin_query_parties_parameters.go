@@ -90,6 +90,11 @@ type AdminQueryPartiesParams struct {
 
 	*/
 	Namespace string
+	/*FromTime
+	  beginning of party creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z
+
+	*/
+	FromTime *string
 	/*IsSoftDeleted
 	  game session is soft deleted. supported: TRUE, FALSE
 
@@ -145,6 +150,11 @@ type AdminQueryPartiesParams struct {
 
 	*/
 	PartyID *string
+	/*ToTime
+	  end of party creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z
+
+	*/
+	ToTime *string
 	/*Value
 	  Attribute value
 
@@ -225,6 +235,17 @@ func (o *AdminQueryPartiesParams) WithNamespace(namespace string) *AdminQueryPar
 // SetNamespace adds the namespace to the admin query parties params
 func (o *AdminQueryPartiesParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithFromTime adds the fromTime to the admin query parties params
+func (o *AdminQueryPartiesParams) WithFromTime(fromTime *string) *AdminQueryPartiesParams {
+	o.SetFromTime(fromTime)
+	return o
+}
+
+// SetFromTime adds the fromTime to the admin query parties params
+func (o *AdminQueryPartiesParams) SetFromTime(fromTime *string) {
+	o.FromTime = fromTime
 }
 
 // WithIsSoftDeleted adds the isSoftDeleted to the admin query parties params
@@ -348,6 +369,17 @@ func (o *AdminQueryPartiesParams) SetPartyID(partyID *string) {
 	o.PartyID = partyID
 }
 
+// WithToTime adds the toTime to the admin query parties params
+func (o *AdminQueryPartiesParams) WithToTime(toTime *string) *AdminQueryPartiesParams {
+	o.SetToTime(toTime)
+	return o
+}
+
+// SetToTime adds the toTime to the admin query parties params
+func (o *AdminQueryPartiesParams) SetToTime(toTime *string) {
+	o.ToTime = toTime
+}
+
 // WithValue adds the value to the admin query parties params
 func (o *AdminQueryPartiesParams) WithValue(value *string) *AdminQueryPartiesParams {
 	o.SetValue(value)
@@ -370,6 +402,22 @@ func (o *AdminQueryPartiesParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.FromTime != nil {
+
+		// query param fromTime
+		var qrFromTime string
+		if o.FromTime != nil {
+			qrFromTime = *o.FromTime
+		}
+		qFromTime := qrFromTime
+		if qFromTime != "" {
+			if err := r.SetQueryParam("fromTime", qFromTime); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.IsSoftDeleted != nil {
@@ -542,6 +590,22 @@ func (o *AdminQueryPartiesParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qPartyID := qrPartyID
 		if qPartyID != "" {
 			if err := r.SetQueryParam("partyID", qPartyID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ToTime != nil {
+
+		// query param toTime
+		var qrToTime string
+		if o.ToTime != nil {
+			qrToTime = *o.ToTime
+		}
+		qToTime := qrToTime
+		if qToTime != "" {
+			if err := r.SetQueryParam("toTime", qToTime); err != nil {
 				return err
 			}
 		}

@@ -22,8 +22,13 @@ import (
 // NewPublicQueryUserStatItems1Params creates a new PublicQueryUserStatItems1Params object
 // with the default values initialized.
 func NewPublicQueryUserStatItems1Params() *PublicQueryUserStatItems1Params {
-	var ()
+	var (
+		limitDefault  = int32(20)
+		offsetDefault = int32(0)
+	)
 	return &PublicQueryUserStatItems1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +37,13 @@ func NewPublicQueryUserStatItems1Params() *PublicQueryUserStatItems1Params {
 // NewPublicQueryUserStatItems1ParamsWithTimeout creates a new PublicQueryUserStatItems1Params object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicQueryUserStatItems1ParamsWithTimeout(timeout time.Duration) *PublicQueryUserStatItems1Params {
-	var ()
+	var (
+		limitDefault  = int32(20)
+		offsetDefault = int32(0)
+	)
 	return &PublicQueryUserStatItems1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +52,13 @@ func NewPublicQueryUserStatItems1ParamsWithTimeout(timeout time.Duration) *Publi
 // NewPublicQueryUserStatItems1ParamsWithContext creates a new PublicQueryUserStatItems1Params object
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicQueryUserStatItems1ParamsWithContext(ctx context.Context) *PublicQueryUserStatItems1Params {
-	var ()
+	var (
+		limitDefault  = int32(20)
+		offsetDefault = int32(0)
+	)
 	return &PublicQueryUserStatItems1Params{
+		Limit:  &limitDefault,
+		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -52,8 +67,13 @@ func NewPublicQueryUserStatItems1ParamsWithContext(ctx context.Context) *PublicQ
 // NewPublicQueryUserStatItems1ParamsWithHTTPClient creates a new PublicQueryUserStatItems1Params object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicQueryUserStatItems1ParamsWithHTTPClient(client *http.Client) *PublicQueryUserStatItems1Params {
-	var ()
+	var (
+		limitDefault  = int32(20)
+		offsetDefault = int32(0)
+	)
 	return &PublicQueryUserStatItems1Params{
+		Limit:      &limitDefault,
+		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -71,25 +91,29 @@ type PublicQueryUserStatItems1Params struct {
 	*/
 	Namespace string
 	/*UserID
-	  user id
+	  user ID
 
 	*/
 	UserID string
-	/*AdditionalKey
-	  additional key
+	/*Limit*/
+	Limit *int32
+	/*Offset*/
+	Offset *int32
+	/*SortBy
+	  default is unsorted, allow values: [statCode, statCode:asc, statCode:desc, createdAt, createdAt:asc, createdAt:desc, updatedAt, updatedAt:asc, updatedAt:desc],and support sort group, eg: sortBy=statCode:asc,createdAt:desc.
 
 	*/
-	AdditionalKey *string
+	SortBy *string
 	/*StatCodes
 	  stat codes
 
 	*/
-	StatCodes []string
+	StatCodes *string
 	/*Tags
 	  tags
 
 	*/
-	Tags []string
+	Tags *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,36 +202,58 @@ func (o *PublicQueryUserStatItems1Params) SetUserID(userID string) {
 	o.UserID = userID
 }
 
-// WithAdditionalKey adds the additionalKey to the public query user stat items 1 params
-func (o *PublicQueryUserStatItems1Params) WithAdditionalKey(additionalKey *string) *PublicQueryUserStatItems1Params {
-	o.SetAdditionalKey(additionalKey)
+// WithLimit adds the limit to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) WithLimit(limit *int32) *PublicQueryUserStatItems1Params {
+	o.SetLimit(limit)
 	return o
 }
 
-// SetAdditionalKey adds the additionalKey to the public query user stat items 1 params
-func (o *PublicQueryUserStatItems1Params) SetAdditionalKey(additionalKey *string) {
-	o.AdditionalKey = additionalKey
+// SetLimit adds the limit to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) SetLimit(limit *int32) {
+	o.Limit = limit
+}
+
+// WithOffset adds the offset to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) WithOffset(offset *int32) *PublicQueryUserStatItems1Params {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) SetOffset(offset *int32) {
+	o.Offset = offset
+}
+
+// WithSortBy adds the sortBy to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) WithSortBy(sortBy *string) *PublicQueryUserStatItems1Params {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the public query user stat items 1 params
+func (o *PublicQueryUserStatItems1Params) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
 }
 
 // WithStatCodes adds the statCodes to the public query user stat items 1 params
-func (o *PublicQueryUserStatItems1Params) WithStatCodes(statCodes []string) *PublicQueryUserStatItems1Params {
+func (o *PublicQueryUserStatItems1Params) WithStatCodes(statCodes *string) *PublicQueryUserStatItems1Params {
 	o.SetStatCodes(statCodes)
 	return o
 }
 
 // SetStatCodes adds the statCodes to the public query user stat items 1 params
-func (o *PublicQueryUserStatItems1Params) SetStatCodes(statCodes []string) {
+func (o *PublicQueryUserStatItems1Params) SetStatCodes(statCodes *string) {
 	o.StatCodes = statCodes
 }
 
 // WithTags adds the tags to the public query user stat items 1 params
-func (o *PublicQueryUserStatItems1Params) WithTags(tags []string) *PublicQueryUserStatItems1Params {
+func (o *PublicQueryUserStatItems1Params) WithTags(tags *string) *PublicQueryUserStatItems1Params {
 	o.SetTags(tags)
 	return o
 }
 
 // SetTags adds the tags to the public query user stat items 1 params
-func (o *PublicQueryUserStatItems1Params) SetTags(tags []string) {
+func (o *PublicQueryUserStatItems1Params) SetTags(tags *string) {
 	o.Tags = tags
 }
 
@@ -229,36 +275,84 @@ func (o *PublicQueryUserStatItems1Params) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 
-	if o.AdditionalKey != nil {
+	if o.Limit != nil {
 
-		// query param additionalKey
-		var qrAdditionalKey string
-		if o.AdditionalKey != nil {
-			qrAdditionalKey = *o.AdditionalKey
+		// query param limit
+		var qrLimit int32
+		if o.Limit != nil {
+			qrLimit = *o.Limit
 		}
-		qAdditionalKey := qrAdditionalKey
-		if qAdditionalKey != "" {
-			if err := r.SetQueryParam("additionalKey", qAdditionalKey); err != nil {
+		qLimit := swag.FormatInt32(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
 			}
 		}
 
 	}
 
-	valuesStatCodes := o.StatCodes
+	if o.Offset != nil {
 
-	joinedStatCodes := swag.JoinByFormat(valuesStatCodes, "multi")
-	// query array param statCodes
-	if err := r.SetQueryParam("statCodes", joinedStatCodes...); err != nil {
-		return err
+		// query param offset
+		var qrOffset int32
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
-	valuesTags := o.Tags
+	if o.SortBy != nil {
 
-	joinedTags := swag.JoinByFormat(valuesTags, "multi")
-	// query array param tags
-	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
-		return err
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StatCodes != nil {
+
+		// query param statCodes
+		var qrStatCodes string
+		if o.StatCodes != nil {
+			qrStatCodes = *o.StatCodes
+		}
+		qStatCodes := qrStatCodes
+		if qStatCodes != "" {
+			if err := r.SetQueryParam("statCodes", qStatCodes); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Tags != nil {
+
+		// query param tags
+		var qrTags string
+		if o.Tags != nil {
+			qrTags = *o.Tags
+		}
+		qTags := qrTags
+		if qTags != "" {
+			if err := r.SetQueryParam("tags", qTags); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

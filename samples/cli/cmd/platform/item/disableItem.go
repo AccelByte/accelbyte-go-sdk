@@ -7,7 +7,10 @@
 package item
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -28,7 +31,14 @@ var DisableItemCmd = &cobra.Command{
 		itemId, _ := cmd.Flags().GetString("itemId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		storeId, _ := cmd.Flags().GetString("storeId")
+		bodyString := cmd.Flag("body").Value.String()
+		var body *platformclientmodels.ChangeStatusItemRequest
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
+		}
 		input := &item.DisableItemParams{
+			Body:      body,
 			ItemID:    itemId,
 			Namespace: namespace,
 			StoreID:   storeId,
@@ -47,6 +57,7 @@ var DisableItemCmd = &cobra.Command{
 }
 
 func init() {
+	DisableItemCmd.Flags().String("body", "", "Body")
 	DisableItemCmd.Flags().String("itemId", "", "Item id")
 	_ = DisableItemCmd.MarkFlagRequired("itemId")
 	DisableItemCmd.Flags().String("namespace", "", "Namespace")

@@ -28,6 +28,7 @@
 ### Backfill Wrapper:  [Backfill](../../services-api/pkg/service/match2/backfill.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/match2/v1/namespaces/{namespace}/backfill` | GET | AdminQueryBackfillShort | [AdminQueryBackfillShort](../../match2-sdk/pkg/match2client/backfill/backfill_client.go) | [AdminQueryBackfillShort](../../services-api/pkg/service/match2/backfill.go) | [AdminQueryBackfillShort](../../samples/cli/cmd/match2/backfill/adminQueryBackfill.go) |
 | `/match2/v1/namespaces/{namespace}/backfill` | POST | CreateBackfillShort | [CreateBackfillShort](../../match2-sdk/pkg/match2client/backfill/backfill_client.go) | [CreateBackfillShort](../../services-api/pkg/service/match2/backfill.go) | [CreateBackfillShort](../../samples/cli/cmd/match2/backfill/createBackfill.go) |
 | `/match2/v1/namespaces/{namespace}/backfill/proposal` | GET | GetBackfillProposalShort | [GetBackfillProposalShort](../../match2-sdk/pkg/match2client/backfill/backfill_client.go) | [GetBackfillProposalShort](../../services-api/pkg/service/match2/backfill.go) | [GetBackfillProposalShort](../../samples/cli/cmd/match2/backfill/getBackfillProposal.go) |
 | `/match2/v1/namespaces/{namespace}/backfill/{backfillID}` | GET | GetBackfillShort | [GetBackfillShort](../../match2-sdk/pkg/match2client/backfill/backfill_client.go) | [GetBackfillShort](../../services-api/pkg/service/match2/backfill.go) | [GetBackfillShort](../../samples/cli/cmd/match2/backfill/getBackfill.go) |
@@ -87,6 +88,7 @@
 | `api.BackfillGetResponse` | [ApiBackfillGetResponse ](../../match2-sdk/pkg/match2clientmodels/api_backfill_get_response.go) |
 | `api.BackfillProposalResponse` | [ApiBackfillProposalResponse ](../../match2-sdk/pkg/match2clientmodels/api_backfill_proposal_response.go) |
 | `api.ExternalFailureMetricRecord` | [ApiExternalFailureMetricRecord ](../../match2-sdk/pkg/match2clientmodels/api_external_failure_metric_record.go) |
+| `api.ListBackfillQueryResponse` | [ApiListBackfillQueryResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_backfill_query_response.go) |
 | `api.ListEnvironmentVariablesResponse` | [ApiListEnvironmentVariablesResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_environment_variables_response.go) |
 | `api.ListMatchFunctionsResponse` | [ApiListMatchFunctionsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_functions_response.go) |
 | `api.ListMatchPoolTicketsResponse` | [ApiListMatchPoolTicketsResponse ](../../match2-sdk/pkg/match2clientmodels/api_list_match_pool_tickets_response.go) |

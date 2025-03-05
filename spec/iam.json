@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.26.0"
+    "version": "7.28.0"
   },
   "schemes": [
     "https"
@@ -12483,6 +12483,299 @@
         ]
       }
     },
+    "/iam/v3/admin/namespaces/{namespace}/tags": {
+      "get": {
+        "description": "Retrieve Account Identifier Tags. This endpoint allows administrators to retrieve tags that are used to identify and categorize user accounts.\nTag Name can be used for partial content search.\n",
+        "operationId": "AdminQueryTagV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "description": "the maximum number of data that may be returned (1...100), default 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Offset, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Tag Name",
+            "in": "query",
+            "name": "tagName",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.TagsGetResponseV3"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query Account Identifier Tag",
+        "tags": [
+          "Account Idenfifier Tag"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACCOUNT:TAGS [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a new Account Identifier Tag for users. This endpoint allows administrators to create tags that can be used to identify and categorize user accounts.",
+        "operationId": "AdminCreateTagV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.TagCreateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.TagResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create Account Identifier Tag",
+        "tags": [
+          "Account Idenfifier Tag"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20019": "unable to parse request body"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACCOUNT:TAGS [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/iam/v3/admin/namespaces/{namespace}/tags/{tagId}": {
+      "delete": {
+        "description": "Delete an Account Identifier Tag. This endpoint allows administrators to delete a tag that is used to identify and categorize user accounts.",
+        "operationId": "AdminDeleteTagV3",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Tag ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "tagId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Account Identifier Tag",
+        "tags": [
+          "Account Idenfifier Tag"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACCOUNT:TAGS [DELETE]"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update an existing Account Identifier Tag. This endpoint allows administrators to update the details of a tag that is used to identify and categorize user accounts.",
+        "operationId": "AdminUpdateTagV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.TagUpdateRequestV3"
+            }
+          },
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Tag ID, should follow UUID version 4 without hyphen",
+            "in": "path",
+            "name": "tagId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/accountcommon.TagResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update Account Identifier Tag",
+        "tags": [
+          "Account Idenfifier Tag"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error",
+          "20002": "validation error",
+          "20019": "unable to parse request body"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:ACCOUNT:TAGS [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/iam/v3/admin/namespaces/{namespace}/users": {
       "get": {
         "description": "This endpoint search user who owns the given email address\naction code : 10132",
@@ -13527,7 +13820,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This Endpoint support update user based on given data. **Single request can update single field or multi fields.** \nSupported field {country, displayName, languageTag, dateOfBirth, avatarUrl, userName}\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\n\n**Response body logic when user updating email address:**\n- User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.\n- User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. \n- User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. \n\naction code : 10103 ",
+        "description": "This Endpoint support update user based on given data. **Single request can update single field or multi fields.** \nSupported field {country, displayName, languageTag, dateOfBirth, avatarUrl, userName, tags}\nCountry use ISO3166-1 alpha-2 two letter, e.g. US.\nDate of Birth format : YYYY-MM-DD, e.g. 2019-04-29.\nAdmin can set Tags with array string data e.g. [\u0026#34;10e9a46ef6164b7e86d08e86605bd8cf\u0026#34;]. \nAdmin also can reset user tags by sending empty array string e.g. [ ]. \nUsers can have at most 5 tags. No duplicate tags allowed.\n\n**Response body logic when user updating email address:**\n- User want to update email address of which have been verified, NewEmailAddress response field will be filled with new email address.\n- User want to update email address of which have not been verified, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with new email address. \n- User want to update email address of which have been verified and updated before, {LoginId, OldEmailAddress, EmailAddress} response field will be filled with verified email before. NewEmailAddress response field will be filled with newest email address. \n\naction code : 10103 ",
         "operationId": "AdminUpdateUserV3",
         "parameters": [
           {
@@ -20824,6 +21117,13 @@
             "description": "Refresh Token (used with grant type 'refresh_token'). This field is optional if the request header provides the \"refresh_token\" cookie",
             "in": "formData",
             "name": "refresh_token",
+            "type": "string"
+          },
+          {
+            "default": "commerce account social publishing analytics",
+            "description": "Defines the access token scope when using grant type 'password' or 'client_credentials'. Can be multiple values delimited by whitespace.",
+            "in": "formData",
+            "name": "scope",
             "type": "string"
           },
           {
@@ -31332,6 +31632,13 @@
             "type": "string"
           },
           {
+            "default": "commerce account social publishing analytics",
+            "description": "Defines the access token scope when using grant type 'password' or 'client_credentials'. Can be multiple values delimited by whitespace.",
+            "in": "formData",
+            "name": "scope",
+            "type": "string"
+          },
+          {
             "description": "User Name (used with grant type 'password')",
             "in": "formData",
             "name": "username",
@@ -35837,6 +36144,53 @@
         }
       }
     },
+    "accountcommon.TagResponse": {
+      "properties": {
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "tagName": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "id",
+        "namespace",
+        "tagName",
+        "updatedAt"
+      ]
+    },
+    "accountcommon.TagsGetResponseV3": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/accountcommon.TagResponse"
+          },
+          "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/accountcommon.PaginationV3"
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
     "accountcommon.UserInformationV3": {
       "properties": {
         "country": {
@@ -39985,6 +40339,26 @@
         "endDate"
       ]
     },
+    "model.TagCreateRequestV3": {
+      "properties": {
+        "tagName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tagName"
+      ]
+    },
+    "model.TagUpdateRequestV3": {
+      "properties": {
+        "tagName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tagName"
+      ]
+    },
     "model.ThirdPartyLoginPlatformCredentialRequest": {
       "properties": {
         "ACSURL": {
@@ -41625,6 +41999,12 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "testAccount": {
           "type": "boolean",
           "x-omitempty": false
@@ -41743,6 +42123,15 @@
         "skipLoginQueue": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "tags": {
+          "description": "Tags minimum length is 0 and maximum length is 5",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 5,
+          "minItems": 0,
+          "type": "array"
         },
         "uniqueDisplayName": {
           "type": "string"
@@ -42876,11 +43265,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-01-22T04:32:02+00:00",
-    "gitHash": "92a603ec5ed9f1db5d16005b4bfc202a421e09b2",
+    "buildDate": "2025-03-04T05:47:32+00:00",
+    "gitHash": "a80e364ce06311cf501f446bccd17d921ae6a43f",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.26.0",
-    "version-roles-seeding": "1.2.80"
+    "version": "7.28.0",
+    "version-roles-seeding": "1.2.91"
   }
 }

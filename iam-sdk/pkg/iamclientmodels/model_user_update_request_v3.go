@@ -35,6 +35,9 @@ type ModelUserUpdateRequestV3 struct {
 	// skiploginqueue
 	SkipLoginQueue bool `json:"skipLoginQueue"`
 
+	// Tags minimum length is 0 and maximum length is 5
+	Tags []string `json:"tags,omitempty"`
+
 	// uniquedisplayname
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 

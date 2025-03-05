@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/challenge/playerReward"
 	"github.com/AccelByte/sample-apps/cmd/challenge/plugins"
 	"github.com/AccelByte/sample-apps/cmd/challenge/schedules"
+	"github.com/AccelByte/sample-apps/cmd/challenge/utilities"
 	"github.com/spf13/cobra"
 )
 
@@ -26,6 +27,7 @@ var ChallengeCmd = &cobra.Command{
 func init() {
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminGetChallengesCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminCreateChallengeCmd)
+	ChallengeCmd.AddCommand(utilities.AdminGetItemReferencesCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminGetActiveChallengesCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminGetChallengeCmd)
 	ChallengeCmd.AddCommand(challengeConfiguration.AdminUpdateChallengeCmd)

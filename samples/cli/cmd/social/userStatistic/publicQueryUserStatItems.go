@@ -7,6 +7,8 @@
 package userStatistic
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
@@ -27,19 +29,25 @@ var PublicQueryUserStatItemsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		limit, _ := cmd.Flags().GetInt32("limit")
-		offset, _ := cmd.Flags().GetInt32("offset")
-		sortBy, _ := cmd.Flags().GetString("sortBy")
-		statCodes, _ := cmd.Flags().GetString("statCodes")
-		tags, _ := cmd.Flags().GetString("tags")
+		additionalKey, _ := cmd.Flags().GetString("additionalKey")
+		statCodesString := cmd.Flag("statCodes").Value.String()
+		var statCodes []string
+		errStatCodes := json.Unmarshal([]byte(statCodesString), &statCodes)
+		if errStatCodes != nil {
+			return errStatCodes
+		}
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		input := &user_statistic.PublicQueryUserStatItemsParams{
-			Namespace: namespace,
-			UserID:    userId,
-			Limit:     &limit,
-			Offset:    &offset,
-			SortBy:    &sortBy,
-			StatCodes: &statCodes,
-			Tags:      &tags,
+			Namespace:     namespace,
+			UserID:        userId,
+			AdditionalKey: &additionalKey,
+			StatCodes:     statCodes,
+			Tags:          tags,
 		}
 		ok, errOK := userStatisticService.PublicQueryUserStatItemsShort(input)
 		if errOK != nil {
@@ -59,9 +67,7 @@ func init() {
 	_ = PublicQueryUserStatItemsCmd.MarkFlagRequired("namespace")
 	PublicQueryUserStatItemsCmd.Flags().String("userId", "", "User id")
 	_ = PublicQueryUserStatItemsCmd.MarkFlagRequired("userId")
-	PublicQueryUserStatItemsCmd.Flags().Int32("limit", 20, "Limit")
-	PublicQueryUserStatItemsCmd.Flags().Int32("offset", 0, "Offset")
-	PublicQueryUserStatItemsCmd.Flags().String("sortBy", "", "Sort by")
+	PublicQueryUserStatItemsCmd.Flags().String("additionalKey", "", "Additional key")
 	PublicQueryUserStatItemsCmd.Flags().String("statCodes", "", "Stat codes")
 	PublicQueryUserStatItemsCmd.Flags().String("tags", "", "Tags")
 }

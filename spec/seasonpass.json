@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.23.2"
+    "version": "1.24.0"
   },
   "schemes": [
     "https"
@@ -28,6 +28,9 @@
     },
     {
       "name": "Tier"
+    },
+    {
+      "name": "Utilities"
     }
   ],
   "externalDocs": {
@@ -359,6 +362,61 @@
         "x-errorCodes": {
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
+        }
+      }
+    },
+    "/seasonpass/admin/namespaces/{namespace}/seasons/item/references": {
+      "get": {
+        "description": "This API is used to get season pass ecommerce item references.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item references data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getItemReferences",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the id of the ecommerce item",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemReferenceInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get season pass ecommerce item references",
+        "tags": [
+          "Utilities"
+        ],
+        "x-errorCodes": {
+          "20002": "validation error",
+          "20026": "publisher namespace not allowed"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]"
@@ -3654,6 +3712,39 @@
       ],
       "type": "object"
     },
+    "ItemReference": {
+      "description": "A DTO object for item references.",
+      "properties": {
+        "module": {
+          "description": "module",
+          "type": "string"
+        },
+        "references": {
+          "description": "references",
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ItemReferenceInfo": {
+      "description": "A DTO object for item references info.",
+      "properties": {
+        "references": {
+          "description": "item references",
+          "items": {
+            "$ref": "#/definitions/ItemReference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSeasonInfo": {
       "description": "A DTO object for listing season info.",
       "properties": {
@@ -5097,16 +5188,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-01-21T11:09:02+00:00",
-    "buildID": "1.23.2",
+    "buildDate": "2025-02-28T02:05:44+00:00",
+    "buildID": "1.24.0",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.233-224.894.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "2cc5a658de",
-    "gitTag": "1.23.2",
+    "gitHash": "abde697353",
+    "gitTag": "1.24.0",
     "name": "justice-seasonpass-service",
     "realm": "staging",
-    "version": "1.23.2",
+    "version": "1.24.0",
     "version-roles-seeding": "1.2.37"
   }
 }

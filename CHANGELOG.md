@@ -1,3 +1,11 @@
+<a name="v0.78.0"></a>
+## [v0.78.0]
+### chore
+- **sdk:** add a clearer message for error in token validation
+- **sdk:** delete the early return and refactor the error message
+- **sdk:** - move the clearer error to the end of logic - rollback the default local validation to false
+
+
 <a name="v0.77.0"></a>
 ## [v0.77.0]
 ### feat

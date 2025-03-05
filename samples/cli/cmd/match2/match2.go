@@ -33,6 +33,7 @@ func init() {
 	Match2Cmd.AddCommand(config.AdminGetConfigV1Cmd)
 	Match2Cmd.AddCommand(config.AdminPatchConfigV1Cmd)
 	Match2Cmd.AddCommand(environmentVariables.EnvironmentVariableListCmd)
+	Match2Cmd.AddCommand(backfill.AdminQueryBackfillCmd)
 	Match2Cmd.AddCommand(backfill.CreateBackfillCmd)
 	Match2Cmd.AddCommand(backfill.GetBackfillProposalCmd)
 	Match2Cmd.AddCommand(backfill.GetBackfillCmd)

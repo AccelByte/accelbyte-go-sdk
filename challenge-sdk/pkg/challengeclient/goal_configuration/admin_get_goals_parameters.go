@@ -121,6 +121,11 @@ type AdminGetGoalsParams struct {
 
 	*/
 	SortBy *string
+	/*Tags
+	  filter list by tags
+
+	*/
+	Tags []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -242,6 +247,17 @@ func (o *AdminGetGoalsParams) SetSortBy(sortBy *string) {
 	o.SortBy = sortBy
 }
 
+// WithTags adds the tags to the admin get goals params
+func (o *AdminGetGoalsParams) WithTags(tags []string) *AdminGetGoalsParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the admin get goals params
+func (o *AdminGetGoalsParams) SetTags(tags []string) {
+	o.Tags = tags
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetGoalsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -306,6 +322,14 @@ func (o *AdminGetGoalsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 			}
 		}
 
+	}
+
+	valuesTags := o.Tags
+
+	joinedTags := swag.JoinByFormat(valuesTags, "csv")
+	// query array param tags
+	if err := r.SetQueryParam("tags", joinedTags...); err != nil {
+		return err
 	}
 
 	// setting the default header value

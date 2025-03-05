@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in DeleteItemParams
+const (
+	DeleteItemCAMPAIGNConstant    = "CAMPAIGN"
+	DeleteItemCATALOGConstant     = "CATALOG"
+	DeleteItemDLCConstant         = "DLC"
+	DeleteItemENTITLEMENTConstant = "ENTITLEMENT"
+	DeleteItemIAPConstant         = "IAP"
+	DeleteItemREWARDConstant      = "REWARD"
+)
+
 // NewDeleteItemParams creates a new DeleteItemParams object
 // with the default values initialized.
 func NewDeleteItemParams() *DeleteItemParams {
@@ -84,6 +94,11 @@ type DeleteItemParams struct {
 
 	*/
 	Namespace string
+	/*FeaturesToCheck
+	  default is empty list
+
+	*/
+	FeaturesToCheck []string
 	/*Force
 	  default is false
 
@@ -182,6 +197,17 @@ func (o *DeleteItemParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithFeaturesToCheck adds the featuresToCheck to the delete item params
+func (o *DeleteItemParams) WithFeaturesToCheck(featuresToCheck []string) *DeleteItemParams {
+	o.SetFeaturesToCheck(featuresToCheck)
+	return o
+}
+
+// SetFeaturesToCheck adds the featuresToCheck to the delete item params
+func (o *DeleteItemParams) SetFeaturesToCheck(featuresToCheck []string) {
+	o.FeaturesToCheck = featuresToCheck
+}
+
 // WithForce adds the force to the delete item params
 func (o *DeleteItemParams) WithForce(force *bool) *DeleteItemParams {
 	o.SetForce(force)
@@ -219,6 +245,14 @@ func (o *DeleteItemParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+		return err
+	}
+
+	valuesFeaturesToCheck := o.FeaturesToCheck
+
+	joinedFeaturesToCheck := swag.JoinByFormat(valuesFeaturesToCheck, "multi")
+	// query array param featuresToCheck
+	if err := r.SetQueryParam("featuresToCheck", joinedFeaturesToCheck...); err != nil {
 		return err
 	}
 

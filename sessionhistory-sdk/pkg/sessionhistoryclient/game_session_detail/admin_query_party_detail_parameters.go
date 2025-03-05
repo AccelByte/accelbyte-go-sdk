@@ -90,6 +90,21 @@ type AdminQueryPartyDetailParams struct {
 
 	*/
 	Namespace string
+	/*EndDate
+	  End date time in RFC 3339 format: 2025-02-28T07:45:39Z
+
+	*/
+	EndDate *string
+	/*Joinability
+	  joinability of the party
+
+	*/
+	Joinability *string
+	/*LeaderID
+	  leader ID
+
+	*/
+	LeaderID *string
 	/*Limit
 	  Pagination limit
 
@@ -106,7 +121,7 @@ type AdminQueryPartyDetailParams struct {
 	*/
 	Order *string
 	/*OrderBy
-	  Order result by specific attribute. Supported: createdAt (default)
+	  Order result by specific attribute. Supported: created_at (default), updated_at
 
 	*/
 	OrderBy *string
@@ -115,6 +130,11 @@ type AdminQueryPartyDetailParams struct {
 
 	*/
 	PartyID *string
+	/*StartDate
+	  Start date time in RFC 3339 format: 2025-02-28T07:45:39Z
+
+	*/
+	StartDate *string
 	/*UserID
 	  user ID
 
@@ -197,6 +217,39 @@ func (o *AdminQueryPartyDetailParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithEndDate adds the endDate to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) WithEndDate(endDate *string) *AdminQueryPartyDetailParams {
+	o.SetEndDate(endDate)
+	return o
+}
+
+// SetEndDate adds the endDate to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) SetEndDate(endDate *string) {
+	o.EndDate = endDate
+}
+
+// WithJoinability adds the joinability to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) WithJoinability(joinability *string) *AdminQueryPartyDetailParams {
+	o.SetJoinability(joinability)
+	return o
+}
+
+// SetJoinability adds the joinability to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) SetJoinability(joinability *string) {
+	o.Joinability = joinability
+}
+
+// WithLeaderID adds the leaderID to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) WithLeaderID(leaderID *string) *AdminQueryPartyDetailParams {
+	o.SetLeaderID(leaderID)
+	return o
+}
+
+// SetLeaderID adds the leaderId to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) SetLeaderID(leaderID *string) {
+	o.LeaderID = leaderID
+}
+
 // WithLimit adds the limit to the admin query party detail params
 func (o *AdminQueryPartyDetailParams) WithLimit(limit *int64) *AdminQueryPartyDetailParams {
 	o.SetLimit(limit)
@@ -252,6 +305,17 @@ func (o *AdminQueryPartyDetailParams) SetPartyID(partyID *string) {
 	o.PartyID = partyID
 }
 
+// WithStartDate adds the startDate to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) WithStartDate(startDate *string) *AdminQueryPartyDetailParams {
+	o.SetStartDate(startDate)
+	return o
+}
+
+// SetStartDate adds the startDate to the admin query party detail params
+func (o *AdminQueryPartyDetailParams) SetStartDate(startDate *string) {
+	o.StartDate = startDate
+}
+
 // WithUserID adds the userID to the admin query party detail params
 func (o *AdminQueryPartyDetailParams) WithUserID(userID *string) *AdminQueryPartyDetailParams {
 	o.SetUserID(userID)
@@ -274,6 +338,54 @@ func (o *AdminQueryPartyDetailParams) WriteToRequest(r runtime.ClientRequest, re
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.EndDate != nil {
+
+		// query param endDate
+		var qrEndDate string
+		if o.EndDate != nil {
+			qrEndDate = *o.EndDate
+		}
+		qEndDate := qrEndDate
+		if qEndDate != "" {
+			if err := r.SetQueryParam("endDate", qEndDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Joinability != nil {
+
+		// query param joinability
+		var qrJoinability string
+		if o.Joinability != nil {
+			qrJoinability = *o.Joinability
+		}
+		qJoinability := qrJoinability
+		if qJoinability != "" {
+			if err := r.SetQueryParam("joinability", qJoinability); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.LeaderID != nil {
+
+		// query param leaderID
+		var qrLeaderID string
+		if o.LeaderID != nil {
+			qrLeaderID = *o.LeaderID
+		}
+		qLeaderID := qrLeaderID
+		if qLeaderID != "" {
+			if err := r.SetQueryParam("leaderID", qLeaderID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {
@@ -350,6 +462,22 @@ func (o *AdminQueryPartyDetailParams) WriteToRequest(r runtime.ClientRequest, re
 		qPartyID := qrPartyID
 		if qPartyID != "" {
 			if err := r.SetQueryParam("partyID", qPartyID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StartDate != nil {
+
+		// query param startDate
+		var qrStartDate string
+		if o.StartDate != nil {
+			qrStartDate = *o.StartDate
+		}
+		qStartDate := qrStartDate
+		if qStartDate != "" {
+			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
 				return err
 			}
 		}

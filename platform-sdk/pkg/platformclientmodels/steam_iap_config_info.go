@@ -7,6 +7,8 @@
 package platformclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,10 @@ type SteamIAPConfigInfo struct {
 	// steam app id
 	AppID string `json:"appId,omitempty"`
 
+	// steam env
+	// Enum: ['LIVE', 'SANDBOX']
+	Env string `json:"env,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
@@ -28,6 +34,10 @@ type SteamIAPConfigInfo struct {
 	// steam publisher authentication key
 	// Required: true
 	PublisherAuthenticationKey *string `json:"publisherAuthenticationKey"`
+
+	// steam sync mode
+	// Enum: ['INVENTORY', 'TRANSACTION']
+	SyncMode string `json:"syncMode,omitempty"`
 }
 
 // Validate validates this Steam IAP config info
@@ -47,6 +57,35 @@ func (m *SteamIAPConfigInfo) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+var steamIapConfigInfoTypeEnvPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["LIVE", "SANDBOX"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		steamIapConfigInfoTypeEnvPropEnum = append(steamIapConfigInfoTypeEnvPropEnum, v)
+	}
+}
+
+const (
+
+	// SteamIAPConfigInfoEnvLIVE captures enum value "LIVE"
+	SteamIAPConfigInfoEnvLIVE string = "LIVE"
+
+	// SteamIAPConfigInfoEnvSANDBOX captures enum value "SANDBOX"
+	SteamIAPConfigInfoEnvSANDBOX string = "SANDBOX"
+)
+
+// prop value enum
+func (m *SteamIAPConfigInfo) validateEnvEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, steamIapConfigInfoTypeEnvPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *SteamIAPConfigInfo) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
@@ -62,6 +101,35 @@ func (m *SteamIAPConfigInfo) validatePublisherAuthenticationKey(formats strfmt.R
 		return err
 	}
 
+	return nil
+}
+
+var steamIapConfigInfoTypeSyncModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["INVENTORY", "TRANSACTION"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		steamIapConfigInfoTypeSyncModePropEnum = append(steamIapConfigInfoTypeSyncModePropEnum, v)
+	}
+}
+
+const (
+
+	// SteamIAPConfigInfoSyncModeINVENTORY captures enum value "INVENTORY"
+	SteamIAPConfigInfoSyncModeINVENTORY string = "INVENTORY"
+
+	// SteamIAPConfigInfoSyncModeTRANSACTION captures enum value "TRANSACTION"
+	SteamIAPConfigInfoSyncModeTRANSACTION string = "TRANSACTION"
+)
+
+// prop value enum
+func (m *SteamIAPConfigInfo) validateSyncModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, steamIapConfigInfoTypeSyncModePropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

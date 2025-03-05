@@ -25,8 +25,7 @@ type APIImageDetails struct {
 	CreatedAt *string `json:"createdAt"`
 
 	// deleteat
-	// Required: true
-	DeleteAt *string `json:"deleteAt"`
+	DeleteAt string `json:"deleteAt,omitempty"`
 
 	// executable
 	// Required: true
@@ -77,9 +76,6 @@ func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateDeleteAt(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateExecutable(formats); err != nil {
 		res = append(res, err)
 	}
@@ -120,15 +116,6 @@ func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 func (m *APIImageDetails) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIImageDetails) validateDeleteAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("deleteAt", "body", m.DeleteAt); err != nil {
 		return err
 	}
 

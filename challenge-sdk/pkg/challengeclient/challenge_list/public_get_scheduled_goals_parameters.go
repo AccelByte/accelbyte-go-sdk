@@ -19,6 +19,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Get the enum in PublicGetScheduledGoalsParams
+const (
+	PublicGetScheduledGoalsCreatedAtConstant     = "createdAt"
+	PublicGetScheduledGoalsCreatedAtAscConstant  = "createdAt:asc"
+	PublicGetScheduledGoalsCreatedAtDescConstant = "createdAt:desc"
+	PublicGetScheduledGoalsUpdatedAtConstant     = "updatedAt"
+	PublicGetScheduledGoalsUpdatedAtAscConstant  = "updatedAt:asc"
+	PublicGetScheduledGoalsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
 // NewPublicGetScheduledGoalsParams creates a new PublicGetScheduledGoalsParams object
 // with the default values initialized.
 func NewPublicGetScheduledGoalsParams() *PublicGetScheduledGoalsParams {
@@ -105,6 +115,12 @@ type PublicGetScheduledGoalsParams struct {
 
 	*/
 	Offset *int64
+	/*SortBy
+	    sort list by attributes.
+					default value: updatedAt:desc.
+
+	*/
+	SortBy *string
 	/*Tags
 	  filter list by tags
 
@@ -220,6 +236,17 @@ func (o *PublicGetScheduledGoalsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithSortBy adds the sortBy to the public get scheduled goals params
+func (o *PublicGetScheduledGoalsParams) WithSortBy(sortBy *string) *PublicGetScheduledGoalsParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the public get scheduled goals params
+func (o *PublicGetScheduledGoalsParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
 // WithTags adds the tags to the public get scheduled goals params
 func (o *PublicGetScheduledGoalsParams) WithTags(tags []string) *PublicGetScheduledGoalsParams {
 	o.SetTags(tags)
@@ -275,6 +302,22 @@ func (o *PublicGetScheduledGoalsParams) WriteToRequest(r runtime.ClientRequest, 
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
 				return err
 			}
 		}

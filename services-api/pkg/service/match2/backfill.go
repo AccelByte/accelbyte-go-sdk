@@ -38,6 +38,35 @@ func (aaa *BackfillService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminQueryBackfillShort instead.
+func (aaa *BackfillService) AdminQueryBackfill(input *backfill.AdminQueryBackfillParams) (*match2clientmodels.APIListBackfillQueryResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Backfill.AdminQueryBackfill(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use CreateBackfillShort instead.
 func (aaa *BackfillService) CreateBackfill(input *backfill.CreateBackfillParams) (*match2clientmodels.APIBackfillCreateResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -210,6 +239,36 @@ func (aaa *BackfillService) RejectBackfill(input *backfill.RejectBackfillParams)
 	}
 
 	return nil
+}
+
+func (aaa *BackfillService) AdminQueryBackfillShort(input *backfill.AdminQueryBackfillParams) (*match2clientmodels.APIListBackfillQueryResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdBackfill != nil {
+		input.XFlightId = tempFlightIdBackfill
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Backfill.AdminQueryBackfillShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *BackfillService) CreateBackfillShort(input *backfill.CreateBackfillParams) (*match2clientmodels.APIBackfillCreateResponse, error) {

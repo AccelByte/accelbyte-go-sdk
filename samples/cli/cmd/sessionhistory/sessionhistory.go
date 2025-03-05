@@ -23,6 +23,8 @@ var SessionhistoryCmd = &cobra.Command{
 func init() {
 	SessionhistoryCmd.AddCommand(operations.GetHealthcheckInfoCmd)
 	SessionhistoryCmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
+	SessionhistoryCmd.AddCommand(config.AdminGetEnvConfigCmd)
+	SessionhistoryCmd.AddCommand(config.AdminPatchUpdateEnvConfigCmd)
 	SessionhistoryCmd.AddCommand(config.AdminGetLogConfigCmd)
 	SessionhistoryCmd.AddCommand(config.AdminPatchUpdateLogConfigCmd)
 	SessionhistoryCmd.AddCommand(gameSessionDetail.AdminQueryGameSessionDetailCmd)

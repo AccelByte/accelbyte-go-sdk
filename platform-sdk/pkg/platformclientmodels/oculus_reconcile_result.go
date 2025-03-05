@@ -21,7 +21,7 @@ import (
 type OculusReconcileResult struct {
 
 	// AGS In App Purchase order status
-	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'REVOKE_FAILED', 'VERIFIED']
 	IAPOrderStatus string `json:"iapOrderStatus,omitempty"`
 
 	// AGS item identity
@@ -52,7 +52,7 @@ var oculusReconcileResultTypeIAPOrderStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "REVOKE_FAILED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -73,6 +73,9 @@ const (
 
 	// OculusReconcileResultIAPOrderStatusREVOKED captures enum value "REVOKED"
 	OculusReconcileResultIAPOrderStatusREVOKED string = "REVOKED"
+
+	// OculusReconcileResultIAPOrderStatusREVOKEFAILED captures enum value "REVOKE_FAILED"
+	OculusReconcileResultIAPOrderStatusREVOKEFAILED string = "REVOKE_FAILED"
 
 	// OculusReconcileResultIAPOrderStatusVERIFIED captures enum value "VERIFIED"
 	OculusReconcileResultIAPOrderStatusVERIFIED string = "VERIFIED"

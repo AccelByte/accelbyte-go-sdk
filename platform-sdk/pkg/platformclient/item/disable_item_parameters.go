@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
 // NewDisableItemParams creates a new DisableItemParams object
@@ -64,6 +66,8 @@ type DisableItemParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *platformclientmodels.ChangeStatusItemRequest
 	/*ItemID*/
 	ItemID string
 	/*Namespace*/
@@ -136,6 +140,17 @@ func (o *DisableItemParams) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the disable item params
+func (o *DisableItemParams) WithBody(body *platformclientmodels.ChangeStatusItemRequest) *DisableItemParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the disable item params
+func (o *DisableItemParams) SetBody(body *platformclientmodels.ChangeStatusItemRequest) {
+	o.Body = body
+}
+
 // WithItemID adds the itemID to the disable item params
 func (o *DisableItemParams) WithItemID(itemID string) *DisableItemParams {
 	o.SetItemID(itemID)
@@ -176,6 +191,12 @@ func (o *DisableItemParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param itemId
 	if err := r.SetPathParam("itemId", o.ItemID); err != nil {

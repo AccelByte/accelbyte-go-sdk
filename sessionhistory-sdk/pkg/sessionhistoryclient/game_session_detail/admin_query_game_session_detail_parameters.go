@@ -90,8 +90,23 @@ type AdminQueryGameSessionDetailParams struct {
 
 	*/
 	Namespace string
+	/*CompletedOnly
+	  only query for session that already ended. supported: TRUE, FALSE
+
+	*/
+	CompletedOnly *string
+	/*ConfigurationName
+	  configuration template name
+
+	*/
+	ConfigurationName *string
+	/*DsPodName
+	  pod name of a dedicated server
+
+	*/
+	DsPodName *string
 	/*EndDate
-	  End date time in RFC 3339 format: 2025-02-03T00:25:35Z
+	  End date time in RFC 3339 format: 2025-02-28T07:45:39Z
 
 	*/
 	EndDate *string
@@ -100,11 +115,26 @@ type AdminQueryGameSessionDetailParams struct {
 
 	*/
 	GameSessionID *string
+	/*IsPersistent
+	  game session is Persistent. supported: TRUE, FALSE
+
+	*/
+	IsPersistent *string
+	/*Joinability
+	  game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY
+
+	*/
+	Joinability *string
 	/*Limit
 	  Pagination limit
 
 	*/
 	Limit *int64
+	/*MatchPool
+	  matchmaking pool
+
+	*/
+	MatchPool *string
 	/*Offset
 	  Pagination offset
 
@@ -116,15 +146,20 @@ type AdminQueryGameSessionDetailParams struct {
 	*/
 	Order *string
 	/*OrderBy
-	  Order result by specific attribute. Supported: createdAt (default)
+	  Order result by specific attribute. Supported: created_at (default), updated_at
 
 	*/
 	OrderBy *string
 	/*StartDate
-	  Start date time in RFC 3339 format: 2025-02-03T00:25:35Z
+	  Start date time in RFC 3339 format: 2025-02-28T07:45:39Z
 
 	*/
 	StartDate *string
+	/*StatusV2
+	  game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED,DS_ERROR,PREPARING
+
+	*/
+	StatusV2 *string
 	/*UserID
 	  user ID
 
@@ -207,6 +242,39 @@ func (o *AdminQueryGameSessionDetailParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithCompletedOnly adds the completedOnly to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithCompletedOnly(completedOnly *string) *AdminQueryGameSessionDetailParams {
+	o.SetCompletedOnly(completedOnly)
+	return o
+}
+
+// SetCompletedOnly adds the completedOnly to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetCompletedOnly(completedOnly *string) {
+	o.CompletedOnly = completedOnly
+}
+
+// WithConfigurationName adds the configurationName to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithConfigurationName(configurationName *string) *AdminQueryGameSessionDetailParams {
+	o.SetConfigurationName(configurationName)
+	return o
+}
+
+// SetConfigurationName adds the configurationName to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetConfigurationName(configurationName *string) {
+	o.ConfigurationName = configurationName
+}
+
+// WithDsPodName adds the dsPodName to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithDsPodName(dsPodName *string) *AdminQueryGameSessionDetailParams {
+	o.SetDsPodName(dsPodName)
+	return o
+}
+
+// SetDsPodName adds the dsPodName to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetDsPodName(dsPodName *string) {
+	o.DsPodName = dsPodName
+}
+
 // WithEndDate adds the endDate to the admin query game session detail params
 func (o *AdminQueryGameSessionDetailParams) WithEndDate(endDate *string) *AdminQueryGameSessionDetailParams {
 	o.SetEndDate(endDate)
@@ -229,6 +297,28 @@ func (o *AdminQueryGameSessionDetailParams) SetGameSessionID(gameSessionID *stri
 	o.GameSessionID = gameSessionID
 }
 
+// WithIsPersistent adds the isPersistent to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithIsPersistent(isPersistent *string) *AdminQueryGameSessionDetailParams {
+	o.SetIsPersistent(isPersistent)
+	return o
+}
+
+// SetIsPersistent adds the isPersistent to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetIsPersistent(isPersistent *string) {
+	o.IsPersistent = isPersistent
+}
+
+// WithJoinability adds the joinability to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithJoinability(joinability *string) *AdminQueryGameSessionDetailParams {
+	o.SetJoinability(joinability)
+	return o
+}
+
+// SetJoinability adds the joinability to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetJoinability(joinability *string) {
+	o.Joinability = joinability
+}
+
 // WithLimit adds the limit to the admin query game session detail params
 func (o *AdminQueryGameSessionDetailParams) WithLimit(limit *int64) *AdminQueryGameSessionDetailParams {
 	o.SetLimit(limit)
@@ -238,6 +328,17 @@ func (o *AdminQueryGameSessionDetailParams) WithLimit(limit *int64) *AdminQueryG
 // SetLimit adds the limit to the admin query game session detail params
 func (o *AdminQueryGameSessionDetailParams) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithMatchPool adds the matchPool to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithMatchPool(matchPool *string) *AdminQueryGameSessionDetailParams {
+	o.SetMatchPool(matchPool)
+	return o
+}
+
+// SetMatchPool adds the matchPool to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetMatchPool(matchPool *string) {
+	o.MatchPool = matchPool
 }
 
 // WithOffset adds the offset to the admin query game session detail params
@@ -284,6 +385,17 @@ func (o *AdminQueryGameSessionDetailParams) SetStartDate(startDate *string) {
 	o.StartDate = startDate
 }
 
+// WithStatusV2 adds the statusV2 to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) WithStatusV2(statusV2 *string) *AdminQueryGameSessionDetailParams {
+	o.SetStatusV2(statusV2)
+	return o
+}
+
+// SetStatusV2 adds the statusV2 to the admin query game session detail params
+func (o *AdminQueryGameSessionDetailParams) SetStatusV2(statusV2 *string) {
+	o.StatusV2 = statusV2
+}
+
 // WithUserID adds the userID to the admin query game session detail params
 func (o *AdminQueryGameSessionDetailParams) WithUserID(userID *string) *AdminQueryGameSessionDetailParams {
 	o.SetUserID(userID)
@@ -306,6 +418,54 @@ func (o *AdminQueryGameSessionDetailParams) WriteToRequest(r runtime.ClientReque
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.CompletedOnly != nil {
+
+		// query param completedOnly
+		var qrCompletedOnly string
+		if o.CompletedOnly != nil {
+			qrCompletedOnly = *o.CompletedOnly
+		}
+		qCompletedOnly := qrCompletedOnly
+		if qCompletedOnly != "" {
+			if err := r.SetQueryParam("completedOnly", qCompletedOnly); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ConfigurationName != nil {
+
+		// query param configurationName
+		var qrConfigurationName string
+		if o.ConfigurationName != nil {
+			qrConfigurationName = *o.ConfigurationName
+		}
+		qConfigurationName := qrConfigurationName
+		if qConfigurationName != "" {
+			if err := r.SetQueryParam("configurationName", qConfigurationName); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.DsPodName != nil {
+
+		// query param dsPodName
+		var qrDsPodName string
+		if o.DsPodName != nil {
+			qrDsPodName = *o.DsPodName
+		}
+		qDsPodName := qrDsPodName
+		if qDsPodName != "" {
+			if err := r.SetQueryParam("dsPodName", qDsPodName); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.EndDate != nil {
@@ -340,6 +500,38 @@ func (o *AdminQueryGameSessionDetailParams) WriteToRequest(r runtime.ClientReque
 
 	}
 
+	if o.IsPersistent != nil {
+
+		// query param isPersistent
+		var qrIsPersistent string
+		if o.IsPersistent != nil {
+			qrIsPersistent = *o.IsPersistent
+		}
+		qIsPersistent := qrIsPersistent
+		if qIsPersistent != "" {
+			if err := r.SetQueryParam("isPersistent", qIsPersistent); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Joinability != nil {
+
+		// query param joinability
+		var qrJoinability string
+		if o.Joinability != nil {
+			qrJoinability = *o.Joinability
+		}
+		qJoinability := qrJoinability
+		if qJoinability != "" {
+			if err := r.SetQueryParam("joinability", qJoinability); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -350,6 +542,22 @@ func (o *AdminQueryGameSessionDetailParams) WriteToRequest(r runtime.ClientReque
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.MatchPool != nil {
+
+		// query param matchPool
+		var qrMatchPool string
+		if o.MatchPool != nil {
+			qrMatchPool = *o.MatchPool
+		}
+		qMatchPool := qrMatchPool
+		if qMatchPool != "" {
+			if err := r.SetQueryParam("matchPool", qMatchPool); err != nil {
 				return err
 			}
 		}
@@ -414,6 +622,22 @@ func (o *AdminQueryGameSessionDetailParams) WriteToRequest(r runtime.ClientReque
 		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.StatusV2 != nil {
+
+		// query param statusV2
+		var qrStatusV2 string
+		if o.StatusV2 != nil {
+			qrStatusV2 = *o.StatusV2
+		}
+		qStatusV2 := qrStatusV2
+		if qStatusV2 != "" {
+			if err := r.SetQueryParam("statusV2", qStatusV2); err != nil {
 				return err
 			}
 		}

@@ -18,10 +18,6 @@ import (
 // swagger:model Apimodels update gamesession DS information request.
 type ApimodelsUpdateGamesessionDSInformationRequest struct {
 
-	// clientversion
-	// Required: true
-	ClientVersion *string `json:"clientVersion"`
-
 	// createdregion
 	// Required: true
 	CreatedRegion *string `json:"createdRegion"`
@@ -33,10 +29,6 @@ type ApimodelsUpdateGamesessionDSInformationRequest struct {
 	// description
 	// Required: true
 	Description *string `json:"description"`
-
-	// gamemode
-	// Required: true
-	GameMode *string `json:"gameMode"`
 
 	// ip
 	// Required: true
@@ -68,9 +60,6 @@ type ApimodelsUpdateGamesessionDSInformationRequest struct {
 func (m *ApimodelsUpdateGamesessionDSInformationRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateClientVersion(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCreatedRegion(formats); err != nil {
 		res = append(res, err)
 	}
@@ -78,9 +67,6 @@ func (m *ApimodelsUpdateGamesessionDSInformationRequest) Validate(formats strfmt
 		res = append(res, err)
 	}
 	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateGameMode(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIP(formats); err != nil {
@@ -108,15 +94,6 @@ func (m *ApimodelsUpdateGamesessionDSInformationRequest) Validate(formats strfmt
 	return nil
 }
 
-func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateClientVersion(formats strfmt.Registry) error {
-
-	if err := validate.Required("clientVersion", "body", m.ClientVersion); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateCreatedRegion(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdRegion", "body", m.CreatedRegion); err != nil {
@@ -138,15 +115,6 @@ func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateDeployment(form
 func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateGameMode(formats strfmt.Registry) error {
-
-	if err := validate.Required("gameMode", "body", m.GameMode); err != nil {
 		return err
 	}
 

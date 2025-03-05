@@ -365,6 +365,14 @@
 | `/iam/v3/admin/namespaces/{namespace}/roleoverride/status` | PATCH | AdminChangeRoleOverrideConfigStatusV3Short | [AdminChangeRoleOverrideConfigStatusV3Short](../../iam-sdk/pkg/iamclient/override_role_config_v3/override_role_config_v3_client.go) | [AdminChangeRoleOverrideConfigStatusV3Short](../../services-api/pkg/service/iam/overrideRoleConfigV3.go) | [AdminChangeRoleOverrideConfigStatusV3Short](../../samples/cli/cmd/iam/overrideRoleConfigV3/adminChangeRoleOverrideConfigStatusV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/roleoverride/{roleId}/permissions` | GET | AdminGetRoleNamespacePermissionV3Short | [AdminGetRoleNamespacePermissionV3Short](../../iam-sdk/pkg/iamclient/override_role_config_v3/override_role_config_v3_client.go) | [AdminGetRoleNamespacePermissionV3Short](../../services-api/pkg/service/iam/overrideRoleConfigV3.go) | [AdminGetRoleNamespacePermissionV3Short](../../samples/cli/cmd/iam/overrideRoleConfigV3/adminGetRoleNamespacePermissionV3.go) |
 
+### Account Idenfifier Tag Wrapper:  [AccountIdenfifierTag](../../services-api/pkg/service/iam/accountIdenfifierTag.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/iam/v3/admin/namespaces/{namespace}/tags` | GET | AdminQueryTagV3Short | [AdminQueryTagV3Short](../../iam-sdk/pkg/iamclient/account_idenfifier_tag/account_idenfifier_tag_client.go) | [AdminQueryTagV3Short](../../services-api/pkg/service/iam/accountIdenfifierTag.go) | [AdminQueryTagV3Short](../../samples/cli/cmd/iam/accountIdenfifierTag/adminQueryTagV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/tags` | POST | AdminCreateTagV3Short | [AdminCreateTagV3Short](../../iam-sdk/pkg/iamclient/account_idenfifier_tag/account_idenfifier_tag_client.go) | [AdminCreateTagV3Short](../../services-api/pkg/service/iam/accountIdenfifierTag.go) | [AdminCreateTagV3Short](../../samples/cli/cmd/iam/accountIdenfifierTag/adminCreateTagV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/tags/{tagId}` | PUT | AdminUpdateTagV3Short | [AdminUpdateTagV3Short](../../iam-sdk/pkg/iamclient/account_idenfifier_tag/account_idenfifier_tag_client.go) | [AdminUpdateTagV3Short](../../services-api/pkg/service/iam/accountIdenfifierTag.go) | [AdminUpdateTagV3Short](../../samples/cli/cmd/iam/accountIdenfifierTag/adminUpdateTagV3.go) |
+| `/iam/v3/admin/namespaces/{namespace}/tags/{tagId}` | DELETE | AdminDeleteTagV3Short | [AdminDeleteTagV3Short](../../iam-sdk/pkg/iamclient/account_idenfifier_tag/account_idenfifier_tag_client.go) | [AdminDeleteTagV3Short](../../services-api/pkg/service/iam/accountIdenfifierTag.go) | [AdminDeleteTagV3Short](../../samples/cli/cmd/iam/accountIdenfifierTag/adminDeleteTagV3.go) |
+
 ### OAuth2.0 - Extension Wrapper:  [OAuth20Extension](../../services-api/pkg/service/iam/oAuth20Extension.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -592,6 +600,8 @@
 | `accountcommon.SimpleUserPlatformInfoV3` | [AccountcommonSimpleUserPlatformInfoV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_simple_user_platform_info_v3.go) |
 | `accountcommon.SsoConfig` | [AccountcommonSsoConfig ](../../iam-sdk/pkg/iamclientmodels/accountcommon_sso_config.go) |
 | `accountcommon.SsoConfigPatchReq` | [AccountcommonSsoConfigPatchReq ](../../iam-sdk/pkg/iamclientmodels/accountcommon_sso_config_patch_req.go) |
+| `accountcommon.TagResponse` | [AccountcommonTagResponse ](../../iam-sdk/pkg/iamclientmodels/accountcommon_tag_response.go) |
+| `accountcommon.TagsGetResponseV3` | [AccountcommonTagsGetResponseV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_tags_get_response_v3.go) |
 | `accountcommon.UserInformationV3` | [AccountcommonUserInformationV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_user_information_v3.go) |
 | `accountcommon.UserLinkedPlatform` | [AccountcommonUserLinkedPlatform ](../../iam-sdk/pkg/iamclientmodels/accountcommon_user_linked_platform.go) |
 | `accountcommon.UserLinkedPlatformV3` | [AccountcommonUserLinkedPlatformV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_user_linked_platform_v3.go) |
@@ -771,6 +781,8 @@
 | `model.SendVerificationLinkRequest` | [ModelSendVerificationLinkRequest ](../../iam-sdk/pkg/iamclientmodels/model_send_verification_link_request.go) |
 | `model.SimpleProfileUpdateStrategyConfigs` | [ModelSimpleProfileUpdateStrategyConfigs ](../../iam-sdk/pkg/iamclientmodels/model_simple_profile_update_strategy_configs.go) |
 | `model.SimpleUserBan` | [ModelSimpleUserBan ](../../iam-sdk/pkg/iamclientmodels/model_simple_user_ban.go) |
+| `model.TagCreateRequestV3` | [ModelTagCreateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_tag_create_request_v3.go) |
+| `model.TagUpdateRequestV3` | [ModelTagUpdateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_tag_update_request_v3.go) |
 | `model.ThirdPartyLoginPlatformCredentialRequest` | [ModelThirdPartyLoginPlatformCredentialRequest ](../../iam-sdk/pkg/iamclientmodels/model_third_party_login_platform_credential_request.go) |
 | `model.ThirdPartyLoginPlatformCredentialResponse` | [ModelThirdPartyLoginPlatformCredentialResponse ](../../iam-sdk/pkg/iamclientmodels/model_third_party_login_platform_credential_response.go) |
 | `model.TokenThirdPartyLinkStatusResponse` | [ModelTokenThirdPartyLinkStatusResponse ](../../iam-sdk/pkg/iamclientmodels/model_token_third_party_link_status_response.go) |

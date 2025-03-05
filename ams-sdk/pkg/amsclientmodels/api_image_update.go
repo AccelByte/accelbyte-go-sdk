@@ -23,12 +23,10 @@ type APIImageUpdate struct {
 	AddedTags []string `json:"addedTags"`
 
 	// isprotected
-	// Required: true
-	IsProtected *bool `json:"isProtected"`
+	IsProtected bool `json:"isProtected"`
 
 	// name
-	// Required: true
-	Name *string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// removedtags
 	// Required: true
@@ -40,12 +38,6 @@ func (m *APIImageUpdate) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAddedTags(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateIsProtected(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRemovedTags(formats); err != nil {
@@ -61,24 +53,6 @@ func (m *APIImageUpdate) Validate(formats strfmt.Registry) error {
 func (m *APIImageUpdate) validateAddedTags(formats strfmt.Registry) error {
 
 	if err := validate.Required("addedTags", "body", m.AddedTags); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIImageUpdate) validateIsProtected(formats strfmt.Registry) error {
-
-	if err := validate.Required("isProtected", "body", m.IsProtected); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIImageUpdate) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
 

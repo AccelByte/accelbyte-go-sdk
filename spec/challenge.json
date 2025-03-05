@@ -243,6 +243,85 @@
         ]
       }
     },
+    "/challenge/v1/admin/namespaces/{namespace}/challenges/item/references": {
+      "get": {
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]",
+        "operationId": "adminGetItemReferences",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the id of the ecommerce item",
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.ItemReferenceResponse"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20018\u003c/td\u003e\u003ctd\u003ebad request: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/iam.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error: {{message}}\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get challenge ecommerce item references",
+        "tags": [
+          "Utilities"
+        ],
+        "x-errorCodes": {
+          "20000": "internal server error: {{message}}",
+          "20001": "unauthorized access",
+          "20013": "insufficient permission",
+          "20018": "bad request: {{message}}"
+        },
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]"
+            ]
+          }
+        ]
+      }
+    },
     "/challenge/v1/admin/namespaces/{namespace}/challenges/users/{userId}": {
       "get": {
         "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]\nThe endpoint provides you an access to list of currently active challenges in which the player is participating\n",
@@ -632,6 +711,16 @@
             "in": "query",
             "name": "sortBy",
             "type": "string"
+          },
+          {
+            "collectionFormat": "csv",
+            "description": "filter list by tags",
+            "in": "query",
+            "items": {
+              "type": "string"
+            },
+            "name": "tags",
+            "type": "array"
           }
         ],
         "produces": [
@@ -2762,6 +2851,20 @@
             "type": "integer"
           },
           {
+            "description": "sort list by attributes.\n\t\t\t\tdefault value: updatedAt:desc.",
+            "enum": [
+              "createdAt",
+              "createdAt:asc",
+              "createdAt:desc",
+              "updatedAt",
+              "updatedAt:asc",
+              "updatedAt:desc"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
             "collectionFormat": "csv",
             "description": "filter list by tags",
             "in": "query",
@@ -3697,6 +3800,20 @@
         "resource"
       ]
     },
+    "model.ChallengeReference": {
+      "properties": {
+        "challengeCode": {
+          "type": "string"
+        },
+        "goalCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "challengeCode",
+        "goalCode"
+      ]
+    },
     "model.ChallengeResponse": {
       "properties": {
         "activeGoalsPerRotation": {
@@ -4328,6 +4445,36 @@
       "required": [
         "order",
         "startTime"
+      ]
+    },
+    "model.ItemReference": {
+      "properties": {
+        "module": {
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/definitions/model.ChallengeReference"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "module",
+        "references"
+      ]
+    },
+    "model.ItemReferenceResponse": {
+      "properties": {
+        "references": {
+          "items": {
+            "$ref": "#/definitions/model.ItemReference"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "references"
       ]
     },
     "model.ListChallengeResponse": {
@@ -5039,11 +5186,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-01-21T11:07:13+00:00",
-    "gitHash": "3412aa3a4a5689b4a6a4e85e7f297e571e028660",
+    "buildDate": "2025-02-28T02:03:59+00:00",
+    "gitHash": "e25602523058b5d6f0306fc6dae475a793534e91",
     "name": "justice-challenge-service",
     "realm": "stage",
-    "version": "1.13.0",
+    "version": "1.15.0",
     "version-roles-seeding": "1.2.74"
   }
 }

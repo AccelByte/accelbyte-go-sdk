@@ -39,6 +39,12 @@ func (o *DeleteItemReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewDeleteItemConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -114,6 +120,60 @@ func (o *DeleteItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
 }
 
 func (o *DeleteItemNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteItemConflict creates a DeleteItemConflict with default headers values
+func NewDeleteItemConflict() *DeleteItemConflict {
+	return &DeleteItemConflict{}
+}
+
+/*DeleteItemConflict handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30386</td><td>The item [{itemId}] is currently associated and cannot be deleted in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID</td></tr></table>
+*/
+type DeleteItemConflict struct {
+	Payload *platformclientmodels.ErrorEntity
+}
+
+func (o *DeleteItemConflict) Error() string {
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *DeleteItemConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *DeleteItemConflict) GetPayload() *platformclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *DeleteItemConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

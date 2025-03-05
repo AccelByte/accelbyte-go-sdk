@@ -38,6 +38,46 @@ func (aaa *ConfigService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetEnvConfigShort instead.
+func (aaa *ConfigService) AdminGetEnvConfig(input *config.AdminGetEnvConfigParams) (*sessionhistoryclientmodels.EnvconfigConfiguration, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := aaa.Client.Config.AdminGetEnvConfig(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminPatchUpdateEnvConfigShort instead.
+func (aaa *ConfigService) AdminPatchUpdateEnvConfig(input *config.AdminPatchUpdateEnvConfigParams) (*sessionhistoryclientmodels.EnvconfigConfiguration, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := aaa.Client.Config.AdminPatchUpdateEnvConfig(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminGetLogConfigShort instead.
 func (aaa *ConfigService) AdminGetLogConfig(input *config.AdminGetLogConfigParams) (*sessionhistoryclientmodels.LogconfigConfiguration, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -71,6 +111,66 @@ func (aaa *ConfigService) AdminPatchUpdateLogConfig(input *config.AdminPatchUpda
 	if forbidden != nil {
 		return nil, forbidden
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ConfigService) AdminGetEnvConfigShort(input *config.AdminGetEnvConfigParams) (*sessionhistoryclientmodels.EnvconfigConfiguration, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Config.AdminGetEnvConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ConfigService) AdminPatchUpdateEnvConfigShort(input *config.AdminPatchUpdateEnvConfigParams) (*sessionhistoryclientmodels.EnvconfigConfiguration, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Config.AdminPatchUpdateEnvConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

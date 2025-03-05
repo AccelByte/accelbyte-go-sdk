@@ -25,6 +25,7 @@ const (
 	QueryUserIAPOrdersFULFILLEDConstant      = "FULFILLED"
 	QueryUserIAPOrdersPARTIALREVOKEDConstant = "PARTIAL_REVOKED"
 	QueryUserIAPOrdersREVOKEDConstant        = "REVOKED"
+	QueryUserIAPOrdersREVOKEFAILEDConstant   = "REVOKE_FAILED"
 	QueryUserIAPOrdersVERIFIEDConstant       = "VERIFIED"
 )
 

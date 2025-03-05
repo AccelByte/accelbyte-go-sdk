@@ -58,6 +58,11 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetUserProfilesShort instead.
 
 GetUserProfiles returns all profiles' header for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns all profiles' header for a user.
 Other detail info:
               *  Returns : list of profiles
@@ -118,6 +123,11 @@ func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime
 
 /*
 GetUserProfilesShort returns all profiles' header for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns all profiles' header for a user.
 Other detail info:
               *  Returns : list of profiles
@@ -173,6 +183,11 @@ func (a *Client) GetUserProfilesShort(params *GetUserProfilesParams, authInfo ru
 Deprecated: 2022-08-10 - Use GetProfileShort instead.
 
 GetProfile returns profile for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns profile for a user.
 Other detail info:
               *  Returns : game profile info
@@ -236,6 +251,11 @@ func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAut
 
 /*
 GetProfileShort returns profile for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns profile for a user.
 Other detail info:
               *  Returns : game profile info
@@ -293,6 +313,11 @@ func (a *Client) GetProfileShort(params *GetProfileParams, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use PublicGetUserGameProfilesShort instead.
 
 PublicGetUserGameProfiles returns all profiles for specified users
+
+
+## The endpoint is going to be deprecated
+
+
 Returns all profiles for specified users.
 Other detail info:
               *  Returns : list of profiles
@@ -356,6 +381,11 @@ func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesPara
 
 /*
 PublicGetUserGameProfilesShort returns all profiles for specified users
+
+
+## The endpoint is going to be deprecated
+
+
 Returns all profiles for specified users.
 Other detail info:
               *  Returns : list of profiles
@@ -413,6 +443,11 @@ func (a *Client) PublicGetUserGameProfilesShort(params *PublicGetUserGameProfile
 Deprecated: 2022-08-10 - Use PublicGetUserProfilesShort instead.
 
 PublicGetUserProfiles returns all profiles' header for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns all profiles' header for a user.
 Other detail info:
               *  Returns : list of profiles
@@ -473,6 +508,11 @@ func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, auth
 
 /*
 PublicGetUserProfilesShort returns all profiles' header for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns all profiles' header for a user.
 Other detail info:
               *  Returns : list of profiles
@@ -528,6 +568,11 @@ func (a *Client) PublicGetUserProfilesShort(params *PublicGetUserProfilesParams,
 Deprecated: 2022-08-10 - Use PublicCreateProfileShort instead.
 
 PublicCreateProfile create a new profile for user
+
+
+## The endpoint is going to be deprecated
+
+
 Create new profile for user.
 Other detail info:
               *  Returns
@@ -595,6 +640,11 @@ func (a *Client) PublicCreateProfile(params *PublicCreateProfileParams, authInfo
 
 /*
 PublicCreateProfileShort create a new profile for user
+
+
+## The endpoint is going to be deprecated
+
+
 Create new profile for user.
 Other detail info:
               *  Returns
@@ -655,6 +705,11 @@ func (a *Client) PublicCreateProfileShort(params *PublicCreateProfileParams, aut
 Deprecated: 2022-08-10 - Use PublicGetProfileShort instead.
 
 PublicGetProfile returns profile for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns profile for a user.
 Other detail info:
               *  Returns : game profile info
@@ -718,6 +773,11 @@ func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runti
 
 /*
 PublicGetProfileShort returns profile for a user
+
+
+## The endpoint is going to be deprecated
+
+
 Returns profile for a user.
 Other detail info:
               *  Returns : game profile info
@@ -775,6 +835,11 @@ func (a *Client) PublicGetProfileShort(params *PublicGetProfileParams, authInfo 
 Deprecated: 2022-08-10 - Use PublicUpdateProfileShort instead.
 
 PublicUpdateProfile updates user game profile
+
+
+## The endpoint is going to be deprecated
+
+
 Updates user game profile, returns updated profile.
 Other detail info:
               *  Returns : updated game profile
@@ -844,6 +909,11 @@ func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo
 
 /*
 PublicUpdateProfileShort updates user game profile
+
+
+## The endpoint is going to be deprecated
+
+
 Updates user game profile, returns updated profile.
 Other detail info:
               *  Returns : updated game profile
@@ -905,6 +975,11 @@ func (a *Client) PublicUpdateProfileShort(params *PublicUpdateProfileParams, aut
 Deprecated: 2022-08-10 - Use PublicDeleteProfileShort instead.
 
 PublicDeleteProfile deletes game profile
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes game profile.
 */
 func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, *PublicDeleteProfileUnauthorized, *PublicDeleteProfileForbidden, *PublicDeleteProfileNotFound, *PublicDeleteProfileInternalServerError, error) {
@@ -966,6 +1041,11 @@ func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo
 
 /*
 PublicDeleteProfileShort deletes game profile
+
+
+## The endpoint is going to be deprecated
+
+
 Deletes game profile.
 */
 func (a *Client) PublicDeleteProfileShort(params *PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteProfileNoContent, error) {
@@ -1021,6 +1101,11 @@ func (a *Client) PublicDeleteProfileShort(params *PublicDeleteProfileParams, aut
 Deprecated: 2022-08-10 - Use PublicGetProfileAttributeShort instead.
 
 PublicGetProfileAttribute returns game profile attribute
+
+
+## The endpoint is going to be deprecated
+
+
 Returns game profile attribute.
 Other detail info:
               *  Returns : attribute info
@@ -1084,6 +1169,11 @@ func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributePara
 
 /*
 PublicGetProfileAttributeShort returns game profile attribute
+
+
+## The endpoint is going to be deprecated
+
+
 Returns game profile attribute.
 Other detail info:
               *  Returns : attribute info
@@ -1141,6 +1231,11 @@ func (a *Client) PublicGetProfileAttributeShort(params *PublicGetProfileAttribut
 Deprecated: 2022-08-10 - Use PublicUpdateAttributeShort instead.
 
 PublicUpdateAttribute updates game profile attribute
+
+
+## The endpoint is going to be deprecated
+
+
 Updates game profile attribute, returns updated profile.
 Other detail info:
               *  Returns : updated attribute
@@ -1210,6 +1305,11 @@ func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, auth
 
 /*
 PublicUpdateAttributeShort updates game profile attribute
+
+
+## The endpoint is going to be deprecated
+
+
 Updates game profile attribute, returns updated profile.
 Other detail info:
               *  Returns : updated attribute

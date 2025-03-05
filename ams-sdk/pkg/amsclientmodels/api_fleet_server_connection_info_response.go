@@ -20,7 +20,7 @@ type APIFleetServerConnectionInfoResponse struct {
 
 	// expiresat
 	// Required: true
-	ExpiresAt *APITime `json:"expiresAt"`
+	ExpiresAt *string `json:"expiresAt"`
 
 	// host
 	// Required: true
@@ -63,15 +63,6 @@ func (m *APIFleetServerConnectionInfoResponse) validateExpiresAt(formats strfmt.
 
 	if err := validate.Required("expiresAt", "body", m.ExpiresAt); err != nil {
 		return err
-	}
-
-	if m.ExpiresAt != nil {
-		if err := m.ExpiresAt.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("expiresAt")
-			}
-			return err
-		}
 	}
 
 	return nil

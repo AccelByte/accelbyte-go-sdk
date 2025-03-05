@@ -171,7 +171,7 @@ func NewDisableItemConflict() *DisableItemConflict {
 
 /*DisableItemConflict handles this case with default header values.
 
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30173</td><td>Published store can't modify content</td></tr></table>
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>30173</td><td>Published store can't modify content</td></tr><tr><td>30387</td><td>The item [{itemId}] is currently associated and cannot be disabled in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID</td></tr></table>
 */
 type DisableItemConflict struct {
 	Payload *platformclientmodels.ErrorEntity

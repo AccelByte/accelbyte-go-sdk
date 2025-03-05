@@ -80,7 +80,7 @@ type ClientService interface {
 	GetItemShort(params *GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetItemOK, error)
 	UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, *UpdateItemBadRequest, *UpdateItemNotFound, *UpdateItemConflict, *UpdateItemUnprocessableEntity, error)
 	UpdateItemShort(params *UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemOK, error)
-	DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error)
+	DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, *DeleteItemConflict, error)
 	DeleteItemShort(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, error)
 	AcquireItem(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, *AcquireItemNotFound, error)
 	AcquireItemShort(params *AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*AcquireItemOK, error)
@@ -102,6 +102,8 @@ type ClientService interface {
 	GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*GetLocaleItemOK, error)
 	UpdateItemPurchaseCondition(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, *UpdateItemPurchaseConditionBadRequest, *UpdateItemPurchaseConditionNotFound, *UpdateItemPurchaseConditionConflict, *UpdateItemPurchaseConditionUnprocessableEntity, error)
 	UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseConditionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateItemPurchaseConditionOK, error)
+	QueryItemReferences(params *QueryItemReferencesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemReferencesOK, *QueryItemReferencesNotFound, error)
+	QueryItemReferencesShort(params *QueryItemReferencesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemReferencesOK, error)
 	ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, *ReturnItemNotFound, *ReturnItemUnprocessableEntity, error)
 	ReturnItemShort(params *ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) (*ReturnItemNoContent, error)
 	PublicGetItemByAppID(params *PublicGetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetItemByAppIDOK, *PublicGetItemByAppIDNotFound, error)
@@ -3830,7 +3832,7 @@ force: the default value should be: false. When the value is:
 * false: only the items in the draft store that have never been published yet can be removed.
 *  true: the item in the draft store(even been published before) can be removed.
 */
-func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, error) {
+func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteItemNoContent, *DeleteItemNotFound, *DeleteItemConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteItemParams()
@@ -3862,19 +3864,22 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteItemNoContent:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *DeleteItemNotFound:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *DeleteItemConflict:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3922,6 +3927,8 @@ func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.Clie
 	case *DeleteItemNoContent:
 		return v, nil
 	case *DeleteItemNotFound:
+		return nil, v
+	case *DeleteItemConflict:
 		return nil, v
 
 	default:
@@ -5206,6 +5213,107 @@ func (a *Client) UpdateItemPurchaseConditionShort(params *UpdateItemPurchaseCond
 	case *UpdateItemPurchaseConditionConflict:
 		return nil, v
 	case *UpdateItemPurchaseConditionUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use QueryItemReferencesShort instead.
+
+QueryItemReferences get item references
+This API is used to get references for an item
+*/
+func (a *Client) QueryItemReferences(params *QueryItemReferencesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemReferencesOK, *QueryItemReferencesNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryItemReferencesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryItemReferences",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/references",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryItemReferencesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryItemReferencesOK:
+		return v, nil, nil
+
+	case *QueryItemReferencesNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+QueryItemReferencesShort get item references
+This API is used to get references for an item
+*/
+func (a *Client) QueryItemReferencesShort(params *QueryItemReferencesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryItemReferencesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryItemReferencesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryItemReferences",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/references",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryItemReferencesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryItemReferencesOK:
+		return v, nil
+	case *QueryItemReferencesNotFound:
 		return nil, v
 
 	default:

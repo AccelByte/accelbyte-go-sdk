@@ -28,6 +28,10 @@ type APIFleetListItemResponse struct {
 	// Required: true
 	Counts []*APIFleetRegionalServerCounts `json:"counts"`
 
+	// fallbackfleet
+	// Required: true
+	FallbackFleet *string `json:"fallbackFleet"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -52,6 +56,10 @@ type APIFleetListItemResponse struct {
 	// Required: true
 	OnDemand *bool `json:"onDemand"`
 
+	// primaryfleet
+	// Required: true
+	PrimaryFleet *string `json:"primaryFleet"`
+
 	// regions
 	// Required: true
 	Regions []string `json:"regions"`
@@ -65,6 +73,9 @@ func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateCounts(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateFallbackFleet(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateID(formats); err != nil {
@@ -83,6 +94,9 @@ func (m *APIFleetListItemResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateOnDemand(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePrimaryFleet(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRegions(formats); err != nil {
@@ -124,6 +138,15 @@ func (m *APIFleetListItemResponse) validateCounts(formats strfmt.Registry) error
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIFleetListItemResponse) validateFallbackFleet(formats strfmt.Registry) error {
+
+	if err := validate.Required("fallbackFleet", "body", m.FallbackFleet); err != nil {
+		return err
 	}
 
 	return nil
@@ -177,6 +200,15 @@ func (m *APIFleetListItemResponse) validateName(formats strfmt.Registry) error {
 func (m *APIFleetListItemResponse) validateOnDemand(formats strfmt.Registry) error {
 
 	if err := validate.Required("onDemand", "body", m.OnDemand); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIFleetListItemResponse) validatePrimaryFleet(formats strfmt.Registry) error {
+
+	if err := validate.Required("primaryFleet", "body", m.PrimaryFleet); err != nil {
 		return err
 	}
 

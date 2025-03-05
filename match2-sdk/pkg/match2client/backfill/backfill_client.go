@@ -30,6 +30,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminQueryBackfill(params *AdminQueryBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryBackfillOK, *AdminQueryBackfillBadRequest, *AdminQueryBackfillUnauthorized, *AdminQueryBackfillForbidden, *AdminQueryBackfillNotFound, *AdminQueryBackfillInternalServerError, error)
+	AdminQueryBackfillShort(params *AdminQueryBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryBackfillOK, error)
 	CreateBackfill(params *CreateBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBackfillCreated, *CreateBackfillBadRequest, *CreateBackfillUnauthorized, *CreateBackfillForbidden, *CreateBackfillNotFound, *CreateBackfillConflict, *CreateBackfillInternalServerError, error)
 	CreateBackfillShort(params *CreateBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*CreateBackfillCreated, error)
 	GetBackfillProposal(params *GetBackfillProposalParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillProposalOK, *GetBackfillProposalBadRequest, *GetBackfillProposalUnauthorized, *GetBackfillProposalForbidden, *GetBackfillProposalNotFound, *GetBackfillProposalInternalServerError, error)
@@ -44,6 +46,127 @@ type ClientService interface {
 	RejectBackfillShort(params *RejectBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*RejectBackfillOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminQueryBackfillShort instead.
+
+AdminQueryBackfill admin query backfill ticket
+Admin Query backfill ticket
+*/
+func (a *Client) AdminQueryBackfill(params *AdminQueryBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryBackfillOK, *AdminQueryBackfillBadRequest, *AdminQueryBackfillUnauthorized, *AdminQueryBackfillForbidden, *AdminQueryBackfillNotFound, *AdminQueryBackfillInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQueryBackfillParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminQueryBackfill",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/backfill",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQueryBackfillReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQueryBackfillOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminQueryBackfillBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminQueryBackfillUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminQueryBackfillForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminQueryBackfillNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminQueryBackfillInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminQueryBackfillShort admin query backfill ticket
+Admin Query backfill ticket
+*/
+func (a *Client) AdminQueryBackfillShort(params *AdminQueryBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryBackfillOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminQueryBackfillParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminQueryBackfill",
+		Method:             "GET",
+		PathPattern:        "/match2/v1/namespaces/{namespace}/backfill",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminQueryBackfillReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminQueryBackfillOK:
+		return v, nil
+	case *AdminQueryBackfillBadRequest:
+		return nil, v
+	case *AdminQueryBackfillUnauthorized:
+		return nil, v
+	case *AdminQueryBackfillForbidden:
+		return nil, v
+	case *AdminQueryBackfillNotFound:
+		return nil, v
+	case *AdminQueryBackfillInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

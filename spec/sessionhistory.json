@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.12.7"
+    "version": "1.13.0"
   },
   "schemes": [
     "https"
@@ -57,6 +57,113 @@
           }
         ],
         "x-errorCodes": {}
+      }
+    },
+    "/sessionhistory/v1/admin/config/env": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get Runtime Environment Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminGetEnvConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/envconfig.Configuration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get Runtime Environment Variable Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:ENV [READ]"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update Runtime Environment Variable Configuration.\u0026lt;br\u0026gt;",
+        "operationId": "adminPatchUpdateEnvConfig",
+        "parameters": [
+          {
+            "description": "Optional values can be omitted and will update partially",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/envconfig.Configuration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/envconfig.Configuration"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Patch Update Runtime Environment Variable Configuration",
+        "tags": [
+          "Config"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:CONFIG:ENV [UPDATE]"
+            ]
+          }
+        ]
       }
     },
     "/sessionhistory/v1/admin/config/log": {
@@ -182,7 +289,25 @@
             "type": "string"
           },
           {
-            "description": "End date time in RFC 3339 format: 2025-02-03T00:25:35Z",
+            "description": "only query for session that already ended. supported: TRUE, FALSE",
+            "in": "query",
+            "name": "completedOnly",
+            "type": "string"
+          },
+          {
+            "description": "configuration template name",
+            "in": "query",
+            "name": "configurationName",
+            "type": "string"
+          },
+          {
+            "description": "pod name of a dedicated server",
+            "in": "query",
+            "name": "dsPodName",
+            "type": "string"
+          },
+          {
+            "description": "End date time in RFC 3339 format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -194,11 +319,29 @@
             "type": "string"
           },
           {
+            "description": "game session is Persistent. supported: TRUE, FALSE",
+            "in": "query",
+            "name": "isPersistent",
+            "type": "string"
+          },
+          {
+            "description": "game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY",
+            "in": "query",
+            "name": "joinability",
+            "type": "string"
+          },
+          {
             "default": 20,
             "description": "Pagination limit",
             "in": "query",
             "name": "limit",
             "type": "integer"
+          },
+          {
+            "description": "matchmaking pool",
+            "in": "query",
+            "name": "matchPool",
+            "type": "string"
           },
           {
             "default": 0,
@@ -214,15 +357,21 @@
             "type": "string"
           },
           {
-            "description": "Order result by specific attribute. Supported: createdAt (default)",
+            "description": "Order result by specific attribute. Supported: created_at (default), updated_at",
             "in": "query",
             "name": "orderBy",
             "type": "string"
           },
           {
-            "description": "Start date time in RFC 3339 format: 2025-02-03T00:25:35Z",
+            "description": "Start date time in RFC 3339 format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
+            "type": "string"
+          },
+          {
+            "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED,DS_ERROR,PREPARING",
+            "in": "query",
+            "name": "statusV2",
             "type": "string"
           },
           {
@@ -653,6 +802,24 @@
             "type": "string"
           },
           {
+            "description": "End date time in RFC 3339 format: 2025-02-28T07:45:39Z",
+            "in": "query",
+            "name": "endDate",
+            "type": "string"
+          },
+          {
+            "description": "joinability of the party",
+            "in": "query",
+            "name": "joinability",
+            "type": "string"
+          },
+          {
+            "description": "leader ID",
+            "in": "query",
+            "name": "leaderID",
+            "type": "string"
+          },
+          {
             "default": 20,
             "description": "Pagination limit",
             "in": "query",
@@ -673,7 +840,7 @@
             "type": "string"
           },
           {
-            "description": "Order result by specific attribute. Supported: createdAt (default)",
+            "description": "Order result by specific attribute. Supported: created_at (default), updated_at",
             "in": "query",
             "name": "orderBy",
             "type": "string"
@@ -682,6 +849,12 @@
             "description": "party ID",
             "in": "query",
             "name": "partyID",
+            "type": "string"
+          },
+          {
+            "description": "Start date time in RFC 3339 format: 2025-02-28T07:45:39Z",
+            "in": "query",
+            "name": "startDate",
             "type": "string"
           },
           {
@@ -844,7 +1017,7 @@
             "type": "string"
           },
           {
-            "description": "End Date 2025-02-03T00:25:35Z",
+            "description": "End Date 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "type": "string"
@@ -888,7 +1061,7 @@
             "type": "string"
           },
           {
-            "description": "Start Date 2025-02-03T00:25:35Z",
+            "description": "Start Date 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "type": "string"
@@ -1154,14 +1327,14 @@
             "type": "array"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1258,14 +1431,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1827,14 +2000,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -1927,14 +2100,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2027,14 +2200,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2127,14 +2300,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2227,14 +2400,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2333,14 +2506,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2433,14 +2606,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2533,14 +2706,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2633,14 +2806,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2733,14 +2906,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -2833,14 +3006,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3098,14 +3271,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3209,14 +3382,14 @@
             "type": "string"
           },
           {
-            "description": "End date time: 2025-02-03T00:25:35Z",
+            "description": "End date time: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "endDate",
             "required": true,
             "type": "string"
           },
           {
-            "description": "Start date time. Format: 2025-02-03T00:25:35Z",
+            "description": "Start date time. Format: 2025-02-28T07:45:39Z",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -3444,8 +3617,16 @@
     },
     "apimodels.GameSessionDetail": {
       "properties": {
+        "active": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "created_at": {
           "type": "string"
+        },
+        "ended": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "histories": {
           "items": {
@@ -3453,7 +3634,23 @@
           },
           "type": "array"
         },
+        "joinability": {
+          "type": "string"
+        },
+        "last_data": {
+          "$ref": "#/definitions/models.GameSession"
+        },
+        "match_pool": {
+          "type": "string"
+        },
         "namespace": {
+          "type": "string"
+        },
+        "persistent": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "pod_name": {
           "type": "string"
         },
         "sessionID": {
@@ -3461,14 +3658,27 @@
         },
         "session_template": {
           "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
+        "active",
         "created_at",
+        "ended",
         "histories",
+        "joinability",
+        "last_data",
+        "match_pool",
         "namespace",
+        "persistent",
+        "pod_name",
         "sessionID",
-        "session_template"
+        "session_template",
+        "updated_at"
       ]
     },
     "apimodels.GameSessionDetailQueryResponse": {
@@ -3688,6 +3898,15 @@
           },
           "type": "array"
         },
+        "joinability": {
+          "type": "string"
+        },
+        "last_data": {
+          "$ref": "#/definitions/models.Party"
+        },
+        "leader_id": {
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -3696,14 +3915,23 @@
         },
         "session_template": {
           "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
         "created_at",
         "histories",
+        "joinability",
+        "last_data",
+        "leader_id",
         "namespace",
         "partySessionID",
-        "session_template"
+        "session_template",
+        "updated_at"
       ]
     },
     "apimodels.PartyDetailQueryResponse": {
@@ -4534,6 +4762,15 @@
       "required": [
         "data"
       ]
+    },
+    "envconfig.Configuration": {
+      "properties": {
+        "SESSION_DELETION_GRACE_PERIOD": {
+          "description": "in nano seconds",
+          "format": "int64",
+          "type": "integer"
+        }
+      }
     },
     "logconfig.Configuration": {
       "properties": {
@@ -5558,9 +5795,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-01-21T04:47:25+00:00",
-    "gitHash": "453478e096e08d89a1be656f58c088e5381637e2",
-    "version": "1.12.7",
-    "version-roles-seeding": "1.2.76"
+    "buildDate": "2025-02-28T07:32:25+00:00",
+    "gitHash": "5fcf096c6a6cd5e95235eac85925c9fe9cd5ec63",
+    "version": "1.13.0",
+    "version-roles-seeding": "1.2.90"
   }
 }

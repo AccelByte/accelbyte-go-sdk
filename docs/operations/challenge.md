@@ -18,6 +18,11 @@
 | `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/tied` | DELETE | AdminDeleteTiedChallengeShort | [AdminDeleteTiedChallengeShort](../../challenge-sdk/pkg/challengeclient/challenge_configuration/challenge_configuration_client.go) | [AdminDeleteTiedChallengeShort](../../services-api/pkg/service/challenge/challengeConfiguration.go) | [AdminDeleteTiedChallengeShort](../../samples/cli/cmd/challenge/challengeConfiguration/adminDeleteTiedChallenge.go) |
 | `/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/tied/schedule` | PUT | AdminUpdateTiedChallengeScheduleShort | [AdminUpdateTiedChallengeScheduleShort](../../challenge-sdk/pkg/challengeclient/challenge_configuration/challenge_configuration_client.go) | [AdminUpdateTiedChallengeScheduleShort](../../services-api/pkg/service/challenge/challengeConfiguration.go) | [AdminUpdateTiedChallengeScheduleShort](../../samples/cli/cmd/challenge/challengeConfiguration/adminUpdateTiedChallengeSchedule.go) |
 
+### Utilities Wrapper:  [Utilities](../../services-api/pkg/service/challenge/utilities.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/challenge/v1/admin/namespaces/{namespace}/challenges/item/references` | GET | AdminGetItemReferencesShort | [AdminGetItemReferencesShort](../../challenge-sdk/pkg/challengeclient/utilities/utilities_client.go) | [AdminGetItemReferencesShort](../../services-api/pkg/service/challenge/utilities.go) | [AdminGetItemReferencesShort](../../samples/cli/cmd/challenge/utilities/adminGetItemReferences.go) |
+
 ### Goal Configuration Wrapper:  [GoalConfiguration](../../services-api/pkg/service/challenge/goalConfiguration.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -78,6 +83,7 @@
 |---|---|
 | `iam.ErrorResponse` | [IamErrorResponse ](../../challenge-sdk/pkg/challengeclientmodels/iam_error_response.go) |
 | `iam.Permission` | [IamPermission ](../../challenge-sdk/pkg/challengeclientmodels/iam_permission.go) |
+| `model.ChallengeReference` | [ModelChallengeReference ](../../challenge-sdk/pkg/challengeclientmodels/model_challenge_reference.go) |
 | `model.ChallengeResponse` | [ModelChallengeResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_challenge_response.go) |
 | `model.ClaimUserRewardsByGoalCodeRequest` | [ModelClaimUserRewardsByGoalCodeRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_claim_user_rewards_by_goal_code_request.go) |
 | `model.ClaimUserRewardsReq` | [ModelClaimUserRewardsReq ](../../challenge-sdk/pkg/challengeclientmodels/model_claim_user_rewards_req.go) |
@@ -95,6 +101,8 @@
 | `model.GoalResponse` | [ModelGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_response.go) |
 | `model.GoalSchedule` | [ModelGoalSchedule ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_schedule.go) |
 | `model.GoalScheduleRequest` | [ModelGoalScheduleRequest ](../../challenge-sdk/pkg/challengeclientmodels/model_goal_schedule_request.go) |
+| `model.ItemReference` | [ModelItemReference ](../../challenge-sdk/pkg/challengeclientmodels/model_item_reference.go) |
+| `model.ItemReferenceResponse` | [ModelItemReferenceResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_item_reference_response.go) |
 | `model.ListChallengeResponse` | [ModelListChallengeResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_challenge_response.go) |
 | `model.ListPeriodsResponse` | [ModelListPeriodsResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_periods_response.go) |
 | `model.ListScheduleByGoalResponse` | [ModelListScheduleByGoalResponse ](../../challenge-sdk/pkg/challengeclientmodels/model_list_schedule_by_goal_response.go) |

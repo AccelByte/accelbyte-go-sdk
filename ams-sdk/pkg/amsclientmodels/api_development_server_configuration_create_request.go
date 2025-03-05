@@ -23,9 +23,7 @@ type APIDevelopmentServerConfigurationCreateRequest struct {
 	CommandLineArguments *string `json:"commandLineArguments"`
 
 	// expiresat
-	// Required: true
-	// Format: date-time
-	ExpiresAt strfmt.DateTime `json:"expiresAt"`
+	ExpiresAt string `json:"expiresAt,omitempty"`
 
 	// imageid
 	// Required: true
@@ -41,9 +39,6 @@ func (m *APIDevelopmentServerConfigurationCreateRequest) Validate(formats strfmt
 	var res []error
 
 	if err := m.validateCommandLineArguments(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateExpiresAt(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateImageID(formats); err != nil {
@@ -62,19 +57,6 @@ func (m *APIDevelopmentServerConfigurationCreateRequest) Validate(formats strfmt
 func (m *APIDevelopmentServerConfigurationCreateRequest) validateCommandLineArguments(formats strfmt.Registry) error {
 
 	if err := validate.Required("commandLineArguments", "body", m.CommandLineArguments); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *APIDevelopmentServerConfigurationCreateRequest) validateExpiresAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("expiresAt", "body", strfmt.DateTime(m.ExpiresAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("expiresAt", "body", "date-time", m.ExpiresAt.String(), formats); err != nil {
 		return err
 	}
 

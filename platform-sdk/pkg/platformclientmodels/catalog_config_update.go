@@ -7,6 +7,8 @@
 package platformclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,11 @@ type CatalogConfigUpdate struct {
 	// enable inventory check
 	// Required: true
 	EnableInventoryCheck *bool `json:"enableInventoryCheck"`
+
+	// item deletion check configuration
+	// Unique: true
+	// Enum: ['CAMPAIGN', 'CATALOG', 'DLC', 'ENTITLEMENT', 'IAP', 'REWARD']
+	ItemDeletionCheckConfig []string `json:"itemDeletionCheckConfig"`
 }
 
 // Validate validates this Catalog config update
@@ -43,6 +50,46 @@ func (m *CatalogConfigUpdate) validateEnableInventoryCheck(formats strfmt.Regist
 		return err
 	}
 
+	return nil
+}
+
+var catalogConfigUpdateTypeItemDeletionCheckConfigItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CAMPAIGN", "CATALOG", "DLC", "ENTITLEMENT", "IAP", "REWARD"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		catalogConfigUpdateTypeItemDeletionCheckConfigItemsEnum = append(catalogConfigUpdateTypeItemDeletionCheckConfigItemsEnum, v)
+	}
+}
+
+const (
+
+	// CatalogConfigUpdateItemDeletionCheckConfigCAMPAIGN captures enum value "CAMPAIGN"
+	CatalogConfigUpdateItemDeletionCheckConfigCAMPAIGN string = "CAMPAIGN"
+
+	// CatalogConfigUpdateItemDeletionCheckConfigCATALOG captures enum value "CATALOG"
+	CatalogConfigUpdateItemDeletionCheckConfigCATALOG string = "CATALOG"
+
+	// CatalogConfigUpdateItemDeletionCheckConfigDLC captures enum value "DLC"
+	CatalogConfigUpdateItemDeletionCheckConfigDLC string = "DLC"
+
+	// CatalogConfigUpdateItemDeletionCheckConfigENTITLEMENT captures enum value "ENTITLEMENT"
+	CatalogConfigUpdateItemDeletionCheckConfigENTITLEMENT string = "ENTITLEMENT"
+
+	// CatalogConfigUpdateItemDeletionCheckConfigIAP captures enum value "IAP"
+	CatalogConfigUpdateItemDeletionCheckConfigIAP string = "IAP"
+
+	// CatalogConfigUpdateItemDeletionCheckConfigREWARD captures enum value "REWARD"
+	CatalogConfigUpdateItemDeletionCheckConfigREWARD string = "REWARD"
+)
+
+func (m *CatalogConfigUpdate) validateItemDeletionCheckConfigItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, catalogConfigUpdateTypeItemDeletionCheckConfigItemsEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

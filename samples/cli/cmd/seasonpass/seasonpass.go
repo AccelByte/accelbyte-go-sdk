@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/seasonpass/reward"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass/season"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass/tier"
+	"github.com/AccelByte/sample-apps/cmd/seasonpass/utilities"
 	"github.com/spf13/cobra"
 )
 
@@ -27,6 +28,7 @@ func init() {
 	SeasonpassCmd.AddCommand(season.CreateSeasonCmd)
 	SeasonpassCmd.AddCommand(season.GetCurrentSeasonCmd)
 	SeasonpassCmd.AddCommand(season.BulkGetUserSeasonProgressionCmd)
+	SeasonpassCmd.AddCommand(utilities.GetItemReferencesCmd)
 	SeasonpassCmd.AddCommand(season.GetSeasonCmd)
 	SeasonpassCmd.AddCommand(season.DeleteSeasonCmd)
 	SeasonpassCmd.AddCommand(season.UpdateSeasonCmd)

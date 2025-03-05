@@ -30,7 +30,7 @@ type EpicGamesReconcileResult struct {
 	Sku string `json:"sku,omitempty"`
 
 	// status
-	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'VERIFIED']
+	// Enum: ['FAILED', 'FULFILLED', 'PARTIAL_REVOKED', 'REVOKED', 'REVOKE_FAILED', 'VERIFIED']
 	Status string `json:"status,omitempty"`
 
 	// transactionid
@@ -51,7 +51,7 @@ var epicGamesReconcileResultTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "VERIFIED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["FAILED", "FULFILLED", "PARTIAL_REVOKED", "REVOKED", "REVOKE_FAILED", "VERIFIED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -72,6 +72,9 @@ const (
 
 	// EpicGamesReconcileResultStatusREVOKED captures enum value "REVOKED"
 	EpicGamesReconcileResultStatusREVOKED string = "REVOKED"
+
+	// EpicGamesReconcileResultStatusREVOKEFAILED captures enum value "REVOKE_FAILED"
+	EpicGamesReconcileResultStatusREVOKEFAILED string = "REVOKE_FAILED"
 
 	// EpicGamesReconcileResultStatusVERIFIED captures enum value "VERIFIED"
 	EpicGamesReconcileResultStatusVERIFIED string = "VERIFIED"

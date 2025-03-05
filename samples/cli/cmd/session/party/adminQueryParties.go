@@ -26,6 +26,7 @@ var AdminQueryPartiesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		fromTime, _ := cmd.Flags().GetString("fromTime")
 		isSoftDeleted, _ := cmd.Flags().GetString("isSoftDeleted")
 		joinability, _ := cmd.Flags().GetString("joinability")
 		key, _ := cmd.Flags().GetString("key")
@@ -37,9 +38,11 @@ var AdminQueryPartiesCmd = &cobra.Command{
 		order, _ := cmd.Flags().GetString("order")
 		orderBy, _ := cmd.Flags().GetString("orderBy")
 		partyID, _ := cmd.Flags().GetString("partyID")
+		toTime, _ := cmd.Flags().GetString("toTime")
 		value, _ := cmd.Flags().GetString("value")
 		input := &party.AdminQueryPartiesParams{
 			Namespace:     namespace,
+			FromTime:      &fromTime,
 			IsSoftDeleted: &isSoftDeleted,
 			Joinability:   &joinability,
 			Key:           &key,
@@ -51,6 +54,7 @@ var AdminQueryPartiesCmd = &cobra.Command{
 			Order:         &order,
 			OrderBy:       &orderBy,
 			PartyID:       &partyID,
+			ToTime:        &toTime,
 			Value:         &value,
 		}
 		ok, errOK := partyService.AdminQueryPartiesShort(input)
@@ -69,6 +73,7 @@ var AdminQueryPartiesCmd = &cobra.Command{
 func init() {
 	AdminQueryPartiesCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminQueryPartiesCmd.MarkFlagRequired("namespace")
+	AdminQueryPartiesCmd.Flags().String("fromTime", "", "From time")
 	AdminQueryPartiesCmd.Flags().String("isSoftDeleted", "", "Is soft deleted")
 	AdminQueryPartiesCmd.Flags().String("joinability", "", "Joinability")
 	AdminQueryPartiesCmd.Flags().String("key", "", "Key")
@@ -80,5 +85,6 @@ func init() {
 	AdminQueryPartiesCmd.Flags().String("order", "", "Order")
 	AdminQueryPartiesCmd.Flags().String("orderBy", "", "Order by")
 	AdminQueryPartiesCmd.Flags().String("partyID", "", "Party ID")
+	AdminQueryPartiesCmd.Flags().String("toTime", "", "To time")
 	AdminQueryPartiesCmd.Flags().String("value", "", "Value")
 }

@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.3.0"
+    "version": "6.4.0"
   },
   "schemes": [
     "https"
@@ -3327,6 +3327,12 @@
               "$ref": "#/definitions/ErrorEntity"
             }
           },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30343\u003c/td\u003e\u003ctd\u003eItem of sku [{itemSku}] does not exist \u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "409": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39471\u003c/td\u003e\u003ctd\u003eDuplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] \u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -3351,6 +3357,8 @@
         ],
         "x-errorCodes": {
           "20002": "validation error",
+          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
+          "30343": "Item of sku [{itemSku}] does not exist ",
           "39471": "Duplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] ",
           "394721": "Invalid platform DLC config namespace [{namespace}]: [{message}]"
         },
@@ -5696,6 +5704,310 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/iap/steam/abnormal_transactions": {
+      "get": {
+        "description": "",
+        "operationId": "queryAbnormalTransactions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "orderId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "steamId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SteamAbnormalTransactionPagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query steam abnormal transactions",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/iap/steam/job": {
+      "get": {
+        "description": "Query steam report info",
+        "operationId": "adminGetSteamJobInfo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/SteamReportJobInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query steam report job info",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/iap/steam/job/reset": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "",
+        "operationId": "adminResetSteamJobTime",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetJobRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SteamReportJobInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Reset steam report job with a special time",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/iap/steam/orders/{iapOrderNo}/refund": {
+      "put": {
+        "description": "Only support steam transaction mode",
+        "operationId": "adminRefundIAPOrder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "iapOrderNo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPOrderInfo"
+            }
+          },
+          "204": {
+            "description": "Refund IAP Order successfully"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39144\u003c/td\u003e\u003ctd\u003eSteam IAP config not found in namespace [{namespace}].\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39151\u003c/td\u003e\u003ctd\u003eIAP order no [{iapOrderNo}] not found in namespace [{namespace}].\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39184\u003c/td\u003e\u003ctd\u003eSteam api exception with status code [{statusCode}] and error message [{message}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39185\u003c/td\u003e\u003ctd\u003eThis endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Refund IAP Order",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {
+          "39124": "IAP request platform [{platformId}] user id is not linked with current user",
+          "39144": "Steam IAP config not found in namespace [{namespace}].",
+          "39151": "IAP order no [{iapOrderNo}] not found in namespace [{namespace}].",
+          "39184": "Steam api exception with status code [{statusCode}] and error message [{message}]",
+          "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/iap/steam/report/histories": {
+      "get": {
+        "description": "",
+        "operationId": "querySteamReportHistories",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "orderId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "ERROR",
+              "IGNORED",
+              "PROCESSED"
+            ],
+            "in": "query",
+            "name": "processStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "steamId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SteamReportInfoPagingSlicedResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get IAP steam report process histories, default sort by created at",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/iap/subscriptions": {
       "get": {
         "description": "Query subscriptions, default sort by updatedAt Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -7535,6 +7847,25 @@
             "type": "string"
           },
           {
+            "collectionFormat": "multi",
+            "description": "default is empty list",
+            "in": "query",
+            "items": {
+              "enum": [
+                "CAMPAIGN",
+                "CATALOG",
+                "DLC",
+                "ENTITLEMENT",
+                "IAP",
+                "REWARD"
+              ],
+              "type": "string"
+            },
+            "name": "featuresToCheck",
+            "required": false,
+            "type": "array"
+          },
+          {
             "default": false,
             "description": "default is false",
             "in": "query",
@@ -7563,6 +7894,12 @@
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30386\u003c/td\u003e\u003ctd\u003eThe item [{itemId}] is currently associated and cannot be deleted in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
           }
         },
         "security": [
@@ -7578,7 +7915,8 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30335": "Item [{itemId}] can't be deleted in non-forced mode if item has been published",
-          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
+          "30386": "The item [{itemId}] is currently associated and cannot be deleted in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [DELETE]"
@@ -8001,6 +8339,14 @@
             "name": "storeId",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ChangeStatusItemRequest"
+            }
           }
         ],
         "produces": [
@@ -8020,7 +8366,7 @@
             }
           },
           "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30173\u003c/td\u003e\u003ctd\u003ePublished store can't modify content\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30387\u003c/td\u003e\u003ctd\u003eThe item [{itemId}] is currently associated and cannot be disabled in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -8038,7 +8384,8 @@
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30173": "Published store can't modify content",
-          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
+          "30387": "The item [{itemId}] is currently associated and cannot be disabled in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
@@ -8493,6 +8840,86 @@
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/references": {
+      "get": {
+        "description": "This API is used to get references for an item",
+        "operationId": "queryItemReferences",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "itemId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "collectionFormat": "multi",
+            "description": "default is empty list",
+            "in": "query",
+            "items": {
+              "enum": [
+                "CAMPAIGN",
+                "CATALOG",
+                "DLC",
+                "ENTITLEMENT",
+                "IAP",
+                "REWARD"
+              ],
+              "type": "string"
+            },
+            "name": "featuresToCheck",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "use published store id by default",
+            "in": "query",
+            "name": "storeId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemDependency"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30141\u003c/td\u003e\u003ctd\u003eStore [{storeId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30142\u003c/td\u003e\u003ctd\u003ePublished store does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e30341\u003c/td\u003e\u003ctd\u003eItem [{itemId}] does not exist in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get item references",
+        "tags": [
+          "Item"
+        ],
+        "x-errorCodes": {
+          "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
+          "30142": "Published store does not exist in namespace [{namespace}]",
+          "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
       }
     },
@@ -17497,6 +17924,7 @@
               "FULFILLED",
               "PARTIAL_REVOKED",
               "REVOKED",
+              "REVOKE_FAILED",
               "VERIFIED"
             ],
             "in": "query",
@@ -17764,6 +18192,206 @@
           "35123": "Wallet [{walletId}] is inactive",
           "38121": "Duplicate permanent item exists",
           "38122": "Subscription endDate required"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap/orders/{iapOrderNo}/line_items": {
+      "get": {
+        "description": "Query IAP order ine items.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated iap orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "adminGetIAPOrderLineItems",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "iapOrderNo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/IAPOrderLineItemInfo"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Query IAP order line items",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction": {
+      "put": {
+        "description": "",
+        "operationId": "adminSyncSteamAbnormalTransaction",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPOrderShortInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39621\u003c/td\u003e\u003ctd\u003eSteam api common exception with status code [statusCode] details: [details]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39144\u003c/td\u003e\u003ctd\u003eSteam IAP config not found in namespace [{namespace}].\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39184\u003c/td\u003e\u003ctd\u003eSteam api exception  with status code [{statusCode}] and error message [{message}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39185\u003c/td\u003e\u003ctd\u003eThis endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sync Abnormal transaction, Sync steam order by transaction. only works when steam sync mode is TRANSACTION.",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {
+          "39124": "IAP request platform [{platformId}] user id is not linked with current user",
+          "39144": "Steam IAP config not found in namespace [{namespace}].",
+          "39184": "Steam api exception  with status code [{statusCode}] and error message [{message}]",
+          "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
+          "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "",
+        "operationId": "adminSyncSteamIAPByTransaction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SteamSyncByTransactionRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPOrderShortInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39621\u003c/td\u003e\u003ctd\u003eSteam api common exception with status code [statusCode] details: [details]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39144\u003c/td\u003e\u003ctd\u003eSteam IAP config not found in namespace [{namespace}].\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39184\u003c/td\u003e\u003ctd\u003eSteam api exception with error code [{errorCode}] and error message [{message}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39185\u003c/td\u003e\u003ctd\u003eThis endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Manual sync steam transaction. only works when steam sync mode is TRANSACTION.",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {
+          "39124": "IAP request platform [{platformId}] user id is not linked with current user",
+          "39144": "Steam IAP config not found in namespace [{namespace}].",
+          "39184": "Steam api exception with error code [{errorCode}] and error message [{message}]",
+          "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
+          "39621": "Steam api common exception with status code [statusCode] details: [details]"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -29248,6 +29876,154 @@
         }
       }
     },
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction": {
+      "put": {
+        "description": "",
+        "operationId": "syncSteamAbnormalTransaction",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPOrderShortInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39621\u003c/td\u003e\u003ctd\u003eSteam api common exception with status code [statusCode] details: [details]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39144\u003c/td\u003e\u003ctd\u003eSteam IAP config not found in namespace [{namespace}].\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39184\u003c/td\u003e\u003ctd\u003eSteam api exception with error code [{statusCode}] and error message [{message}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39185\u003c/td\u003e\u003ctd\u003eThis endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sync Abnormal transaction, Sync steam order by transaction. only works when steam sync mode is TRANSACTION.",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {
+          "39124": "IAP request platform [{platformId}] user id is not linked with current user",
+          "39144": "Steam IAP config not found in namespace [{namespace}].",
+          "39184": "Steam api exception with error code [{statusCode}] and error message [{message}]",
+          "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
+          "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Sync steam in app purchase by transaction.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "syncSteamIAPByTransaction",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SteamSyncByTransactionRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/IAPOrderShortInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39124\u003c/td\u003e\u003ctd\u003eIAP request platform [{platformId}] user id is not linked with current user\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39621\u003c/td\u003e\u003ctd\u003eSteam api common exception with status code [statusCode] details: [details]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39144\u003c/td\u003e\u003ctd\u003eSteam IAP config not found in namespace [{namespace}].\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39183\u003c/td\u003e\u003ctd\u003eSteam transaction [{orderId}] is still pending or failed, status [{status}], please try it later\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39184\u003c/td\u003e\u003ctd\u003eSteam api exception with error code [{errorCode}] and error message [{message}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39185\u003c/td\u003e\u003ctd\u003eThis endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sync steam in app purchase by transaction.",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {
+          "39124": "IAP request platform [{platformId}] user id is not linked with current user",
+          "39144": "Steam IAP config not found in namespace [{namespace}].",
+          "39183": "Steam transaction [{orderId}] is still pending or failed, status [{status}], please try it later",
+          "39184": "Steam api exception with error code [{errorCode}] and error message [{message}]",
+          "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
+          "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-security": {
+          "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/subscriptions/platforms/{platform}": {
       "get": {
         "description": "Query user subscription, default sort by updatedAtOther detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -34146,7 +34922,16 @@
         "id": {
           "type": "string"
         },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/RedeemableItem"
+          },
+          "type": "array"
+        },
         "name": {
+          "type": "string"
+        },
+        "namespace": {
           "type": "string"
         }
       },
@@ -34562,6 +35347,22 @@
           "description": "enable inventory check",
           "type": "boolean",
           "x-omitempty": false
+        },
+        "itemDeletionCheckConfig": {
+          "description": "item deletion check configuration",
+          "items": {
+            "enum": [
+              "CAMPAIGN",
+              "CATALOG",
+              "DLC",
+              "ENTITLEMENT",
+              "IAP",
+              "REWARD"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
         }
       },
       "required": [
@@ -34575,6 +35376,22 @@
           "description": "enable inventory check",
           "type": "boolean",
           "x-omitempty": false
+        },
+        "itemDeletionCheckConfig": {
+          "description": "item deletion check configuration",
+          "items": {
+            "enum": [
+              "CAMPAIGN",
+              "CATALOG",
+              "DLC",
+              "ENTITLEMENT",
+              "IAP",
+              "REWARD"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
         }
       },
       "required": [
@@ -34703,6 +35520,27 @@
       "required": [
         "localizationDisplayNames"
       ],
+      "type": "object"
+    },
+    "ChangeStatusItemRequest": {
+      "properties": {
+        "featuresToCheck": {
+          "description": "feature reference to check",
+          "items": {
+            "enum": [
+              "CAMPAIGN",
+              "CATALOG",
+              "DLC",
+              "ENTITLEMENT",
+              "IAP",
+              "REWARD"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
       "type": "object"
     },
     "CheckoutConfig": {
@@ -37502,6 +38340,7 @@
             "FULFILLED",
             "PARTIAL_REVOKED",
             "REVOKED",
+            "REVOKE_FAILED",
             "VERIFIED"
           ],
           "type": "string"
@@ -37829,6 +38668,28 @@
         "targetUserId",
         "title"
       ],
+      "type": "object"
+    },
+    "FeatureReference": {
+      "properties": {
+        "feature": {
+          "enum": [
+            "CAMPAIGN",
+            "CATALOG",
+            "DLC",
+            "ENTITLEMENT",
+            "IAP",
+            "REWARD"
+          ],
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/definitions/ModuleReference"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "FieldValidationError": {
@@ -39946,12 +40807,21 @@
             "FULFILLED",
             "PARTIAL_REVOKED",
             "REVOKED",
+            "REVOKE_FAILED",
             "VERIFIED"
           ],
           "type": "string"
         },
         "statusReason": {
           "description": "status reason",
+          "type": "string"
+        },
+        "syncMode": {
+          "description": "sync mode, only steam have this value currently.",
+          "enum": [
+            "INVENTORY",
+            "TRANSACTION"
+          ],
           "type": "string"
         },
         "transactionId": {
@@ -39995,6 +40865,98 @@
       ],
       "type": "object"
     },
+    "IAPOrderLineItemInfo": {
+      "properties": {
+        "amount": {
+          "description": "The total cost of the item to the user excluding VAT (in cents).",
+          "format": "int64",
+          "type": "integer"
+        },
+        "iapOrderNo": {
+          "description": "The AGS In-App Purchase (IAP) order number.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier for the order.",
+          "type": "string"
+        },
+        "itemIdentity": {
+          "description": "The AGS item identifier for the order.",
+          "type": "string"
+        },
+        "itemIdentityType": {
+          "description": "The type of item identity (e.g., SKU, product ID).",
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
+          "type": "string"
+        },
+        "lastFulfillmentV2Result": {
+          "$ref": "#/definitions/FulfillmentV2Result",
+          "description": "The result of the last fulfillment attempt."
+        },
+        "lastRevokeFulfillmentV2Result": {
+          "$ref": "#/definitions/RevokeFulfillmentV2Result",
+          "description": "The result of the last attempt to revoke fulfillment."
+        },
+        "lineItemId": {
+          "description": "The unique identifier for the item within the order, for steam, it's array index",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "The namespace representing the AGS namespace.",
+          "type": "string"
+        },
+        "platform": {
+          "description": "The platform on which the order was placed (STEAM, etc.)",
+          "enum": [
+            "STEAM"
+          ],
+          "type": "string"
+        },
+        "qty": {
+          "description": "The quantity of the item ordered.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "sandbox": {
+          "description": "Flag to determine if the order is placed in a sandbox (test) environment.",
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "status": {
+          "description": "The status of the order.",
+          "enum": [
+            "FULFILLED",
+            "VERIFIED"
+          ],
+          "type": "string"
+        },
+        "statusReason": {
+          "description": "A reason or explanation for the current status of the order.",
+          "type": "string"
+        },
+        "thirdPartyItemId": {
+          "description": "The third-party item identifier related to the order.",
+          "type": "string"
+        },
+        "thirdPartyOrderId": {
+          "description": "The third-party order identifier related to the IAP (In-App Purchase) transaction.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "The unique identifier of the AGS user.",
+          "type": "string"
+        },
+        "vat": {
+          "description": "The VAT or tax amount (in cents).",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "IAPOrderPagingSlicedResult": {
       "properties": {
         "data": {
@@ -40011,6 +40973,25 @@
       "required": [
         "data"
       ],
+      "type": "object"
+    },
+    "IAPOrderShortInfo": {
+      "properties": {
+        "iapOrderNo": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "FAILED",
+            "FULFILLED",
+            "PARTIAL_REVOKED",
+            "REVOKED",
+            "REVOKE_FAILED",
+            "VERIFIED"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Image": {
@@ -40706,6 +41687,17 @@
       ],
       "type": "object"
     },
+    "ItemDependency": {
+      "properties": {
+        "references": {
+          "items": {
+            "$ref": "#/definitions/FeatureReference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ItemDynamicDataInfo": {
       "properties": {
         "availableCount": {
@@ -41178,6 +42170,41 @@
             "$ref": "#/definitions/ConditionGroupValidateResult"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ItemReference": {
+      "properties": {
+        "codeRedemptionId": {
+          "type": "string"
+        },
+        "conditionName": {
+          "type": "string"
+        },
+        "dlcId": {
+          "type": "string"
+        },
+        "itemId": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "platformProductId": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": "string"
+        },
+        "rewardCode": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -42345,6 +43372,33 @@
       ],
       "type": "object"
     },
+    "ModuleReference": {
+      "properties": {
+        "module": {
+          "enum": [
+            "CAMPAIGN",
+            "CHALLENGE_CONFIGURATIONS",
+            "DLC_CONFIGURATION",
+            "ENTITLEMENT",
+            "ITEM",
+            "ITEM_MAPPING",
+            "REWARD_CONFIGURATION",
+            "SEASON_PASS_CODE",
+            "SEASON_PASS_REWARD",
+            "SEASON_PASS_TIER",
+            "SECTION"
+          ],
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/definitions/ItemReference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "NeonPayConfig": {
       "description": "A DTO object for updating Neon Pay config.",
       "properties": {
@@ -42431,6 +43485,7 @@
             "FULFILLED",
             "PARTIAL_REVOKED",
             "REVOKED",
+            "REVOKE_FAILED",
             "VERIFIED"
           ],
           "type": "string"
@@ -45709,6 +46764,7 @@
             "FULFILLED",
             "PARTIAL_REVOKED",
             "REVOKED",
+            "REVOKE_FAILED",
             "VERIFIED"
           ],
           "type": "string"
@@ -46813,6 +47869,25 @@
       "required": [
         "label"
       ],
+      "type": "object"
+    },
+    "ResetJobRequest": {
+      "properties": {
+        "env": {
+          "description": "Steam env",
+          "enum": [
+            "LIVE",
+            "SANDBOX"
+          ],
+          "type": "string"
+        },
+        "lastTime": {
+          "description": "last time",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
       "type": "object"
     },
     "RevocationConfigInfo": {
@@ -48469,6 +49544,9 @@
       ],
       "type": "object"
     },
+    "SteamAbnormalTransactionPagingSlicedResult": {
+      "type": "object"
+    },
     "SteamAchievement": {
       "description": "steam achievement request",
       "properties": {
@@ -48525,6 +49603,13 @@
           "type": "string",
           "x-nullable": true
         },
+        "env": {
+          "enum": [
+            "LIVE",
+            "SANDBOX"
+          ],
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -48534,6 +49619,13 @@
         "rvn": {
           "format": "int32",
           "type": "integer"
+        },
+        "syncMode": {
+          "enum": [
+            "INVENTORY",
+            "TRANSACTION"
+          ],
+          "type": "string"
         },
         "updatedAt": {
           "format": "date-time",
@@ -48549,12 +49641,28 @@
           "description": "steam app id",
           "type": "string"
         },
+        "env": {
+          "description": "steam env",
+          "enum": [
+            "LIVE",
+            "SANDBOX"
+          ],
+          "type": "string"
+        },
         "namespace": {
           "description": "namespace",
           "type": "string"
         },
         "publisherAuthenticationKey": {
           "description": "steam publisher authentication key",
+          "type": "string"
+        },
+        "syncMode": {
+          "description": "steam sync mode",
+          "enum": [
+            "INVENTORY",
+            "TRANSACTION"
+          ],
           "type": "string"
         }
       },
@@ -48570,13 +49678,72 @@
           "description": "appId",
           "type": "string"
         },
+        "env": {
+          "description": "steam env, required if sync mode is inventory",
+          "enum": [
+            "LIVE",
+            "SANDBOX"
+          ],
+          "type": "string"
+        },
         "publisherAuthenticationKey": {
           "description": "publisherAuthenticationKey",
+          "type": "string"
+        },
+        "syncMode": {
+          "description": "steam sync mode, default is INVENTORY",
+          "enum": [
+            "INVENTORY",
+            "TRANSACTION"
+          ],
           "type": "string"
         }
       },
       "required": [
         "appId"
+      ],
+      "type": "object"
+    },
+    "SteamReportInfoPagingSlicedResult": {
+      "type": "object"
+    },
+    "SteamReportJobInfo": {
+      "properties": {
+        "env": {
+          "description": "The environment in which the report is running.",
+          "enum": [
+            "LIVE",
+            "SANDBOX"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier (UUID) for the report.",
+          "type": "string"
+        },
+        "lastTime": {
+          "description": "The last start time of the report. This time (1970-01-01T00:00:00Z) will be used for the first run.",
+          "example": "1970-01-01T00:00:00Z",
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "namespace": {
+          "description": "The AGS namespace associated with the report.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SteamSyncByTransactionRequest": {
+      "properties": {
+        "orderId": {
+          "description": "Unique 64-bit ID for steam order",
+          "type": "string"
+        }
+      },
+      "required": [
+        "orderId"
       ],
       "type": "object"
     },
@@ -50506,6 +51673,7 @@
             "FULFILLED",
             "PARTIAL_REVOKED",
             "REVOKED",
+            "REVOKE_FAILED",
             "VERIFIED"
           ],
           "type": "string"
@@ -51349,6 +52517,7 @@
             "FULFILLED",
             "PARTIAL_REVOKED",
             "REVOKED",
+            "REVOKE_FAILED",
             "VERIFIED"
           ],
           "type": "string"
@@ -51538,16 +52707,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-01-28T06:46:19+00:00",
-    "buildID": "6.3.0",
+    "buildDate": "2025-02-28T02:05:14+00:00",
+    "buildID": "6.4.0",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.233-224.894.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "9221656b89",
-    "gitTag": "6.3.0",
+    "gitHash": "4729d3f8b9",
+    "gitTag": "6.4.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.3.0",
+    "version": "6.4.0",
     "version-roles-seeding": "1.2.74"
   }
 }

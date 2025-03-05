@@ -7,6 +7,8 @@
 package item
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -27,13 +29,20 @@ var DeleteItemCmd = &cobra.Command{
 		}
 		itemId, _ := cmd.Flags().GetString("itemId")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		featuresToCheckString := cmd.Flag("featuresToCheck").Value.String()
+		var featuresToCheck []string
+		errFeaturesToCheck := json.Unmarshal([]byte(featuresToCheckString), &featuresToCheck)
+		if errFeaturesToCheck != nil {
+			return errFeaturesToCheck
+		}
 		force, _ := cmd.Flags().GetBool("force")
 		storeId, _ := cmd.Flags().GetString("storeId")
 		input := &item.DeleteItemParams{
-			ItemID:    itemId,
-			Namespace: namespace,
-			Force:     &force,
-			StoreID:   &storeId,
+			ItemID:          itemId,
+			Namespace:       namespace,
+			FeaturesToCheck: featuresToCheck,
+			Force:           &force,
+			StoreID:         &storeId,
 		}
 		errNoContent := itemService.DeleteItemShort(input)
 		if errNoContent != nil {
@@ -53,6 +62,7 @@ func init() {
 	_ = DeleteItemCmd.MarkFlagRequired("itemId")
 	DeleteItemCmd.Flags().String("namespace", "", "Namespace")
 	_ = DeleteItemCmd.MarkFlagRequired("namespace")
+	DeleteItemCmd.Flags().String("featuresToCheck", "", "Features to check")
 	DeleteItemCmd.Flags().Bool("force", false, "Force")
 	DeleteItemCmd.Flags().String("storeId", "", "Store id")
 }

@@ -32,9 +32,11 @@ const (
 // with the default values initialized.
 func NewTokenGrantV3Params() *TokenGrantV3Params {
 	var (
+		scopeDefault     = string("commerce account social publishing analytics")
 		grantTypeDefault = string("authorization_code")
 	)
 	return &TokenGrantV3Params{
+		Scope:     &scopeDefault,
 		GrantType: grantTypeDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -45,9 +47,11 @@ func NewTokenGrantV3Params() *TokenGrantV3Params {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewTokenGrantV3ParamsWithTimeout(timeout time.Duration) *TokenGrantV3Params {
 	var (
+		scopeDefault     = string("commerce account social publishing analytics")
 		grantTypeDefault = string("authorization_code")
 	)
 	return &TokenGrantV3Params{
+		Scope:     &scopeDefault,
 		GrantType: grantTypeDefault,
 
 		timeout: timeout,
@@ -58,9 +62,11 @@ func NewTokenGrantV3ParamsWithTimeout(timeout time.Duration) *TokenGrantV3Params
 // with the default values initialized, and the ability to set a context for a request
 func NewTokenGrantV3ParamsWithContext(ctx context.Context) *TokenGrantV3Params {
 	var (
+		scopeDefault     = string("commerce account social publishing analytics")
 		grantTypeDefault = string("authorization_code")
 	)
 	return &TokenGrantV3Params{
+		Scope:     &scopeDefault,
 		GrantType: grantTypeDefault,
 
 		Context: ctx,
@@ -71,9 +77,11 @@ func NewTokenGrantV3ParamsWithContext(ctx context.Context) *TokenGrantV3Params {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewTokenGrantV3ParamsWithHTTPClient(client *http.Client) *TokenGrantV3Params {
 	var (
+		scopeDefault     = string("commerce account social publishing analytics")
 		grantTypeDefault = string("authorization_code")
 	)
 	return &TokenGrantV3Params{
+		Scope:      &scopeDefault,
 		GrantType:  grantTypeDefault,
 		HTTPClient: client,
 	}
@@ -146,6 +154,11 @@ type TokenGrantV3Params struct {
 
 	*/
 	RefreshToken *string
+	/*Scope
+	  Defines the access token scope when using grant type 'password' or 'client_credentials'. Can be multiple values delimited by whitespace.
+
+	*/
+	Scope *string
 	/*Username
 	  User Name (used with grant type 'password')
 
@@ -354,6 +367,17 @@ func (o *TokenGrantV3Params) SetRefreshToken(refreshToken *string) {
 	o.RefreshToken = refreshToken
 }
 
+// WithScope adds the scope to the token grant v3 params
+func (o *TokenGrantV3Params) WithScope(scope *string) *TokenGrantV3Params {
+	o.SetScope(scope)
+	return o
+}
+
+// SetScope adds the scope to the token grant v3 params
+func (o *TokenGrantV3Params) SetScope(scope *string) {
+	o.Scope = scope
+}
+
 // WithUsername adds the username to the token grant v3 params
 func (o *TokenGrantV3Params) WithUsername(username *string) *TokenGrantV3Params {
 	o.SetUsername(username)
@@ -555,6 +579,22 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		fRefreshToken := frRefreshToken
 		if fRefreshToken != "" {
 			if err := r.SetFormParam("refresh_token", fRefreshToken); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Scope != nil {
+
+		// form param scope
+		var frScope string
+		if o.Scope != nil {
+			frScope = *o.Scope
+		}
+		fScope := frScope
+		if fScope != "" {
+			if err := r.SetFormParam("scope", fScope); err != nil {
 				return err
 			}
 		}

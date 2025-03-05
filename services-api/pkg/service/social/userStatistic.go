@@ -638,13 +638,13 @@ func (aaa *UserStatisticService) PublicListAllMyStatItems(input *user_statistic.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PublicQueryUserStatItemsShort instead.
-func (aaa *UserStatisticService) PublicQueryUserStatItems(input *user_statistic.PublicQueryUserStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+// Deprecated: 2022-01-10 - please use PublicQueryUserStatItems1Short instead.
+func (aaa *UserStatisticService) PublicQueryUserStatItems1(input *user_statistic.PublicQueryUserStatItems1Params) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.UserStatistic.PublicQueryUserStatItems(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.UserStatistic.PublicQueryUserStatItems1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -693,13 +693,13 @@ func (aaa *UserStatisticService) PublicBulkCreateUserStatItems(input *user_stati
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PublicQueryUserStatItems1Short instead.
-func (aaa *UserStatisticService) PublicQueryUserStatItems1(input *user_statistic.PublicQueryUserStatItems1Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+// Deprecated: 2022-01-10 - please use PublicQueryUserStatItemsShort instead.
+func (aaa *UserStatisticService) PublicQueryUserStatItems(input *user_statistic.PublicQueryUserStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserStatistic.PublicQueryUserStatItems1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserStatistic.PublicQueryUserStatItems(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1968,7 +1968,7 @@ func (aaa *UserStatisticService) PublicListAllMyStatItemsShort(input *user_stati
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statistic.PublicQueryUserStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+func (aaa *UserStatisticService) PublicQueryUserStatItems1Short(input *user_statistic.PublicQueryUserStatItems1Params) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1990,7 +1990,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItemsShort(input *user_stati
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.UserStatistic.PublicQueryUserStatItemsShort(input, authInfoWriter)
+	ok, err := aaa.Client.UserStatistic.PublicQueryUserStatItems1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -2028,7 +2028,7 @@ func (aaa *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UserStatisticService) PublicQueryUserStatItems1Short(input *user_statistic.PublicQueryUserStatItems1Params) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
+func (aaa *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statistic.PublicQueryUserStatItemsParams) ([]*socialclientmodels.ADTOObjectForUserStatItemValue, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -2050,7 +2050,7 @@ func (aaa *UserStatisticService) PublicQueryUserStatItems1Short(input *user_stat
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.UserStatistic.PublicQueryUserStatItems1Short(input, authInfoWriter)
+	ok, err := aaa.Client.UserStatistic.PublicQueryUserStatItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

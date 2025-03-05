@@ -31,6 +31,7 @@ var PublicGetScheduledGoalsCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
 		tagsString := cmd.Flag("tags").Value.String()
 		var tags []string
 		errTags := json.Unmarshal([]byte(tagsString), &tags)
@@ -42,6 +43,7 @@ var PublicGetScheduledGoalsCmd = &cobra.Command{
 			Namespace:     namespace,
 			Limit:         &limit,
 			Offset:        &offset,
+			SortBy:        &sortBy,
 			Tags:          tags,
 		}
 		ok, errOK := challengeListService.PublicGetScheduledGoalsShort(input)
@@ -64,5 +66,6 @@ func init() {
 	_ = PublicGetScheduledGoalsCmd.MarkFlagRequired("namespace")
 	PublicGetScheduledGoalsCmd.Flags().Int64("limit", 20, "Limit")
 	PublicGetScheduledGoalsCmd.Flags().Int64("offset", 0, "Offset")
+	PublicGetScheduledGoalsCmd.Flags().String("sortBy", "", "Sort by")
 	PublicGetScheduledGoalsCmd.Flags().String("tags", "", "Tags")
 }

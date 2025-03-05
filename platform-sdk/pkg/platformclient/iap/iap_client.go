@@ -94,6 +94,16 @@ type ClientService interface {
 	DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
 	UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, *UpdateXblBPCertFileBadRequest, error)
 	UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error)
+	QueryAbnormalTransactions(params *QueryAbnormalTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAbnormalTransactionsOK, error)
+	QueryAbnormalTransactionsShort(params *QueryAbnormalTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAbnormalTransactionsOK, error)
+	AdminGetSteamJobInfo(params *AdminGetSteamJobInfoParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSteamJobInfoOK, error)
+	AdminGetSteamJobInfoShort(params *AdminGetSteamJobInfoParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSteamJobInfoOK, error)
+	AdminResetSteamJobTime(params *AdminResetSteamJobTimeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetSteamJobTimeOK, error)
+	AdminResetSteamJobTimeShort(params *AdminResetSteamJobTimeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetSteamJobTimeOK, error)
+	AdminRefundIAPOrder(params *AdminRefundIAPOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRefundIAPOrderOK, *AdminRefundIAPOrderNoContent, *AdminRefundIAPOrderBadRequest, *AdminRefundIAPOrderNotFound, *AdminRefundIAPOrderConflict, error)
+	AdminRefundIAPOrderShort(params *AdminRefundIAPOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRefundIAPOrderOK, error)
+	QuerySteamReportHistories(params *QuerySteamReportHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySteamReportHistoriesOK, error)
+	QuerySteamReportHistoriesShort(params *QuerySteamReportHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySteamReportHistoriesOK, error)
 	GetIAPOrderConsumeDetails(params *GetIAPOrderConsumeDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPOrderConsumeDetailsOK, error)
 	GetIAPOrderConsumeDetailsShort(params *GetIAPOrderConsumeDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPOrderConsumeDetailsOK, error)
 	QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPOrdersOK, error)
@@ -104,6 +114,12 @@ type ClientService interface {
 	QueryUserIAPConsumeHistoryShort(params *QueryUserIAPConsumeHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPConsumeHistoryOK, error)
 	MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error)
 	MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error)
+	AdminGetIAPOrderLineItems(params *AdminGetIAPOrderLineItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetIAPOrderLineItemsOK, error)
+	AdminGetIAPOrderLineItemsShort(params *AdminGetIAPOrderLineItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetIAPOrderLineItemsOK, error)
+	AdminSyncSteamAbnormalTransaction(params *AdminSyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamAbnormalTransactionOK, *AdminSyncSteamAbnormalTransactionBadRequest, *AdminSyncSteamAbnormalTransactionNotFound, *AdminSyncSteamAbnormalTransactionConflict, error)
+	AdminSyncSteamAbnormalTransactionShort(params *AdminSyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamAbnormalTransactionOK, error)
+	AdminSyncSteamIAPByTransaction(params *AdminSyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamIAPByTransactionOK, *AdminSyncSteamIAPByTransactionBadRequest, *AdminSyncSteamIAPByTransactionNotFound, *AdminSyncSteamIAPByTransactionConflict, error)
+	AdminSyncSteamIAPByTransactionShort(params *AdminSyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamIAPByTransactionOK, error)
 	GetAppleConfigVersion(params *GetAppleConfigVersionParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleConfigVersionOK, *GetAppleConfigVersionNotFound, error)
 	GetAppleConfigVersionShort(params *GetAppleConfigVersionParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleConfigVersionOK, error)
 	GetIAPItemMapping(params *GetIAPItemMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemMappingOK, *GetIAPItemMappingNotFound, error)
@@ -124,6 +140,10 @@ type ClientService interface {
 	PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, error)
 	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, *SyncSteamInventoryNotFound, error)
 	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
+	SyncSteamAbnormalTransaction(params *SyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamAbnormalTransactionOK, *SyncSteamAbnormalTransactionBadRequest, *SyncSteamAbnormalTransactionNotFound, *SyncSteamAbnormalTransactionConflict, error)
+	SyncSteamAbnormalTransactionShort(params *SyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamAbnormalTransactionOK, error)
+	SyncSteamIAPByTransaction(params *SyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamIAPByTransactionOK, *SyncSteamIAPByTransactionBadRequest, *SyncSteamIAPByTransactionNotFound, *SyncSteamIAPByTransactionConflict, error)
+	SyncSteamIAPByTransactionShort(params *SyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamIAPByTransactionOK, error)
 	SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, *SyncTwitchDropsEntitlement1BadRequest, error)
 	SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, error)
 	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, *SyncXboxInventoryNotFound, error)
@@ -3308,6 +3328,506 @@ func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, aut
 }
 
 /*
+Deprecated: 2022-08-10 - Use QueryAbnormalTransactionsShort instead.
+
+QueryAbnormalTransactions query steam abnormal transactions
+
+*/
+func (a *Client) QueryAbnormalTransactions(params *QueryAbnormalTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAbnormalTransactionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryAbnormalTransactionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryAbnormalTransactions",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/abnormal_transactions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryAbnormalTransactionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryAbnormalTransactionsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+QueryAbnormalTransactionsShort query steam abnormal transactions
+
+*/
+func (a *Client) QueryAbnormalTransactionsShort(params *QueryAbnormalTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAbnormalTransactionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryAbnormalTransactionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryAbnormalTransactions",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/abnormal_transactions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryAbnormalTransactionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryAbnormalTransactionsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetSteamJobInfoShort instead.
+
+AdminGetSteamJobInfo query steam report job info
+Query steam report info
+*/
+func (a *Client) AdminGetSteamJobInfo(params *AdminGetSteamJobInfoParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSteamJobInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetSteamJobInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetSteamJobInfo",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/job",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetSteamJobInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetSteamJobInfoOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetSteamJobInfoShort query steam report job info
+Query steam report info
+*/
+func (a *Client) AdminGetSteamJobInfoShort(params *AdminGetSteamJobInfoParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetSteamJobInfoOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetSteamJobInfoParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetSteamJobInfo",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/job",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetSteamJobInfoReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetSteamJobInfoOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminResetSteamJobTimeShort instead.
+
+AdminResetSteamJobTime reset steam report job with a special time
+
+*/
+func (a *Client) AdminResetSteamJobTime(params *AdminResetSteamJobTimeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetSteamJobTimeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetSteamJobTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminResetSteamJobTime",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/job/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetSteamJobTimeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetSteamJobTimeOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminResetSteamJobTimeShort reset steam report job with a special time
+
+*/
+func (a *Client) AdminResetSteamJobTimeShort(params *AdminResetSteamJobTimeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetSteamJobTimeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminResetSteamJobTimeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminResetSteamJobTime",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/job/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminResetSteamJobTimeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminResetSteamJobTimeOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminRefundIAPOrderShort instead.
+
+AdminRefundIAPOrder refund iap order
+Only support steam transaction mode
+*/
+func (a *Client) AdminRefundIAPOrder(params *AdminRefundIAPOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRefundIAPOrderOK, *AdminRefundIAPOrderNoContent, *AdminRefundIAPOrderBadRequest, *AdminRefundIAPOrderNotFound, *AdminRefundIAPOrderConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRefundIAPOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminRefundIAPOrder",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/orders/{iapOrderNo}/refund",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRefundIAPOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRefundIAPOrderOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminRefundIAPOrderNoContent:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminRefundIAPOrderBadRequest:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminRefundIAPOrderNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminRefundIAPOrderConflict:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminRefundIAPOrderShort refund iap order
+Only support steam transaction mode
+*/
+func (a *Client) AdminRefundIAPOrderShort(params *AdminRefundIAPOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRefundIAPOrderOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminRefundIAPOrderParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminRefundIAPOrder",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/orders/{iapOrderNo}/refund",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminRefundIAPOrderReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminRefundIAPOrderOK:
+		return v, nil
+	case *AdminRefundIAPOrderNoContent:
+		return nil, v
+	case *AdminRefundIAPOrderBadRequest:
+		return nil, v
+	case *AdminRefundIAPOrderNotFound:
+		return nil, v
+	case *AdminRefundIAPOrderConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use QuerySteamReportHistoriesShort instead.
+
+QuerySteamReportHistories get iap steam report process histories, default sort by created at
+
+*/
+func (a *Client) QuerySteamReportHistories(params *QuerySteamReportHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySteamReportHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQuerySteamReportHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "querySteamReportHistories",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/report/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QuerySteamReportHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QuerySteamReportHistoriesOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+QuerySteamReportHistoriesShort get iap steam report process histories, default sort by created at
+
+*/
+func (a *Client) QuerySteamReportHistoriesShort(params *QuerySteamReportHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySteamReportHistoriesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQuerySteamReportHistoriesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "querySteamReportHistories",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/steam/report/histories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QuerySteamReportHistoriesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QuerySteamReportHistoriesOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetIAPOrderConsumeDetailsShort instead.
 
 GetIAPOrderConsumeDetails get iap order consume details by iap order number.
@@ -3809,6 +4329,328 @@ func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authI
 	case *MockFulfillIAPItemNotFound:
 		return nil, v
 	case *MockFulfillIAPItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetIAPOrderLineItemsShort instead.
+
+AdminGetIAPOrderLineItems query iap order line items
+Query IAP order ine items.
+Other detail info:
+                          * Returns : paginated iap orders
+*/
+func (a *Client) AdminGetIAPOrderLineItems(params *AdminGetIAPOrderLineItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetIAPOrderLineItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetIAPOrderLineItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetIAPOrderLineItems",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/orders/{iapOrderNo}/line_items",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetIAPOrderLineItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetIAPOrderLineItemsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetIAPOrderLineItemsShort query iap order line items
+Query IAP order ine items.
+Other detail info:
+                          * Returns : paginated iap orders
+*/
+func (a *Client) AdminGetIAPOrderLineItemsShort(params *AdminGetIAPOrderLineItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetIAPOrderLineItemsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetIAPOrderLineItemsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetIAPOrderLineItems",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/orders/{iapOrderNo}/line_items",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetIAPOrderLineItemsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetIAPOrderLineItemsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminSyncSteamAbnormalTransactionShort instead.
+
+AdminSyncSteamAbnormalTransaction sync abnormal transaction, sync steam order by transaction. only works when steam sync mode is transaction.
+
+*/
+func (a *Client) AdminSyncSteamAbnormalTransaction(params *AdminSyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamAbnormalTransactionOK, *AdminSyncSteamAbnormalTransactionBadRequest, *AdminSyncSteamAbnormalTransactionNotFound, *AdminSyncSteamAbnormalTransactionConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncSteamAbnormalTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncSteamAbnormalTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncSteamAbnormalTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncSteamAbnormalTransactionOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminSyncSteamAbnormalTransactionBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminSyncSteamAbnormalTransactionNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminSyncSteamAbnormalTransactionConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncSteamAbnormalTransactionShort sync abnormal transaction, sync steam order by transaction. only works when steam sync mode is transaction.
+
+*/
+func (a *Client) AdminSyncSteamAbnormalTransactionShort(params *AdminSyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamAbnormalTransactionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncSteamAbnormalTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncSteamAbnormalTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncSteamAbnormalTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncSteamAbnormalTransactionOK:
+		return v, nil
+	case *AdminSyncSteamAbnormalTransactionBadRequest:
+		return nil, v
+	case *AdminSyncSteamAbnormalTransactionNotFound:
+		return nil, v
+	case *AdminSyncSteamAbnormalTransactionConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminSyncSteamIAPByTransactionShort instead.
+
+AdminSyncSteamIAPByTransaction manual sync steam transaction. only works when steam sync mode is transaction.
+
+*/
+func (a *Client) AdminSyncSteamIAPByTransaction(params *AdminSyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamIAPByTransactionOK, *AdminSyncSteamIAPByTransactionBadRequest, *AdminSyncSteamIAPByTransactionNotFound, *AdminSyncSteamIAPByTransactionConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncSteamIAPByTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncSteamIAPByTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncSteamIAPByTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncSteamIAPByTransactionOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminSyncSteamIAPByTransactionBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *AdminSyncSteamIAPByTransactionNotFound:
+		return nil, nil, v, nil, nil
+
+	case *AdminSyncSteamIAPByTransactionConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncSteamIAPByTransactionShort manual sync steam transaction. only works when steam sync mode is transaction.
+
+*/
+func (a *Client) AdminSyncSteamIAPByTransactionShort(params *AdminSyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamIAPByTransactionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncSteamIAPByTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncSteamIAPByTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncSteamIAPByTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncSteamIAPByTransactionOK:
+		return v, nil
+	case *AdminSyncSteamIAPByTransactionBadRequest:
+		return nil, v
+	case *AdminSyncSteamIAPByTransactionNotFound:
+		return nil, v
+	case *AdminSyncSteamIAPByTransactionConflict:
 		return nil, v
 
 	default:
@@ -4878,6 +5720,230 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 	case *SyncSteamInventoryBadRequest:
 		return nil, v
 	case *SyncSteamInventoryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use SyncSteamAbnormalTransactionShort instead.
+
+SyncSteamAbnormalTransaction sync abnormal transaction, sync steam order by transaction. only works when steam sync mode is transaction.
+
+*/
+func (a *Client) SyncSteamAbnormalTransaction(params *SyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamAbnormalTransactionOK, *SyncSteamAbnormalTransactionBadRequest, *SyncSteamAbnormalTransactionNotFound, *SyncSteamAbnormalTransactionConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncSteamAbnormalTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncSteamAbnormalTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncSteamAbnormalTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncSteamAbnormalTransactionOK:
+		return v, nil, nil, nil, nil
+
+	case *SyncSteamAbnormalTransactionBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *SyncSteamAbnormalTransactionNotFound:
+		return nil, nil, v, nil, nil
+
+	case *SyncSteamAbnormalTransactionConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+SyncSteamAbnormalTransactionShort sync abnormal transaction, sync steam order by transaction. only works when steam sync mode is transaction.
+
+*/
+func (a *Client) SyncSteamAbnormalTransactionShort(params *SyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamAbnormalTransactionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncSteamAbnormalTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncSteamAbnormalTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncSteamAbnormalTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncSteamAbnormalTransactionOK:
+		return v, nil
+	case *SyncSteamAbnormalTransactionBadRequest:
+		return nil, v
+	case *SyncSteamAbnormalTransactionNotFound:
+		return nil, v
+	case *SyncSteamAbnormalTransactionConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use SyncSteamIAPByTransactionShort instead.
+
+SyncSteamIAPByTransaction sync steam in app purchase by transaction.
+Sync steam in app purchase by transaction.Other detail info:
+                          * Returns :
+*/
+func (a *Client) SyncSteamIAPByTransaction(params *SyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamIAPByTransactionOK, *SyncSteamIAPByTransactionBadRequest, *SyncSteamIAPByTransactionNotFound, *SyncSteamIAPByTransactionConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncSteamIAPByTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncSteamIAPByTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncSteamIAPByTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncSteamIAPByTransactionOK:
+		return v, nil, nil, nil, nil
+
+	case *SyncSteamIAPByTransactionBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *SyncSteamIAPByTransactionNotFound:
+		return nil, nil, v, nil, nil
+
+	case *SyncSteamIAPByTransactionConflict:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+SyncSteamIAPByTransactionShort sync steam in app purchase by transaction.
+Sync steam in app purchase by transaction.Other detail info:
+                          * Returns :
+*/
+func (a *Client) SyncSteamIAPByTransactionShort(params *SyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamIAPByTransactionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncSteamIAPByTransactionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncSteamIAPByTransaction",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncSteamIAPByTransactionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncSteamIAPByTransactionOK:
+		return v, nil
+	case *SyncSteamIAPByTransactionBadRequest:
+		return nil, v
+	case *SyncSteamIAPByTransactionNotFound:
+		return nil, v
+	case *SyncSteamIAPByTransactionConflict:
 		return nil, v
 
 	default:

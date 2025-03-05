@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.32.0"
+    "version": "1.34.0"
   },
   "schemes": [
     "https"
@@ -1089,16 +1089,6 @@
             "type": "integer"
           },
           {
-            "description": "sort direction (ascending or descending)",
-            "enum": [
-              "asc",
-              "desc"
-            ],
-            "in": "query",
-            "name": "desc",
-            "type": "string"
-          },
-          {
             "description": "filter fleets by name",
             "in": "query",
             "name": "name",
@@ -1125,6 +1115,16 @@
             ],
             "in": "query",
             "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "sort direction (ascending or descending)",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDirection",
             "type": "string"
           }
         ],
@@ -3368,6 +3368,9 @@
         "namespace": {
           "type": "string"
         },
+        "reason": {
+          "type": "string"
+        },
         "region": {
           "type": "string"
         },
@@ -3583,9 +3586,7 @@
           "type": "string"
         },
         "expiresAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
+          "$ref": "#/definitions/api.Time"
         },
         "imageId": {
           "type": "string"
@@ -3596,7 +3597,6 @@
       },
       "required": [
         "commandLineArguments",
-        "expiresAt",
         "imageId",
         "name"
       ]
@@ -3617,14 +3617,10 @@
           "type": "string"
         },
         "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
+          "$ref": "#/definitions/api.Time"
         },
         "expiresAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": true
+          "$ref": "#/definitions/api.Time"
         },
         "imageId": {
           "type": "string"
@@ -3759,6 +3755,9 @@
         "dsHostConfiguration": {
           "$ref": "#/definitions/api.DSHostConfiguration"
         },
+        "fallbackFleet": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -3776,6 +3775,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "primaryFleet": {
+          "type": "string"
+        },
         "regions": {
           "items": {
             "$ref": "#/definitions/api.RegionConfig"
@@ -3790,11 +3792,13 @@
         "active",
         "claimKeys",
         "dsHostConfiguration",
+        "fallbackFleet",
         "id",
         "imageDeploymentProfile",
         "isLocal",
         "name",
         "onDemand",
+        "primaryFleet",
         "regions",
         "samplingRules"
       ]
@@ -3810,6 +3814,9 @@
             "$ref": "#/definitions/api.FleetRegionalServerCounts"
           },
           "type": "array"
+        },
+        "fallbackFleet": {
+          "type": "string"
         },
         "id": {
           "type": "string"
@@ -3831,6 +3838,9 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "primaryFleet": {
+          "type": "string"
+        },
         "regions": {
           "items": {
             "type": "string"
@@ -3841,12 +3851,14 @@
       "required": [
         "active",
         "counts",
+        "fallbackFleet",
         "id",
         "image",
         "instanceProvider",
         "isLocal",
         "name",
         "onDemand",
+        "primaryFleet",
         "regions"
       ]
     },
@@ -3881,6 +3893,9 @@
         },
         "dsHostConfiguration": {
           "$ref": "#/definitions/api.DSHostConfigurationParameters"
+        },
+        "fallbackFleet": {
+          "type": "string"
         },
         "imageDeploymentProfile": {
           "$ref": "#/definitions/api.ImageDeploymentProfile"
@@ -4020,9 +4035,7 @@
     "api.FleetServerInfoResponse": {
       "properties": {
         "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "x-nullable": false
+          "$ref": "#/definitions/api.Time"
         },
         "fleetId": {
           "type": "string"
@@ -4184,7 +4197,6 @@
       },
       "required": [
         "createdAt",
-        "deleteAt",
         "executable",
         "id",
         "isProtected",
@@ -4265,7 +4277,6 @@
       },
       "required": [
         "createdAt",
-        "deleteAt",
         "executable",
         "id",
         "isProtected",
@@ -4324,8 +4335,6 @@
       },
       "required": [
         "addedTags",
-        "isProtected",
-        "name",
         "removedTags"
       ]
     },
@@ -4548,24 +4557,8 @@
       ]
     },
     "api.Time": {
-      "properties": {
-        "ext": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "loc": {
-          "$ref": "#/definitions/time.Location"
-        },
-        "wall": {
-          "format": "integer",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "ext",
-        "loc",
-        "wall"
-      ]
+      "format": "date-time",
+      "type": "string"
     },
     "api.Timeout": {
       "properties": {
@@ -4646,97 +4639,9 @@
         "traceId"
       ]
     },
-    "time.Location": {
-      "properties": {
-        "cacheEnd": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "cacheStart": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "cacheZone": {
-          "$ref": "#/definitions/time.zone"
-        },
-        "extend": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "tx": {
-          "items": {
-            "$ref": "#/definitions/time.zoneTrans"
-          },
-          "type": "array"
-        },
-        "zone": {
-          "items": {
-            "$ref": "#/definitions/time.zone"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "cacheEnd",
-        "cacheStart",
-        "cacheZone",
-        "extend",
-        "name",
-        "tx",
-        "zone"
-      ]
-    },
     "time.Time": {
       "format": "date-time",
       "type": "string"
-    },
-    "time.zone": {
-      "properties": {
-        "isDST": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "name": {
-          "type": "string"
-        },
-        "offset": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "isDST",
-        "name",
-        "offset"
-      ]
-    },
-    "time.zoneTrans": {
-      "properties": {
-        "index": {
-          "format": "byte",
-          "type": "integer"
-        },
-        "isstd": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "isutc": {
-          "type": "boolean",
-          "x-omitempty": false
-        },
-        "when": {
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "index",
-        "isstd",
-        "isutc",
-        "when"
-      ]
     }
   },
   "x-docs": {
@@ -4745,10 +4650,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-01-13T09:50:48+00:00",
-    "gitHash": "87d25041ae1c2c7cc0855d06cc1b4f3ad4632882",
+    "buildDate": "2025-02-25T10:27:37+00:00",
+    "gitHash": "b003ce340f585ea5ed6f025a53a7271e9d3cc20b",
     "name": "fleet-commander",
-    "version": "1.32.0",
+    "version": "1.34.0",
     "version-roles-seeding": "1.2.70"
   }
 }

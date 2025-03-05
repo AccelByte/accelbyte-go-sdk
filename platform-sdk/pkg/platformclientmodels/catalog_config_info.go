@@ -7,6 +7,8 @@
 package platformclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,11 @@ type CatalogConfigInfo struct {
 	// enable inventory check
 	// Required: true
 	EnableInventoryCheck *bool `json:"enableInventoryCheck"`
+
+	// item deletion check configuration
+	// Unique: true
+	// Enum: ['CAMPAIGN', 'CATALOG', 'DLC', 'ENTITLEMENT', 'IAP', 'REWARD']
+	ItemDeletionCheckConfig []string `json:"itemDeletionCheckConfig"`
 }
 
 // Validate validates this Catalog config info
@@ -43,6 +50,46 @@ func (m *CatalogConfigInfo) validateEnableInventoryCheck(formats strfmt.Registry
 		return err
 	}
 
+	return nil
+}
+
+var catalogConfigInfoTypeItemDeletionCheckConfigItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CAMPAIGN", "CATALOG", "DLC", "ENTITLEMENT", "IAP", "REWARD"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		catalogConfigInfoTypeItemDeletionCheckConfigItemsEnum = append(catalogConfigInfoTypeItemDeletionCheckConfigItemsEnum, v)
+	}
+}
+
+const (
+
+	// CatalogConfigInfoItemDeletionCheckConfigCAMPAIGN captures enum value "CAMPAIGN"
+	CatalogConfigInfoItemDeletionCheckConfigCAMPAIGN string = "CAMPAIGN"
+
+	// CatalogConfigInfoItemDeletionCheckConfigCATALOG captures enum value "CATALOG"
+	CatalogConfigInfoItemDeletionCheckConfigCATALOG string = "CATALOG"
+
+	// CatalogConfigInfoItemDeletionCheckConfigDLC captures enum value "DLC"
+	CatalogConfigInfoItemDeletionCheckConfigDLC string = "DLC"
+
+	// CatalogConfigInfoItemDeletionCheckConfigENTITLEMENT captures enum value "ENTITLEMENT"
+	CatalogConfigInfoItemDeletionCheckConfigENTITLEMENT string = "ENTITLEMENT"
+
+	// CatalogConfigInfoItemDeletionCheckConfigIAP captures enum value "IAP"
+	CatalogConfigInfoItemDeletionCheckConfigIAP string = "IAP"
+
+	// CatalogConfigInfoItemDeletionCheckConfigREWARD captures enum value "REWARD"
+	CatalogConfigInfoItemDeletionCheckConfigREWARD string = "REWARD"
+)
+
+func (m *CatalogConfigInfo) validateItemDeletionCheckConfigItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, catalogConfigInfoTypeItemDeletionCheckConfigItemsEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 

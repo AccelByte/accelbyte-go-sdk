@@ -29,6 +29,18 @@ type ApimodelsPartyDetail struct {
 	// Required: true
 	Histories []*ApimodelsPartyHistory `json:"histories"`
 
+	// joinability
+	// Required: true
+	Joinability *string `json:"joinability"`
+
+	// last_data
+	// Required: true
+	LastData *ModelsParty `json:"last_data"`
+
+	// leader_id
+	// Required: true
+	LeaderID *string `json:"leader_id"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
@@ -40,6 +52,11 @@ type ApimodelsPartyDetail struct {
 	// session_template
 	// Required: true
 	SessionTemplate *string `json:"session_template"`
+
+	// updated_at
+	// Required: true
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at"`
 }
 
 // Validate validates this Apimodels party detail
@@ -52,6 +69,15 @@ func (m *ApimodelsPartyDetail) Validate(formats strfmt.Registry) error {
 	if err := m.validateHistories(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateJoinability(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateLastData(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateLeaderID(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateNamespace(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +85,9 @@ func (m *ApimodelsPartyDetail) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateSessionTemplate(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +135,42 @@ func (m *ApimodelsPartyDetail) validateHistories(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *ApimodelsPartyDetail) validateJoinability(formats strfmt.Registry) error {
+
+	if err := validate.Required("joinability", "body", m.Joinability); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPartyDetail) validateLastData(formats strfmt.Registry) error {
+
+	if err := validate.Required("last_data", "body", m.LastData); err != nil {
+		return err
+	}
+
+	if m.LastData != nil {
+		if err := m.LastData.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPartyDetail) validateLeaderID(formats strfmt.Registry) error {
+
+	if err := validate.Required("leader_id", "body", m.LeaderID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ApimodelsPartyDetail) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
@@ -127,6 +192,19 @@ func (m *ApimodelsPartyDetail) validatePartySessionID(formats strfmt.Registry) e
 func (m *ApimodelsPartyDetail) validateSessionTemplate(formats strfmt.Registry) error {
 
 	if err := validate.Required("session_template", "body", m.SessionTemplate); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsPartyDetail) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated_at", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
 	}
 

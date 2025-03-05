@@ -31,6 +31,9 @@ type APIFleetParameters struct {
 	// Required: true
 	DsHostConfiguration *APIDSHostConfigurationParameters `json:"dsHostConfiguration"`
 
+	// fallbackfleet
+	FallbackFleet string `json:"fallbackFleet,omitempty"`
+
 	// imagedeploymentprofile
 	// Required: true
 	ImageDeploymentProfile *APIImageDeploymentProfile `json:"imageDeploymentProfile"`

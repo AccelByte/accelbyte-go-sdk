@@ -17,8 +17,8 @@ import (
 )
 
 type AuthTokenValidator interface {
-	Initialize()
-	Validate(ctx context.Context, token string, permission *iam.Permission, namespace *string, userId *string) error
+	Initialize(ctx context.Context)
+	Validate(token string, permission *iam.Permission, namespace *string, userId *string) error
 }
 
 type TokenValidator struct {
@@ -35,6 +35,7 @@ type TokenValidator struct {
 	Roles                 map[string]*iamclientmodels.ModelRolePermissionResponseV3
 
 	impl iam.AuthTokenValidator
+	ctx  context.Context
 }
 
 func (v *TokenValidator) initImpl() {
@@ -45,15 +46,15 @@ func (v *TokenValidator) initImpl() {
 
 func (v *TokenValidator) Initialize() {
 	v.initImpl()
-	v.impl.Initialize()
+	v.impl.Initialize(v.ctx)
 }
 
-func (v *TokenValidator) Validate(ctx context.Context, token string, permission *iam.Permission, namespace *string, userId *string) error {
+func (v *TokenValidator) Validate(token string, permission *iam.Permission, namespace *string, userId *string) error {
 	if permission == nil {
-		return v.impl.Validate(ctx, token, nil, namespace, userId)
+		return v.impl.Validate(token, nil, namespace, userId)
 	}
 
-	return v.impl.Validate(ctx, token, &iam.Permission{
+	return v.impl.Validate(token, &iam.Permission{
 		Resource: permission.Resource,
 		Action:   permission.Action,
 	}, namespace, userId)

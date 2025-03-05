@@ -30,8 +30,8 @@ import (
 )
 
 type AuthTokenValidator interface {
-	Initialize()
-	Validate(ctx context.Context, token string, permission *Permission, namespace *string, userId *string) error
+	Initialize(ctx context.Context)
+	Validate(token string, permission *Permission, namespace *string, userId *string) error
 }
 
 type TokenValidator struct {
@@ -54,7 +54,13 @@ type TokenValidator struct {
 	ctx context.Context
 }
 
-func (v *TokenValidator) Initialize() {
+func (v *TokenValidator) Initialize(ctx context.Context) {
+	if ctx == nil {
+		v.ctx = context.Background()
+	} else {
+		v.ctx = ctx
+	}
+
 	if err := v.fetchAll(); err != nil {
 		log.Fatalf("Error initialize validator: %v", err)
 	}
@@ -86,9 +92,7 @@ func (v *TokenValidator) Initialize() {
 	}()
 }
 
-func (v *TokenValidator) Validate(ctx context.Context, token string, permission *Permission, namespace *string, userId *string) error {
-	v.ctx = ctx
-
+func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
 	jsonWebToken, err := jwt.ParseSigned(token)
 	if err != nil {
 		return err

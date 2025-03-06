@@ -5,6 +5,7 @@
 package validator
 
 import (
+	"context"
 	"crypto/rsa"
 	"encoding/base64"
 	"time"
@@ -17,7 +18,7 @@ import (
 
 type AuthTokenValidator interface {
 	Initialize()
-	Validate(token string, permission *iam.Permission, namespace *string, userId *string) error
+	Validate(ctx context.Context, token string, permission *iam.Permission, namespace *string, userId *string) error
 }
 
 type TokenValidator struct {
@@ -47,12 +48,12 @@ func (v *TokenValidator) Initialize() {
 	v.impl.Initialize()
 }
 
-func (v *TokenValidator) Validate(token string, permission *iam.Permission, namespace *string, userId *string) error {
+func (v *TokenValidator) Validate(ctx context.Context, token string, permission *iam.Permission, namespace *string, userId *string) error {
 	if permission == nil {
-		return v.impl.Validate(token, nil, namespace, userId)
+		return v.impl.Validate(ctx, token, nil, namespace, userId)
 	}
 
-	return v.impl.Validate(token, &iam.Permission{
+	return v.impl.Validate(ctx, token, &iam.Permission{
 		Resource: permission.Resource,
 		Action:   permission.Action,
 	}, namespace, userId)

@@ -4,7 +4,9 @@
 - **sdk:** add a clearer message for error in token validation
 - **sdk:** delete the early return and refactor the error message
 - **sdk:** - move the clearer error to the end of logic - rollback the default local validation to false
-
+- **:** update CHANGELOG.md and go sum getting started
+### docs
+- **:** add migration guide from v0.77.0 to v0.78.0 for ags 2025.2
 
 <a name="v0.77.0"></a>
 ## [v0.77.0]

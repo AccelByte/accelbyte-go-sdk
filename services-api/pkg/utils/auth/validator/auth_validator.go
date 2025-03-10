@@ -44,9 +44,15 @@ func (v *TokenValidator) initImpl() {
 	}
 }
 
-func (v *TokenValidator) Initialize() {
+func (v *TokenValidator) Initialize(ctx context.Context) {
+	if ctx != nil {
+		v.ctx = ctx
+	} else {
+		v.ctx = context.Background()
+	}
+
 	v.initImpl()
-	v.impl.Initialize(v.ctx)
+	v.impl.Initialize(ctx)
 }
 
 func (v *TokenValidator) Validate(token string, permission *iam.Permission, namespace *string, userId *string) error {

@@ -508,8 +508,7 @@ func (o *OAuth20Service) ParseAccessToken(accessToken string, validate bool) (*i
 			}
 		}
 
-		ctx := context.Background()
-		errValidate := o.Validate(ctx, accessToken, perm, tokenResponseV3.Namespace, nil)
+		errValidate := o.Validate(accessToken, perm, tokenResponseV3.Namespace, nil)
 		if errValidate != nil {
 			log.Fatalf("token validation failed: %s", errValidate.Error())
 		}
@@ -557,8 +556,7 @@ func (o *OAuth20Service) ParseAccessTokenToClaims(accessToken string, validate b
 			namespace = claims.ExtendNamespace
 		}
 
-		ctx := context.Background()
-		errValidate := o.Validate(ctx, accessToken, perm, &namespace, nil)
+		errValidate := o.Validate(accessToken, perm, &namespace, nil)
 		if errValidate != nil {
 			log.Fatalf("token validation failed: %s", errValidate.Error())
 		}
@@ -567,8 +565,8 @@ func (o *OAuth20Service) ParseAccessTokenToClaims(accessToken string, validate b
 	return claims.JWTClaims, nil
 }
 
-func (o *OAuth20Service) Validate(ctx context.Context, token string, permission *Permission, namespace *string, userId *string) error {
-	err := o.tokenValidation.Validate(ctx, token, permission, namespace, userId)
+func (o *OAuth20Service) Validate(token string, permission *Permission, namespace *string, userId *string) error {
+	err := o.tokenValidation.Validate(token, permission, namespace, userId)
 	if err != nil {
 		return err
 	}

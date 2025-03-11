@@ -907,7 +907,7 @@ var poolHttpTransport = http.DefaultTransport
 var httpTimeout = 30 * time.Second
 
 func GetDefaultOtelHTTPClient() http.Client {
-	b3Propagator := b3.New(b3.WithInjectEncoding(b3.B3SingleHeader), b3.WithInjectEncoding(b3.B3MultipleHeader))
+	b3Propagator := b3.New(b3.WithInjectEncoding(b3.B3MultipleHeader))
 	// Use the default propagator (TextMap)
 	propagator := propagation.NewCompositeTextMapPropagator(b3Propagator, propagation.TraceContext{}, propagation.Baggage{})
 	return http.Client{

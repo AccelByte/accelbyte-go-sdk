@@ -54,6 +54,8 @@ type TokenValidator struct {
 	ctx context.Context
 }
 
+var httpClient = utils.GetDefaultOtelHTTPClient()
+
 func (v *TokenValidator) Initialize(ctx context.Context) {
 	if ctx == nil {
 		v.ctx = context.Background()
@@ -119,8 +121,9 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 
 	if !v.LocalValidationActive {
 		input := &o_auth2_0.VerifyTokenV3Params{
-			Token:   token,
-			Context: v.ctx,
+			Token:      token,
+			Context:    v.ctx,
+			HTTPClient: &httpClient,
 		}
 		_, errVerify := v.AuthService.VerifyTokenV3Short(input)
 		if errVerify != nil {
@@ -260,7 +263,7 @@ func (v *TokenValidator) fetchClientToken() error {
 }
 
 func (v *TokenValidator) fetchJWKSet() error {
-	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{Context: v.ctx})
+	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{Context: v.ctx, HTTPClient: &httpClient})
 	if err != nil {
 		return err
 	}
@@ -279,7 +282,7 @@ func (v *TokenValidator) fetchJWKSet() error {
 }
 
 func (v *TokenValidator) fetchRevocationList() error {
-	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{Context: v.ctx})
+	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{Context: v.ctx, HTTPClient: &httpClient})
 	if err != nil {
 		return err
 	}

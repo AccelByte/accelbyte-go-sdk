@@ -28,6 +28,9 @@ import (
 	oarYaml "github.com/go-openapi/runtime/yamlpc"
 	oaStrFmt "github.com/go-openapi/strfmt"
 	"github.com/sirupsen/logrus"
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+	"go.opentelemetry.io/contrib/propagators/b3"
+	"go.opentelemetry.io/otel/propagation"
 )
 
 func GetClient() http.Client {
@@ -899,3 +902,16 @@ func SelectScheme(schemes []string) string {
 }
 
 //#endregion Utils
+
+var poolHttpTransport = http.DefaultTransport
+var httpTimeout = 30 * time.Second
+
+func GetDefaultOtelHTTPClient() http.Client {
+	b3Propagator := b3.New(b3.WithInjectEncoding(b3.B3SingleHeader), b3.WithInjectEncoding(b3.B3MultipleHeader))
+	// Use the default propagator (TextMap)
+	propagator := propagation.NewCompositeTextMapPropagator(b3Propagator, propagation.TraceContext{}, propagation.Baggage{})
+	return http.Client{
+		Transport: otelhttp.NewTransport(poolHttpTransport, otelhttp.WithPropagators(propagator)),
+		Timeout:   httpTimeout,
+	}
+}

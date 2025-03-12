@@ -136,11 +136,17 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 			Context:    v.ctx,
 			HTTPClient: v.httpClient,
 		}
+
 		_, errVerify := v.AuthService.VerifyTokenV3Short(input)
 		if errVerify != nil {
 			return errVerify
 		}
 		fmt.Println("token verified")
+
+		span := trace.SpanFromContext(v.ctx)
+		spanCtx := span.SpanContext()
+		log.Printf("SPAN VALUES in verify: TraceID=%s SpanID=%s",
+			spanCtx.TraceID(), spanCtx.SpanID())
 
 		if errNamespace := v.hasValidNamespace(v.JwtClaims, namespace); errNamespace != nil {
 			return fmt.Errorf(errNamespace.Error())

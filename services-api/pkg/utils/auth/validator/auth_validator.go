@@ -45,12 +45,6 @@ func (v *TokenValidator) initImpl() {
 }
 
 func (v *TokenValidator) Initialize(ctx context.Context) {
-	if ctx != nil {
-		v.ctx = ctx
-	} else {
-		v.ctx = context.Background()
-	}
-
 	v.initImpl()
 	v.impl.Initialize(ctx)
 }

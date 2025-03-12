@@ -5,6 +5,7 @@
 package iam
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"encoding/base64"
@@ -27,7 +28,7 @@ import (
 
 func TestTokenValidator_ValidateToken(t *testing.T) {
 	// should be moved and run as integration test, skip for now
-	t.Skip()
+	//t.Skip()
 
 	// Arrange
 	configRepo := auth.DefaultConfigRepositoryImpl()
@@ -53,26 +54,21 @@ func TestTokenValidator_ValidateToken(t *testing.T) {
 	}
 
 	namespace := os.Getenv("AB_NAMESPACE")
-	resourceName := "MMV2GRPCSERVICE"
+	//resourceName := "MMV2GRPCSERVICE"
 	requiredPermission := Permission{
 		Action:   2,
-		Resource: fmt.Sprintf("NAMESPACE:%s:%s", namespace, resourceName),
+		Resource: "ADMIN:ROLE",
 	}
 
-	authService.SetLocalValidation(true)                                          // true will do it locally, false will do it remotely
-	claims, errClaims := authService.ParseAccessTokenToClaims(accessToken, false) // false will not validate using client namespace
-	if errClaims != nil {
-		assert.Fail(t, errClaims.Error())
-
-		return
-	}
+	authh := NewTokenValidator(authService, 30)
+	authh.Initialize(context.Background())
 
 	// Act
-	err = authService.Validate(accessToken, &requiredPermission, &namespace, nil)
+	err = authh.Validate(accessToken, &requiredPermission, &namespace, nil)
 
 	// Assert
 	assert.Nil(t, err)
-	assert.Equal(t, claims.Namespace, namespace)
+	//assert.Equal(t, claims.Namespace, namespace)
 }
 
 func TestTokenValidator_ValidateExtendNamespace(t *testing.T) {

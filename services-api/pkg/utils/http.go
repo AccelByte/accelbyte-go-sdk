@@ -8,6 +8,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/exporters/zipkin"
+	"go.opentelemetry.io/otel/sdk/resource"
+	sdkTrace "go.opentelemetry.io/otel/sdk/trace"
+	semanticConventions "go.opentelemetry.io/otel/semconv/v1.12.0"
 	"io"
 	"log"
 	"mime"
@@ -906,7 +912,20 @@ func SelectScheme(schemes []string) string {
 var poolHttpTransport = http.DefaultTransport
 var httpTimeout = 30 * time.Second
 
+const (
+	environment = "production"
+	id          = int64(1)
+)
+
 func GetDefaultOtelHTTPClient() http.Client {
+	tracerProvider, err := NewTracerProvider("GoSDK", environment, id)
+	if err != nil {
+		logrus.Fatalf("failed to create tracer provider: %v", err)
+	}
+
+	// Register our TracerProvider as the global so any imported
+	// instrumentation in the future will default to using it.
+	otel.SetTracerProvider(tracerProvider)
 	b3Propagator := b3.New(b3.WithInjectEncoding(b3.B3MultipleHeader))
 	// Use the default propagator (TextMap)
 	propagator := propagation.NewCompositeTextMapPropagator(b3Propagator, propagation.TraceContext{}, propagation.Baggage{})
@@ -914,4 +933,25 @@ func GetDefaultOtelHTTPClient() http.Client {
 		Transport: otelhttp.NewTransport(poolHttpTransport, otelhttp.WithPropagators(propagator)),
 		Timeout:   httpTimeout,
 	}
+}
+
+func NewTracerProvider(serviceName string, environment string, id int64) (*sdkTrace.TracerProvider, error) {
+	zipkinEndpoint := GetEnv("OTEL_EXPORTER_ZIPKIN_ENDPOINT", "http://localhost:9411/api/v2/spans")
+	exporter, err := zipkin.New(zipkinEndpoint)
+	if err != nil {
+		return nil, err
+	}
+
+	res := resource.NewWithAttributes(
+		semanticConventions.SchemaURL,
+		semanticConventions.ServiceNameKey.String(serviceName),
+		attribute.String("environment", environment),
+		attribute.Int64("ID", id),
+	)
+
+	return sdkTrace.NewTracerProvider(
+		sdkTrace.WithBatcher(exporter, sdkTrace.WithBatchTimeout(time.Second*1)),
+		sdkTrace.WithResource(res),
+		//sdkTrace.WithSampler(sdkTrace.AlwaysSample()), // not sure if need to be enabled
+	), nil
 }

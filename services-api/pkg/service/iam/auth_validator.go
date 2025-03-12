@@ -11,8 +11,10 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	"fmt"
+	"go.opentelemetry.io/otel/trace"
 	"log"
 	"math/big"
+	"net/http"
 	"os"
 	"strings"
 	"time"
@@ -51,17 +53,26 @@ type TokenValidator struct {
 	rolePermissionCache    *cache.Cache
 	namespaceContextsCache *cache.Cache
 
-	ctx context.Context
+	ctx        context.Context
+	httpClient *http.Client
 }
-
-var httpClient = utils.GetDefaultOtelHTTPClient()
 
 func (v *TokenValidator) Initialize(ctx context.Context) {
 	if ctx == nil {
 		v.ctx = context.Background()
+		fmt.Println("a new context")
 	} else {
 		v.ctx = ctx
+
+		span := trace.SpanFromContext(ctx)
+		spanCtx := span.SpanContext()
+		log.Printf("SPAN VALUES: TraceID=%s SpanID=%s",
+			spanCtx.TraceID(), spanCtx.SpanID())
+		fmt.Println("existing context")
 	}
+
+	httpClient := utils.GetDefaultOtelHTTPClient()
+	v.httpClient = &httpClient
 
 	if err := v.fetchAll(); err != nil {
 		log.Fatalf("Error initialize validator: %v", err)
@@ -123,7 +134,7 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		input := &o_auth2_0.VerifyTokenV3Params{
 			Token:      token,
 			Context:    v.ctx,
-			HTTPClient: &httpClient,
+			HTTPClient: v.httpClient,
 		}
 		_, errVerify := v.AuthService.VerifyTokenV3Short(input)
 		if errVerify != nil {
@@ -263,7 +274,7 @@ func (v *TokenValidator) fetchClientToken() error {
 }
 
 func (v *TokenValidator) fetchJWKSet() error {
-	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{Context: v.ctx, HTTPClient: &httpClient})
+	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{Context: v.ctx, HTTPClient: v.httpClient})
 	if err != nil {
 		return err
 	}
@@ -282,7 +293,7 @@ func (v *TokenValidator) fetchJWKSet() error {
 }
 
 func (v *TokenValidator) fetchRevocationList() error {
-	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{Context: v.ctx, HTTPClient: &httpClient})
+	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{Context: v.ctx, HTTPClient: v.httpClient})
 	if err != nil {
 		return err
 	}
@@ -313,9 +324,10 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 		TokenRepository:  v.AuthService.TokenRepository,
 	}
 	role, err := overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
-		RoleID:    roleId,
-		Namespace: namespace,
-		Context:   v.ctx,
+		RoleID:     roleId,
+		Namespace:  namespace,
+		Context:    v.ctx,
+		HTTPClient: v.httpClient,
 	})
 	if err != nil {
 		return nil, err
@@ -508,8 +520,9 @@ func (v *TokenValidator) fetchNamespaceContext(keyNamespace string) error {
 			TokenRepository:  v.AuthService.TokenRepository,
 		}
 		resp, err := namespaceService.GetNamespaceContextShort(&namespace_.GetNamespaceContextParams{
-			Namespace: keyNamespace,
-			Context:   v.ctx,
+			Namespace:  keyNamespace,
+			Context:    v.ctx,
+			HTTPClient: v.httpClient,
 		})
 		if err != nil {
 			return err

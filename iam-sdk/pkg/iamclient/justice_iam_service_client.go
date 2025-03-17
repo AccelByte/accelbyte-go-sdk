@@ -69,6 +69,9 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 
+	// Enable tracing
+	transport.WithOpenTracing()
+
 	// custom transport runtime
 	utils.CustomTransportRuntime(transport)
 

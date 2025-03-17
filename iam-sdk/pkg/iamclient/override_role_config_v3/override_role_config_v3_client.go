@@ -13,6 +13,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/opentracing/opentracing-go"
 )
 
 // New creates a new override role config v3 API client.
@@ -599,6 +601,9 @@ func (a *Client) AdminGetRoleNamespacePermissionV3Short(params *AdminGetRoleName
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	span, ctx := opentracing.StartSpanFromContext(params.Context, "AdminGetRoleNamespacePermissionV3")
+	defer span.Finish()
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetRoleNamespacePermissionV3",
 		Method:             "GET",
@@ -609,7 +614,7 @@ func (a *Client) AdminGetRoleNamespacePermissionV3Short(params *AdminGetRoleName
 		Params:             params,
 		Reader:             &AdminGetRoleNamespacePermissionV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
-		Context:            params.Context,
+		Context:            ctx,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {

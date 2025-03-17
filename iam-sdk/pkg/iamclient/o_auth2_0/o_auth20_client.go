@@ -13,6 +13,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/opentracing/opentracing-go"
 )
 
 // New creates a new o auth2 0 API client.
@@ -675,6 +677,9 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	span, ctx := opentracing.StartSpanFromContext(params.Context, "GetJWKSV3")
+	defer span.Finish()
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetJWKSV3",
 		Method:             "GET",
@@ -685,7 +690,7 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 		Params:             params,
 		Reader:             &GetJWKSV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
-		Context:            params.Context,
+		Context:            ctx,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
@@ -1183,7 +1188,6 @@ The third party platform and platform group covered for this is:
 - twitch
 - live
 
-
 **Authentication:**
 The _**userId**_ parameter should match the one in the access token.
 */
@@ -1260,7 +1264,6 @@ The third party platform and platform group covered for this is:
 - snapchat
 - twitch
 - live
-
 
 **Authentication:**
 The _**userId**_ parameter should match the one in the access token.
@@ -1798,6 +1801,9 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	span, ctx := opentracing.StartSpanFromContext(params.Context, "GetRevocationListV3")
+	defer span.Finish()
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRevocationListV3",
 		Method:             "GET",
@@ -1808,7 +1814,7 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 		Params:             params,
 		Reader:             &GetRevocationListV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
-		Context:            params.Context,
+		Context:            ctx,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
@@ -2349,6 +2355,9 @@ func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.Cli
 		params.SetFlightId(*params.XFlightId)
 	}
 
+	span, ctx := opentracing.StartSpanFromContext(params.Context, "VerifyTokenV3")
+	defer span.Finish()
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "VerifyTokenV3",
 		Method:             "POST",
@@ -2359,7 +2368,7 @@ func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.Cli
 		Params:             params,
 		Reader:             &VerifyTokenV3Reader{formats: a.formats},
 		AuthInfo:           authInfo,
-		Context:            params.Context,
+		Context:            ctx,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {

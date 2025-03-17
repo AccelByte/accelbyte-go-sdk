@@ -6,6 +6,7 @@ package iam
 
 import (
 	"bytes"
+	"context"
 	"crypto/rsa"
 	"encoding/base64"
 	"encoding/binary"
@@ -29,7 +30,7 @@ import (
 )
 
 type AuthTokenValidator interface {
-	Initialize()
+	Initialize(ctx context.Context)
 	Validate(token string, permission *Permission, namespace *string, userId *string) error
 }
 
@@ -49,9 +50,17 @@ type TokenValidator struct {
 
 	rolePermissionCache    *cache.Cache
 	namespaceContextsCache *cache.Cache
+
+	ctx context.Context
 }
 
-func (v *TokenValidator) Initialize() {
+func (v *TokenValidator) Initialize(ctx context.Context) {
+	if ctx != nil {
+		v.ctx = ctx
+	} else {
+		v.ctx = context.Background()
+	}
+
 	if err := v.fetchAll(); err != nil {
 		log.Fatalf("Error initialize validator: %v", err)
 	}
@@ -110,8 +119,10 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 
 	if !v.LocalValidationActive {
 		input := &o_auth2_0.VerifyTokenV3Params{
-			Token: token,
+			Token:   token,
+			Context: v.ctx,
 		}
+
 		_, errVerify := v.AuthService.VerifyTokenV3Short(input)
 		if errVerify != nil {
 			return errVerify
@@ -250,7 +261,7 @@ func (v *TokenValidator) fetchClientToken() error {
 }
 
 func (v *TokenValidator) fetchJWKSet() error {
-	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{})
+	jwkSet, err := v.AuthService.GetJWKSV3Short(&o_auth2_0.GetJWKSV3Params{Context: v.ctx})
 	if err != nil {
 		return err
 	}
@@ -269,7 +280,7 @@ func (v *TokenValidator) fetchJWKSet() error {
 }
 
 func (v *TokenValidator) fetchRevocationList() error {
-	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{})
+	revocationList, err := v.AuthService.GetRevocationListV3Short(&o_auth2_0.GetRevocationListV3Params{Context: v.ctx})
 	if err != nil {
 		return err
 	}
@@ -302,6 +313,7 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 	role, err := overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
 		RoleID:    roleId,
 		Namespace: namespace,
+		Context:   v.ctx,
 	})
 	if err != nil {
 		return nil, err
@@ -495,6 +507,7 @@ func (v *TokenValidator) fetchNamespaceContext(keyNamespace string) error {
 		}
 		resp, err := namespaceService.GetNamespaceContextShort(&namespace_.GetNamespaceContextParams{
 			Namespace: keyNamespace,
+			Context:   v.ctx,
 		})
 		if err != nil {
 			return err

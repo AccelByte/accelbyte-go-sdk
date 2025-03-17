@@ -9,6 +9,7 @@ package namespace
 import (
 	"context"
 	"fmt"
+	"github.com/opentracing/opentracing-go"
 	"reflect"
 
 	"github.com/go-openapi/runtime"
@@ -67,8 +68,8 @@ GetNamespaces get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Action code : 11303
-  *  Returns : list of namespaces
+  - Action code : 11303
+  - Returns : list of namespaces
 */
 func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, *GetNamespacesUnauthorized, *GetNamespacesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -126,8 +127,8 @@ GetNamespacesShort get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Action code : 11303
-  *  Returns : list of namespaces
+  - Action code : 11303
+  - Returns : list of namespaces
 */
 func (a *Client) GetNamespacesShort(params *GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacesOK, error) {
 	// TODO: Validate the params before sending
@@ -183,17 +184,15 @@ By default the namespace is enabled.
 In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned.
 displayName rule:
 
-
-  * Alphanumeric lowercase and uppercase are allowed
-  * Allowed Special Character: ',. -
-  * Must start and end with alphanumeric
-  * Spaces and special character are allowed but cannot appear twice in a row
-
+  - Alphanumeric lowercase and uppercase are allowed
+  - Allowed Special Character: ',. -
+  - Must start and end with alphanumeric
+  - Spaces and special character are allowed but cannot appear twice in a row
 
 Other detail info:
 
-  * Action code : 11301
-  *  Returns : created namespace
+  - Action code : 11301
+  - Returns : created namespace
 */
 func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, *CreateNamespaceBadRequest, *CreateNamespaceUnauthorized, *CreateNamespaceForbidden, *CreateNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -259,17 +258,15 @@ By default the namespace is enabled.
 In multi tenant mode, parentNamespace will be automatically filled with requester namespace if the requester is using studio or publisher token, and it will be filled with studio namespace if the requester uses game token. An oauth client will also be created and the id will be returned.
 displayName rule:
 
-
-  * Alphanumeric lowercase and uppercase are allowed
-  * Allowed Special Character: ',. -
-  * Must start and end with alphanumeric
-  * Spaces and special character are allowed but cannot appear twice in a row
-
+  - Alphanumeric lowercase and uppercase are allowed
+  - Allowed Special Character: ',. -
+  - Must start and end with alphanumeric
+  - Spaces and special character are allowed but cannot appear twice in a row
 
 Other detail info:
 
-  * Action code : 11301
-  *  Returns : created namespace
+  - Action code : 11301
+  - Returns : created namespace
 */
 func (a *Client) CreateNamespaceShort(params *CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateNamespaceCreated, error) {
 	// TODO: Validate the params before sending
@@ -328,8 +325,8 @@ Get a namespace.
 In multi tenant mode, parentNamespace will be returned.
 Other detail info:
 
-  * Action code : 11304
-  *  Returns : namespace
+  - Action code : 11304
+  - Returns : namespace
 */
 func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, *GetNamespaceBadRequest, *GetNamespaceUnauthorized, *GetNamespaceForbidden, *GetNamespaceNotFound, error) {
 	// TODO: Validate the params before sending
@@ -394,8 +391,8 @@ Get a namespace.
 In multi tenant mode, parentNamespace will be returned.
 Other detail info:
 
-  * Action code : 11304
-  *  Returns : namespace
+  - Action code : 11304
+  - Returns : namespace
 */
 func (a *Client) GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -453,8 +450,8 @@ DeleteNamespace delete a namespace
 Delete a namespace.
 Other detail info:
 
-  * Action code : 11307
-  *  Returns : deleted namespace
+  - Action code : 11307
+  - Returns : deleted namespace
 */
 func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, *DeleteNamespaceBadRequest, *DeleteNamespaceUnauthorized, *DeleteNamespaceForbidden, *DeleteNamespaceNotFound, *DeleteNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -521,8 +518,8 @@ DeleteNamespaceShort delete a namespace
 Delete a namespace.
 Other detail info:
 
-  * Action code : 11307
-  *  Returns : deleted namespace
+  - Action code : 11307
+  - Returns : deleted namespace
 */
 func (a *Client) DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -582,17 +579,15 @@ UpdateNamespace update namespace basic info
 Update namespace basic info.
 displayName rule:
 
-
-  * Alphanumeric lowercase and uppercase are allowed
-  * Allowed Special Character: ',. -
-  * Must start and end with alphanumeric
-  * Spaces and special character are allowed but cannot appear twice in a row
-
+  - Alphanumeric lowercase and uppercase are allowed
+  - Allowed Special Character: ',. -
+  - Must start and end with alphanumeric
+  - Spaces and special character are allowed but cannot appear twice in a row
 
 Other detail info:
 
-  * Action code : 11302
-  *  Returns : updated namespace
+  - Action code : 11302
+  - Returns : updated namespace
 */
 func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, *UpdateNamespaceBadRequest, *UpdateNamespaceUnauthorized, *UpdateNamespaceForbidden, *UpdateNamespaceNotFound, *UpdateNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -659,17 +654,15 @@ UpdateNamespaceShort update namespace basic info
 Update namespace basic info.
 displayName rule:
 
-
-  * Alphanumeric lowercase and uppercase are allowed
-  * Allowed Special Character: ',. -
-  * Must start and end with alphanumeric
-  * Spaces and special character are allowed but cannot appear twice in a row
-
+  - Alphanumeric lowercase and uppercase are allowed
+  - Allowed Special Character: ',. -
+  - Must start and end with alphanumeric
+  - Spaces and special character are allowed but cannot appear twice in a row
 
 Other detail info:
 
-  * Action code : 11302
-  *  Returns : updated namespace
+  - Action code : 11302
+  - Returns : updated namespace
 */
 func (a *Client) UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateNamespaceOK, error) {
 	// TODO: Validate the params before sending
@@ -731,7 +724,7 @@ If input namespace is publisher namespace, then it will return its all studio na
 If input namespace is studio namespace, then it will return its all game namespace.
 Other detail info:
 
-  * Returns : list of child namespaces
+  - Returns : list of child namespaces
 */
 func (a *Client) GetChildNamespaces(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, *GetChildNamespacesUnauthorized, *GetChildNamespacesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -791,7 +784,7 @@ If input namespace is publisher namespace, then it will return its all studio na
 If input namespace is studio namespace, then it will return its all game namespace.
 Other detail info:
 
-  * Returns : list of child namespaces
+  - Returns : list of child namespaces
 */
 func (a *Client) GetChildNamespacesShort(params *GetChildNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChildNamespacesOK, error) {
 	// TODO: Validate the params before sending
@@ -845,7 +838,7 @@ GetNamespaceContext get context of namespace
 Get context of namespace.
 Other detail info:
 
-  * Returns : context of namespace
+  - Returns : context of namespace
 */
 func (a *Client) GetNamespaceContext(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, *GetNamespaceContextUnauthorized, *GetNamespaceContextForbidden, error) {
 	// TODO: Validate the params before sending
@@ -903,7 +896,7 @@ GetNamespaceContextShort get context of namespace
 Get context of namespace.
 Other detail info:
 
-  * Returns : context of namespace
+  - Returns : context of namespace
 */
 func (a *Client) GetNamespaceContextShort(params *GetNamespaceContextParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespaceContextOK, error) {
 	// TODO: Validate the params before sending
@@ -919,6 +912,9 @@ func (a *Client) GetNamespaceContextShort(params *GetNamespaceContextParams, aut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
+	span, ctx := opentracing.StartSpanFromContext(params.Context, "getNamespaceContext")
+	defer span.Finish()
+
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaceContext",
 		Method:             "GET",
@@ -929,7 +925,7 @@ func (a *Client) GetNamespaceContextShort(params *GetNamespaceContextParams, aut
 		Params:             params,
 		Reader:             &GetNamespaceContextReader{formats: a.formats},
 		AuthInfo:           authInfo,
-		Context:            params.Context,
+		Context:            ctx,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
@@ -958,8 +954,8 @@ Get game namespaces.
 In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces
 Other detail info:
 
-  * Action code : 11308
-  *  Returns : list of namespaces
+  - Action code : 11308
+  - Returns : list of namespaces
 */
 func (a *Client) GetGameNamespaces(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, *GetGameNamespacesUnauthorized, *GetGameNamespacesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -1018,8 +1014,8 @@ Get game namespaces.
 In multi tenant mode, a given super admin namespace will return all game namespaces of studio namespaces
 Other detail info:
 
-  * Action code : 11308
-  *  Returns : list of namespaces
+  - Action code : 11308
+  - Returns : list of namespaces
 */
 func (a *Client) GetGameNamespacesShort(params *GetGameNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*GetGameNamespacesOK, error) {
 	// TODO: Validate the params before sending
@@ -1073,8 +1069,8 @@ GetNamespacePublisher get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Action code : 11305
-  *  Returns : Namespace info related publisher namespace
+  - Action code : 11305
+  - Returns : Namespace info related publisher namespace
 */
 func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, *GetNamespacePublisherBadRequest, *GetNamespacePublisherUnauthorized, *GetNamespacePublisherForbidden, *GetNamespacePublisherNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1138,8 +1134,8 @@ GetNamespacePublisherShort get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Action code : 11305
-  *  Returns : Namespace info related publisher namespace
+  - Action code : 11305
+  - Returns : Namespace info related publisher namespace
 */
 func (a *Client) GetNamespacePublisherShort(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, error) {
 	// TODO: Validate the params before sending
@@ -1197,8 +1193,8 @@ ChangeNamespaceStatus change namespace status
 Change a namespace status.
 Other detail info:
 
-  * Action code : 11306
-  *  Returns : updated namespace
+  - Action code : 11306
+  - Returns : updated namespace
 */
 func (a *Client) ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, *ChangeNamespaceStatusBadRequest, *ChangeNamespaceStatusUnauthorized, *ChangeNamespaceStatusForbidden, *ChangeNamespaceStatusNotFound, *ChangeNamespaceStatusConflict, error) {
 	// TODO: Validate the params before sending
@@ -1265,8 +1261,8 @@ ChangeNamespaceStatusShort change namespace status
 Change a namespace status.
 Other detail info:
 
-  * Action code : 11306
-  *  Returns : updated namespace
+  - Action code : 11306
+  - Returns : updated namespace
 */
 func (a *Client) ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -1326,8 +1322,8 @@ PublicGetNamespaces get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Action code : 11303
-  *  Returns : list of namespaces
+  - Action code : 11303
+  - Returns : list of namespaces
 */
 func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, *PublicGetNamespacesUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -1382,8 +1378,8 @@ PublicGetNamespacesShort get all namespaces
 Get all namespaces.
 Other detail info:
 
-  * Action code : 11303
-  *  Returns : list of namespaces
+  - Action code : 11303
+  - Returns : list of namespaces
 */
 func (a *Client) PublicGetNamespacesShort(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, error) {
 	// TODO: Validate the params before sending
@@ -1435,7 +1431,7 @@ GetNamespace1 get a namespace info
 Get a namespace info.
 Other detail info:
 
-  * Returns : namespace info
+  - Returns : namespace info
 */
 func (a *Client) GetNamespace1(params *GetNamespace1Params) (*GetNamespace1OK, *GetNamespace1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1489,7 +1485,7 @@ GetNamespace1Short get a namespace info
 Get a namespace info.
 Other detail info:
 
-  * Returns : namespace info
+  - Returns : namespace info
 */
 func (a *Client) GetNamespace1Short(params *GetNamespace1Params) (*GetNamespace1OK, error) {
 	// TODO: Validate the params before sending
@@ -1540,8 +1536,8 @@ PublicGetNamespacePublisher get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Action code : 11305
-  *  Returns : Namespace info related publisher namespace
+  - Action code : 11305
+  - Returns : Namespace info related publisher namespace
 */
 func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, *PublicGetNamespacePublisherBadRequest, *PublicGetNamespacePublisherUnauthorized, *PublicGetNamespacePublisherForbidden, *PublicGetNamespacePublisherNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1605,8 +1601,8 @@ PublicGetNamespacePublisherShort get namespace info related publisher namespace
 Get namespace info related publisher namespace.
 Other detail info:
 
-  * Action code : 11305
-  *  Returns : Namespace info related publisher namespace
+  - Action code : 11305
+  - Returns : Namespace info related publisher namespace
 */
 func (a *Client) PublicGetNamespacePublisherShort(params *PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacePublisherOK, error) {
 	// TODO: Validate the params before sending

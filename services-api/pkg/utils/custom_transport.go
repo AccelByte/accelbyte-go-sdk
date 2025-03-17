@@ -56,5 +56,7 @@ func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Run
 	// optional custom request header
 	transport.Transport = SetLogger(transport.Transport)
 
+	transport.WithOpenTracing()
+
 	return transport
 }

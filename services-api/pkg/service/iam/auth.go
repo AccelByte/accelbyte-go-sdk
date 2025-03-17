@@ -5,6 +5,7 @@
 package iam
 
 import (
+	"context"
 	"crypto/rsa"
 	"encoding/base64"
 	"encoding/json"
@@ -598,7 +599,7 @@ func (o *OAuth20Service) initTokenValidator(value bool) {
 	}
 
 	// Initiate
-	o.tokenValidation.Initialize()
+	o.tokenValidation.Initialize(context.Background())
 }
 
 func (o *OAuth20Service) getPublicKey(parsedToken *jwt.JSONWebToken) (*rsa.PublicKey, error) {

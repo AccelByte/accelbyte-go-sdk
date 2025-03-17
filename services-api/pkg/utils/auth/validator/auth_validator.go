@@ -5,6 +5,7 @@
 package validator
 
 import (
+	"context"
 	"crypto/rsa"
 	"encoding/base64"
 	"time"
@@ -16,7 +17,7 @@ import (
 )
 
 type AuthTokenValidator interface {
-	Initialize()
+	Initialize(ctx context.Context)
 	Validate(token string, permission *iam.Permission, namespace *string, userId *string) error
 }
 
@@ -42,9 +43,9 @@ func (v *TokenValidator) initImpl() {
 	}
 }
 
-func (v *TokenValidator) Initialize() {
+func (v *TokenValidator) Initialize(ctx context.Context) {
 	v.initImpl()
-	v.impl.Initialize()
+	v.impl.Initialize(ctx)
 }
 
 func (v *TokenValidator) Validate(token string, permission *iam.Permission, namespace *string, userId *string) error {

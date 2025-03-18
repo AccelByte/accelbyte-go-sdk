@@ -5,6 +5,7 @@
 package iam
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"encoding/base64"
@@ -59,7 +60,7 @@ func TestTokenValidator_ValidateToken(t *testing.T) {
 		Resource: fmt.Sprintf("NAMESPACE:%s:%s", namespace, resourceName),
 	}
 
-	authService.SetLocalValidation(true)                                          // true will do it locally, false will do it remotely
+	authService.SetLocalValidation(context.Background(), true)                    // true will do it locally, false will do it remotely
 	claims, errClaims := authService.ParseAccessTokenToClaims(accessToken, false) // false will not validate using client namespace
 	if errClaims != nil {
 		assert.Fail(t, errClaims.Error())
@@ -100,7 +101,7 @@ func TestTokenValidator_ValidateExtendNamespace(t *testing.T) {
 		return
 	}
 
-	authService.SetLocalValidation(false)                                                // true will do it locally, false will do it remotely
+	authService.SetLocalValidation(context.Background(), false)                          // true will do it locally, false will do it remotely
 	claims, errClaims := authService.ParseAccessTokenToClaims(*token.AccessToken, false) // false will not validate at all, only claim. This test will validate in the next line
 	if errClaims != nil {
 		assert.Fail(t, errClaims.Error())

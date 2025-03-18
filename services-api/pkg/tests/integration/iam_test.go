@@ -8,6 +8,7 @@ package integration_test
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -395,7 +396,7 @@ func TestIntegrationParseAccessTokenAndValidateLocally(t *testing.T) {
 		assert.FailNow(t, err.Error())
 	}
 
-	oAuth20Service.SetLocalValidation(true)
+	oAuth20Service.SetLocalValidation(context.Background(), true)
 	parsedToken, err := oAuth20Service.ParseAccessToken(accessToken, true)
 	if err != nil {
 		assert.FailNow(t, err.Error())

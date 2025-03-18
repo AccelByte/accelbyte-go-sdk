@@ -579,17 +579,11 @@ func (o *OAuth20Service) SetLocalValidation(ctx context.Context, value bool) {
 		o.tokenValidation.LocalValidationActive = value
 		o.tokenValidation.Ctx = ctx
 	} else {
-		o.initTokenValidator(ctx)
+		o.initTokenValidator(ctx, value)
 	}
 }
 
-func (o *OAuth20Service) initTokenValidator(ctx context.Context) {
-	localValidationActive := false
-	if o.tokenValidation != nil {
-		localValidationActive = o.tokenValidation.LocalValidationActive
-		o.tokenValidation.Ctx = ctx
-	}
-
+func (o *OAuth20Service) initTokenValidator(ctx context.Context, value bool) {
 	o.tokenValidation = &TokenValidator{
 		AuthService:     *o,
 		RefreshInterval: time.Hour,
@@ -600,7 +594,7 @@ func (o *OAuth20Service) initTokenValidator(ctx context.Context) {
 		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
-		LocalValidationActive: localValidationActive,
+		LocalValidationActive: value,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
 		NamespaceContexts:     make(map[string]*NamespaceContext),
@@ -613,7 +607,7 @@ func (o *OAuth20Service) initTokenValidator(ctx context.Context) {
 func (o *OAuth20Service) getPublicKey(parsedToken *jwt.JSONWebToken) (*rsa.PublicKey, error) {
 	// Check if token validation is already exist
 	if o.tokenValidation == nil {
-		o.initTokenValidator(o.tokenValidation.Ctx)
+		o.initTokenValidator(o.tokenValidation.Ctx, true)
 	}
 
 	// Get the public key from the JWKS based on the Key ID (kid) from the token's header

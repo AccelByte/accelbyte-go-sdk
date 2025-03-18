@@ -577,6 +577,7 @@ func (o *OAuth20Service) Validate(token string, permission *Permission, namespac
 func (o *OAuth20Service) SetLocalValidation(ctx context.Context, value bool) {
 	if o.tokenValidation != nil {
 		o.tokenValidation.LocalValidationActive = value
+		o.tokenValidation.Ctx = ctx
 	} else {
 		o.initTokenValidator(ctx)
 	}
@@ -586,6 +587,7 @@ func (o *OAuth20Service) initTokenValidator(ctx context.Context) {
 	localValidationActive := false
 	if o.tokenValidation != nil {
 		localValidationActive = o.tokenValidation.LocalValidationActive
+		o.tokenValidation.Ctx = ctx
 	}
 
 	o.tokenValidation = &TokenValidator{

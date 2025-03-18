@@ -28,7 +28,7 @@ import (
 
 func TestTokenValidator_ValidateToken(t *testing.T) {
 	// should be moved and run as integration test, skip for now
-	t.Skip()
+	//t.Skip()
 
 	// Arrange
 	configRepo := auth.DefaultConfigRepositoryImpl()

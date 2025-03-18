@@ -13,7 +13,6 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	//"github.com/opentracing/opentracing-go"
 )
 
 // New creates a new namespace API client.
@@ -911,9 +910,6 @@ func (a *Client) GetNamespaceContextShort(params *GetNamespaceContextParams, aut
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
-
-	//span, ctx := opentracing.StartSpanFromContext(params.Context, "getNamespaceContext")
-	//defer span.Finish()
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaceContext",

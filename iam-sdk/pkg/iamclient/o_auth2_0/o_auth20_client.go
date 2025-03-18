@@ -13,7 +13,6 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	//"github.com/opentracing/opentracing-go"
 )
 
 // New creates a new o auth2 0 API client.
@@ -675,9 +674,6 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 	if params.RetryPolicy != nil {
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
-
-	//span, ctx := opentracing.StartSpanFromContext(params.Context, "GetJWKSV3")
-	//defer span.Finish()
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetJWKSV3",
@@ -1800,9 +1796,6 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
-	//span, ctx := opentracing.StartSpanFromContext(params.Context, "GetRevocationListV3")
-	//defer span.Finish()
-
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "GetRevocationListV3",
 		Method:             "GET",
@@ -2353,9 +2346,6 @@ func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.Cli
 	if params.XFlightId != nil {
 		params.SetFlightId(*params.XFlightId)
 	}
-
-	//span, ctx := opentracing.StartSpanFromContext(params.Context, "VerifyTokenV3")
-	//defer span.Finish()
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "VerifyTokenV3",

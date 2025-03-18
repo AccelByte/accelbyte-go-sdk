@@ -600,9 +600,6 @@ func (a *Client) AdminGetRoleNamespacePermissionV3Short(params *AdminGetRoleName
 		params.SetHTTPClientTransport(params.RetryPolicy)
 	}
 
-	//span, ctx := opentracing.StartSpanFromContext(params.Context, "AdminGetRoleNamespacePermissionV3")
-	//defer span.Finish()
-
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "AdminGetRoleNamespacePermissionV3",
 		Method:             "GET",

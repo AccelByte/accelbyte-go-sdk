@@ -11,7 +11,6 @@ import (
 
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/contrib/propagators/b3"
-	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 
 	"net/http"
@@ -68,14 +67,14 @@ func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Run
 
 	// optional tracing
 	if GetEnv("ENABLE_TRACING", "false") == "true" {
-		tracerProvider, err := NewTracerProvider(UserAgentSDK, environment, id)
-		if err != nil {
-			logrus.Fatalf("failed to create tracer provider: %v", err)
-		}
-
-		// Register our TracerProvider as the global so any imported
-		// instrumentation in the future will default to using it.
-		otel.SetTracerProvider(tracerProvider)
+		//tracerProvider, err := NewTracerProvider(UserAgentSDK, environment, id)
+		//if err != nil {
+		//	logrus.Fatalf("failed to create tracer provider: %v", err)
+		//}
+		//
+		//// Register our TracerProvider as the global so any imported
+		//// instrumentation in the future will default to using it.
+		//otel.SetTracerProvider(tracerProvider)
 
 		b := b3.New(b3.WithInjectEncoding(b3.B3MultipleHeader))
 		propagator := propagation.NewCompositeTextMapPropagator(

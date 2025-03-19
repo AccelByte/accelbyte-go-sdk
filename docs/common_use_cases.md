@@ -362,56 +362,6 @@ if err != nil {
 	assert.FailNow(t, err.Error())
 }
 ```
-
-### Protected Get Playtime
-
-```go
-input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-	SteamID: steamId,
-}
-
-ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
-if err != nil {
-	assert.FailNow(t, err.Error())
-}
-```
-
-### Protected Get Playtime with retry
-
-```go
-input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
-	SteamID: "falseSteamId",
-}
-input.RetryPolicy = &utils.Retry{
-	Transport: gameTelemetryOperationsService.Client.Runtime.Transport,
-	MaxTries:  utils.MaxTries,
-	Backoff:   utils.NewConstantBackoff(0),
-	RetryCodes: map[int]bool{
-		422: true, // fail on purpose
-	},
-}
-
-get, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
-if err != nil {
-	assert.NotNil(t, err.Error(), "fail on purpose")
-}
-```
-
-### Protected Update Playtime
-
-```go
-input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
-	Playtime: "4",
-	SteamID:  steamId,
-}
-
-resp, err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
-if err != nil {
-	assert.Contains(t, err.Error(), "user not found")
-
-	t.Skip("User was not found.")
-}
-```
 ## GDPR
 
 Source: [gdpr_test.go](../services-api/pkg/tests/integration/gdpr_test.go)

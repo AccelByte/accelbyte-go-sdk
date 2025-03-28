@@ -1,3 +1,10 @@
+<a name="v0.78.1"></a>
+## [v0.78.1]
+### fix
+- **spec:** update match2 spec
+- **match2:** add MatchPoolDetailsNotFound
+
+
 <a name="v0.78.0"></a>
 ## [v0.78.0]
 ### chore

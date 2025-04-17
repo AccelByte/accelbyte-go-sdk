@@ -86,12 +86,13 @@ var (
 			},
 		},
 	}
-	bodyMatchPool = &match2clientmodels.APIMatchPool{
+	matchPoolSessionTemplateName = randomizeCfgTemplateName()
+	bodyMatchPool                = &match2clientmodels.APIMatchPool{
 		BackfillTicketExpirationSeconds: &expirationSeconds,
 		MatchFunction:                   &matchFunction,
 		Name:                            &poolName,
 		RuleSet:                         &ruleSetName,
-		SessionTemplate:                 &cfgTemplateName,
+		SessionTemplate:                 &matchPoolSessionTemplateName,
 		TicketExpirationSeconds:         &expirationSeconds,
 	}
 	maxNumber = int32(2)
@@ -105,6 +106,15 @@ func TestIntegrationMatchPool(t *testing.T) {
 
 	// Login User - Arrange
 	Init()
+
+	// Create configuration - Arrange
+	cfgName, _ := createCfgTemplate(randomizeCfgTemplateName())
+	defer func(name string) {
+		err := deleteCfgTemplate(name)
+		if err != nil {
+			assert.FailNow(t, err.Error())
+		}
+	}(cfgName)
 
 	// CASE Create a match rule set
 	inputCreateRule := &rule_sets.CreateRuleSetParams{
@@ -126,8 +136,11 @@ func TestIntegrationMatchPool(t *testing.T) {
 	assert.Nil(t, errCreateRule, "err should be nil")
 
 	// CASE Create a match pool
+	tempMatchPoolBody := *bodyMatchPool
+	tempMatchPoolBody.SessionTemplate = &cfgName
+
 	inputCreatePool := &match_pools.CreateMatchPoolParams{
-		Body:      bodyMatchPool,
+		Body:      &tempMatchPoolBody,
 		Namespace: integration.NamespaceTest,
 	}
 	errCreated := matchPoolService.CreateMatchPoolShort(inputCreatePool)
@@ -265,7 +278,7 @@ func TestIntegrationMatchFunction(t *testing.T) {
 func getSessionID(t *testing.T, memberID string) string {
 	t.Helper()
 
-	cfgName, _ := createCfgTemplate()
+	cfgName, _ := createCfgTemplate(randomizeCfgTemplateName())
 	defer func(name string) {
 		err := deleteCfgTemplate(name)
 		if err != nil {
@@ -273,19 +286,12 @@ func getSessionID(t *testing.T, memberID string) string {
 		}
 	}(cfgName)
 
-	member := &sessionclientmodels.ApimodelsRequestMember{ID: &memberID}
-	bodyParty = &sessionclientmodels.ApimodelsCreatePartyRequest{
-		ConfigurationName: &cfgTemplateName,
-		InactiveTimeout:   &inactiveTimeout,
-		InviteTimeout:     &inviteTimeout,
-		Joinability:       &joinability,
-		MaxPlayers:        &maxNumber,
-		Members:           []*sessionclientmodels.ApimodelsRequestMember{member},
-		MinPlayers:        &minNumber,
-		Type:              &cfgTemplateType,
-	}
+	tempCreatePartyBody := *bodyParty
+	tempCreatePartyBody.ConfigurationName = &cfgName
+	tempCreatePartyBody.Members = []*sessionclientmodels.ApimodelsRequestMember{{ID: &memberID}}
+
 	created, errCreated := partyService.PublicCreatePartyShort(&party.PublicCreatePartyParams{
-		Body:      bodyParty,
+		Body:      &tempCreatePartyBody,
 		Namespace: integration.NamespaceTest,
 	})
 	if errCreated != nil {

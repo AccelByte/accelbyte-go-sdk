@@ -367,7 +367,6 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 	tokenNamespace := claims.Namespace
 	if tokenNamespace == "" {
 		errPermissions := fmt.Errorf("claims namespace is empty")
-		log.Fatal(errPermissions)
 
 		return false, errPermissions
 	}
@@ -381,7 +380,6 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 	err := v.fetchNamespaceContextFromCache(claims.Namespace)
 	if err != nil {
 		errPermissions := fmt.Errorf("failed to fetch namespace context. %+v", err)
-		log.Fatal(errPermissions)
 
 		return false, errPermissions
 	}
@@ -392,6 +390,8 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		return true, nil
 	}
 
+	var aggregatedErrors []string
+
 	claimsUserId := claims.Subject
 	namespaceRoles := claims.NamespaceRoles
 	if claimsUserId != "" && len(namespaceRoles) > 0 {
@@ -400,8 +400,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 			roleNamespacePermissions, errRoleNamespacePermissions := v.getRolePermissions3(namespaceRole, &claimsUserId, false)
 			if errRoleNamespacePermissions != nil {
 				errPermissions := fmt.Errorf("error while fetching role namespace permission. %s", errRoleNamespacePermissions)
-
-				log.Fatal(errPermissions)
+				aggregatedErrors = append(aggregatedErrors, errPermissions.Error())
 			}
 
 			allRoleNamespacePermissions = append(allRoleNamespacePermissions, roleNamespacePermissions...)
@@ -419,8 +418,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 			rolePermissions, errRolePermissions := v.getRolePermissions2(roleId, tokenNamespace, userId, false)
 			if errRolePermissions != nil {
 				errPermissions := fmt.Errorf("error while fetching role permission. %+v", errRolePermissions)
-
-				log.Fatal(errPermissions)
+				aggregatedErrors = append(aggregatedErrors, errPermissions.Error())
 			}
 
 			allRolePermissions = append(allRolePermissions, rolePermissions...)
@@ -431,7 +429,12 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 		}
 	}
 
-	return false, fmt.Errorf("failed to validate permission [%v][%v]", modifiedResource, permission.Action)
+	additionalErrorInfo := ""
+	if len(aggregatedErrors) > 0 {
+		additionalErrorInfo = fmt.Sprintf("\nerrors:\n -%s", strings.Join(aggregatedErrors, "\n -"))
+	}
+
+	return false, fmt.Errorf("failed to validate permission [%v][%v]%s", modifiedResource, permission.Action, additionalErrorInfo)
 }
 
 func (v *TokenValidator) hasValidNamespace(claims JWTClaims, namespace *string) error {

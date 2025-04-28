@@ -8,19 +8,18 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
-	"log"
 	"os"
 
 	"github.com/go-openapi/runtime"
-	"github.com/sirupsen/logrus"
 )
 
 func ReadByChunks(filePath string) (*os.File, error) {
 	buf := make([]byte, 0, 4*1024) // size of chunks
 	file, errFile := os.Open(filePath)
 	if errFile != nil {
-		log.Fatal("unable to open big file")
+		return nil, fmt.Errorf("unable to open file: %v", errFile)
 	}
 
 	nBytes, nChunks := int64(0), int64(0)
@@ -36,13 +35,13 @@ func ReadByChunks(filePath string) (*os.File, error) {
 			if errRead == io.EOF {
 				break
 			}
-			log.Fatal(errRead)
+			return nil, fmt.Errorf("unexpected error while reading file: %v", errRead)
 		}
 		nChunks++
 		nBytes += int64(len(buf))
 		// process buf
 		if errRead != nil && errRead != io.EOF {
-			log.Fatal(errRead)
+			return nil, fmt.Errorf("error while reading file: %v", errRead)
 		}
 	}
 
@@ -52,21 +51,21 @@ func ReadByChunks(filePath string) (*os.File, error) {
 func ConvertByteToFile(fileByte io.Writer, writer *bytes.Buffer, fileName string) (runtime.NamedReadCloser, error) {
 	_, errMarshal := json.Marshal(fileByte)
 	if errMarshal != nil {
-		logrus.Fatal(errMarshal)
+		return nil, errMarshal
 	}
 
 	f, errCreate := os.Create(fileName)
 	if errCreate != nil {
-		logrus.Fatal(errCreate)
+		return nil, errCreate
 	}
 
 	if _, err := io.Copy(f, writer); err != nil {
-		logrus.Fatal(err.Error())
+		return nil, err
 	}
 
 	file, errOpen := os.Open(fileName)
 	if errOpen != nil {
-		logrus.Fatal(errOpen)
+		return nil, errOpen
 	}
 
 	return file, nil

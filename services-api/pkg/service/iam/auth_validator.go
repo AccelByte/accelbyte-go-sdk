@@ -61,12 +61,14 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) {
 	}
 
 	if err := v.fetchAll(); err != nil {
+		// TODO: change function signature to accommodate error
 		log.Fatalf("Error initialize validator: %v", err)
 	}
 	go func() {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchClientToken(); err != nil {
+				// TODO: change function signature to accommodate error
 				log.Fatalf("Error fetching client token: %v", err)
 			}
 		}
@@ -76,6 +78,7 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchJWKSet(); err != nil {
+				// TODO: change function signature to accommodate error
 				log.Fatalf("Error fetching JWK set: %v", err)
 			}
 		}
@@ -85,6 +88,7 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchRevocationList(); err != nil {
+				// TODO: change function signature to accommodate error
 				log.Fatalf("Error fetching revocation list: %v", err)
 			}
 		}

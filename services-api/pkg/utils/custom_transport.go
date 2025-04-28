@@ -73,6 +73,7 @@ func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Run
 
 	tracerProvider, err := NewTracerProvider(UserAgentSDK, environment, id)
 	if err != nil {
+		// TODO: change function signature to accommodate error
 		logrus.Fatalf("failed to create tracer provider: %v", err)
 	}
 

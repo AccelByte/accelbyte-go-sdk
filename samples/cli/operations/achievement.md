@@ -135,6 +135,15 @@ $ samples/cli/sample-apps Achievement adminListUserAchievements \
     > result.txt
 ```
 
+### Operation `admin_bulk_unlock_achievement`
+```sh
+$ samples/cli/sample-apps Achievement adminBulkUnlockAchievement \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '{"achievementCodes": ["string"]}' \
+    > result.txt
+```
+
 ### Operation `admin_reset_achievement`
 ```sh
 $ samples/cli/sample-apps Achievement adminResetAchievement \
@@ -241,6 +250,15 @@ $ samples/cli/sample-apps Achievement publicListUserAchievements \
     --preferUnlocked false \
     --sortBy 'achievedAt' \
     --tags '["string"]' \
+    > result.txt
+```
+
+### Operation `public_bulk_unlock_achievement`
+```sh
+$ samples/cli/sample-apps Achievement publicBulkUnlockAchievement \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '{"achievementCodes": ["string"]}' \
     > result.txt
 ```
 

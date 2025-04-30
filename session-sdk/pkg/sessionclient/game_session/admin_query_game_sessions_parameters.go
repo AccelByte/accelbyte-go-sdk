@@ -166,7 +166,7 @@ type AdminQueryGameSessionsParams struct {
 	*/
 	Status *string
 	/*StatusV2
-	  game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED,DS_ERROR,PREPARING
+	  game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED,DS_ERROR,PREPARING,DS_CANCELLED
 
 	*/
 	StatusV2 *string

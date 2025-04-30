@@ -40,6 +40,8 @@ type ClientService interface {
 	AdminUpdateInboxCategoryShort(params *AdminUpdateInboxCategoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateInboxCategoryOK, error)
 	AdminGetCategorySchema(params *AdminGetCategorySchemaParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCategorySchemaOK, *AdminGetCategorySchemaBadRequest, *AdminGetCategorySchemaUnauthorized, *AdminGetCategorySchemaForbidden, *AdminGetCategorySchemaNotFound, *AdminGetCategorySchemaInternalServerError, error)
 	AdminGetCategorySchemaShort(params *AdminGetCategorySchemaParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCategorySchemaOK, error)
+	AdminListKafkaTopic(params *AdminListKafkaTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListKafkaTopicOK, *AdminListKafkaTopicUnauthorized, *AdminListKafkaTopicForbidden, *AdminListKafkaTopicInternalServerError, error)
+	AdminListKafkaTopicShort(params *AdminListKafkaTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListKafkaTopicOK, error)
 	AdminDeleteInboxMessage(params *AdminDeleteInboxMessageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteInboxMessageOK, *AdminDeleteInboxMessageBadRequest, *AdminDeleteInboxMessageUnauthorized, *AdminDeleteInboxMessageForbidden, *AdminDeleteInboxMessageInternalServerError, error)
 	AdminDeleteInboxMessageShort(params *AdminDeleteInboxMessageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteInboxMessageOK, error)
 	AdminGetInboxMessages(params *AdminGetInboxMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetInboxMessagesOK, *AdminGetInboxMessagesBadRequest, *AdminGetInboxMessagesUnauthorized, *AdminGetInboxMessagesForbidden, *AdminGetInboxMessagesInternalServerError, error)
@@ -638,6 +640,117 @@ func (a *Client) AdminGetCategorySchemaShort(params *AdminGetCategorySchemaParam
 	case *AdminGetCategorySchemaNotFound:
 		return nil, v
 	case *AdminGetCategorySchemaInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminListKafkaTopicShort instead.
+
+AdminListKafkaTopic admin get list kafka topic
+Get list kafka topic. example result chat,sessionNotification
+*/
+func (a *Client) AdminListKafkaTopic(params *AdminListKafkaTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListKafkaTopicOK, *AdminListKafkaTopicUnauthorized, *AdminListKafkaTopicForbidden, *AdminListKafkaTopicInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListKafkaTopicParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminListKafkaTopic",
+		Method:             "GET",
+		PathPattern:        "/chat/v1/admin/inbox/namespaces/{namespace}/list/topic/kafka",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListKafkaTopicReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListKafkaTopicOK:
+		return v, nil, nil, nil, nil
+
+	case *AdminListKafkaTopicUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminListKafkaTopicForbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminListKafkaTopicInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminListKafkaTopicShort admin get list kafka topic
+Get list kafka topic. example result chat,sessionNotification
+*/
+func (a *Client) AdminListKafkaTopicShort(params *AdminListKafkaTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListKafkaTopicOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminListKafkaTopicParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminListKafkaTopic",
+		Method:             "GET",
+		PathPattern:        "/chat/v1/admin/inbox/namespaces/{namespace}/list/topic/kafka",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminListKafkaTopicReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminListKafkaTopicOK:
+		return v, nil
+	case *AdminListKafkaTopicUnauthorized:
+		return nil, v
+	case *AdminListKafkaTopicForbidden:
+		return nil, v
+	case *AdminListKafkaTopicInternalServerError:
 		return nil, v
 
 	default:

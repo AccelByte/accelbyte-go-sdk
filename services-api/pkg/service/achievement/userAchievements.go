@@ -64,6 +64,35 @@ func (aaa *UserAchievementsService) AdminListUserAchievements(input *user_achiev
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBulkUnlockAchievementShort instead.
+func (aaa *UserAchievementsService) AdminBulkUnlockAchievement(input *user_achievements.AdminBulkUnlockAchievementParams) ([]*achievementclientmodels.ModelsBulkUnlockAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.AdminBulkUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminResetAchievementShort instead.
 func (aaa *UserAchievementsService) AdminResetAchievement(input *user_achievements.AdminResetAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -96,12 +125,15 @@ func (aaa *UserAchievementsService) AdminUnlockAchievement(input *user_achieveme
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.AdminUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.AdminUnlockAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if unprocessableEntity != nil {
 		return unprocessableEntity
@@ -142,18 +174,50 @@ func (aaa *UserAchievementsService) PublicListUserAchievements(input *user_achie
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicBulkUnlockAchievementShort instead.
+func (aaa *UserAchievementsService) PublicBulkUnlockAchievement(input *user_achievements.PublicBulkUnlockAchievementParams) ([]*achievementclientmodels.ModelsBulkUnlockAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.PublicBulkUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicUnlockAchievementShort instead.
 func (aaa *UserAchievementsService) PublicUnlockAchievement(input *user_achievements.PublicUnlockAchievementParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.PublicUnlockAchievement(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := aaa.Client.UserAchievements.PublicUnlockAchievement(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
 	if unauthorized != nil {
 		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if unprocessableEntity != nil {
 		return unprocessableEntity
@@ -191,6 +255,36 @@ func (aaa *UserAchievementsService) AdminListUserAchievementsShort(input *user_a
 	}
 
 	ok, err := aaa.Client.UserAchievements.AdminListUserAchievementsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserAchievementsService) AdminBulkUnlockAchievementShort(input *user_achievements.AdminBulkUnlockAchievementParams) ([]*achievementclientmodels.ModelsBulkUnlockAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UserAchievements.AdminBulkUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -281,6 +375,36 @@ func (aaa *UserAchievementsService) PublicListUserAchievementsShort(input *user_
 	}
 
 	ok, err := aaa.Client.UserAchievements.PublicListUserAchievementsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserAchievementsService) PublicBulkUnlockAchievementShort(input *user_achievements.PublicBulkUnlockAchievementParams) ([]*achievementclientmodels.ModelsBulkUnlockAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UserAchievements.PublicBulkUnlockAchievementShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -90,6 +90,11 @@ type GetCurrentCycleLeaderboardRankingAdminV3Params struct {
 
 	*/
 	Offset *int64
+	/*PreviousVersion
+	  Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)
+
+	*/
+	PreviousVersion *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -211,6 +216,17 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3Params) SetOffset(offset *int64
 	o.Offset = offset
 }
 
+// WithPreviousVersion adds the previousVersion to the get current cycle leaderboard ranking admin v3 params
+func (o *GetCurrentCycleLeaderboardRankingAdminV3Params) WithPreviousVersion(previousVersion *int64) *GetCurrentCycleLeaderboardRankingAdminV3Params {
+	o.SetPreviousVersion(previousVersion)
+	return o
+}
+
+// SetPreviousVersion adds the previousVersion to the get current cycle leaderboard ranking admin v3 params
+func (o *GetCurrentCycleLeaderboardRankingAdminV3Params) SetPreviousVersion(previousVersion *int64) {
+	o.PreviousVersion = previousVersion
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetCurrentCycleLeaderboardRankingAdminV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -260,6 +276,22 @@ func (o *GetCurrentCycleLeaderboardRankingAdminV3Params) WriteToRequest(r runtim
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.PreviousVersion != nil {
+
+		// query param previousVersion
+		var qrPreviousVersion int64
+		if o.PreviousVersion != nil {
+			qrPreviousVersion = *o.PreviousVersion
+		}
+		qPreviousVersion := swag.FormatInt64(qrPreviousVersion)
+		if qPreviousVersion != "" {
+			if err := r.SetQueryParam("previousVersion", qPreviousVersion); err != nil {
 				return err
 			}
 		}

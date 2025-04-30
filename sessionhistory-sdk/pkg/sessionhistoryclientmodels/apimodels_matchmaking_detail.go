@@ -43,6 +43,9 @@ type ApimodelsMatchmakingDetail struct {
 	// partysessionid
 	PartySessionID string `json:"partySessionID,omitempty"`
 
+	// ruleset
+	RuleSet interface{} `json:"ruleSet,omitempty"`
+
 	// ticketid
 	TicketID string `json:"ticketID,omitempty"`
 }

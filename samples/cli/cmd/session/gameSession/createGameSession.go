@@ -35,9 +35,11 @@ var CreateGameSessionCmd = &cobra.Command{
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		resolveMaxActiveSession, _ := cmd.Flags().GetBool("resolveMaxActiveSession")
 		input := &game_session.CreateGameSessionParams{
-			Body:      body,
-			Namespace: namespace,
+			Body:                    body,
+			Namespace:               namespace,
+			ResolveMaxActiveSession: &resolveMaxActiveSession,
 		}
 		created, errCreated := gameSessionService.CreateGameSessionShort(input)
 		if errCreated != nil {
@@ -57,4 +59,5 @@ func init() {
 	_ = CreateGameSessionCmd.MarkFlagRequired("body")
 	CreateGameSessionCmd.Flags().String("namespace", "", "Namespace")
 	_ = CreateGameSessionCmd.MarkFlagRequired("namespace")
+	CreateGameSessionCmd.Flags().Bool("resolveMaxActiveSession", false, "Resolve max active session")
 }

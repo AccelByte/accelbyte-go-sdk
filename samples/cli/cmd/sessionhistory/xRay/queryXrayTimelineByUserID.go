@@ -31,11 +31,15 @@ var QueryXrayTimelineByUserIDCmd = &cobra.Command{
 		startDate, _ := cmd.Flags().GetString("startDate")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		order, _ := cmd.Flags().GetString("order")
+		orderBy, _ := cmd.Flags().GetString("orderBy")
 		input := &x_ray.QueryXrayTimelineByUserIDParams{
 			Namespace: namespace,
 			UserID:    userId,
 			Limit:     &limit,
 			Offset:    &offset,
+			Order:     &order,
+			OrderBy:   &orderBy,
 			EndDate:   endDate,
 			StartDate: startDate,
 		}
@@ -59,6 +63,8 @@ func init() {
 	_ = QueryXrayTimelineByUserIDCmd.MarkFlagRequired("userId")
 	QueryXrayTimelineByUserIDCmd.Flags().Int64("limit", 20, "Limit")
 	QueryXrayTimelineByUserIDCmd.Flags().Int64("offset", 0, "Offset")
+	QueryXrayTimelineByUserIDCmd.Flags().String("order", "", "Order")
+	QueryXrayTimelineByUserIDCmd.Flags().String("orderBy", "", "Order by")
 	QueryXrayTimelineByUserIDCmd.Flags().String("endDate", "", "End date")
 	_ = QueryXrayTimelineByUserIDCmd.MarkFlagRequired("endDate")
 	QueryXrayTimelineByUserIDCmd.Flags().String("startDate", "", "Start date")

@@ -171,6 +171,29 @@ func (aaa *InboxService) AdminGetCategorySchema(input *inbox.AdminGetCategorySch
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminListKafkaTopicShort instead.
+func (aaa *InboxService) AdminListKafkaTopic(input *inbox.AdminListKafkaTopicParams) (*chatclientmodels.ModelsGetListTopicKafkaResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.Inbox.AdminListKafkaTopic(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminDeleteInboxMessageShort instead.
 func (aaa *InboxService) AdminDeleteInboxMessage(input *inbox.AdminDeleteInboxMessageParams) error {
 	token, err := aaa.TokenRepository.GetToken()
@@ -522,6 +545,36 @@ func (aaa *InboxService) AdminGetCategorySchemaShort(input *inbox.AdminGetCatego
 	}
 
 	ok, err := aaa.Client.Inbox.AdminGetCategorySchemaShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *InboxService) AdminListKafkaTopicShort(input *inbox.AdminListKafkaTopicParams) (*chatclientmodels.ModelsGetListTopicKafkaResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdInbox != nil {
+		input.XFlightId = tempFlightIdInbox
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Inbox.AdminListKafkaTopicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

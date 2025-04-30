@@ -1,3 +1,23 @@
+<a name="v0.79.0"></a>
+## [v0.79.0]
+### chore
+- **makefile:** test_broken_link - update docs portal url
+- **makefile:** add go mod tidy for getting started samples
+- **makefile:** add go in docker run make version command
+- **cli:** generate cli index files
+### test
+- **integration:** gametelemetry - remove deprecated endpoints
+- **integration:** fix configuration template shared name randomization
+### docs
+- **common use cases:** update
+### feat
+- **sdk:** - chore(sdk): avoid breaking change
+### fix
+- **spec:** update match2 spec
+- **token-validation:** remove log.Fatal in token validation
+- **:** - tag other usages that will need changing function signature with todo
+
+
 <a name="v0.78.0"></a>
 ## [v0.78.0]
 ### chore

@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	AdminGetConfigValueV3(params *AdminGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigValueV3OK, *AdminGetConfigValueV3BadRequest, *AdminGetConfigValueV3InternalServerError, error)
 	AdminGetConfigValueV3Short(params *AdminGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigValueV3OK, error)
+	PublicGetSystemConfigV3(params *PublicGetSystemConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSystemConfigV3OK, *PublicGetSystemConfigV3InternalServerError, error)
+	PublicGetSystemConfigV3Short(params *PublicGetSystemConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSystemConfigV3OK, error)
 	PublicGetConfigValueV3(params *PublicGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigValueV3OK, *PublicGetConfigValueV3BadRequest, *PublicGetConfigValueV3InternalServerError, error)
 	PublicGetConfigValueV3Short(params *PublicGetConfigValueV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetConfigValueV3OK, error)
 
@@ -147,6 +149,105 @@ func (a *Client) AdminGetConfigValueV3Short(params *AdminGetConfigValueV3Params,
 	case *AdminGetConfigValueV3BadRequest:
 		return nil, v
 	case *AdminGetConfigValueV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicGetSystemConfigV3Short instead.
+
+PublicGetSystemConfigV3 get public system config value
+*/
+func (a *Client) PublicGetSystemConfigV3(params *PublicGetSystemConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSystemConfigV3OK, *PublicGetSystemConfigV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetSystemConfigV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetSystemConfigV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/config/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetSystemConfigV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetSystemConfigV3OK:
+		return v, nil, nil
+
+	case *PublicGetSystemConfigV3InternalServerError:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicGetSystemConfigV3Short get public system config value
+*/
+func (a *Client) PublicGetSystemConfigV3Short(params *PublicGetSystemConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetSystemConfigV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetSystemConfigV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetSystemConfigV3",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/config/public",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetSystemConfigV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetSystemConfigV3OK:
+		return v, nil
+	case *PublicGetSystemConfigV3InternalServerError:
 		return nil, v
 
 	default:

@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodel get app image list V2 data item.
 type ApimodelGetAppImageListV2DataItem struct {
 
+	// isactive
+	// Required: true
+	IsActive *bool `json:"IsActive"`
+
 	// imagedigest
 	// Required: true
 	ImageDigest *string `json:"imageDigest"`
@@ -45,6 +49,9 @@ type ApimodelGetAppImageListV2DataItem struct {
 func (m *ApimodelGetAppImageListV2DataItem) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateIsActive(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateImageDigest(formats); err != nil {
 		res = append(res, err)
 	}
@@ -58,6 +65,15 @@ func (m *ApimodelGetAppImageListV2DataItem) Validate(formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelGetAppImageListV2DataItem) validateIsActive(formats strfmt.Registry) error {
+
+	if err := validate.Required("IsActive", "body", m.IsActive); err != nil {
+		return err
+	}
+
 	return nil
 }
 

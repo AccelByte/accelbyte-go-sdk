@@ -424,6 +424,7 @@ $ samples/cli/sample-apps Leaderboard getCurrentCycleLeaderboardRankingAdminV3 \
     --namespace 'string' \
     --limit 1 \
     --offset 1 \
+    --previousVersion 1 \
     > result.txt
 ```
 
@@ -478,6 +479,7 @@ $ samples/cli/sample-apps Leaderboard getUserRankingAdminV3 \
     --leaderboardCode 'string' \
     --namespace 'string' \
     --userId 'string' \
+    --previousVersion 1 \
     > result.txt
 ```
 
@@ -525,6 +527,7 @@ $ samples/cli/sample-apps Leaderboard getUserLeaderboardRankingsAdminV3 \
     --userId 'string' \
     --limit 1 \
     --offset 1 \
+    --previousVersion 1 \
     > result.txt
 ```
 
@@ -573,6 +576,7 @@ $ samples/cli/sample-apps Leaderboard getCurrentCycleLeaderboardRankingPublicV3 
     --namespace 'string' \
     --limit 1 \
     --offset 1 \
+    --previousVersion 1 \
     > result.txt
 ```
 
@@ -581,6 +585,7 @@ $ samples/cli/sample-apps Leaderboard getCurrentCycleLeaderboardRankingPublicV3 
 $ samples/cli/sample-apps Leaderboard bulkGetUsersRankingPublicV3 \
     --leaderboardCode 'string' \
     --namespace 'string' \
+    --previousVersion 1 \
     --body '{"userIds": ["string"]}' \
     > result.txt
 ```
@@ -591,6 +596,7 @@ $ samples/cli/sample-apps Leaderboard getUserRankingPublicV3 \
     --leaderboardCode 'string' \
     --namespace 'string' \
     --userId 'string' \
+    --previousVersion 1 \
     > result.txt
 ```
 

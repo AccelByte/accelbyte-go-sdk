@@ -34,7 +34,7 @@ type ClientService interface {
 	MatchPoolListShort(params *MatchPoolListParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolListOK, error)
 	CreateMatchPool(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, *CreateMatchPoolBadRequest, *CreateMatchPoolUnauthorized, *CreateMatchPoolForbidden, *CreateMatchPoolConflict, *CreateMatchPoolInternalServerError, error)
 	CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*CreateMatchPoolCreated, error)
-	MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsInternalServerError, error)
+	MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsNotFound, *MatchPoolDetailsInternalServerError, error)
 	MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, error)
 	UpdateMatchPool(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, *UpdateMatchPoolBadRequest, *UpdateMatchPoolUnauthorized, *UpdateMatchPoolForbidden, *UpdateMatchPoolNotFound, *UpdateMatchPoolInternalServerError, error)
 	UpdateMatchPoolShort(params *UpdateMatchPoolParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateMatchPoolOK, error)
@@ -328,7 +328,7 @@ Deprecated: 2022-08-10 - Use MatchPoolDetailsShort instead.
 MatchPoolDetails get details for a specific match pool
 Get details for a specific match pool
 */
-func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsInternalServerError, error) {
+func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsNotFound, *MatchPoolDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewMatchPoolDetailsParams()
@@ -360,25 +360,28 @@ func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *MatchPoolDetailsOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *MatchPoolDetailsUnauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *MatchPoolDetailsForbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *MatchPoolDetailsNotFound:
+		return nil, nil, nil, v, nil, nil
 
 	case *MatchPoolDetailsInternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -424,6 +427,8 @@ func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo 
 	case *MatchPoolDetailsUnauthorized:
 		return nil, v
 	case *MatchPoolDetailsForbidden:
+		return nil, v
+	case *MatchPoolDetailsNotFound:
 		return nil, v
 	case *MatchPoolDetailsInternalServerError:
 		return nil, v

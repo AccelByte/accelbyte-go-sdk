@@ -22,6 +22,10 @@ type ModelPublicOpenIDUserInfoResponse struct {
 	// Required: true
 	Email *string `json:"email"`
 
+	// email_verified
+	// Required: true
+	EmailVerified *bool `json:"email_verified"`
+
 	// name
 	// Required: true
 	Name *string `json:"name"`
@@ -40,6 +44,9 @@ func (m *ModelPublicOpenIDUserInfoResponse) Validate(formats strfmt.Registry) er
 	var res []error
 
 	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateEmailVerified(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateName(formats); err != nil {
@@ -61,6 +68,15 @@ func (m *ModelPublicOpenIDUserInfoResponse) Validate(formats strfmt.Registry) er
 func (m *ModelPublicOpenIDUserInfoResponse) validateEmail(formats strfmt.Registry) error {
 
 	if err := validate.Required("email", "body", m.Email); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelPublicOpenIDUserInfoResponse) validateEmailVerified(formats strfmt.Registry) error {
+
+	if err := validate.Required("email_verified", "body", m.EmailVerified); err != nil {
 		return err
 	}
 

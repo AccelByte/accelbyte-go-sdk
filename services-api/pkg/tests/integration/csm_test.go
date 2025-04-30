@@ -106,8 +106,7 @@ func TestIntegrationSecretVariable(t *testing.T) {
 	input := &configuration_v2.SaveSecretV2Params{
 		Namespace: namespace,
 		App:       extendAppName,
-		Body: &csmclientmodels.ApimodelSaveConfigurationV2Request{
-			ApplyMask:  true,
+		Body: &csmclientmodels.ApimodelSaveSecretConfigurationV2Request{
 			ConfigName: &secretName,
 			Value:      &secretValue,
 			Source:     &configSource,
@@ -139,9 +138,8 @@ func TestIntegrationSecretVariable(t *testing.T) {
 		Namespace: namespace,
 		App:       extendAppName,
 		ConfigID:  *secret.ConfigID,
-		Body: &csmclientmodels.ApimodelUpdateConfigurationV2Request{
-			ApplyMask: true,
-			Value:     &updatedSecretValue,
+		Body: &csmclientmodels.ApimodelUpdateSecretConfigurationV2Request{
+			Value: &updatedSecretValue,
 		},
 	})
 	// ESAC

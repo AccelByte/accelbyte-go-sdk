@@ -40,7 +40,7 @@ type ClientService interface {
 	DeleteUserRankingByCycleIDAdminV3Short(params *DeleteUserRankingByCycleIDAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByCycleIDAdminV3NoContent, error)
 	DeleteUserRankingByLeaderboardCodeAdminV3(params *DeleteUserRankingByLeaderboardCodeAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV3NoContent, *DeleteUserRankingByLeaderboardCodeAdminV3Unauthorized, *DeleteUserRankingByLeaderboardCodeAdminV3Forbidden, *DeleteUserRankingByLeaderboardCodeAdminV3NotFound, *DeleteUserRankingByLeaderboardCodeAdminV3InternalServerError, error)
 	DeleteUserRankingByLeaderboardCodeAdminV3Short(params *DeleteUserRankingByLeaderboardCodeAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingByLeaderboardCodeAdminV3NoContent, error)
-	GetUserRankingAdminV3(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, *GetUserRankingAdminV3Unauthorized, *GetUserRankingAdminV3Forbidden, *GetUserRankingAdminV3NotFound, *GetUserRankingAdminV3InternalServerError, error)
+	GetUserRankingAdminV3(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, *GetUserRankingAdminV3BadRequest, *GetUserRankingAdminV3Unauthorized, *GetUserRankingAdminV3Forbidden, *GetUserRankingAdminV3NotFound, *GetUserRankingAdminV3InternalServerError, error)
 	GetUserRankingAdminV3Short(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, error)
 	DeleteUserRankingAdminV3(params *DeleteUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV3NoContent, *DeleteUserRankingAdminV3Unauthorized, *DeleteUserRankingAdminV3Forbidden, *DeleteUserRankingAdminV3NotFound, *DeleteUserRankingAdminV3InternalServerError, error)
 	DeleteUserRankingAdminV3Short(params *DeleteUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserRankingAdminV3NoContent, error)
@@ -52,7 +52,7 @@ type ClientService interface {
 	GetCurrentCycleLeaderboardRankingPublicV3Short(params *GetCurrentCycleLeaderboardRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentCycleLeaderboardRankingPublicV3OK, error)
 	BulkGetUsersRankingPublicV3(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, *BulkGetUsersRankingPublicV3BadRequest, *BulkGetUsersRankingPublicV3Unauthorized, *BulkGetUsersRankingPublicV3Forbidden, *BulkGetUsersRankingPublicV3NotFound, *BulkGetUsersRankingPublicV3InternalServerError, error)
 	BulkGetUsersRankingPublicV3Short(params *BulkGetUsersRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetUsersRankingPublicV3OK, error)
-	GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, *GetUserRankingPublicV3Unauthorized, *GetUserRankingPublicV3Forbidden, *GetUserRankingPublicV3NotFound, *GetUserRankingPublicV3InternalServerError, error)
+	GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, *GetUserRankingPublicV3BadRequest, *GetUserRankingPublicV3Unauthorized, *GetUserRankingPublicV3Forbidden, *GetUserRankingPublicV3NotFound, *GetUserRankingPublicV3InternalServerError, error)
 	GetUserRankingPublicV3Short(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -700,7 +700,7 @@ GetUserRankingAdminV3 get user ranking
 
 Get user ranking in leaderboard
 */
-func (a *Client) GetUserRankingAdminV3(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, *GetUserRankingAdminV3Unauthorized, *GetUserRankingAdminV3Forbidden, *GetUserRankingAdminV3NotFound, *GetUserRankingAdminV3InternalServerError, error) {
+func (a *Client) GetUserRankingAdminV3(params *GetUserRankingAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingAdminV3OK, *GetUserRankingAdminV3BadRequest, *GetUserRankingAdminV3Unauthorized, *GetUserRankingAdminV3Forbidden, *GetUserRankingAdminV3NotFound, *GetUserRankingAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserRankingAdminV3Params()
@@ -732,28 +732,31 @@ func (a *Client) GetUserRankingAdminV3(params *GetUserRankingAdminV3Params, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserRankingAdminV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserRankingAdminV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *GetUserRankingAdminV3Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *GetUserRankingAdminV3Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetUserRankingAdminV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *GetUserRankingAdminV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -798,6 +801,8 @@ func (a *Client) GetUserRankingAdminV3Short(params *GetUserRankingAdminV3Params,
 
 	case *GetUserRankingAdminV3OK:
 		return v, nil
+	case *GetUserRankingAdminV3BadRequest:
+		return nil, v
 	case *GetUserRankingAdminV3Unauthorized:
 		return nil, v
 	case *GetUserRankingAdminV3Forbidden:
@@ -1414,7 +1419,7 @@ GetUserRankingPublicV3 get user ranking
 
 Get user ranking in leaderboard
 */
-func (a *Client) GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, *GetUserRankingPublicV3Unauthorized, *GetUserRankingPublicV3Forbidden, *GetUserRankingPublicV3NotFound, *GetUserRankingPublicV3InternalServerError, error) {
+func (a *Client) GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserRankingPublicV3OK, *GetUserRankingPublicV3BadRequest, *GetUserRankingPublicV3Unauthorized, *GetUserRankingPublicV3Forbidden, *GetUserRankingPublicV3NotFound, *GetUserRankingPublicV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserRankingPublicV3Params()
@@ -1446,28 +1451,31 @@ func (a *Client) GetUserRankingPublicV3(params *GetUserRankingPublicV3Params, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserRankingPublicV3OK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetUserRankingPublicV3BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *GetUserRankingPublicV3Unauthorized:
-		return nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *GetUserRankingPublicV3Forbidden:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetUserRankingPublicV3NotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *GetUserRankingPublicV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1512,6 +1520,8 @@ func (a *Client) GetUserRankingPublicV3Short(params *GetUserRankingPublicV3Param
 
 	case *GetUserRankingPublicV3OK:
 		return v, nil
+	case *GetUserRankingPublicV3BadRequest:
+		return nil, v
 	case *GetUserRankingPublicV3Unauthorized:
 		return nil, v
 	case *GetUserRankingPublicV3Forbidden:

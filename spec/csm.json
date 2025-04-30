@@ -8,7 +8,7 @@
     },
     "description": "Custom Service Manager",
     "title": "custom-service-manager",
-    "version": "1.22.0"
+    "version": "1.23.1"
   },
   "schemes": [
     "https"
@@ -352,7 +352,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
         "operationId": "CreateAppV1",
         "parameters": [
           {
@@ -2005,7 +2005,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\t\nGet extend app by name\n\nAvailable scenario:\n- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\n- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\n\n\nAvailable app status:\n- \u0026lt;code\u0026gt;app-creating\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-undeployed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-in-progress\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-running\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-down\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopping\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopped\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removing\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-remove-timeout\u0026lt;/code\u0026gt;\n\n\t",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\t\nGet extend app by name\n\nAvailable scenario:\n- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\n- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\n- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n\nAvailable app status:\n- \u0026lt;code\u0026gt;app-creating\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-undeployed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-in-progress\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-running\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-down\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopping\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopped\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removing\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-remove-timeout\u0026lt;/code\u0026gt;\n\n\t",
         "operationId": "GetAppV2",
         "parameters": [
           {
@@ -2730,7 +2730,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [CREATE]\u0026lt;/code\u0026gt;\n\nSave an environment secret.\n      Request body:\n   - configName\t\t: environment secret name - Required.\n   - source\t\t\t: source of the configuration value (plaintext or ssm) - Required.\n   - value\t\t\t: configuration value - Required.\n   - description\t: description of the configuration - Optional.\n   - applyMask\t\t: mask the value in the Helm manifest for sensitive information (true or false) - Optional.\n\n      ",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [CREATE]\u0026lt;/code\u0026gt;\n\nSave an environment secret.\nSecret will always be masked.\n      Request body:\n   - configName\t\t: environment secret name - Required.\n   - source\t\t\t: source of the configuration value (plaintext or ssm) - Required.\n   - value\t\t\t: configuration value - Required.\n   - description\t: description of the configuration - Optional.\n\n      ",
         "operationId": "SaveSecretV2",
         "parameters": [
           {
@@ -2738,7 +2738,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apimodel.SaveConfigurationV2Request"
+              "$ref": "#/definitions/apimodel.SaveSecretConfigurationV2Request"
             }
           },
           {
@@ -2880,7 +2880,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [UPDATE]\u0026lt;/code\u0026gt;\n\nUpdate an environment secret.\nRequest body:\n   - value\t\t\t: configuration value - Required.\n   - description\t: description of the configuration - Optional.\n   - applyMask\t\t: mask the value in the Helm manifest for sensitive information (true or false) - Optional.\n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [UPDATE]\u0026lt;/code\u0026gt;\n\nUpdate an environment secret. \nSecret will always be masked.\nRequest body:\n   - value\t\t\t: configuration value - Required.\n   - description\t: description of the configuration - Optional.\n\n",
         "operationId": "UpdateSecretV2",
         "parameters": [
           {
@@ -2888,7 +2888,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apimodel.UpdateConfigurationV2Request"
+              "$ref": "#/definitions/apimodel.UpdateSecretConfigurationV2Request"
             }
           },
           {
@@ -4553,6 +4553,10 @@
     },
     "apimodel.GetAppImageListV2DataItem": {
       "properties": {
+        "IsActive": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "imageDigest": {
           "type": "string"
         },
@@ -4574,6 +4578,7 @@
         }
       },
       "required": [
+        "IsActive",
         "imageDigest",
         "imageTag",
         "size"
@@ -4987,6 +4992,27 @@
         "configName"
       ]
     },
+    "apimodel.SaveSecretConfigurationV2Request": {
+      "properties": {
+        "configName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "configName",
+        "source",
+        "value"
+      ]
+    },
     "apimodel.SelfSubscribeNotificationRequest": {
       "properties": {
         "notificationType": {
@@ -5135,6 +5161,19 @@
       "required": [
         "configId",
         "configName",
+        "value"
+      ]
+    },
+    "apimodel.UpdateSecretConfigurationV2Request": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
         "value"
       ]
     },
@@ -6108,10 +6147,10 @@
     }
   ],
   "x-version": {
-    "buildDate": "Fri Feb 28 08:14:12 UTC 2025",
-    "gitHash": "6df1a786",
+    "buildDate": "Tue Apr 22 09:54:37 UTC 2025",
+    "gitHash": "66ab3877",
     "name": "custom-service-manager",
-    "version": "1.22.0",
+    "version": "1.23.1",
     "version-justice": "3.39.0",
     "version-roles-seeding": "1.2.64"
   }

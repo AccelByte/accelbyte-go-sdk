@@ -39,6 +39,12 @@ func (o *PublicGetCurrentSeasonReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 401:
+		result := NewPublicGetCurrentSeasonUnauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewPublicGetCurrentSeasonNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -147,6 +153,60 @@ func (o *PublicGetCurrentSeasonBadRequest) GetPayload() *seasonpassclientmodels.
 }
 
 func (o *PublicGetCurrentSeasonBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(seasonpassclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicGetCurrentSeasonUnauthorized creates a PublicGetCurrentSeasonUnauthorized with default headers values
+func NewPublicGetCurrentSeasonUnauthorized() *PublicGetCurrentSeasonUnauthorized {
+	return &PublicGetCurrentSeasonUnauthorized{}
+}
+
+/*PublicGetCurrentSeasonUnauthorized handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20001</td><td>Unauthorized</td></tr></table>
+*/
+type PublicGetCurrentSeasonUnauthorized struct {
+	Payload *seasonpassclientmodels.ErrorEntity
+}
+
+func (o *PublicGetCurrentSeasonUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonUnauthorized  %+v", 401, o.ToJSONString())
+}
+
+func (o *PublicGetCurrentSeasonUnauthorized) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicGetCurrentSeasonUnauthorized) GetPayload() *seasonpassclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *PublicGetCurrentSeasonUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

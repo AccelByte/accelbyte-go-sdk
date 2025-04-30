@@ -105,13 +105,23 @@ type QueryXrayTimelineByUserIDParams struct {
 
 	*/
 	Offset *int64
+	/*Order
+	  Order of the result. Supported: desc (default), asc
+
+	*/
+	Order *string
+	/*OrderBy
+	  Order result by specific attribute. only Supported: created_at (timestamp) default
+
+	*/
+	OrderBy *string
 	/*EndDate
-	  End date time: 2025-02-28T07:45:39Z
+	  End date time: 2025-04-23T08:43:40Z
 
 	*/
 	EndDate string
 	/*StartDate
-	  Start date time. Format: 2025-02-28T07:45:39Z
+	  Start date time. Format: 2025-04-23T08:43:40Z
 
 	*/
 	StartDate string
@@ -225,6 +235,28 @@ func (o *QueryXrayTimelineByUserIDParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
+// WithOrder adds the order to the query xray timeline by user id params
+func (o *QueryXrayTimelineByUserIDParams) WithOrder(order *string) *QueryXrayTimelineByUserIDParams {
+	o.SetOrder(order)
+	return o
+}
+
+// SetOrder adds the order to the query xray timeline by user id params
+func (o *QueryXrayTimelineByUserIDParams) SetOrder(order *string) {
+	o.Order = order
+}
+
+// WithOrderBy adds the orderBy to the query xray timeline by user id params
+func (o *QueryXrayTimelineByUserIDParams) WithOrderBy(orderBy *string) *QueryXrayTimelineByUserIDParams {
+	o.SetOrderBy(orderBy)
+	return o
+}
+
+// SetOrderBy adds the orderBy to the query xray timeline by user id params
+func (o *QueryXrayTimelineByUserIDParams) SetOrderBy(orderBy *string) {
+	o.OrderBy = orderBy
+}
+
 // WithEndDate adds the endDate to the query xray timeline by user id params
 func (o *QueryXrayTimelineByUserIDParams) WithEndDate(endDate string) *QueryXrayTimelineByUserIDParams {
 	o.SetEndDate(endDate)
@@ -291,6 +323,38 @@ func (o *QueryXrayTimelineByUserIDParams) WriteToRequest(r runtime.ClientRequest
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.OrderBy != nil {
+
+		// query param orderBy
+		var qrOrderBy string
+		if o.OrderBy != nil {
+			qrOrderBy = *o.OrderBy
+		}
+		qOrderBy := qrOrderBy
+		if qOrderBy != "" {
+			if err := r.SetQueryParam("orderBy", qOrderBy); err != nil {
 				return err
 			}
 		}

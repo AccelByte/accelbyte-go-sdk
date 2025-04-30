@@ -7,6 +7,8 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,6 +19,10 @@ import (
 //
 // swagger:model Models native session setting.
 type ModelsNativeSessionSetting struct {
+
+	// psndisablesystemuimenu
+	// Enum: ['KICK', 'PROMOTE_TO_LEADER', 'UPDATE_INVITABLE_USER_TYPE', 'UPDATE_JOINABLE_USER_TYPE']
+	PSNDisableSystemUIMenu []string `json:"PSNDisableSystemUIMenu,omitempty"`
 
 	// psnservicelabel
 	// Required: true
@@ -85,6 +91,40 @@ func (m *ModelsNativeSessionSetting) Validate(formats strfmt.Registry) error {
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var modelsNativeSessionSettingTypePSNDisableSystemUIMenuItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["KICK", "PROMOTE_TO_LEADER", "UPDATE_INVITABLE_USER_TYPE", "UPDATE_JOINABLE_USER_TYPE"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsNativeSessionSettingTypePSNDisableSystemUIMenuItemsEnum = append(modelsNativeSessionSettingTypePSNDisableSystemUIMenuItemsEnum, v)
+	}
+}
+
+const (
+
+	// ModelsNativeSessionSettingPSNDisableSystemUIMenuKICK captures enum value "KICK"
+	ModelsNativeSessionSettingPSNDisableSystemUIMenuKICK string = "KICK"
+
+	// ModelsNativeSessionSettingPSNDisableSystemUIMenuPROMOTETOLEADER captures enum value "PROMOTE_TO_LEADER"
+	ModelsNativeSessionSettingPSNDisableSystemUIMenuPROMOTETOLEADER string = "PROMOTE_TO_LEADER"
+
+	// ModelsNativeSessionSettingPSNDisableSystemUIMenuUPDATEINVITABLEUSERTYPE captures enum value "UPDATE_INVITABLE_USER_TYPE"
+	ModelsNativeSessionSettingPSNDisableSystemUIMenuUPDATEINVITABLEUSERTYPE string = "UPDATE_INVITABLE_USER_TYPE"
+
+	// ModelsNativeSessionSettingPSNDisableSystemUIMenuUPDATEJOINABLEUSERTYPE captures enum value "UPDATE_JOINABLE_USER_TYPE"
+	ModelsNativeSessionSettingPSNDisableSystemUIMenuUPDATEJOINABLEUSERTYPE string = "UPDATE_JOINABLE_USER_TYPE"
+)
+
+func (m *ModelsNativeSessionSetting) validatePSNDisableSystemUIMenuItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsNativeSessionSettingTypePSNDisableSystemUIMenuItemsEnum, true); err != nil {
+		return err
 	}
 	return nil
 }

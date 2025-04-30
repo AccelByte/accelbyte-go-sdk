@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.24.0"
+    "version": "2.25.0"
   },
   "schemes": [
     "https"
@@ -1338,6 +1338,105 @@
         ]
       }
     },
+    "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/bulkUnlock": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission\n\t\t\t\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminBulkUnlockAchievement",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUnlockAchievementRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.BulkUnlockAchievementResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk unlock achievements",
+        "tags": [
+          "User Achievements"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/reset": {
       "delete": {
         "consumes": [
@@ -1469,6 +1568,12 @@
           },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "schema": {
               "$ref": "#/definitions/response.Error"
             }
@@ -2369,6 +2474,105 @@
         ]
       }
     },
+    "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/bulkUnlock": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission\n\t\t\t\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "PublicBulkUnlockAchievement",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BulkUnlockAchievementRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.BulkUnlockAchievementResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk Unlock achievements",
+        "tags": [
+          "User Achievements"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
     "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/{achievementCode}/unlock": {
       "put": {
         "consumes": [
@@ -2414,6 +2618,12 @@
           },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "schema": {
               "$ref": "#/definitions/response.Error"
             }
@@ -2956,6 +3166,37 @@
       },
       "required": [
         "data"
+      ]
+    },
+    "models.BulkUnlockAchievementRequest": {
+      "properties": {
+        "achievementCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "achievementCodes"
+      ]
+    },
+    "models.BulkUnlockAchievementResponse": {
+      "properties": {
+        "achievementCode": {
+          "type": "string"
+        },
+        "errorDetail": {
+          "$ref": "#/definitions/models.ErrorDetails"
+        },
+        "success": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "achievementCode",
+        "success"
       ]
     },
     "models.ContributorResponse": {
@@ -3534,11 +3775,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-02-28T02:03:59+00:00",
-    "gitHash": "3c0f93a6b11387ddcd40617f5fd84a2a92ae9808",
+    "buildDate": "2025-04-15T07:23:56+00:00",
+    "gitHash": "9351eefa88043f200fa6d7de831bed93c0500369",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.24.0",
+    "version": "2.25.0",
     "version-roles-seeding": "1.0.7"
   }
 }

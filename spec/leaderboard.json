@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.31.2"
+    "version": "2.32.0"
   },
   "schemes": [
     "https"
@@ -1009,7 +1009,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -1202,7 +1202,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -1313,7 +1313,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -1509,7 +1509,7 @@
             "type": "string"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -1721,7 +1721,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -1997,7 +1997,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, \u003e 1 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -2473,7 +2473,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -2558,7 +2558,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -2643,7 +2643,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -2813,7 +2813,7 @@
             "type": "string"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -2915,7 +2915,7 @@
             "type": "integer"
           },
           {
-            "description": "Specify specific version of leaderboard data, \u003c 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
             "in": "query",
             "name": "previousVersion",
             "type": "integer"
@@ -4234,6 +4234,12 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "in": "query",
+            "name": "previousVersion",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4878,6 +4884,12 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "in": "query",
+            "name": "previousVersion",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4888,6 +4900,12 @@
             "description": "User ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.UserRankingResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
@@ -4927,6 +4945,7 @@
         "x-errorCodes": {
           "20000": "internal server error",
           "20001": "unauthorized access",
+          "20002": "validation error",
           "20013": "insufficient permissions",
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
@@ -5256,6 +5275,12 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "in": "query",
+            "name": "previousVersion",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -5266,6 +5291,12 @@
             "description": "User rankings retrieved",
             "schema": {
               "$ref": "#/definitions/models.GetAllUserLeaderboardsRespV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
@@ -5299,6 +5330,7 @@
         "x-errorCodes": {
           "20000": "internal server error",
           "20001": "unauthorized access",
+          "20002": "validation error",
           "20013": "insufficient permissions"
         },
         "x-security": [
@@ -5711,6 +5743,12 @@
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "in": "query",
+            "name": "previousVersion",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -5789,6 +5827,12 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "in": "query",
+            "name": "previousVersion",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -5886,6 +5930,12 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)",
+            "in": "query",
+            "name": "previousVersion",
+            "type": "integer"
           }
         ],
         "produces": [
@@ -5896,6 +5946,12 @@
             "description": "User ranking retrieved",
             "schema": {
               "$ref": "#/definitions/models.UserRankingResponseV3"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
             }
           },
           "401": {
@@ -5935,6 +5991,7 @@
         "x-errorCodes": {
           "20000": "internal server error",
           "20001": "unauthorized access",
+          "20002": "validation error",
           "20013": "insufficient permissions",
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
@@ -7013,11 +7070,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-01-21T11:07:33+00:00",
-    "gitHash": "974d379bc1a5b7e58a89766a48a5bac36152502d",
+    "buildDate": "2025-04-15T07:26:33+00:00",
+    "gitHash": "562e3c47f721b06e2a7c99cbfdb41849dcfbc233",
     "name": "justice-leaderboard-service",
     "realm": "staging",
-    "version": "2.31.2",
+    "version": "2.32.0",
     "version-roles-seeding": "1.2.32"
   }
 }

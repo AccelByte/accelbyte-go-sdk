@@ -142,6 +142,7 @@
 | `apimodel.ReplicaResponse` | [ApimodelReplicaResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_response.go) |
 | `apimodel.SaveConfigurationV2Request` | [ApimodelSaveConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_configuration_v2_request.go) |
 | `apimodel.SaveConfigurationV2Response` | [ApimodelSaveConfigurationV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_configuration_v2_response.go) |
+| `apimodel.SaveSecretConfigurationV2Request` | [ApimodelSaveSecretConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_secret_configuration_v2_request.go) |
 | `apimodel.SelfSubscribeNotificationRequest` | [ApimodelSelfSubscribeNotificationRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_self_subscribe_notification_request.go) |
 | `apimodel.SubscribeNotificationRequest` | [ApimodelSubscribeNotificationRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_subscribe_notification_request.go) |
 | `apimodel.SubscribeNotificationResponse` | [ApimodelSubscribeNotificationResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_subscribe_notification_response.go) |
@@ -151,6 +152,7 @@
 | `apimodel.UpdateAppV2Request` | [ApimodelUpdateAppV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_app_v2_request.go) |
 | `apimodel.UpdateConfigurationV2Request` | [ApimodelUpdateConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_configuration_v2_request.go) |
 | `apimodel.UpdateConfigurationV2Response` | [ApimodelUpdateConfigurationV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_configuration_v2_response.go) |
+| `apimodel.UpdateSecretConfigurationV2Request` | [ApimodelUpdateSecretConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_secret_configuration_v2_request.go) |
 | `generated.CreateAppV1Request` | [GeneratedCreateAppV1Request ](../../csm-sdk/pkg/csmclientmodels/generated_create_app_v1_request.go) |
 | `generated.CreateAppV1Response` | [GeneratedCreateAppV1Response ](../../csm-sdk/pkg/csmclientmodels/generated_create_app_v1_response.go) |
 | `generated.CreateDeploymentV1Request` | [GeneratedCreateDeploymentV1Request ](../../csm-sdk/pkg/csmclientmodels/generated_create_deployment_v1_request.go) |

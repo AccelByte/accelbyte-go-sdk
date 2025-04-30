@@ -28,6 +28,10 @@ type ApimodelsGameSessionDetail struct {
 	// Required: true
 	CreatedAt *string `json:"created_at"`
 
+	// ds_status_v2
+	// Required: true
+	DsStatusV2 *string `json:"ds_status_v2"`
+
 	// ended
 	// Required: true
 	Ended *bool `json:"ended"`
@@ -84,6 +88,9 @@ func (m *ApimodelsGameSessionDetail) Validate(formats strfmt.Registry) error {
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateDsStatusV2(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateEnded(formats); err != nil {
 		res = append(res, err)
 	}
@@ -136,6 +143,15 @@ func (m *ApimodelsGameSessionDetail) validateActive(formats strfmt.Registry) err
 func (m *ApimodelsGameSessionDetail) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelsGameSessionDetail) validateDsStatusV2(formats strfmt.Registry) error {
+
+	if err := validate.Required("ds_status_v2", "body", m.DsStatusV2); err != nil {
 		return err
 	}
 

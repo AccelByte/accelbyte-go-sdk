@@ -65,6 +65,7 @@ func init() {
 	ChatCmd.AddCommand(inbox.AdminDeleteInboxCategoryCmd)
 	ChatCmd.AddCommand(inbox.AdminUpdateInboxCategoryCmd)
 	ChatCmd.AddCommand(inbox.AdminGetCategorySchemaCmd)
+	ChatCmd.AddCommand(inbox.AdminListKafkaTopicCmd)
 	ChatCmd.AddCommand(inbox.AdminDeleteInboxMessageCmd)
 	ChatCmd.AddCommand(inbox.AdminGetInboxMessagesCmd)
 	ChatCmd.AddCommand(inbox.AdminSaveInboxMessageCmd)

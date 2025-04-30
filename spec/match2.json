@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.32.0"
+    "version": "2.33.0"
   },
   "schemes": [
     "https"
@@ -1258,6 +1258,82 @@
           {
             "userPermissions": [
               "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [DELETE]"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get custom match function by name.\n",
+        "operationId": "MatchFunctionGet",
+        "parameters": [
+          {
+            "description": "name of the custom match function",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/api.MatchFunctionConfig"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get custom match function by name",
+        "tags": [
+          "Match-Functions",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "NAMESPACE:{namespace}:MATCHMAKING:FUNCTIONS [READ]"
             ]
           }
         ]
@@ -4229,9 +4305,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-02-28T07:30:08+00:00",
-    "gitHash": "04be4dde16171f191f22ab4ac402ea9f11029c24",
-    "version": "2.32.0",
+    "buildDate": "2025-04-16T04:12:03+00:00",
+    "gitHash": "98cf330184f567e4615c6d02bd87744b0acef693",
+    "version": "2.33.0",
     "version-roles-seeding": "1.2.92"
   }
 }

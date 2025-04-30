@@ -188,12 +188,12 @@ SaveSecretV2 save an environment secret
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [CREATE]`
 
 Save an environment secret.
+Secret will always be masked.
 Request body:
 - configName : environment secret name - Required.
 - source : source of the configuration value (plaintext or ssm) - Required.
 - value : configuration value - Required.
 - description : description of the configuration - Optional.
-- applyMask : mask the value in the Helm manifest for sensitive information (true or false) - Optional.
 */
 func (a *Client) SaveSecretV2(params *SaveSecretV2Params, authInfo runtime.ClientAuthInfoWriter) (*SaveSecretV2OK, *SaveSecretV2BadRequest, *SaveSecretV2Unauthorized, *SaveSecretV2Forbidden, *SaveSecretV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -257,12 +257,12 @@ SaveSecretV2Short save an environment secret
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [CREATE]`
 
 Save an environment secret.
+Secret will always be masked.
 Request body:
 - configName : environment secret name - Required.
 - source : source of the configuration value (plaintext or ssm) - Required.
 - value : configuration value - Required.
 - description : description of the configuration - Optional.
-- applyMask : mask the value in the Helm manifest for sensitive information (true or false) - Optional.
 */
 func (a *Client) SaveSecretV2Short(params *SaveSecretV2Params, authInfo runtime.ClientAuthInfoWriter) (*SaveSecretV2OK, error) {
 	// TODO: Validate the params before sending
@@ -320,10 +320,10 @@ UpdateSecretV2 update an environment secret
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [UPDATE]`
 
 Update an environment secret.
+Secret will always be masked.
 Request body:
 - value : configuration value - Required.
 - description : description of the configuration - Optional.
-- applyMask : mask the value in the Helm manifest for sensitive information (true or false) - Optional.
 */
 func (a *Client) UpdateSecretV2(params *UpdateSecretV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSecretV2OK, *UpdateSecretV2BadRequest, *UpdateSecretV2Unauthorized, *UpdateSecretV2Forbidden, *UpdateSecretV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -387,10 +387,10 @@ UpdateSecretV2Short update an environment secret
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SECRET [UPDATE]`
 
 Update an environment secret.
+Secret will always be masked.
 Request body:
 - value : configuration value - Required.
 - description : description of the configuration - Optional.
-- applyMask : mask the value in the Helm manifest for sensitive information (true or false) - Optional.
 */
 func (a *Client) UpdateSecretV2Short(params *UpdateSecretV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateSecretV2OK, error) {
 	// TODO: Validate the params before sending

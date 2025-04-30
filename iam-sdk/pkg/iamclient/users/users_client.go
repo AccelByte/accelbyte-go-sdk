@@ -184,6 +184,8 @@ type ClientService interface {
 	AdminListUserIDByUserIDsV3Short(params *AdminListUserIDByUserIDsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserIDByUserIDsV3OK, error)
 	AdminBulkGetUsersPlatform(params *AdminBulkGetUsersPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetUsersPlatformOK, *AdminBulkGetUsersPlatformBadRequest, *AdminBulkGetUsersPlatformInternalServerError, error)
 	AdminBulkGetUsersPlatformShort(params *AdminBulkGetUsersPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkGetUsersPlatformOK, error)
+	AdminCursorGetUserV3(params *AdminCursorGetUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCursorGetUserV3OK, *AdminCursorGetUserV3BadRequest, *AdminCursorGetUserV3Unauthorized, *AdminCursorGetUserV3Forbidden, *AdminCursorGetUserV3InternalServerError, error)
+	AdminCursorGetUserV3Short(params *AdminCursorGetUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCursorGetUserV3OK, error)
 	AdminInviteUserV3(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, *AdminInviteUserV3BadRequest, *AdminInviteUserV3Unauthorized, *AdminInviteUserV3Forbidden, *AdminInviteUserV3NotFound, *AdminInviteUserV3Conflict, *AdminInviteUserV3UnprocessableEntity, *AdminInviteUserV3InternalServerError, error)
 	AdminInviteUserV3Short(params *AdminInviteUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV3Created, error)
 	AdminQueryThirdPlatformLinkHistoryV3(params *AdminQueryThirdPlatformLinkHistoryV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryThirdPlatformLinkHistoryV3OK, *AdminQueryThirdPlatformLinkHistoryV3BadRequest, *AdminQueryThirdPlatformLinkHistoryV3Unauthorized, *AdminQueryThirdPlatformLinkHistoryV3Forbidden, *AdminQueryThirdPlatformLinkHistoryV3InternalServerError, error)
@@ -364,6 +366,8 @@ type ClientService interface {
 	PublicGetPublisherUserV3Short(params *PublicGetPublisherUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPublisherUserV3OK, error)
 	PublicValidateUserByUserIDAndPasswordV3(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, *PublicValidateUserByUserIDAndPasswordV3BadRequest, *PublicValidateUserByUserIDAndPasswordV3Unauthorized, *PublicValidateUserByUserIDAndPasswordV3Forbidden, *PublicValidateUserByUserIDAndPasswordV3NotFound, *PublicValidateUserByUserIDAndPasswordV3InternalServerError, error)
 	PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error)
+	PublicForgotPasswordWithoutNamespaceV3(params *PublicForgotPasswordWithoutNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordWithoutNamespaceV3OK, *PublicForgotPasswordWithoutNamespaceV3BadRequest, *PublicForgotPasswordWithoutNamespaceV3InternalServerError, error)
+	PublicForgotPasswordWithoutNamespaceV3Short(params *PublicForgotPasswordWithoutNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordWithoutNamespaceV3OK, error)
 	PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error)
 	PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error)
 	PublicSendCodeForwardV3(params *PublicSendCodeForwardV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendCodeForwardV3Found, error)
@@ -9399,7 +9403,6 @@ This endpoint return user information by given platform ID and platform user ID.
 Several platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.
 example: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.
 
-
 **Supported Platforms:**
 - Steam group (steamnetwork):
 - steam
@@ -9435,6 +9438,7 @@ example: for steam network platform, you can use steamnetwork / steam / steamope
 Note:
 - You can use either platform id or platform group as **platformId** parameter.
 - **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+- **oculus**: if query by app user id, please set the query param **pidType** to **OCULUS_APP_USER_ID** (support game namespace only)
 */
 func (a *Client) AdminGetUserByPlatformUserIDV3(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, *AdminGetUserByPlatformUserIDV3Unauthorized, *AdminGetUserByPlatformUserIDV3Forbidden, *AdminGetUserByPlatformUserIDV3NotFound, *AdminGetUserByPlatformUserIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -9500,7 +9504,6 @@ This endpoint return user information by given platform ID and platform user ID.
 Several platforms are grouped under account groups, you can use either platform ID or platform group as platformId path parameter.
 example: for steam network platform, you can use steamnetwork / steam / steamopenid as platformId path parameter.
 
-
 **Supported Platforms:**
 - Steam group (steamnetwork):
 - steam
@@ -9536,6 +9539,7 @@ example: for steam network platform, you can use steamnetwork / steam / steamope
 Note:
 - You can use either platform id or platform group as **platformId** parameter.
 - **Nintendo platform user id**: NSA ID need to be appended with Environment ID using colon as separator. e.g kmzwa8awaa:dd1
+- **oculus**: if query by app user id, please set the query param **pidType** to **OCULUS_APP_USER_ID** (support game namespace only)
 */
 func (a *Client) AdminGetUserByPlatformUserIDV3Short(params *AdminGetUserByPlatformUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserByPlatformUserIDV3OK, error) {
 	// TODO: Validate the params before sending
@@ -10317,6 +10321,158 @@ func (a *Client) AdminBulkGetUsersPlatformShort(params *AdminBulkGetUsersPlatfor
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminCursorGetUserV3Short instead.
+
+AdminCursorGetUserV3 admin cursor-based user retrieval
+1. **Cursor-Based User Retrieval**
+This API fetches user records ordered by created_at ASC, user_id ASC to ensure a stable pagination order.
+Pagination is handled using a cursor, which consists of created_at and user_id.
+2. **GraphQL-Like Querying**
+By default, the API only returns the user ID.
+To include additional fields in the response, specify them in the request body under the fields parameter.
+***Supported fields***:
+['created_at', 'email_address']
+***Note***: If a value is not in the allowed list, the API will ignore it.
+3. **Cursor Mechanics**
+The cursor consists of created_at and user_id from the last retrieved record.
+The next query fetches records strictly after the provided cursor.
+***The query applies the following ordering logic***:
+Records with a later created_at timestamp are included.
+If multiple records have the same created_at, only records with a higher user_id are included.
+This ensures that records with the exact same created_at as the cursor are excluded from the next page to prevent duplication.
+4. **Usage**
+For the first-time query, the request body does not require a cursor.
+If the data array is empty, it indicates that the cursor has reached the end of the available records.
+*/
+func (a *Client) AdminCursorGetUserV3(params *AdminCursorGetUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCursorGetUserV3OK, *AdminCursorGetUserV3BadRequest, *AdminCursorGetUserV3Unauthorized, *AdminCursorGetUserV3Forbidden, *AdminCursorGetUserV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCursorGetUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCursorGetUserV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/cursor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCursorGetUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCursorGetUserV3OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminCursorGetUserV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminCursorGetUserV3Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminCursorGetUserV3Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminCursorGetUserV3InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminCursorGetUserV3Short admin cursor-based user retrieval
+1. **Cursor-Based User Retrieval**
+This API fetches user records ordered by created_at ASC, user_id ASC to ensure a stable pagination order.
+Pagination is handled using a cursor, which consists of created_at and user_id.
+2. **GraphQL-Like Querying**
+By default, the API only returns the user ID.
+To include additional fields in the response, specify them in the request body under the fields parameter.
+***Supported fields***:
+['created_at', 'email_address']
+***Note***: If a value is not in the allowed list, the API will ignore it.
+3. **Cursor Mechanics**
+The cursor consists of created_at and user_id from the last retrieved record.
+The next query fetches records strictly after the provided cursor.
+***The query applies the following ordering logic***:
+Records with a later created_at timestamp are included.
+If multiple records have the same created_at, only records with a higher user_id are included.
+This ensures that records with the exact same created_at as the cursor are excluded from the next page to prevent duplication.
+4. **Usage**
+For the first-time query, the request body does not require a cursor.
+If the data array is empty, it indicates that the cursor has reached the end of the available records.
+*/
+func (a *Client) AdminCursorGetUserV3Short(params *AdminCursorGetUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCursorGetUserV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminCursorGetUserV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminCursorGetUserV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/admin/namespaces/{namespace}/users/cursor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminCursorGetUserV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminCursorGetUserV3OK:
+		return v, nil
+	case *AdminCursorGetUserV3BadRequest:
+		return nil, v
+	case *AdminCursorGetUserV3Unauthorized:
+		return nil, v
+	case *AdminCursorGetUserV3Forbidden:
+		return nil, v
+	case *AdminCursorGetUserV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminInviteUserV3Short instead.
 
 AdminInviteUserV3 invite user
@@ -10698,23 +10854,24 @@ Deprecated: 2022-08-10 - Use AdminSearchUserV3Short instead.
 
 AdminSearchUserV3 search user
 Endpoint behavior :
-- by default this endpoint searches all users on the specified namespace
-- if query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query
-- if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range
-- if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range
-- if startDate parameter is defined, endpoint will search users that created start from the defined date
-- if endDate parameter is defined, endpoint will search users that created until the defined date
-- if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to
-- if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName
-- if limit is not defined, The default limit is 100
+- By default this endpoint searches all users on the specified namespace.
+- If query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query.
+- The query parameter length must be between 3 and 30 characters. For email address queries (i.e., contains '@'), the allowed length is 3 to 40 characters. Otherwise, the database will not be queried.
+- If startDate and endDate parameters is defined, endpoint will search users which created on the certain date range.
+- If query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range.
+- If startDate parameter is defined, endpoint will search users that created start from the defined date.
+- If endDate parameter is defined, endpoint will search users that created until the defined date.
+- If platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to.
+- If platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName.
+- If limit is not defined, The default limit is 100.
 
-In multi tenant mode :
+In Multi Tenant mode :
 
-- if super admin search in super admin namespace, the result will be all game admin user
-- if super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace
-- if super admin search in game namespace, the result will be all game admin users and players under the game namespace
-- if game admin search in their game studio namespace, the result will be all game admin user in the studio namespace
-- if game admin search in their game namespace, the result will be all player in the game namespace
+- If super admin search in super admin namespace, the result will be all game admin user
+- If super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace
+- If super admin search in game namespace, the result will be all game admin users and players under the game namespace
+- If game admin search in their game studio namespace, the result will be all game admin user in the studio namespace
+- If game admin search in their game namespace, the result will be all player in the game namespace
 
 action code : 10133
 */
@@ -10778,23 +10935,24 @@ func (a *Client) AdminSearchUserV3(params *AdminSearchUserV3Params, authInfo run
 /*
 AdminSearchUserV3Short search user
 Endpoint behavior :
-- by default this endpoint searches all users on the specified namespace
-- if query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query
-- if startDate and endDate parameters is defined, endpoint will search users which created on the certain date range
-- if query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range
-- if startDate parameter is defined, endpoint will search users that created start from the defined date
-- if endDate parameter is defined, endpoint will search users that created until the defined date
-- if platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to
-- if platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName
-- if limit is not defined, The default limit is 100
+- By default this endpoint searches all users on the specified namespace.
+- If query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query.
+- The query parameter length must be between 3 and 30 characters. For email address queries (i.e., contains '@'), the allowed length is 3 to 40 characters. Otherwise, the database will not be queried.
+- If startDate and endDate parameters is defined, endpoint will search users which created on the certain date range.
+- If query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range.
+- If startDate parameter is defined, endpoint will search users that created start from the defined date.
+- If endDate parameter is defined, endpoint will search users that created until the defined date.
+- If platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to.
+- If platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName.
+- If limit is not defined, The default limit is 100.
 
-In multi tenant mode :
+In Multi Tenant mode :
 
-- if super admin search in super admin namespace, the result will be all game admin user
-- if super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace
-- if super admin search in game namespace, the result will be all game admin users and players under the game namespace
-- if game admin search in their game studio namespace, the result will be all game admin user in the studio namespace
-- if game admin search in their game namespace, the result will be all player in the game namespace
+- If super admin search in super admin namespace, the result will be all game admin user
+- If super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace
+- If super admin search in game namespace, the result will be all game admin users and players under the game namespace
+- If game admin search in their game studio namespace, the result will be all game admin user in the studio namespace
+- If game admin search in their game namespace, the result will be all player in the game namespace
 
 action code : 10133
 */
@@ -17592,7 +17750,7 @@ Deprecated: 2022-08-10 - Use PublicSearchUserV3Short instead.
 
 PublicSearchUserV3 search user
 This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.
-The query length should between 3-20, otherwise will not query the database.
+The query length must be between 3 and 30 characters. For email address queries (i.e. contains '@'), the allowed length is 3 to 40 characters. Otherwise, the database will not be queried.
 The default limit value is 20.
 
 ## Searching by 3rd party platform
@@ -17713,7 +17871,7 @@ func (a *Client) PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo r
 /*
 PublicSearchUserV3Short search user
 This endpoint search all users on the specified namespace that match the query on these fields: display name, unique display name, username or by 3rd party display name.
-The query length should between 3-20, otherwise will not query the database.
+The query length must be between 3 and 30 characters. For email address queries (i.e. contains '@'), the allowed length is 3 to 40 characters. Otherwise, the database will not be queried.
 The default limit value is 20.
 
 ## Searching by 3rd party platform
@@ -22792,6 +22950,130 @@ func (a *Client) PublicValidateUserByUserIDAndPasswordV3Short(params *PublicVali
 	case *PublicValidateUserByUserIDAndPasswordV3NotFound:
 		return nil, v
 	case *PublicValidateUserByUserIDAndPasswordV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicForgotPasswordWithoutNamespaceV3Short instead.
+
+PublicForgotPasswordWithoutNamespaceV3 request password reset code
+This endpoint does not need a namespace in the path, we will find the namespace based on:
+
+- If this is premium environment, the namespace will be the publisher namespace.
+- If this is shared cloud:
+- If this is from Admin Portal, we will find the user by the email.
+- If this is not from Admin Portal, we will find the namespace based on the client id.
+
+**Note**:
+- The param **clientId** is required in Shared Cloud
+- The namespace in the response is publisher/studio namespace
+*/
+func (a *Client) PublicForgotPasswordWithoutNamespaceV3(params *PublicForgotPasswordWithoutNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordWithoutNamespaceV3OK, *PublicForgotPasswordWithoutNamespaceV3BadRequest, *PublicForgotPasswordWithoutNamespaceV3InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForgotPasswordWithoutNamespaceV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForgotPasswordWithoutNamespaceV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/forgot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForgotPasswordWithoutNamespaceV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForgotPasswordWithoutNamespaceV3OK:
+		return v, nil, nil, nil
+
+	case *PublicForgotPasswordWithoutNamespaceV3BadRequest:
+		return nil, v, nil, nil
+
+	case *PublicForgotPasswordWithoutNamespaceV3InternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicForgotPasswordWithoutNamespaceV3Short request password reset code
+This endpoint does not need a namespace in the path, we will find the namespace based on:
+
+- If this is premium environment, the namespace will be the publisher namespace.
+- If this is shared cloud:
+- If this is from Admin Portal, we will find the user by the email.
+- If this is not from Admin Portal, we will find the namespace based on the client id.
+
+**Note**:
+- The param **clientId** is required in Shared Cloud
+- The namespace in the response is publisher/studio namespace
+*/
+func (a *Client) PublicForgotPasswordWithoutNamespaceV3Short(params *PublicForgotPasswordWithoutNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordWithoutNamespaceV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicForgotPasswordWithoutNamespaceV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicForgotPasswordWithoutNamespaceV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/users/forgot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicForgotPasswordWithoutNamespaceV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicForgotPasswordWithoutNamespaceV3OK:
+		return v, nil
+	case *PublicForgotPasswordWithoutNamespaceV3BadRequest:
+		return nil, v
+	case *PublicForgotPasswordWithoutNamespaceV3InternalServerError:
 		return nil, v
 
 	default:

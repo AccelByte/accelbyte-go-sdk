@@ -28,10 +28,12 @@ var AdminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		platformUserId, _ := cmd.Flags().GetString("platformUserId")
+		pidType, _ := cmd.Flags().GetString("pidType")
 		input := &users.AdminGetUserByPlatformUserIDV3Params{
 			Namespace:      namespace,
 			PlatformID:     platformId,
 			PlatformUserID: platformUserId,
+			PidType:        &pidType,
 		}
 		ok, errOK := usersService.AdminGetUserByPlatformUserIDV3Short(input)
 		if errOK != nil {
@@ -53,4 +55,5 @@ func init() {
 	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformId")
 	AdminGetUserByPlatformUserIDV3Cmd.Flags().String("platformUserId", "", "Platform user id")
 	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformUserId")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().String("pidType", "", "Pid type")
 }

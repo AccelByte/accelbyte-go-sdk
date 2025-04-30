@@ -119,7 +119,7 @@ $ samples/cli/sample-apps Csm getListOfSecretsV2 \
 $ samples/cli/sample-apps Csm saveSecretV2 \
     --app 'string' \
     --namespace 'string' \
-    --body '{"applyMask": false, "configName": "string", "description": "string", "source": "string", "value": "string"}' \
+    --body '{"configName": "string", "description": "string", "source": "string", "value": "string"}' \
     > result.txt
 ```
 
@@ -129,7 +129,7 @@ $ samples/cli/sample-apps Csm updateSecretV2 \
     --app 'string' \
     --configId 'string' \
     --namespace 'string' \
-    --body '{"applyMask": false, "description": "string", "value": "string"}' \
+    --body '{"description": "string", "value": "string"}' \
     > result.txt
 ```
 

@@ -25,7 +25,7 @@ func NewPublicListContentDownloaderV2Params() *PublicListContentDownloaderV2Para
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
-		sortByDefault = string("*createdTime:desc*")
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentDownloaderV2Params{
 		Limit:  &limitDefault,
@@ -42,7 +42,7 @@ func NewPublicListContentDownloaderV2ParamsWithTimeout(timeout time.Duration) *P
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
-		sortByDefault = string("*createdTime:desc*")
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentDownloaderV2Params{
 		Limit:  &limitDefault,
@@ -59,7 +59,7 @@ func NewPublicListContentDownloaderV2ParamsWithContext(ctx context.Context) *Pub
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
-		sortByDefault = string("*createdTime:desc*")
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentDownloaderV2Params{
 		Limit:  &limitDefault,
@@ -76,7 +76,7 @@ func NewPublicListContentDownloaderV2ParamsWithHTTPClient(client *http.Client) *
 	var (
 		limitDefault  = int64(20)
 		offsetDefault = int64(0)
-		sortByDefault = string("*createdTime:desc*")
+		sortByDefault = string("createdTime:desc")
 	)
 	return &PublicListContentDownloaderV2Params{
 		Limit:      &limitDefault,

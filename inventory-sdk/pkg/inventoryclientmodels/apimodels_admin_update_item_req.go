@@ -39,8 +39,7 @@ type ApimodelsAdminUpdateItemReq struct {
 	Tags []string `json:"tags"`
 
 	// type
-	// Required: true
-	Type *string `json:"type"`
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this Apimodels admin update item req
@@ -54,9 +53,6 @@ func (m *ApimodelsAdminUpdateItemReq) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateTags(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,15 +83,6 @@ func (m *ApimodelsAdminUpdateItemReq) validateSourceItemID(formats strfmt.Regist
 func (m *ApimodelsAdminUpdateItemReq) validateTags(formats strfmt.Registry) error {
 
 	if err := validate.Required("tags", "body", m.Tags); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelsAdminUpdateItemReq) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 

@@ -23,6 +23,10 @@ type ApimodelsPublicConfiguration struct {
 	// psnbaseurl
 	PSNBaseURL string `json:"PSNBaseURL,omitempty"`
 
+	// amsclaimtimeoutminutes
+	// Format: int32
+	AmsClaimTimeoutMinutes int32 `json:"amsClaimTimeoutMinutes,omitempty"`
+
 	// appname
 	AppName string `json:"appName,omitempty"`
 

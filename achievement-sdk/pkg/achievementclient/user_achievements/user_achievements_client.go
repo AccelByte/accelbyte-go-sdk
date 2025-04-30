@@ -32,13 +32,17 @@ type Client struct {
 type ClientService interface {
 	AdminListUserAchievements(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, *AdminListUserAchievementsBadRequest, *AdminListUserAchievementsUnauthorized, *AdminListUserAchievementsNotFound, *AdminListUserAchievementsInternalServerError, error)
 	AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error)
+	AdminBulkUnlockAchievement(params *AdminBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnlockAchievementOK, *AdminBulkUnlockAchievementBadRequest, *AdminBulkUnlockAchievementUnauthorized, *AdminBulkUnlockAchievementNotFound, *AdminBulkUnlockAchievementUnprocessableEntity, *AdminBulkUnlockAchievementInternalServerError, error)
+	AdminBulkUnlockAchievementShort(params *AdminBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnlockAchievementOK, error)
 	AdminResetAchievement(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, *AdminResetAchievementBadRequest, *AdminResetAchievementUnauthorized, *AdminResetAchievementNotFound, *AdminResetAchievementInternalServerError, error)
 	AdminResetAchievementShort(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, error)
-	AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementUnprocessableEntity, *AdminUnlockAchievementInternalServerError, error)
+	AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementNotFound, *AdminUnlockAchievementUnprocessableEntity, *AdminUnlockAchievementInternalServerError, error)
 	AdminUnlockAchievementShort(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, error)
 	PublicListUserAchievements(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, *PublicListUserAchievementsBadRequest, *PublicListUserAchievementsUnauthorized, *PublicListUserAchievementsNotFound, *PublicListUserAchievementsInternalServerError, error)
 	PublicListUserAchievementsShort(params *PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicListUserAchievementsOK, error)
-	PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementUnprocessableEntity, *PublicUnlockAchievementInternalServerError, error)
+	PublicBulkUnlockAchievement(params *PublicBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkUnlockAchievementOK, *PublicBulkUnlockAchievementBadRequest, *PublicBulkUnlockAchievementUnauthorized, *PublicBulkUnlockAchievementNotFound, *PublicBulkUnlockAchievementUnprocessableEntity, *PublicBulkUnlockAchievementInternalServerError, error)
+	PublicBulkUnlockAchievementShort(params *PublicBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkUnlockAchievementOK, error)
+	PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementNotFound, *PublicUnlockAchievementUnprocessableEntity, *PublicUnlockAchievementInternalServerError, error)
 	PublicUnlockAchievementShort(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -197,6 +201,133 @@ func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievement
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminBulkUnlockAchievementShort instead.
+
+AdminBulkUnlockAchievement bulk unlock achievements
+
+
+Required permission
+`ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]` and scope `social`
+*/
+func (a *Client) AdminBulkUnlockAchievement(params *AdminBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnlockAchievementOK, *AdminBulkUnlockAchievementBadRequest, *AdminBulkUnlockAchievementUnauthorized, *AdminBulkUnlockAchievementNotFound, *AdminBulkUnlockAchievementUnprocessableEntity, *AdminBulkUnlockAchievementInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUnlockAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkUnlockAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/bulkUnlock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUnlockAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUnlockAchievementOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminBulkUnlockAchievementBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminBulkUnlockAchievementUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminBulkUnlockAchievementNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminBulkUnlockAchievementUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminBulkUnlockAchievementInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBulkUnlockAchievementShort bulk unlock achievements
+
+
+Required permission
+`ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]` and scope `social`
+*/
+func (a *Client) AdminBulkUnlockAchievementShort(params *AdminBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnlockAchievementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkUnlockAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkUnlockAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/bulkUnlock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkUnlockAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkUnlockAchievementOK:
+		return v, nil
+	case *AdminBulkUnlockAchievementBadRequest:
+		return nil, v
+	case *AdminBulkUnlockAchievementUnauthorized:
+		return nil, v
+	case *AdminBulkUnlockAchievementNotFound:
+		return nil, v
+	case *AdminBulkUnlockAchievementUnprocessableEntity:
+		return nil, v
+	case *AdminBulkUnlockAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminResetAchievementShort instead.
 
 AdminResetAchievement reset an achievement
@@ -337,7 +468,7 @@ AdminUnlockAchievement unlock an achievement
 Required permission
 `ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]` and scope `social`
 */
-func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementUnprocessableEntity, *AdminUnlockAchievementInternalServerError, error) {
+func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnlockAchievementNoContent, *AdminUnlockAchievementBadRequest, *AdminUnlockAchievementUnauthorized, *AdminUnlockAchievementNotFound, *AdminUnlockAchievementUnprocessableEntity, *AdminUnlockAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUnlockAchievementParams()
@@ -369,28 +500,31 @@ func (a *Client) AdminUnlockAchievement(params *AdminUnlockAchievementParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUnlockAchievementNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUnlockAchievementBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUnlockAchievementUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminUnlockAchievementNotFound:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminUnlockAchievementUnprocessableEntity:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUnlockAchievementInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -439,6 +573,8 @@ func (a *Client) AdminUnlockAchievementShort(params *AdminUnlockAchievementParam
 	case *AdminUnlockAchievementBadRequest:
 		return nil, v
 	case *AdminUnlockAchievementUnauthorized:
+		return nil, v
+	case *AdminUnlockAchievementNotFound:
 		return nil, v
 	case *AdminUnlockAchievementUnprocessableEntity:
 		return nil, v
@@ -603,6 +739,133 @@ func (a *Client) PublicListUserAchievementsShort(params *PublicListUserAchieveme
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicBulkUnlockAchievementShort instead.
+
+PublicBulkUnlockAchievement bulk unlock achievements
+
+
+Required permission
+`NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]` and scope `social`
+*/
+func (a *Client) PublicBulkUnlockAchievement(params *PublicBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkUnlockAchievementOK, *PublicBulkUnlockAchievementBadRequest, *PublicBulkUnlockAchievementUnauthorized, *PublicBulkUnlockAchievementNotFound, *PublicBulkUnlockAchievementUnprocessableEntity, *PublicBulkUnlockAchievementInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkUnlockAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicBulkUnlockAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/bulkUnlock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkUnlockAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkUnlockAchievementOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicBulkUnlockAchievementBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicBulkUnlockAchievementUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicBulkUnlockAchievementNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicBulkUnlockAchievementUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicBulkUnlockAchievementInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicBulkUnlockAchievementShort bulk unlock achievements
+
+
+Required permission
+`NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]` and scope `social`
+*/
+func (a *Client) PublicBulkUnlockAchievementShort(params *PublicBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkUnlockAchievementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicBulkUnlockAchievementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicBulkUnlockAchievement",
+		Method:             "PUT",
+		PathPattern:        "/achievement/v1/public/namespaces/{namespace}/users/{userId}/achievements/bulkUnlock",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicBulkUnlockAchievementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicBulkUnlockAchievementOK:
+		return v, nil
+	case *PublicBulkUnlockAchievementBadRequest:
+		return nil, v
+	case *PublicBulkUnlockAchievementUnauthorized:
+		return nil, v
+	case *PublicBulkUnlockAchievementNotFound:
+		return nil, v
+	case *PublicBulkUnlockAchievementUnprocessableEntity:
+		return nil, v
+	case *PublicBulkUnlockAchievementInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicUnlockAchievementShort instead.
 
 PublicUnlockAchievement unlock an achievement
@@ -611,7 +874,7 @@ PublicUnlockAchievement unlock an achievement
 Required permission
 `NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]` and scope `social`
 */
-func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementUnprocessableEntity, *PublicUnlockAchievementInternalServerError, error) {
+func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnlockAchievementNoContent, *PublicUnlockAchievementBadRequest, *PublicUnlockAchievementUnauthorized, *PublicUnlockAchievementNotFound, *PublicUnlockAchievementUnprocessableEntity, *PublicUnlockAchievementInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUnlockAchievementParams()
@@ -643,28 +906,31 @@ func (a *Client) PublicUnlockAchievement(params *PublicUnlockAchievementParams, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUnlockAchievementNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicUnlockAchievementBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicUnlockAchievementUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUnlockAchievementNotFound:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *PublicUnlockAchievementUnprocessableEntity:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicUnlockAchievementInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -713,6 +979,8 @@ func (a *Client) PublicUnlockAchievementShort(params *PublicUnlockAchievementPar
 	case *PublicUnlockAchievementBadRequest:
 		return nil, v
 	case *PublicUnlockAchievementUnauthorized:
+		return nil, v
+	case *PublicUnlockAchievementNotFound:
 		return nil, v
 	case *PublicUnlockAchievementUnprocessableEntity:
 		return nil, v

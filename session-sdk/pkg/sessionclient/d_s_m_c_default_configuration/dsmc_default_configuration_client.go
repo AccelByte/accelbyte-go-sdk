@@ -40,7 +40,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetDSMCConfigurationDefaultShort instead.
 
 AdminGetDSMCConfigurationDefault get dsmc default configuration.
-Get dsmc default configuration.
+Get the DSMC default configuration from this service
 */
 func (a *Client) AdminGetDSMCConfigurationDefault(params *AdminGetDSMCConfigurationDefaultParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationDefaultOK, *AdminGetDSMCConfigurationDefaultBadRequest, *AdminGetDSMCConfigurationDefaultUnauthorized, *AdminGetDSMCConfigurationDefaultForbidden, *AdminGetDSMCConfigurationDefaultNotFound, *AdminGetDSMCConfigurationDefaultInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -104,7 +104,7 @@ func (a *Client) AdminGetDSMCConfigurationDefault(params *AdminGetDSMCConfigurat
 
 /*
 AdminGetDSMCConfigurationDefaultShort get dsmc default configuration.
-Get dsmc default configuration.
+Get the DSMC default configuration from this service
 */
 func (a *Client) AdminGetDSMCConfigurationDefaultShort(params *AdminGetDSMCConfigurationDefaultParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetDSMCConfigurationDefaultOK, error) {
 	// TODO: Validate the params before sending

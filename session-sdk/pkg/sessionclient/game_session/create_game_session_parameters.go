@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
@@ -73,6 +74,11 @@ type CreateGameSessionParams struct {
 
 	*/
 	Namespace string
+	/*ResolveMaxActiveSession
+	  If true, instead of returning an error when the initial members with status 'JOINED' (AutoJoin) have reached the maximum active session limit, this endpoint will return success, and those members will become 'INVITED'
+
+	*/
+	ResolveMaxActiveSession *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -161,6 +167,17 @@ func (o *CreateGameSessionParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithResolveMaxActiveSession adds the resolveMaxActiveSession to the create game session params
+func (o *CreateGameSessionParams) WithResolveMaxActiveSession(resolveMaxActiveSession *bool) *CreateGameSessionParams {
+	o.SetResolveMaxActiveSession(resolveMaxActiveSession)
+	return o
+}
+
+// SetResolveMaxActiveSession adds the resolveMaxActiveSession to the create game session params
+func (o *CreateGameSessionParams) SetResolveMaxActiveSession(resolveMaxActiveSession *bool) {
+	o.ResolveMaxActiveSession = resolveMaxActiveSession
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreateGameSessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -178,6 +195,22 @@ func (o *CreateGameSessionParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.ResolveMaxActiveSession != nil {
+
+		// query param resolveMaxActiveSession
+		var qrResolveMaxActiveSession bool
+		if o.ResolveMaxActiveSession != nil {
+			qrResolveMaxActiveSession = *o.ResolveMaxActiveSession
+		}
+		qResolveMaxActiveSession := swag.FormatBool(qrResolveMaxActiveSession)
+		if qResolveMaxActiveSession != "" {
+			if err := r.SetQueryParam("resolveMaxActiveSession", qResolveMaxActiveSession); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

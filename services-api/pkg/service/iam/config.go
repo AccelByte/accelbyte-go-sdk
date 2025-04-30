@@ -58,6 +58,23 @@ func (aaa *ConfigService) AdminGetConfigValueV3(input *config.AdminGetConfigValu
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetSystemConfigV3Short instead.
+func (aaa *ConfigService) PublicGetSystemConfigV3(input *config.PublicGetSystemConfigV3Params) (*iamclientmodels.ModelInternalConfigResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, internalServerError, err := aaa.Client.Config.PublicGetSystemConfigV3(input, client.BearerToken(*token.AccessToken))
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetConfigValueV3Short instead.
 func (aaa *ConfigService) PublicGetConfigValueV3(input *config.PublicGetConfigValueV3Params) (*iamclientmodels.ModelConfigValueResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -101,6 +118,36 @@ func (aaa *ConfigService) AdminGetConfigValueV3Short(input *config.AdminGetConfi
 	}
 
 	ok, err := aaa.Client.Config.AdminGetConfigValueV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ConfigService) PublicGetSystemConfigV3Short(input *config.PublicGetSystemConfigV3Params) (*iamclientmodels.ModelInternalConfigResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdConfig != nil {
+		input.XFlightId = tempFlightIdConfig
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Config.PublicGetSystemConfigV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

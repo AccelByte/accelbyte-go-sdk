@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetUserRankingPublicV3Params creates a new GetUserRankingPublicV3Params object
@@ -79,6 +80,11 @@ type GetUserRankingPublicV3Params struct {
 
 	*/
 	UserID string
+	/*PreviousVersion
+	  Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)
+
+	*/
+	PreviousVersion *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,6 +184,17 @@ func (o *GetUserRankingPublicV3Params) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithPreviousVersion adds the previousVersion to the get user ranking public v3 params
+func (o *GetUserRankingPublicV3Params) WithPreviousVersion(previousVersion *int64) *GetUserRankingPublicV3Params {
+	o.SetPreviousVersion(previousVersion)
+	return o
+}
+
+// SetPreviousVersion adds the previousVersion to the get user ranking public v3 params
+func (o *GetUserRankingPublicV3Params) SetPreviousVersion(previousVersion *int64) {
+	o.PreviousVersion = previousVersion
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetUserRankingPublicV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -199,6 +216,22 @@ func (o *GetUserRankingPublicV3Params) WriteToRequest(r runtime.ClientRequest, r
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.PreviousVersion != nil {
+
+		// query param previousVersion
+		var qrPreviousVersion int64
+		if o.PreviousVersion != nil {
+			qrPreviousVersion = *o.PreviousVersion
+		}
+		qPreviousVersion := swag.FormatInt64(qrPreviousVersion)
+		if qPreviousVersion != "" {
+			if err := r.SetQueryParam("previousVersion", qPreviousVersion); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

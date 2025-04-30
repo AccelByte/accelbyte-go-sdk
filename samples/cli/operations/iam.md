@@ -403,6 +403,7 @@ $ samples/cli/sample-apps Iam adminGetUserByPlatformUserIDV3 \
     --namespace 'string' \
     --platformId 'string' \
     --platformUserId 'string' \
+    --pidType 'string' \
     > result.txt
 ```
 
@@ -541,7 +542,7 @@ $ samples/cli/sample-apps Iam adminGetBulkUserBanV3 \
 ```sh
 $ samples/cli/sample-apps Iam adminListUserIDByUserIDsV3 \
     --namespace 'string' \
-    --body '{"userIds": ["string"]}' \
+    --body '{"findByPublisherNamespace": false, "userIds": ["string"]}' \
     > result.txt
 ```
 
@@ -550,6 +551,14 @@ $ samples/cli/sample-apps Iam adminListUserIDByUserIDsV3 \
 $ samples/cli/sample-apps Iam adminBulkGetUsersPlatform \
     --namespace 'string' \
     --body '{"userIds": ["string"]}' \
+    > result.txt
+```
+
+### Operation `admin_cursor_get_user_v3`
+```sh
+$ samples/cli/sample-apps Iam adminCursorGetUserV3 \
+    --namespace 'string' \
+    --body '{"cursor": {}, "fields": ["string"], "limit": 1}' \
     > result.txt
 ```
 
@@ -596,6 +605,7 @@ $ samples/cli/sample-apps Iam adminSearchUserV3 \
     --roleIds 'string' \
     --skipLoginQueue false \
     --startDate 'string' \
+    --tagIds 'string' \
     --testAccount false \
     > result.txt
 ```
@@ -1164,6 +1174,12 @@ $ samples/cli/sample-apps Iam authenticateAndLinkForwardV3 \
     --linkingToken 'string' \
     --password 'string' \
     --username 'string' \
+    > result.txt
+```
+
+### Operation `public_get_system_config_v3`
+```sh
+$ samples/cli/sample-apps Iam publicGetSystemConfigV3 \
     > result.txt
 ```
 
@@ -1823,6 +1839,13 @@ $ samples/cli/sample-apps Iam publicGetRolesV3 \
 ```sh
 $ samples/cli/sample-apps Iam publicGetRoleV3 \
     --roleId 'string' \
+    > result.txt
+```
+
+### Operation `public_forgot_password_without_namespace_v3`
+```sh
+$ samples/cli/sample-apps Iam publicForgotPasswordWithoutNamespaceV3 \
+    --body '{"clientId": "string", "emailAddress": "string", "languageTag": "string"}' \
     > result.txt
 ```
 

@@ -90,6 +90,32 @@ func (aaa *MatchFunctionsService) CreateMatchFunction(input *match_functions.Cre
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use MatchFunctionGetShort instead.
+func (aaa *MatchFunctionsService) MatchFunctionGet(input *match_functions.MatchFunctionGetParams) (*match2clientmodels.APIMatchFunctionConfig, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.MatchFunctions.MatchFunctionGet(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use UpdateMatchFunctionShort instead.
 func (aaa *MatchFunctionsService) UpdateMatchFunction(input *match_functions.UpdateMatchFunctionParams) (*match2clientmodels.APIMatchFunctionConfig, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -203,6 +229,36 @@ func (aaa *MatchFunctionsService) CreateMatchFunctionShort(input *match_function
 	}
 
 	return nil
+}
+
+func (aaa *MatchFunctionsService) MatchFunctionGetShort(input *match_functions.MatchFunctionGetParams) (*match2clientmodels.APIMatchFunctionConfig, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdMatchFunctions != nil {
+		input.XFlightId = tempFlightIdMatchFunctions
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.MatchFunctions.MatchFunctionGetShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *MatchFunctionsService) UpdateMatchFunctionShort(input *match_functions.UpdateMatchFunctionParams) (*match2clientmodels.APIMatchFunctionConfig, error) {

@@ -2042,6 +2042,32 @@ func (aaa *UsersService) AdminBulkGetUsersPlatform(input *users.AdminBulkGetUser
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminCursorGetUserV3Short instead.
+func (aaa *UsersService) AdminCursorGetUserV3(input *users.AdminCursorGetUserV3Params) (*iamclientmodels.ModelCursorGetUserResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminCursorGetUserV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminInviteUserV3Short instead.
 func (aaa *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -4467,6 +4493,26 @@ func (aaa *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.Pu
 	}
 
 	return nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicForgotPasswordWithoutNamespaceV3Short instead.
+func (aaa *UsersService) PublicForgotPasswordWithoutNamespaceV3(input *users.PublicForgotPasswordWithoutNamespaceV3Params) (*iamclientmodels.ModelForgotPasswordResponseV3, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, internalServerError, err := aaa.Client.Users.PublicForgotPasswordWithoutNamespaceV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use PublicGetMyUserV3Short instead.
@@ -6969,6 +7015,36 @@ func (aaa *UsersService) AdminBulkGetUsersPlatformShort(input *users.AdminBulkGe
 	}
 
 	ok, err := aaa.Client.Users.AdminBulkGetUsersPlatformShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) AdminCursorGetUserV3Short(input *users.AdminCursorGetUserV3Params) (*iamclientmodels.ModelCursorGetUserResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.AdminCursorGetUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -9674,6 +9750,36 @@ func (aaa *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *use
 	}
 
 	return nil
+}
+
+func (aaa *UsersService) PublicForgotPasswordWithoutNamespaceV3Short(input *users.PublicForgotPasswordWithoutNamespaceV3Params) (*iamclientmodels.ModelForgotPasswordResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.PublicForgotPasswordWithoutNamespaceV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {

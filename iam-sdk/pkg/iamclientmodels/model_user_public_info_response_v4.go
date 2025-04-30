@@ -18,6 +18,9 @@ import (
 // swagger:model Model user public info response V4.
 type ModelUserPublicInfoResponseV4 struct {
 
+	// avatarurl
+	AvatarURL string `json:"avatarUrl,omitempty"`
+
 	// displayname
 	// Required: true
 	DisplayName *string `json:"displayName"`

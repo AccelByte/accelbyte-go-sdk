@@ -67,7 +67,7 @@ type AdminListUserIDByUserIDsV3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *iamclientmodels.ModelUserIDsRequest
+	Body *iamclientmodels.ModelAdminBulkUserRequest
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -140,13 +140,13 @@ func (o *AdminListUserIDByUserIDsV3Params) SetFlightId(flightId string) {
 }
 
 // WithBody adds the body to the admin list user id by user i ds v3 params
-func (o *AdminListUserIDByUserIDsV3Params) WithBody(body *iamclientmodels.ModelUserIDsRequest) *AdminListUserIDByUserIDsV3Params {
+func (o *AdminListUserIDByUserIDsV3Params) WithBody(body *iamclientmodels.ModelAdminBulkUserRequest) *AdminListUserIDByUserIDsV3Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the admin list user id by user i ds v3 params
-func (o *AdminListUserIDByUserIDsV3Params) SetBody(body *iamclientmodels.ModelUserIDsRequest) {
+func (o *AdminListUserIDByUserIDsV3Params) SetBody(body *iamclientmodels.ModelAdminBulkUserRequest) {
 	o.Body = body
 }
 

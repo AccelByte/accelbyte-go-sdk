@@ -36,10 +36,12 @@ var BulkGetUsersRankingPublicV3Cmd = &cobra.Command{
 		}
 		leaderboardCode, _ := cmd.Flags().GetString("leaderboardCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		previousVersion, _ := cmd.Flags().GetInt64("previousVersion")
 		input := &leaderboard_data_v3.BulkGetUsersRankingPublicV3Params{
 			Body:            body,
 			LeaderboardCode: leaderboardCode,
 			Namespace:       namespace,
+			PreviousVersion: &previousVersion,
 		}
 		ok, errOK := leaderboardDataV3Service.BulkGetUsersRankingPublicV3Short(input)
 		if errOK != nil {
@@ -61,4 +63,5 @@ func init() {
 	_ = BulkGetUsersRankingPublicV3Cmd.MarkFlagRequired("leaderboardCode")
 	BulkGetUsersRankingPublicV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = BulkGetUsersRankingPublicV3Cmd.MarkFlagRequired("namespace")
+	BulkGetUsersRankingPublicV3Cmd.Flags().Int64("previousVersion", 0, "Previous version")
 }

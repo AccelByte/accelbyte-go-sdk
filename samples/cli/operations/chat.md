@@ -377,6 +377,13 @@ $ samples/cli/sample-apps Chat adminGetCategorySchema \
     > result.txt
 ```
 
+### Operation `admin_list_kafka_topic`
+```sh
+$ samples/cli/sample-apps Chat adminListKafkaTopic \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `admin_delete_inbox_message`
 ```sh
 $ samples/cli/sample-apps Chat adminDeleteInboxMessage \

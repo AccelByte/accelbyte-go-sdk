@@ -173,6 +173,11 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	StartDate *string
+	/*TagIds
+	  comma separated tag ids less than 4
+
+	*/
+	TagIds *string
 	/*TestAccount
 	  A flag to filter test account. if testAccount parameter is not defined, search result will include both real and test accounts
 
@@ -376,6 +381,17 @@ func (o *AdminSearchUserV3Params) SetStartDate(startDate *string) {
 	o.StartDate = startDate
 }
 
+// WithTagIds adds the tagIds to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithTagIds(tagIds *string) *AdminSearchUserV3Params {
+	o.SetTagIds(tagIds)
+	return o
+}
+
+// SetTagIds adds the tagIds to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetTagIds(tagIds *string) {
+	o.TagIds = tagIds
+}
+
 // WithTestAccount adds the testAccount to the admin search user v3 params
 func (o *AdminSearchUserV3Params) WithTestAccount(testAccount *bool) *AdminSearchUserV3Params {
 	o.SetTestAccount(testAccount)
@@ -570,6 +586,22 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qStartDate := qrStartDate
 		if qStartDate != "" {
 			if err := r.SetQueryParam("startDate", qStartDate); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TagIds != nil {
+
+		// query param tagIds
+		var qrTagIds string
+		if o.TagIds != nil {
+			qrTagIds = *o.TagIds
+		}
+		qTagIds := qrTagIds
+		if qTagIds != "" {
+			if err := r.SetQueryParam("tagIds", qTagIds); err != nil {
 				return err
 			}
 		}

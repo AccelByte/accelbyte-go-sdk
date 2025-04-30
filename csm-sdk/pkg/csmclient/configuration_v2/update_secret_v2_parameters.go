@@ -67,7 +67,7 @@ type UpdateSecretV2Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Body*/
-	Body *csmclientmodels.ApimodelUpdateConfigurationV2Request
+	Body *csmclientmodels.ApimodelUpdateSecretConfigurationV2Request
 	/*App
 	  App Name
 
@@ -150,13 +150,13 @@ func (o *UpdateSecretV2Params) SetFlightId(flightId string) {
 }
 
 // WithBody adds the body to the update secret v2 params
-func (o *UpdateSecretV2Params) WithBody(body *csmclientmodels.ApimodelUpdateConfigurationV2Request) *UpdateSecretV2Params {
+func (o *UpdateSecretV2Params) WithBody(body *csmclientmodels.ApimodelUpdateSecretConfigurationV2Request) *UpdateSecretV2Params {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update secret v2 params
-func (o *UpdateSecretV2Params) SetBody(body *csmclientmodels.ApimodelUpdateConfigurationV2Request) {
+func (o *UpdateSecretV2Params) SetBody(body *csmclientmodels.ApimodelUpdateSecretConfigurationV2Request) {
 	o.Body = body
 }
 

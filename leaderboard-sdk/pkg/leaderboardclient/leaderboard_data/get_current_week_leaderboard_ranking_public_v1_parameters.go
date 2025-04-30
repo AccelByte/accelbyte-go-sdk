@@ -86,7 +86,7 @@ type GetCurrentWeekLeaderboardRankingPublicV1Params struct {
 	*/
 	Offset *int64
 	/*PreviousVersion
-	  Specify specific version of leaderboard data, < 0 will be archived/history leaderboard data. Currently only support 1 previous version, default value will be 0 (active leaderboard)
+	  Specify specific version of leaderboard data, If the value of version is more than 0, it’ll retrieve the achieved history of leaderboard data. For example, if value of PreviousVersionParam is 1, means it’ll fetch one previous version. Currently only support 1 previous version, default value will be 0 (active leaderboard)
 
 	*/
 	PreviousVersion *int64

@@ -24,9 +24,8 @@ type ModelsDSMConfigRecord struct {
 	ClaimTimeout int32 `json:"claim_timeout"`
 
 	// createdat
-	// Required: true
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// creation_timeout
 	// Required: true
@@ -34,13 +33,11 @@ type ModelsDSMConfigRecord struct {
 	CreationTimeout int32 `json:"creation_timeout"`
 
 	// namespace
-	// Required: true
-	Namespace string `json:"namespace"`
+	Namespace string `json:"namespace,omitempty"`
 
 	// updatedat
-	// Required: true
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 }
 
 // Validate validates this Models DSM config record
@@ -50,16 +47,7 @@ func (m *ModelsDSMConfigRecord) Validate(formats strfmt.Registry) error {
 	if err := m.validateClaimTimeout(formats); err != nil {
 		res = append(res, err)
 	}
-	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
 	if err := m.validateCreationTimeout(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,44 +66,9 @@ func (m *ModelsDSMConfigRecord) validateClaimTimeout(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *ModelsDSMConfigRecord) validateCreatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelsDSMConfigRecord) validateCreationTimeout(formats strfmt.Registry) error {
 
 	if err := validate.Required("creation_timeout", "body", m.CreationTimeout); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsDSMConfigRecord) validateNamespace(formats strfmt.Registry) error {
-
-	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelsDSMConfigRecord) validateUpdatedAt(formats strfmt.Registry) error {
-
-	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("updatedAt", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
 		return err
 	}
 

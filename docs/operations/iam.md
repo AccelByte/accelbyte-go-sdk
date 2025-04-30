@@ -122,6 +122,7 @@
 | `/iam/v3/admin/namespaces/{namespace}/users/bans` | POST | AdminGetBulkUserBanV3Short | [AdminGetBulkUserBanV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminGetBulkUserBanV3Short](../../services-api/pkg/service/iam/users.go) | [AdminGetBulkUserBanV3Short](../../samples/cli/cmd/iam/users/adminGetBulkUserBanV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/bulk` | POST | AdminListUserIDByUserIDsV3Short | [AdminListUserIDByUserIDsV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminListUserIDByUserIDsV3Short](../../services-api/pkg/service/iam/users.go) | [AdminListUserIDByUserIDsV3Short](../../samples/cli/cmd/iam/users/adminListUserIDByUserIDsV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/bulk/platforms` | POST | AdminBulkGetUsersPlatformShort | [AdminBulkGetUsersPlatformShort](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminBulkGetUsersPlatformShort](../../services-api/pkg/service/iam/users.go) | [AdminBulkGetUsersPlatformShort](../../samples/cli/cmd/iam/users/adminBulkGetUsersPlatform.go) |
+| `/iam/v3/admin/namespaces/{namespace}/users/cursor` | POST | AdminCursorGetUserV3Short | [AdminCursorGetUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminCursorGetUserV3Short](../../services-api/pkg/service/iam/users.go) | [AdminCursorGetUserV3Short](../../samples/cli/cmd/iam/users/adminCursorGetUserV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/invite` | POST | AdminInviteUserV3Short | [AdminInviteUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminInviteUserV3Short](../../services-api/pkg/service/iam/users.go) | [AdminInviteUserV3Short](../../samples/cli/cmd/iam/users/adminInviteUserV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/linkhistories` | GET | AdminQueryThirdPlatformLinkHistoryV3Short | [AdminQueryThirdPlatformLinkHistoryV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminQueryThirdPlatformLinkHistoryV3Short](../../services-api/pkg/service/iam/users.go) | [AdminQueryThirdPlatformLinkHistoryV3Short](../../samples/cli/cmd/iam/users/adminQueryThirdPlatformLinkHistoryV3.go) |
 | `/iam/v3/admin/namespaces/{namespace}/users/platforms/justice` | GET | AdminListUsersV3Short | [AdminListUsersV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [AdminListUsersV3Short](../../services-api/pkg/service/iam/users.go) | [AdminListUsersV3Short](../../samples/cli/cmd/iam/users/adminListUsersV3.go) |
@@ -212,6 +213,7 @@
 | `/iam/v3/public/namespaces/{namespace}/users/{userId}/platforms/linkWithProgression` | POST | PublicForceLinkPlatformWithProgressionShort | [PublicForceLinkPlatformWithProgressionShort](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicForceLinkPlatformWithProgressionShort](../../services-api/pkg/service/iam/users.go) | [PublicForceLinkPlatformWithProgressionShort](../../samples/cli/cmd/iam/users/publicForceLinkPlatformWithProgression.go) |
 | `/iam/v3/public/namespaces/{namespace}/users/{userId}/publisher` | GET | PublicGetPublisherUserV3Short | [PublicGetPublisherUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetPublisherUserV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetPublisherUserV3Short](../../samples/cli/cmd/iam/users/publicGetPublisherUserV3.go) |
 | `/iam/v3/public/namespaces/{namespace}/users/{userId}/validate` | POST | PublicValidateUserByUserIDAndPasswordV3Short | [PublicValidateUserByUserIDAndPasswordV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicValidateUserByUserIDAndPasswordV3Short](../../services-api/pkg/service/iam/users.go) | [PublicValidateUserByUserIDAndPasswordV3Short](../../samples/cli/cmd/iam/users/publicValidateUserByUserIDAndPasswordV3.go) |
+| `/iam/v3/public/users/forgot` | POST | PublicForgotPasswordWithoutNamespaceV3Short | [PublicForgotPasswordWithoutNamespaceV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicForgotPasswordWithoutNamespaceV3Short](../../services-api/pkg/service/iam/users.go) | [PublicForgotPasswordWithoutNamespaceV3Short](../../samples/cli/cmd/iam/users/publicForgotPasswordWithoutNamespaceV3.go) |
 | `/iam/v3/public/users/me` | GET | PublicGetMyUserV3Short | [PublicGetMyUserV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetMyUserV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetMyUserV3Short](../../samples/cli/cmd/iam/users/publicGetMyUserV3.go) |
 | `/iam/v3/public/users/me/code/request/forward` | POST | PublicSendCodeForwardV3Short | [PublicSendCodeForwardV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicSendCodeForwardV3Short](../../services-api/pkg/service/iam/users.go) | [PublicSendCodeForwardV3Short](../../samples/cli/cmd/iam/users/publicSendCodeForwardV3.go) |
 | `/iam/v3/public/users/me/headless/link/conflict` | GET | PublicGetLinkHeadlessAccountToMyAccountConflictV3Short | [PublicGetLinkHeadlessAccountToMyAccountConflictV3Short](../../iam-sdk/pkg/iamclient/users/users_client.go) | [PublicGetLinkHeadlessAccountToMyAccountConflictV3Short](../../services-api/pkg/service/iam/users.go) | [PublicGetLinkHeadlessAccountToMyAccountConflictV3Short](../../samples/cli/cmd/iam/users/publicGetLinkHeadlessAccountToMyAccountConflictV3.go) |
@@ -308,6 +310,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/iam/v3/admin/namespaces/{namespace}/config/{configKey}` | GET | AdminGetConfigValueV3Short | [AdminGetConfigValueV3Short](../../iam-sdk/pkg/iamclient/config/config_client.go) | [AdminGetConfigValueV3Short](../../services-api/pkg/service/iam/config.go) | [AdminGetConfigValueV3Short](../../samples/cli/cmd/iam/config/adminGetConfigValueV3.go) |
+| `/iam/v3/config/public` | GET | PublicGetSystemConfigV3Short | [PublicGetSystemConfigV3Short](../../iam-sdk/pkg/iamclient/config/config_client.go) | [PublicGetSystemConfigV3Short](../../services-api/pkg/service/iam/config.go) | [PublicGetSystemConfigV3Short](../../samples/cli/cmd/iam/config/publicGetSystemConfigV3.go) |
 | `/iam/v3/public/namespaces/{namespace}/config/{configKey}` | GET | PublicGetConfigValueV3Short | [PublicGetConfigValueV3Short](../../iam-sdk/pkg/iamclient/config/config_client.go) | [PublicGetConfigValueV3Short](../../services-api/pkg/service/iam/config.go) | [PublicGetConfigValueV3Short](../../samples/cli/cmd/iam/config/publicGetConfigValueV3.go) |
 
 ### Country Wrapper:  [Country](../../services-api/pkg/service/iam/country.go)
@@ -589,6 +592,7 @@
 | `accountcommon.PlatformLinkingHistory` | [AccountcommonPlatformLinkingHistory ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_linking_history.go) |
 | `accountcommon.PlatformUserInformationV3` | [AccountcommonPlatformUserInformationV3 ](../../iam-sdk/pkg/iamclientmodels/accountcommon_platform_user_information_v3.go) |
 | `accountcommon.ProfileUpdateConfig` | [AccountcommonProfileUpdateConfig ](../../iam-sdk/pkg/iamclientmodels/accountcommon_profile_update_config.go) |
+| `accountcommon.QueryCursor` | [AccountcommonQueryCursor ](../../iam-sdk/pkg/iamclientmodels/accountcommon_query_cursor.go) |
 | `accountcommon.RegisteredDomain` | [AccountcommonRegisteredDomain ](../../iam-sdk/pkg/iamclientmodels/accountcommon_registered_domain.go) |
 | `accountcommon.ReplaceRolePermission` | [AccountcommonReplaceRolePermission ](../../iam-sdk/pkg/iamclientmodels/accountcommon_replace_role_permission.go) |
 | `accountcommon.Role` | [AccountcommonRole ](../../iam-sdk/pkg/iamclientmodels/accountcommon_role.go) |
@@ -635,6 +639,7 @@
 | `legal.AcceptedPoliciesRequest` | [LegalAcceptedPoliciesRequest ](../../iam-sdk/pkg/iamclientmodels/legal_accepted_policies_request.go) |
 | `model.AccountProgressionInfo` | [ModelAccountProgressionInfo ](../../iam-sdk/pkg/iamclientmodels/model_account_progression_info.go) |
 | `model.AddUserRoleV4Request` | [ModelAddUserRoleV4Request ](../../iam-sdk/pkg/iamclientmodels/model_add_user_role_v4_request.go) |
+| `model.AdminBulkUserRequest` | [ModelAdminBulkUserRequest ](../../iam-sdk/pkg/iamclientmodels/model_admin_bulk_user_request.go) |
 | `model.AgeRestrictionRequest` | [ModelAgeRestrictionRequest ](../../iam-sdk/pkg/iamclientmodels/model_age_restriction_request.go) |
 | `model.AgeRestrictionRequestV3` | [ModelAgeRestrictionRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_age_restriction_request_v3.go) |
 | `model.AgeRestrictionResponse` | [ModelAgeRestrictionResponse ](../../iam-sdk/pkg/iamclientmodels/model_age_restriction_response.go) |
@@ -659,6 +664,9 @@
 | `model.CountryResponse` | [ModelCountryResponse ](../../iam-sdk/pkg/iamclientmodels/model_country_response.go) |
 | `model.CountryV3Response` | [ModelCountryV3Response ](../../iam-sdk/pkg/iamclientmodels/model_country_v3_response.go) |
 | `model.CreateJusticeUserResponse` | [ModelCreateJusticeUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_create_justice_user_response.go) |
+| `model.CursorGetUserRequest` | [ModelCursorGetUserRequest ](../../iam-sdk/pkg/iamclientmodels/model_cursor_get_user_request.go) |
+| `model.CursorGetUserResponse` | [ModelCursorGetUserResponse ](../../iam-sdk/pkg/iamclientmodels/model_cursor_get_user_response.go) |
+| `model.CursorGetUserResponse.data` | [ModelCursorGetUserResponseData ](../../iam-sdk/pkg/iamclientmodels/model_cursor_get_user_response_data.go) |
 | `model.DeviceBanRequestV4` | [ModelDeviceBanRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_request_v4.go) |
 | `model.DeviceBanResponseV4` | [ModelDeviceBanResponseV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_response_v4.go) |
 | `model.DeviceBanUpdateRequestV4` | [ModelDeviceBanUpdateRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_device_ban_update_request_v4.go) |
@@ -678,6 +686,8 @@
 | `model.FailedBanUnbanUserV3` | [ModelFailedBanUnbanUserV3 ](../../iam-sdk/pkg/iamclientmodels/model_failed_ban_unban_user_v3.go) |
 | `model.FieldUpdateAllowStatus` | [ModelFieldUpdateAllowStatus ](../../iam-sdk/pkg/iamclientmodels/model_field_update_allow_status.go) |
 | `model.ForgotPasswordRequestV3` | [ModelForgotPasswordRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_forgot_password_request_v3.go) |
+| `model.ForgotPasswordResponseV3` | [ModelForgotPasswordResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_forgot_password_response_v3.go) |
+| `model.ForgotPasswordWithoutNamespaceRequestV3` | [ModelForgotPasswordWithoutNamespaceRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_forgot_password_without_namespace_request_v3.go) |
 | `model.GetAdminUsersResponse` | [ModelGetAdminUsersResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_admin_users_response.go) |
 | `model.GetBulkUserBansRequest` | [ModelGetBulkUserBansRequest ](../../iam-sdk/pkg/iamclientmodels/model_get_bulk_user_bans_request.go) |
 | `model.GetLinkHeadlessAccountConflictResponse` | [ModelGetLinkHeadlessAccountConflictResponse ](../../iam-sdk/pkg/iamclientmodels/model_get_link_headless_account_conflict_response.go) |
@@ -695,6 +705,7 @@
 | `model.InputValidationUpdatePayload` | [ModelInputValidationUpdatePayload ](../../iam-sdk/pkg/iamclientmodels/model_input_validation_update_payload.go) |
 | `model.InputValidationsPublicResponse` | [ModelInputValidationsPublicResponse ](../../iam-sdk/pkg/iamclientmodels/model_input_validations_public_response.go) |
 | `model.InputValidationsResponse` | [ModelInputValidationsResponse ](../../iam-sdk/pkg/iamclientmodels/model_input_validations_response.go) |
+| `model.InternalConfigResponseV3` | [ModelInternalConfigResponseV3 ](../../iam-sdk/pkg/iamclientmodels/model_internal_config_response_v3.go) |
 | `model.InvitationHistoryResponse` | [ModelInvitationHistoryResponse ](../../iam-sdk/pkg/iamclientmodels/model_invitation_history_response.go) |
 | `model.InviteUserRequestV3` | [ModelInviteUserRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_invite_user_request_v3.go) |
 | `model.InviteUserRequestV4` | [ModelInviteUserRequestV4 ](../../iam-sdk/pkg/iamclientmodels/model_invite_user_request_v4.go) |
@@ -782,6 +793,7 @@
 | `model.SimpleProfileUpdateStrategyConfigs` | [ModelSimpleProfileUpdateStrategyConfigs ](../../iam-sdk/pkg/iamclientmodels/model_simple_profile_update_strategy_configs.go) |
 | `model.SimpleUserBan` | [ModelSimpleUserBan ](../../iam-sdk/pkg/iamclientmodels/model_simple_user_ban.go) |
 | `model.TagCreateRequestV3` | [ModelTagCreateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_tag_create_request_v3.go) |
+| `model.TagDetail` | [ModelTagDetail ](../../iam-sdk/pkg/iamclientmodels/model_tag_detail.go) |
 | `model.TagUpdateRequestV3` | [ModelTagUpdateRequestV3 ](../../iam-sdk/pkg/iamclientmodels/model_tag_update_request_v3.go) |
 | `model.ThirdPartyLoginPlatformCredentialRequest` | [ModelThirdPartyLoginPlatformCredentialRequest ](../../iam-sdk/pkg/iamclientmodels/model_third_party_login_platform_credential_request.go) |
 | `model.ThirdPartyLoginPlatformCredentialResponse` | [ModelThirdPartyLoginPlatformCredentialResponse ](../../iam-sdk/pkg/iamclientmodels/model_third_party_login_platform_credential_response.go) |

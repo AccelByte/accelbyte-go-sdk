@@ -33,6 +33,12 @@ func (o *GetUserRankingPublicV3Reader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetUserRankingPublicV3BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewGetUserRankingPublicV3Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -113,6 +119,60 @@ func (o *GetUserRankingPublicV3OK) readResponse(response runtime.ClientResponse,
 	}
 
 	o.Payload = new(leaderboardclientmodels.ModelsUserRankingResponseV3)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetUserRankingPublicV3BadRequest creates a GetUserRankingPublicV3BadRequest with default headers values
+func NewGetUserRankingPublicV3BadRequest() *GetUserRankingPublicV3BadRequest {
+	return &GetUserRankingPublicV3BadRequest{}
+}
+
+/*GetUserRankingPublicV3BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type GetUserRankingPublicV3BadRequest struct {
+	Payload *leaderboardclientmodels.ResponseErrorResponse
+}
+
+func (o *GetUserRankingPublicV3BadRequest) Error() string {
+	return fmt.Sprintf("[GET /leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}][%d] getUserRankingPublicV3BadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *GetUserRankingPublicV3BadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetUserRankingPublicV3BadRequest) GetPayload() *leaderboardclientmodels.ResponseErrorResponse {
+	return o.Payload
+}
+
+func (o *GetUserRankingPublicV3BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(leaderboardclientmodels.ResponseErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

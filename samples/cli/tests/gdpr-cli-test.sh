@@ -51,11 +51,11 @@ touch "tmp.dat"
 #- 2 AdminGetListDeletionDataRequest
 samples/cli/sample-apps Gdpr adminGetListDeletionDataRequest \
     --namespace $AB_NAMESPACE \
-    --after 'EWMYuIAyZCoQWrMQ' \
-    --before 'NpHbiA79wQokA1tk' \
-    --limit '30' \
-    --offset '18' \
-    --requestDate 'QpkOinbpzBcRCL3j' \
+    --after 'wTzGKviK10ixEzZi' \
+    --before 'dflPh8eG9CAVnhZt' \
+    --limit '80' \
+    --offset '61' \
+    --requestDate '8n1Fmdx1Y4tPC4fA' \
     > test.out 2>&1
 eval_tap $? 2 'AdminGetListDeletionDataRequest' test.out
 
@@ -68,21 +68,21 @@ eval_tap $? 3 'GetAdminEmailConfiguration' test.out
 #- 4 UpdateAdminEmailConfiguration
 samples/cli/sample-apps Gdpr updateAdminEmailConfiguration \
     --namespace $AB_NAMESPACE \
-    --body '["4DLtK9lnbBJq7NlV", "fXQnM9JiMMdMSTlb", "uf3wBlebkVANfuoB"]' \
+    --body '["GZoGA5R936GCiTr2", "1yWFMwzXelolk6Uk", "0juL05vUh6gNA1kz"]' \
     > test.out 2>&1
 eval_tap $? 4 'UpdateAdminEmailConfiguration' test.out
 
 #- 5 SaveAdminEmailConfiguration
 samples/cli/sample-apps Gdpr saveAdminEmailConfiguration \
     --namespace $AB_NAMESPACE \
-    --body '["rikerYgMK6pdx43L", "cko0AyOkGnT7FO5F", "xkQ6gcmP3VOjY193"]' \
+    --body '["Kmc2EkoDTOb0dqDY", "blYbmR4DZ0J8Qxw2", "IhhHynct53MfNxQ5"]' \
     > test.out 2>&1
 eval_tap $? 5 'SaveAdminEmailConfiguration' test.out
 
 #- 6 DeleteAdminEmailConfiguration
 samples/cli/sample-apps Gdpr deleteAdminEmailConfiguration \
     --namespace $AB_NAMESPACE \
-    --emails '["J1Acjy193SzWqVqo", "xubqikSBSHmNjahJ", "8eLSdp2nLcQs0kzq"]' \
+    --emails '["xoJQFB6uSW7DmrKi", "lNMpBlbv3rlIte5N", "egmBQNgMb5j9MC5w"]' \
     > test.out 2>&1
 eval_tap $? 6 'DeleteAdminEmailConfiguration' test.out
 
@@ -95,46 +95,46 @@ eval_tap $? 7 'AdminGetPlatformAccountClosureClients' test.out
 #- 8 AdminValidateXboxBPCertFile
 samples/cli/sample-apps Gdpr adminValidateXboxBPCertFile \
     --namespace $AB_NAMESPACE \
-    --body '{"bpCert": "pZIhm5gDMOgjES6e", "password": "twJPzjAyaeSn8kaL"}' \
+    --body '{"bpCert": "jpHjY468ddT6HMs5", "password": "9MiMqoXd2Bexl9k7"}' \
     > test.out 2>&1
 eval_tap $? 8 'AdminValidateXboxBPCertFile' test.out
 
 #- 9 AdminGetPlatformAccountClosureClient
 samples/cli/sample-apps Gdpr adminGetPlatformAccountClosureClient \
     --namespace $AB_NAMESPACE \
-    --platform 'fr3WneRc73BwACzP' \
+    --platform '9m2JdAaA381cxK6C' \
     > test.out 2>&1
 eval_tap $? 9 'AdminGetPlatformAccountClosureClient' test.out
 
 #- 10 AdminUpdatePlatformAccountClosureClient
 samples/cli/sample-apps Gdpr adminUpdatePlatformAccountClosureClient \
     --namespace $AB_NAMESPACE \
-    --platform 'B611NAvAeeSguWr7' \
-    --body '{"bpCert": "G5tjfnjhVQVGG96X", "bpCertFileName": "Y48blElAAAameBWA", "clientId": "Fv3PbZeGlcTaK0Uq", "password": "1jNgQONp5039RX3O", "publisherKey": "6EHleC9qi3NqsFmE", "sandboxId": "HKHRcptLLMuyH824", "secret": "izmrvOou3nvwMYKP"}' \
+    --platform '9hobhSeD41ysL9Zm' \
+    --body '{"bpCert": "d9fiLjfaDEaWSqe1", "bpCertFileName": "cedE9kjZM9pOYYl8", "clientId": "XirU4l7ihB7bvNct", "password": "ICOevP71waX5zcpw", "publisherKey": "UDJlhI70WvVB7y77", "sandboxId": "DZMSUYplCpqEzosP", "secret": "K2YhkvOxBzxHMG1X"}' \
     > test.out 2>&1
 eval_tap $? 10 'AdminUpdatePlatformAccountClosureClient' test.out
 
 #- 11 AdminDeletePlatformAccountClosureClient
 samples/cli/sample-apps Gdpr adminDeletePlatformAccountClosureClient \
     --namespace $AB_NAMESPACE \
-    --platform 'O6YENwzoADQHmVxN' \
+    --platform 'xpOvEQGaqmSyaDhL' \
     > test.out 2>&1
 eval_tap $? 11 'AdminDeletePlatformAccountClosureClient' test.out
 
 #- 12 AdminMockPlatformAccountClosureData
 samples/cli/sample-apps Gdpr adminMockPlatformAccountClosureData \
     --namespace $AB_NAMESPACE \
-    --platform 'P6vOwW1nJcHnExR1' \
-    --body '{"platformUserId": "y5O3L1oEHIaL7anZ", "sandbox": "d1uAD8e4J5QboE7m", "startImmediately": false}' \
+    --platform '28fceCULDD75CPYg' \
+    --body '{"platformUserId": "j21XZ22CMlZfHraN", "sandbox": "yOrGcrI16OezYwnK", "startImmediately": false}' \
     > test.out 2>&1
 eval_tap $? 12 'AdminMockPlatformAccountClosureData' test.out
 
 #- 13 AdminGetListPersonalDataRequest
 samples/cli/sample-apps Gdpr adminGetListPersonalDataRequest \
     --namespace $AB_NAMESPACE \
-    --limit '11' \
-    --offset '96' \
-    --requestDate 'LBgD3b4QvWP4b6CC' \
+    --limit '93' \
+    --offset '2' \
+    --requestDate 'THVTrjVnv7T2ymfz' \
     > test.out 2>&1
 eval_tap $? 13 'AdminGetListPersonalDataRequest' test.out
 
@@ -147,7 +147,7 @@ eval_tap $? 14 'AdminGetServicesConfiguration' test.out
 #- 15 AdminUpdateServicesConfiguration
 samples/cli/sample-apps Gdpr adminUpdateServicesConfiguration \
     --namespace $AB_NAMESPACE \
-    --body '{"services": [{"extendConfig": {"appName": "wyQpgEqMcR8PvvxA", "namespace": "Gz2wZrDYoWtsLn33"}, "id": "bCoat9vu74Q0Ownc", "serviceConfig": {"protocol": "GRPC", "skipAck": false, "url": "YmSrP5ZbJG2qjOFK"}, "type": "EXTEND"}, {"extendConfig": {"appName": "Oh1jjHKhVuPwAyXO", "namespace": "UsxnvTQxnINQPSQA"}, "id": "XiRl6k1HH2uF4KWM", "serviceConfig": {"protocol": "EVENT", "skipAck": false, "url": "w73xvR4V3qzRXX06"}, "type": "EXTEND"}, {"extendConfig": {"appName": "l9zfqTuV84l9zzMZ", "namespace": "ppZkEsnIoN7F0rUg"}, "id": "YYs71CvVNtcgGnTt", "serviceConfig": {"protocol": "EVENT", "skipAck": false, "url": "biz5EZTj7OAInfXq"}, "type": "EXTEND"}]}' \
+    --body '{"services": [{"extendConfig": {"appName": "eh6c4T5Npx3VApp2", "namespace": "32ajAa9TwgRrUbeW"}, "id": "Tv15IABTFnWrOAm2", "serviceConfig": {"protocol": "EVENT", "skipAck": true, "url": "MuJ3K4kCqd99cpnK"}, "type": "SERVICE"}, {"extendConfig": {"appName": "unnHNmwUmy9HOnS5", "namespace": "cH8SNrKgZ2444RI8"}, "id": "ipSBPcJwjb7K7UXL", "serviceConfig": {"protocol": "EVENT", "skipAck": false, "url": "ttSqUqlBL8gsDjV8"}, "type": "SERVICE"}, {"extendConfig": {"appName": "L0SlAFgeL1EF4QNb", "namespace": "0eNOpr2Vb9p1OuqZ"}, "id": "K2CM5j9qQ23G5fU0", "serviceConfig": {"protocol": "GRPC", "skipAck": false, "url": "sYhFl8oWqxEwfjh0"}, "type": "SERVICE"}]}' \
     > test.out 2>&1
 eval_tap $? 15 'AdminUpdateServicesConfiguration' test.out
 
@@ -166,7 +166,7 @@ eval_tap $? 17 'AdminGetPlatformAccountClosureServicesConfiguration' test.out
 #- 18 AdminUpdatePlatformAccountClosureServicesConfiguration
 samples/cli/sample-apps Gdpr adminUpdatePlatformAccountClosureServicesConfiguration \
     --namespace $AB_NAMESPACE \
-    --body '{"services": [{"extendConfig": {"appName": "HWgSAv8QZkrF6rt9", "namespace": "0mbp8IbQI9gdxZcq"}, "id": "8BPZM3ScDZd0c20Q", "serviceConfig": {"protocol": "EVENT", "skipAck": true, "url": "HdKoXXyVW1pYigyX"}, "type": "EXTEND"}, {"extendConfig": {"appName": "ijpmkW946ezwEWO3", "namespace": "IpxTuJu7u6hu1poz"}, "id": "3DN85IwLMcYWUa41", "serviceConfig": {"protocol": "EVENT", "skipAck": false, "url": "ym6g6a96j4312hxv"}, "type": "SERVICE"}, {"extendConfig": {"appName": "9Z96gEfnz3JbeNnq", "namespace": "s78wtxhjCBtHlgTo"}, "id": "52BL7k4GkjsMMPCc", "serviceConfig": {"protocol": "GRPC", "skipAck": true, "url": "15q1YIeLe1TSq8T1"}, "type": "SERVICE"}]}' \
+    --body '{"services": [{"extendConfig": {"appName": "P7Mzy9mWtHuEE9hW", "namespace": "kN5xqsGC5jijfNEG"}, "id": "QPiiGV87354wEQYR", "serviceConfig": {"protocol": "GRPC", "skipAck": true, "url": "ILpwBkBvVwEJ7be3"}, "type": "SERVICE"}, {"extendConfig": {"appName": "zsFkBgD42uvkWNEk", "namespace": "wzT9PBNtRqR4kodn"}, "id": "IjYBMZKdcwbtaW2b", "serviceConfig": {"protocol": "GRPC", "skipAck": true, "url": "DJ0T72PirbRPMDAe"}, "type": "SERVICE"}, {"extendConfig": {"appName": "w8FzBFYumgVf9oeM", "namespace": "cmyXHdeUNv9EFdvg"}, "id": "bUZnkKVyOU66kUQn", "serviceConfig": {"protocol": "EVENT", "skipAck": true, "url": "XhkB2AgsfHsRPSXz"}, "type": "EXTEND"}]}' \
     > test.out 2>&1
 eval_tap $? 18 'AdminUpdatePlatformAccountClosureServicesConfiguration' test.out
 
@@ -179,130 +179,130 @@ eval_tap $? 19 'AdminResetPlatformAccountClosureServicesConfiguration' test.out
 #- 20 AdminGetUserPlatformAccountClosureHistories
 samples/cli/sample-apps Gdpr adminGetUserPlatformAccountClosureHistories \
     --namespace $AB_NAMESPACE \
-    --limit '50' \
-    --offset '42' \
-    --platform 'CAyAGkYJMXt3XbDW' \
-    --userId '1pHLz8S0F5ayctBT' \
+    --limit '72' \
+    --offset '13' \
+    --platform 'Ld7tV4RB8W3bUGIA' \
+    --userId 'jPXQuUpAjaqdqpQs' \
     > test.out 2>&1
 eval_tap $? 20 'AdminGetUserPlatformAccountClosureHistories' test.out
 
 #- 21 AdminGetUserAccountDeletionRequest
 samples/cli/sample-apps Gdpr adminGetUserAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --userId 'dcDy79Mr5qgPWcHh' \
+    --userId 'q6kJOOLCMJYzancg' \
     > test.out 2>&1
 eval_tap $? 21 'AdminGetUserAccountDeletionRequest' test.out
 
 #- 22 AdminSubmitUserAccountDeletionRequest
 samples/cli/sample-apps Gdpr adminSubmitUserAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --userId 'P9yKUyY4vlcr3uoo' \
+    --userId '6aXtLOvtbJUk8gAp' \
     > test.out 2>&1
 eval_tap $? 22 'AdminSubmitUserAccountDeletionRequest' test.out
 
 #- 23 AdminCancelUserAccountDeletionRequest
 samples/cli/sample-apps Gdpr adminCancelUserAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --userId 'y7il8J2NR67NlMFv' \
+    --userId '1ENOBgK1VQ52Z1bH' \
     > test.out 2>&1
 eval_tap $? 23 'AdminCancelUserAccountDeletionRequest' test.out
 
 #- 24 AdminGetUserPersonalDataRequests
 samples/cli/sample-apps Gdpr adminGetUserPersonalDataRequests \
     --namespace $AB_NAMESPACE \
-    --userId 'EkNs7H5wYKF1otA1' \
-    --limit '52' \
-    --offset '14' \
+    --userId 'IDR4nmRnRv7904hY' \
+    --limit '65' \
+    --offset '71' \
     > test.out 2>&1
 eval_tap $? 24 'AdminGetUserPersonalDataRequests' test.out
 
 #- 25 AdminRequestDataRetrieval
 samples/cli/sample-apps Gdpr adminRequestDataRetrieval \
     --namespace $AB_NAMESPACE \
-    --userId 'Ss2ZEUr4Ix0rK23L' \
-    --password '8VytlL2QceFVBAU4' \
+    --userId 'fzWVIeHBEmbBL1y0' \
+    --password 'pLuyZ7IT8MFeLyVJ' \
     > test.out 2>&1
 eval_tap $? 25 'AdminRequestDataRetrieval' test.out
 
 #- 26 AdminCancelUserPersonalDataRequest
 samples/cli/sample-apps Gdpr adminCancelUserPersonalDataRequest \
     --namespace $AB_NAMESPACE \
-    --requestDate '4HY4i6aKdOoPzS5V' \
-    --userId 'B7YDQPwWLOgT9Lhz' \
+    --requestDate 'lW43KdbxdbdXqyEp' \
+    --userId 'kHVmP2vpnwogysIx' \
     > test.out 2>&1
 eval_tap $? 26 'AdminCancelUserPersonalDataRequest' test.out
 
 #- 27 AdminGeneratePersonalDataURL
 samples/cli/sample-apps Gdpr adminGeneratePersonalDataURL \
     --namespace $AB_NAMESPACE \
-    --requestDate 'FPagRoABCrdGtkOp' \
-    --userId 'Fiea0rkDgi70rXIz' \
-    --password 'vI0mG2muuGDn4UfK' \
+    --requestDate 'Gm4mv7QXyfeBkqCt' \
+    --userId 'P6bab7nbrydHCpm3' \
+    --password 'uwKFWDI61SgG69xH' \
     > test.out 2>&1
 eval_tap $? 27 'AdminGeneratePersonalDataURL' test.out
 
 #- 28 PublicSubmitUserAccountDeletionRequest
 samples/cli/sample-apps Gdpr publicSubmitUserAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --userId 'aOYTB6cdoj6S2CZh' \
-    --languageTag 'c16ZwCpLjCKWoqOq' \
-    --password 'uRvan2ARelEaVTiZ' \
+    --userId 'PuCObO5twYG7UPQO' \
+    --languageTag 'u7lihYgsOxYzki4X' \
+    --password 'ffB8Su5cmsfPW7xR' \
     > test.out 2>&1
 eval_tap $? 28 'PublicSubmitUserAccountDeletionRequest' test.out
 
 #- 29 PublicCancelUserAccountDeletionRequest
 samples/cli/sample-apps Gdpr publicCancelUserAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --userId 'ZZL88KjoBrb9nOZ4' \
+    --userId 'yxcLNIeH4FUbHR2G' \
     > test.out 2>&1
 eval_tap $? 29 'PublicCancelUserAccountDeletionRequest' test.out
 
 #- 30 PublicGetUserAccountDeletionStatus
 samples/cli/sample-apps Gdpr publicGetUserAccountDeletionStatus \
     --namespace $AB_NAMESPACE \
-    --userId '8fEVwBjjULqO6e0I' \
+    --userId 'zlYK1FIhva4NR012' \
     > test.out 2>&1
 eval_tap $? 30 'PublicGetUserAccountDeletionStatus' test.out
 
 #- 31 PublicGetUserPersonalDataRequests
 samples/cli/sample-apps Gdpr publicGetUserPersonalDataRequests \
     --namespace $AB_NAMESPACE \
-    --userId 'ASH970QpkSWVwtSh' \
-    --limit '70' \
-    --offset '8' \
+    --userId '14DbtTxuNc5gwAot' \
+    --limit '18' \
+    --offset '20' \
     > test.out 2>&1
 eval_tap $? 31 'PublicGetUserPersonalDataRequests' test.out
 
 #- 32 PublicRequestDataRetrieval
 samples/cli/sample-apps Gdpr publicRequestDataRetrieval \
     --namespace $AB_NAMESPACE \
-    --userId 'qJnAEz2thtSiT0Ss' \
-    --languageTag 'T0OpoR00pi2pOG0s' \
-    --password '2fYyOlu8ayXKFJ8l' \
+    --userId 'jpTfqRFLBc8HWUcJ' \
+    --languageTag 'DAvLCMcPPUiA78WH' \
+    --password 'ezBo9hioQVN7WkTW' \
     > test.out 2>&1
 eval_tap $? 32 'PublicRequestDataRetrieval' test.out
 
 #- 33 PublicCancelUserPersonalDataRequest
 samples/cli/sample-apps Gdpr publicCancelUserPersonalDataRequest \
     --namespace $AB_NAMESPACE \
-    --requestDate 'DfXlyU3ptr0Rm7Xk' \
-    --userId 'tssgPOFptdIlbMqC' \
+    --requestDate 'iZqhFqHh9hxfMkWn' \
+    --userId 'HoEXpS25pzFWWHNK' \
     > test.out 2>&1
 eval_tap $? 33 'PublicCancelUserPersonalDataRequest' test.out
 
 #- 34 PublicGeneratePersonalDataURL
 samples/cli/sample-apps Gdpr publicGeneratePersonalDataURL \
     --namespace $AB_NAMESPACE \
-    --requestDate '24i3mcowQ5o5VWfC' \
-    --userId 'yGUzq0voyAhsr3N8' \
-    --password 'mf8Gar9oJk3BdfK8' \
+    --requestDate '6lNqFgmQEMODehl1' \
+    --userId 'VsVjYpOvblPh49he' \
+    --password '6upRmJpCYgksyugK' \
     > test.out 2>&1
 eval_tap $? 34 'PublicGeneratePersonalDataURL' test.out
 
 #- 35 PublicSubmitMyAccountDeletionRequest
 samples/cli/sample-apps Gdpr publicSubmitMyAccountDeletionRequest \
-    --platformId 'byLKet8P9pumQBqK' \
-    --platformToken 'O4oc5MRwi0JdpSv0' \
+    --platformId 'jhuFoVfGJ1UREjrP' \
+    --platformToken 'WveLdNGwxIJ4oGVV' \
     > test.out 2>&1
 eval_tap $? 35 'PublicSubmitMyAccountDeletionRequest' test.out
 
@@ -319,45 +319,45 @@ eval_tap $? 37 'PublicGetMyAccountDeletionStatus' test.out
 #- 38 S2SGetListFinishedAccountDeletionRequest
 samples/cli/sample-apps Gdpr s2sGetListFinishedAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --end 'fju5uitq5Dp4tyn5' \
-    --start 'mY3nLjeafzNECdLU' \
+    --end 'uro9CrS22rpVKoNL' \
+    --start 'GtVG1LY3ZPCbYKNs' \
     > test.out 2>&1
 eval_tap $? 38 'S2SGetListFinishedAccountDeletionRequest' test.out
 
 #- 39 S2SGetListFinishedPersonalDataRequest
 samples/cli/sample-apps Gdpr s2sGetListFinishedPersonalDataRequest \
     --namespace $AB_NAMESPACE \
-    --end '9Eze9MlUVoE7Cq6k' \
-    --start 'o5RZCKstQJpsM4A1' \
+    --end 'KfTcbNdMkRiB1H5h' \
+    --start 'HabKiKQHjrcrD0DE' \
     > test.out 2>&1
 eval_tap $? 39 'S2SGetListFinishedPersonalDataRequest' test.out
 
 #- 40 S2SGetDataRequestByRequestID
 samples/cli/sample-apps Gdpr s2sGetDataRequestByRequestID \
     --namespace $AB_NAMESPACE \
-    --requestId 'pB9TZdxqxEUiRwla' \
+    --requestId '1zyk8dKRAWlVHBqi' \
     > test.out 2>&1
 eval_tap $? 40 'S2SGetDataRequestByRequestID' test.out
 
 #- 41 S2SSubmitUserAccountDeletionRequest
 samples/cli/sample-apps Gdpr s2sSubmitUserAccountDeletionRequest \
     --namespace $AB_NAMESPACE \
-    --userId 'EFT6BnlzsJbbqhoT' \
+    --userId '1lbuPpAFh2BMgaNn' \
     > test.out 2>&1
 eval_tap $? 41 'S2SSubmitUserAccountDeletionRequest' test.out
 
 #- 42 S2SRequestDataRetrieval
 samples/cli/sample-apps Gdpr s2sRequestDataRetrieval \
     --namespace $AB_NAMESPACE \
-    --userId 'YDH0zK4wezxhOQIF' \
+    --userId 'm3Z8FfQ92LVqH5iA' \
     > test.out 2>&1
 eval_tap $? 42 'S2SRequestDataRetrieval' test.out
 
 #- 43 S2SGeneratePersonalDataURL
 samples/cli/sample-apps Gdpr s2sGeneratePersonalDataURL \
     --namespace $AB_NAMESPACE \
-    --requestDate 'Xa6XfKYSLNajsqVE' \
-    --userId 'x3RY1Y6vu7ocb3bA' \
+    --requestDate 'Edxq1UwW8reaiFWN' \
+    --userId 'ESrEX9qdPPfYpoxK' \
     > test.out 2>&1
 eval_tap $? 43 'S2SGeneratePersonalDataURL' test.out
 

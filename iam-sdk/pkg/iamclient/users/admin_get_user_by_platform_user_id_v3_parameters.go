@@ -79,6 +79,11 @@ type AdminGetUserByPlatformUserIDV3Params struct {
 
 	*/
 	PlatformUserID string
+	/*PidType
+	  Platform User ID Type
+
+	*/
+	PidType *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,6 +183,17 @@ func (o *AdminGetUserByPlatformUserIDV3Params) SetPlatformUserID(platformUserID 
 	o.PlatformUserID = platformUserID
 }
 
+// WithPidType adds the pidType to the admin get user by platform user idv3 params
+func (o *AdminGetUserByPlatformUserIDV3Params) WithPidType(pidType *string) *AdminGetUserByPlatformUserIDV3Params {
+	o.SetPidType(pidType)
+	return o
+}
+
+// SetPidType adds the pidType to the admin get user by platform user idv3 params
+func (o *AdminGetUserByPlatformUserIDV3Params) SetPidType(pidType *string) {
+	o.PidType = pidType
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetUserByPlatformUserIDV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -199,6 +215,22 @@ func (o *AdminGetUserByPlatformUserIDV3Params) WriteToRequest(r runtime.ClientRe
 	// path param platformUserId
 	if err := r.SetPathParam("platformUserId", o.PlatformUserID); err != nil {
 		return err
+	}
+
+	if o.PidType != nil {
+
+		// query param pidType
+		var qrPidType string
+		if o.PidType != nil {
+			qrPidType = *o.PidType
+		}
+		qPidType := qrPidType
+		if qPidType != "" {
+			if err := r.SetQueryParam("pidType", qPidType); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

@@ -30,12 +30,14 @@ var GetCurrentCycleLeaderboardRankingPublicV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		previousVersion, _ := cmd.Flags().GetInt64("previousVersion")
 		input := &leaderboard_data_v3.GetCurrentCycleLeaderboardRankingPublicV3Params{
 			CycleID:         cycleId,
 			LeaderboardCode: leaderboardCode,
 			Namespace:       namespace,
 			Limit:           &limit,
 			Offset:          &offset,
+			PreviousVersion: &previousVersion,
 		}
 		ok, errOK := leaderboardDataV3Service.GetCurrentCycleLeaderboardRankingPublicV3Short(input)
 		if errOK != nil {
@@ -59,4 +61,5 @@ func init() {
 	_ = GetCurrentCycleLeaderboardRankingPublicV3Cmd.MarkFlagRequired("namespace")
 	GetCurrentCycleLeaderboardRankingPublicV3Cmd.Flags().Int64("limit", 20, "Limit")
 	GetCurrentCycleLeaderboardRankingPublicV3Cmd.Flags().Int64("offset", 0, "Offset")
+	GetCurrentCycleLeaderboardRankingPublicV3Cmd.Flags().Int64("previousVersion", 0, "Previous version")
 }

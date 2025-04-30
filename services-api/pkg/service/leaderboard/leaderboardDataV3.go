@@ -180,7 +180,10 @@ func (aaa *LeaderboardDataV3Service) GetUserRankingAdminV3(input *leaderboard_da
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardDataV3.GetUserRankingAdminV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardDataV3.GetUserRankingAdminV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -330,7 +333,10 @@ func (aaa *LeaderboardDataV3Service) GetUserRankingPublicV3(input *leaderboard_d
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardDataV3.GetUserRankingPublicV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.LeaderboardDataV3.GetUserRankingPublicV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

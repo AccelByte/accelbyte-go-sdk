@@ -373,6 +373,8 @@ $ samples/cli/sample-apps Sessionhistory queryXrayTimelineByUserID \
     --userId 'string' \
     --limit 1 \
     --offset 1 \
+    --order 'string' \
+    --orderBy 'string' \
     --endDate 'string' \
     --startDate 'string' \
     > result.txt

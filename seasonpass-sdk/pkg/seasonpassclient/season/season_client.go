@@ -70,8 +70,8 @@ type ClientService interface {
 	QueryUserExpGrantHistoryTagShort(params *QueryUserExpGrantHistoryTagParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserExpGrantHistoryTagOK, error)
 	GetUserSeason(params *GetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSeasonOK, *GetUserSeasonBadRequest, *GetUserSeasonNotFound, error)
 	GetUserSeasonShort(params *GetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSeasonOK, error)
-	PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*PublicGetCurrentSeasonOK, *PublicGetCurrentSeasonBadRequest, *PublicGetCurrentSeasonNotFound, error)
-	PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParams) (*PublicGetCurrentSeasonOK, error)
+	PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentSeasonOK, *PublicGetCurrentSeasonBadRequest, *PublicGetCurrentSeasonUnauthorized, *PublicGetCurrentSeasonNotFound, error)
+	PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentSeasonOK, error)
 	PublicGetCurrentUserSeason(params *PublicGetCurrentUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentUserSeasonOK, *PublicGetCurrentUserSeasonBadRequest, *PublicGetCurrentUserSeasonNotFound, error)
 	PublicGetCurrentUserSeasonShort(params *PublicGetCurrentUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentUserSeasonOK, error)
 	PublicGetUserSeason(params *PublicGetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSeasonOK, *PublicGetUserSeasonBadRequest, *PublicGetUserSeasonNotFound, error)
@@ -2365,7 +2365,7 @@ Other detail info:
 
   * Returns : localized season data
 */
-func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*PublicGetCurrentSeasonOK, *PublicGetCurrentSeasonBadRequest, *PublicGetCurrentSeasonNotFound, error) {
+func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentSeasonOK, *PublicGetCurrentSeasonBadRequest, *PublicGetCurrentSeasonUnauthorized, *PublicGetCurrentSeasonNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetCurrentSeasonParams()
@@ -2392,26 +2392,30 @@ func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCurrentSeasonReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicGetCurrentSeasonOK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *PublicGetCurrentSeasonBadRequest:
-		return nil, v, nil, nil
+		return nil, v, nil, nil, nil
+
+	case *PublicGetCurrentSeasonUnauthorized:
+		return nil, nil, v, nil, nil
 
 	case *PublicGetCurrentSeasonNotFound:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2423,7 +2427,7 @@ Other detail info:
 
   * Returns : localized season data
 */
-func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParams) (*PublicGetCurrentSeasonOK, error) {
+func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentSeasonOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicGetCurrentSeasonParams()
@@ -2446,6 +2450,7 @@ func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParam
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCurrentSeasonReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -2458,6 +2463,8 @@ func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParam
 	case *PublicGetCurrentSeasonOK:
 		return v, nil
 	case *PublicGetCurrentSeasonBadRequest:
+		return nil, v
+	case *PublicGetCurrentSeasonUnauthorized:
 		return nil, v
 	case *PublicGetCurrentSeasonNotFound:
 		return nil, v

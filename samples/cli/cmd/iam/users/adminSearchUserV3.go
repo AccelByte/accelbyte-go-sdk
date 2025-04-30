@@ -37,6 +37,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 		roleIds, _ := cmd.Flags().GetString("roleIds")
 		skipLoginQueue, _ := cmd.Flags().GetBool("skipLoginQueue")
 		startDate, _ := cmd.Flags().GetString("startDate")
+		tagIds, _ := cmd.Flags().GetString("tagIds")
 		testAccount, _ := cmd.Flags().GetBool("testAccount")
 		input := &users.AdminSearchUserV3Params{
 			Namespace:      namespace,
@@ -51,6 +52,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 			RoleIds:        &roleIds,
 			SkipLoginQueue: &skipLoginQueue,
 			StartDate:      &startDate,
+			TagIds:         &tagIds,
 			TestAccount:    &testAccount,
 		}
 		ok, errOK := usersService.AdminSearchUserV3Short(input)
@@ -80,5 +82,6 @@ func init() {
 	AdminSearchUserV3Cmd.Flags().String("roleIds", "", "Role ids")
 	AdminSearchUserV3Cmd.Flags().Bool("skipLoginQueue", false, "Skip login queue")
 	AdminSearchUserV3Cmd.Flags().String("startDate", "", "Start date")
+	AdminSearchUserV3Cmd.Flags().String("tagIds", "", "Tag ids")
 	AdminSearchUserV3Cmd.Flags().Bool("testAccount", false, "Test account")
 }

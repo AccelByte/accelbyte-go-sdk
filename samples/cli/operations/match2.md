@@ -135,6 +135,14 @@ $ samples/cli/sample-apps Match2 createMatchFunction \
     > result.txt
 ```
 
+### Operation `match_function_get`
+```sh
+$ samples/cli/sample-apps Match2 matchFunctionGet \
+    --name 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `update_match_function`
 ```sh
 $ samples/cli/sample-apps Match2 updateMatchFunction \

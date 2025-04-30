@@ -583,6 +583,7 @@ Session configuration mandatory :
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
 - ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 - PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.
+- PSNDisableSystemUIMenu: items whose operation from the PSN system software UI is to be disabled.
 - PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.
 - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)
 - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)
@@ -705,6 +706,7 @@ Session configuration mandatory :
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
 - ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 - PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.
+- PSNDisableSystemUIMenu: items whose operation from the PSN system software UI is to be disabled.
 - PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.
 - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)
 - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)
@@ -1057,6 +1059,7 @@ Session configuration mandatory :
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
 - ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 - PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.
+- PSNDisableSystemUIMenu: items whose operation from the PSN system software UI is to be disabled.
 - PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.
 - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)
 - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)
@@ -1178,6 +1181,7 @@ Session configuration mandatory :
 - SessionTitle: the session title. In PSN, this will be used to define name of the session thats displayed on PlayStation system UI.
 - ShouldSync: to define whether the service needs to do session sync with native platform(s). Default: false (disabled).
 - PSNSupportedPlatforms: the PSN supported platforms. In PSN, if ShouldSync true and PSNSupportedPlatforms is empty, then PS5 will be set as default value.
+- PSNDisableSystemUIMenu: items whose operation from the PSN system software UI is to be disabled.
 - PSNBaseUrl this is for base URL PSN if not set will be default value https://s2s.sp-int.playstation.net. In a single namespace only 1 PSN Env that can be used. Multiple session template should refers to the same PSN Env as we have in IAM Service.
 - https://s2s.sp-int.playstation.net (DEV, need IP Whitelist)
 - https://s2s.prod-qa.playstation.net (QA Environment/PSN Certification)

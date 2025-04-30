@@ -125,7 +125,7 @@ type ModelUserResponseV3 struct {
 	SkipLoginQueue bool `json:"skipLoginQueue"`
 
 	// tags
-	Tags []string `json:"tags,omitempty"`
+	Tags []*ModelTagDetail `json:"tags,omitempty"`
 
 	// testaccount
 	TestAccount bool `json:"testAccount"`

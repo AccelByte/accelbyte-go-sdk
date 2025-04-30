@@ -84,7 +84,7 @@ $ samples/cli/sample-apps Session adminDeleteConfigurationAlertV1 \
 ```sh
 $ samples/cli/sample-apps Session adminCreateConfigurationTemplateV1 \
     --namespace 'string' \
-    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "string"}' \
+    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "amsClaimTimeoutMinutes": 1, "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "string"}' \
     > result.txt
 ```
 
@@ -113,7 +113,7 @@ $ samples/cli/sample-apps Session adminGetConfigurationTemplateV1 \
 $ samples/cli/sample-apps Session adminUpdateConfigurationTemplateV1 \
     --name 'string' \
     --namespace 'string' \
-    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "string"}' \
+    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "amsClaimTimeoutMinutes": 1, "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "string"}' \
     > result.txt
 ```
 
@@ -376,6 +376,7 @@ $ samples/cli/sample-apps Session adminSyncNativeSession \
 ```sh
 $ samples/cli/sample-apps Session createGameSession \
     --namespace 'string' \
+    --resolveMaxActiveSession false \
     --body '{"appName": "string", "attributes": {"string": {}}, "autoJoin": false, "backfillTicketID": "string", "clientVersion": "string", "configurationName": "string", "customURLGRPC": "string", "deployment": "string", "dsSource": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "serverName": "string", "storage": {}, "teams": [{}], "textChat": false, "textChatMode": "GAME", "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "string"}' \
     > result.txt
 ```

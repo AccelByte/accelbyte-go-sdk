@@ -29,7 +29,7 @@ var SaveSecretV2Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		bodyString := cmd.Flag("body").Value.String()
-		var body *csmclientmodels.ApimodelSaveConfigurationV2Request
+		var body *csmclientmodels.ApimodelSaveSecretConfigurationV2Request
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody

@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.24.0"
+    "version": "1.25.0"
   },
   "schemes": [
     "https"
@@ -2984,6 +2984,12 @@
               "$ref": "#/definitions/ErrorEntity"
             }
           },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eUnauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
           "404": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e49147\u003c/td\u003e\u003ctd\u003ePublished season does not exist\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -2991,11 +2997,17 @@
             }
           }
         },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
         "summary": "Get current published season",
         "tags": [
           "Season"
         ],
         "x-errorCodes": {
+          "20001": "Unauthorized",
           "20026": "publisher namespace not allowed",
           "49147": "Published season does not exist"
         }
@@ -5188,16 +5200,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-02-28T02:05:44+00:00",
-    "buildID": "1.24.0",
+    "buildDate": "2025-04-15T07:26:12+00:00",
+    "buildID": "1.25.0",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.233-224.894.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.234-225.921.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "abde697353",
-    "gitTag": "1.24.0",
+    "gitHash": "1cc9445680",
+    "gitTag": "1.25.0",
     "name": "justice-seasonpass-service",
     "realm": "staging",
-    "version": "1.24.0",
+    "version": "1.25.0",
     "version-roles-seeding": "1.2.37"
   }
 }

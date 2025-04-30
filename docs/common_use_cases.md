@@ -753,8 +753,11 @@ if errCreateRule != nil {
 ### Create a match pool
 
 ```go
+tempMatchPoolBody := *bodyMatchPool
+tempMatchPoolBody.SessionTemplate = &cfgName
+
 inputCreatePool := &match_pools.CreateMatchPoolParams{
-	Body:      bodyMatchPool,
+	Body:      &tempMatchPoolBody,
 	Namespace: integration.NamespaceTest,
 }
 errCreated := matchPoolService.CreateMatchPoolShort(inputCreatePool)
@@ -1127,8 +1130,12 @@ Source: [session_test.go](../services-api/pkg/tests/integration/session_test.go)
 ### Create Configuration Template
 
 ```go
+tempConfigTemplateName := randomizeCfgTemplateName()
+tempConfigTemplate := *bodyTemplate
+tempConfigTemplate.Name = &tempConfigTemplateName
+
 inputCreate := &configuration_template.AdminCreateConfigurationTemplateV1Params{
-	Body:      bodyTemplate,
+	Body:      &tempConfigTemplate,
 	Namespace: integration.NamespaceTest,
 }
 created, errCreated := configService.AdminCreateConfigurationTemplateV1Short(inputCreate)
@@ -1142,8 +1149,11 @@ if errCreated != nil {
 ### Update Configuration Template
 
 ```go
+tempConfigTemplateUpdate := *bodyTemplateUpdate
+tempConfigTemplateUpdate.Name = created.Name
+
 inputUpdate := &configuration_template.AdminUpdateConfigurationTemplateV1Params{
-	Body:      bodyTemplateUpdate,
+	Body:      &tempConfigTemplateUpdate,
 	Namespace: integration.NamespaceTest,
 	Name:      *created.Name,
 }
@@ -1173,8 +1183,11 @@ if errDeleted != nil {
 ### Create Game Session
 
 ```go
+tempCreateGameSessionBody := *gameSessionBody
+tempCreateGameSessionBody.ConfigurationName = &cfgName
+
 inputCreate := &game_session.CreateGameSessionParams{
-	Body:      gameSessionBody,
+	Body:      &tempCreateGameSessionBody,
 	Namespace: integration.NamespaceTest,
 }
 created, errCreated := gameSessionService.CreateGameSessionShort(inputCreate)
@@ -1249,8 +1262,11 @@ if err != nil {
 ### Create a party
 
 ```go
+tempCreatePartyBody := *bodyParty
+tempCreatePartyBody.ConfigurationName = &cfgName
+
 inputCreated := &partySession.PublicCreatePartyParams{
-	Body:      bodyParty,
+	Body:      &tempCreatePartyBody,
 	Namespace: integration.NamespaceTest,
 }
 created, errCreated := partyService.PublicCreatePartyShort(inputCreated)

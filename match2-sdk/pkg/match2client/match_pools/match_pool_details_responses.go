@@ -45,6 +45,12 @@ func (o *MatchPoolDetailsReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewMatchPoolDetailsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewMatchPoolDetailsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -207,6 +213,60 @@ func (o *MatchPoolDetailsForbidden) GetPayload() *match2clientmodels.ResponseErr
 }
 
 func (o *MatchPoolDetailsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(match2clientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewMatchPoolDetailsNotFound creates a MatchPoolDetailsNotFound with default headers values
+func NewMatchPoolDetailsNotFound() *MatchPoolDetailsNotFound {
+	return &MatchPoolDetailsNotFound{}
+}
+
+/*MatchPoolDetailsNotFound handles this case with default header values.
+
+  Not Found
+*/
+type MatchPoolDetailsNotFound struct {
+	Payload *match2clientmodels.ResponseError
+}
+
+func (o *MatchPoolDetailsNotFound) Error() string {
+	return fmt.Sprintf("[GET /match2/v1/namespaces/{namespace}/match-pools/{pool}][%d] matchPoolDetailsNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *MatchPoolDetailsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *MatchPoolDetailsNotFound) GetPayload() *match2clientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *MatchPoolDetailsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

@@ -91,7 +91,7 @@ type AdminQueryPartyDetailParams struct {
 	*/
 	Namespace string
 	/*EndDate
-	  End date time in RFC 3339 format: 2025-02-28T07:45:39Z
+	  End date time in RFC 3339 format: 2025-04-23T08:43:40Z
 
 	*/
 	EndDate *string
@@ -131,7 +131,7 @@ type AdminQueryPartyDetailParams struct {
 	*/
 	PartyID *string
 	/*StartDate
-	  Start date time in RFC 3339 format: 2025-02-28T07:45:39Z
+	  Start date time in RFC 3339 format: 2025-04-23T08:43:40Z
 
 	*/
 	StartDate *string

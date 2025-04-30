@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetUserLeaderboardRankingsAdminV3(params *GetUserLeaderboardRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV3OK, *GetUserLeaderboardRankingsAdminV3Unauthorized, *GetUserLeaderboardRankingsAdminV3Forbidden, *GetUserLeaderboardRankingsAdminV3InternalServerError, error)
+	GetUserLeaderboardRankingsAdminV3(params *GetUserLeaderboardRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV3OK, *GetUserLeaderboardRankingsAdminV3BadRequest, *GetUserLeaderboardRankingsAdminV3Unauthorized, *GetUserLeaderboardRankingsAdminV3Forbidden, *GetUserLeaderboardRankingsAdminV3InternalServerError, error)
 	GetUserLeaderboardRankingsAdminV3Short(params *GetUserLeaderboardRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV3OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -44,7 +44,7 @@ GetUserLeaderboardRankingsAdminV3 get user rankings
 
 Get user leaderboard rankings
 */
-func (a *Client) GetUserLeaderboardRankingsAdminV3(params *GetUserLeaderboardRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV3OK, *GetUserLeaderboardRankingsAdminV3Unauthorized, *GetUserLeaderboardRankingsAdminV3Forbidden, *GetUserLeaderboardRankingsAdminV3InternalServerError, error) {
+func (a *Client) GetUserLeaderboardRankingsAdminV3(params *GetUserLeaderboardRankingsAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetUserLeaderboardRankingsAdminV3OK, *GetUserLeaderboardRankingsAdminV3BadRequest, *GetUserLeaderboardRankingsAdminV3Unauthorized, *GetUserLeaderboardRankingsAdminV3Forbidden, *GetUserLeaderboardRankingsAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserLeaderboardRankingsAdminV3Params()
@@ -76,25 +76,28 @@ func (a *Client) GetUserLeaderboardRankingsAdminV3(params *GetUserLeaderboardRan
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetUserLeaderboardRankingsAdminV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *GetUserLeaderboardRankingsAdminV3BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *GetUserLeaderboardRankingsAdminV3Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *GetUserLeaderboardRankingsAdminV3Forbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *GetUserLeaderboardRankingsAdminV3InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -139,6 +142,8 @@ func (a *Client) GetUserLeaderboardRankingsAdminV3Short(params *GetUserLeaderboa
 
 	case *GetUserLeaderboardRankingsAdminV3OK:
 		return v, nil
+	case *GetUserLeaderboardRankingsAdminV3BadRequest:
+		return nil, v
 	case *GetUserLeaderboardRankingsAdminV3Unauthorized:
 		return nil, v
 	case *GetUserLeaderboardRankingsAdminV3Forbidden:

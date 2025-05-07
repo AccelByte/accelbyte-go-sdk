@@ -416,12 +416,12 @@ func deleteCfgTemplate(name string) error {
 
 func createPlayer2() string {
 	Init()
-	input := &users_v4.PublicCreateUserV4Params{
+	input := &users_v4.PublicCreateTestUserV4Params{
 		Body:      createUserBody,
 		Namespace: integration.NamespaceTest,
 	}
 
-	user, err := userV4Service.PublicCreateUserV4Short(input)
+	user, err := userV4Service.PublicCreateTestUserV4Short(input)
 	if err != nil {
 		logrus.Fatal(err.Error())
 

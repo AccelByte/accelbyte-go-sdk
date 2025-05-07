@@ -72,17 +72,15 @@ var (
 	displayName         = "Go Extend SDK Test"
 	pwd                 = "q!w@e#r$azsxdcfv1"
 	dynamicUsername     = RandStringBytes(5)
+	dynamicDoB			= "1990-01-01"
 	emailAdd            = fmt.Sprint(dynamicUsername + "@test.com")
-	createUserBody      = &iamclientmodels.AccountCreateUserRequestV4{
+	createUserBody      = &iamclientmodels.AccountCreateTestUserRequestV4{
 		AuthType:          &authType,
-		Code:              "",
 		Country:           &country,
-		DateOfBirth:       "1990-01-01",
-		DisplayName:       displayName,
+		DateOfBirth:       &dynamicDoB,
+		DisplayName:       &displayName,
 		EmailAddress:      &emailAdd,
-		Password:          pwd,
-		PasswordMD5Sum:    "",
-		ReachMinimumAge:   true,
+		Password:          &pwd,
 		Username:          &dynamicUsername,
 		UniqueDisplayName: dynamicUsername,
 	}
@@ -282,12 +280,12 @@ func TestIntegrationUser(t *testing.T) {
 	Init()
 
 	// CASE Create a user
-	input := &users_v4.PublicCreateUserV4Params{
+	input := &users_v4.PublicCreateTestUserV4Params{
 		Body:      createUserBody,
 		Namespace: integration.NamespaceTest,
 	}
 
-	user, err := userV4Service.PublicCreateUserV4Short(input)
+	user, err := userV4Service.PublicCreateTestUserV4Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

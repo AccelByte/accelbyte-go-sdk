@@ -11,7 +11,6 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	"fmt"
-	"log"
 	"math/big"
 	"os"
 	"strings"
@@ -30,7 +29,7 @@ import (
 )
 
 type AuthTokenValidator interface {
-	Initialize(ctx ...context.Context)
+	Initialize(ctx ...context.Context) error
 	Validate(token string, permission *Permission, namespace *string, userId *string) error
 }
 
@@ -53,7 +52,7 @@ type TokenValidator struct {
 	namespaceContextsCache *cache.Cache
 }
 
-func (v *TokenValidator) Initialize(ctx ...context.Context) {
+func (v *TokenValidator) Initialize(ctx ...context.Context) error {
 	if len(ctx) > 0 {
 		v.Ctx = ctx[0]
 	} else {
@@ -61,15 +60,14 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) {
 	}
 
 	if err := v.fetchAll(); err != nil {
-		// TODO: change function signature to accommodate error
-		log.Fatalf("Error initialize validator: %v", err)
+		return fmt.Errorf("error initializing validator: %v", err)
 	}
+
 	go func() {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchClientToken(); err != nil {
-				// TODO: change function signature to accommodate error
-				log.Fatalf("Error fetching client token: %v", err)
+				fmt.Println(fmt.Errorf("error fetching client token: %v", err).Error())
 			}
 		}
 	}()
@@ -78,8 +76,7 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchJWKSet(); err != nil {
-				// TODO: change function signature to accommodate error
-				log.Fatalf("Error fetching JWK set: %v", err)
+				fmt.Println(fmt.Errorf("error fetching JWK set: %v", err).Error())
 			}
 		}
 	}()
@@ -88,11 +85,12 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) {
 		for {
 			time.Sleep(v.RefreshInterval)
 			if err := v.fetchRevocationList(); err != nil {
-				// TODO: change function signature to accommodate error
-				log.Fatalf("Error fetching revocation list: %v", err)
+				fmt.Println(fmt.Errorf("error fetching revocation list: %v", err))
 			}
 		}
 	}()
+
+	return nil
 }
 
 func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {

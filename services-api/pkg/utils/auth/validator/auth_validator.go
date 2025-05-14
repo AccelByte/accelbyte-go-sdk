@@ -17,7 +17,7 @@ import (
 )
 
 type AuthTokenValidator interface {
-	Initialize(ctx ...context.Context)
+	Initialize(ctx ...context.Context) error
 	Validate(token string, permission *iam.Permission, namespace *string, userId *string) error
 }
 
@@ -43,14 +43,14 @@ func (v *TokenValidator) initImpl() {
 	}
 }
 
-func (v *TokenValidator) Initialize(ctx ...context.Context) {
+func (v *TokenValidator) Initialize(ctx ...context.Context) error {
 	v.initImpl()
 
 	var existingContext context.Context
 	if len(ctx) > 0 {
 		existingContext = ctx[0]
 	}
-	v.impl.Initialize(existingContext)
+	return v.impl.Initialize(existingContext)
 }
 
 func (v *TokenValidator) Validate(token string, permission *iam.Permission, namespace *string, userId *string) error {

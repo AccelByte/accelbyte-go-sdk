@@ -11,5 +11,5 @@ var (
 	MapName        = "mapName"
 	EmptyInt32     = int32(0)
 	EmptyFloat     = float64(1)
-	EmptyInterface any
+	EmptyInterface interface{}
 )

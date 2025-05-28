@@ -27,11 +27,10 @@ var (
 	}
 	statCodeSocial = "123gosdkstat"
 	tagsSocial     []string
-	emptyFloat     = float64(1)
 	setBy          = socialclientmodels.StatCreateSetByCLIENT
 	bodyStatSocial = &socialclientmodels.StatCreate{
-		DefaultValue:  &emptyFloat,
-		Description:   emptyString,
+		DefaultValue:  &integration.EmptyFloat,
+		Description:   integration.EmptyString,
 		IncrementOnly: false,
 		Maximum:       0,
 		Minimum:       0,

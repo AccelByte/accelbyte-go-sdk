@@ -34,7 +34,7 @@ func LoginUser(t *testing.T) *iam.OAuth20Service {
 	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
 		t.Fatal(fmt.Errorf("login failed: %w", err))
-	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference
+	} else if accessToken == nil { // lint:ignore SA5011 possible nil pointer dereference
 		t.Fatal(fmt.Errorf("empty access token: %w", err))
 	} else {
 		errStore := oAuth20Service.TokenRepository.Store(*accessToken)

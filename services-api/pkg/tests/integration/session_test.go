@@ -63,7 +63,7 @@ var (
 	}
 	gameSessionBody = &sessionclientmodels.ApimodelsCreateGameSessionRequest{
 		ClientVersion:    &clientVersion,
-		Deployment:       &deployment,
+		Deployment:       &integration.Deployment,
 		InactiveTimeout:  &inactiveTimeout,
 		InviteTimeout:    &inviteTimeout,
 		Joinability:      &joinability,

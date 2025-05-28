@@ -4,7 +4,7 @@
 
 package integration_test
 
-//lint:ignore SA5011 possible nil pointer dereference
+// lint:ignore SA5011 possible nil pointer dereference
 
 import (
 	"bytes"
@@ -72,7 +72,7 @@ var (
 	displayName         = "Go Extend SDK Test"
 	pwd                 = "q!w@e#r$azsxdcfv1"
 	dynamicUsername     = RandStringBytes(5)
-	dynamicDoB			= "1990-01-01"
+	dynamicDoB          = "1990-01-01"
 	emailAdd            = fmt.Sprint(dynamicUsername + "@test.com")
 	createUserBody      = &iamclientmodels.AccountCreateTestUserRequestV4{
 		AuthType:          &authType,
@@ -98,7 +98,7 @@ func Init() {
 	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
 		logrus.Error("failed login")
-	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference
+	} else if accessToken == nil { // lint:ignore SA5011 possible nil pointer dereference
 		logrus.Error("empty access token")
 	} else {
 		errStore := oAuth20Service.TokenRepository.Store(*accessToken)
@@ -403,7 +403,7 @@ func TestIntegrationParseAccessTokenAndValidateLocally(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 	empJSON, err := json.MarshalIndent(parsedToken, "", "  ")
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Fatal(err.Error())
 	}
 	t.Logf("token: %s", string(empJSON))
 	assert.NotNil(t, parsedToken, "get token from token repository should not be nil")
@@ -427,7 +427,7 @@ func TestIntegrationParseAccessTokenAndValidateRemotely(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 	empJSON, err := json.MarshalIndent(parsedToken, "", "  ")
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Fatal(err.Error())
 	}
 	t.Logf("token: %s", string(empJSON))
 	assert.NotNil(t, parsedToken, "get token from token repository should not be nil")
@@ -550,7 +550,7 @@ func GetUserID() string {
 	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
 		logrus.Error("failed login")
-	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference
+	} else if accessToken == nil { // lint:ignore SA5011 possible nil pointer dereference
 		logrus.Error("empty access token")
 	} else {
 		errStore := oAuth20Service.TokenRepository.Store(*accessToken)

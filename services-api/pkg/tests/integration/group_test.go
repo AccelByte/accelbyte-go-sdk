@@ -42,9 +42,9 @@ var (
 	ruleCriteria      = groupclientmodels.ModelsRuleInformationRuleCriteriaMINIMUM
 	ruleDetails       []*groupclientmodels.ModelsRuleInformation
 	ruleDetail        = &groupclientmodels.ModelsRuleInformation{
-		RuleAttribute: &emptyString,
+		RuleAttribute: &integration.EmptyString,
 		RuleCriteria:  &ruleCriteria,
-		RuleValue:     &emptyFloat,
+		RuleValue:     &integration.EmptyFloat,
 	}
 	groupCustomRule      groupclientmodels.ModelsGroupRuleGroupCustomRule
 	groupPredefinedRules []*groupclientmodels.ModelsRule
@@ -58,9 +58,9 @@ var (
 	}
 	bodyGroup = &groupclientmodels.ModelsPublicCreateNewGroupRequestV1{
 		ConfigurationCode: &configurationCode,
-		CustomAttributes:  emptyInterface,
+		CustomAttributes:  integration.EmptyInterface,
 		GroupDescription:  &groupDescription,
-		GroupIcon:         &emptyString,
+		GroupIcon:         &integration.EmptyString,
 		GroupMaxMember:    &groupMaxMember,
 		GroupName:         &groupName,
 		GroupRegion:       &groupRegion,
@@ -68,9 +68,9 @@ var (
 		GroupType:         &groupType,
 	}
 	bodyGroupUpdate = &groupclientmodels.ModelsUpdateGroupRequestV1{
-		CustomAttributes: emptyInterface,
+		CustomAttributes: integration.EmptyInterface,
 		GroupDescription: &groupDescription,
-		GroupIcon:        &emptyString,
+		GroupIcon:        &integration.EmptyString,
 		GroupName:        &groupName,
 		GroupRegion:      &groupRegion,
 		GroupType:        &groupType,

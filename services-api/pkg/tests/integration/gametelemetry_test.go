@@ -35,7 +35,6 @@ var (
 	eventName      = "gosdkevent"
 	eventNamespace = "test"
 	eventTimestamp = strfmt.DateTime{}
-	steamId        = "76561199259217491"
 )
 
 func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *testing.T) {

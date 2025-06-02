@@ -4,7 +4,7 @@
 
 // Code generated; DO NOT EDIT.
 
-package account_idenfifier_tag
+package account_identifier_tag
 
 import (
 	"context"

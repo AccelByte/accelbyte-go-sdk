@@ -164,6 +164,8 @@
 ### DLC Wrapper:  [DLC](../../services-api/pkg/service/platform/dlc.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/dlc/config/history` | GET | GetDLCItemConfigHistoryShort | [GetDLCItemConfigHistoryShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [GetDLCItemConfigHistoryShort](../../services-api/pkg/service/platform/dlc.go) | [GetDLCItemConfigHistoryShort](../../samples/cli/cmd/platform/dlc/getDLCItemConfigHistory.go) |
+| `/platform/admin/namespaces/{namespace}/dlc/config/history/{id}/restore` | POST | RestoreDLCItemConfigHistoryShort | [RestoreDLCItemConfigHistoryShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [RestoreDLCItemConfigHistoryShort](../../services-api/pkg/service/platform/dlc.go) | [RestoreDLCItemConfigHistoryShort](../../samples/cli/cmd/platform/dlc/restoreDLCItemConfigHistory.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/item` | GET | GetDLCItemConfigShort | [GetDLCItemConfigShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [GetDLCItemConfigShort](../../services-api/pkg/service/platform/dlc.go) | [GetDLCItemConfigShort](../../samples/cli/cmd/platform/dlc/getDLCItemConfig.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/item` | PUT | UpdateDLCItemConfigShort | [UpdateDLCItemConfigShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [UpdateDLCItemConfigShort](../../services-api/pkg/service/platform/dlc.go) | [UpdateDLCItemConfigShort](../../samples/cli/cmd/platform/dlc/updateDLCItemConfig.go) |
 | `/platform/admin/namespaces/{namespace}/dlc/config/item` | DELETE | DeleteDLCItemConfigShort | [DeleteDLCItemConfigShort](../../platform-sdk/pkg/platformclient/dlc/dlc_client.go) | [DeleteDLCItemConfigShort](../../services-api/pkg/service/platform/dlc.go) | [DeleteDLCItemConfigShort](../../samples/cli/cmd/platform/dlc/deleteDLCItemConfig.go) |
@@ -748,6 +750,8 @@
 | `Customization` | [Customization ](../../platform-sdk/pkg/platformclientmodels/customization.go) |
 | `DLCConfigRewardShortInfo` | [DLCConfigRewardShortInfo ](../../platform-sdk/pkg/platformclientmodels/dlc_config_reward_short_info.go) |
 | `DLCItem` | [DLCItem ](../../platform-sdk/pkg/platformclientmodels/dlc_item.go) |
+| `DLCItemConfigHistoryInfo` | [DLCItemConfigHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/dlc_item_config_history_info.go) |
+| `DLCItemConfigHistoryResult` | [DLCItemConfigHistoryResult ](../../platform-sdk/pkg/platformclientmodels/dlc_item_config_history_result.go) |
 | `DLCItemConfigInfo` | [DLCItemConfigInfo ](../../platform-sdk/pkg/platformclientmodels/dlc_item_config_info.go) |
 | `DLCItemConfigUpdate` | [DLCItemConfigUpdate ](../../platform-sdk/pkg/platformclientmodels/dlc_item_config_update.go) |
 | `DLCRecord` | [DLCRecord ](../../platform-sdk/pkg/platformclientmodels/dlc_record.go) |

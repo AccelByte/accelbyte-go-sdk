@@ -30,6 +30,10 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetDLCItemConfigHistory(params *GetDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigHistoryOK, *GetDLCItemConfigHistoryNotFound, error)
+	GetDLCItemConfigHistoryShort(params *GetDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigHistoryOK, error)
+	RestoreDLCItemConfigHistory(params *RestoreDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*RestoreDLCItemConfigHistoryNoContent, *RestoreDLCItemConfigHistoryNotFound, error)
+	RestoreDLCItemConfigHistoryShort(params *RestoreDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*RestoreDLCItemConfigHistoryNoContent, error)
 	GetDLCItemConfig(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, *GetDLCItemConfigNotFound, error)
 	GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigOK, error)
 	UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateDLCItemConfigOK, *UpdateDLCItemConfigBadRequest, *UpdateDLCItemConfigNotFound, *UpdateDLCItemConfigConflict, *UpdateDLCItemConfigUnprocessableEntity, error)
@@ -64,6 +68,208 @@ type ClientService interface {
 	PublicGetMyDLCContentShort(params *PublicGetMyDLCContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyDLCContentOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetDLCItemConfigHistoryShort instead.
+
+GetDLCItemConfigHistory get dlc item config history
+Get DLC item config history.
+*/
+func (a *Client) GetDLCItemConfigHistory(params *GetDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigHistoryOK, *GetDLCItemConfigHistoryNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDLCItemConfigHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDLCItemConfigHistory",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDLCItemConfigHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDLCItemConfigHistoryOK:
+		return v, nil, nil
+
+	case *GetDLCItemConfigHistoryNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetDLCItemConfigHistoryShort get dlc item config history
+Get DLC item config history.
+*/
+func (a *Client) GetDLCItemConfigHistoryShort(params *GetDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*GetDLCItemConfigHistoryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDLCItemConfigHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDLCItemConfigHistory",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/history",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDLCItemConfigHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetDLCItemConfigHistoryOK:
+		return v, nil
+	case *GetDLCItemConfigHistoryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use RestoreDLCItemConfigHistoryShort instead.
+
+RestoreDLCItemConfigHistory restore dlc item config history
+Restore DLC item config history.
+*/
+func (a *Client) RestoreDLCItemConfigHistory(params *RestoreDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*RestoreDLCItemConfigHistoryNoContent, *RestoreDLCItemConfigHistoryNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRestoreDLCItemConfigHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "restoreDLCItemConfigHistory",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/history/{id}/restore",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RestoreDLCItemConfigHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RestoreDLCItemConfigHistoryNoContent:
+		return v, nil, nil
+
+	case *RestoreDLCItemConfigHistoryNotFound:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+RestoreDLCItemConfigHistoryShort restore dlc item config history
+Restore DLC item config history.
+*/
+func (a *Client) RestoreDLCItemConfigHistoryShort(params *RestoreDLCItemConfigHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*RestoreDLCItemConfigHistoryNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRestoreDLCItemConfigHistoryParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "restoreDLCItemConfigHistory",
+		Method:             "POST",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/history/{id}/restore",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RestoreDLCItemConfigHistoryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *RestoreDLCItemConfigHistoryNoContent:
+		return v, nil
+	case *RestoreDLCItemConfigHistoryNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

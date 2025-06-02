@@ -163,6 +163,11 @@ type AdminSearchUserV3Params struct {
 
 	*/
 	RoleIds *string
+	/*SelectedFields
+	  comma separated selected fields.
+
+	*/
+	SelectedFields *string
 	/*SkipLoginQueue
 	  A flag to filter users that are exempted from login queue. if skipLoginQueue parameter is not defined, search result will include both exempted and not exempted users
 
@@ -357,6 +362,17 @@ func (o *AdminSearchUserV3Params) WithRoleIds(roleIds *string) *AdminSearchUserV
 // SetRoleIds adds the roleIds to the admin search user v3 params
 func (o *AdminSearchUserV3Params) SetRoleIds(roleIds *string) {
 	o.RoleIds = roleIds
+}
+
+// WithSelectedFields adds the selectedFields to the admin search user v3 params
+func (o *AdminSearchUserV3Params) WithSelectedFields(selectedFields *string) *AdminSearchUserV3Params {
+	o.SetSelectedFields(selectedFields)
+	return o
+}
+
+// SetSelectedFields adds the selectedFields to the admin search user v3 params
+func (o *AdminSearchUserV3Params) SetSelectedFields(selectedFields *string) {
+	o.SelectedFields = selectedFields
 }
 
 // WithSkipLoginQueue adds the skipLoginQueue to the admin search user v3 params
@@ -554,6 +570,22 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qRoleIds := qrRoleIds
 		if qRoleIds != "" {
 			if err := r.SetQueryParam("roleIds", qRoleIds); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SelectedFields != nil {
+
+		// query param selectedFields
+		var qrSelectedFields string
+		if o.SelectedFields != nil {
+			qrSelectedFields = *o.SelectedFields
+		}
+		qSelectedFields := qrSelectedFields
+		if qSelectedFields != "" {
+			if err := r.SetQueryParam("selectedFields", qSelectedFields); err != nil {
 				return err
 			}
 		}

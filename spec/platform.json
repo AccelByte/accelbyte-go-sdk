@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.4.2"
+    "version": "6.5.0"
   },
   "schemes": [
     "https"
@@ -3207,6 +3207,101 @@
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/dlc/config/history": {
+      "get": {
+        "description": "Get DLC item config history.",
+        "operationId": "getDLCItemConfigHistory",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dlcId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DLCItemConfigHistoryResult"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39442\u003c/td\u003e\u003ctd\u003eDLC item config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get DLC item config history",
+        "tags": [
+          "DLC"
+        ],
+        "x-errorCodes": {
+          "39442": "DLC item config cannot be found in namespace [{namespace}]"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/dlc/config/history/{id}/restore": {
+      "post": {
+        "description": "Restore DLC item config history.",
+        "operationId": "restoreDLCItemConfigHistory",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Succesfully restore the revision"
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39442\u003c/td\u003e\u003ctd\u003eDLC item config cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Restore DLC item config history",
+        "tags": [
+          "DLC"
+        ],
+        "x-errorCodes": {
+          "39442": "DLC item config cannot be found in namespace [{namespace}]"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]"
         }
       }
     },
@@ -36404,6 +36499,11 @@
     },
     "DLCItem": {
       "properties": {
+        "autoUpdate": {
+          "description": "auto update entitlement when dlc has an update, will be set as false when not included in the request",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "id": {
           "description": "dlc id",
           "type": "string"
@@ -36412,6 +36512,59 @@
           "description": "reward list",
           "items": {
             "$ref": "#/definitions/PlatformReward"
+          },
+          "type": "array"
+        },
+        "rvn": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DLCItemConfigHistoryInfo": {
+      "properties": {
+        "autoUpdate": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "dlcId": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "rewards": {
+          "items": {
+            "$ref": "#/definitions/PlatformReward"
+          },
+          "type": "array"
+        },
+        "rvn": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "DLCItemConfigHistoryResult": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/DLCItemConfigHistoryInfo"
           },
           "type": "array"
         }
@@ -36442,6 +36595,10 @@
     },
     "DLCRecord": {
       "properties": {
+        "dlcRewardVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
         "entitlementOriginSyncResult": {
           "items": {
             "$ref": "#/definitions/EntitlementOriginSyncResult"
@@ -51735,6 +51892,10 @@
     },
     "UserDLCRecord": {
       "properties": {
+        "dlcRewardVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
         "entitlementOriginSyncResult": {
           "items": {
             "$ref": "#/definitions/EntitlementOriginSyncResult"
@@ -52707,16 +52868,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-04-15T07:27:20+00:00",
-    "buildID": "6.4.2",
+    "buildDate": "2025-05-26T04:13:21+00:00",
+    "buildID": "6.5.0",
     "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.234-225.921.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.236-228.935.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "e40b45dfc5",
-    "gitTag": "6.4.2",
+    "gitHash": "db13ac09a8",
+    "gitTag": "6.5.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.4.2",
+    "version": "6.5.0",
     "version-roles-seeding": "1.2.74"
   }
 }

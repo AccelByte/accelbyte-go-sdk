@@ -21,6 +21,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_pools"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/match_tickets"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/play_feature_flag"
 	"github.com/AccelByte/accelbyte-go-sdk/match2-sdk/pkg/match2client/rule_sets"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
@@ -78,6 +79,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.MatchFunctions = match_functions.New(transport, formats)
 	cli.MatchPools = match_pools.New(transport, formats)
 	cli.MatchTickets = match_tickets.New(transport, formats)
+	cli.PlayFeatureFlag = play_feature_flag.New(transport, formats)
 	cli.RuleSets = rule_sets.New(transport, formats)
 	cli.Operations = operations.New(transport, formats)
 
@@ -152,6 +154,8 @@ type JusticeMatch2Service struct {
 
 	MatchTickets match_tickets.ClientService
 
+	PlayFeatureFlag play_feature_flag.ClientService
+
 	RuleSets rule_sets.ClientService
 
 	Operations operations.ClientService
@@ -169,6 +173,7 @@ func (c *JusticeMatch2Service) SetTransport(transport runtime.ClientTransport) {
 	c.MatchFunctions.SetTransport(transport)
 	c.MatchPools.SetTransport(transport)
 	c.MatchTickets.SetTransport(transport)
+	c.PlayFeatureFlag.SetTransport(transport)
 	c.RuleSets.SetTransport(transport)
 	c.Operations.SetTransport(transport)
 }

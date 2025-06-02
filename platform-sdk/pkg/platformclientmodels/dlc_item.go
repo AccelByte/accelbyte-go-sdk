@@ -17,11 +17,18 @@ import (
 // swagger:model DLC item.
 type DLCItem struct {
 
+	// auto update entitlement when dlc has an update, will be set as false when not included in the request
+	AutoUpdate bool `json:"autoUpdate"`
+
 	// dlc id
 	ID string `json:"id,omitempty"`
 
 	// reward list
 	Rewards []*PlatformReward `json:"rewards,omitempty"`
+
+	// rvn
+	// Format: int32
+	Rvn int32 `json:"rvn,omitempty"`
 }
 
 // Validate validates this DLC item

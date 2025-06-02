@@ -20,6 +20,13 @@
 | `/match2/v1/config/namespaces/{namespace}` | GET | AdminGetConfigV1Short | [AdminGetConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminGetConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminGetConfigV1Short](../../samples/cli/cmd/match2/config/adminGetConfigV1.go) |
 | `/match2/v1/config/namespaces/{namespace}` | PATCH | AdminPatchConfigV1Short | [AdminPatchConfigV1Short](../../match2-sdk/pkg/match2client/config/config_client.go) | [AdminPatchConfigV1Short](../../services-api/pkg/service/match2/config.go) | [AdminPatchConfigV1Short](../../samples/cli/cmd/match2/config/adminPatchConfigV1.go) |
 
+### PlayFeatureFlag Wrapper:  [PlayFeatureFlag](../../services-api/pkg/service/match2/playFeatureFlag.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/match2/v1/admin/namespaces/{namespace}/playfeatureflag` | GET | AdminGetPlayFeatureFlagShort | [AdminGetPlayFeatureFlagShort](../../match2-sdk/pkg/match2client/play_feature_flag/play_feature_flag_client.go) | [AdminGetPlayFeatureFlagShort](../../services-api/pkg/service/match2/playFeatureFlag.go) | [AdminGetPlayFeatureFlagShort](../../samples/cli/cmd/match2/playFeatureFlag/adminGetPlayFeatureFlag.go) |
+| `/match2/v1/admin/namespaces/{namespace}/playfeatureflag` | POST | AdminUpsertPlayFeatureFlagShort | [AdminUpsertPlayFeatureFlagShort](../../match2-sdk/pkg/match2client/play_feature_flag/play_feature_flag_client.go) | [AdminUpsertPlayFeatureFlagShort](../../services-api/pkg/service/match2/playFeatureFlag.go) | [AdminUpsertPlayFeatureFlagShort](../../samples/cli/cmd/match2/playFeatureFlag/adminUpsertPlayFeatureFlag.go) |
+| `/match2/v1/admin/namespaces/{namespace}/playfeatureflag` | DELETE | AdminDeletePlayFeatureFlagShort | [AdminDeletePlayFeatureFlagShort](../../match2-sdk/pkg/match2client/play_feature_flag/play_feature_flag_client.go) | [AdminDeletePlayFeatureFlagShort](../../services-api/pkg/service/match2/playFeatureFlag.go) | [AdminDeletePlayFeatureFlagShort](../../samples/cli/cmd/match2/playFeatureFlag/adminDeletePlayFeatureFlag.go) |
+
 ### Environment-Variables Wrapper:  [EnvironmentVariables](../../services-api/pkg/service/match2/environmentVariables.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -129,6 +136,7 @@
 | `models.DSInformation` | [ModelsDSInformation ](../../match2-sdk/pkg/match2clientmodels/models_d_s_information.go) |
 | `models.GameSession` | [ModelsGameSession ](../../match2-sdk/pkg/match2clientmodels/models_game_session.go) |
 | `models.Pagination` | [ModelsPagination ](../../match2-sdk/pkg/match2clientmodels/models_pagination.go) |
+| `models.PlayFeatureFlag` | [ModelsPlayFeatureFlag ](../../match2-sdk/pkg/match2clientmodels/models_play_feature_flag.go) |
 | `models.Server` | [ModelsServer ](../../match2-sdk/pkg/match2clientmodels/models_server.go) |
 | `models.User` | [ModelsUser ](../../match2-sdk/pkg/match2clientmodels/models_user.go) |
 | `player.PlayerData` | [PlayerPlayerData ](../../match2-sdk/pkg/match2clientmodels/player_player_data.go) |

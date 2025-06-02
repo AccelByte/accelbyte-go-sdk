@@ -4,12 +4,12 @@
 
 // Code generated. DO NOT EDIT.
 
-package accountIdenfifierTag
+package accountIdentifierTag
 
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/account_idenfifier_tag"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/account_identifier_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -24,7 +24,7 @@ var AdminCreateTagV3Cmd = &cobra.Command{
 	Short: "Admin create tag V3",
 	Long:  `Admin create tag V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		accountIdenfifierTagService := &iam.AccountIdenfifierTagService{
+		accountIdentifierTagService := &iam.AccountIdentifierTagService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
@@ -35,11 +35,11 @@ var AdminCreateTagV3Cmd = &cobra.Command{
 			return errBody
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &account_idenfifier_tag.AdminCreateTagV3Params{
+		input := &account_identifier_tag.AdminCreateTagV3Params{
 			Body:      body,
 			Namespace: namespace,
 		}
-		created, errCreated := accountIdenfifierTagService.AdminCreateTagV3Short(input)
+		created, errCreated := accountIdentifierTagService.AdminCreateTagV3Short(input)
 		if errCreated != nil {
 			logrus.Error(errCreated)
 

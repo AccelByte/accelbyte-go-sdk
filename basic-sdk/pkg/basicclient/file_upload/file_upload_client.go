@@ -174,8 +174,6 @@ Generate an upload URL for user content. It's valid for 10 minutes.
 Other detail info:
 
   * Action code : 11102
-  *  Default maximum file count per user : 10 files
-  *  Default maximum file size per user : 104857600 bytes
   *  Returns : URL data
 */
 func (a *Client) GeneratedUserUploadContentURL(params *GeneratedUserUploadContentURLParams, authInfo runtime.ClientAuthInfoWriter) (*GeneratedUserUploadContentURLOK, *GeneratedUserUploadContentURLBadRequest, *GeneratedUserUploadContentURLUnauthorized, *GeneratedUserUploadContentURLForbidden, *GeneratedUserUploadContentURLConflict, *GeneratedUserUploadContentURLInternalServerError, error) {
@@ -244,8 +242,6 @@ Generate an upload URL for user content. It's valid for 10 minutes.
 Other detail info:
 
   * Action code : 11102
-  *  Default maximum file count per user : 10 files
-  *  Default maximum file size per user : 104857600 bytes
   *  Returns : URL data
 */
 func (a *Client) GeneratedUserUploadContentURLShort(params *GeneratedUserUploadContentURLParams, authInfo runtime.ClientAuthInfoWriter) (*GeneratedUserUploadContentURLOK, error) {
@@ -428,13 +424,20 @@ Deprecated: 2022-08-10 - Use PublicGeneratedUserUploadContentURLShort instead.
 
 PublicGeneratedUserUploadContentURL generate upload url for user content
 Generate an upload URL for user content. It's valid for 10 minutes.
-There are 2 kinds of storage limitation per user : maximum file count and maximum file size.
-The threshold of those limitations is different between upload category that is used.
+There are two types of storage limits per user: maximum file count and maximum total file size.
+These limits vary depending on the upload category used.
+
+ 1. Default category:
+- Maximum file count per user: 10 files
+- Maximum total file size per user: 100MB
+ 2. Reporting category:
+- Maximum file count per user: 3 files every 1 hour
+- Maximum total file size per user: 30MB every 1 hour
+
+
 Other detail info:
 
   * Action code : 11102
-  *  Default maximum file count per user : 10 files
-  *  Default maximum file size per user : 104857600 bytes
   *  Returns : URL data
 */
 func (a *Client) PublicGeneratedUserUploadContentURL(params *PublicGeneratedUserUploadContentURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratedUserUploadContentURLOK, *PublicGeneratedUserUploadContentURLBadRequest, *PublicGeneratedUserUploadContentURLUnauthorized, *PublicGeneratedUserUploadContentURLForbidden, *PublicGeneratedUserUploadContentURLConflict, *PublicGeneratedUserUploadContentURLInternalServerError, error) {
@@ -500,13 +503,20 @@ func (a *Client) PublicGeneratedUserUploadContentURL(params *PublicGeneratedUser
 /*
 PublicGeneratedUserUploadContentURLShort generate upload url for user content
 Generate an upload URL for user content. It's valid for 10 minutes.
-There are 2 kinds of storage limitation per user : maximum file count and maximum file size.
-The threshold of those limitations is different between upload category that is used.
+There are two types of storage limits per user: maximum file count and maximum total file size.
+These limits vary depending on the upload category used.
+
+ 1. Default category:
+- Maximum file count per user: 10 files
+- Maximum total file size per user: 100MB
+ 2. Reporting category:
+- Maximum file count per user: 3 files every 1 hour
+- Maximum total file size per user: 30MB every 1 hour
+
+
 Other detail info:
 
   * Action code : 11102
-  *  Default maximum file count per user : 10 files
-  *  Default maximum file size per user : 104857600 bytes
   *  Returns : URL data
 */
 func (a *Client) PublicGeneratedUserUploadContentURLShort(params *PublicGeneratedUserUploadContentURLParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGeneratedUserUploadContentURLOK, error) {

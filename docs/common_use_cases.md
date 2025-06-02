@@ -221,6 +221,247 @@ if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
 ```
+## Challenge
+
+Source: [challenge_test.go](../services-api/pkg/tests/integration/challenge_test.go)
+
+### Create a new challenge
+
+```go
+challengeCreateParams := &challenge_configuration.AdminCreateChallengeParams{
+	Namespace: integration.NamespaceTest,
+	Body:      bodyNewChallenge,
+}
+
+created, errCreate := challengeConfigSvc.AdminCreateChallengeShort(challengeCreateParams)
+if errCreate != nil {
+	assert.FailNow(t, errCreate.Error())
+}
+t.Logf("Challenge: %v created", created.Name)
+```
+
+### Get challenge
+
+```go
+getParam := &challenge_configuration.AdminGetChallengeParams{
+	Namespace:     integration.NamespaceTest,
+	ChallengeCode: challengeCode,
+}
+
+challengeData, errGet := challengeConfigSvc.AdminGetChallengeShort(getParam)
+if errGet != nil {
+	assert.FailNow(t, errGet.Error())
+}
+t.Logf("Challenge: %v", challengeData.Name)
+```
+
+### Update a challenge
+
+```go
+updateParam := &challenge_configuration.AdminUpdateChallengeParams{
+	Namespace:     integration.NamespaceTest,
+	ChallengeCode: challengeCode,
+	Body:          bodyUpdateChallenge,
+}
+
+challengeUpdate, errUpdate := challengeConfigSvc.AdminUpdateChallengeShort(updateParam)
+if errUpdate != nil {
+	assert.FailNow(t, errUpdate.Error())
+}
+t.Logf("Challenge: %v updated", challengeData.Name)
+```
+
+### Create a new goal
+
+```go
+goalCreateParams := &goal_configuration.AdminCreateGoalParams{
+	Namespace:     integration.NamespaceTest,
+	ChallengeCode: challengeCode,
+	Body:          bodyNewGoal,
+}
+
+newGoal, errCreate := goalConfigSvc.AdminCreateGoalShort(goalCreateParams)
+if errCreate != nil {
+	assert.FailNow(t, errCreate.Error())
+}
+t.Logf("Goal: %v created", newGoal.Name)
+```
+
+### Delete a goal
+
+```go
+goalDelParams := &goal_configuration.AdminDeleteGoalParams{
+	Namespace:     integration.NamespaceTest,
+	ChallengeCode: challengeCode,
+	Code:          goalCode,
+}
+
+errDelete := goalConfigSvc.AdminDeleteGoalShort(goalDelParams)
+if errDelete != nil {
+	assert.FailNow(t, errDelete.Error())
+}
+```
+
+### Delete a challenge
+
+```go
+delParams := &challenge_configuration.AdminDeleteChallengeParams{
+	Namespace:     integration.NamespaceTest,
+	ChallengeCode: challengeCode,
+}
+
+errDelete = challengeConfigSvc.AdminDeleteChallengeShort(delParams)
+if errDelete != nil {
+	assert.FailNow(t, errDelete.Error())
+}
+```
+## Chat
+
+Source: [chat_test.go](../services-api/pkg/tests/integration/chat_test.go)
+
+### Admin Profanity Create
+
+```go
+create, errCreate := profanityOperationsService.AdminProfanityCreateShort(&profanity.AdminProfanityCreateParams{
+	Body: &chatclientmodels.ModelsDictionaryInsertRequest{
+		Word:     &profanityWord,
+		WordType: &profanityWordType,
+	},
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Profanity Get
+
+```go
+get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
+	Namespace:       integration.NamespaceTest,
+	IncludeChildren: &profanityQueryIncludeChildren,
+	WordType:        &profanityWordType,
+	StartWith:       &profanityWord,
+})
+```
+
+### Admin Profanity Update
+
+```go
+update, errUpdate := profanityOperationsService.AdminProfanityUpdateShort(&profanity.AdminProfanityUpdateParams{
+	Body: &chatclientmodels.ModelsDictionaryUpdateRequest{
+		Word:     &profanityWord,
+		WordType: &profanityWordType,
+	},
+	Namespace: integration.NamespaceTest,
+	ID:        *create.ID,
+})
+```
+
+### Admin Profanity Delete
+
+```go
+errDelete := profanityOperationsService.AdminProfanityDeleteShort(&profanity.AdminProfanityDeleteParams{
+	Namespace: integration.NamespaceTest,
+	ID:        *create.ID,
+})
+```
+
+### Save Inbox Message
+
+```go
+save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminSaveInboxMessageParams{
+	Body: &chatclientmodels.ModelsSaveInboxMessageRequest{
+		ExpiredAt: &expiredAt,
+		Message:   &dataMessage,
+		Scope:     &scopeChat,
+		Status:    &statusChat,
+		UserIds:   userIds,
+	},
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Send Inbox Message
+
+```go
+create, errCreate := inboxOperationsService.AdminSendInboxMessageShort(&inbox.AdminSendInboxMessageParams{
+	Body:      dataMessage,
+	MessageID: *save.ID,
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Get Inbox Messages
+
+```go
+get, errGet := inboxOperationsService.AdminGetInboxMessagesShort(&inbox.AdminGetInboxMessagesParams{
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Update Inbox Message
+
+```go
+errUpdate := inboxOperationsService.AdminUpdateInboxMessageShort(&inbox.AdminUpdateInboxMessageParams{
+	Body: &chatclientmodels.ModelsUpdateInboxMessageRequest{
+		ExpiredAt: &expiredAt,
+		Message:   &dataMessage,
+		Scope:     &scopeChat,
+		UserIds:   userIds,
+	},
+	Namespace: integration.NamespaceTest,
+	MessageID: *save.ID,
+})
+```
+
+### Admin Delete Inbox Message
+
+```go
+errDelete := inboxOperationsService.AdminDeleteInboxMessageShort(&inbox.AdminDeleteInboxMessageParams{
+	Namespace: integration.NamespaceTest,
+	MessageID: *save.ID,
+	Force:     &force,
+})
+```
+
+### Add chat inbox category
+
+```go
+add, errAdd := inboxOperationsService.AdminAddInboxCategoryShort(&inbox.AdminAddInboxCategoryParams{
+	Body: &chatclientmodels.ModelsAddInboxCategoryRequest{
+		Name:      &categoryName,
+		ExpiresIn: &expiresIn,
+	},
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Get chat inbox category
+
+```go
+get, errGet := inboxOperationsService.AdminGetInboxCategoriesShort(&inbox.AdminGetInboxCategoriesParams{
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Update chat inbox category
+
+```go
+errUpdate := inboxOperationsService.AdminUpdateInboxCategoryShort(&inbox.AdminUpdateInboxCategoryParams{
+	Body: &chatclientmodels.ModelsUpdateInboxCategoryRequest{
+		ExpiresIn: &expiresInUpdate,
+	},
+	Category:  categoryName,
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Delete chat inbox category
+
+```go
+errDelete := inboxOperationsService.AdminDeleteInboxCategoryShort(&inbox.AdminDeleteInboxCategoryParams{
+	Category:  categoryName,
+	Namespace: integration.NamespaceTest,
+})
+```
 ## CloudSave
 
 Source: [cloudsave_test.go](../services-api/pkg/tests/integration/cloudsave_test.go)
@@ -344,6 +585,146 @@ errDelete := publicPlayerRecordService.DeletePlayerRecordHandlerV1Short(inputDel
 if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
+```
+## Csm
+
+Source: [csm_test.go](../services-api/pkg/tests/integration/csm_test.go)
+
+### Create extend app
+
+```go
+input := &app_v2.CreateAppV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Body: &csmclientmodels.ApimodelCreateAppV2Request{
+		CPU: &csmclientmodels.ApimodelCPURequest{
+			RequestCPU: &cpu,
+		},
+		Description: "test integration create extend app for extend sdk",
+		Memory: &csmclientmodels.ApimodelMemoryRequest{
+			RequestMemory: 100,
+		},
+		Scenario: &scenario,
+	},
+}
+ok, err := csmAppService.CreateAppV2Short(input)
+```
+
+### Get extend app detail
+
+```go
+app, err := csmAppService.GetAppV2Short(&app_v2.GetAppV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+})
+```
+
+### Save extend app secret
+
+```go
+input := &configuration_v2.SaveSecretV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Body: &csmclientmodels.ApimodelSaveSecretConfigurationV2Request{
+		ConfigName: &secretName,
+		Value:      &secretValue,
+		Source:     &configSource,
+	},
+}
+
+secret, err := csmConfigService.SaveSecretV2Short(input)
+```
+
+### Get extend app secrets list
+
+```go
+secrets, err := csmConfigService.GetListOfSecretsV2Short(&configuration_v2.GetListOfSecretsV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+})
+```
+
+### Update extend app secret
+
+```go
+updatedSecret, err := csmConfigService.UpdateSecretV2Short(&configuration_v2.UpdateSecretV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  *secret.ConfigID,
+	Body: &csmclientmodels.ApimodelUpdateSecretConfigurationV2Request{
+		Value: &updatedSecretValue,
+	},
+})
+```
+
+### Save extend app environment variable
+
+```go
+input := &configuration_v2.SaveVariableV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Body: &csmclientmodels.ApimodelSaveConfigurationV2Request{
+		ApplyMask:  true,
+		ConfigName: &envVarName,
+		Value:      &envVarValue,
+		Source:     &configSource,
+	},
+}
+
+envVar, err := csmConfigService.SaveVariableV2Short(input)
+```
+
+### Get extend app environment variables list
+
+```go
+envVars, err := csmConfigService.GetListOfVariablesV2Short(&configuration_v2.GetListOfVariablesV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+})
+```
+
+### Update extend app environment variable
+
+```go
+updatedVariable, err := csmConfigService.UpdateVariableV2Short(&configuration_v2.UpdateVariableV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  *envVar.ConfigID,
+	Body: &csmclientmodels.ApimodelUpdateConfigurationV2Request{
+		ApplyMask: true,
+		Value:     &updatedEnvVarValue,
+	},
+})
+```
+
+### Delete extend app secret
+
+```go
+err := csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  secretConfigID,
+})
+```
+
+### Delete extend app environment variable
+
+```go
+err = csmConfigService.DeleteVariableV2Short(&configuration_v2.DeleteVariableV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	ConfigID:  envVarConfigID,
+})
+```
+
+### Delete extend app
+
+```go
+err = csmAppService.DeleteAppV2Short(&app_v2.DeleteAppV2Params{
+	Namespace: namespace,
+	App:       extendAppName,
+	Forced:    &forced,
+})
 ```
 ## GameTelemetry
 
@@ -563,12 +944,12 @@ logrus.Infof("Bearer %v; UserId %v", *getToken.AccessToken, getToken.UserID)
 ### Create a user
 
 ```go
-input := &users_v4.PublicCreateUserV4Params{
+input := &users_v4.PublicCreateTestUserV4Params{
 	Body:      createUserBody,
 	Namespace: integration.NamespaceTest,
 }
 
-user, err := userV4Service.PublicCreateUserV4Short(input)
+user, err := userV4Service.PublicCreateTestUserV4Short(input)
 if err != nil {
 	assert.FailNow(t, err.Error())
 }
@@ -616,6 +997,62 @@ errDelete := userService.AdminDeleteUserInformationV3Short(inputDelete)
 if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
+```
+## Inventory
+
+Source: [inventory_test.go](../services-api/pkg/tests/integration/inventory_test.go)
+
+### Create inventory
+
+```go
+inputCreateInventory := &admin_inventories.AdminCreateInventoryParams{
+	Body: &inventoryclientmodels.ApimodelsCreateInventoryReq{
+		InventoryConfigurationCode: createInventoryConfig.Code,
+		UserID:                     &userID,
+	},
+	Namespace: integration.NamespaceTest,
+}
+
+createInventoryOk, errCreateInventory := adminInventoriesService.AdminCreateInventoryShort(inputCreateInventory)
+```
+
+### Get inventory
+
+```go
+inputGetInventory := &admin_inventories.AdminGetInventoryParams{
+	InventoryID: inventoryID,
+	Namespace:   integration.NamespaceTest,
+}
+getInventory, errGetInventory := adminInventoriesService.AdminGetInventoryShort(inputGetInventory)
+if errGetInventory != nil {
+	assert.FailNow(t, errGetInventory.Error())
+
+	return
+}
+```
+
+### Update inventory
+
+```go
+inputUpdateInventory := &admin_inventories.AdminUpdateInventoryParams{
+	Body:        &inventoryclientmodels.ApimodelsUpdateInventoryReq{IncMaxSlots: &minNumber},
+	InventoryID: inventoryID,
+	Namespace:   integration.NamespaceTest,
+}
+
+updateInventory, errUpdateInventory := adminInventoriesService.AdminUpdateInventoryShort(inputUpdateInventory)
+```
+
+### Delete inventory
+
+```go
+inputDeleteInventory := &admin_inventories.DeleteInventoryParams{
+	Body:        &inventoryclientmodels.ApimodelsDeleteInventoryReq{Message: &messageInventory},
+	InventoryID: inventoryID,
+	Namespace:   integration.NamespaceTest,
+}
+
+errDeleteInventory := adminInventoriesService.DeleteInventoryShort(inputDeleteInventory)
 ```
 ## Leaderboard
 
@@ -727,6 +1164,28 @@ err = notificationService.GetNotificationMessage()
 
 ```go
 err = notificationService.GetOfflineNotification()
+```
+## LoginQueue
+
+Source: [loginqueue_test.go](../services-api/pkg/tests/integration/loginqueue_test.go)
+
+### Admin Get Configuration
+
+```go
+get, errGet := loginQueueAdminV1Service.AdminGetConfigurationShort(&admin_v1.AdminGetConfigurationParams{
+	Namespace: integration.NamespaceTest,
+})
+```
+
+### Admin Update Configuration
+
+```go
+update, errUpdate := loginQueueAdminV1Service.AdminUpdateConfigurationShort(&admin_v1.AdminUpdateConfigurationParams{
+	Body: &loginqueueclientmodels.ApimodelsConfigurationRequest{
+		MaxLoginRate: &updateMaxLoginRate,
+	},
+	Namespace: integration.NamespaceTest,
+})
 ```
 ## MatchmakingV2
 
@@ -1016,7 +1475,7 @@ errDelete := adminReasonsService.DeleteReasonShort(inputDeleteReason)
 ```go
 inputReport := &public_reports.SubmitReportParams{
 	Body: &reportingclientmodels.RestapiSubmitReportRequest{
-		AdditionalInfo:    emptyInterface,
+		AdditionalInfo:    integration.EmptyInterface,
 		Category:          &categoryUGC,
 		Comment:           reasonTitle,
 		ExtensionCategory: categoryUGC,
@@ -1486,344 +1945,5 @@ errDelete := adminTagService.AdminDeleteTagShort(inputDelete)
 if errDelete != nil {
 	assert.FailNow(t, errDelete.Error())
 }
-```
-## Chat
-
-Source: [chat_test.go](../services-api/pkg/tests/integration/chat_test.go)
-
-### Admin Profanity Create
-
-```go
-create, errCreate := profanityOperationsService.AdminProfanityCreateShort(&profanity.AdminProfanityCreateParams{
-	Body: &chatclientmodels.ModelsDictionaryInsertRequest{
-		Word:     &profanityWord,
-		WordType: &profanityWordType,
-	},
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Admin Profanity Get
-
-```go
-get, errGet := profanityOperationsService.AdminProfanityQueryShort(&profanity.AdminProfanityQueryParams{
-	Namespace:       integration.NamespaceTest,
-	IncludeChildren: &profanityQueryIncludeChildren,
-	WordType:        &profanityWordType,
-	StartWith:       &profanityWord,
-})
-```
-
-### Admin Profanity Update
-
-```go
-update, errUpdate := profanityOperationsService.AdminProfanityUpdateShort(&profanity.AdminProfanityUpdateParams{
-	Body: &chatclientmodels.ModelsDictionaryUpdateRequest{
-		Word:     &profanityWord,
-		WordType: &profanityWordType,
-	},
-	Namespace: integration.NamespaceTest,
-	ID:        *create.ID,
-})
-```
-
-### Admin Profanity Delete
-
-```go
-errDelete := profanityOperationsService.AdminProfanityDeleteShort(&profanity.AdminProfanityDeleteParams{
-	Namespace: integration.NamespaceTest,
-	ID:        *create.ID,
-})
-```
-
-### Save Inbox Message
-
-```go
-save, errSave := inboxOperationsService.AdminSaveInboxMessageShort(&inbox.AdminSaveInboxMessageParams{
-	Body: &chatclientmodels.ModelsSaveInboxMessageRequest{
-		ExpiredAt: &expiredAt,
-		Message:   &dataMessage,
-		Scope:     &scopeChat,
-		Status:    &statusChat,
-		UserIds:   userIds,
-	},
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Send Inbox Message
-
-```go
-create, errCreate := inboxOperationsService.AdminSendInboxMessageShort(&inbox.AdminSendInboxMessageParams{
-	Body:      dataMessage,
-	MessageID: *save.ID,
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Admin Get Inbox Messages
-
-```go
-get, errGet := inboxOperationsService.AdminGetInboxMessagesShort(&inbox.AdminGetInboxMessagesParams{
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Admin Update Inbox Message
-
-```go
-errUpdate := inboxOperationsService.AdminUpdateInboxMessageShort(&inbox.AdminUpdateInboxMessageParams{
-	Body: &chatclientmodels.ModelsUpdateInboxMessageRequest{
-		ExpiredAt: &expiredAt,
-		Message:   &dataMessage,
-		Scope:     &scopeChat,
-		UserIds:   userIds,
-	},
-	Namespace: integration.NamespaceTest,
-	MessageID: *save.ID,
-})
-```
-
-### Admin Delete Inbox Message
-
-```go
-errDelete := inboxOperationsService.AdminDeleteInboxMessageShort(&inbox.AdminDeleteInboxMessageParams{
-	Namespace: integration.NamespaceTest,
-	MessageID: *save.ID,
-	Force:     &force,
-})
-```
-
-### Add chat inbox category
-
-```go
-add, errAdd := inboxOperationsService.AdminAddInboxCategoryShort(&inbox.AdminAddInboxCategoryParams{
-	Body: &chatclientmodels.ModelsAddInboxCategoryRequest{
-		Name:      &categoryName,
-		ExpiresIn: &expiresIn,
-	},
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Get chat inbox category
-
-```go
-get, errGet := inboxOperationsService.AdminGetInboxCategoriesShort(&inbox.AdminGetInboxCategoriesParams{
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Update chat inbox category
-
-```go
-errUpdate := inboxOperationsService.AdminUpdateInboxCategoryShort(&inbox.AdminUpdateInboxCategoryParams{
-	Body: &chatclientmodels.ModelsUpdateInboxCategoryRequest{
-		ExpiresIn: &expiresInUpdate,
-	},
-	Category:  categoryName,
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Delete chat inbox category
-
-```go
-errDelete := inboxOperationsService.AdminDeleteInboxCategoryShort(&inbox.AdminDeleteInboxCategoryParams{
-	Category:  categoryName,
-	Namespace: integration.NamespaceTest,
-})
-```
-## DsArtifact
-
-Source: [dsartifact_test.go](../services-api/pkg/tests/integration/dsartifact_test.go)
-
-### List all queue
-
-```go
-input := &artifact_upload_process_queue.ListAllQueueParams{
-	Namespace: namespace,
-	Limit:     &limit,
-}
-ok, err := artifactUploadProcessQueueService.ListAllQueueShort(input)
-if err != nil {
-	t.Skipf("temporarily disabled") // Armada is deprecated
-}
-```
-
-### List terminated servers
-
-```go
-input := &all_terminated_servers.ListTerminatedServersParams{
-	Limit: &limit,
-}
-ok, err := allTerminatedServersService.ListTerminatedServersShort(input)
-if err != nil {
-	t.Skipf("temporarily disabled") // Armada is deprecated
-}
-```
-## CSM
-
-Source: [csm_test.go](../services-api/pkg/tests/integration/csm_test.go)
-
-### Create extend app
-
-```go
-input := &app_v2.CreateAppV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	Body: &csmclientmodels.ApimodelCreateAppV2Request{
-		CPU: &csmclientmodels.ApimodelCPURequest{
-			RequestCPU: &cpu,
-		},
-		Description: "test integration create extend app for extend sdk",
-		Memory: &csmclientmodels.ApimodelMemoryRequest{
-			RequestMemory: 100,
-		},
-		Scenario: &scenario,
-	},
-}
-ok, err := csmAppService.CreateAppV2Short(input)
-```
-
-### Get extend app detail
-
-```go
-app, err := csmAppService.GetAppV2Short(&app_v2.GetAppV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-})
-```
-
-### Save extend app secret
-
-```go
-input := &configuration_v2.SaveSecretV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	Body: &csmclientmodels.ApimodelSaveConfigurationV2Request{
-		ApplyMask:  true,
-		ConfigName: &secretName,
-		Value:      &secretValue,
-		Source:     &configSource,
-	},
-}
-
-secret, err := csmConfigService.SaveSecretV2Short(input)
-```
-
-### Get extend app secrets list
-
-```go
-secrets, err := csmConfigService.GetListOfSecretsV2Short(&configuration_v2.GetListOfSecretsV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-})
-```
-
-### Update extend app secret
-
-```go
-updatedSecret, err := csmConfigService.UpdateSecretV2Short(&configuration_v2.UpdateSecretV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	ConfigID:  *secret.ConfigID,
-	Body: &csmclientmodels.ApimodelUpdateConfigurationV2Request{
-		ApplyMask: true,
-		Value:     &updatedSecretValue,
-	},
-})
-```
-
-### Save extend app environment variable
-
-```go
-input := &configuration_v2.SaveVariableV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	Body: &csmclientmodels.ApimodelSaveConfigurationV2Request{
-		ApplyMask:  true,
-		ConfigName: &envVarName,
-		Value:      &envVarValue,
-		Source:     &configSource,
-	},
-}
-
-envVar, err := csmConfigService.SaveVariableV2Short(input)
-```
-
-### Get extend app environment variables list
-
-```go
-envVars, err := csmConfigService.GetListOfVariablesV2Short(&configuration_v2.GetListOfVariablesV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-})
-```
-
-### Update extend app environment variable
-
-```go
-updatedVariable, err := csmConfigService.UpdateVariableV2Short(&configuration_v2.UpdateVariableV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	ConfigID:  *envVar.ConfigID,
-	Body: &csmclientmodels.ApimodelUpdateConfigurationV2Request{
-		ApplyMask: true,
-		Value:     &updatedEnvVarValue,
-	},
-})
-```
-
-### Delete extend app secret
-
-```go
-err := csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	ConfigID:  secretConfigID,
-})
-```
-
-### Delete extend app environment variable
-
-```go
-err = csmConfigService.DeleteVariableV2Short(&configuration_v2.DeleteVariableV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	ConfigID:  envVarConfigID,
-})
-```
-
-### Delete extend app
-
-```go
-err = csmAppService.DeleteAppV2Short(&app_v2.DeleteAppV2Params{
-	Namespace: namespace,
-	App:       extendAppName,
-	Forced:    &forced,
-})
-```
-## LoginQueue
-
-Source: [loginqueue_test.go](../services-api/pkg/tests/integration/loginqueue_test.go)
-
-### Admin Get Configuration
-
-```go
-get, errGet := loginQueueAdminV1Service.AdminGetConfigurationShort(&admin_v1.AdminGetConfigurationParams{
-	Namespace: integration.NamespaceTest,
-})
-```
-
-### Admin Update Configuration
-
-```go
-update, errUpdate := loginQueueAdminV1Service.AdminUpdateConfigurationShort(&admin_v1.AdminUpdateConfigurationParams{
-	Body: &loginqueueclientmodels.ApimodelsConfigurationRequest{
-		MaxLoginRate: &updateMaxLoginRate,
-	},
-	Namespace: integration.NamespaceTest,
-})
 ```
 

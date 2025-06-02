@@ -4,7 +4,7 @@
 
 // Code generated ; DO NOT EDIT.
 
-package account_idenfifier_tag
+package account_identifier_tag
 
 import (
 	"context"
@@ -15,13 +15,13 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// New creates a new account idenfifier tag API client.
+// New creates a new account identifier tag API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
 /*
-Client for account idenfifier tag API
+Client for account identifier tag API
 */
 type Client struct {
 	transport runtime.ClientTransport

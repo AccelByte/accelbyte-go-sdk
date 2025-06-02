@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.25.0"
+    "version": "3.25.3"
   },
   "schemes": [
     "https"
@@ -2186,9 +2186,6 @@
     },
     "/session/v1/admin/namespaces/{namespace}/gamesessions/{sessionId}/members/{memberId}/status/{statusType}": {
       "put": {
-        "consumes": [
-          "application/json"
-        ],
         "description": "Update a game session member status.",
         "operationId": "adminUpdateGameSessionMember",
         "parameters": [
@@ -9966,9 +9963,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-04-16T04:13:32+00:00",
-    "gitHash": "da7cbc20ab79e7093b616b82b38ce2c916f8d14f",
-    "version": "3.25.0",
+    "buildDate": "2025-05-26T06:29:48+00:00",
+    "gitHash": "090481dd00e67a5968fd26e85db5116714677e89",
+    "version": "3.25.3",
     "version-roles-seeding": "1.2.86"
   }
 }

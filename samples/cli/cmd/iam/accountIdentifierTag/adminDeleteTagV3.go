@@ -4,10 +4,10 @@
 
 // Code generated. DO NOT EDIT.
 
-package accountIdenfifierTag
+package accountIdentifierTag
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/account_idenfifier_tag"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/account_identifier_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -21,17 +21,17 @@ var AdminDeleteTagV3Cmd = &cobra.Command{
 	Short: "Admin delete tag V3",
 	Long:  `Admin delete tag V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		accountIdenfifierTagService := &iam.AccountIdenfifierTagService{
+		accountIdentifierTagService := &iam.AccountIdentifierTagService{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		tagId, _ := cmd.Flags().GetString("tagId")
-		input := &account_idenfifier_tag.AdminDeleteTagV3Params{
+		input := &account_identifier_tag.AdminDeleteTagV3Params{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		errNoContent := accountIdenfifierTagService.AdminDeleteTagV3Short(input)
+		errNoContent := accountIdentifierTagService.AdminDeleteTagV3Short(input)
 		if errNoContent != nil {
 			logrus.Error(errNoContent)
 

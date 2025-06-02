@@ -603,6 +603,7 @@ $ samples/cli/sample-apps Iam adminSearchUserV3 \
     --platformId 'string' \
     --query 'string' \
     --roleIds 'string' \
+    --selectedFields 'string' \
     --skipLoginQueue false \
     --startDate 'string' \
     --tagIds 'string' \

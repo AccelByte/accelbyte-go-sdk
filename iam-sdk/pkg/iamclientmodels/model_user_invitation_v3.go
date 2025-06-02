@@ -20,8 +20,16 @@ import (
 // swagger:model Model user invitation V3.
 type ModelUserInvitationV3 struct {
 
+	// acceptancelink
+	AcceptanceLink string `json:"acceptanceLink,omitempty"`
+
 	// additionaldata
 	AdditionalData string `json:"additionalData,omitempty"`
+
+	// createdat
+	// Required: true
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// email
 	// Required: true
@@ -37,6 +45,9 @@ type ModelUserInvitationV3 struct {
 
 	// isnewstudio
 	IsNewStudio bool `json:"isNewStudio"`
+
+	// languagetag
+	LanguageTag string `json:"languageTag,omitempty"`
 
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
@@ -56,6 +67,9 @@ type ModelUserInvitationV3 struct {
 func (m *ModelUserInvitationV3) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateEmail(formats); err != nil {
 		res = append(res, err)
 	}
@@ -69,6 +83,19 @@ func (m *ModelUserInvitationV3) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelUserInvitationV3) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

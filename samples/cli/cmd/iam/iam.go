@@ -7,7 +7,7 @@
 package iam
 
 import (
-	"github.com/AccelByte/sample-apps/cmd/iam/accountIdenfifierTag"
+	"github.com/AccelByte/sample-apps/cmd/iam/accountIdentifierTag"
 	"github.com/AccelByte/sample-apps/cmd/iam/bans"
 	"github.com/AccelByte/sample-apps/cmd/iam/clients"
 	"github.com/AccelByte/sample-apps/cmd/iam/clientsConfigV3"
@@ -200,10 +200,10 @@ func init() {
 	IamCmd.AddCommand(overrideRoleConfigV3.AdminChangeRoleOverrideConfigStatusV3Cmd)
 	IamCmd.AddCommand(overrideRoleConfigV3.AdminGetRoleNamespacePermissionV3Cmd)
 	IamCmd.AddCommand(users.GetAdminUsersByRoleIdV3Cmd)
-	IamCmd.AddCommand(accountIdenfifierTag.AdminQueryTagV3Cmd)
-	IamCmd.AddCommand(accountIdenfifierTag.AdminCreateTagV3Cmd)
-	IamCmd.AddCommand(accountIdenfifierTag.AdminUpdateTagV3Cmd)
-	IamCmd.AddCommand(accountIdenfifierTag.AdminDeleteTagV3Cmd)
+	IamCmd.AddCommand(accountIdentifierTag.AdminQueryTagV3Cmd)
+	IamCmd.AddCommand(accountIdentifierTag.AdminCreateTagV3Cmd)
+	IamCmd.AddCommand(accountIdentifierTag.AdminUpdateTagV3Cmd)
+	IamCmd.AddCommand(accountIdentifierTag.AdminDeleteTagV3Cmd)
 	IamCmd.AddCommand(users.AdminGetUserByEmailAddressV3Cmd)
 	IamCmd.AddCommand(users.AdminBulkUpdateUsersV3Cmd)
 	IamCmd.AddCommand(users.AdminGetBulkUserBanV3Cmd)

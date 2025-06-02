@@ -8,7 +8,7 @@
     },
     "description": "Justice Inventory Service",
     "title": "justice-inventory-service",
-    "version": "0.2.13"
+    "version": "0.2.15"
   },
   "schemes": [
     "https"
@@ -4789,11 +4789,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-04-15T07:27:13+00:00",
-    "gitHash": "b55b5eb3cf09ad52718e6cdd71b5d4b5105084ee",
+    "buildDate": "2025-05-26T04:11:34+00:00",
+    "gitHash": "b9789cae4417f476492c4e6a666ff727b14ba457",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.13",
+    "version": "0.2.15",
     "version-roles-seeding": "1.2.34"
   }
 }

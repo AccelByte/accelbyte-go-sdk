@@ -23,6 +23,11 @@ type MatchmakerMatchTicketRecord struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
+	// expiredat
+	// Required: true
+	// Format: date-time
+	ExpiredAt strfmt.DateTime `json:"ExpiredAt"`
+
 	// isactive
 	// Required: true
 	IsActive *bool `json:"IsActive"`
@@ -57,6 +62,9 @@ func (m *MatchmakerMatchTicketRecord) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateExpiredAt(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIsActive(formats); err != nil {
@@ -94,6 +102,19 @@ func (m *MatchmakerMatchTicketRecord) validateCreatedAt(formats strfmt.Registry)
 	}
 
 	if err := validate.FormatOf("CreatedAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MatchmakerMatchTicketRecord) validateExpiredAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("ExpiredAt", "body", strfmt.DateTime(m.ExpiredAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("ExpiredAt", "body", "date-time", m.ExpiredAt.String(), formats); err != nil {
 		return err
 	}
 

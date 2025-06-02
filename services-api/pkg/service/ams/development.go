@@ -139,6 +139,32 @@ func (aaa *DevelopmentService) DevelopmentServerConfigurationDelete(input *devel
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use DevelopmentServerConfigurationPatchShort instead.
+func (aaa *DevelopmentService) DevelopmentServerConfigurationPatch(input *development.DevelopmentServerConfigurationPatchParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Development.DevelopmentServerConfigurationPatch(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *DevelopmentService) DevelopmentServerConfigurationListShort(input *development.DevelopmentServerConfigurationListParams) (*amsclientmodels.APIDevelopmentServerConfigurationListResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -252,6 +278,36 @@ func (aaa *DevelopmentService) DevelopmentServerConfigurationDeleteShort(input *
 	}
 
 	_, err := aaa.Client.Development.DevelopmentServerConfigurationDeleteShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *DevelopmentService) DevelopmentServerConfigurationPatchShort(input *development.DevelopmentServerConfigurationPatchParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDevelopment != nil {
+		input.XFlightId = tempFlightIdDevelopment
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Development.DevelopmentServerConfigurationPatchShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

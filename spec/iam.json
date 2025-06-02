@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.31.0"
+    "version": "7.33.0"
   },
   "schemes": [
     "https"
@@ -12546,7 +12546,7 @@
         ],
         "summary": "Query Account Identifier Tag",
         "tags": [
-          "Account Idenfifier Tag"
+          "Account Identifier Tag"
         ],
         "x-errorCodes": {
           "20000": "internal server error"
@@ -12618,7 +12618,7 @@
         ],
         "summary": "Create Account Identifier Tag",
         "tags": [
-          "Account Idenfifier Tag"
+          "Account Identifier Tag"
         ],
         "x-errorCodes": {
           "20000": "internal server error",
@@ -12681,7 +12681,7 @@
         ],
         "summary": "Delete Account Identifier Tag",
         "tags": [
-          "Account Idenfifier Tag"
+          "Account Identifier Tag"
         ],
         "x-errorCodes": {
           "20000": "internal server error"
@@ -12766,7 +12766,7 @@
         ],
         "summary": "Update Account Identifier Tag",
         "tags": [
-          "Account Idenfifier Tag"
+          "Account Identifier Tag"
         ],
         "x-errorCodes": {
           "20000": "internal server error",
@@ -13580,7 +13580,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Endpoint behavior :\n- By default this endpoint searches all users on the specified namespace.\n- If query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query.\n- The query parameter length must be between 3 and 30 characters. For email address queries (i.e., contains \u0026#39;@\u0026#39;), the allowed length is 3 to 40 characters. Otherwise, the database will not be queried.\n- If startDate and endDate parameters is defined, endpoint will search users which created on the certain date range.\n- If query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range.\n- If startDate parameter is defined, endpoint will search users that created start from the defined date.\n- If endDate parameter is defined, endpoint will search users that created until the defined date.\n- If platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to.\n- If platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName.\n- If limit is not defined, The default limit is 100.\n\nIn Multi Tenant mode :\n\n- If super admin search in super admin namespace, the result will be all game admin user\n- If super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace\n- If super admin search in game namespace, the result will be all game admin users and players under the game namespace\n- If game admin search in their game studio namespace, the result will be all game admin user in the studio namespace\n- If game admin search in their game namespace, the result will be all player in the game namespace\n\naction code : 10133",
+        "description": "Endpoint behavior :\n- By default this endpoint searches all users on the specified namespace.\n- If query parameter is defined, endpoint will search users whose email address, display name, username, or third party partially match with the query.\n- The query parameter length must be between 3 and 30 characters. For email address queries (i.e., contains \u0026#39;@\u0026#39;), the allowed length is 3 to 40 characters. Otherwise, the database will not be queried.\n- If startDate and endDate parameters is defined, endpoint will search users which created on the certain date range.\n- If query, startDate and endDate parameters are defined, endpoint will search users whose email address and display name match and created on the certain date range.\n- If startDate parameter is defined, endpoint will search users that created start from the defined date.\n- If endDate parameter is defined, endpoint will search users that created until the defined date.\n- If platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to.\n- If platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName.\n- If limit is not defined, The default limit is 100.\n\nGraphQL-Like Querying:\n- By default, the API only returns the minimum fields -\u0026gt; [displayName, authType, createdAt, uniqueDisplayName, deletionStatus, enabled, emailAddress, skipLoginQueue, testAccount]\n- To include additional fields in the response, specify them in the request params.\n- Supported fields: [country, emailVerified, avatarUrl, enabled]\n- Note: If a value is not in the allowed list, the API will ignore it.\n\nIn Multi Tenant mode :\n\n- If super admin search in super admin namespace, the result will be all game admin user\n- If super admin search in game studio namespace, the result will be all game admin user and players under the game studio namespace\n- If super admin search in game namespace, the result will be all game admin users and players under the game namespace\n- If game admin search in their game studio namespace, the result will be all game admin user in the studio namespace\n- If game admin search in their game namespace, the result will be all player in the game namespace\n\naction code : 10133",
         "operationId": "AdminSearchUserV3",
         "parameters": [
           {
@@ -13644,6 +13644,12 @@
             "description": "comma separated role ids",
             "in": "query",
             "name": "roleIds",
+            "type": "string"
+          },
+          {
+            "description": "comma separated selected fields.",
+            "in": "query",
+            "name": "selectedFields",
             "type": "string"
           },
           {
@@ -22537,7 +22543,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Notes:\n- This endpoint bulk get users\u0026#39; basic info by userId, max allowed 100 at a time\n- If namespace is game, will search by game user Id, other wise will search by publisher namespace\n- **Result will include displayName(if it exists)**\n",
+        "description": "Notes:\n- This endpoint bulk get users\u0026#39; basic info by userId, max allowed 100 at a time\n- If namespace is game, will search by game user Id, other wise will search by publisher namespace\n- **Result will include displayName(if it exists)**\n- **Substitute endpoint:** /iam/v3/public/namespaces/{namespace}/users/platforms [POST]\n",
         "operationId": "PublicBulkGetUsers",
         "parameters": [
           {
@@ -24401,7 +24407,7 @@
     "/iam/v3/public/namespaces/{namespace}/users/{userId}": {
       "get": {
         "deprecated": true,
-        "description": "This endpoint retrieve user attributes. action code: 10129\n**Substitute endpoint:** /v4/public/namespaces/{namespace}/users/{userId} [READ]",
+        "description": "This endpoint retrieve user attributes. action code: 10129\n**Substitute endpoint:** /v4/public/namespaces/{namespace}/users/{userId} [GET]",
         "operationId": "PublicGetUserByUserIdV3",
         "parameters": [
           {
@@ -41744,8 +41750,16 @@
     },
     "model.UserInvitationV3": {
       "properties": {
+        "acceptanceLink": {
+          "type": "string"
+        },
         "additionalData": {
           "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
         },
         "email": {
           "type": "string"
@@ -41761,6 +41775,9 @@
         "isNewStudio": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "languageTag": {
+          "type": "string"
         },
         "namespace": {
           "type": "string"
@@ -41779,6 +41796,7 @@
         }
       },
       "required": [
+        "createdAt",
         "email",
         "expiredAt",
         "roles"
@@ -43594,11 +43612,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-04-21T04:14:09+00:00",
-    "gitHash": "9cec182bdfeaa26e8d7ecd9dded979e0e1eba971",
+    "buildDate": "2025-05-27T08:12:55+00:00",
+    "gitHash": "d178d386aa72673231f2df7944d3592e9bc8b67c",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.31.0",
+    "version": "7.33.0",
     "version-roles-seeding": "1.2.91"
   }
 }

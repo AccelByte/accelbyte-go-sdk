@@ -1,3 +1,18 @@
+<a name="v0.80.0"></a>
+## [v0.80.0]
+### feat
+- **sdk:** change return type of AuthTokenValidator.Initialize to return an error (breaking)
+### fix
+- **test:** use create test user endpoint for integration test
+### test
+- **integration:** change achievement stat code
+### chore
+- **:** remove matchmaking, session browser and history services (breaking)
+- **:** remove otel set provider in sdk
+- **:** move some variable into new file
+- **:** change any to interface due to lint error
+
+
 <a name="v0.79.0"></a>
 ## [v0.79.0]
 ### chore

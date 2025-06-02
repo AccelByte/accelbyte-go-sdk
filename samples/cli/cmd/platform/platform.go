@@ -110,6 +110,8 @@ func init() {
 	PlatformCmd.AddCommand(currency.DeleteCurrencyCmd)
 	PlatformCmd.AddCommand(currency.GetCurrencyConfigCmd)
 	PlatformCmd.AddCommand(currency.GetCurrencySummaryCmd)
+	PlatformCmd.AddCommand(dlc.GetDLCItemConfigHistoryCmd)
+	PlatformCmd.AddCommand(dlc.RestoreDLCItemConfigHistoryCmd)
 	PlatformCmd.AddCommand(dlc.GetDLCItemConfigCmd)
 	PlatformCmd.AddCommand(dlc.UpdateDLCItemConfigCmd)
 	PlatformCmd.AddCommand(dlc.DeleteDLCItemConfigCmd)

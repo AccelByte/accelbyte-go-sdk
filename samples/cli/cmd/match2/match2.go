@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/match2/matchPools"
 	"github.com/AccelByte/sample-apps/cmd/match2/matchTickets"
 	"github.com/AccelByte/sample-apps/cmd/match2/operations"
+	"github.com/AccelByte/sample-apps/cmd/match2/playFeatureFlag"
 	"github.com/AccelByte/sample-apps/cmd/match2/ruleSets"
 	"github.com/spf13/cobra"
 )
@@ -29,6 +30,9 @@ func init() {
 	Match2Cmd.AddCommand(operations.GetHealthcheckInfoV1Cmd)
 	Match2Cmd.AddCommand(config.AdminGetLogConfigCmd)
 	Match2Cmd.AddCommand(config.AdminPatchUpdateLogConfigCmd)
+	Match2Cmd.AddCommand(playFeatureFlag.AdminGetPlayFeatureFlagCmd)
+	Match2Cmd.AddCommand(playFeatureFlag.AdminUpsertPlayFeatureFlagCmd)
+	Match2Cmd.AddCommand(playFeatureFlag.AdminDeletePlayFeatureFlagCmd)
 	Match2Cmd.AddCommand(config.AdminGetAllConfigV1Cmd)
 	Match2Cmd.AddCommand(config.AdminGetConfigV1Cmd)
 	Match2Cmd.AddCommand(config.AdminPatchConfigV1Cmd)

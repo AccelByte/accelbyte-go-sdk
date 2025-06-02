@@ -38,6 +38,40 @@ func (aaa *DLCService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use GetDLCItemConfigHistoryShort instead.
+func (aaa *DLCService) GetDLCItemConfigHistory(input *dlc.GetDLCItemConfigHistoryParams) (*platformclientmodels.DLCItemConfigHistoryResult, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, err := aaa.Client.DLC.GetDLCItemConfigHistory(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use RestoreDLCItemConfigHistoryShort instead.
+func (aaa *DLCService) RestoreDLCItemConfigHistory(input *dlc.RestoreDLCItemConfigHistoryParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, notFound, err := aaa.Client.DLC.RestoreDLCItemConfigHistory(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetDLCItemConfigShort instead.
 func (aaa *DLCService) GetDLCItemConfig(input *dlc.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -320,6 +354,66 @@ func (aaa *DLCService) PublicGetMyDLCContent(input *dlc.PublicGetMyDLCContentPar
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *DLCService) GetDLCItemConfigHistoryShort(input *dlc.GetDLCItemConfigHistoryParams) (*platformclientmodels.DLCItemConfigHistoryResult, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDLC != nil {
+		input.XFlightId = tempFlightIdDLC
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.DLC.GetDLCItemConfigHistoryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *DLCService) RestoreDLCItemConfigHistoryShort(input *dlc.RestoreDLCItemConfigHistoryParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdDLC != nil {
+		input.XFlightId = tempFlightIdDLC
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.DLC.RestoreDLCItemConfigHistoryShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *DLCService) GetDLCItemConfigShort(input *dlc.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {

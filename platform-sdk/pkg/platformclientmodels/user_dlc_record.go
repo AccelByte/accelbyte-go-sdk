@@ -20,6 +20,10 @@ import (
 // swagger:model User DLC record.
 type UserDLCRecord struct {
 
+	// dlcrewardversion
+	// Format: int32
+	DLCRewardVersion int32 `json:"dlcRewardVersion,omitempty"`
+
 	// entitlementoriginsyncresult
 	EntitlementOriginSyncResult []*EntitlementOriginSyncResult `json:"entitlementOriginSyncResult,omitempty"`
 

@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "4.0.2"
+    "version": "4.1.0"
   },
   "schemes": [
     "https"
@@ -1920,7 +1920,7 @@
     },
     "/basic/v1/admin/namespaces/{namespace}/users/{userId}/files": {
       "post": {
-        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "generatedUserUploadContentUrl",
         "parameters": [
           {
@@ -3734,7 +3734,7 @@
     },
     "/basic/v1/public/namespaces/{namespace}/users/{userId}/files": {
       "post": {
-        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;The threshold of those limitations is different between upload category that is used.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are two types of storage limits per user: maximum file count and maximum total file size.\u0026lt;br/\u0026gt;These limits vary depending on the upload category used.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;b\u0026gt;1. Default category:\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;- Maximum file count per user: 10 files\u0026lt;br/\u0026gt;- Maximum total file size per user: 100MB\u0026lt;br/\u0026gt;\u0026lt;b\u0026gt;2. Reporting category:\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;- Maximum file count per user: 3 files every 1 hour\u0026lt;br/\u0026gt;- Maximum total file size per user: 30MB every 1 hour\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGeneratedUserUploadContentUrl",
         "parameters": [
           {
@@ -5204,16 +5204,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-01-22T04:26:48+00:00",
-    "buildID": "4.0.2",
-    "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.230-223.885.amzn2.x86_64",
+    "buildDate": "2025-05-27T08:07:24+00:00",
+    "buildID": "4.1.0",
+    "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
+    "buildOS": "Linux amd64 5.10.236-228.935.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "72a4aa0972",
-    "gitTag": "4.0.2",
+    "gitHash": "d252ad87a4",
+    "gitTag": "4.1.0",
     "name": "justice-basic-service",
     "realm": "staging",
-    "version": "4.0.2",
+    "version": "4.1.0",
     "version-roles-seeding": "0.0.10"
   }
 }

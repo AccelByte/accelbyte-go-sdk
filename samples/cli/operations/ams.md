@@ -129,6 +129,15 @@ $ samples/cli/sample-apps Ams developmentServerConfigurationDelete \
     > result.txt
 ```
 
+### Operation `development_server_configuration_patch`
+```sh
+$ samples/cli/sample-apps Ams developmentServerConfigurationPatch \
+    --developmentServerConfigID 'string' \
+    --namespace 'string' \
+    --body '{"commandLineArguments": "string", "expiresAt": "2000-01-01T12:34:56Z"}' \
+    > result.txt
+```
+
 ### Operation `fleet_list`
 ```sh
 $ samples/cli/sample-apps Ams fleetList \

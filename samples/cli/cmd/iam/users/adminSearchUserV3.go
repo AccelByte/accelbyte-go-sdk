@@ -35,6 +35,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 		platformId, _ := cmd.Flags().GetString("platformId")
 		query, _ := cmd.Flags().GetString("query")
 		roleIds, _ := cmd.Flags().GetString("roleIds")
+		selectedFields, _ := cmd.Flags().GetString("selectedFields")
 		skipLoginQueue, _ := cmd.Flags().GetBool("skipLoginQueue")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		tagIds, _ := cmd.Flags().GetString("tagIds")
@@ -50,6 +51,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 			PlatformID:     &platformId,
 			Query:          &query,
 			RoleIds:        &roleIds,
+			SelectedFields: &selectedFields,
 			SkipLoginQueue: &skipLoginQueue,
 			StartDate:      &startDate,
 			TagIds:         &tagIds,
@@ -80,6 +82,7 @@ func init() {
 	AdminSearchUserV3Cmd.Flags().String("platformId", "", "Platform id")
 	AdminSearchUserV3Cmd.Flags().String("query", "", "Query")
 	AdminSearchUserV3Cmd.Flags().String("roleIds", "", "Role ids")
+	AdminSearchUserV3Cmd.Flags().String("selectedFields", "", "Selected fields")
 	AdminSearchUserV3Cmd.Flags().Bool("skipLoginQueue", false, "Skip login queue")
 	AdminSearchUserV3Cmd.Flags().String("startDate", "", "Start date")
 	AdminSearchUserV3Cmd.Flags().String("tagIds", "", "Tag ids")

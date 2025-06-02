@@ -41,8 +41,6 @@
 
 [match2](./match2.md)
 
-[matchmaking](./matchmaking.md)
-
 [platform](./platform.md)
 
 [qosm](./qosm.md)
@@ -52,8 +50,6 @@
 [seasonpass](./seasonpass.md)
 
 [session](./session.md)
-
-[sessionhistory](./sessionhistory.md)
 
 [social](./social.md)
 

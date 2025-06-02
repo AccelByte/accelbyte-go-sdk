@@ -25,6 +25,28 @@ $ samples/cli/sample-apps Match2 adminPatchUpdateLogConfig \
     > result.txt
 ```
 
+### Operation `admin_get_play_feature_flag`
+```sh
+$ samples/cli/sample-apps Match2 adminGetPlayFeatureFlag \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `admin_upsert_play_feature_flag`
+```sh
+$ samples/cli/sample-apps Match2 adminUpsertPlayFeatureFlag \
+    --namespace 'string' \
+    --body '{"ENABLE_AUTO_CANCEL_MATCH_USER_DISCONNECT": false, "ENABLE_AUTO_CANCEL_MATCH_USER_LEAVE": false}' \
+    > result.txt
+```
+
+### Operation `admin_delete_play_feature_flag`
+```sh
+$ samples/cli/sample-apps Match2 adminDeletePlayFeatureFlag \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `admin_get_all_config_v1`
 ```sh
 $ samples/cli/sample-apps Match2 adminGetAllConfigV1 \

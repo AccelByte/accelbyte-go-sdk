@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.33.0"
+    "version": "2.34.0"
   },
   "schemes": [
     "https"
@@ -134,6 +134,208 @@
           {
             "userPermissions": [
               "ADMIN:CONFIG:LOG [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/match2/v1/admin/namespaces/{namespace}/playfeatureflag": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\n\t\t\t\tDelete matchmaking Play Feature Flag.\n\t\t\t\tDeleting the current namespace\u0026#39;s custom config only removes it from the database, the system will then use the environment variable defined in the ConfigMap instead.\n\t\t\t\t",
+        "operationId": "adminDeletePlayFeatureFlag",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin Delete Play Feature Flag",
+        "tags": [
+          "PlayFeatureFlag",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:PLAYFEATUREFLAG [DELETE]"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get matchmaking Play Feature Flag.",
+        "operationId": "adminGetPlayFeatureFlag",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PlayFeatureFlag"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin Play Feature Flag",
+        "tags": [
+          "PlayFeatureFlag",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:PLAYFEATUREFLAG [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Upsert matchmaking Play Feature Flag.",
+        "operationId": "adminUpsertPlayFeatureFlag",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PlayFeatureFlag"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PlayFeatureFlag"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "admin Upsert Play Feature Flag",
+        "tags": [
+          "PlayFeatureFlag",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:PLAYFEATUREFLAG [UPDATE]"
             ]
           }
         ]
@@ -3787,6 +3989,11 @@
           "type": "string",
           "x-nullable": false
         },
+        "ExpiredAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
         "IsActive": {
           "type": "boolean",
           "x-omitempty": false
@@ -3812,6 +4019,7 @@
       },
       "required": [
         "CreatedAt",
+        "ExpiredAt",
         "IsActive",
         "PartySessionID",
         "ProposedProposal",
@@ -4140,6 +4348,22 @@
         "previous"
       ]
     },
+    "models.PlayFeatureFlag": {
+      "properties": {
+        "ENABLE_AUTO_CANCEL_MATCH_USER_DISCONNECT": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "ENABLE_AUTO_CANCEL_MATCH_USER_LEAVE": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "ENABLE_AUTO_CANCEL_MATCH_USER_DISCONNECT",
+        "ENABLE_AUTO_CANCEL_MATCH_USER_LEAVE"
+      ]
+    },
     "models.Server": {
       "properties": {
         "alternate_ips": {
@@ -4305,9 +4529,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-04-16T04:12:03+00:00",
-    "gitHash": "98cf330184f567e4615c6d02bd87744b0acef693",
-    "version": "2.33.0",
-    "version-roles-seeding": "1.2.92"
+    "buildDate": "2025-05-26T05:01:10+00:00",
+    "gitHash": "ebba8bb67d39664c46fc07625bec201f183007ee",
+    "version": "2.34.0",
+    "version-roles-seeding": "1.2.95"
   }
 }

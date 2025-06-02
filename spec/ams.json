@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.35.1"
+    "version": "1.37.0"
   },
   "schemes": [
     "https"
@@ -1053,6 +1053,79 @@
           }
         ],
         "summary": "get a development server configuration",
+        "tags": [
+          "Development"
+        ],
+        "x-errorCodes": {}
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]",
+        "operationId": "DevelopmentServerConfigurationPatch",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.DevelopmentServerConfigurationUpdateRequest"
+            }
+          },
+          {
+            "description": "the name of the development server configuration",
+            "in": "path",
+            "name": "developmentServerConfigID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "development server configuration updated"
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "development server configuration not found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "patch a development server configuration",
         "tags": [
           "Development"
         ],
@@ -3653,6 +3726,16 @@
         "totalData"
       ]
     },
+    "api.DevelopmentServerConfigurationUpdateRequest": {
+      "properties": {
+        "commandLineArguments": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "$ref": "#/definitions/api.Time"
+        }
+      }
+    },
     "api.FleetArtifactsSampleRules": {
       "properties": {
         "coredumps": {
@@ -4650,10 +4733,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-04-09T17:10:05+00:00",
-    "gitHash": "8234c412c369fa02b187a3be7ab4f0ef05f21c34",
+    "buildDate": "2025-05-19T17:08:31+00:00",
+    "gitHash": "1f932dad823adac89e0b3472fa93d20ba3bc5dad",
     "name": "fleet-commander",
-    "version": "1.35.1",
+    "version": "1.37.0",
     "version-roles-seeding": "1.2.70"
   }
 }

@@ -438,6 +438,22 @@ $ samples/cli/sample-apps Platform getCurrencySummary \
     > result.txt
 ```
 
+### Operation `get_dlc_item_config_history`
+```sh
+$ samples/cli/sample-apps Platform getDLCItemConfigHistory \
+    --namespace 'string' \
+    --dlcId 'string' \
+    > result.txt
+```
+
+### Operation `restore_dlc_item_config_history`
+```sh
+$ samples/cli/sample-apps Platform restoreDLCItemConfigHistory \
+    --id 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `get_dlc_item_config`
 ```sh
 $ samples/cli/sample-apps Platform getDLCItemConfig \

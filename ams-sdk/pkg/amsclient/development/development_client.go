@@ -38,6 +38,8 @@ type ClientService interface {
 	DevelopmentServerConfigurationGetShort(params *DevelopmentServerConfigurationGetParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationGetOK, error)
 	DevelopmentServerConfigurationDelete(params *DevelopmentServerConfigurationDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationDeleteNoContent, *DevelopmentServerConfigurationDeleteUnauthorized, *DevelopmentServerConfigurationDeleteForbidden, *DevelopmentServerConfigurationDeleteNotFound, *DevelopmentServerConfigurationDeleteInternalServerError, error)
 	DevelopmentServerConfigurationDeleteShort(params *DevelopmentServerConfigurationDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationDeleteNoContent, error)
+	DevelopmentServerConfigurationPatch(params *DevelopmentServerConfigurationPatchParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationPatchNoContent, *DevelopmentServerConfigurationPatchUnauthorized, *DevelopmentServerConfigurationPatchForbidden, *DevelopmentServerConfigurationPatchNotFound, *DevelopmentServerConfigurationPatchInternalServerError, error)
+	DevelopmentServerConfigurationPatchShort(params *DevelopmentServerConfigurationPatchParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationPatchNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -498,6 +500,122 @@ func (a *Client) DevelopmentServerConfigurationDeleteShort(params *DevelopmentSe
 	case *DevelopmentServerConfigurationDeleteNotFound:
 		return nil, v
 	case *DevelopmentServerConfigurationDeleteInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use DevelopmentServerConfigurationPatchShort instead.
+
+DevelopmentServerConfigurationPatch patch a development server configuration
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
+*/
+func (a *Client) DevelopmentServerConfigurationPatch(params *DevelopmentServerConfigurationPatchParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationPatchNoContent, *DevelopmentServerConfigurationPatchUnauthorized, *DevelopmentServerConfigurationPatchForbidden, *DevelopmentServerConfigurationPatchNotFound, *DevelopmentServerConfigurationPatchInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDevelopmentServerConfigurationPatchParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DevelopmentServerConfigurationPatch",
+		Method:             "PATCH",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DevelopmentServerConfigurationPatchReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DevelopmentServerConfigurationPatchNoContent:
+		return v, nil, nil, nil, nil, nil
+
+	case *DevelopmentServerConfigurationPatchUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *DevelopmentServerConfigurationPatchForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *DevelopmentServerConfigurationPatchNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *DevelopmentServerConfigurationPatchInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+DevelopmentServerConfigurationPatchShort patch a development server configuration
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
+*/
+func (a *Client) DevelopmentServerConfigurationPatchShort(params *DevelopmentServerConfigurationPatchParams, authInfo runtime.ClientAuthInfoWriter) (*DevelopmentServerConfigurationPatchNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDevelopmentServerConfigurationPatchParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DevelopmentServerConfigurationPatch",
+		Method:             "PATCH",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DevelopmentServerConfigurationPatchReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DevelopmentServerConfigurationPatchNoContent:
+		return v, nil
+	case *DevelopmentServerConfigurationPatchUnauthorized:
+		return nil, v
+	case *DevelopmentServerConfigurationPatchForbidden:
+		return nil, v
+	case *DevelopmentServerConfigurationPatchNotFound:
+		return nil, v
+	case *DevelopmentServerConfigurationPatchInternalServerError:
 		return nil, v
 
 	default:

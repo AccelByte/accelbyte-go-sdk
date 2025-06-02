@@ -10865,6 +10865,12 @@ Endpoint behavior :
 - If platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName.
 - If limit is not defined, The default limit is 100.
 
+GraphQL-Like Querying:
+- By default, the API only returns the minimum fields -> [displayName, authType, createdAt, uniqueDisplayName, deletionStatus, enabled, emailAddress, skipLoginQueue, testAccount]
+- To include additional fields in the response, specify them in the request params.
+- Supported fields: [country, emailVerified, avatarUrl, enabled]
+- Note: If a value is not in the allowed list, the API will ignore it.
+
 In Multi Tenant mode :
 
 - If super admin search in super admin namespace, the result will be all game admin user
@@ -10945,6 +10951,12 @@ Endpoint behavior :
 - If platformId parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformId they have linked to.
 - If platformBy parameter is defined and by parameter is using thirdparty, endpoint will search users based on the platformUserId or platformDisplayName they have linked to, example value: platformUserId or platformDisplayName.
 - If limit is not defined, The default limit is 100.
+
+GraphQL-Like Querying:
+- By default, the API only returns the minimum fields -> [displayName, authType, createdAt, uniqueDisplayName, deletionStatus, enabled, emailAddress, skipLoginQueue, testAccount]
+- To include additional fields in the response, specify them in the request params.
+- Supported fields: [country, emailVerified, avatarUrl, enabled]
+- Note: If a value is not in the allowed list, the API will ignore it.
 
 In Multi Tenant mode :
 
@@ -18265,6 +18277,7 @@ Notes:
 - This endpoint bulk get users' basic info by userId, max allowed 100 at a time
 - If namespace is game, will search by game user Id, other wise will search by publisher namespace
 - **Result will include displayName(if it exists)**
+- **Substitute endpoint:** /iam/v3/public/namespaces/{namespace}/users/platforms [POST]
 */
 func (a *Client) PublicBulkGetUsers(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, *PublicBulkGetUsersBadRequest, *PublicBulkGetUsersInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -18323,6 +18336,7 @@ Notes:
 - This endpoint bulk get users' basic info by userId, max allowed 100 at a time
 - If namespace is game, will search by game user Id, other wise will search by publisher namespace
 - **Result will include displayName(if it exists)**
+- **Substitute endpoint:** /iam/v3/public/namespaces/{namespace}/users/platforms [POST]
 */
 func (a *Client) PublicBulkGetUsersShort(params *PublicBulkGetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkGetUsersOK, error) {
 	// TODO: Validate the params before sending
@@ -21489,7 +21503,7 @@ Deprecated: 2022-08-10 - Use PublicGetUserByUserIDV3Short instead.
 
 PublicGetUserByUserIDV3 get user by user id
 This endpoint retrieve user attributes. action code: 10129
-**Substitute endpoint:** /v4/public/namespaces/{namespace}/users/{userId} [READ]
+**Substitute endpoint:** /v4/public/namespaces/{namespace}/users/{userId} [GET]
 */
 func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, *PublicGetUserByUserIDV3BadRequest, *PublicGetUserByUserIDV3NotFound, *PublicGetUserByUserIDV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -21548,7 +21562,7 @@ func (a *Client) PublicGetUserByUserIDV3(params *PublicGetUserByUserIDV3Params, 
 /*
 PublicGetUserByUserIDV3Short get user by user id
 This endpoint retrieve user attributes. action code: 10129
-**Substitute endpoint:** /v4/public/namespaces/{namespace}/users/{userId} [READ]
+**Substitute endpoint:** /v4/public/namespaces/{namespace}/users/{userId} [GET]
 */
 func (a *Client) PublicGetUserByUserIDV3Short(params *PublicGetUserByUserIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserByUserIDV3OK, error) {
 	// TODO: Validate the params before sending

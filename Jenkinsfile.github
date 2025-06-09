@@ -20,7 +20,7 @@ jobChannel = env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK ? env.SLACK_CHANNEL_A
 
 pipeline {
   agent {
-    label "extend-builder-batch && linux-amd64"
+    label "extend-builder-ci && linux-amd64"
   }
   stages {
     stage('Prepare') {

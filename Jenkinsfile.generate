@@ -35,7 +35,7 @@ def getTimestampUtc() {
 
 pipeline {
   agent {
-    label "extend-builder-batch"
+    label "extend-builder-batch && linux-amd64"
   }
 
   stages {

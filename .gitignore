@@ -214,3 +214,6 @@ modules.xml
 .DS_Store?
 
 .aws-sam
+
+lint.err
+samples.err

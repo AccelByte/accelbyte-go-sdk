@@ -9,7 +9,7 @@ This tutorial will explain on how to use AccelByte Go Extend SDK to create simpl
 	- `NAMESPACE:<namespace>:USER:*:NOTIFICATION` CREATE, UPDATE
 	- `NAMESPACE:<namespace>:USER` READ
 - Download the latest [Go SDK](https://github.com/AccelByte/accelbyte-go-sdk)
-- Read [Go SDK Getting Started Guide](https://docs.accelbyte.io/gaming-services/services/extend/extend-sdk/getting-started-with-the-extend-sdk/) on how to integrate SDK into your project.
+- Read [Go SDK Getting Started Guide](https://docs.accelbyte.io/gaming-services/services/extend/extend-sdk/get-started-with-extend-sdk/) on how to integrate SDK into your project.
 - AWS account with enough permission to deploy Lambda function (optional).
 - At least two username registered in AccelByte Gaming Services for testing purpose.
 

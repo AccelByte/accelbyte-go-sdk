@@ -5,12 +5,15 @@
 package integration_test
 
 import (
+	"errors"
+	"strings"
 	"testing"
 	"time"
 
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/csm"
 	"github.com/stretchr/testify/assert"
@@ -231,8 +234,21 @@ func TestIntegrationEnvironmentVariable(t *testing.T) {
 // }
 
 func TestIntegrationCleanupExtendApp(t *testing.T) {
+	appClientID, err := getExtendAppClientID(extendAppName, namespace)
+	assert.NoError(t, err)
+
+	// CASE Delete extend app's IAM Client
+	err = clientService.AdminDeleteClientV3Short(&clients.AdminDeleteClientV3Params{
+		Namespace: namespace,
+		ClientID:  appClientID,
+	})
+	// ESAC
+
+	// Assert
+	assert.NoError(t, err)
+
 	// CASE Delete extend app secret
-	err := csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
+	err = csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
 		Namespace: namespace,
 		App:       extendAppName,
 		ConfigID:  secretConfigID,
@@ -270,4 +286,26 @@ func TestIntegrationCleanupExtendApp(t *testing.T) {
 
 	// Assert
 	assert.NoError(t, err, "should not return an error")
+}
+
+func getExtendAppClientID(extendAppName string, namespace string) (string, error) {
+	secretResp, err := csmConfigService.GetListOfSecretsV2Short(&configuration_v2.GetListOfSecretsV2Params{
+		App:       extendAppName,
+		Namespace: namespace,
+	})
+	if err != nil {
+		return "", err
+	}
+
+	if secretResp == nil {
+		return "", errors.New("get list of secret returning empty response")
+	}
+
+	for _, secret := range secretResp.Data {
+		if strings.ToUpper(*secret.ConfigName) == "AB_CLIENT_ID" {
+			return *secret.Value, nil
+		}
+	}
+
+	return "", errors.New("app client ID not found")
 }

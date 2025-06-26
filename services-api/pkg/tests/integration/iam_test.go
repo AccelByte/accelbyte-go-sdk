@@ -60,6 +60,11 @@ var (
 		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:  tokenRepository,
 	}
+	clientService = &iam.ClientsService{
+		Client: factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		TokenRepository: tokenRepository,
+	}
 	codeChallengeMethod = o_auth2_0.AuthorizeV3S256Constant
 	redirectURI         string
 	scope               = "commerce account social publishing analytics"

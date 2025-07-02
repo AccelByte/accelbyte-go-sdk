@@ -5,18 +5,12 @@
 package utils
 
 import (
-	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
-	"go.opentelemetry.io/contrib/propagators/b3"
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/exporters/zipkin"
-	"go.opentelemetry.io/otel/propagation"
-	"go.opentelemetry.io/otel/sdk/resource"
-	sdkTrace "go.opentelemetry.io/otel/sdk/trace"
-	semanticConventions "go.opentelemetry.io/otel/semconv/v1.12.0"
 	"net/http"
 	"os"
-	"time"
+
+	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
+	"go.opentelemetry.io/contrib/propagators/b3"
+	"go.opentelemetry.io/otel/propagation"
 
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
@@ -71,16 +65,6 @@ func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Run
 	// optional custom request header
 	transport.Transport = SetLogger(transport.Transport)
 
-	tracerProvider, err := NewTracerProvider(UserAgentSDK, environment, id)
-	if err != nil {
-		// TODO: change function signature to accommodate error
-		logrus.Fatalf("failed to create tracer provider: %v", err)
-	}
-
-	// Register our TracerProvider as the global so any imported
-	// instrumentation in the future will default to using it.
-	otel.SetTracerProvider(tracerProvider)
-
 	b := b3.New(b3.WithInjectEncoding(b3.B3MultipleHeader))
 	propagators := propagation.NewCompositeTextMapPropagator(
 		b,
@@ -89,25 +73,4 @@ func CustomTransportRuntime(transport *httptransport.Runtime) *httptransport.Run
 	transport.Transport = otelhttp.NewTransport(transport.Transport, otelhttp.WithPropagators(propagators))
 
 	return transport
-}
-
-func NewTracerProvider(serviceName string, environment string, id int64) (*sdkTrace.TracerProvider, error) {
-	zipkinEndpoint := GetEnv("OTEL_EXPORTER_ZIPKIN_ENDPOINT", "http://localhost:9411/api/v2/spans")
-	exporter, err := zipkin.New(zipkinEndpoint)
-	if err != nil {
-		return nil, err
-	}
-
-	res := resource.NewWithAttributes(
-		semanticConventions.SchemaURL,
-		semanticConventions.ServiceNameKey.String(serviceName),
-		attribute.String("environment", environment),
-		attribute.Int64("ID", id),
-	)
-
-	return sdkTrace.NewTracerProvider(
-		sdkTrace.WithBatcher(exporter, sdkTrace.WithBatchTimeout(time.Second*1)),
-		sdkTrace.WithResource(res),
-		//sdkTrace.WithSampler(sdkTrace.AlwaysSample()), // not sure if need to be enabled
-	), nil
 }

@@ -159,6 +159,17 @@ if err != nil {
 }
 ```
 
+It’s possible to pass a context created or derived from another method into LoginClientWithContext(ctx, ...), allowing you to carry tracing information or other context-related data through the login process.
+
+```go
+ctx := context.Background()
+
+err := oAuth20Service.LoginClientWihContext(ctx, clientId, clientSecret)
+if err != nil {
+    return err
+}
+```
+
 :bulb: The use of a Public OAuth Client is highly discouraged! Please ensure that you both set the Client ID and Client Secret.
 
 ## Parse Access Token

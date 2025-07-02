@@ -374,8 +374,9 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 	return nil
 }
 
-// LoginClientContext is a custom wrapper used to log in with context, clientId, and clientSecret
-func (o *OAuth20Service) LoginClientContext(ctx context.Context, clientId, clientSecret *string) error {
+// LoginClientContext is a custom wrapper used to log in with context, clientId, and clientSecret.
+// Context in this method can be used for tracing capability. 
+func (o *OAuth20Service) LoginClientWithContext(ctx context.Context, clientId, clientSecret *string) error {
 	if clientId == nil {
 		id := o.ConfigRepository.GetClientId()
 		clientId = &id

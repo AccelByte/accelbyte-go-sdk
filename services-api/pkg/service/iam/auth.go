@@ -374,6 +374,65 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 	return nil
 }
 
+// LoginClientContext is a custom wrapper used to log in with context, clientId, and clientSecret
+func (o *OAuth20Service) LoginClientContext(ctx context.Context, clientId, clientSecret *string) error {
+	if clientId == nil {
+		id := o.ConfigRepository.GetClientId()
+		clientId = &id
+		if clientSecret == nil {
+			secret := o.ConfigRepository.GetClientSecret()
+			clientSecret = &secret
+		}
+	} else {
+		if clientSecret == nil {
+			clientSecret = &emptyString
+		}
+	}
+	if len(*clientId) == 0 {
+		return errors.New("client not registered")
+	}
+	if len(*clientSecret) == 0 {
+		logrus.Warningln("The use of a Public OAuth Client is highly discouraged!")
+	}
+	param := &o_auth2_0.TokenGrantV3Params{
+		Context: ctx,
+		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
+	}
+	accessToken, err :=
+		o.Client.OAuth20.TokenGrantV3Short(param, client.BasicAuth(*clientId, *clientSecret))
+	if err != nil {
+		return err
+	}
+	if accessToken == nil {
+		return errors.New("empty access token")
+	}
+	err = o.TokenRepository.Store(*accessToken.GetPayload())
+	if err != nil {
+		return err
+	}
+
+	if o.RefreshTokenRepository == nil {
+		o = &OAuth20Service{
+			Client:                 o.Client,
+			ConfigRepository:       o.ConfigRepository,
+			TokenRepository:        o.TokenRepository,
+			RefreshTokenRepository: auth.DefaultRefreshTokenImpl(),
+		}
+	}
+	o = &OAuth20Service{
+		Client:                 o.Client,
+		ConfigRepository:       o.ConfigRepository,
+		TokenRepository:        o.TokenRepository,
+		RefreshTokenRepository: o.RefreshTokenRepository,
+	}
+
+	if !o.RefreshTokenRepository.DisableAutoRefresh() {
+		auth.RefreshTokenScheduler(o.GetAuthSession(), "client")
+	}
+
+	return nil
+}
+
 // LoginPlatform is a custom wrapper used to log in with clientId and clientSecret
 func (o *OAuth20Service) LoginPlatform(input *o_auth2_0.PlatformTokenGrantV3Params) error {
 	authInfoWriter := input.AuthInfoWriter

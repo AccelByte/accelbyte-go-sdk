@@ -258,7 +258,7 @@ func (v *TokenValidator) fetchClientToken() error {
 	clientId := v.AuthService.ConfigRepository.GetClientId()
 	clientSecret := v.AuthService.ConfigRepository.GetClientSecret()
 
-	return v.AuthService.LoginClient(&clientId, &clientSecret)
+	return v.AuthService.LoginClientContext(v.Ctx, &clientId, &clientSecret)
 }
 
 func (v *TokenValidator) fetchJWKSet() error {

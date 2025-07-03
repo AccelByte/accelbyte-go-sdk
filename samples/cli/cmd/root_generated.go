@@ -14,9 +14,6 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/chat"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave"
 	"github.com/AccelByte/sample-apps/cmd/csm"
-	"github.com/AccelByte/sample-apps/cmd/dsartifact"
-	"github.com/AccelByte/sample-apps/cmd/dslogmanager"
-	"github.com/AccelByte/sample-apps/cmd/dsmc"
 	"github.com/AccelByte/sample-apps/cmd/gametelemetry"
 	"github.com/AccelByte/sample-apps/cmd/gdpr"
 	"github.com/AccelByte/sample-apps/cmd/group"
@@ -28,7 +25,6 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/loginqueue"
 	"github.com/AccelByte/sample-apps/cmd/match2"
 	"github.com/AccelByte/sample-apps/cmd/platform"
-	"github.com/AccelByte/sample-apps/cmd/qosm"
 	"github.com/AccelByte/sample-apps/cmd/reporting"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass"
 	"github.com/AccelByte/sample-apps/cmd/session"
@@ -44,9 +40,6 @@ func initGenerated() {
 	RootCmd.AddCommand(chat.ChatCmd)
 	RootCmd.AddCommand(cloudsave.CloudsaveCmd)
 	RootCmd.AddCommand(csm.CsmCmd)
-	RootCmd.AddCommand(dsartifact.DsartifactCmd)
-	RootCmd.AddCommand(dslogmanager.DslogmanagerCmd)
-	RootCmd.AddCommand(dsmc.DsmcCmd)
 	RootCmd.AddCommand(gametelemetry.GametelemetryCmd)
 	RootCmd.AddCommand(gdpr.GdprCmd)
 	RootCmd.AddCommand(group.GroupCmd)
@@ -58,7 +51,6 @@ func initGenerated() {
 	RootCmd.AddCommand(loginqueue.LoginqueueCmd)
 	RootCmd.AddCommand(match2.Match2Cmd)
 	RootCmd.AddCommand(platform.PlatformCmd)
-	RootCmd.AddCommand(qosm.QosmCmd)
 	RootCmd.AddCommand(reporting.ReportingCmd)
 	RootCmd.AddCommand(seasonpass.SeasonpassCmd)
 	RootCmd.AddCommand(session.SessionCmd)

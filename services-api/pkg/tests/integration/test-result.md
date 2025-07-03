@@ -23,18 +23,6 @@
 |✔|PublicGetUserProfileInfo|||
 |✔|PublicUpdateUserProfile|||
 
-## DSLogManager
-| status | operation-id | error | permissions |
-|-|-|-|-|
-|✔|ListTerminatedServers|||
-
-## DSMC
-| status | operation-id | error | permissions |
-|-|-|-|-|
-|✔|CreateSession|||
-|✔|ClaimServer|||
-|✔|GetSession|||
-
 ## EventLog
 | status | operation-id | error | permissions |
 |-|-|-|-|

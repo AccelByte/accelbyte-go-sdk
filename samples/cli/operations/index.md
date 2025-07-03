@@ -15,12 +15,6 @@
 
 [csm](./csm.md)
 
-[dsartifact](./dsartifact.md)
-
-[dslogmanager](./dslogmanager.md)
-
-[dsmc](./dsmc.md)
-
 [gametelemetry](./gametelemetry.md)
 
 [gdpr](./gdpr.md)
@@ -42,8 +36,6 @@
 [match2](./match2.md)
 
 [platform](./platform.md)
-
-[qosm](./qosm.md)
 
 [reporting](./reporting.md)
 

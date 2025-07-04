@@ -48,7 +48,7 @@ func UploadBinaryFile(url, token, filePath string) (*http.Response, error) {
 	}
 	defer file.Close()
 
-	resp, err := SimpleHTTPCall(GetClient(), url, http.MethodPost, "Bearer "+token, writer.FormDataContentType(), body)
+	resp, err := SimpleHTTPCall(GetClient(), url, http.MethodPut, "Bearer "+token, writer.FormDataContentType(), body)
 	if err != nil {
 		return nil, err
 	}

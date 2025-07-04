@@ -62,7 +62,7 @@ func createTempFile(t *testing.T, content string) *os.File {
 
 func TestUploadBinaryFile(t *testing.T) {
 	// Prepare
-	ts := setupMockServer(t, http.MethodPost, "")
+	ts := setupMockServer(t, http.MethodPut, "")
 	defer ts.Close()
 
 	file := createTempFile(t, "This is a test file content")

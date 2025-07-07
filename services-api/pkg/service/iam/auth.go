@@ -124,6 +124,35 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 	return nil
 }
 
+func (o *OAuth20Service) GrantTokenAuthorizationCodeWithContext(ctx context.Context, code, codeVerifier, redirectURI string) error {
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	if len(clientID) == 0 {
+		return errors.New("client not registered")
+	}
+	param := &o_auth2_0.TokenGrantV3Params{
+		Code:         &code,
+		CodeVerifier: &codeVerifier,
+		GrantType:    o_auth2_0.TokenGrantV3AuthorizationCodeConstant,
+		RedirectURI:  &redirectURI,
+		Context:      ctx,
+	}
+
+	accessToken, err := o.Client.OAuth20.TokenGrantV3Short(param, client.BasicAuth(clientID, clientSecret))
+	if err != nil {
+		return err
+	}
+	if accessToken == nil {
+		return errors.New("empty access token")
+	}
+	err = o.TokenRepository.Store(*accessToken.GetPayload())
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (o *OAuth20Service) Authenticate(requestID, username, password string) (string, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
@@ -141,6 +170,47 @@ func (o *OAuth20Service) Authenticate(requestID, username, password string) (str
 		RequestID:  requestID,
 		UserName:   username,
 		HTTPClient: httpClient,
+	}
+	authenticated, err :=
+		o.Client.OAuth20Extension.UserAuthenticationV3Short(param, client.BasicAuth(clientID, clientSecret))
+	if err != nil {
+		return "", err
+	}
+	parsedURL, err := url.Parse(authenticated.Location)
+	if err != nil {
+		return "", err
+	}
+	query, err := url.ParseQuery(parsedURL.RawQuery)
+	if err != nil {
+		return "", err
+	}
+	errorDescParam := query["error_description"]
+	if errorDescParam != nil {
+		return "", errors.New(errorDescParam[0])
+	}
+	code := query[o_auth2_0.AuthorizeV3CodeConstant][0]
+
+	return code, nil
+}
+
+func (o *OAuth20Service) AuthenticateWithContext(ctx context.Context, requestID, username, password string) (string, error) {
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	if len(clientID) == 0 {
+		return "", errors.New("client not registered")
+	}
+	httpClient := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	param := &o_auth2_0_extension.UserAuthenticationV3Params{
+		ClientID:   &clientID,
+		Password:   password,
+		RequestID:  requestID,
+		UserName:   username,
+		HTTPClient: httpClient,
+		Context:    ctx,
 	}
 	authenticated, err :=
 		o.Client.OAuth20Extension.UserAuthenticationV3Short(param, client.BasicAuth(clientID, clientSecret))
@@ -212,11 +282,68 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 	return requestID, nil
 }
 
+func (o *OAuth20Service) AuthorizeWithContext(ctx context.Context, scope, challenge, challengeMethod string) (string, error) {
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	if len(clientID) == 0 {
+		return "", errors.New("client not registered")
+	}
+
+	httpClient := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+
+	param := &o_auth2_0.AuthorizeV3Params{
+		ClientID:            clientID,
+		CodeChallenge:       &challenge,
+		CodeChallengeMethod: &challengeMethod,
+		ResponseType:        o_auth2_0.AuthorizeV3CodeConstant,
+		Scope:               &scope,
+		HTTPClient:          httpClient,
+		Context:             ctx,
+	}
+	found, err := o.Client.OAuth20.AuthorizeV3Short(param, client.BasicAuth(clientID, clientSecret))
+	if err != nil {
+		return "", err
+	}
+	parsedURL, err := url.Parse(found.Location)
+	if err != nil {
+		return "", err
+	}
+	query, err := url.ParseQuery(parsedURL.RawQuery)
+	if err != nil {
+		return "", err
+	}
+	// the parsed query might return an error(s) message
+	// so we check if the parsed query has it
+	if e, ok := query["error"]; ok {
+		d, ok := query["error_description"]
+		if !ok {
+			return "", fmt.Errorf("%s", strings.Join(e, " "))
+		}
+
+		return "", fmt.Errorf("%s: %s", strings.Join(e, " "), strings.Join(d, " "))
+	}
+	requestID := query["request_id"][0]
+
+	return requestID, nil
+}
+
 // Login is a custom wrapper used to login with username and password
 func (o *OAuth20Service) Login(username, password string) error {
 	scope := "commerce account social publishing analytics"
 
 	return o.LoginWithScope(username, password, scope)
+}
+
+// LoginWithContext is a custom wrapper used to login with username and password
+// Context in this method can be used for tracing capability.
+func (o *OAuth20Service) LoginWithContext(ctx context.Context, username, password string) error {
+	scope := "commerce account social publishing analytics"
+
+	return o.LoginWithContextAndScope(ctx, username, password, scope)
 }
 
 // LoginOrRefresh is a custom wrapper that performs user authentication with automatic token refresh.
@@ -259,6 +386,49 @@ func (o *OAuth20Service) LoginWithScope(username, password, scope string) error 
 		return err
 	}
 	err = o.GrantTokenAuthorizationCode(code, codeVerifier, "")
+	if err != nil {
+		return err
+	}
+
+	if o.RefreshTokenRepository == nil {
+		o = &OAuth20Service{
+			Client:                 o.Client,
+			ConfigRepository:       o.ConfigRepository,
+			TokenRepository:        o.TokenRepository,
+			RefreshTokenRepository: auth.DefaultRefreshTokenImpl(),
+		}
+	}
+	o = &OAuth20Service{
+		Client:                 o.Client,
+		ConfigRepository:       o.ConfigRepository,
+		TokenRepository:        o.TokenRepository,
+		RefreshTokenRepository: o.RefreshTokenRepository,
+	}
+
+	if !o.RefreshTokenRepository.DisableAutoRefresh() {
+		auth.RefreshTokenScheduler(o.GetAuthSession(), "user")
+	}
+
+	return nil
+}
+
+func (o *OAuth20Service) LoginWithContextAndScope(ctx context.Context, username, password, scope string) error {
+	codeVerifierGenerator, err := utils.CreateCodeVerifier()
+	if err != nil {
+		return err
+	}
+	codeVerifier := codeVerifierGenerator.String()
+	challenge := codeVerifierGenerator.CodeChallengeS256()
+	challengeMethod := o_auth2_0.AuthorizeV3S256Constant
+	requestID, err := o.AuthorizeWithContext(ctx, scope, challenge, challengeMethod)
+	if err != nil {
+		return err
+	}
+	code, err := o.AuthenticateWithContext(ctx, requestID, username, password)
+	if err != nil {
+		return err
+	}
+	err = o.GrantTokenAuthorizationCodeWithContext(ctx, code, codeVerifier, "")
 	if err != nil {
 		return err
 	}
@@ -412,7 +582,7 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 	return nil
 }
 
-// LoginClientContext is a custom wrapper used to log in with context, clientId, and clientSecret.
+// LoginClientWithContext is a custom wrapper used to log in with context, clientId, and clientSecret.
 // Context in this method can be used for tracing capability.
 func (o *OAuth20Service) LoginClientWithContext(ctx context.Context, clientId, clientSecret *string) error {
 	if clientId == nil {
@@ -534,9 +704,82 @@ func (o *OAuth20Service) LoginPlatform(input *o_auth2_0.PlatformTokenGrantV3Para
 	return nil
 }
 
+// LoginPlatformWithContext is a custom wrapper used to log in with clientId and clientSecret
+// Context in this method can be used for tracing capability.
+func (o *OAuth20Service) LoginPlatformWithContext(ctx context.Context, input *o_auth2_0.PlatformTokenGrantV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"basic"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(o.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  o.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+
+	if ctx != nil {
+		input = input.WithContext(ctx)
+	}
+
+	accessToken, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+	if accessToken == nil {
+		return errors.New("empty access token")
+	}
+	accessTokenPayload := accessToken.GetPayload()
+
+	// convert OauthmodelTokenResponse to OauthmodelTokenResponseV3
+	var accessTokenV3 iamclientmodels.OauthmodelTokenResponseV3
+	temporaryVariable, _ := json.Marshal(accessTokenPayload)
+	err = json.Unmarshal(temporaryVariable, &accessTokenV3)
+	if err != nil {
+		return err
+	}
+
+	err = o.TokenRepository.Store(accessTokenV3)
+	if err != nil {
+		return err
+	}
+
+	if o.RefreshTokenRepository == nil {
+		o = &OAuth20Service{
+			Client:                 o.Client,
+			ConfigRepository:       o.ConfigRepository,
+			TokenRepository:        o.TokenRepository,
+			RefreshTokenRepository: auth.DefaultRefreshTokenImpl(),
+		}
+	}
+	o = &OAuth20Service{
+		Client:                 o.Client,
+		ConfigRepository:       o.ConfigRepository,
+		TokenRepository:        o.TokenRepository,
+		RefreshTokenRepository: o.RefreshTokenRepository,
+	}
+
+	if !o.RefreshTokenRepository.DisableAutoRefresh() {
+		auth.RefreshTokenScheduler(o.GetAuthSession(), "user")
+	}
+
+	return nil
+}
+
 // LoginUser is a custom wrapper used to log in with username and password
 func (o *OAuth20Service) LoginUser(username, password string) error {
 	return o.Login(username, password)
+}
+
+// LoginUserWithContext is a custom wrapper used to log in with username and password
+// Context in this method can be used for tracing capability.
+func (o *OAuth20Service) LoginUserWithContext(ctx context.Context, username, password string) error {
+	return o.LoginWithContext(ctx, username, password)
 }
 
 // Logout is a custom wrapper used to logout with client service oauth2 revoke
@@ -547,6 +790,36 @@ func (o *OAuth20Service) Logout() error {
 	}
 	param := &o_auth2_0.TokenRevocationV3Params{
 		Token: *accessToken.AccessToken,
+	}
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, err = o.Client.OAuth20.TokenRevocationV3Short(param, client.BasicAuth(clientID, clientSecret))
+	if err != nil {
+		logrus.Error(err)
+
+		return err
+	}
+
+	err = o.TokenRepository.RemoveToken()
+	if err != nil {
+		logrus.Error(err)
+
+		return err
+	}
+
+	return nil
+}
+
+// LogoutWithContext is a custom wrapper used to logout with client service oauth2 revoke
+// Context in this method can be used for tracing capability.
+func (o *OAuth20Service) LogoutWithContext(ctx context.Context) error {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	param := &o_auth2_0.TokenRevocationV3Params{
+		Token:   *accessToken.AccessToken,
+		Context: ctx,
 	}
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()

@@ -219,6 +219,23 @@ func (o *OAuth20Service) Login(username, password string) error {
 	return o.LoginWithScope(username, password, scope)
 }
 
+// LoginOrRefresh is a custom wrapper that performs user authentication with automatic token refresh.
+// Unlike the basic Login method, this method checks if an existing token is present and valid.
+// If the token has expired but the refresh token is still valid, it refreshes the token automatically.
+// If no token exists or the refresh token has expired, it performs a fresh login using the provided credentials.
+//
+// Example:
+//
+//	oAuth20Service := &iam.OAuth20Service{
+//		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+//		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+//		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
+//		RefreshTokenRepository: &auth.RefreshTokenImpl{
+//			RefreshRate: 0.5,
+//			AutoRefresh: false, // must be set to false for on demand refresh token
+//		},
+//	}
+//	err := oAuth20Service.LoginOrRefresh("username", "password")
 func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
 	scope := "commerce account social publishing analytics"
 
@@ -375,7 +392,7 @@ func (o *OAuth20Service) LoginClient(clientId, clientSecret *string) error {
 }
 
 // LoginClientContext is a custom wrapper used to log in with context, clientId, and clientSecret.
-// Context in this method can be used for tracing capability. 
+// Context in this method can be used for tracing capability.
 func (o *OAuth20Service) LoginClientWithContext(ctx context.Context, clientId, clientSecret *string) error {
 	if clientId == nil {
 		id := o.ConfigRepository.GetClientId()
@@ -396,7 +413,7 @@ func (o *OAuth20Service) LoginClientWithContext(ctx context.Context, clientId, c
 		logrus.Warningln("The use of a Public OAuth Client is highly discouraged!")
 	}
 	param := &o_auth2_0.TokenGrantV3Params{
-		Context: ctx,
+		Context:   ctx,
 		GrantType: o_auth2_0.TokenGrantV3ClientCredentialsConstant,
 	}
 	accessToken, err :=

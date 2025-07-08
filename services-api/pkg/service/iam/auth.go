@@ -28,6 +28,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+const (
+	defaultScope = "commerce account social publishing analytics"
+)
+
 var (
 	emptyString = ""
 	locker      uint32
@@ -333,17 +337,13 @@ func (o *OAuth20Service) AuthorizeWithContext(ctx context.Context, scope, challe
 
 // Login is a custom wrapper used to login with username and password
 func (o *OAuth20Service) Login(username, password string) error {
-	scope := "commerce account social publishing analytics"
-
-	return o.LoginWithScope(username, password, scope)
+	return o.LoginWithScope(username, password, defaultScope)
 }
 
 // LoginWithContext is a custom wrapper used to login with username and password
 // Context in this method can be used for tracing capability.
 func (o *OAuth20Service) LoginWithContext(ctx context.Context, username, password string) error {
-	scope := "commerce account social publishing analytics"
-
-	return o.LoginWithContextAndScope(ctx, username, password, scope)
+	return o.LoginWithContextAndScope(ctx, username, password, defaultScope)
 }
 
 // LoginOrRefresh is a custom wrapper that performs user authentication with automatic token refresh.
@@ -364,9 +364,7 @@ func (o *OAuth20Service) LoginWithContext(ctx context.Context, username, passwor
 //	}
 //	err := oAuth20Service.LoginOrRefresh("username", "password")
 func (o *OAuth20Service) LoginOrRefresh(username, password string) error {
-	scope := "commerce account social publishing analytics"
-
-	return o.LoginOrRefreshWithScope(username, password, scope)
+	return o.LoginOrRefreshWithScope(username, password, defaultScope)
 }
 
 func (o *OAuth20Service) LoginWithScope(username, password, scope string) error {

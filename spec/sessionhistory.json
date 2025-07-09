@@ -1,0 +1,389 @@
+{
+  "host": "demo.accelbyte.io",
+  "info": {
+    "description": "Justice Session History Service",
+    "title": "justice-session-history-service",
+    "version": "1.14.2"
+  },
+  "schemes": [
+    "https"
+  ],
+  "externalDocs": {
+    "description": "API Docs",
+    "url": "https://stage.accelbyte.io/sessionhistory/apidocs"
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ],
+  "swagger": "2.0",
+  "paths": {
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \"matchFound\"\n\t\t\t\t\t\t    2. \"matchNotFound\"\n\t\t\t\t\t\t    3. \"flexed\"\nTicketID\t\t\t\t  : ticket ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
+        "operationId": "createXrayTicketObservability",
+        "parameters": [
+          {
+            "description": "Create ticket observability request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayTicketObservabilityRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayTicketObservabilityResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "summary": "Create ticket observability request",
+        "tags": [
+          "XRay"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [CREATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/sessionhistory/v2/admin/namespaces/{namespace}/xray/tickets/bulk": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create bulk ticket observability request\nRequest body details (all attributes are optional):\nTimestamp \t\t\t\t  : timestamp when calling this endpoint           \nAction    \t\t\t\t  : support one of the following value: \n\t\t\t\t\t\t    1. \"matchFound\"\n\t\t\t\t\t\t    2. \"matchNotFound\"\n\t\t\t\t\t\t    3. \"flexed\"\nPartyID\t\t\t\t\t  : ticket Party ID            \nMatchID\t\t\t\t\t  : match ID will be filled only when match found\nNamespace           \t  : ticket current namespace\nGameMode            \t  : ticket current matchpool\nActiveAllianceRule  \t  : current active alliance ruleset \nActiveMatchingRule  \t  : current active matching ruleset\nFunction            \t  : name of the function that called the endpoint \nIteration           \t  : total iteration before match found\nTimeToMatchSec      \t  : time to match (in seconds) will be filled only when match found \nUnmatchReason       \t  : reason when unable to find match\nRemainingTickets    \t  : remaining ticket when unable to find match\nRemainingPlayersPerTicket : remaining players when unable to find match\nUnbackfillReason          : reason when unable to backfill\nIsBackfillMatch        \t  : flag to distinguish between new match and backfill match\nIsRuleSetFlexed       \t  : flag if ruleset is getting flexed\nTickID          \t\t  : tick id for the matchmaking tick\nSessionTickID \t\t\t  : session tick id for differentiate session when doing matches\n",
+        "operationId": "createXrayBulkTicketObservability",
+        "parameters": [
+          {
+            "description": "Create bulk ticket observability request",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayBulkTicketObservabilityRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodels.XRayBulkTicketObservabilityResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "summary": "Create bulk ticket observability request",
+        "tags": [
+          "XRay"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:HISTORY [CREATE]"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apimodels.XRayBulkTicketObservabilityRequest": {
+      "properties": {
+        "ticketObservabilities": {
+          "items": {
+            "$ref": "#/definitions/apimodels.XRayTicketObservabilityRequest"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ticketObservabilities"
+      ]
+    },
+    "apimodels.XRayBulkTicketObservabilityResponse": {
+      "properties": {
+        "ticketIDs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ticketIDs"
+      ]
+    },
+    "apimodels.XRayTicketObservabilityRequest": {
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "activeAllianceRule": {
+          "$ref": "#/definitions/models.AllianceRule"
+        },
+        "activeMatchingRule": {
+          "items": {
+            "$ref": "#/definitions/models.MatchingRule"
+          },
+          "type": "array"
+        },
+        "function": {
+          "type": "string"
+        },
+        "gameMode": {
+          "type": "string"
+        },
+        "isBackfillMatch": {
+          "type": "boolean"
+        },
+        "isRuleSetFlexed": {
+          "type": "boolean"
+        },
+        "iteration": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "matchID": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "remainingPlayersPerTicket": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "remainingTickets": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sessionTickID": {
+          "type": "string"
+        },
+        "tickID": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "ticketID": {
+          "type": "string"
+        },
+        "timeToMatchSec": {
+          "format": "double",
+          "type": "number"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "unbackfillReason": {
+          "type": "string"
+        },
+        "unmatchReason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "gameMode",
+        "isBackfillMatch",
+        "isRuleSetFlexed",
+        "namespace",
+        "sessionTickID",
+        "tickID",
+        "ticketID",
+        "timestamp"
+      ]
+    },
+    "apimodels.XRayTicketObservabilityResponse": {
+      "properties": {
+        "ticketID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ticketID"
+      ]
+    },
+    "models.AllianceRule": {
+      "properties": {
+        "max_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "min_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "player_max_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "player_min_number": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_number",
+        "min_number",
+        "player_max_number",
+        "player_min_number"
+      ]
+    },
+    "models.MatchingRule": {
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "criteria": {
+          "type": "string",
+          "x-nullable": false
+        },
+        "reference": {
+          "format": "double",
+          "type": "number",
+          "x-nullable": false
+        }
+      },
+      "required": [
+        "attribute",
+        "criteria",
+        "reference"
+      ]
+    },
+    "response.Error": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "errorCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "attributes",
+        "errorCode",
+        "errorMessage",
+        "message",
+        "name"
+      ]
+    }
+  },
+  "x-docs": {
+    "alias": "sessionhistory",
+    "host": "https://stage.accelbyte.io",
+    "path": "/sessionhistory/apidocs/api.json"
+  },
+  "x-version": {
+    "buildDate": "2025-07-03T06:17:25+00:00",
+    "gitHash": "9c49ec98900ed0931d25c27d0ac66bce7b31ed99",
+    "version": "1.14.2",
+    "version-roles-seeding": "1.2.90"
+  }
+}

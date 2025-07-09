@@ -1,3 +1,9 @@
+<a name="v0.81.0"></a>
+## [v0.81.0]
+### chore
+- **spec:** add back sessionhistory
+
+
 <a name="v0.80.0"></a>
 ## [v0.80.0]
 ### feat

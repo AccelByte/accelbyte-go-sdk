@@ -12,7 +12,7 @@ import (
 // UserAgentSDK
 // attention: this var will be incremented automatically on `Makefile version` using regex
 // therefore the patterns need to comply
-const UserAgentSDK = "AccelByteGoSDK/v0.80.0"
+const UserAgentSDK = "AccelByteGoSDK/v0.80.1"
 
 func UserAgentGen() string {
 	appName := os.Getenv("APP_CLIENT_NAME")

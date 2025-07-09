@@ -32,6 +32,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/reporting"
 	"github.com/AccelByte/sample-apps/cmd/seasonpass"
 	"github.com/AccelByte/sample-apps/cmd/session"
+	"github.com/AccelByte/sample-apps/cmd/sessionhistory"
 	"github.com/AccelByte/sample-apps/cmd/social"
 	"github.com/AccelByte/sample-apps/cmd/ugc"
 )
@@ -62,6 +63,7 @@ func initGenerated() {
 	RootCmd.AddCommand(reporting.ReportingCmd)
 	RootCmd.AddCommand(seasonpass.SeasonpassCmd)
 	RootCmd.AddCommand(session.SessionCmd)
+	RootCmd.AddCommand(sessionhistory.SessionhistoryCmd)
 	RootCmd.AddCommand(social.SocialCmd)
 	RootCmd.AddCommand(ugc.UgcCmd)
 }

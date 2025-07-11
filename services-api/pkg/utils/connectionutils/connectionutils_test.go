@@ -256,6 +256,8 @@ func TestWebSocketReconnect_Case2(t *testing.T) {
 	// 8. Assert that the value from the WebSocket Client using GetData("LobbySessionId") is null or empty.
 	assert.Empty(t, lobby.WSConn.GetData(connectionutils.LobbySessionID))
 
+	time.Sleep(3 * time.Second)
+
 	// 9. Start a new connection with existing lobby WS client instance to the Mock Server’s Lobby Service.
 	success, err = lobby.Connect(false)
 	assert.True(t, success)

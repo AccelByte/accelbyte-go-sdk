@@ -311,7 +311,7 @@ func (c *LobbyWebSocketClient) ClearData() {
 	}
 }
 
-func (c *LobbyWebSocketClient) ReadWSMessage(done chan struct{}, messageHandler func(message []byte)) {
+func (c *LobbyWebSocketClient) ReadWSMessage(done <-chan struct{}, messageHandler func(message []byte)) {
 	for {
 		select {
 		case <-done:
@@ -323,7 +323,8 @@ func (c *LobbyWebSocketClient) ReadWSMessage(done chan struct{}, messageHandler 
 			var err error
 			_, msg, err = c.WSConn.Conn.ReadMessage()
 			if err != nil {
-				logrus.Errorf("read message failed: %v", err)
+				logrus.Errorf("read message failed, stop read: %v", err)
+				return
 			} else {
 				if len(msg) > 0 {
 					c.OnMessage(string(msg))

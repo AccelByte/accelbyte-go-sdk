@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsV2AppType<EnumValue>Constant instead.
 // Get the enum in QueryItemsV2Params
 const (
 	QueryItemsV2DEMOConstant     = "DEMO"
@@ -27,12 +28,14 @@ const (
 	QueryItemsV2SOFTWAREConstant = "SOFTWARE"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsV2ItemStatus<EnumValue>Constant instead.
 // Get the enum in QueryItemsV2Params
 const (
 	QueryItemsV2ACTIVEConstant   = "ACTIVE"
 	QueryItemsV2INACTIVEConstant = "INACTIVE"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsV2ItemType<EnumValue>Constant instead.
 // Get the enum in QueryItemsV2Params
 const (
 	QueryItemsV2APPConstant          = "APP"
@@ -48,6 +51,7 @@ const (
 	QueryItemsV2SUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsV2SortBy<EnumValue>Constant instead.
 // Get the enum in QueryItemsV2Params
 const (
 	QueryItemsV2NameConstant             = "name"
@@ -62,6 +66,51 @@ const (
 	QueryItemsV2DisplayOrderConstant     = "displayOrder"
 	QueryItemsV2DisplayOrderAscConstant  = "displayOrder:asc"
 	QueryItemsV2DisplayOrderDescConstant = "displayOrder:desc"
+)
+
+// Get the enum in QueryItemsV2Params
+const (
+	QueryItemsV2AppTypeDEMOConstant     = "DEMO"
+	QueryItemsV2AppTypeDLCConstant      = "DLC"
+	QueryItemsV2AppTypeGAMEConstant     = "GAME"
+	QueryItemsV2AppTypeSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in QueryItemsV2Params
+const (
+	QueryItemsV2ItemStatusACTIVEConstant   = "ACTIVE"
+	QueryItemsV2ItemStatusINACTIVEConstant = "INACTIVE"
+)
+
+// Get the enum in QueryItemsV2Params
+const (
+	QueryItemsV2ItemTypeAPPConstant          = "APP"
+	QueryItemsV2ItemTypeBUNDLEConstant       = "BUNDLE"
+	QueryItemsV2ItemTypeCODEConstant         = "CODE"
+	QueryItemsV2ItemTypeCOINSConstant        = "COINS"
+	QueryItemsV2ItemTypeEXTENSIONConstant    = "EXTENSION"
+	QueryItemsV2ItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	QueryItemsV2ItemTypeLOOTBOXConstant      = "LOOTBOX"
+	QueryItemsV2ItemTypeMEDIAConstant        = "MEDIA"
+	QueryItemsV2ItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	QueryItemsV2ItemTypeSEASONConstant       = "SEASON"
+	QueryItemsV2ItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in QueryItemsV2Params
+const (
+	QueryItemsV2SortByNameConstant             = "name"
+	QueryItemsV2SortByNameAscConstant          = "name:asc"
+	QueryItemsV2SortByNameDescConstant         = "name:desc"
+	QueryItemsV2SortByCreatedAtConstant        = "createdAt"
+	QueryItemsV2SortByCreatedAtAscConstant     = "createdAt:asc"
+	QueryItemsV2SortByCreatedAtDescConstant    = "createdAt:desc"
+	QueryItemsV2SortByUpdatedAtConstant        = "updatedAt"
+	QueryItemsV2SortByUpdatedAtAscConstant     = "updatedAt:asc"
+	QueryItemsV2SortByUpdatedAtDescConstant    = "updatedAt:desc"
+	QueryItemsV2SortByDisplayOrderConstant     = "displayOrder"
+	QueryItemsV2SortByDisplayOrderAscConstant  = "displayOrder:asc"
+	QueryItemsV2SortByDisplayOrderDescConstant = "displayOrder:desc"
 )
 
 // NewQueryItemsV2Params creates a new QueryItemsV2Params object
@@ -190,7 +239,11 @@ type QueryItemsV2Params struct {
 	/*ItemType*/
 	ItemType []string
 	/*Limit
-	  limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
 
 	*/
 	Limit *int32

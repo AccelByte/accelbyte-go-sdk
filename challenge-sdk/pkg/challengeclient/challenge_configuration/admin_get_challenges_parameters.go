@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminGetChallengesSortBy<EnumValue>Constant instead.
 // Get the enum in AdminGetChallengesParams
 const (
 	AdminGetChallengesCreatedAtConstant     = "createdAt"
@@ -29,11 +30,29 @@ const (
 	AdminGetChallengesUpdatedAtDescConstant = "updatedAt:desc"
 )
 
+// Deprecated: 2025-07-16 - Use AdminGetChallengesStatus<EnumValue>Constant instead.
 // Get the enum in AdminGetChallengesParams
 const (
 	AdminGetChallengesINITConstant    = "INIT"
 	AdminGetChallengesRETIREDConstant = "RETIRED"
 	AdminGetChallengesTIEDConstant    = "TIED"
+)
+
+// Get the enum in AdminGetChallengesParams
+const (
+	AdminGetChallengesSortByCreatedAtConstant     = "createdAt"
+	AdminGetChallengesSortByCreatedAtAscConstant  = "createdAt:asc"
+	AdminGetChallengesSortByCreatedAtDescConstant = "createdAt:desc"
+	AdminGetChallengesSortByUpdatedAtConstant     = "updatedAt"
+	AdminGetChallengesSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	AdminGetChallengesSortByUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in AdminGetChallengesParams
+const (
+	AdminGetChallengesStatusINITConstant    = "INIT"
+	AdminGetChallengesStatusRETIREDConstant = "RETIRED"
+	AdminGetChallengesStatusTIEDConstant    = "TIED"
 )
 
 // NewAdminGetChallengesParams creates a new AdminGetChallengesParams object

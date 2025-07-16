@@ -8,7 +8,7 @@
     },
     "description": "Custom Service Manager",
     "title": "custom-service-manager",
-    "version": "1.24.0"
+    "version": "1.26.0"
   },
   "schemes": [
     "https"
@@ -32,7 +32,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\nGets the List of Apps for AB-Extend Customer\n\nAvailable scenario:\n\t- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\n\t",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\nGets the List of Apps for AB-Extend Customer\n\nAvailable scenario:\n\t- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\n\t",
         "operationId": "GetAppListV1",
         "parameters": [
           {
@@ -352,7 +352,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
         "operationId": "CreateAppV1",
         "parameters": [
           {
@@ -3262,7 +3262,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [UPDATE]\u0026lt;/code\u0026gt;\n\nUpdate the subscription the user(s) is an app notification.\n\nRequest body:\n- notificationType\t\t: type of the app notification to be subscribed - Required.\n\t- values: \n\t\t- \u0026#34;all\u0026#34;\n\t\t- \u0026#34;app-down\u0026#34;\n\t\t- \u0026#34;critical-vulnerability\u0026#34;\n- subscribers\t\t\t: user(s) notification subscription to be updated - Required.\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [UPDATE]\u0026lt;/code\u0026gt;\n\nBulk update of users subscribed to an app\u0026#39;s notifications.\n\nRequest body:\n- notificationType\t\t: type of the app notification to be subscribed - Required.\n\t- values: \n\t\t- \u0026#34;all\u0026#34;\n\t\t- \u0026#34;app-down\u0026#34;\n\t\t- \u0026#34;critical-vulnerability\u0026#34;\n- subscribers\t\t\t: user(s) notification subscription to be updated - Required.\n",
         "operationId": "BulkSaveSubscriptionAppNotificationV2",
         "parameters": [
           {
@@ -3328,7 +3328,7 @@
             "authorization": []
           }
         ],
-        "summary": "Bulk update the subscription of the users",
+        "summary": "Bulk update of users subscribed to an app's notifications",
         "tags": [
           "Notification Subscription"
         ],
@@ -3340,7 +3340,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [DELETE]\u0026lt;/code\u0026gt;\n\t\t\t\nUnsubscribe to app down notification\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [DELETE]\u0026lt;/code\u0026gt;\n\t\t\t\nUnsubscribe to app notification\n",
         "operationId": "UnsubscribeV2Handler",
         "parameters": [
           {
@@ -3363,7 +3363,7 @@
         ],
         "responses": {
           "204": {
-            "description": "successfully submitted request to unsubcribe from app down notification"
+            "description": "successfully submitted request to unsubcribe from app notification"
           },
           "401": {
             "description": "Unauthorized",
@@ -3395,7 +3395,7 @@
             "authorization": []
           }
         ],
-        "summary": "Unsubscribe to app down notification",
+        "summary": "Unsubscribe to app notification",
         "tags": [
           "Notification Subscription"
         ],
@@ -3473,7 +3473,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [CREATE]\u0026lt;/code\u0026gt;\n\t\t\t\t\nSubscribe to app down notification\nRequest body:\n- notificationType\t\t: type of the app notification to be subscribed - Required.\n\t- values: \n\t\t- \u0026#34;all\u0026#34;\n\t \t- \u0026#34;app-down\u0026#34;\n\t\t- \u0026#34;critical-vulnerability\u0026#34;\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [CREATE]\u0026lt;/code\u0026gt;\n\t\t\t\t\nSubscribe to app notification\nRequest body:\n- notificationType\t\t: type of the app notification to be subscribed - Required.\n\t- values: \n\t\t- \u0026#34;all\u0026#34;\n\t \t- \u0026#34;app-down\u0026#34;\n\t\t- \u0026#34;critical-vulnerability\u0026#34;\n",
         "operationId": "SubscribeV2Handler",
         "parameters": [
           {
@@ -3504,7 +3504,7 @@
         ],
         "responses": {
           "204": {
-            "description": "successfully submitted request to subcribe from app down notification"
+            "description": "successfully submitted request to subcribe from app notification"
           },
           "401": {
             "description": "Unauthorized",
@@ -3536,7 +3536,7 @@
             "authorization": []
           }
         ],
-        "summary": "Subscribe to app down notification",
+        "summary": "Subscribe to app notification",
         "tags": [
           "Notification Subscription"
         ],
@@ -4293,6 +4293,160 @@
         ],
         "x-errorCodes": {}
       }
+    },
+    "/csm/v3/admin/namespaces/{namespace}/apps/{app}/subscriptions": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [DELETE]\u0026lt;/code\u0026gt;\n\t\nRemove a user from the notification subscription using either user ID or email address. \nOnly one of them should be provided.\n",
+        "operationId": "DeleteSubscriptionAppNotificationV3",
+        "parameters": [
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "emailAddress",
+            "in": "query",
+            "name": "emailAddress",
+            "type": "string"
+          },
+          {
+            "description": "userID",
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Remove other person subscription by user ID or email address",
+        "tags": [
+          "Notification Subscription V3"
+        ],
+        "x-errorCodes": {}
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [READ]\u0026lt;/code\u0026gt;\n\nRequest param:\n- notificationType : type of the subscribed app notification\n\t- values: \n\t    - all\n\t\t- app-down\n\t\t- critical-vulnerability\n\nGet a list of the app notification subscriber\n",
+        "operationId": "GetNotificationSubscriberListV3",
+        "parameters": [
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Notification Type",
+            "in": "query",
+            "name": "notificationType",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/apimodel.GetNotificationSubscriberListResponseV2"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get a list of the app notification subscriber",
+        "tags": [
+          "Notification Subscription V3"
+        ],
+        "x-errorCodes": {}
+      }
     }
   },
   "definitions": {
@@ -4408,6 +4562,9 @@
     },
     "apimodel.BulkSubscribeItem": {
       "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
         "notificationType": {
           "additionalProperties": {
             "type": "boolean",
@@ -4420,6 +4577,7 @@
         }
       },
       "required": [
+        "emailAddress",
         "notificationType",
         "userId"
       ]
@@ -4826,8 +4984,29 @@
       },
       "required": [
         "notificationType",
-        "subscriptionId",
-        "userId"
+        "subscriptionId"
+      ]
+    },
+    "apimodel.GetNotificationSubscriberItemV2": {
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "notificationTypes": {
+          "items": {
+            "$ref": "#/definitions/apimodel.NotificationType"
+          },
+          "type": "array"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "notificationTypes"
       ]
     },
     "apimodel.GetNotificationSubscriberListResponse": {
@@ -4839,6 +5018,24 @@
         "subscriptions": {
           "items": {
             "$ref": "#/definitions/apimodel.GetNotificationSubscriberItem"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "maxSubscriptions",
+        "subscriptions"
+      ]
+    },
+    "apimodel.GetNotificationSubscriberListResponseV2": {
+      "properties": {
+        "maxSubscriptions": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "subscriptions": {
+          "items": {
+            "$ref": "#/definitions/apimodel.GetNotificationSubscriberItemV2"
           },
           "type": "array"
         }
@@ -4879,8 +5076,7 @@
         "maxSubscription",
         "notificationType",
         "subscribed",
-        "subscriptionsCount",
-        "userId"
+        "subscriptionsCount"
       ]
     },
     "apimodel.IncreaseLimitFormRequest": {
@@ -4920,6 +5116,20 @@
           "type": "integer"
         }
       }
+    },
+    "apimodel.NotificationType": {
+      "properties": {
+        "subcriptionID": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "subcriptionID",
+        "type"
+      ]
     },
     "apimodel.ReplicaRequest": {
       "properties": {
@@ -5059,11 +5269,15 @@
     },
     "apimodel.SubscriberItemRequest": {
       "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
         "userId": {
           "type": "string"
         }
       },
       "required": [
+        "emailAddress",
         "userId"
       ]
     },
@@ -5086,8 +5300,7 @@
         }
       },
       "required": [
-        "id",
-        "userId"
+        "id"
       ]
     },
     "apimodel.UpdateAppResourceRequest": {
@@ -6147,10 +6360,10 @@
     }
   ],
   "x-version": {
-    "buildDate": "Mon May 26 20:30:32 UTC 2025",
-    "gitHash": "d9bab562",
+    "buildDate": "Fri Jul  4 07:58:24 UTC 2025",
+    "gitHash": "361651c2",
     "name": "custom-service-manager",
-    "version": "1.24.0",
+    "version": "1.26.0",
     "version-justice": "3.39.0",
     "version-roles-seeding": "1.2.64"
   }

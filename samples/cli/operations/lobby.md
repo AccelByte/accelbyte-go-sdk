@@ -508,6 +508,17 @@ $ samples/cli/sample-apps Lobby getMyNotifications \
     > result.txt
 ```
 
+### Operation `get_my_offline_notifications`
+```sh
+$ samples/cli/sample-apps Lobby getMyOfflineNotifications \
+    --namespace 'string' \
+    --endTime 1 \
+    --limit 1 \
+    --offset 1 \
+    --startTime 1 \
+    > result.txt
+```
+
 ### Operation `notification_with_template`
 ```sh
 $ samples/cli/sample-apps Lobby notificationWithTemplate \

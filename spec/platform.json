@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.5.0"
+    "version": "6.7.1"
   },
   "schemes": [
     "https"
@@ -678,6 +678,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -2143,6 +2144,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -2488,6 +2490,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -3661,6 +3664,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -3758,6 +3762,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -4073,6 +4078,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -4171,6 +4177,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -5716,6 +5723,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -5812,6 +5820,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -6039,6 +6048,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -6130,6 +6140,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -6779,7 +6790,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -7741,7 +7752,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -7829,7 +7840,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -9098,6 +9109,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -9465,6 +9477,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -9602,6 +9615,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -10086,6 +10100,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -10204,6 +10219,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -11304,6 +11320,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -11666,7 +11683,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -12169,7 +12186,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -13378,7 +13395,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -14237,6 +14254,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -14312,39 +14330,9 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "This API is used to import a store by CSV format.",
+        "description": "This API is used to import a store by CSV format, You must select at least one of item/section/display/category for uploading",
         "operationId": "importStoreByCSV",
         "parameters": [
-          {
-            "in": "formData",
-            "name": "category",
-            "required": true,
-            "type": "file"
-          },
-          {
-            "in": "formData",
-            "name": "display",
-            "required": true,
-            "type": "file"
-          },
-          {
-            "in": "formData",
-            "name": "item",
-            "required": true,
-            "type": "file"
-          },
-          {
-            "in": "formData",
-            "name": "notes",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "formData",
-            "name": "section",
-            "required": true,
-            "type": "file"
-          },
           {
             "in": "path",
             "name": "namespace",
@@ -14356,6 +14344,36 @@
             "name": "storeId",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "category",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "display",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "item",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "notes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "section",
+            "required": false,
+            "type": "file"
           }
         ],
         "produces": [
@@ -14445,6 +14463,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -14872,6 +14891,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -15806,6 +15826,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -16045,6 +16066,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -17986,6 +18008,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -18141,6 +18164,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -18526,6 +18550,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -18760,6 +18785,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -18908,6 +18934,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -19178,6 +19205,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -20342,6 +20370,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -20438,6 +20467,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -20912,6 +20942,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -21265,6 +21296,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -22041,6 +22073,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -24488,6 +24521,7 @@
         "parameters": [
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -25638,7 +25672,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -26083,7 +26117,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -27122,7 +27156,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -28162,6 +28196,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -28292,6 +28327,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -28587,6 +28623,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -30169,6 +30206,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -30389,6 +30427,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -31166,6 +31205,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -31625,6 +31665,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -31813,6 +31854,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -31923,6 +31965,7 @@
           },
           {
             "default": 20,
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -32096,7 +32139,7 @@
           },
           {
             "default": 20,
-            "description": "limit",
+            "description": "limit. \u003cdiv style=\"border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;\"\u003e\n    For performance and stability reasons, it is recommended to keep the\n    \u003ccode\u003elimit\u003c/code\u003e value \u003cstrong\u003eno greater than 100\u003c/strong\u003e. Using higher values may lead to increased response times or degraded service performance.\n\u003c/div\u003e\n",
             "format": "int32",
             "in": "query",
             "name": "limit",
@@ -35538,7 +35581,7 @@
       "description": "A DTO object for creating category API call.",
       "properties": {
         "categoryPath": {
-          "description": "Category Path, A path separated by \"/\", start with \"/\" and end with combination of case of letters and numbers, max length is 255, min length is 2",
+          "description": "Category Path, A path separated by \"/\", start with \"/\" and end with combination of case of letters, numbers and hyphens, max length is 255, min length is 2",
           "example": "/games",
           "type": "string"
         },
@@ -36504,6 +36547,11 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "enableRevocation": {
+          "description": "enable or disable revocation when autoUpdate enabled, will be set as false when not included in the request",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "id": {
           "description": "dlc id",
           "type": "string"
@@ -36535,6 +36583,10 @@
         },
         "dlcId": {
           "type": "string"
+        },
+        "enableRevocation": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "id": {
           "type": "string"
@@ -36612,6 +36664,12 @@
             "SYNCED_FAILED"
           ],
           "type": "string"
+        },
+        "entitlementSummaries": {
+          "items": {
+            "$ref": "#/definitions/EntitlementSummary"
+          },
+          "type": "array"
         },
         "id": {
           "type": "string"
@@ -51910,6 +51968,12 @@
           ],
           "type": "string"
         },
+        "entitlementSummaries": {
+          "items": {
+            "$ref": "#/definitions/EntitlementSummary"
+          },
+          "type": "array"
+        },
         "id": {
           "type": "string"
         },
@@ -52868,16 +52932,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-05-26T04:13:21+00:00",
-    "buildID": "6.5.0",
-    "buildJDK": "21.0.5 (Amazon.com Inc. 21.0.5+11-LTS)",
-    "buildOS": "Linux amd64 5.10.236-228.935.amzn2.x86_64",
+    "buildDate": "2025-07-15T05:06:29+00:00",
+    "buildID": "6.7.1",
+    "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
+    "buildOS": "Linux amd64 5.10.238-231.953.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "db13ac09a8",
-    "gitTag": "6.5.0",
+    "gitHash": "b48fb2b232",
+    "gitTag": "6.7.1",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.5.0",
+    "version": "6.7.1",
     "version-roles-seeding": "1.2.74"
   }
 }

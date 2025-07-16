@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsAppType<EnumValue>Constant instead.
 // Get the enum in QueryItemsParams
 const (
 	QueryItemsDEMOConstant     = "DEMO"
@@ -27,6 +28,7 @@ const (
 	QueryItemsSOFTWAREConstant = "SOFTWARE"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsItemType<EnumValue>Constant instead.
 // Get the enum in QueryItemsParams
 const (
 	QueryItemsAPPConstant          = "APP"
@@ -42,6 +44,7 @@ const (
 	QueryItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemsSortBy<EnumValue>Constant instead.
 // Get the enum in QueryItemsParams
 const (
 	QueryItemsNameConstant             = "name"
@@ -56,6 +59,45 @@ const (
 	QueryItemsDisplayOrderConstant     = "displayOrder"
 	QueryItemsDisplayOrderAscConstant  = "displayOrder:asc"
 	QueryItemsDisplayOrderDescConstant = "displayOrder:desc"
+)
+
+// Get the enum in QueryItemsParams
+const (
+	QueryItemsAppTypeDEMOConstant     = "DEMO"
+	QueryItemsAppTypeDLCConstant      = "DLC"
+	QueryItemsAppTypeGAMEConstant     = "GAME"
+	QueryItemsAppTypeSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in QueryItemsParams
+const (
+	QueryItemsItemTypeAPPConstant          = "APP"
+	QueryItemsItemTypeBUNDLEConstant       = "BUNDLE"
+	QueryItemsItemTypeCODEConstant         = "CODE"
+	QueryItemsItemTypeCOINSConstant        = "COINS"
+	QueryItemsItemTypeEXTENSIONConstant    = "EXTENSION"
+	QueryItemsItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	QueryItemsItemTypeLOOTBOXConstant      = "LOOTBOX"
+	QueryItemsItemTypeMEDIAConstant        = "MEDIA"
+	QueryItemsItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	QueryItemsItemTypeSEASONConstant       = "SEASON"
+	QueryItemsItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in QueryItemsParams
+const (
+	QueryItemsSortByNameConstant             = "name"
+	QueryItemsSortByNameAscConstant          = "name:asc"
+	QueryItemsSortByNameDescConstant         = "name:desc"
+	QueryItemsSortByCreatedAtConstant        = "createdAt"
+	QueryItemsSortByCreatedAtAscConstant     = "createdAt:asc"
+	QueryItemsSortByCreatedAtDescConstant    = "createdAt:desc"
+	QueryItemsSortByUpdatedAtConstant        = "updatedAt"
+	QueryItemsSortByUpdatedAtAscConstant     = "updatedAt:asc"
+	QueryItemsSortByUpdatedAtDescConstant    = "updatedAt:desc"
+	QueryItemsSortByDisplayOrderConstant     = "displayOrder"
+	QueryItemsSortByDisplayOrderAscConstant  = "displayOrder:asc"
+	QueryItemsSortByDisplayOrderDescConstant = "displayOrder:desc"
 )
 
 // NewQueryItemsParams creates a new QueryItemsParams object
@@ -179,7 +221,11 @@ type QueryItemsParams struct {
 	/*ItemType*/
 	ItemType *string
 	/*Limit
-	  limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
 
 	*/
 	Limit *int32

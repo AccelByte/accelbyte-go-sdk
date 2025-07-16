@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodel subscriber item request.
 type ApimodelSubscriberItemRequest struct {
 
+	// emailaddress
+	// Required: true
+	EmailAddress *string `json:"emailAddress"`
+
 	// userid
 	// Required: true
 	UserID *string `json:"userId"`
@@ -27,6 +31,9 @@ type ApimodelSubscriberItemRequest struct {
 func (m *ApimodelSubscriberItemRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEmailAddress(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -34,6 +41,15 @@ func (m *ApimodelSubscriberItemRequest) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelSubscriberItemRequest) validateEmailAddress(formats strfmt.Registry) error {
+
+	if err := validate.Required("emailAddress", "body", m.EmailAddress); err != nil {
+		return err
+	}
+
 	return nil
 }
 

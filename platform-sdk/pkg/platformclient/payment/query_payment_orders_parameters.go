@@ -19,12 +19,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryPaymentOrdersChannel<EnumValue>Constant instead.
 // Get the enum in QueryPaymentOrdersParams
 const (
 	QueryPaymentOrdersEXTERNALConstant = "EXTERNAL"
 	QueryPaymentOrdersINTERNALConstant = "INTERNAL"
 )
 
+// Deprecated: 2025-07-16 - Use QueryPaymentOrdersStatus<EnumValue>Constant instead.
 // Get the enum in QueryPaymentOrdersParams
 const (
 	QueryPaymentOrdersAUTHORISEDConstant               = "AUTHORISED"
@@ -40,6 +42,29 @@ const (
 	QueryPaymentOrdersREFUNDINGConstant                = "REFUNDING"
 	QueryPaymentOrdersREFUNDFAILEDConstant             = "REFUND_FAILED"
 	QueryPaymentOrdersREQUESTFORINFORMATIONConstant    = "REQUEST_FOR_INFORMATION"
+)
+
+// Get the enum in QueryPaymentOrdersParams
+const (
+	QueryPaymentOrdersChannelEXTERNALConstant = "EXTERNAL"
+	QueryPaymentOrdersChannelINTERNALConstant = "INTERNAL"
+)
+
+// Get the enum in QueryPaymentOrdersParams
+const (
+	QueryPaymentOrdersStatusAUTHORISEDConstant               = "AUTHORISED"
+	QueryPaymentOrdersStatusAUTHORISEFAILEDConstant          = "AUTHORISE_FAILED"
+	QueryPaymentOrdersStatusCHARGEBACKConstant               = "CHARGEBACK"
+	QueryPaymentOrdersStatusCHARGEBACKREVERSEDConstant       = "CHARGEBACK_REVERSED"
+	QueryPaymentOrdersStatusCHARGEDConstant                  = "CHARGED"
+	QueryPaymentOrdersStatusCHARGEFAILEDConstant             = "CHARGE_FAILED"
+	QueryPaymentOrdersStatusDELETEDConstant                  = "DELETED"
+	QueryPaymentOrdersStatusINITConstant                     = "INIT"
+	QueryPaymentOrdersStatusNOTIFICATIONOFCHARGEBACKConstant = "NOTIFICATION_OF_CHARGEBACK"
+	QueryPaymentOrdersStatusREFUNDEDConstant                 = "REFUNDED"
+	QueryPaymentOrdersStatusREFUNDINGConstant                = "REFUNDING"
+	QueryPaymentOrdersStatusREFUNDFAILEDConstant             = "REFUND_FAILED"
+	QueryPaymentOrdersStatusREQUESTFORINFORMATIONConstant    = "REQUEST_FOR_INFORMATION"
 )
 
 // NewQueryPaymentOrdersParams creates a new QueryPaymentOrdersParams object
@@ -114,7 +139,14 @@ type QueryPaymentOrdersParams struct {
 	Channel *string
 	/*ExtTxID*/
 	ExtTxID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

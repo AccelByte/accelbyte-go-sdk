@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUncategorizedItemsSortBy<EnumValue>Constant instead.
 // Get the enum in QueryUncategorizedItemsParams
 const (
 	QueryUncategorizedItemsNameConstant             = "name"
@@ -33,6 +34,22 @@ const (
 	QueryUncategorizedItemsDisplayOrderConstant     = "displayOrder"
 	QueryUncategorizedItemsDisplayOrderAscConstant  = "displayOrder:asc"
 	QueryUncategorizedItemsDisplayOrderDescConstant = "displayOrder:desc"
+)
+
+// Get the enum in QueryUncategorizedItemsParams
+const (
+	QueryUncategorizedItemsSortByNameConstant             = "name"
+	QueryUncategorizedItemsSortByNameAscConstant          = "name:asc"
+	QueryUncategorizedItemsSortByNameDescConstant         = "name:desc"
+	QueryUncategorizedItemsSortByCreatedAtConstant        = "createdAt"
+	QueryUncategorizedItemsSortByCreatedAtAscConstant     = "createdAt:asc"
+	QueryUncategorizedItemsSortByCreatedAtDescConstant    = "createdAt:desc"
+	QueryUncategorizedItemsSortByUpdatedAtConstant        = "updatedAt"
+	QueryUncategorizedItemsSortByUpdatedAtAscConstant     = "updatedAt:asc"
+	QueryUncategorizedItemsSortByUpdatedAtDescConstant    = "updatedAt:desc"
+	QueryUncategorizedItemsSortByDisplayOrderConstant     = "displayOrder"
+	QueryUncategorizedItemsSortByDisplayOrderAscConstant  = "displayOrder:asc"
+	QueryUncategorizedItemsSortByDisplayOrderDescConstant = "displayOrder:desc"
 )
 
 // NewQueryUncategorizedItemsParams creates a new QueryUncategorizedItemsParams object
@@ -122,7 +139,11 @@ type QueryUncategorizedItemsParams struct {
 	/*ActiveOnly*/
 	ActiveOnly *bool
 	/*Limit
-	  limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
 
 	*/
 	Limit *int32

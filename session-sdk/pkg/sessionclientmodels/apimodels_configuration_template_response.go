@@ -92,6 +92,7 @@ type ApimodelsConfigurationTemplateResponse struct {
 	InviteTimeout *int32 `json:"inviteTimeout"`
 
 	// joinability
+	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN']
 	// Required: true
 	Joinability *string `json:"joinability"`
 
@@ -157,6 +158,7 @@ type ApimodelsConfigurationTemplateResponse struct {
 	TTLHours int32 `json:"ttlHours,omitempty"`
 
 	// type
+	// Enum: ['DS', 'NONE', 'P2P']
 	// Required: true
 	Type *string `json:"type"`
 
@@ -266,9 +268,55 @@ func (m *ApimodelsConfigurationTemplateResponse) validateInviteTimeout(formats s
 	return nil
 }
 
+var apimodelsConfigurationTemplateResponseTypeJoinabilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsConfigurationTemplateResponseTypeJoinabilityPropEnum = append(apimodelsConfigurationTemplateResponseTypeJoinabilityPropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsConfigurationTemplateResponseJoinabilityCLOSED captures enum value "CLOSED"
+	ApimodelsConfigurationTemplateResponseJoinabilityCLOSED string = "CLOSED"
+
+	// ApimodelsConfigurationTemplateResponseJoinabilityFRIENDSOFFRIENDS captures enum value "FRIENDS_OF_FRIENDS"
+	ApimodelsConfigurationTemplateResponseJoinabilityFRIENDSOFFRIENDS string = "FRIENDS_OF_FRIENDS"
+
+	// ApimodelsConfigurationTemplateResponseJoinabilityFRIENDSOFLEADER captures enum value "FRIENDS_OF_LEADER"
+	ApimodelsConfigurationTemplateResponseJoinabilityFRIENDSOFLEADER string = "FRIENDS_OF_LEADER"
+
+	// ApimodelsConfigurationTemplateResponseJoinabilityFRIENDSOFMEMBERS captures enum value "FRIENDS_OF_MEMBERS"
+	ApimodelsConfigurationTemplateResponseJoinabilityFRIENDSOFMEMBERS string = "FRIENDS_OF_MEMBERS"
+
+	// ApimodelsConfigurationTemplateResponseJoinabilityINVITEONLY captures enum value "INVITE_ONLY"
+	ApimodelsConfigurationTemplateResponseJoinabilityINVITEONLY string = "INVITE_ONLY"
+
+	// ApimodelsConfigurationTemplateResponseJoinabilityOPEN captures enum value "OPEN"
+	ApimodelsConfigurationTemplateResponseJoinabilityOPEN string = "OPEN"
+)
+
+// prop value enum
+func (m *ApimodelsConfigurationTemplateResponse) validateJoinabilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsConfigurationTemplateResponseTypeJoinabilityPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsConfigurationTemplateResponse) validateJoinability(formats strfmt.Registry) error {
 
 	if err := validate.Required("joinability", "body", m.Joinability); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateJoinabilityEnum("joinability", "body", *m.Joinability); err != nil {
 		return err
 	}
 
@@ -370,9 +418,46 @@ func (m *ApimodelsConfigurationTemplateResponse) validateTextChatModeEnum(path, 
 	return nil
 }
 
+var apimodelsConfigurationTemplateResponseTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DS", "NONE", "P2P"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsConfigurationTemplateResponseTypeTypePropEnum = append(apimodelsConfigurationTemplateResponseTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsConfigurationTemplateResponseTypeDS captures enum value "DS"
+	ApimodelsConfigurationTemplateResponseTypeDS string = "DS"
+
+	// ApimodelsConfigurationTemplateResponseTypeNONE captures enum value "NONE"
+	ApimodelsConfigurationTemplateResponseTypeNONE string = "NONE"
+
+	// ApimodelsConfigurationTemplateResponseTypeP2P captures enum value "P2P"
+	ApimodelsConfigurationTemplateResponseTypeP2P string = "P2P"
+)
+
+// prop value enum
+func (m *ApimodelsConfigurationTemplateResponse) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsConfigurationTemplateResponseTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsConfigurationTemplateResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

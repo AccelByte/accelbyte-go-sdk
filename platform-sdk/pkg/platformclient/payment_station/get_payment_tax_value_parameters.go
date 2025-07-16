@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetPaymentTaxValuePaymentProvider<EnumValue>Constant instead.
 // Get the enum in GetPaymentTaxValueParams
 const (
 	GetPaymentTaxValueADYENConstant    = "ADYEN"
@@ -29,6 +30,19 @@ const (
 	GetPaymentTaxValueWALLETConstant   = "WALLET"
 	GetPaymentTaxValueWXPAYConstant    = "WXPAY"
 	GetPaymentTaxValueXSOLLAConstant   = "XSOLLA"
+)
+
+// Get the enum in GetPaymentTaxValueParams
+const (
+	GetPaymentTaxValuePaymentProviderADYENConstant    = "ADYEN"
+	GetPaymentTaxValuePaymentProviderALIPAYConstant   = "ALIPAY"
+	GetPaymentTaxValuePaymentProviderCHECKOUTConstant = "CHECKOUT"
+	GetPaymentTaxValuePaymentProviderNEONPAYConstant  = "NEONPAY"
+	GetPaymentTaxValuePaymentProviderPAYPALConstant   = "PAYPAL"
+	GetPaymentTaxValuePaymentProviderSTRIPEConstant   = "STRIPE"
+	GetPaymentTaxValuePaymentProviderWALLETConstant   = "WALLET"
+	GetPaymentTaxValuePaymentProviderWXPAYConstant    = "WXPAY"
+	GetPaymentTaxValuePaymentProviderXSOLLAConstant   = "XSOLLA"
 )
 
 // NewGetPaymentTaxValueParams creates a new GetPaymentTaxValueParams object

@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryOrdersStatus<EnumValue>Constant instead.
 // Get the enum in QueryOrdersParams
 const (
 	QueryOrdersCHARGEBACKConstant         = "CHARGEBACK"
@@ -32,6 +33,21 @@ const (
 	QueryOrdersREFUNDEDConstant           = "REFUNDED"
 	QueryOrdersREFUNDINGConstant          = "REFUNDING"
 	QueryOrdersREFUNDFAILEDConstant       = "REFUND_FAILED"
+)
+
+// Get the enum in QueryOrdersParams
+const (
+	QueryOrdersStatusCHARGEBACKConstant         = "CHARGEBACK"
+	QueryOrdersStatusCHARGEBACKREVERSEDConstant = "CHARGEBACK_REVERSED"
+	QueryOrdersStatusCHARGEDConstant            = "CHARGED"
+	QueryOrdersStatusCLOSEDConstant             = "CLOSED"
+	QueryOrdersStatusDELETEDConstant            = "DELETED"
+	QueryOrdersStatusFULFILLEDConstant          = "FULFILLED"
+	QueryOrdersStatusFULFILLFAILEDConstant      = "FULFILL_FAILED"
+	QueryOrdersStatusINITConstant               = "INIT"
+	QueryOrdersStatusREFUNDEDConstant           = "REFUNDED"
+	QueryOrdersStatusREFUNDINGConstant          = "REFUNDING"
+	QueryOrdersStatusREFUNDFAILEDConstant       = "REFUND_FAILED"
 )
 
 // NewQueryOrdersParams creates a new QueryOrdersParams object
@@ -123,7 +139,14 @@ type QueryOrdersParams struct {
 
 	*/
 	EndTime *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

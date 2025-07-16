@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicUserEntitlementHistoryEntitlementClazz<EnumValue>Constant instead.
 // Get the enum in PublicUserEntitlementHistoryParams
 const (
 	PublicUserEntitlementHistoryAPPConstant          = "APP"
@@ -28,6 +29,17 @@ const (
 	PublicUserEntitlementHistoryMEDIAConstant        = "MEDIA"
 	PublicUserEntitlementHistoryOPTIONBOXConstant    = "OPTIONBOX"
 	PublicUserEntitlementHistorySUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in PublicUserEntitlementHistoryParams
+const (
+	PublicUserEntitlementHistoryEntitlementClazzAPPConstant          = "APP"
+	PublicUserEntitlementHistoryEntitlementClazzCODEConstant         = "CODE"
+	PublicUserEntitlementHistoryEntitlementClazzENTITLEMENTConstant  = "ENTITLEMENT"
+	PublicUserEntitlementHistoryEntitlementClazzLOOTBOXConstant      = "LOOTBOX"
+	PublicUserEntitlementHistoryEntitlementClazzMEDIAConstant        = "MEDIA"
+	PublicUserEntitlementHistoryEntitlementClazzOPTIONBOXConstant    = "OPTIONBOX"
+	PublicUserEntitlementHistoryEntitlementClazzSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
 // NewPublicUserEntitlementHistoryParams creates a new PublicUserEntitlementHistoryParams object
@@ -107,7 +119,14 @@ type PublicUserEntitlementHistoryParams struct {
 	EndDate *string
 	/*EntitlementClazz*/
 	EntitlementClazz *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

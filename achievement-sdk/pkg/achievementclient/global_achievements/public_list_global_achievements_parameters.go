@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicListGlobalAchievementsSortBy<EnumValue>Constant instead.
 // Get the enum in PublicListGlobalAchievementsParams
 const (
 	PublicListGlobalAchievementsAchievedAtConstant     = "achievedAt"
@@ -27,6 +28,16 @@ const (
 	PublicListGlobalAchievementsCreatedAtConstant      = "createdAt"
 	PublicListGlobalAchievementsCreatedAtAscConstant   = "createdAt:asc"
 	PublicListGlobalAchievementsCreatedAtDescConstant  = "createdAt:desc"
+)
+
+// Get the enum in PublicListGlobalAchievementsParams
+const (
+	PublicListGlobalAchievementsSortByAchievedAtConstant     = "achievedAt"
+	PublicListGlobalAchievementsSortByAchievedAtAscConstant  = "achievedAt:asc"
+	PublicListGlobalAchievementsSortByAchievedAtDescConstant = "achievedAt:desc"
+	PublicListGlobalAchievementsSortByCreatedAtConstant      = "createdAt"
+	PublicListGlobalAchievementsSortByCreatedAtAscConstant   = "createdAt:asc"
+	PublicListGlobalAchievementsSortByCreatedAtDescConstant  = "createdAt:desc"
 )
 
 // NewPublicListGlobalAchievementsParams creates a new PublicListGlobalAchievementsParams object

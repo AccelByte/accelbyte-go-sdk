@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryIAPClawbackHistoryEventType<EnumValue>Constant instead.
 // Get the enum in QueryIAPClawbackHistoryParams
 const (
 	QueryIAPClawbackHistoryCHARGEBACKConstant         = "CHARGEBACK"
@@ -28,12 +29,30 @@ const (
 	QueryIAPClawbackHistoryREVOKEDConstant            = "REVOKED"
 )
 
+// Deprecated: 2025-07-16 - Use QueryIAPClawbackHistoryStatus<EnumValue>Constant instead.
 // Get the enum in QueryIAPClawbackHistoryParams
 const (
 	QueryIAPClawbackHistoryFAILConstant    = "FAIL"
 	QueryIAPClawbackHistoryIGNOREDConstant = "IGNORED"
 	QueryIAPClawbackHistoryINITConstant    = "INIT"
 	QueryIAPClawbackHistorySUCCESSConstant = "SUCCESS"
+)
+
+// Get the enum in QueryIAPClawbackHistoryParams
+const (
+	QueryIAPClawbackHistoryEventTypeCHARGEBACKConstant         = "CHARGEBACK"
+	QueryIAPClawbackHistoryEventTypeCHARGEBACKREVERSEDConstant = "CHARGEBACK_REVERSED"
+	QueryIAPClawbackHistoryEventTypeOTHERConstant              = "OTHER"
+	QueryIAPClawbackHistoryEventTypeREFUNDConstant             = "REFUND"
+	QueryIAPClawbackHistoryEventTypeREVOKEDConstant            = "REVOKED"
+)
+
+// Get the enum in QueryIAPClawbackHistoryParams
+const (
+	QueryIAPClawbackHistoryStatusFAILConstant    = "FAIL"
+	QueryIAPClawbackHistoryStatusIGNOREDConstant = "IGNORED"
+	QueryIAPClawbackHistoryStatusINITConstant    = "INIT"
+	QueryIAPClawbackHistoryStatusSUCCESSConstant = "SUCCESS"
 )
 
 // NewQueryIAPClawbackHistoryParams creates a new QueryIAPClawbackHistoryParams object
@@ -119,7 +138,14 @@ type QueryIAPClawbackHistoryParams struct {
 
 	*/
 	ExternalOrderID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

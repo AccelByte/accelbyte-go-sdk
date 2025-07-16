@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use ResetPlatformWalletConfigPlatform<EnumValue>Constant instead.
 // Get the enum in ResetPlatformWalletConfigParams
 const (
 	ResetPlatformWalletConfigEpicConstant        = "Epic"
@@ -29,6 +30,19 @@ const (
 	ResetPlatformWalletConfigPlaystationConstant = "Playstation"
 	ResetPlatformWalletConfigSteamConstant       = "Steam"
 	ResetPlatformWalletConfigXboxConstant        = "Xbox"
+)
+
+// Get the enum in ResetPlatformWalletConfigParams
+const (
+	ResetPlatformWalletConfigPlatformEpicConstant        = "Epic"
+	ResetPlatformWalletConfigPlatformGooglePlayConstant  = "GooglePlay"
+	ResetPlatformWalletConfigPlatformIOSConstant         = "IOS"
+	ResetPlatformWalletConfigPlatformNintendoConstant    = "Nintendo"
+	ResetPlatformWalletConfigPlatformOculusConstant      = "Oculus"
+	ResetPlatformWalletConfigPlatformOtherConstant       = "Other"
+	ResetPlatformWalletConfigPlatformPlaystationConstant = "Playstation"
+	ResetPlatformWalletConfigPlatformSteamConstant       = "Steam"
+	ResetPlatformWalletConfigPlatformXboxConstant        = "Xbox"
 )
 
 // NewResetPlatformWalletConfigParams creates a new ResetPlatformWalletConfigParams object

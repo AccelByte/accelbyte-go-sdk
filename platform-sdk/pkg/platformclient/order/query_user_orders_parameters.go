@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserOrdersStatus<EnumValue>Constant instead.
 // Get the enum in QueryUserOrdersParams
 const (
 	QueryUserOrdersCHARGEBACKConstant         = "CHARGEBACK"
@@ -32,6 +33,21 @@ const (
 	QueryUserOrdersREFUNDEDConstant           = "REFUNDED"
 	QueryUserOrdersREFUNDINGConstant          = "REFUNDING"
 	QueryUserOrdersREFUNDFAILEDConstant       = "REFUND_FAILED"
+)
+
+// Get the enum in QueryUserOrdersParams
+const (
+	QueryUserOrdersStatusCHARGEBACKConstant         = "CHARGEBACK"
+	QueryUserOrdersStatusCHARGEBACKREVERSEDConstant = "CHARGEBACK_REVERSED"
+	QueryUserOrdersStatusCHARGEDConstant            = "CHARGED"
+	QueryUserOrdersStatusCLOSEDConstant             = "CLOSED"
+	QueryUserOrdersStatusDELETEDConstant            = "DELETED"
+	QueryUserOrdersStatusFULFILLEDConstant          = "FULFILLED"
+	QueryUserOrdersStatusFULFILLFAILEDConstant      = "FULFILL_FAILED"
+	QueryUserOrdersStatusINITConstant               = "INIT"
+	QueryUserOrdersStatusREFUNDEDConstant           = "REFUNDED"
+	QueryUserOrdersStatusREFUNDINGConstant          = "REFUNDING"
+	QueryUserOrdersStatusREFUNDFAILEDConstant       = "REFUND_FAILED"
 )
 
 // NewQueryUserOrdersParams creates a new QueryUserOrdersParams object
@@ -116,7 +132,14 @@ type QueryUserOrdersParams struct {
 	Discounted *bool
 	/*ItemID*/
 	ItemID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

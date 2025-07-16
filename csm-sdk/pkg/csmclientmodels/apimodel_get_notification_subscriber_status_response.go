@@ -43,8 +43,7 @@ type ApimodelGetNotificationSubscriberStatusResponse struct {
 	SubscriptionsCount *int32 `json:"subscriptionsCount"`
 
 	// userid
-	// Required: true
-	UserID *string `json:"userId"`
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Apimodel get notification subscriber status response
@@ -61,9 +60,6 @@ func (m *ApimodelGetNotificationSubscriberStatusResponse) Validate(formats strfm
 		res = append(res, err)
 	}
 	if err := m.validateSubscriptionsCount(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -103,15 +99,6 @@ func (m *ApimodelGetNotificationSubscriberStatusResponse) validateSubscribed(for
 func (m *ApimodelGetNotificationSubscriberStatusResponse) validateSubscriptionsCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("subscriptionsCount", "body", m.SubscriptionsCount); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelGetNotificationSubscriberStatusResponse) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
 	}
 

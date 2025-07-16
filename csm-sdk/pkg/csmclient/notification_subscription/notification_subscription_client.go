@@ -187,10 +187,10 @@ func (a *Client) GetNotificationSubscriberListV2Short(params *GetNotificationSub
 /*
 Deprecated: 2022-08-10 - Use BulkSaveSubscriptionAppNotificationV2Short instead.
 
-BulkSaveSubscriptionAppNotificationV2 bulk update the subscription of the users
+BulkSaveSubscriptionAppNotificationV2 bulk update of users subscribed to an app's notifications
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [UPDATE]`
 
-Update the subscription the user(s) is an app notification.
+Bulk update of users subscribed to an app's notifications.
 
 Request body:
 - notificationType : type of the app notification to be subscribed - Required.
@@ -258,10 +258,10 @@ func (a *Client) BulkSaveSubscriptionAppNotificationV2(params *BulkSaveSubscript
 }
 
 /*
-BulkSaveSubscriptionAppNotificationV2Short bulk update the subscription of the users
+BulkSaveSubscriptionAppNotificationV2Short bulk update of users subscribed to an app's notifications
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [UPDATE]`
 
-Update the subscription the user(s) is an app notification.
+Bulk update of users subscribed to an app's notifications.
 
 Request body:
 - notificationType : type of the app notification to be subscribed - Required.
@@ -579,10 +579,10 @@ func (a *Client) GetSubscriptionV2HandlerShort(params *GetSubscriptionV2HandlerP
 /*
 Deprecated: 2022-08-10 - Use SubscribeV2HandlerShort instead.
 
-SubscribeV2Handler subscribe to app down notification
+SubscribeV2Handler subscribe to app notification
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [CREATE]`
 
-Subscribe to app down notification
+Subscribe to app notification
 Request body:
 - notificationType : type of the app notification to be subscribed - Required.
 - values:
@@ -648,10 +648,10 @@ func (a *Client) SubscribeV2Handler(params *SubscribeV2HandlerParams, authInfo r
 }
 
 /*
-SubscribeV2HandlerShort subscribe to app down notification
+SubscribeV2HandlerShort subscribe to app notification
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [CREATE]`
 
-Subscribe to app down notification
+Subscribe to app notification
 Request body:
 - notificationType : type of the app notification to be subscribed - Required.
 - values:
@@ -711,10 +711,10 @@ func (a *Client) SubscribeV2HandlerShort(params *SubscribeV2HandlerParams, authI
 /*
 Deprecated: 2022-08-10 - Use UnsubscribeV2HandlerShort instead.
 
-UnsubscribeV2Handler unsubscribe to app down notification
+UnsubscribeV2Handler unsubscribe to app notification
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [DELETE]`
 
-Unsubscribe to app down notification
+Unsubscribe to app notification
 */
 func (a *Client) UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerNoContent, *UnsubscribeV2HandlerUnauthorized, *UnsubscribeV2HandlerForbidden, *UnsubscribeV2HandlerNotFound, *UnsubscribeV2HandlerInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -774,10 +774,10 @@ func (a *Client) UnsubscribeV2Handler(params *UnsubscribeV2HandlerParams, authIn
 }
 
 /*
-UnsubscribeV2HandlerShort unsubscribe to app down notification
+UnsubscribeV2HandlerShort unsubscribe to app notification
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SELF:SUBSCRIPTION [DELETE]`
 
-Unsubscribe to app down notification
+Unsubscribe to app notification
 */
 func (a *Client) UnsubscribeV2HandlerShort(params *UnsubscribeV2HandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeV2HandlerNoContent, error) {
 	// TODO: Validate the params before sending

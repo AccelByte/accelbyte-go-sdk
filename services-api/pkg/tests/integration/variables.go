@@ -12,4 +12,5 @@ var (
 	EmptyInt32     = int32(0)
 	EmptyFloat     = float64(1)
 	EmptyInterface interface{}
+	Limit          = int64(20)
 )

@@ -19,10 +19,17 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PlatformTokenGrantV4CodeChallengeMethod<EnumValue>Constant instead.
 // Get the enum in PlatformTokenGrantV4Params
 const (
 	PlatformTokenGrantV4S256Constant  = "S256"
 	PlatformTokenGrantV4PlainConstant = "plain"
+)
+
+// Get the enum in PlatformTokenGrantV4Params
+const (
+	PlatformTokenGrantV4CodeChallengeMethodS256Constant  = "S256"
+	PlatformTokenGrantV4CodeChallengeMethodPlainConstant = "plain"
 )
 
 // NewPlatformTokenGrantV4Params creates a new PlatformTokenGrantV4Params object

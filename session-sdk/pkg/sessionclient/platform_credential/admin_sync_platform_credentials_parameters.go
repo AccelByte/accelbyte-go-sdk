@@ -18,9 +18,15 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use AdminSyncPlatformCredentialsPlatformID<EnumValue>Constant instead.
 // Get the enum in AdminSyncPlatformCredentialsParams
 const (
 	AdminSyncPlatformCredentialsXBOXConstant = "XBOX"
+)
+
+// Get the enum in AdminSyncPlatformCredentialsParams
+const (
+	AdminSyncPlatformCredentialsPlatformIDXBOXConstant = "XBOX"
 )
 
 // NewAdminSyncPlatformCredentialsParams creates a new AdminSyncPlatformCredentialsParams object

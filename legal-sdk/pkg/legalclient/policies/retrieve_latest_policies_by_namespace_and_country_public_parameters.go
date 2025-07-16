@@ -19,10 +19,17 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use RetrieveLatestPoliciesByNamespaceAndCountryPublicPolicyType<EnumValue>Constant instead.
 // Get the enum in RetrieveLatestPoliciesByNamespaceAndCountryPublicParams
 const (
 	RetrieveLatestPoliciesByNamespaceAndCountryPublicLEGALDOCUMENTTYPEConstant       = "LEGAL_DOCUMENT_TYPE"
 	RetrieveLatestPoliciesByNamespaceAndCountryPublicMARKETINGPREFERENCETYPEConstant = "MARKETING_PREFERENCE_TYPE"
+)
+
+// Get the enum in RetrieveLatestPoliciesByNamespaceAndCountryPublicParams
+const (
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicPolicyTypeLEGALDOCUMENTTYPEConstant       = "LEGAL_DOCUMENT_TYPE"
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicPolicyTypeMARKETINGPREFERENCETYPEConstant = "MARKETING_PREFERENCE_TYPE"
 )
 
 // NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams creates a new RetrieveLatestPoliciesByNamespaceAndCountryPublicParams object

@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use SearchItemTypeConfigItemType<EnumValue>Constant instead.
 // Get the enum in SearchItemTypeConfigParams
 const (
 	SearchItemTypeConfigAPPConstant          = "APP"
@@ -31,6 +32,21 @@ const (
 	SearchItemTypeConfigOPTIONBOXConstant    = "OPTIONBOX"
 	SearchItemTypeConfigSEASONConstant       = "SEASON"
 	SearchItemTypeConfigSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in SearchItemTypeConfigParams
+const (
+	SearchItemTypeConfigItemTypeAPPConstant          = "APP"
+	SearchItemTypeConfigItemTypeBUNDLEConstant       = "BUNDLE"
+	SearchItemTypeConfigItemTypeCODEConstant         = "CODE"
+	SearchItemTypeConfigItemTypeCOINSConstant        = "COINS"
+	SearchItemTypeConfigItemTypeEXTENSIONConstant    = "EXTENSION"
+	SearchItemTypeConfigItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	SearchItemTypeConfigItemTypeLOOTBOXConstant      = "LOOTBOX"
+	SearchItemTypeConfigItemTypeMEDIAConstant        = "MEDIA"
+	SearchItemTypeConfigItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	SearchItemTypeConfigItemTypeSEASONConstant       = "SEASON"
+	SearchItemTypeConfigItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
 // NewSearchItemTypeConfigParams creates a new SearchItemTypeConfigParams object

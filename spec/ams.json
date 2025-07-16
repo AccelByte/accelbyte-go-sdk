@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.37.0"
+    "version": "1.38.1"
   },
   "schemes": [
     "https"
@@ -3790,6 +3790,9 @@
     },
     "api.FleetClaimResponse": {
       "properties": {
+        "fleetId": {
+          "type": "string"
+        },
         "ip": {
           "type": "string"
         },
@@ -3807,6 +3810,7 @@
         }
       },
       "required": [
+        "fleetId",
         "ip",
         "ports",
         "region",
@@ -3839,6 +3843,10 @@
           "$ref": "#/definitions/api.DSHostConfiguration"
         },
         "fallbackFleet": {
+          "type": "string"
+        },
+        "hibernateAfterPeriod": {
+          "description": "Maximum amount of time before an unused on-demand fleet is hibernated, e.g. '1h'",
           "type": "string"
         },
         "id": {
@@ -3978,6 +3986,10 @@
           "$ref": "#/definitions/api.DSHostConfigurationParameters"
         },
         "fallbackFleet": {
+          "type": "string"
+        },
+        "hibernateAfterPeriod": {
+          "description": "Amount of time before an unused on-demand fleet is hibernated, e.g. '1h'",
           "type": "string"
         },
         "imageDeploymentProfile": {
@@ -4733,10 +4745,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-05-19T17:08:31+00:00",
-    "gitHash": "1f932dad823adac89e0b3472fa93d20ba3bc5dad",
+    "buildDate": "2025-07-11T00:39:02+00:00",
+    "gitHash": "3d67211a68c774623e2ab9fb62c1a40fcbc10d5a",
     "name": "fleet-commander",
-    "version": "1.37.0",
+    "version": "1.38.1",
     "version-roles-seeding": "1.2.70"
   }
 }

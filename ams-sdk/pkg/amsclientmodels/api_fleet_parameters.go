@@ -34,6 +34,9 @@ type APIFleetParameters struct {
 	// fallbackfleet
 	FallbackFleet string `json:"fallbackFleet,omitempty"`
 
+	// Amount of time before an unused on-demand fleet is hibernated, e.g. '1h'
+	HibernateAfterPeriod string `json:"hibernateAfterPeriod,omitempty"`
+
 	// imagedeploymentprofile
 	// Required: true
 	ImageDeploymentProfile *APIImageDeploymentProfile `json:"imageDeploymentProfile"`

@@ -19,10 +19,17 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use ArtifactGetSortDirection<EnumValue>Constant instead.
 // Get the enum in ArtifactGetParams
 const (
 	ArtifactGetAscConstant  = "asc"
 	ArtifactGetDescConstant = "desc"
+)
+
+// Get the enum in ArtifactGetParams
+const (
+	ArtifactGetSortDirectionAscConstant  = "asc"
+	ArtifactGetSortDirectionDescConstant = "desc"
 )
 
 // NewArtifactGetParams creates a new ArtifactGetParams object

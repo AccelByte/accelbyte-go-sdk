@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicListItemsSortBy<EnumValue>Constant instead.
 // Get the enum in PublicListItemsParams
 const (
 	PublicListItemsCreatedAtConstant     = "createdAt"
@@ -27,6 +28,16 @@ const (
 	PublicListItemsUpdatedAtConstant     = "updatedAt"
 	PublicListItemsUpdatedAtAscConstant  = "updatedAt:asc"
 	PublicListItemsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in PublicListItemsParams
+const (
+	PublicListItemsSortByCreatedAtConstant     = "createdAt"
+	PublicListItemsSortByCreatedAtAscConstant  = "createdAt:asc"
+	PublicListItemsSortByCreatedAtDescConstant = "createdAt:desc"
+	PublicListItemsSortByUpdatedAtConstant     = "updatedAt"
+	PublicListItemsSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	PublicListItemsSortByUpdatedAtDescConstant = "updatedAt:desc"
 )
 
 // NewPublicListItemsParams creates a new PublicListItemsParams object

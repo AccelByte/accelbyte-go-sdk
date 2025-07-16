@@ -20,6 +20,9 @@ type DLCItem struct {
 	// auto update entitlement when dlc has an update, will be set as false when not included in the request
 	AutoUpdate bool `json:"autoUpdate"`
 
+	// enable or disable revocation when autoUpdate enabled, will be set as false when not included in the request
+	EnableRevocation bool `json:"enableRevocation"`
+
 	// dlc id
 	ID string `json:"id,omitempty"`
 

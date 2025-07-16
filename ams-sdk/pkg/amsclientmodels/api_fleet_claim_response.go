@@ -18,6 +18,10 @@ import (
 // swagger:model Api fleet claim response.
 type APIFleetClaimResponse struct {
 
+	// fleetid
+	// Required: true
+	FleetID *string `json:"fleetId"`
+
 	// ip
 	// Required: true
 	IP *string `json:"ip"`
@@ -39,6 +43,9 @@ type APIFleetClaimResponse struct {
 func (m *APIFleetClaimResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateFleetID(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateIP(formats); err != nil {
 		res = append(res, err)
 	}
@@ -52,6 +59,15 @@ func (m *APIFleetClaimResponse) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIFleetClaimResponse) validateFleetID(formats strfmt.Registry) error {
+
+	if err := validate.Required("fleetId", "body", m.FleetID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -5186,11 +5186,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-05-26T04:11:06+00:00",
-    "gitHash": "7a315d0e4a1e6e47e15f80d98a287fbe685bfaae",
+    "buildDate": "2025-07-15T05:05:55+00:00",
+    "gitHash": "3a5a97b9a1f6698d97aad43b62276bec4ce036d6",
     "name": "justice-challenge-service",
     "realm": "stage",
-    "version": "1.19.0",
+    "version": "1.21.0",
     "version-roles-seeding": "1.2.74"
   }
 }

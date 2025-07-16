@@ -99,6 +99,9 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	PlatformName *string `json:"PlatformName"`
 
+	// private key used to decrypt JWT token
+	PrivateKey string `json:"PrivateKey,omitempty"`
+
 	// redirecturi
 	// Required: true
 	RedirectURI *string `json:"RedirectUri"`
@@ -106,6 +109,12 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// domains that are allowed to create user and grant roles
 	// Required: true
 	RegisteredDomains []*AccountcommonRegisteredDomain `json:"RegisteredDomains"`
+
+	// xbox relying party
+	RelyingParty string `json:"RelyingParty,omitempty"`
+
+	// sandbox id
+	SandboxID string `json:"SandboxId,omitempty"`
 
 	// secret
 	// Required: true

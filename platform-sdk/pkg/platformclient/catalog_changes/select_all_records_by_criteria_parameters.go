@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use SelectAllRecordsByCriteriaAction<EnumValue>Constant instead.
 // Get the enum in SelectAllRecordsByCriteriaParams
 const (
 	SelectAllRecordsByCriteriaCREATEConstant = "CREATE"
@@ -26,6 +27,7 @@ const (
 	SelectAllRecordsByCriteriaUPDATEConstant = "UPDATE"
 )
 
+// Deprecated: 2025-07-16 - Use SelectAllRecordsByCriteriaItemType<EnumValue>Constant instead.
 // Get the enum in SelectAllRecordsByCriteriaParams
 const (
 	SelectAllRecordsByCriteriaAPPConstant          = "APP"
@@ -41,6 +43,7 @@ const (
 	SelectAllRecordsByCriteriaSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use SelectAllRecordsByCriteriaType<EnumValue>Constant instead.
 // Get the enum in SelectAllRecordsByCriteriaParams
 const (
 	SelectAllRecordsByCriteriaCATEGORYConstant = "CATEGORY"
@@ -48,6 +51,37 @@ const (
 	SelectAllRecordsByCriteriaSECTIONConstant  = "SECTION"
 	SelectAllRecordsByCriteriaSTOREConstant    = "STORE"
 	SelectAllRecordsByCriteriaVIEWConstant     = "VIEW"
+)
+
+// Get the enum in SelectAllRecordsByCriteriaParams
+const (
+	SelectAllRecordsByCriteriaActionCREATEConstant = "CREATE"
+	SelectAllRecordsByCriteriaActionDELETEConstant = "DELETE"
+	SelectAllRecordsByCriteriaActionUPDATEConstant = "UPDATE"
+)
+
+// Get the enum in SelectAllRecordsByCriteriaParams
+const (
+	SelectAllRecordsByCriteriaItemTypeAPPConstant          = "APP"
+	SelectAllRecordsByCriteriaItemTypeBUNDLEConstant       = "BUNDLE"
+	SelectAllRecordsByCriteriaItemTypeCODEConstant         = "CODE"
+	SelectAllRecordsByCriteriaItemTypeCOINSConstant        = "COINS"
+	SelectAllRecordsByCriteriaItemTypeEXTENSIONConstant    = "EXTENSION"
+	SelectAllRecordsByCriteriaItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	SelectAllRecordsByCriteriaItemTypeLOOTBOXConstant      = "LOOTBOX"
+	SelectAllRecordsByCriteriaItemTypeMEDIAConstant        = "MEDIA"
+	SelectAllRecordsByCriteriaItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	SelectAllRecordsByCriteriaItemTypeSEASONConstant       = "SEASON"
+	SelectAllRecordsByCriteriaItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in SelectAllRecordsByCriteriaParams
+const (
+	SelectAllRecordsByCriteriaTypeCATEGORYConstant = "CATEGORY"
+	SelectAllRecordsByCriteriaTypeITEMConstant     = "ITEM"
+	SelectAllRecordsByCriteriaTypeSECTIONConstant  = "SECTION"
+	SelectAllRecordsByCriteriaTypeSTOREConstant    = "STORE"
+	SelectAllRecordsByCriteriaTypeVIEWConstant     = "VIEW"
 )
 
 // NewSelectAllRecordsByCriteriaParams creates a new SelectAllRecordsByCriteriaParams object

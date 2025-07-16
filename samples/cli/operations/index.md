@@ -43,6 +43,8 @@
 
 [session](./session.md)
 
+[sessionhistory](./sessionhistory.md)
+
 [social](./social.md)
 
 [ugc](./ugc.md)

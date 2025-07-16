@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetIAPItemMappingPlatform<EnumValue>Constant instead.
 // Get the enum in GetIAPItemMappingParams
 const (
 	GetIAPItemMappingAPPLEConstant       = "APPLE"
@@ -29,6 +30,19 @@ const (
 	GetIAPItemMappingSTEAMConstant       = "STEAM"
 	GetIAPItemMappingTWITCHConstant      = "TWITCH"
 	GetIAPItemMappingXBOXConstant        = "XBOX"
+)
+
+// Get the enum in GetIAPItemMappingParams
+const (
+	GetIAPItemMappingPlatformAPPLEConstant       = "APPLE"
+	GetIAPItemMappingPlatformEPICGAMESConstant   = "EPICGAMES"
+	GetIAPItemMappingPlatformGOOGLEConstant      = "GOOGLE"
+	GetIAPItemMappingPlatformOCULUSConstant      = "OCULUS"
+	GetIAPItemMappingPlatformPLAYSTATIONConstant = "PLAYSTATION"
+	GetIAPItemMappingPlatformSTADIAConstant      = "STADIA"
+	GetIAPItemMappingPlatformSTEAMConstant       = "STEAM"
+	GetIAPItemMappingPlatformTWITCHConstant      = "TWITCH"
+	GetIAPItemMappingPlatformXBOXConstant        = "XBOX"
 )
 
 // NewGetIAPItemMappingParams creates a new GetIAPItemMappingParams object

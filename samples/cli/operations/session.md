@@ -84,7 +84,7 @@ $ samples/cli/sample-apps Session adminDeleteConfigurationAlertV1 \
 ```sh
 $ samples/cli/sample-apps Session adminCreateConfigurationTemplateV1 \
     --namespace 'string' \
-    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "amsClaimTimeoutMinutes": 1, "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "string"}' \
+    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "amsClaimTimeoutMinutes": 1, "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "DS"}' \
     > result.txt
 ```
 
@@ -113,7 +113,7 @@ $ samples/cli/sample-apps Session adminGetConfigurationTemplateV1 \
 $ samples/cli/sample-apps Session adminUpdateConfigurationTemplateV1 \
     --name 'string' \
     --namespace 'string' \
-    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "amsClaimTimeoutMinutes": 1, "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "string"}' \
+    --body '{"NativeSessionSetting": {}, "PSNBaseUrl": "string", "amsClaimTimeoutMinutes": 1, "appName": "string", "asyncProcessDSRequest": {}, "attributes": {"string": {}}, "autoJoin": false, "autoLeaveSession": false, "clientVersion": "string", "customURLGRPC": "string", "deployment": "string", "disableCodeGeneration": false, "disableResendInvite": false, "dsManualSetReady": false, "dsSource": "string", "enableSecret": false, "fallbackClaimKeys": ["string"], "grpcSessionConfig": {}, "immutableStorage": false, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "leaderElectionGracePeriod": 1, "manualRejoin": false, "maxActiveSessions": 1, "maxPlayers": 1, "minPlayers": 1, "name": "string", "persistent": false, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "textChat": false, "textChatMode": "GAME", "tieTeamsSessionLifetime": false, "ttlHours": 1, "type": "DS"}' \
     > result.txt
 ```
 
@@ -153,7 +153,7 @@ $ samples/cli/sample-apps Session adminQueryGameSessions \
     --gameMode 'string' \
     --isPersistent 'string' \
     --isSoftDeleted 'string' \
-    --joinability 'string' \
+    --joinability 'CLOSED' \
     --limit 1 \
     --matchPool 'string' \
     --memberID 'string' \
@@ -161,8 +161,8 @@ $ samples/cli/sample-apps Session adminQueryGameSessions \
     --order 'string' \
     --orderBy 'string' \
     --sessionID 'string' \
-    --status 'string' \
-    --statusV2 'string' \
+    --status 'AVAILABLE' \
+    --statusV2 'AVAILABLE' \
     --toTime 'string' \
     > result.txt
 ```
@@ -234,14 +234,15 @@ $ samples/cli/sample-apps Session adminGetListNativeSession \
 ```sh
 $ samples/cli/sample-apps Session adminQueryParties \
     --namespace 'string' \
+    --configurationName 'string' \
     --fromTime 'string' \
     --isSoftDeleted 'string' \
-    --joinability 'string' \
+    --joinability 'CLOSED' \
     --key 'string' \
     --leaderID 'string' \
     --limit 1 \
     --memberID 'string' \
-    --memberStatus 'string' \
+    --memberStatus 'CANCELLED' \
     --offset 1 \
     --order 'string' \
     --orderBy 'string' \
@@ -377,7 +378,7 @@ $ samples/cli/sample-apps Session adminSyncNativeSession \
 $ samples/cli/sample-apps Session createGameSession \
     --namespace 'string' \
     --resolveMaxActiveSession false \
-    --body '{"appName": "string", "attributes": {"string": {}}, "autoJoin": false, "backfillTicketID": "string", "clientVersion": "string", "configurationName": "string", "customURLGRPC": "string", "deployment": "string", "dsSource": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "serverName": "string", "storage": {}, "teams": [{}], "textChat": false, "textChatMode": "GAME", "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "string"}' \
+    --body '{"appName": "string", "attributes": {"string": {}}, "autoJoin": false, "backfillTicketID": "string", "clientVersion": "string", "configurationName": "string", "customURLGRPC": "string", "deployment": "string", "dsSource": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "serverName": "string", "storage": {}, "teams": [{}], "textChat": false, "textChatMode": "GAME", "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS"}' \
     > result.txt
 ```
 
@@ -418,7 +419,7 @@ $ samples/cli/sample-apps Session getGameSession \
 $ samples/cli/sample-apps Session updateGameSession \
     --namespace 'string' \
     --sessionId 'string' \
-    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "string", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -435,7 +436,7 @@ $ samples/cli/sample-apps Session deleteGameSession \
 $ samples/cli/sample-apps Session patchUpdateGameSession \
     --namespace 'string' \
     --sessionId 'string' \
-    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "string", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -553,7 +554,7 @@ $ samples/cli/sample-apps Session publicGetParty \
 $ samples/cli/sample-apps Session publicUpdateParty \
     --namespace 'string' \
     --partyId 'string' \
-    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "maxPlayers": 1, "minPlayers": 1, "type": "string", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "minPlayers": 1, "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -562,7 +563,7 @@ $ samples/cli/sample-apps Session publicUpdateParty \
 $ samples/cli/sample-apps Session publicPatchUpdateParty \
     --namespace 'string' \
     --partyId 'string' \
-    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "maxPlayers": 1, "minPlayers": 1, "type": "string", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "minPlayers": 1, "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -664,7 +665,7 @@ $ samples/cli/sample-apps Session publicPartyKick \
 ```sh
 $ samples/cli/sample-apps Session publicCreateParty \
     --namespace 'string' \
-    --body '{"attributes": {"string": {}}, "configurationName": "string", "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "string", "maxPlayers": 1, "members": [{}], "minPlayers": 1, "textChat": false, "type": "string"}' \
+    --body '{"attributes": {"string": {}}, "configurationName": "string", "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "members": [{}], "minPlayers": 1, "textChat": false, "type": "DS"}' \
     > result.txt
 ```
 

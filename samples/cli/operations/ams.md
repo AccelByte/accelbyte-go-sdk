@@ -156,7 +156,7 @@ $ samples/cli/sample-apps Ams fleetList \
 ```sh
 $ samples/cli/sample-apps Ams fleetCreate \
     --namespace 'string' \
-    --body '{"active": false, "claimKeys": ["string"], "dsHostConfiguration": {}, "fallbackFleet": "string", "imageDeploymentProfile": {}, "name": "string", "onDemand": false, "regions": [{}], "samplingRules": {}}' \
+    --body '{"active": false, "claimKeys": ["string"], "dsHostConfiguration": {}, "fallbackFleet": "string", "hibernateAfterPeriod": "string", "imageDeploymentProfile": {}, "name": "string", "onDemand": false, "regions": [{}], "samplingRules": {}}' \
     > result.txt
 ```
 
@@ -173,7 +173,7 @@ $ samples/cli/sample-apps Ams fleetGet \
 $ samples/cli/sample-apps Ams fleetUpdate \
     --fleetID 'string' \
     --namespace 'string' \
-    --body '{"active": false, "claimKeys": ["string"], "dsHostConfiguration": {}, "fallbackFleet": "string", "imageDeploymentProfile": {}, "name": "string", "onDemand": false, "regions": [{}], "samplingRules": {}}' \
+    --body '{"active": false, "claimKeys": ["string"], "dsHostConfiguration": {}, "fallbackFleet": "string", "hibernateAfterPeriod": "string", "imageDeploymentProfile": {}, "name": "string", "onDemand": false, "regions": [{}], "samplingRules": {}}' \
     > result.txt
 ```
 

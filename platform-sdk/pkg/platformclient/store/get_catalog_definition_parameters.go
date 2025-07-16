@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetCatalogDefinitionCatalogType<EnumValue>Constant instead.
 // Get the enum in GetCatalogDefinitionParams
 const (
 	GetCatalogDefinitionAPPConstant      = "APP"
@@ -25,6 +26,15 @@ const (
 	GetCatalogDefinitionITEMConstant     = "ITEM"
 	GetCatalogDefinitionSECTIONConstant  = "SECTION"
 	GetCatalogDefinitionVIEWConstant     = "VIEW"
+)
+
+// Get the enum in GetCatalogDefinitionParams
+const (
+	GetCatalogDefinitionCatalogTypeAPPConstant      = "APP"
+	GetCatalogDefinitionCatalogTypeCATEGORYConstant = "CATEGORY"
+	GetCatalogDefinitionCatalogTypeITEMConstant     = "ITEM"
+	GetCatalogDefinitionCatalogTypeSECTIONConstant  = "SECTION"
+	GetCatalogDefinitionCatalogTypeVIEWConstant     = "VIEW"
 )
 
 // NewGetCatalogDefinitionParams creates a new GetCatalogDefinitionParams object

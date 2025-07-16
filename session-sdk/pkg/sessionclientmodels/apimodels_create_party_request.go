@@ -7,6 +7,7 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -39,6 +40,7 @@ type ApimodelsCreatePartyRequest struct {
 	InviteTimeout *int32 `json:"inviteTimeout"`
 
 	// joinability
+	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN']
 	// Required: true
 	Joinability *string `json:"joinability"`
 
@@ -61,6 +63,7 @@ type ApimodelsCreatePartyRequest struct {
 	TextChat *bool `json:"textChat"`
 
 	// type
+	// Enum: ['DS', 'NONE', 'P2P']
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -130,9 +133,55 @@ func (m *ApimodelsCreatePartyRequest) validateInviteTimeout(formats strfmt.Regis
 	return nil
 }
 
+var apimodelsCreatePartyRequestTypeJoinabilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsCreatePartyRequestTypeJoinabilityPropEnum = append(apimodelsCreatePartyRequestTypeJoinabilityPropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsCreatePartyRequestJoinabilityCLOSED captures enum value "CLOSED"
+	ApimodelsCreatePartyRequestJoinabilityCLOSED string = "CLOSED"
+
+	// ApimodelsCreatePartyRequestJoinabilityFRIENDSOFFRIENDS captures enum value "FRIENDS_OF_FRIENDS"
+	ApimodelsCreatePartyRequestJoinabilityFRIENDSOFFRIENDS string = "FRIENDS_OF_FRIENDS"
+
+	// ApimodelsCreatePartyRequestJoinabilityFRIENDSOFLEADER captures enum value "FRIENDS_OF_LEADER"
+	ApimodelsCreatePartyRequestJoinabilityFRIENDSOFLEADER string = "FRIENDS_OF_LEADER"
+
+	// ApimodelsCreatePartyRequestJoinabilityFRIENDSOFMEMBERS captures enum value "FRIENDS_OF_MEMBERS"
+	ApimodelsCreatePartyRequestJoinabilityFRIENDSOFMEMBERS string = "FRIENDS_OF_MEMBERS"
+
+	// ApimodelsCreatePartyRequestJoinabilityINVITEONLY captures enum value "INVITE_ONLY"
+	ApimodelsCreatePartyRequestJoinabilityINVITEONLY string = "INVITE_ONLY"
+
+	// ApimodelsCreatePartyRequestJoinabilityOPEN captures enum value "OPEN"
+	ApimodelsCreatePartyRequestJoinabilityOPEN string = "OPEN"
+)
+
+// prop value enum
+func (m *ApimodelsCreatePartyRequest) validateJoinabilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsCreatePartyRequestTypeJoinabilityPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsCreatePartyRequest) validateJoinability(formats strfmt.Registry) error {
 
 	if err := validate.Required("joinability", "body", m.Joinability); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateJoinabilityEnum("joinability", "body", *m.Joinability); err != nil {
 		return err
 	}
 
@@ -191,9 +240,46 @@ func (m *ApimodelsCreatePartyRequest) validateTextChat(formats strfmt.Registry) 
 	return nil
 }
 
+var apimodelsCreatePartyRequestTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DS", "NONE", "P2P"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsCreatePartyRequestTypeTypePropEnum = append(apimodelsCreatePartyRequestTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsCreatePartyRequestTypeDS captures enum value "DS"
+	ApimodelsCreatePartyRequestTypeDS string = "DS"
+
+	// ApimodelsCreatePartyRequestTypeNONE captures enum value "NONE"
+	ApimodelsCreatePartyRequestTypeNONE string = "NONE"
+
+	// ApimodelsCreatePartyRequestTypeP2P captures enum value "P2P"
+	ApimodelsCreatePartyRequestTypeP2P string = "P2P"
+)
+
+// prop value enum
+func (m *ApimodelsCreatePartyRequest) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsCreatePartyRequestTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsCreatePartyRequest) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

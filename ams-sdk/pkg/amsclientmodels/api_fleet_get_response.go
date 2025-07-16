@@ -36,6 +36,9 @@ type APIFleetGetResponse struct {
 	// Required: true
 	FallbackFleet *string `json:"fallbackFleet"`
 
+	// Maximum amount of time before an unused on-demand fleet is hibernated, e.g. '1h'
+	HibernateAfterPeriod string `json:"hibernateAfterPeriod,omitempty"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`

@@ -593,6 +593,35 @@ func (aaa *NotificationService) GetMyNotifications(input *notification.GetMyNoti
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use GetMyOfflineNotificationsShort instead.
+func (aaa *NotificationService) GetMyOfflineNotifications(input *notification.GetMyOfflineNotificationsParams) (*lobbyclientmodels.ModelNotificationsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Notification.GetMyOfflineNotifications(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use GetTopicByNamespaceShort instead.
 func (aaa *NotificationService) GetTopicByNamespace(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -1398,6 +1427,36 @@ func (aaa *NotificationService) GetMyNotificationsShort(input *notification.GetM
 	}
 
 	ok, err := aaa.Client.Notification.GetMyNotificationsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *NotificationService) GetMyOfflineNotificationsShort(input *notification.GetMyOfflineNotificationsParams) (*lobbyclientmodels.ModelNotificationsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdNotification != nil {
+		input.XFlightId = tempFlightIdNotification
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Notification.GetMyOfflineNotificationsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

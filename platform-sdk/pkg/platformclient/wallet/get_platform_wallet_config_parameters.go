@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetPlatformWalletConfigPlatform<EnumValue>Constant instead.
 // Get the enum in GetPlatformWalletConfigParams
 const (
 	GetPlatformWalletConfigEpicConstant        = "Epic"
@@ -29,6 +30,19 @@ const (
 	GetPlatformWalletConfigPlaystationConstant = "Playstation"
 	GetPlatformWalletConfigSteamConstant       = "Steam"
 	GetPlatformWalletConfigXboxConstant        = "Xbox"
+)
+
+// Get the enum in GetPlatformWalletConfigParams
+const (
+	GetPlatformWalletConfigPlatformEpicConstant        = "Epic"
+	GetPlatformWalletConfigPlatformGooglePlayConstant  = "GooglePlay"
+	GetPlatformWalletConfigPlatformIOSConstant         = "IOS"
+	GetPlatformWalletConfigPlatformNintendoConstant    = "Nintendo"
+	GetPlatformWalletConfigPlatformOculusConstant      = "Oculus"
+	GetPlatformWalletConfigPlatformOtherConstant       = "Other"
+	GetPlatformWalletConfigPlatformPlaystationConstant = "Playstation"
+	GetPlatformWalletConfigPlatformSteamConstant       = "Steam"
+	GetPlatformWalletConfigPlatformXboxConstant        = "Xbox"
 )
 
 // NewGetPlatformWalletConfigParams creates a new GetPlatformWalletConfigParams object

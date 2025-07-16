@@ -19,11 +19,19 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QuerySeasonsStatus<EnumValue>Constant instead.
 // Get the enum in QuerySeasonsParams
 const (
 	QuerySeasonsDRAFTConstant     = "DRAFT"
 	QuerySeasonsPUBLISHEDConstant = "PUBLISHED"
 	QuerySeasonsRETIREDConstant   = "RETIRED"
+)
+
+// Get the enum in QuerySeasonsParams
+const (
+	QuerySeasonsStatusDRAFTConstant     = "DRAFT"
+	QuerySeasonsStatusPUBLISHEDConstant = "PUBLISHED"
+	QuerySeasonsStatusRETIREDConstant   = "RETIRED"
 )
 
 // NewQuerySeasonsParams creates a new QuerySeasonsParams object

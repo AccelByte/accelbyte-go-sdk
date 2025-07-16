@@ -156,7 +156,7 @@ func TestIntegrationMatchPool(t *testing.T) {
 
 	// CASE List match pools
 	inputCreate := &match_pools.MatchPoolListParams{
-		Limit:     &limit,
+		Limit:     &integration.Limit,
 		Namespace: integration.NamespaceTest,
 		Offset:    &offset,
 	}
@@ -258,7 +258,7 @@ func TestIntegrationMatchFunction(t *testing.T) {
 
 	// CASE List match functions
 	inputCreate := &match_functions.MatchFunctionListParams{
-		Limit:     &limit,
+		Limit:     &integration.Limit,
 		Namespace: integration.NamespaceTest,
 		Offset:    &offset,
 	}

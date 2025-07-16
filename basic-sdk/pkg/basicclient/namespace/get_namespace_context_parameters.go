@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetNamespaceContextParams creates a new GetNamespaceContextParams object
@@ -66,6 +67,8 @@ type GetNamespaceContextParams struct {
 	RetryPolicy *utils.Retry
 	/*Namespace*/
 	Namespace string
+	/*RefreshOnCacheMiss*/
+	RefreshOnCacheMiss *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -143,6 +146,17 @@ func (o *GetNamespaceContextParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithRefreshOnCacheMiss adds the refreshOnCacheMiss to the get namespace context params
+func (o *GetNamespaceContextParams) WithRefreshOnCacheMiss(refreshOnCacheMiss *bool) *GetNamespaceContextParams {
+	o.SetRefreshOnCacheMiss(refreshOnCacheMiss)
+	return o
+}
+
+// SetRefreshOnCacheMiss adds the refreshOnCacheMiss to the get namespace context params
+func (o *GetNamespaceContextParams) SetRefreshOnCacheMiss(refreshOnCacheMiss *bool) {
+	o.RefreshOnCacheMiss = refreshOnCacheMiss
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetNamespaceContextParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -154,6 +168,22 @@ func (o *GetNamespaceContextParams) WriteToRequest(r runtime.ClientRequest, reg 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.RefreshOnCacheMiss != nil {
+
+		// query param refreshOnCacheMiss
+		var qrRefreshOnCacheMiss bool
+		if o.RefreshOnCacheMiss != nil {
+			qrRefreshOnCacheMiss = *o.RefreshOnCacheMiss
+		}
+		qRefreshOnCacheMiss := swag.FormatBool(qrRefreshOnCacheMiss)
+		if qRefreshOnCacheMiss != "" {
+			if err := r.SetQueryParam("refreshOnCacheMiss", qRefreshOnCacheMiss); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminListAchievementsSortBy<EnumValue>Constant instead.
 // Get the enum in AdminListAchievementsParams
 const (
 	AdminListAchievementsListOrderConstant     = "listOrder"
@@ -30,6 +31,19 @@ const (
 	AdminListAchievementsUpdatedAtConstant     = "updatedAt"
 	AdminListAchievementsUpdatedAtAscConstant  = "updatedAt:asc"
 	AdminListAchievementsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in AdminListAchievementsParams
+const (
+	AdminListAchievementsSortByListOrderConstant     = "listOrder"
+	AdminListAchievementsSortByListOrderAscConstant  = "listOrder:asc"
+	AdminListAchievementsSortByListOrderDescConstant = "listOrder:desc"
+	AdminListAchievementsSortByCreatedAtConstant     = "createdAt"
+	AdminListAchievementsSortByCreatedAtAscConstant  = "createdAt:asc"
+	AdminListAchievementsSortByCreatedAtDescConstant = "createdAt:desc"
+	AdminListAchievementsSortByUpdatedAtConstant     = "updatedAt"
+	AdminListAchievementsSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	AdminListAchievementsSortByUpdatedAtDescConstant = "updatedAt:desc"
 )
 
 // NewAdminListAchievementsParams creates a new AdminListAchievementsParams object

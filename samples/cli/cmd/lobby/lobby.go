@@ -120,6 +120,7 @@ func init() {
 	LobbyCmd.AddCommand(presence.UsersPresenceHandlerV2Cmd)
 	LobbyCmd.AddCommand(admin.FreeFormNotificationCmd)
 	LobbyCmd.AddCommand(notification.GetMyNotificationsCmd)
+	LobbyCmd.AddCommand(notification.GetMyOfflineNotificationsCmd)
 	LobbyCmd.AddCommand(admin.NotificationWithTemplateCmd)
 	LobbyCmd.AddCommand(admin.GetGameTemplateCmd)
 	LobbyCmd.AddCommand(admin.CreateTemplateCmd)

@@ -7,6 +7,7 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -50,6 +51,7 @@ type ApimodelsUpdateGameSessionRequest struct {
 	InviteTimeout *int32 `json:"inviteTimeout"`
 
 	// joinability
+	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN']
 	// Required: true
 	Joinability *string `json:"joinability"`
 
@@ -86,6 +88,7 @@ type ApimodelsUpdateGameSessionRequest struct {
 	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
 
 	// type
+	// Enum: ['DS', 'NONE', 'P2P']
 	// Required: true
 	Type *string `json:"type"`
 
@@ -193,9 +196,55 @@ func (m *ApimodelsUpdateGameSessionRequest) validateInviteTimeout(formats strfmt
 	return nil
 }
 
+var apimodelsUpdateGameSessionRequestTypeJoinabilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsUpdateGameSessionRequestTypeJoinabilityPropEnum = append(apimodelsUpdateGameSessionRequestTypeJoinabilityPropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityCLOSED captures enum value "CLOSED"
+	ApimodelsUpdateGameSessionRequestJoinabilityCLOSED string = "CLOSED"
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityFRIENDSOFFRIENDS captures enum value "FRIENDS_OF_FRIENDS"
+	ApimodelsUpdateGameSessionRequestJoinabilityFRIENDSOFFRIENDS string = "FRIENDS_OF_FRIENDS"
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityFRIENDSOFLEADER captures enum value "FRIENDS_OF_LEADER"
+	ApimodelsUpdateGameSessionRequestJoinabilityFRIENDSOFLEADER string = "FRIENDS_OF_LEADER"
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityFRIENDSOFMEMBERS captures enum value "FRIENDS_OF_MEMBERS"
+	ApimodelsUpdateGameSessionRequestJoinabilityFRIENDSOFMEMBERS string = "FRIENDS_OF_MEMBERS"
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityINVITEONLY captures enum value "INVITE_ONLY"
+	ApimodelsUpdateGameSessionRequestJoinabilityINVITEONLY string = "INVITE_ONLY"
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityOPEN captures enum value "OPEN"
+	ApimodelsUpdateGameSessionRequestJoinabilityOPEN string = "OPEN"
+)
+
+// prop value enum
+func (m *ApimodelsUpdateGameSessionRequest) validateJoinabilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsUpdateGameSessionRequestTypeJoinabilityPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsUpdateGameSessionRequest) validateJoinability(formats strfmt.Registry) error {
 
 	if err := validate.Required("joinability", "body", m.Joinability); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateJoinabilityEnum("joinability", "body", *m.Joinability); err != nil {
 		return err
 	}
 
@@ -272,9 +321,46 @@ func (m *ApimodelsUpdateGameSessionRequest) validateTicketIDs(formats strfmt.Reg
 	return nil
 }
 
+var apimodelsUpdateGameSessionRequestTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DS", "NONE", "P2P"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsUpdateGameSessionRequestTypeTypePropEnum = append(apimodelsUpdateGameSessionRequestTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsUpdateGameSessionRequestTypeDS captures enum value "DS"
+	ApimodelsUpdateGameSessionRequestTypeDS string = "DS"
+
+	// ApimodelsUpdateGameSessionRequestTypeNONE captures enum value "NONE"
+	ApimodelsUpdateGameSessionRequestTypeNONE string = "NONE"
+
+	// ApimodelsUpdateGameSessionRequestTypeP2P captures enum value "P2P"
+	ApimodelsUpdateGameSessionRequestTypeP2P string = "P2P"
+)
+
+// prop value enum
+func (m *ApimodelsUpdateGameSessionRequest) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsUpdateGameSessionRequestTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsUpdateGameSessionRequest) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

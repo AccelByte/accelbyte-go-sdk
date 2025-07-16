@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodel bulk subscribe item.
 type ApimodelBulkSubscribeItem struct {
 
+	// emailaddress
+	// Required: true
+	EmailAddress *string `json:"emailAddress"`
+
 	// notificationtype
 	// Required: true
 	NotificationType map[string]bool `json:"notificationType"`
@@ -31,6 +35,9 @@ type ApimodelBulkSubscribeItem struct {
 func (m *ApimodelBulkSubscribeItem) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEmailAddress(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -38,6 +45,15 @@ func (m *ApimodelBulkSubscribeItem) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelBulkSubscribeItem) validateEmailAddress(formats strfmt.Registry) error {
+
+	if err := validate.Required("emailAddress", "body", m.EmailAddress); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicGetUserRewardsSortBy<EnumValue>Constant instead.
 // Get the enum in PublicGetUserRewardsParams
 const (
 	PublicGetUserRewardsCreatedAtConstant     = "createdAt"
@@ -29,10 +30,27 @@ const (
 	PublicGetUserRewardsUpdatedAtDescConstant = "updatedAt:desc"
 )
 
+// Deprecated: 2025-07-16 - Use PublicGetUserRewardsStatus<EnumValue>Constant instead.
 // Get the enum in PublicGetUserRewardsParams
 const (
 	PublicGetUserRewardsCLAIMEDConstant   = "CLAIMED"
 	PublicGetUserRewardsUNCLAIMEDConstant = "UNCLAIMED"
+)
+
+// Get the enum in PublicGetUserRewardsParams
+const (
+	PublicGetUserRewardsSortByCreatedAtConstant     = "createdAt"
+	PublicGetUserRewardsSortByCreatedAtAscConstant  = "createdAt:asc"
+	PublicGetUserRewardsSortByCreatedAtDescConstant = "createdAt:desc"
+	PublicGetUserRewardsSortByUpdatedAtConstant     = "updatedAt"
+	PublicGetUserRewardsSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	PublicGetUserRewardsSortByUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in PublicGetUserRewardsParams
+const (
+	PublicGetUserRewardsStatusCLAIMEDConstant   = "CLAIMED"
+	PublicGetUserRewardsStatusUNCLAIMEDConstant = "UNCLAIMED"
 )
 
 // NewPublicGetUserRewardsParams creates a new PublicGetUserRewardsParams object

@@ -1,3 +1,30 @@
+<a name="v0.81.0"></a>
+## [v0.81.0]
+### ci
+- **:** consolidate extend-builder-batch linux-amd64
+- **github:** change label to extend-builder-ci
+### chore
+- **:** remove lint files and add to gitignore
+- **:** remove dead code
+- **:** change method name, add docs for method
+### docs
+- **:** fix url
+- **:** add readme for LoginClientWithContext
+- **:** add method comments for better code documentation
+- **:** add LoginOrRefreshWithScope and LoginOrRefreshClient method documentation
+- **:** add mention of WithContext login functions
+### fix
+- **:** create new LoginClientContext method to fix double trace issue in LoginClient
+- **services-api:** fix upload http method
+- **auth:** fix lint error
+- **ws:** fix reading from closed connections
+### feat
+- **auth:** add WithContext variants of login functions
+- **:** remove app client id on extend app deletion
+### test
+- **ws:** add delay in test
+
+
 <a name="v0.80.0"></a>
 ## [v0.80.0]
 ### feat

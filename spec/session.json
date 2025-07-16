@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.25.3"
+    "version": "3.26.0"
   },
   "schemes": [
     "https"
@@ -1647,7 +1647,15 @@
             "type": "string"
           },
           {
-            "description": "game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY",
+            "description": "game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY,FRIENDS_OF_MEMBERS,FRIENDS_OF_LEADER,FRIENDS_OF_FRIENDS",
+            "enum": [
+              "CLOSED",
+              "FRIENDS_OF_FRIENDS",
+              "FRIENDS_OF_LEADER",
+              "FRIENDS_OF_MEMBERS",
+              "INVITE_ONLY",
+              "OPEN"
+            ],
             "in": "query",
             "name": "joinability",
             "type": "string"
@@ -1698,15 +1706,35 @@
           },
           {
             "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,DS_ERROR,PREPARING",
+            "enum": [
+              "AVAILABLE",
+              "DS_ERROR",
+              "FAILED_TO_REQUEST",
+              "NEED_TO_REQUEST",
+              "PREPARING",
+              "REQUESTED"
+            ],
             "in": "query",
             "name": "status",
             "type": "string"
           },
           {
             "description": "game session status to filter. supported status: NEED_TO_REQUEST,REQUESTED,AVAILABLE,FAILED_TO_REQUEST,UNKNOWN,ENDED,DS_ERROR,PREPARING,DS_CANCELLED",
+            "enum": [
+              "AVAILABLE",
+              "DS_CANCELLED",
+              "DS_ERROR",
+              "ENDED",
+              "FAILED_TO_REQUEST",
+              "NEED_TO_REQUEST",
+              "PREPARING",
+              "REQUESTED",
+              "UNKNOWN"
+            ],
             "in": "query",
             "name": "statusV2",
-            "type": "string"
+            "type": "string",
+            "x-enum-ignore": true
           },
           {
             "description": "end of game session creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z",
@@ -2372,6 +2400,12 @@
             "type": "string"
           },
           {
+            "description": "configuration template name",
+            "in": "query",
+            "name": "configurationName",
+            "type": "string"
+          },
+          {
             "description": "beginning of party creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z",
             "in": "query",
             "name": "fromTime",
@@ -2384,7 +2418,15 @@
             "type": "string"
           },
           {
-            "description": "Join type",
+            "description": "game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY,FRIENDS_OF_MEMBERS,FRIENDS_OF_LEADER,FRIENDS_OF_FRIENDS",
+            "enum": [
+              "CLOSED",
+              "FRIENDS_OF_FRIENDS",
+              "FRIENDS_OF_LEADER",
+              "FRIENDS_OF_MEMBERS",
+              "INVITE_ONLY",
+              "OPEN"
+            ],
             "in": "query",
             "name": "joinability",
             "type": "string"
@@ -2416,6 +2458,18 @@
           },
           {
             "description": "Member status",
+            "enum": [
+              "CANCELLED",
+              "CONNECTED",
+              "DISCONNECTED",
+              "DROPPED",
+              "INVITED",
+              "JOINED",
+              "KICKED",
+              "LEFT",
+              "REJECTED",
+              "TIMEOUT"
+            ],
             "in": "query",
             "name": "memberStatus",
             "type": "string"
@@ -7604,6 +7658,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "last": {
@@ -7675,6 +7737,11 @@
           "type": "integer"
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         },
         "updatedAt": {
@@ -7795,6 +7862,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "leaderElectionGracePeriod": {
@@ -7857,6 +7932,11 @@
           "type": "integer"
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         }
       },
@@ -7920,6 +8000,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "matchPool": {
@@ -7981,6 +8069,11 @@
           "x-omitempty": false
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         }
       },
@@ -8021,6 +8114,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "maxPlayers": {
@@ -8042,6 +8143,11 @@
           "x-omitempty": false
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         }
       },
@@ -8070,9 +8176,28 @@
           "$ref": "#/definitions/models.GameServer"
         },
         "Status": {
+          "enum": [
+            "AVAILABLE",
+            "DS_ERROR",
+            "FAILED_TO_REQUEST",
+            "NEED_TO_REQUEST",
+            "PREPARING",
+            "REQUESTED"
+          ],
           "type": "string"
         },
         "StatusV2": {
+          "enum": [
+            "AVAILABLE",
+            "DS_CANCELLED",
+            "DS_ERROR",
+            "ENDED",
+            "FAILED_TO_REQUEST",
+            "NEED_TO_REQUEST",
+            "PREPARING",
+            "REQUESTED",
+            "UNKNOWN"
+          ],
           "type": "string"
         }
       },
@@ -8707,6 +8832,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "leaderElectionGracePeriod": {
@@ -8772,6 +8905,11 @@
           "type": "integer"
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         }
       },
@@ -9034,6 +9172,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "leaderElectionGracePeriod": {
@@ -9096,6 +9242,11 @@
           "type": "integer"
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         }
       },
@@ -9167,6 +9318,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "matchPool": {
@@ -9209,6 +9368,11 @@
           "x-omitempty": false
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         },
         "version": {
@@ -9291,6 +9455,14 @@
           "type": "integer"
         },
         "joinability": {
+          "enum": [
+            "CLOSED",
+            "FRIENDS_OF_FRIENDS",
+            "FRIENDS_OF_LEADER",
+            "FRIENDS_OF_MEMBERS",
+            "INVITE_ONLY",
+            "OPEN"
+          ],
           "type": "string"
         },
         "maxPlayers": {
@@ -9302,6 +9474,11 @@
           "type": "integer"
         },
         "type": {
+          "enum": [
+            "DS",
+            "NONE",
+            "P2P"
+          ],
           "type": "string"
         },
         "version": {
@@ -9335,9 +9512,30 @@
           "type": "string"
         },
         "status": {
+          "enum": [
+            "CONNECTED",
+            "INVITED",
+            "JOINED",
+            "KICKED",
+            "LEFT",
+            "REJECTED"
+          ],
           "type": "string"
         },
         "statusV2": {
+          "enum": [
+            "CANCELLED",
+            "CONNECTED",
+            "DISCONNECTED",
+            "DROPPED",
+            "INVITED",
+            "JOINED",
+            "KICKED",
+            "LEFT",
+            "REJECTED",
+            "TERMINATED",
+            "TIMEOUT"
+          ],
           "type": "string"
         },
         "updatedAt": {
@@ -9963,9 +10161,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-05-26T06:29:48+00:00",
-    "gitHash": "090481dd00e67a5968fd26e85db5116714677e89",
-    "version": "3.25.3",
+    "buildDate": "2025-07-14T08:30:33+00:00",
+    "gitHash": "12f2e927d9bd8f1ae3a5b39aac626a958687aeaa",
+    "version": "3.26.0",
     "version-roles-seeding": "1.2.86"
   }
 }

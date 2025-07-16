@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryUserOrdersStatus<EnumValue>Constant instead.
 // Get the enum in PublicQueryUserOrdersParams
 const (
 	PublicQueryUserOrdersCHARGEBACKConstant         = "CHARGEBACK"
@@ -32,6 +33,21 @@ const (
 	PublicQueryUserOrdersREFUNDEDConstant           = "REFUNDED"
 	PublicQueryUserOrdersREFUNDINGConstant          = "REFUNDING"
 	PublicQueryUserOrdersREFUNDFAILEDConstant       = "REFUND_FAILED"
+)
+
+// Get the enum in PublicQueryUserOrdersParams
+const (
+	PublicQueryUserOrdersStatusCHARGEBACKConstant         = "CHARGEBACK"
+	PublicQueryUserOrdersStatusCHARGEBACKREVERSEDConstant = "CHARGEBACK_REVERSED"
+	PublicQueryUserOrdersStatusCHARGEDConstant            = "CHARGED"
+	PublicQueryUserOrdersStatusCLOSEDConstant             = "CLOSED"
+	PublicQueryUserOrdersStatusDELETEDConstant            = "DELETED"
+	PublicQueryUserOrdersStatusFULFILLEDConstant          = "FULFILLED"
+	PublicQueryUserOrdersStatusFULFILLFAILEDConstant      = "FULFILL_FAILED"
+	PublicQueryUserOrdersStatusINITConstant               = "INIT"
+	PublicQueryUserOrdersStatusREFUNDEDConstant           = "REFUNDED"
+	PublicQueryUserOrdersStatusREFUNDINGConstant          = "REFUNDING"
+	PublicQueryUserOrdersStatusREFUNDFAILEDConstant       = "REFUND_FAILED"
 )
 
 // NewPublicQueryUserOrdersParams creates a new PublicQueryUserOrdersParams object
@@ -116,7 +132,14 @@ type PublicQueryUserOrdersParams struct {
 	Discounted *bool
 	/*ItemID*/
 	ItemID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryWalletsOrigin<EnumValue>Constant instead.
 // Get the enum in QueryWalletsParams
 const (
 	QueryWalletsEpicConstant        = "Epic"
@@ -32,6 +33,21 @@ const (
 	QueryWalletsSystemConstant      = "System"
 	QueryWalletsTwitchConstant      = "Twitch"
 	QueryWalletsXboxConstant        = "Xbox"
+)
+
+// Get the enum in QueryWalletsParams
+const (
+	QueryWalletsOriginEpicConstant        = "Epic"
+	QueryWalletsOriginGooglePlayConstant  = "GooglePlay"
+	QueryWalletsOriginIOSConstant         = "IOS"
+	QueryWalletsOriginNintendoConstant    = "Nintendo"
+	QueryWalletsOriginOculusConstant      = "Oculus"
+	QueryWalletsOriginOtherConstant       = "Other"
+	QueryWalletsOriginPlaystationConstant = "Playstation"
+	QueryWalletsOriginSteamConstant       = "Steam"
+	QueryWalletsOriginSystemConstant      = "System"
+	QueryWalletsOriginTwitchConstant      = "Twitch"
+	QueryWalletsOriginXboxConstant        = "Xbox"
 )
 
 // NewQueryWalletsParams creates a new QueryWalletsParams object

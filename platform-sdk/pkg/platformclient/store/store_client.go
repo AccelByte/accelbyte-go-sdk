@@ -2013,7 +2013,7 @@ func (a *Client) QueryImportHistoryShort(params *QueryImportHistoryParams, authI
 Deprecated: 2022-08-10 - Use ImportStoreByCSVShort instead.
 
 ImportStoreByCSV import store using csv format
-This API is used to import a store by CSV format.
+This API is used to import a store by CSV format, You must select at least one of item/section/display/category for uploading
 */
 func (a *Client) ImportStoreByCSV(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, *ImportStoreByCSVBadRequest, *ImportStoreByCSVNotFound, *ImportStoreByCSVConflict, error) {
 	// TODO: Validate the params before sending
@@ -2071,7 +2071,7 @@ func (a *Client) ImportStoreByCSV(params *ImportStoreByCSVParams, authInfo runti
 
 /*
 ImportStoreByCSVShort import store using csv format
-This API is used to import a store by CSV format.
+This API is used to import a store by CSV format, You must select at least one of item/section/display/category for uploading
 */
 func (a *Client) ImportStoreByCSVShort(params *ImportStoreByCSVParams, authInfo runtime.ClientAuthInfoWriter) (*ImportStoreByCSVOK, error) {
 	// TODO: Validate the params before sending

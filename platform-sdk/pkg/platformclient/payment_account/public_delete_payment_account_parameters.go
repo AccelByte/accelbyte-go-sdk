@@ -18,10 +18,17 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use PublicDeletePaymentAccountType<EnumValue>Constant instead.
 // Get the enum in PublicDeletePaymentAccountParams
 const (
 	PublicDeletePaymentAccountCardConstant   = "card"
 	PublicDeletePaymentAccountPaypalConstant = "paypal"
+)
+
+// Get the enum in PublicDeletePaymentAccountParams
+const (
+	PublicDeletePaymentAccountTypeCardConstant   = "card"
+	PublicDeletePaymentAccountTypePaypalConstant = "paypal"
 )
 
 // NewPublicDeletePaymentAccountParams creates a new PublicDeletePaymentAccountParams object

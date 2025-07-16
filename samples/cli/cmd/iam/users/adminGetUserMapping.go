@@ -28,10 +28,12 @@ var AdminGetUserMappingCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		targetNamespace, _ := cmd.Flags().GetString("targetNamespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		createIfNotFound, _ := cmd.Flags().GetBool("createIfNotFound")
 		input := &users.AdminGetUserMappingParams{
-			Namespace:       namespace,
-			TargetNamespace: targetNamespace,
-			UserID:          userId,
+			Namespace:        namespace,
+			TargetNamespace:  targetNamespace,
+			UserID:           userId,
+			CreateIfNotFound: &createIfNotFound,
 		}
 		ok, errOK := usersService.AdminGetUserMappingShort(input)
 		if errOK != nil {
@@ -53,4 +55,5 @@ func init() {
 	_ = AdminGetUserMappingCmd.MarkFlagRequired("targetNamespace")
 	AdminGetUserMappingCmd.Flags().String("userId", "", "User id")
 	_ = AdminGetUserMappingCmd.MarkFlagRequired("userId")
+	AdminGetUserMappingCmd.Flags().Bool("createIfNotFound", false, "Create if not found")
 }

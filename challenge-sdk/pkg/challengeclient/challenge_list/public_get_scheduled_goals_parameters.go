@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicGetScheduledGoalsSortBy<EnumValue>Constant instead.
 // Get the enum in PublicGetScheduledGoalsParams
 const (
 	PublicGetScheduledGoalsCreatedAtConstant     = "createdAt"
@@ -27,6 +28,16 @@ const (
 	PublicGetScheduledGoalsUpdatedAtConstant     = "updatedAt"
 	PublicGetScheduledGoalsUpdatedAtAscConstant  = "updatedAt:asc"
 	PublicGetScheduledGoalsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in PublicGetScheduledGoalsParams
+const (
+	PublicGetScheduledGoalsSortByCreatedAtConstant     = "createdAt"
+	PublicGetScheduledGoalsSortByCreatedAtAscConstant  = "createdAt:asc"
+	PublicGetScheduledGoalsSortByCreatedAtDescConstant = "createdAt:desc"
+	PublicGetScheduledGoalsSortByUpdatedAtConstant     = "updatedAt"
+	PublicGetScheduledGoalsSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	PublicGetScheduledGoalsSortByUpdatedAtDescConstant = "updatedAt:desc"
 )
 
 // NewPublicGetScheduledGoalsParams creates a new PublicGetScheduledGoalsParams object

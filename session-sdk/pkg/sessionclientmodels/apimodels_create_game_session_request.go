@@ -67,6 +67,7 @@ type ApimodelsCreateGameSessionRequest struct {
 	InviteTimeout *int32 `json:"inviteTimeout"`
 
 	// joinability
+	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN']
 	// Required: true
 	Joinability *string `json:"joinability"`
 
@@ -118,6 +119,7 @@ type ApimodelsCreateGameSessionRequest struct {
 	TieTeamsSessionLifetime bool `json:"tieTeamsSessionLifetime"`
 
 	// type
+	// Enum: ['DS', 'NONE', 'P2P']
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -235,9 +237,55 @@ func (m *ApimodelsCreateGameSessionRequest) validateInviteTimeout(formats strfmt
 	return nil
 }
 
+var apimodelsCreateGameSessionRequestTypeJoinabilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsCreateGameSessionRequestTypeJoinabilityPropEnum = append(apimodelsCreateGameSessionRequestTypeJoinabilityPropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsCreateGameSessionRequestJoinabilityCLOSED captures enum value "CLOSED"
+	ApimodelsCreateGameSessionRequestJoinabilityCLOSED string = "CLOSED"
+
+	// ApimodelsCreateGameSessionRequestJoinabilityFRIENDSOFFRIENDS captures enum value "FRIENDS_OF_FRIENDS"
+	ApimodelsCreateGameSessionRequestJoinabilityFRIENDSOFFRIENDS string = "FRIENDS_OF_FRIENDS"
+
+	// ApimodelsCreateGameSessionRequestJoinabilityFRIENDSOFLEADER captures enum value "FRIENDS_OF_LEADER"
+	ApimodelsCreateGameSessionRequestJoinabilityFRIENDSOFLEADER string = "FRIENDS_OF_LEADER"
+
+	// ApimodelsCreateGameSessionRequestJoinabilityFRIENDSOFMEMBERS captures enum value "FRIENDS_OF_MEMBERS"
+	ApimodelsCreateGameSessionRequestJoinabilityFRIENDSOFMEMBERS string = "FRIENDS_OF_MEMBERS"
+
+	// ApimodelsCreateGameSessionRequestJoinabilityINVITEONLY captures enum value "INVITE_ONLY"
+	ApimodelsCreateGameSessionRequestJoinabilityINVITEONLY string = "INVITE_ONLY"
+
+	// ApimodelsCreateGameSessionRequestJoinabilityOPEN captures enum value "OPEN"
+	ApimodelsCreateGameSessionRequestJoinabilityOPEN string = "OPEN"
+)
+
+// prop value enum
+func (m *ApimodelsCreateGameSessionRequest) validateJoinabilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsCreateGameSessionRequestTypeJoinabilityPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsCreateGameSessionRequest) validateJoinability(formats strfmt.Registry) error {
 
 	if err := validate.Required("joinability", "body", m.Joinability); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateJoinabilityEnum("joinability", "body", *m.Joinability); err != nil {
 		return err
 	}
 
@@ -364,9 +412,46 @@ func (m *ApimodelsCreateGameSessionRequest) validateTicketIDs(formats strfmt.Reg
 	return nil
 }
 
+var apimodelsCreateGameSessionRequestTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DS", "NONE", "P2P"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsCreateGameSessionRequestTypeTypePropEnum = append(apimodelsCreateGameSessionRequestTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsCreateGameSessionRequestTypeDS captures enum value "DS"
+	ApimodelsCreateGameSessionRequestTypeDS string = "DS"
+
+	// ApimodelsCreateGameSessionRequestTypeNONE captures enum value "NONE"
+	ApimodelsCreateGameSessionRequestTypeNONE string = "NONE"
+
+	// ApimodelsCreateGameSessionRequestTypeP2P captures enum value "P2P"
+	ApimodelsCreateGameSessionRequestTypeP2P string = "P2P"
+)
+
+// prop value enum
+func (m *ApimodelsCreateGameSessionRequest) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsCreateGameSessionRequestTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsCreateGameSessionRequest) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

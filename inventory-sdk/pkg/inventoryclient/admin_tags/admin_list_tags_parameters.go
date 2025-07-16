@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminListTagsSortBy<EnumValue>Constant instead.
 // Get the enum in AdminListTagsParams
 const (
 	AdminListTagsCreatedAtConstant     = "createdAt"
@@ -27,6 +28,16 @@ const (
 	AdminListTagsNameConstant          = "name"
 	AdminListTagsNameAscConstant       = "name:asc"
 	AdminListTagsNameDescConstant      = "name:desc"
+)
+
+// Get the enum in AdminListTagsParams
+const (
+	AdminListTagsSortByCreatedAtConstant     = "createdAt"
+	AdminListTagsSortByCreatedAtAscConstant  = "createdAt:asc"
+	AdminListTagsSortByCreatedAtDescConstant = "createdAt:desc"
+	AdminListTagsSortByNameConstant          = "name"
+	AdminListTagsSortByNameAscConstant       = "name:asc"
+	AdminListTagsSortByNameDescConstant      = "name:desc"
 )
 
 // NewAdminListTagsParams creates a new AdminListTagsParams object

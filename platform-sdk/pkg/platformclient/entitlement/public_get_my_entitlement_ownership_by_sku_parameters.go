@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use PublicGetMyEntitlementOwnershipBySkuEntitlementClazz<EnumValue>Constant instead.
 // Get the enum in PublicGetMyEntitlementOwnershipBySkuParams
 const (
 	PublicGetMyEntitlementOwnershipBySkuAPPConstant          = "APP"
@@ -27,6 +28,17 @@ const (
 	PublicGetMyEntitlementOwnershipBySkuMEDIAConstant        = "MEDIA"
 	PublicGetMyEntitlementOwnershipBySkuOPTIONBOXConstant    = "OPTIONBOX"
 	PublicGetMyEntitlementOwnershipBySkuSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in PublicGetMyEntitlementOwnershipBySkuParams
+const (
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzAPPConstant          = "APP"
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzCODEConstant         = "CODE"
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzENTITLEMENTConstant  = "ENTITLEMENT"
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzLOOTBOXConstant      = "LOOTBOX"
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzMEDIAConstant        = "MEDIA"
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzOPTIONBOXConstant    = "OPTIONBOX"
+	PublicGetMyEntitlementOwnershipBySkuEntitlementClazzSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
 // NewPublicGetMyEntitlementOwnershipBySkuParams creates a new PublicGetMyEntitlementOwnershipBySkuParams object

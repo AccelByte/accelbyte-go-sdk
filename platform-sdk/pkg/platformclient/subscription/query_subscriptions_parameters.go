@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QuerySubscriptionsChargeStatus<EnumValue>Constant instead.
 // Get the enum in QuerySubscriptionsParams
 const (
 	QuerySubscriptionsCHARGEDConstant           = "CHARGED"
@@ -28,6 +29,7 @@ const (
 	QuerySubscriptionsSETUPConstant             = "SETUP"
 )
 
+// Deprecated: 2025-07-16 - Use QuerySubscriptionsStatus<EnumValue>Constant instead.
 // Get the enum in QuerySubscriptionsParams
 const (
 	QuerySubscriptionsACTIVEConstant    = "ACTIVE"
@@ -36,10 +38,34 @@ const (
 	QuerySubscriptionsINITConstant      = "INIT"
 )
 
+// Deprecated: 2025-07-16 - Use QuerySubscriptionsSubscribedBy<EnumValue>Constant instead.
 // Get the enum in QuerySubscriptionsParams
 const (
 	QuerySubscriptionsPLATFORMConstant = "PLATFORM"
 	QuerySubscriptionsUSERConstant     = "USER"
+)
+
+// Get the enum in QuerySubscriptionsParams
+const (
+	QuerySubscriptionsChargeStatusCHARGEDConstant           = "CHARGED"
+	QuerySubscriptionsChargeStatusCHARGEFAILEDConstant      = "CHARGE_FAILED"
+	QuerySubscriptionsChargeStatusNEVERConstant             = "NEVER"
+	QuerySubscriptionsChargeStatusRECURRINGCHARGINGConstant = "RECURRING_CHARGING"
+	QuerySubscriptionsChargeStatusSETUPConstant             = "SETUP"
+)
+
+// Get the enum in QuerySubscriptionsParams
+const (
+	QuerySubscriptionsStatusACTIVEConstant    = "ACTIVE"
+	QuerySubscriptionsStatusCANCELLEDConstant = "CANCELLED"
+	QuerySubscriptionsStatusEXPIREDConstant   = "EXPIRED"
+	QuerySubscriptionsStatusINITConstant      = "INIT"
+)
+
+// Get the enum in QuerySubscriptionsParams
+const (
+	QuerySubscriptionsSubscribedByPLATFORMConstant = "PLATFORM"
+	QuerySubscriptionsSubscribedByUSERConstant     = "USER"
 )
 
 // NewQuerySubscriptionsParams creates a new QuerySubscriptionsParams object
@@ -114,7 +140,14 @@ type QuerySubscriptionsParams struct {
 	ChargeStatus *string
 	/*ItemID*/
 	ItemID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

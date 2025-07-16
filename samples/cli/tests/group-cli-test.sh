@@ -51,15 +51,15 @@ touch "tmp.dat"
 #- 2 ListGroupConfigurationAdminV1
 samples/cli/sample-apps Group listGroupConfigurationAdminV1 \
     --namespace $AB_NAMESPACE \
-    --limit '88' \
-    --offset '77' \
+    --limit '53' \
+    --offset '12' \
     > test.out 2>&1
 eval_tap $? 2 'ListGroupConfigurationAdminV1' test.out
 
 #- 3 CreateGroupConfigurationAdminV1
 samples/cli/sample-apps Group createGroupConfigurationAdminV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"allowMultiple": false, "configurationCode": "bvOaBMorn0jBTUUv", "description": "Wo6hP3kyApVw27o2", "globalRules": [{"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "NdiSomf2Ymy0S6Zp", "ruleCriteria": "MAXIMUM", "ruleValue": 0.08228666091469505}, {"ruleAttribute": "aaYmNqflqeaQxJJI", "ruleCriteria": "EQUAL", "ruleValue": 0.13652120633933174}, {"ruleAttribute": "rInO6fZ1FV8LqTbQ", "ruleCriteria": "MAXIMUM", "ruleValue": 0.643116501255293}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "13wO8uaklNMCrtE8", "ruleCriteria": "MINIMUM", "ruleValue": 0.6474651254218438}, {"ruleAttribute": "eSLysmNP3YrjIMl7", "ruleCriteria": "MINIMUM", "ruleValue": 0.6785278690225893}, {"ruleAttribute": "Mi1ezYBz2BJohkaG", "ruleCriteria": "MAXIMUM", "ruleValue": 0.053278872773893426}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "PC3jSpjzclhayx9T", "ruleCriteria": "MINIMUM", "ruleValue": 0.38656124780863477}, {"ruleAttribute": "7A2PXC8i54piTr7X", "ruleCriteria": "MAXIMUM", "ruleValue": 0.6004139741743497}, {"ruleAttribute": "TGz2drjRLBEXNMsi", "ruleCriteria": "MAXIMUM", "ruleValue": 0.697811851002159}]}], "groupAdminRoleId": "jVxhiY7DpOZgKd2g", "groupMaxMember": 98, "groupMemberRoleId": "XzKRF1APyZMZnbWk", "name": "nOKvU52W6ZluaZJW"}' \
+    --body '{"allowMultiple": true, "configurationCode": "wsDCbXGBEk02drj3", "description": "QKbtK3EBIhOMGXRC", "globalRules": [{"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "cPZ5JlnjxJj91KbH", "ruleCriteria": "MAXIMUM", "ruleValue": 0.2224943219112413}, {"ruleAttribute": "7S2XDTGmSRsweXfG", "ruleCriteria": "MINIMUM", "ruleValue": 0.36774544372880036}, {"ruleAttribute": "2RuAIMIzQsYj5rJN", "ruleCriteria": "EQUAL", "ruleValue": 0.8444982322768609}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "xTXul8gCT58ZDKNd", "ruleCriteria": "MAXIMUM", "ruleValue": 0.7252790026025714}, {"ruleAttribute": "15P3MZNMnFTj6ww4", "ruleCriteria": "EQUAL", "ruleValue": 0.09669410476925067}, {"ruleAttribute": "1ViGuUuyIRUqUJbV", "ruleCriteria": "EQUAL", "ruleValue": 0.8565470594801076}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "fJYGoKyzlUfmWIaM", "ruleCriteria": "EQUAL", "ruleValue": 0.567205849782227}, {"ruleAttribute": "xVnpF3Yt7fm7o8TW", "ruleCriteria": "EQUAL", "ruleValue": 0.5683352216622862}, {"ruleAttribute": "sIeQznbUAdtZ12HQ", "ruleCriteria": "EQUAL", "ruleValue": 0.3006052352885452}]}], "groupAdminRoleId": "oATZORzDYEVkF3L2", "groupMaxMember": 6, "groupMemberRoleId": "tdBZhDQvJFF332ey", "name": "NZDNK55DDbIi7WWF"}' \
     > test.out 2>&1
 eval_tap $? 3 'CreateGroupConfigurationAdminV1' test.out
 
@@ -71,39 +71,39 @@ eval_tap $? 4 'InitiateGroupConfigurationAdminV1' test.out
 
 #- 5 GetGroupConfigurationAdminV1
 samples/cli/sample-apps Group getGroupConfigurationAdminV1 \
-    --configurationCode 'dsRG3V7GszWwpJ6Z' \
+    --configurationCode 'M0on7xVqr2r2GWJ2' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 5 'GetGroupConfigurationAdminV1' test.out
 
 #- 6 DeleteGroupConfigurationV1
 samples/cli/sample-apps Group deleteGroupConfigurationV1 \
-    --configurationCode 'GF9q9xEVjf6WpkTJ' \
+    --configurationCode 'su4zVmrZO6c4I4c3' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 6 'DeleteGroupConfigurationV1' test.out
 
 #- 7 UpdateGroupConfigurationAdminV1
 samples/cli/sample-apps Group updateGroupConfigurationAdminV1 \
-    --configurationCode 'rdy8yjTfminVEciw' \
+    --configurationCode 'GaSbIwURSpKnHIzz' \
     --namespace $AB_NAMESPACE \
-    --body '{"description": "r515caDt6KDP7f6L", "groupMaxMember": 99, "name": "xV0G5vt8VLkS0rjl"}' \
+    --body '{"description": "8iYhi4fidpF7nQav", "groupMaxMember": 37, "name": "W08raOTESu5WVYob"}' \
     > test.out 2>&1
 eval_tap $? 7 'UpdateGroupConfigurationAdminV1' test.out
 
 #- 8 UpdateGroupConfigurationGlobalRuleAdminV1
 samples/cli/sample-apps Group updateGroupConfigurationGlobalRuleAdminV1 \
-    --allowedAction '7l3NWBud406GuG2i' \
-    --configurationCode 'BdIjWxf6W8RVdQq5' \
+    --allowedAction '3VHgSmHH8qXRJfIv' \
+    --configurationCode 'bOvinWQwxttZWkFQ' \
     --namespace $AB_NAMESPACE \
-    --body '{"ruleDetail": [{"ruleAttribute": "i6FF5lNSH1knmDub", "ruleCriteria": "MINIMUM", "ruleValue": 0.7808141758141095}, {"ruleAttribute": "bt6970bRUJZdDri9", "ruleCriteria": "EQUAL", "ruleValue": 0.041288183896390995}, {"ruleAttribute": "FewHl3pT0rFNTki5", "ruleCriteria": "MINIMUM", "ruleValue": 0.4346622311061924}]}' \
+    --body '{"ruleDetail": [{"ruleAttribute": "WZu80euJW3RL4cT6", "ruleCriteria": "MAXIMUM", "ruleValue": 0.03973167575173986}, {"ruleAttribute": "xalM3Q9GD58DMw60", "ruleCriteria": "EQUAL", "ruleValue": 0.09304493666620006}, {"ruleAttribute": "LmvLCBGW2yAMIYHI", "ruleCriteria": "MINIMUM", "ruleValue": 0.7970925219464541}]}' \
     > test.out 2>&1
 eval_tap $? 8 'UpdateGroupConfigurationGlobalRuleAdminV1' test.out
 
 #- 9 DeleteGroupConfigurationGlobalRuleAdminV1
 samples/cli/sample-apps Group deleteGroupConfigurationGlobalRuleAdminV1 \
-    --allowedAction 'wTb1kiZw4eBvyKjs' \
-    --configurationCode 'Nvix3mNO0W1lBulx' \
+    --allowedAction 'JoiVsVKrbPc4ngJi' \
+    --configurationCode 'qoKTtQCq91cGxjsn' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 9 'DeleteGroupConfigurationGlobalRuleAdminV1' test.out
@@ -111,206 +111,206 @@ eval_tap $? 9 'DeleteGroupConfigurationGlobalRuleAdminV1' test.out
 #- 10 GetGroupListAdminV1
 samples/cli/sample-apps Group getGroupListAdminV1 \
     --namespace $AB_NAMESPACE \
-    --configurationCode 'Tz1gx5OKPv2Upq4h' \
-    --groupName 'sP339S8Zy3AgAbZ5' \
-    --groupRegion 'EgRaw3uNFqLewlCa' \
-    --limit '7' \
-    --offset '88' \
+    --configurationCode '8FPkcTikzf5fdWb1' \
+    --groupName 'VZfKRBB1CKmz2Inx' \
+    --groupRegion 'p4DhZnzv4e5pA6yX' \
+    --limit '86' \
+    --offset '25' \
     > test.out 2>&1
 eval_tap $? 10 'GetGroupListAdminV1' test.out
 
 #- 11 GetSingleGroupAdminV1
 samples/cli/sample-apps Group getSingleGroupAdminV1 \
-    --groupId 'Fe5Xkiv48q4mMnzS' \
+    --groupId 'b0lFH8xMh0HwlcVl' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 11 'GetSingleGroupAdminV1' test.out
 
 #- 12 DeleteGroupAdminV1
 samples/cli/sample-apps Group deleteGroupAdminV1 \
-    --groupId '3uv9GFndu6WCjIls' \
+    --groupId 'XTB45QMYWd22IIbz' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 12 'DeleteGroupAdminV1' test.out
 
 #- 13 GetGroupMembersListAdminV1
 samples/cli/sample-apps Group getGroupMembersListAdminV1 \
-    --groupId 'GNfyTjCOODCeyn1a' \
+    --groupId '9VLR7TSn6fq3u8Uo' \
     --namespace $AB_NAMESPACE \
-    --limit '64' \
-    --offset '24' \
-    --order 'FazOJjVBGVIk3o7z' \
+    --limit '70' \
+    --offset '52' \
+    --order 'wuhkaoNnqrRZdVPb' \
     > test.out 2>&1
 eval_tap $? 13 'GetGroupMembersListAdminV1' test.out
 
 #- 14 GetMemberRolesListAdminV1
 samples/cli/sample-apps Group getMemberRolesListAdminV1 \
     --namespace $AB_NAMESPACE \
-    --limit '41' \
-    --offset '9' \
+    --limit '83' \
+    --offset '75' \
     > test.out 2>&1
 eval_tap $? 14 'GetMemberRolesListAdminV1' test.out
 
 #- 15 CreateMemberRoleAdminV1
 samples/cli/sample-apps Group createMemberRoleAdminV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"memberRoleName": "fyxTQhs5jhAGw0Dx", "memberRolePermissions": [{"action": 79, "resourceName": "8mlhTGhB3cmmv0mk"}, {"action": 59, "resourceName": "3Ro6onkvjLKOdOHn"}, {"action": 90, "resourceName": "obcVX9QJbzrPWo9Q"}]}' \
+    --body '{"memberRoleName": "Vj9kDEj3CKM7eYGA", "memberRolePermissions": [{"action": 24, "resourceName": "hMDhZAzXvGztCfzw"}, {"action": 64, "resourceName": "qqh9nyVBIwiP2aFs"}, {"action": 57, "resourceName": "nUdrmDhCwUtUY3En"}]}' \
     > test.out 2>&1
 eval_tap $? 15 'CreateMemberRoleAdminV1' test.out
 
 #- 16 GetSingleMemberRoleAdminV1
 samples/cli/sample-apps Group getSingleMemberRoleAdminV1 \
-    --memberRoleId '7eRDqB1ozqBc1tSa' \
+    --memberRoleId 'Bg4Hyu57HMEiTlJW' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 16 'GetSingleMemberRoleAdminV1' test.out
 
 #- 17 DeleteMemberRoleAdminV1
 samples/cli/sample-apps Group deleteMemberRoleAdminV1 \
-    --memberRoleId 'U1pVSasI4mAeGXzG' \
+    --memberRoleId 's6iejYn2JdGRgv75' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 17 'DeleteMemberRoleAdminV1' test.out
 
 #- 18 UpdateMemberRoleAdminV1
 samples/cli/sample-apps Group updateMemberRoleAdminV1 \
-    --memberRoleId 'Ji3FXh5puD2FyCgk' \
+    --memberRoleId 'hHOJ93EqtOAfO43e' \
     --namespace $AB_NAMESPACE \
-    --body '{"memberRoleName": "AmNyplgpFk9xelyA"}' \
+    --body '{"memberRoleName": "FPJiBN71b0tqHRtd"}' \
     > test.out 2>&1
 eval_tap $? 18 'UpdateMemberRoleAdminV1' test.out
 
 #- 19 UpdateMemberRolePermissionAdminV1
 samples/cli/sample-apps Group updateMemberRolePermissionAdminV1 \
-    --memberRoleId 'BuMpCsBZFbrEIUEB' \
+    --memberRoleId 'w9J9jwQyaf8Ehq8t' \
     --namespace $AB_NAMESPACE \
-    --body '{"memberRolePermissions": [{"action": 15, "resourceName": "kqvp6FuTCALVuGof"}, {"action": 60, "resourceName": "0zmEUUz7ekccOzzz"}, {"action": 34, "resourceName": "Cy4sOu4OjkgL7dHs"}]}' \
+    --body '{"memberRolePermissions": [{"action": 57, "resourceName": "Mqp8VivQz2tKJ59T"}, {"action": 63, "resourceName": "SFrXCxzEGconUNjO"}, {"action": 0, "resourceName": "B01TrLvXkouhDYbG"}]}' \
     > test.out 2>&1
 eval_tap $? 19 'UpdateMemberRolePermissionAdminV1' test.out
 
 #- 20 GetGroupListPublicV1
 samples/cli/sample-apps Group getGroupListPublicV1 \
     --namespace $AB_NAMESPACE \
-    --groupName 'Xk5ErjS64KocYAeK' \
-    --groupRegion '6txMyTOQ961x5EdJ' \
-    --limit '68' \
-    --offset '20' \
+    --groupName '4QFKvVU1fWTIi0NN' \
+    --groupRegion 'WLUV1DsCbWaPDY15' \
+    --limit '42' \
+    --offset '77' \
     > test.out 2>&1
 eval_tap $? 20 'GetGroupListPublicV1' test.out
 
 #- 21 CreateNewGroupPublicV1
 samples/cli/sample-apps Group createNewGroupPublicV1 \
     --namespace $AB_NAMESPACE \
-    --body '{"configurationCode": "c6tPYYkvcQKGqQjq", "customAttributes": {"mMi8X71vhaLDGkFu": {}, "3JXhfpPHXi1x7kSR": {}, "xrPlhR6iLIQcNErl": {}}, "groupDescription": "7l41462GqHIKHKJw", "groupIcon": "C2jnoW8z4AGSpuMH", "groupMaxMember": 33, "groupName": "UT3cnBapJss6O0x4", "groupRegion": "KUIqnQ4K4wnlXrVG", "groupRules": {"groupCustomRule": {}, "groupPredefinedRules": [{"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "CnnSksxEHDAugl98", "ruleCriteria": "MINIMUM", "ruleValue": 0.16405252268016635}, {"ruleAttribute": "YkCMO9klcmYlKQvc", "ruleCriteria": "EQUAL", "ruleValue": 0.3257333751420106}, {"ruleAttribute": "mTB53IsTC2nU7HV0", "ruleCriteria": "EQUAL", "ruleValue": 0.9997858039838574}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "Kjw1p27KX7zw12fK", "ruleCriteria": "MAXIMUM", "ruleValue": 0.5424424812849296}, {"ruleAttribute": "ABGo39aSeNYhx99E", "ruleCriteria": "EQUAL", "ruleValue": 0.3259400872269458}, {"ruleAttribute": "D8oSlqud5meJkt59", "ruleCriteria": "EQUAL", "ruleValue": 0.7319883700294373}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "cqBK0mpAtlXgvHAg", "ruleCriteria": "EQUAL", "ruleValue": 0.8535085044592179}, {"ruleAttribute": "3jMKnQSxVgW40zqH", "ruleCriteria": "MINIMUM", "ruleValue": 0.5237364777027418}, {"ruleAttribute": "JCgp0uANbSgiZerg", "ruleCriteria": "EQUAL", "ruleValue": 0.014879673458635279}]}]}, "groupType": "OPEN"}' \
+    --body '{"configurationCode": "cvpoynEyu8e939v2", "customAttributes": {"U6DwTlGCqniL6HY2": {}, "IEt8Nx850NinUeKD": {}, "I6gWZvAlAE7qNeba": {}}, "groupDescription": "hCYNyWlVTwDneplw", "groupIcon": "v29N2cFNxTR6KxHH", "groupMaxMember": 56, "groupName": "Pss5A56YzSgLIWmd", "groupRegion": "CQu9rxLymdwLttvV", "groupRules": {"groupCustomRule": {}, "groupPredefinedRules": [{"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "7ZVNZRsc9xrFRgqH", "ruleCriteria": "EQUAL", "ruleValue": 0.877801910429265}, {"ruleAttribute": "jznjBly7BQn8ZV0j", "ruleCriteria": "MINIMUM", "ruleValue": 0.295505349621751}, {"ruleAttribute": "NWHSVYgETfYSctdn", "ruleCriteria": "MAXIMUM", "ruleValue": 0.1610574648271932}]}, {"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "02Kr7OA0bC4423R8", "ruleCriteria": "MAXIMUM", "ruleValue": 0.18332459096633813}, {"ruleAttribute": "osXPP7cHvhzDAgyE", "ruleCriteria": "MAXIMUM", "ruleValue": 0.6797952533157279}, {"ruleAttribute": "C5JOIcXP0R0P54m1", "ruleCriteria": "MINIMUM", "ruleValue": 0.5081789582954905}]}, {"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "mo7u8lSKzfNLTM4a", "ruleCriteria": "MINIMUM", "ruleValue": 0.7269221116862464}, {"ruleAttribute": "lP9HGXAqfWGpRfjW", "ruleCriteria": "MINIMUM", "ruleValue": 0.16639544205573453}, {"ruleAttribute": "wshXGg3BQRtqupUP", "ruleCriteria": "MINIMUM", "ruleValue": 0.8413716535064988}]}]}, "groupType": "PUBLIC"}' \
     > test.out 2>&1
 eval_tap $? 21 'CreateNewGroupPublicV1' test.out
 
 #- 22 GetSingleGroupPublicV1
 samples/cli/sample-apps Group getSingleGroupPublicV1 \
-    --groupId 'cATMffMAC2nA2EFu' \
+    --groupId 'fhKzhDqJtSFTjMu4' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 22 'GetSingleGroupPublicV1' test.out
 
 #- 23 UpdateSingleGroupV1
 samples/cli/sample-apps Group updateSingleGroupV1 \
-    --groupId 'DexWakWb9IaN0dI2' \
+    --groupId '1m6jdJSILidvZHe5' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {}, "groupDescription": "5mLZtvLbW0XpP5y1", "groupIcon": "5gF4a6MTw2xu79sZ", "groupName": "LIYxliFYXG0awSln", "groupRegion": "vs5P0d2be6jPW5Bn", "groupType": "PRIVATE"}' \
+    --body '{"customAttributes": {}, "groupDescription": "MV64DoTdCPats4Tw", "groupIcon": "oRjhXx7ciHILGZs6", "groupName": "hMEdjMmLNU7emTxz", "groupRegion": "9Z9t4vMycEomQjKA", "groupType": "OPEN"}' \
     > test.out 2>&1
 eval_tap $? 23 'UpdateSingleGroupV1' test.out
 
 #- 24 DeleteGroupPublicV1
 samples/cli/sample-apps Group deleteGroupPublicV1 \
-    --groupId 'mn14VjO4DUB9JuxX' \
+    --groupId 'zm4FUZ8PIJJHZzZ4' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 24 'DeleteGroupPublicV1' test.out
 
 #- 25 UpdatePatchSingleGroupPublicV1
 samples/cli/sample-apps Group updatePatchSingleGroupPublicV1 \
-    --groupId 'n9DULpgzvo6m1qTY' \
+    --groupId 'JkSs7bsiFzVo9Dd8' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {}, "groupDescription": "lrBZy0UlHp4OusQG", "groupIcon": "gKaEWfvznIG2KkxT", "groupName": "lbbDq0UMRSn2cULn", "groupRegion": "Ra8sf05WAE0vdNng", "groupType": "OPEN"}' \
+    --body '{"customAttributes": {}, "groupDescription": "NvXoiIVH6xdUXaRh", "groupIcon": "XEvgqkRWrswVtcIv", "groupName": "PzyxUPygpx8tybuS", "groupRegion": "pG8ezcMHtmwVipVu", "groupType": "PUBLIC"}' \
     > test.out 2>&1
 eval_tap $? 25 'UpdatePatchSingleGroupPublicV1' test.out
 
 #- 26 UpdateGroupCustomAttributesPublicV1
 samples/cli/sample-apps Group updateGroupCustomAttributesPublicV1 \
-    --groupId '9WpaL5MN6XwlKylf' \
+    --groupId 'aTayJrcYi4LvuXqQ' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {"DoTpbKvyHTTAkSID": {}, "Fy5hiesx2hAetnwe": {}, "rWH2usGfM123g170": {}}}' \
+    --body '{"customAttributes": {"jWDrFspddP1HXzrs": {}, "MMbNE9l21tSt5ZCu": {}, "5ioyTNzYoaztlLo2": {}}}' \
     > test.out 2>&1
 eval_tap $? 26 'UpdateGroupCustomAttributesPublicV1' test.out
 
 #- 27 AcceptGroupInvitationPublicV1
 samples/cli/sample-apps Group acceptGroupInvitationPublicV1 \
-    --groupId 'gbD3io1AkfJCNyYq' \
+    --groupId 'RrWFQBMx3iI95Lj8' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 27 'AcceptGroupInvitationPublicV1' test.out
 
 #- 28 RejectGroupInvitationPublicV1
 samples/cli/sample-apps Group rejectGroupInvitationPublicV1 \
-    --groupId 'JrRk65Rc5qxfUNP8' \
+    --groupId 'ND9AG7oX0843bc8z' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 28 'RejectGroupInvitationPublicV1' test.out
 
 #- 29 JoinGroupV1
 samples/cli/sample-apps Group joinGroupV1 \
-    --groupId 'L7lD6IuIgf8fWdxp' \
+    --groupId 'E0XtbwsWHdeqm0Hk' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 29 'JoinGroupV1' test.out
 
 #- 30 CancelGroupJoinRequestV1
 samples/cli/sample-apps Group cancelGroupJoinRequestV1 \
-    --groupId '86zuITYVTqorAgNW' \
+    --groupId 'h3DFWoIHx0cnaz2a' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 30 'CancelGroupJoinRequestV1' test.out
 
 #- 31 GetGroupJoinRequestPublicV1
 samples/cli/sample-apps Group getGroupJoinRequestPublicV1 \
-    --groupId '9XQuLcXUArrNCala' \
+    --groupId '61wFStlEzjkWRN8v' \
     --namespace $AB_NAMESPACE \
-    --limit '46' \
-    --offset '86' \
+    --limit '22' \
+    --offset '61' \
     > test.out 2>&1
 eval_tap $? 31 'GetGroupJoinRequestPublicV1' test.out
 
 #- 32 GetGroupMembersListPublicV1
 samples/cli/sample-apps Group getGroupMembersListPublicV1 \
-    --groupId 'QyioQ8ugqwrHhyxx' \
+    --groupId 'u5LmuGmFvAmFac8D' \
     --namespace $AB_NAMESPACE \
-    --limit '83' \
-    --offset '65' \
-    --order '9Bvi5IQuOrUYFhpq' \
+    --limit '79' \
+    --offset '38' \
+    --order 'wf2Skz7YTPy7bzCA' \
     > test.out 2>&1
 eval_tap $? 32 'GetGroupMembersListPublicV1' test.out
 
 #- 33 UpdateGroupCustomRulePublicV1
 samples/cli/sample-apps Group updateGroupCustomRulePublicV1 \
-    --groupId 'MkSOG8npEFvS3czc' \
+    --groupId 'uerDAWo5RnrLPJbH' \
     --namespace $AB_NAMESPACE \
-    --body '{"groupCustomRule": {"tlGKJb7GK4485Rjt": {}, "iv30XEWjVSb531Ih": {}, "UTM4Kp7I0w5BQInl": {}}}' \
+    --body '{"groupCustomRule": {"7D2FBJbiWAYordxt": {}, "DMIM7YKVtpDiCFKe": {}, "NnbCLWAPmtRRVFLY": {}}}' \
     > test.out 2>&1
 eval_tap $? 33 'UpdateGroupCustomRulePublicV1' test.out
 
 #- 34 UpdateGroupPredefinedRulePublicV1
 samples/cli/sample-apps Group updateGroupPredefinedRulePublicV1 \
-    --allowedAction 'KeNwgHFb0j8ee86M' \
-    --groupId 'SDlTbKAXMc4OWgjw' \
+    --allowedAction 'CuApO21y2Xnkukfq' \
+    --groupId 'LmucUbsFg20ZSeeP' \
     --namespace $AB_NAMESPACE \
-    --body '{"ruleDetail": [{"ruleAttribute": "evIbR2rwG8Lf8gfP", "ruleCriteria": "MAXIMUM", "ruleValue": 0.504430578661778}, {"ruleAttribute": "pgYlkOsJK3nXsXX6", "ruleCriteria": "MAXIMUM", "ruleValue": 0.28792717187105576}, {"ruleAttribute": "NSTdiqirXTL3rcuS", "ruleCriteria": "EQUAL", "ruleValue": 0.09038157128728641}]}' \
+    --body '{"ruleDetail": [{"ruleAttribute": "7F4HMv0lR8HpkGo6", "ruleCriteria": "EQUAL", "ruleValue": 0.6726855383773223}, {"ruleAttribute": "8QhZzvXjpfno5IuC", "ruleCriteria": "MAXIMUM", "ruleValue": 0.8919444620420015}, {"ruleAttribute": "ppJHXmuJla4MlkQE", "ruleCriteria": "EQUAL", "ruleValue": 0.06509819205889222}]}' \
     > test.out 2>&1
 eval_tap $? 34 'UpdateGroupPredefinedRulePublicV1' test.out
 
 #- 35 DeleteGroupPredefinedRulePublicV1
 samples/cli/sample-apps Group deleteGroupPredefinedRulePublicV1 \
-    --allowedAction 'hbLijEDC7EYxGcJb' \
-    --groupId '3S0W70aNOcz9rCP9' \
+    --allowedAction 'xyoMcsWkWFOTP6Lg' \
+    --groupId 'ngSB38ZLYsdNN7mK' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 35 'DeleteGroupPredefinedRulePublicV1' test.out
@@ -324,206 +324,206 @@ eval_tap $? 36 'LeaveGroupPublicV1' test.out
 #- 37 GetMemberRolesListPublicV1
 samples/cli/sample-apps Group getMemberRolesListPublicV1 \
     --namespace $AB_NAMESPACE \
-    --limit '33' \
-    --offset '21' \
+    --limit '48' \
+    --offset '99' \
     > test.out 2>&1
 eval_tap $? 37 'GetMemberRolesListPublicV1' test.out
 
 #- 38 UpdateMemberRolePublicV1
 samples/cli/sample-apps Group updateMemberRolePublicV1 \
-    --memberRoleId 'NCCpDdON1piKDQTn' \
+    --memberRoleId 'Cgg1jLK7B33RUmrZ' \
     --namespace $AB_NAMESPACE \
-    --body '{"userId": "VD5HOLsNvA0AOxT3"}' \
+    --body '{"userId": "Ozr6ys9kx0wChLQD"}' \
     > test.out 2>&1
 eval_tap $? 38 'UpdateMemberRolePublicV1' test.out
 
 #- 39 DeleteMemberRolePublicV1
 samples/cli/sample-apps Group deleteMemberRolePublicV1 \
-    --memberRoleId 'op11sGCZ6iLkprxZ' \
+    --memberRoleId 'zci6Ugws7YnAjpkE' \
     --namespace $AB_NAMESPACE \
-    --body '{"userId": "ZLujC0SY1pAsP3X8"}' \
+    --body '{"userId": "VvhI1Ggg7whXFabF"}' \
     > test.out 2>&1
 eval_tap $? 39 'DeleteMemberRolePublicV1' test.out
 
 #- 40 GetGroupInvitationRequestPublicV1
 samples/cli/sample-apps Group getGroupInvitationRequestPublicV1 \
     --namespace $AB_NAMESPACE \
-    --limit '51' \
-    --offset '68' \
+    --limit '19' \
+    --offset '67' \
     > test.out 2>&1
 eval_tap $? 40 'GetGroupInvitationRequestPublicV1' test.out
 
 #- 41 GetUserGroupInformationPublicV1
 samples/cli/sample-apps Group getUserGroupInformationPublicV1 \
     --namespace $AB_NAMESPACE \
-    --userId 'QCzdhqunP9ByBKRU' \
+    --userId 'BoaGagCxUHyNMXUg' \
     > test.out 2>&1
 eval_tap $? 41 'GetUserGroupInformationPublicV1' test.out
 
 #- 42 InviteGroupPublicV1
 samples/cli/sample-apps Group inviteGroupPublicV1 \
     --namespace $AB_NAMESPACE \
-    --userId 'XZ5tD4bgn8wTebRh' \
+    --userId '5H39hiNeMNzo6DnJ' \
     > test.out 2>&1
 eval_tap $? 42 'InviteGroupPublicV1' test.out
 
 #- 43 AcceptGroupJoinRequestPublicV1
 samples/cli/sample-apps Group acceptGroupJoinRequestPublicV1 \
     --namespace $AB_NAMESPACE \
-    --userId 'rMVRtFGmGjM0tSg1' \
+    --userId 'gUdNsjPkm0ZHMNF4' \
     > test.out 2>&1
 eval_tap $? 43 'AcceptGroupJoinRequestPublicV1' test.out
 
 #- 44 RejectGroupJoinRequestPublicV1
 samples/cli/sample-apps Group rejectGroupJoinRequestPublicV1 \
     --namespace $AB_NAMESPACE \
-    --userId '32Toizsl0Uv4S4sx' \
+    --userId 'ILNPHQqT6sj8L5G9' \
     > test.out 2>&1
 eval_tap $? 44 'RejectGroupJoinRequestPublicV1' test.out
 
 #- 45 KickGroupMemberPublicV1
 samples/cli/sample-apps Group kickGroupMemberPublicV1 \
     --namespace $AB_NAMESPACE \
-    --userId '59MaDqC9AAkt8Xmr' \
+    --userId 'mycQL3buoHC7o6Z5' \
     > test.out 2>&1
 eval_tap $? 45 'KickGroupMemberPublicV1' test.out
 
 #- 46 GetListGroupByIDsAdminV2
 samples/cli/sample-apps Group getListGroupByIDsAdminV2 \
     --namespace $AB_NAMESPACE \
-    --body '{"groupIDs": ["sjIu5wWeptsjVmKk", "7BGLPPVnG8D7pKuh", "UpvuvVRNJHkPcOY4"]}' \
+    --body '{"groupIDs": ["18MkrzZIiLImzv0t", "jkhL6rhJhSQNK64a", "mnWuwOOkFdK4C9KC"]}' \
     > test.out 2>&1
 eval_tap $? 46 'GetListGroupByIDsAdminV2' test.out
 
 #- 47 GetUserJoinedGroupInformationPublicV2
 samples/cli/sample-apps Group getUserJoinedGroupInformationPublicV2 \
     --namespace $AB_NAMESPACE \
-    --userId 'xu7EFYziROf8vXIl' \
-    --limit '81' \
-    --offset '65' \
+    --userId 'XBykIVmLSZjSrci8' \
+    --limit '2' \
+    --offset '9' \
     > test.out 2>&1
 eval_tap $? 47 'GetUserJoinedGroupInformationPublicV2' test.out
 
 #- 48 AdminGetUserGroupStatusInformationV2
 samples/cli/sample-apps Group adminGetUserGroupStatusInformationV2 \
-    --groupId '7p1a0OP3SQofiAKY' \
+    --groupId 'hZ7FwqX0LPDkzkJe' \
     --namespace $AB_NAMESPACE \
-    --userId '2H3eizNJONcyaPui' \
+    --userId '5RUBv0V2LfwAX1LD' \
     > test.out 2>&1
 eval_tap $? 48 'AdminGetUserGroupStatusInformationV2' test.out
 
 #- 49 CreateNewGroupPublicV2
 samples/cli/sample-apps Group createNewGroupPublicV2 \
     --namespace $AB_NAMESPACE \
-    --body '{"configurationCode": "2BBeCqKHIUwbxfLz", "customAttributes": {"ZIhGb4lBsrjGXaLM": {}, "aFinr2EMlusOXWfF": {}, "UlX8qWEb9AfN6GM4": {}}, "groupDescription": "pbG2FQ4RSfjWY6Gx", "groupIcon": "56TgmaVbp4cIY5Wi", "groupMaxMember": 22, "groupName": "DP3gLLJNAFJdWySr", "groupRegion": "u3hfjwOqGs8xcTsC", "groupRules": {"groupCustomRule": {}, "groupPredefinedRules": [{"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "N2GsUQ7d51DRtvdd", "ruleCriteria": "MAXIMUM", "ruleValue": 0.6662697826013566}, {"ruleAttribute": "1oDlVvWMldQeZ1zr", "ruleCriteria": "MINIMUM", "ruleValue": 0.39047729069404413}, {"ruleAttribute": "BdpEZPXzYIDZYpZf", "ruleCriteria": "MINIMUM", "ruleValue": 0.923314228633568}]}, {"allowedAction": "joinGroup", "ruleDetail": [{"ruleAttribute": "bDh8WspEbYvJAtYv", "ruleCriteria": "MAXIMUM", "ruleValue": 0.2786508428439569}, {"ruleAttribute": "5MTALmmfDLiPnjol", "ruleCriteria": "EQUAL", "ruleValue": 0.9858411264115369}, {"ruleAttribute": "t4WcorvaZiPAKLEj", "ruleCriteria": "EQUAL", "ruleValue": 0.6948134362925317}]}, {"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "kgPp9fJWz1igHISe", "ruleCriteria": "EQUAL", "ruleValue": 0.7316901902153252}, {"ruleAttribute": "G1VNHyI9Lwf87XtM", "ruleCriteria": "MINIMUM", "ruleValue": 0.2217951034205924}, {"ruleAttribute": "bX1xTixDemxqXi83", "ruleCriteria": "EQUAL", "ruleValue": 0.34018853950076555}]}]}, "groupType": "PRIVATE"}' \
+    --body '{"configurationCode": "zhBhGfqTHBTEUegY", "customAttributes": {"cStEmwot2nHZpFRx": {}, "BbHuuJ1rO1gh8UHR": {}, "SvlY7rBZyGPUL4An": {}}, "groupDescription": "1mxfcBRAlkwcED7K", "groupIcon": "tmyX1ScWHwxTv6eI", "groupMaxMember": 78, "groupName": "sfFwuAvb9dHk9elC", "groupRegion": "Vl3HmhLKMxIkwcrk", "groupRules": {"groupCustomRule": {}, "groupPredefinedRules": [{"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "qw61JNxJjGwpKZfp", "ruleCriteria": "MINIMUM", "ruleValue": 0.5760877633275384}, {"ruleAttribute": "ygbNA4Wpbg7j4mBb", "ruleCriteria": "EQUAL", "ruleValue": 0.9129318933369908}, {"ruleAttribute": "oqVHVnse4G5H4VAN", "ruleCriteria": "MAXIMUM", "ruleValue": 0.7072481645836484}]}, {"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "CNqtl6M2fOaN1hsQ", "ruleCriteria": "EQUAL", "ruleValue": 0.9685676781590855}, {"ruleAttribute": "zgI1NHesFS99piLD", "ruleCriteria": "MINIMUM", "ruleValue": 0.9102685342508073}, {"ruleAttribute": "pWefWt4M5nfp6J0H", "ruleCriteria": "EQUAL", "ruleValue": 0.12229367174882388}]}, {"allowedAction": "createGroup", "ruleDetail": [{"ruleAttribute": "vFC37Fd60TNuG0Am", "ruleCriteria": "MINIMUM", "ruleValue": 0.7445453952231693}, {"ruleAttribute": "jmsL4vsCr5PdFcvP", "ruleCriteria": "MAXIMUM", "ruleValue": 0.13719226593817824}, {"ruleAttribute": "B0k7L6ox4FYiFfYq", "ruleCriteria": "MINIMUM", "ruleValue": 0.7143745322666591}]}]}, "groupType": "PRIVATE"}' \
     > test.out 2>&1
 eval_tap $? 49 'CreateNewGroupPublicV2' test.out
 
 #- 50 GetListGroupByIDsV2
 samples/cli/sample-apps Group getListGroupByIDsV2 \
     --namespace $AB_NAMESPACE \
-    --body '{"groupIDs": ["KtiErfCdKWY60uVb", "fqFDva0oZxVzkc0V", "J14fMIaCwdl5n1OT"]}' \
+    --body '{"groupIDs": ["I45vLokJxHG4KgYL", "8r4tlrNEnWiiln50", "aQ5Mmr5iwKQjLnXu"]}' \
     > test.out 2>&1
 eval_tap $? 50 'GetListGroupByIDsV2' test.out
 
 #- 51 UpdatePutSingleGroupPublicV2
 samples/cli/sample-apps Group updatePutSingleGroupPublicV2 \
-    --groupId 'szTIEQ7hIeFhc49q' \
+    --groupId 'gpmdTvAihvpRc5BM' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {}, "groupDescription": "kUchy13YdF99vwtg", "groupIcon": "i9wAPAIu0MJ7lBxO", "groupName": "wLmVupq7h8Rc56NG", "groupRegion": "9ndbOgc4B0IwC3kD", "groupType": "PUBLIC"}' \
+    --body '{"customAttributes": {}, "groupDescription": "mMR0HXFElYo8vL3D", "groupIcon": "gcYs6j6pa2uFvjqA", "groupName": "beDrL7DUcKvjBb8v", "groupRegion": "1XRhuXhhn4dRfn3L", "groupType": "PRIVATE"}' \
     > test.out 2>&1
 eval_tap $? 51 'UpdatePutSingleGroupPublicV2' test.out
 
 #- 52 DeleteGroupPublicV2
 samples/cli/sample-apps Group deleteGroupPublicV2 \
-    --groupId 'yfEmWX6FnaEzpLUX' \
+    --groupId 'aT0zzKzjXFYAg3QH' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 52 'DeleteGroupPublicV2' test.out
 
 #- 53 UpdatePatchSingleGroupPublicV2
 samples/cli/sample-apps Group updatePatchSingleGroupPublicV2 \
-    --groupId 'KI8LzojHZTzytEVZ' \
+    --groupId 'Tp05htbVGC9stsCr' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {}, "groupDescription": "tcSNuGZyKUi2eneP", "groupIcon": "eTMztrqSTbTxOhGr", "groupName": "cvu8pLjBJbe9ydcZ", "groupRegion": "8s0eG8OXgCb8n9sX", "groupType": "PUBLIC"}' \
+    --body '{"customAttributes": {}, "groupDescription": "8j08oW5G1uiLeoy8", "groupIcon": "DkQEi6k4wQUp3L3s", "groupName": "lhsrfsGsY9YawL0e", "groupRegion": "gB6g5QF5ZbvCmOJU", "groupType": "OPEN"}' \
     > test.out 2>&1
 eval_tap $? 53 'UpdatePatchSingleGroupPublicV2' test.out
 
 #- 54 UpdateGroupCustomAttributesPublicV2
 samples/cli/sample-apps Group updateGroupCustomAttributesPublicV2 \
-    --groupId '8sh8Of8sJ7FXUFgt' \
+    --groupId 'KrqSYuqjsKmiUZhL' \
     --namespace $AB_NAMESPACE \
-    --body '{"customAttributes": {"Mc6c8fHXQocwdXWk": {}, "Qf6GoMhI2gDBxBvW": {}, "i4CaFIo2i4IX8Yib": {}}}' \
+    --body '{"customAttributes": {"RkFlXDQXp6P5esBR": {}, "HaW8P5Oe1d1OMxjM": {}, "r3QSioCODSuq62sP": {}}}' \
     > test.out 2>&1
 eval_tap $? 54 'UpdateGroupCustomAttributesPublicV2' test.out
 
 #- 55 AcceptGroupInvitationPublicV2
 samples/cli/sample-apps Group acceptGroupInvitationPublicV2 \
-    --groupId 'nTJyAuZihAGKt55c' \
+    --groupId 'mSnxuJ4vItIMLB5z' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 55 'AcceptGroupInvitationPublicV2' test.out
 
 #- 56 RejectGroupInvitationPublicV2
 samples/cli/sample-apps Group rejectGroupInvitationPublicV2 \
-    --groupId 'tZj07jBrUZ8IWYjQ' \
+    --groupId 'JvJAxJfDCWStZaXu' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 56 'RejectGroupInvitationPublicV2' test.out
 
 #- 57 GetGroupInviteRequestPublicV2
 samples/cli/sample-apps Group getGroupInviteRequestPublicV2 \
-    --groupId 'GERTXUoilxFkn54g' \
+    --groupId 'OcIhIhafdj0HrItw' \
     --namespace $AB_NAMESPACE \
-    --limit '69' \
-    --offset '72' \
+    --limit '21' \
+    --offset '1' \
     > test.out 2>&1
 eval_tap $? 57 'GetGroupInviteRequestPublicV2' test.out
 
 #- 58 JoinGroupV2
 samples/cli/sample-apps Group joinGroupV2 \
-    --groupId 'LB6v9HmOmKDFhibT' \
+    --groupId '8Z5A1AkE0tDSnebB' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 58 'JoinGroupV2' test.out
 
 #- 59 GetGroupJoinRequestPublicV2
 samples/cli/sample-apps Group getGroupJoinRequestPublicV2 \
-    --groupId 'gAnFmv4EqeiQy253' \
+    --groupId 'wjBIcLKjuDPlXuVz' \
     --namespace $AB_NAMESPACE \
-    --limit '72' \
-    --offset '90' \
+    --limit '60' \
+    --offset '32' \
     > test.out 2>&1
 eval_tap $? 59 'GetGroupJoinRequestPublicV2' test.out
 
 #- 60 LeaveGroupPublicV2
 samples/cli/sample-apps Group leaveGroupPublicV2 \
-    --groupId '9rr2RLFliNg2hP4T' \
+    --groupId 'y7hri8S9XDz5iTf9' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 60 'LeaveGroupPublicV2' test.out
 
 #- 61 UpdateGroupCustomRulePublicV2
 samples/cli/sample-apps Group updateGroupCustomRulePublicV2 \
-    --groupId 'kCtyrHrNCWpMKtYj' \
+    --groupId 'mf8bhfP3ETKAfRoG' \
     --namespace $AB_NAMESPACE \
-    --body '{"groupCustomRule": {"iDtwsIu4kDBF5kIH": {}, "3d0UmQXxeENYfBO1": {}, "Onmj3LJNSj2K3Dc3": {}}}' \
+    --body '{"groupCustomRule": {"8gJRbYcnq4hlB4IM": {}, "rcgeErGyIV2nHXjk": {}, "7pl2d9UDDPr0uaVY": {}}}' \
     > test.out 2>&1
 eval_tap $? 61 'UpdateGroupCustomRulePublicV2' test.out
 
 #- 62 UpdateGroupPredefinedRulePublicV2
 samples/cli/sample-apps Group updateGroupPredefinedRulePublicV2 \
-    --allowedAction 'vvOIJOIIjZsSpL7y' \
-    --groupId 'AlXFMjRqQH7sZniA' \
+    --allowedAction 'qyapJX80suQbuuwn' \
+    --groupId 'u6CVqMP2yevQClrz' \
     --namespace $AB_NAMESPACE \
-    --body '{"ruleDetail": [{"ruleAttribute": "DMW1V4QB274HeVm6", "ruleCriteria": "MINIMUM", "ruleValue": 0.9069847448394809}, {"ruleAttribute": "sSZNXXsfnUkoYExU", "ruleCriteria": "MINIMUM", "ruleValue": 0.6216453576387317}, {"ruleAttribute": "AdrW5M173OLYwDs7", "ruleCriteria": "EQUAL", "ruleValue": 0.2521578137221008}]}' \
+    --body '{"ruleDetail": [{"ruleAttribute": "On4i2CIZgKZHKucQ", "ruleCriteria": "EQUAL", "ruleValue": 0.7939634174020929}, {"ruleAttribute": "rljIai67ySOShKyX", "ruleCriteria": "MAXIMUM", "ruleValue": 0.4983682385443633}, {"ruleAttribute": "YYcZijQT5ZDd2dfb", "ruleCriteria": "MAXIMUM", "ruleValue": 0.5214425480355034}]}' \
     > test.out 2>&1
 eval_tap $? 62 'UpdateGroupPredefinedRulePublicV2' test.out
 
 #- 63 DeleteGroupPredefinedRulePublicV2
 samples/cli/sample-apps Group deleteGroupPredefinedRulePublicV2 \
-    --allowedAction 'TYOSyXSNswZZZN5O' \
-    --groupId 'kyRbyZSg35vRbwvN' \
+    --allowedAction 'MljKw28h7fH603eh' \
+    --groupId 'gKCtkic0sR5gYY4O' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 63 'DeleteGroupPredefinedRulePublicV2' test.out
@@ -531,90 +531,90 @@ eval_tap $? 63 'DeleteGroupPredefinedRulePublicV2' test.out
 #- 64 GetMemberRolesListPublicV2
 samples/cli/sample-apps Group getMemberRolesListPublicV2 \
     --namespace $AB_NAMESPACE \
-    --limit '80' \
-    --offset '39' \
+    --limit '12' \
+    --offset '13' \
     > test.out 2>&1
 eval_tap $? 64 'GetMemberRolesListPublicV2' test.out
 
 #- 65 UpdateMemberRolePublicV2
 samples/cli/sample-apps Group updateMemberRolePublicV2 \
-    --groupId 'lUbl8wpms4fyTtTo' \
-    --memberRoleId 'wXg6EfX0IDWdPFCv' \
+    --groupId '1TQr2HwoRwbAoDXd' \
+    --memberRoleId 'HFITvBlPIgAYGYXk' \
     --namespace $AB_NAMESPACE \
-    --body '{"userId": "tKx2PSAjG81LkHtZ"}' \
+    --body '{"userId": "gOg2WjlrfthTu7pf"}' \
     > test.out 2>&1
 eval_tap $? 65 'UpdateMemberRolePublicV2' test.out
 
 #- 66 DeleteMemberRolePublicV2
 samples/cli/sample-apps Group deleteMemberRolePublicV2 \
-    --groupId 'DKq8gclXZpGPoDNY' \
-    --memberRoleId 'voLOzEnQyAApcDKJ' \
+    --groupId 'MQcMTv5HK0COmbI4' \
+    --memberRoleId '4KJ7q8wUE091EDp6' \
     --namespace $AB_NAMESPACE \
-    --body '{"userId": "YOIhgLgnyQODSuIF"}' \
+    --body '{"userId": "krl9AnQNTgyZJ2OW"}' \
     > test.out 2>&1
 eval_tap $? 66 'DeleteMemberRolePublicV2' test.out
 
 #- 67 GetUserGroupInformationPublicV2
 samples/cli/sample-apps Group getUserGroupInformationPublicV2 \
     --namespace $AB_NAMESPACE \
-    --limit '85' \
-    --offset '72' \
+    --limit '37' \
+    --offset '70' \
     > test.out 2>&1
 eval_tap $? 67 'GetUserGroupInformationPublicV2' test.out
 
 #- 68 GetMyGroupJoinRequestV2
 samples/cli/sample-apps Group getMyGroupJoinRequestV2 \
     --namespace $AB_NAMESPACE \
-    --limit '31' \
-    --offset '74' \
+    --limit '37' \
+    --offset '71' \
     > test.out 2>&1
 eval_tap $? 68 'GetMyGroupJoinRequestV2' test.out
 
 #- 69 InviteGroupPublicV2
 samples/cli/sample-apps Group inviteGroupPublicV2 \
-    --groupId 'H1UGgKciOCAJrNAl' \
+    --groupId 'BUU0DAMiHRa6F9wk' \
     --namespace $AB_NAMESPACE \
-    --userId 'z5wqSleugiRAl9Xl' \
+    --userId 'oz91f0JLkeJr9LTQ' \
     > test.out 2>&1
 eval_tap $? 69 'InviteGroupPublicV2' test.out
 
 #- 70 CancelInvitationGroupMemberV2
 samples/cli/sample-apps Group cancelInvitationGroupMemberV2 \
-    --groupId 'Rh8U8mJmvTbPu6W9' \
+    --groupId 're854YFuNCYMfbpY' \
     --namespace $AB_NAMESPACE \
-    --userId 'FGxUj4g2iejVRJjE' \
+    --userId 'xyYZfwKkZE4ey6LA' \
     > test.out 2>&1
 eval_tap $? 70 'CancelInvitationGroupMemberV2' test.out
 
 #- 71 AcceptGroupJoinRequestPublicV2
 samples/cli/sample-apps Group acceptGroupJoinRequestPublicV2 \
-    --groupId 'eFcJzqFxUShYXpKJ' \
+    --groupId '9qEEslZe7TyPfYc5' \
     --namespace $AB_NAMESPACE \
-    --userId 'AsJ7FSOjlLgHW98T' \
+    --userId 'zciUv2V75oa6Hc7l' \
     > test.out 2>&1
 eval_tap $? 71 'AcceptGroupJoinRequestPublicV2' test.out
 
 #- 72 RejectGroupJoinRequestPublicV2
 samples/cli/sample-apps Group rejectGroupJoinRequestPublicV2 \
-    --groupId 'm5vZmda01Yf12huF' \
+    --groupId 'VGNSaTLvku3Amq3i' \
     --namespace $AB_NAMESPACE \
-    --userId 'XuJQgRFuuLaYSLOB' \
+    --userId 'iqnrfLwMetWlcTVX' \
     > test.out 2>&1
 eval_tap $? 72 'RejectGroupJoinRequestPublicV2' test.out
 
 #- 73 KickGroupMemberPublicV2
 samples/cli/sample-apps Group kickGroupMemberPublicV2 \
-    --groupId 'oAThUeW2BvGXFKcC' \
+    --groupId '5SnhLeqsAHxdYXfF' \
     --namespace $AB_NAMESPACE \
-    --userId '467unAwfEwhINQwi' \
+    --userId 'vzE149UPNxIvtlv5' \
     > test.out 2>&1
 eval_tap $? 73 'KickGroupMemberPublicV2' test.out
 
 #- 74 GetUserGroupStatusInformationV2
 samples/cli/sample-apps Group getUserGroupStatusInformationV2 \
-    --groupId 'pNkzOeSx1tK2oy4W' \
+    --groupId 'svH8tfIFuBhfQkxf' \
     --namespace $AB_NAMESPACE \
-    --userId 'ZQ6zhCJXq9kHcF50' \
+    --userId 'QT3f2Elg1CQazR4H' \
     > test.out 2>&1
 eval_tap $? 74 'GetUserGroupStatusInformationV2' test.out
 

@@ -19,17 +19,32 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminGetInboxMessagesScope<EnumValue>Constant instead.
 // Get the enum in AdminGetInboxMessagesParams
 const (
 	AdminGetInboxMessagesNAMESPACEConstant = "NAMESPACE"
 	AdminGetInboxMessagesUSERConstant      = "USER"
 )
 
+// Deprecated: 2025-07-16 - Use AdminGetInboxMessagesStatus<EnumValue>Constant instead.
 // Get the enum in AdminGetInboxMessagesParams
 const (
 	AdminGetInboxMessagesDRAFTConstant  = "DRAFT"
 	AdminGetInboxMessagesSENTConstant   = "SENT"
 	AdminGetInboxMessagesUNSENTConstant = "UNSENT"
+)
+
+// Get the enum in AdminGetInboxMessagesParams
+const (
+	AdminGetInboxMessagesScopeNAMESPACEConstant = "NAMESPACE"
+	AdminGetInboxMessagesScopeUSERConstant      = "USER"
+)
+
+// Get the enum in AdminGetInboxMessagesParams
+const (
+	AdminGetInboxMessagesStatusDRAFTConstant  = "DRAFT"
+	AdminGetInboxMessagesStatusSENTConstant   = "SENT"
+	AdminGetInboxMessagesStatusUNSENTConstant = "UNSENT"
 )
 
 // NewAdminGetInboxMessagesParams creates a new AdminGetInboxMessagesParams object

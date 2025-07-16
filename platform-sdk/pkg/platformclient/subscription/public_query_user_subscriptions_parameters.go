@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryUserSubscriptionsChargeStatus<EnumValue>Constant instead.
 // Get the enum in PublicQueryUserSubscriptionsParams
 const (
 	PublicQueryUserSubscriptionsCHARGEDConstant           = "CHARGED"
@@ -28,6 +29,7 @@ const (
 	PublicQueryUserSubscriptionsSETUPConstant             = "SETUP"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryUserSubscriptionsStatus<EnumValue>Constant instead.
 // Get the enum in PublicQueryUserSubscriptionsParams
 const (
 	PublicQueryUserSubscriptionsACTIVEConstant    = "ACTIVE"
@@ -36,10 +38,34 @@ const (
 	PublicQueryUserSubscriptionsINITConstant      = "INIT"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryUserSubscriptionsSubscribedBy<EnumValue>Constant instead.
 // Get the enum in PublicQueryUserSubscriptionsParams
 const (
 	PublicQueryUserSubscriptionsPLATFORMConstant = "PLATFORM"
 	PublicQueryUserSubscriptionsUSERConstant     = "USER"
+)
+
+// Get the enum in PublicQueryUserSubscriptionsParams
+const (
+	PublicQueryUserSubscriptionsChargeStatusCHARGEDConstant           = "CHARGED"
+	PublicQueryUserSubscriptionsChargeStatusCHARGEFAILEDConstant      = "CHARGE_FAILED"
+	PublicQueryUserSubscriptionsChargeStatusNEVERConstant             = "NEVER"
+	PublicQueryUserSubscriptionsChargeStatusRECURRINGCHARGINGConstant = "RECURRING_CHARGING"
+	PublicQueryUserSubscriptionsChargeStatusSETUPConstant             = "SETUP"
+)
+
+// Get the enum in PublicQueryUserSubscriptionsParams
+const (
+	PublicQueryUserSubscriptionsStatusACTIVEConstant    = "ACTIVE"
+	PublicQueryUserSubscriptionsStatusCANCELLEDConstant = "CANCELLED"
+	PublicQueryUserSubscriptionsStatusEXPIREDConstant   = "EXPIRED"
+	PublicQueryUserSubscriptionsStatusINITConstant      = "INIT"
+)
+
+// Get the enum in PublicQueryUserSubscriptionsParams
+const (
+	PublicQueryUserSubscriptionsSubscribedByPLATFORMConstant = "PLATFORM"
+	PublicQueryUserSubscriptionsSubscribedByUSERConstant     = "USER"
 )
 
 // NewPublicQueryUserSubscriptionsParams creates a new PublicQueryUserSubscriptionsParams object
@@ -116,7 +142,14 @@ type PublicQueryUserSubscriptionsParams struct {
 	ChargeStatus *string
 	/*ItemID*/
 	ItemID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

@@ -82,6 +82,7 @@ $ samples/cli/sample-apps Basic updateConfig \
 ```sh
 $ samples/cli/sample-apps Basic getNamespaceContext \
     --namespace 'string' \
+    --refreshOnCacheMiss false \
     > result.txt
 ```
 

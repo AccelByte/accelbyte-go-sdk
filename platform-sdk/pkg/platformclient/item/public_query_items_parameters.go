@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryItemsAppType<EnumValue>Constant instead.
 // Get the enum in PublicQueryItemsParams
 const (
 	PublicQueryItemsDEMOConstant     = "DEMO"
@@ -27,6 +28,7 @@ const (
 	PublicQueryItemsSOFTWAREConstant = "SOFTWARE"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryItemsItemType<EnumValue>Constant instead.
 // Get the enum in PublicQueryItemsParams
 const (
 	PublicQueryItemsAPPConstant          = "APP"
@@ -42,6 +44,7 @@ const (
 	PublicQueryItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryItemsSortBy<EnumValue>Constant instead.
 // Get the enum in PublicQueryItemsParams
 const (
 	PublicQueryItemsNameConstant             = "name"
@@ -56,6 +59,45 @@ const (
 	PublicQueryItemsDisplayOrderConstant     = "displayOrder"
 	PublicQueryItemsDisplayOrderAscConstant  = "displayOrder:asc"
 	PublicQueryItemsDisplayOrderDescConstant = "displayOrder:desc"
+)
+
+// Get the enum in PublicQueryItemsParams
+const (
+	PublicQueryItemsAppTypeDEMOConstant     = "DEMO"
+	PublicQueryItemsAppTypeDLCConstant      = "DLC"
+	PublicQueryItemsAppTypeGAMEConstant     = "GAME"
+	PublicQueryItemsAppTypeSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in PublicQueryItemsParams
+const (
+	PublicQueryItemsItemTypeAPPConstant          = "APP"
+	PublicQueryItemsItemTypeBUNDLEConstant       = "BUNDLE"
+	PublicQueryItemsItemTypeCODEConstant         = "CODE"
+	PublicQueryItemsItemTypeCOINSConstant        = "COINS"
+	PublicQueryItemsItemTypeEXTENSIONConstant    = "EXTENSION"
+	PublicQueryItemsItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	PublicQueryItemsItemTypeLOOTBOXConstant      = "LOOTBOX"
+	PublicQueryItemsItemTypeMEDIAConstant        = "MEDIA"
+	PublicQueryItemsItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	PublicQueryItemsItemTypeSEASONConstant       = "SEASON"
+	PublicQueryItemsItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in PublicQueryItemsParams
+const (
+	PublicQueryItemsSortByNameConstant             = "name"
+	PublicQueryItemsSortByNameAscConstant          = "name:asc"
+	PublicQueryItemsSortByNameDescConstant         = "name:desc"
+	PublicQueryItemsSortByCreatedAtConstant        = "createdAt"
+	PublicQueryItemsSortByCreatedAtAscConstant     = "createdAt:asc"
+	PublicQueryItemsSortByCreatedAtDescConstant    = "createdAt:desc"
+	PublicQueryItemsSortByUpdatedAtConstant        = "updatedAt"
+	PublicQueryItemsSortByUpdatedAtAscConstant     = "updatedAt:asc"
+	PublicQueryItemsSortByUpdatedAtDescConstant    = "updatedAt:desc"
+	PublicQueryItemsSortByDisplayOrderConstant     = "displayOrder"
+	PublicQueryItemsSortByDisplayOrderAscConstant  = "displayOrder:asc"
+	PublicQueryItemsSortByDisplayOrderDescConstant = "displayOrder:desc"
 )
 
 // NewPublicQueryItemsParams creates a new PublicQueryItemsParams object
@@ -176,7 +218,11 @@ type PublicQueryItemsParams struct {
 	/*Language*/
 	Language *string
 	/*Limit
-	  limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
 
 	*/
 	Limit *int32

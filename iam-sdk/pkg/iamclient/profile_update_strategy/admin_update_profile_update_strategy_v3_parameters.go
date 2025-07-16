@@ -20,12 +20,21 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
+// Deprecated: 2025-07-16 - Use AdminUpdateProfileUpdateStrategyV3Field<EnumValue>Constant instead.
 // Get the enum in AdminUpdateProfileUpdateStrategyV3Params
 const (
 	AdminUpdateProfileUpdateStrategyV3CountryConstant     = "country"
 	AdminUpdateProfileUpdateStrategyV3DisplayNameConstant = "display_name"
 	AdminUpdateProfileUpdateStrategyV3DobConstant         = "dob"
 	AdminUpdateProfileUpdateStrategyV3UsernameConstant    = "username"
+)
+
+// Get the enum in AdminUpdateProfileUpdateStrategyV3Params
+const (
+	AdminUpdateProfileUpdateStrategyV3FieldCountryConstant     = "country"
+	AdminUpdateProfileUpdateStrategyV3FieldDisplayNameConstant = "display_name"
+	AdminUpdateProfileUpdateStrategyV3FieldDobConstant         = "dob"
+	AdminUpdateProfileUpdateStrategyV3FieldUsernameConstant    = "username"
 )
 
 // NewAdminUpdateProfileUpdateStrategyV3Params creates a new AdminUpdateProfileUpdateStrategyV3Params object

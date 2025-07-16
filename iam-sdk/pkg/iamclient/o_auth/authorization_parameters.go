@@ -18,10 +18,17 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use AuthorizationResponseType<EnumValue>Constant instead.
 // Get the enum in AuthorizationParams
 const (
 	AuthorizationCodeConstant  = "code"
 	AuthorizationTokenConstant = "token"
+)
+
+// Get the enum in AuthorizationParams
+const (
+	AuthorizationResponseTypeCodeConstant  = "code"
+	AuthorizationResponseTypeTokenConstant = "token"
 )
 
 // NewAuthorizationParams creates a new AuthorizationParams object

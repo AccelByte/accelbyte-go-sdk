@@ -19,12 +19,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use FleetServersSortDirection<EnumValue>Constant instead.
 // Get the enum in FleetServersParams
 const (
 	FleetServersAscConstant  = "asc"
 	FleetServersDescConstant = "desc"
 )
 
+// Deprecated: 2025-07-16 - Use FleetServersStatus<EnumValue>Constant instead.
 // Get the enum in FleetServersParams
 const (
 	FleetServersClaimedConstant      = "claimed"
@@ -34,6 +36,23 @@ const (
 	FleetServersDrainingConstant     = "draining"
 	FleetServersReadyConstant        = "ready"
 	FleetServersUnresponsiveConstant = "unresponsive"
+)
+
+// Get the enum in FleetServersParams
+const (
+	FleetServersSortDirectionAscConstant  = "asc"
+	FleetServersSortDirectionDescConstant = "desc"
+)
+
+// Get the enum in FleetServersParams
+const (
+	FleetServersStatusClaimedConstant      = "claimed"
+	FleetServersStatusClaimingConstant     = "claiming"
+	FleetServersStatusCrashBackoffConstant = "crash backoff"
+	FleetServersStatusCreatingConstant     = "creating"
+	FleetServersStatusDrainingConstant     = "draining"
+	FleetServersStatusReadyConstant        = "ready"
+	FleetServersStatusUnresponsiveConstant = "unresponsive"
 )
 
 // NewFleetServersParams creates a new FleetServersParams object

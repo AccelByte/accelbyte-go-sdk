@@ -75,7 +75,7 @@ func NewUnsubscribeV2HandlerNoContent() *UnsubscribeV2HandlerNoContent {
 
 /*UnsubscribeV2HandlerNoContent handles this case with default header values.
 
-  successfully submitted request to unsubcribe from app down notification
+  successfully submitted request to unsubcribe from app notification
 */
 type UnsubscribeV2HandlerNoContent struct {
 }

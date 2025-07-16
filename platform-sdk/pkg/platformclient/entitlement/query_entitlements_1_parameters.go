@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryEntitlements1AppType<EnumValue>Constant instead.
 // Get the enum in QueryEntitlements1Params
 const (
 	QueryEntitlements1DEMOConstant     = "DEMO"
@@ -27,6 +28,7 @@ const (
 	QueryEntitlements1SOFTWAREConstant = "SOFTWARE"
 )
 
+// Deprecated: 2025-07-16 - Use QueryEntitlements1EntitlementClazz<EnumValue>Constant instead.
 // Get the enum in QueryEntitlements1Params
 const (
 	QueryEntitlements1APPConstant          = "APP"
@@ -38,6 +40,7 @@ const (
 	QueryEntitlements1SUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use QueryEntitlements1Origin<EnumValue>Constant instead.
 // Get the enum in QueryEntitlements1Params
 const (
 	QueryEntitlements1EpicConstant        = "Epic"
@@ -51,6 +54,40 @@ const (
 	QueryEntitlements1SystemConstant      = "System"
 	QueryEntitlements1TwitchConstant      = "Twitch"
 	QueryEntitlements1XboxConstant        = "Xbox"
+)
+
+// Get the enum in QueryEntitlements1Params
+const (
+	QueryEntitlements1AppTypeDEMOConstant     = "DEMO"
+	QueryEntitlements1AppTypeDLCConstant      = "DLC"
+	QueryEntitlements1AppTypeGAMEConstant     = "GAME"
+	QueryEntitlements1AppTypeSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in QueryEntitlements1Params
+const (
+	QueryEntitlements1EntitlementClazzAPPConstant          = "APP"
+	QueryEntitlements1EntitlementClazzCODEConstant         = "CODE"
+	QueryEntitlements1EntitlementClazzENTITLEMENTConstant  = "ENTITLEMENT"
+	QueryEntitlements1EntitlementClazzLOOTBOXConstant      = "LOOTBOX"
+	QueryEntitlements1EntitlementClazzMEDIAConstant        = "MEDIA"
+	QueryEntitlements1EntitlementClazzOPTIONBOXConstant    = "OPTIONBOX"
+	QueryEntitlements1EntitlementClazzSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in QueryEntitlements1Params
+const (
+	QueryEntitlements1OriginEpicConstant        = "Epic"
+	QueryEntitlements1OriginGooglePlayConstant  = "GooglePlay"
+	QueryEntitlements1OriginIOSConstant         = "IOS"
+	QueryEntitlements1OriginNintendoConstant    = "Nintendo"
+	QueryEntitlements1OriginOculusConstant      = "Oculus"
+	QueryEntitlements1OriginOtherConstant       = "Other"
+	QueryEntitlements1OriginPlaystationConstant = "Playstation"
+	QueryEntitlements1OriginSteamConstant       = "Steam"
+	QueryEntitlements1OriginSystemConstant      = "System"
+	QueryEntitlements1OriginTwitchConstant      = "Twitch"
+	QueryEntitlements1OriginXboxConstant        = "Xbox"
 )
 
 // NewQueryEntitlements1Params creates a new QueryEntitlements1Params object
@@ -139,7 +176,14 @@ type QueryEntitlements1Params struct {
 	EntitlementName *string
 	/*ItemID*/
 	ItemID []string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatform<EnumValue>Constant instead.
 // Get the enum in GetThirdPartyPlatformSubscriptionOwnershipByProductIDParams
 const (
 	GetThirdPartyPlatformSubscriptionOwnershipByProductIDAPPLEConstant       = "APPLE"
@@ -29,6 +30,19 @@ const (
 	GetThirdPartyPlatformSubscriptionOwnershipByProductIDSTEAMConstant       = "STEAM"
 	GetThirdPartyPlatformSubscriptionOwnershipByProductIDTWITCHConstant      = "TWITCH"
 	GetThirdPartyPlatformSubscriptionOwnershipByProductIDXBOXConstant        = "XBOX"
+)
+
+// Get the enum in GetThirdPartyPlatformSubscriptionOwnershipByProductIDParams
+const (
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformAPPLEConstant       = "APPLE"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformEPICGAMESConstant   = "EPICGAMES"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformGOOGLEConstant      = "GOOGLE"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformOCULUSConstant      = "OCULUS"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformPLAYSTATIONConstant = "PLAYSTATION"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformSTADIAConstant      = "STADIA"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformSTEAMConstant       = "STEAM"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformTWITCHConstant      = "TWITCH"
+	GetThirdPartyPlatformSubscriptionOwnershipByProductIDPlatformXBOXConstant        = "XBOX"
 )
 
 // NewGetThirdPartyPlatformSubscriptionOwnershipByProductIDParams creates a new GetThirdPartyPlatformSubscriptionOwnershipByProductIDParams object

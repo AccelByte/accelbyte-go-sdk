@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryUserEntitlementsAppType<EnumValue>Constant instead.
 // Get the enum in PublicQueryUserEntitlementsParams
 const (
 	PublicQueryUserEntitlementsDEMOConstant     = "DEMO"
@@ -27,6 +28,7 @@ const (
 	PublicQueryUserEntitlementsSOFTWAREConstant = "SOFTWARE"
 )
 
+// Deprecated: 2025-07-16 - Use PublicQueryUserEntitlementsEntitlementClazz<EnumValue>Constant instead.
 // Get the enum in PublicQueryUserEntitlementsParams
 const (
 	PublicQueryUserEntitlementsAPPConstant          = "APP"
@@ -36,6 +38,25 @@ const (
 	PublicQueryUserEntitlementsMEDIAConstant        = "MEDIA"
 	PublicQueryUserEntitlementsOPTIONBOXConstant    = "OPTIONBOX"
 	PublicQueryUserEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in PublicQueryUserEntitlementsParams
+const (
+	PublicQueryUserEntitlementsAppTypeDEMOConstant     = "DEMO"
+	PublicQueryUserEntitlementsAppTypeDLCConstant      = "DLC"
+	PublicQueryUserEntitlementsAppTypeGAMEConstant     = "GAME"
+	PublicQueryUserEntitlementsAppTypeSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in PublicQueryUserEntitlementsParams
+const (
+	PublicQueryUserEntitlementsEntitlementClazzAPPConstant          = "APP"
+	PublicQueryUserEntitlementsEntitlementClazzCODEConstant         = "CODE"
+	PublicQueryUserEntitlementsEntitlementClazzENTITLEMENTConstant  = "ENTITLEMENT"
+	PublicQueryUserEntitlementsEntitlementClazzLOOTBOXConstant      = "LOOTBOX"
+	PublicQueryUserEntitlementsEntitlementClazzMEDIAConstant        = "MEDIA"
+	PublicQueryUserEntitlementsEntitlementClazzOPTIONBOXConstant    = "OPTIONBOX"
+	PublicQueryUserEntitlementsEntitlementClazzSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
 // NewPublicQueryUserEntitlementsParams creates a new PublicQueryUserEntitlementsParams object
@@ -118,7 +139,14 @@ type PublicQueryUserEntitlementsParams struct {
 	Features []string
 	/*ItemID*/
 	ItemID []string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

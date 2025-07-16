@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserEntitlementsAppType<EnumValue>Constant instead.
 // Get the enum in QueryUserEntitlementsParams
 const (
 	QueryUserEntitlementsDEMOConstant     = "DEMO"
@@ -27,6 +28,7 @@ const (
 	QueryUserEntitlementsSOFTWAREConstant = "SOFTWARE"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserEntitlementsEntitlementClazz<EnumValue>Constant instead.
 // Get the enum in QueryUserEntitlementsParams
 const (
 	QueryUserEntitlementsAPPConstant          = "APP"
@@ -38,6 +40,7 @@ const (
 	QueryUserEntitlementsSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserEntitlementsOrigin<EnumValue>Constant instead.
 // Get the enum in QueryUserEntitlementsParams
 const (
 	QueryUserEntitlementsEpicConstant        = "Epic"
@@ -51,6 +54,40 @@ const (
 	QueryUserEntitlementsSystemConstant      = "System"
 	QueryUserEntitlementsTwitchConstant      = "Twitch"
 	QueryUserEntitlementsXboxConstant        = "Xbox"
+)
+
+// Get the enum in QueryUserEntitlementsParams
+const (
+	QueryUserEntitlementsAppTypeDEMOConstant     = "DEMO"
+	QueryUserEntitlementsAppTypeDLCConstant      = "DLC"
+	QueryUserEntitlementsAppTypeGAMEConstant     = "GAME"
+	QueryUserEntitlementsAppTypeSOFTWAREConstant = "SOFTWARE"
+)
+
+// Get the enum in QueryUserEntitlementsParams
+const (
+	QueryUserEntitlementsEntitlementClazzAPPConstant          = "APP"
+	QueryUserEntitlementsEntitlementClazzCODEConstant         = "CODE"
+	QueryUserEntitlementsEntitlementClazzENTITLEMENTConstant  = "ENTITLEMENT"
+	QueryUserEntitlementsEntitlementClazzLOOTBOXConstant      = "LOOTBOX"
+	QueryUserEntitlementsEntitlementClazzMEDIAConstant        = "MEDIA"
+	QueryUserEntitlementsEntitlementClazzOPTIONBOXConstant    = "OPTIONBOX"
+	QueryUserEntitlementsEntitlementClazzSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in QueryUserEntitlementsParams
+const (
+	QueryUserEntitlementsOriginEpicConstant        = "Epic"
+	QueryUserEntitlementsOriginGooglePlayConstant  = "GooglePlay"
+	QueryUserEntitlementsOriginIOSConstant         = "IOS"
+	QueryUserEntitlementsOriginNintendoConstant    = "Nintendo"
+	QueryUserEntitlementsOriginOculusConstant      = "Oculus"
+	QueryUserEntitlementsOriginOtherConstant       = "Other"
+	QueryUserEntitlementsOriginPlaystationConstant = "Playstation"
+	QueryUserEntitlementsOriginSteamConstant       = "Steam"
+	QueryUserEntitlementsOriginSystemConstant      = "System"
+	QueryUserEntitlementsOriginTwitchConstant      = "Twitch"
+	QueryUserEntitlementsOriginXboxConstant        = "Xbox"
 )
 
 // NewQueryUserEntitlementsParams creates a new QueryUserEntitlementsParams object
@@ -169,7 +206,14 @@ type QueryUserEntitlementsParams struct {
 	IgnoreActiveDate *bool
 	/*ItemID*/
 	ItemID []string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

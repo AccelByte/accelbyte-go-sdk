@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserSubscriptionsChargeStatus<EnumValue>Constant instead.
 // Get the enum in QueryUserSubscriptionsParams
 const (
 	QueryUserSubscriptionsCHARGEDConstant           = "CHARGED"
@@ -28,6 +29,7 @@ const (
 	QueryUserSubscriptionsSETUPConstant             = "SETUP"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserSubscriptionsStatus<EnumValue>Constant instead.
 // Get the enum in QueryUserSubscriptionsParams
 const (
 	QueryUserSubscriptionsACTIVEConstant    = "ACTIVE"
@@ -36,10 +38,34 @@ const (
 	QueryUserSubscriptionsINITConstant      = "INIT"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserSubscriptionsSubscribedBy<EnumValue>Constant instead.
 // Get the enum in QueryUserSubscriptionsParams
 const (
 	QueryUserSubscriptionsPLATFORMConstant = "PLATFORM"
 	QueryUserSubscriptionsUSERConstant     = "USER"
+)
+
+// Get the enum in QueryUserSubscriptionsParams
+const (
+	QueryUserSubscriptionsChargeStatusCHARGEDConstant           = "CHARGED"
+	QueryUserSubscriptionsChargeStatusCHARGEFAILEDConstant      = "CHARGE_FAILED"
+	QueryUserSubscriptionsChargeStatusNEVERConstant             = "NEVER"
+	QueryUserSubscriptionsChargeStatusRECURRINGCHARGINGConstant = "RECURRING_CHARGING"
+	QueryUserSubscriptionsChargeStatusSETUPConstant             = "SETUP"
+)
+
+// Get the enum in QueryUserSubscriptionsParams
+const (
+	QueryUserSubscriptionsStatusACTIVEConstant    = "ACTIVE"
+	QueryUserSubscriptionsStatusCANCELLEDConstant = "CANCELLED"
+	QueryUserSubscriptionsStatusEXPIREDConstant   = "EXPIRED"
+	QueryUserSubscriptionsStatusINITConstant      = "INIT"
+)
+
+// Get the enum in QueryUserSubscriptionsParams
+const (
+	QueryUserSubscriptionsSubscribedByPLATFORMConstant = "PLATFORM"
+	QueryUserSubscriptionsSubscribedByUSERConstant     = "USER"
 )
 
 // NewQueryUserSubscriptionsParams creates a new QueryUserSubscriptionsParams object
@@ -116,7 +142,14 @@ type QueryUserSubscriptionsParams struct {
 	ChargeStatus *string
 	/*ItemID*/
 	ItemID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

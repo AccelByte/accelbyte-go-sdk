@@ -88,7 +88,7 @@ func TestIntegrationGroup(t *testing.T) {
 
 	inputGetUserGroup := &group_member.GetUserGroupInformationPublicV2Params{
 		Namespace: namespace,
-		Limit:     &limit,
+		Limit:     &integration.Limit,
 		Offset:    &offset,
 	}
 	getUserGroup, errGetUserGroup := groupMemberService.GetUserGroupInformationPublicV2Short(inputGetUserGroup)

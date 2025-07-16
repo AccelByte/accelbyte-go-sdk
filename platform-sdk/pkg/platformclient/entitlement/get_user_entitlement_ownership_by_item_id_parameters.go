@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetUserEntitlementOwnershipByItemIDEntitlementClazz<EnumValue>Constant instead.
 // Get the enum in GetUserEntitlementOwnershipByItemIDParams
 const (
 	GetUserEntitlementOwnershipByItemIDAPPConstant          = "APP"
@@ -27,6 +28,17 @@ const (
 	GetUserEntitlementOwnershipByItemIDMEDIAConstant        = "MEDIA"
 	GetUserEntitlementOwnershipByItemIDOPTIONBOXConstant    = "OPTIONBOX"
 	GetUserEntitlementOwnershipByItemIDSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in GetUserEntitlementOwnershipByItemIDParams
+const (
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzAPPConstant          = "APP"
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzCODEConstant         = "CODE"
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzENTITLEMENTConstant  = "ENTITLEMENT"
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzLOOTBOXConstant      = "LOOTBOX"
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzMEDIAConstant        = "MEDIA"
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzOPTIONBOXConstant    = "OPTIONBOX"
+	GetUserEntitlementOwnershipByItemIDEntitlementClazzSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
 // NewGetUserEntitlementOwnershipByItemIDParams creates a new GetUserEntitlementOwnershipByItemIDParams object

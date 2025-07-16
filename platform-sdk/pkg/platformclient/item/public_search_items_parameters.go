@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicSearchItemsItemType<EnumValue>Constant instead.
 // Get the enum in PublicSearchItemsParams
 const (
 	PublicSearchItemsAPPConstant          = "APP"
@@ -32,6 +33,21 @@ const (
 	PublicSearchItemsOPTIONBOXConstant    = "OPTIONBOX"
 	PublicSearchItemsSEASONConstant       = "SEASON"
 	PublicSearchItemsSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in PublicSearchItemsParams
+const (
+	PublicSearchItemsItemTypeAPPConstant          = "APP"
+	PublicSearchItemsItemTypeBUNDLEConstant       = "BUNDLE"
+	PublicSearchItemsItemTypeCODEConstant         = "CODE"
+	PublicSearchItemsItemTypeCOINSConstant        = "COINS"
+	PublicSearchItemsItemTypeEXTENSIONConstant    = "EXTENSION"
+	PublicSearchItemsItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	PublicSearchItemsItemTypeLOOTBOXConstant      = "LOOTBOX"
+	PublicSearchItemsItemTypeMEDIAConstant        = "MEDIA"
+	PublicSearchItemsItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	PublicSearchItemsItemTypeSEASONConstant       = "SEASON"
+	PublicSearchItemsItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
 // NewPublicSearchItemsParams creates a new PublicSearchItemsParams object
@@ -115,7 +131,11 @@ type PublicSearchItemsParams struct {
 	/*ItemType*/
 	ItemType *string
 	/*Limit
-	  limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
 
 	*/
 	Limit *int32

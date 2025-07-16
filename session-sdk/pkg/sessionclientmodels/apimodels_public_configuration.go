@@ -86,6 +86,7 @@ type ApimodelsPublicConfiguration struct {
 	InviteTimeout *int32 `json:"inviteTimeout"`
 
 	// joinability
+	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN']
 	// Required: true
 	Joinability *string `json:"joinability"`
 
@@ -143,6 +144,7 @@ type ApimodelsPublicConfiguration struct {
 	TTLHours int32 `json:"ttlHours,omitempty"`
 
 	// type
+	// Enum: ['DS', 'NONE', 'P2P']
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -239,9 +241,55 @@ func (m *ApimodelsPublicConfiguration) validateInviteTimeout(formats strfmt.Regi
 	return nil
 }
 
+var apimodelsPublicConfigurationTypeJoinabilityPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsPublicConfigurationTypeJoinabilityPropEnum = append(apimodelsPublicConfigurationTypeJoinabilityPropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsPublicConfigurationJoinabilityCLOSED captures enum value "CLOSED"
+	ApimodelsPublicConfigurationJoinabilityCLOSED string = "CLOSED"
+
+	// ApimodelsPublicConfigurationJoinabilityFRIENDSOFFRIENDS captures enum value "FRIENDS_OF_FRIENDS"
+	ApimodelsPublicConfigurationJoinabilityFRIENDSOFFRIENDS string = "FRIENDS_OF_FRIENDS"
+
+	// ApimodelsPublicConfigurationJoinabilityFRIENDSOFLEADER captures enum value "FRIENDS_OF_LEADER"
+	ApimodelsPublicConfigurationJoinabilityFRIENDSOFLEADER string = "FRIENDS_OF_LEADER"
+
+	// ApimodelsPublicConfigurationJoinabilityFRIENDSOFMEMBERS captures enum value "FRIENDS_OF_MEMBERS"
+	ApimodelsPublicConfigurationJoinabilityFRIENDSOFMEMBERS string = "FRIENDS_OF_MEMBERS"
+
+	// ApimodelsPublicConfigurationJoinabilityINVITEONLY captures enum value "INVITE_ONLY"
+	ApimodelsPublicConfigurationJoinabilityINVITEONLY string = "INVITE_ONLY"
+
+	// ApimodelsPublicConfigurationJoinabilityOPEN captures enum value "OPEN"
+	ApimodelsPublicConfigurationJoinabilityOPEN string = "OPEN"
+)
+
+// prop value enum
+func (m *ApimodelsPublicConfiguration) validateJoinabilityEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsPublicConfigurationTypeJoinabilityPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsPublicConfiguration) validateJoinability(formats strfmt.Registry) error {
 
 	if err := validate.Required("joinability", "body", m.Joinability); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateJoinabilityEnum("joinability", "body", *m.Joinability); err != nil {
 		return err
 	}
 
@@ -325,9 +373,46 @@ func (m *ApimodelsPublicConfiguration) validateTextChatModeEnum(path, location s
 	return nil
 }
 
+var apimodelsPublicConfigurationTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["DS", "NONE", "P2P"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsPublicConfigurationTypeTypePropEnum = append(apimodelsPublicConfigurationTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsPublicConfigurationTypeDS captures enum value "DS"
+	ApimodelsPublicConfigurationTypeDS string = "DS"
+
+	// ApimodelsPublicConfigurationTypeNONE captures enum value "NONE"
+	ApimodelsPublicConfigurationTypeNONE string = "NONE"
+
+	// ApimodelsPublicConfigurationTypeP2P captures enum value "P2P"
+	ApimodelsPublicConfigurationTypeP2P string = "P2P"
+)
+
+// prop value enum
+func (m *ApimodelsPublicConfiguration) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsPublicConfigurationTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsPublicConfiguration) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

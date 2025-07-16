@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserIAPOrdersStatus<EnumValue>Constant instead.
 // Get the enum in QueryUserIAPOrdersParams
 const (
 	QueryUserIAPOrdersFAILEDConstant         = "FAILED"
@@ -29,6 +30,7 @@ const (
 	QueryUserIAPOrdersVERIFIEDConstant       = "VERIFIED"
 )
 
+// Deprecated: 2025-07-16 - Use QueryUserIAPOrdersType<EnumValue>Constant instead.
 // Get the enum in QueryUserIAPOrdersParams
 const (
 	QueryUserIAPOrdersAPPLEConstant       = "APPLE"
@@ -40,6 +42,29 @@ const (
 	QueryUserIAPOrdersSTEAMConstant       = "STEAM"
 	QueryUserIAPOrdersTWITCHConstant      = "TWITCH"
 	QueryUserIAPOrdersXBOXConstant        = "XBOX"
+)
+
+// Get the enum in QueryUserIAPOrdersParams
+const (
+	QueryUserIAPOrdersStatusFAILEDConstant         = "FAILED"
+	QueryUserIAPOrdersStatusFULFILLEDConstant      = "FULFILLED"
+	QueryUserIAPOrdersStatusPARTIALREVOKEDConstant = "PARTIAL_REVOKED"
+	QueryUserIAPOrdersStatusREVOKEDConstant        = "REVOKED"
+	QueryUserIAPOrdersStatusREVOKEFAILEDConstant   = "REVOKE_FAILED"
+	QueryUserIAPOrdersStatusVERIFIEDConstant       = "VERIFIED"
+)
+
+// Get the enum in QueryUserIAPOrdersParams
+const (
+	QueryUserIAPOrdersTypeAPPLEConstant       = "APPLE"
+	QueryUserIAPOrdersTypeEPICGAMESConstant   = "EPICGAMES"
+	QueryUserIAPOrdersTypeGOOGLEConstant      = "GOOGLE"
+	QueryUserIAPOrdersTypeOCULUSConstant      = "OCULUS"
+	QueryUserIAPOrdersTypePLAYSTATIONConstant = "PLAYSTATION"
+	QueryUserIAPOrdersTypeSTADIAConstant      = "STADIA"
+	QueryUserIAPOrdersTypeSTEAMConstant       = "STEAM"
+	QueryUserIAPOrdersTypeTWITCHConstant      = "TWITCH"
+	QueryUserIAPOrdersTypeXBOXConstant        = "XBOX"
 )
 
 // NewQueryUserIAPOrdersParams creates a new QueryUserIAPOrdersParams object
@@ -117,7 +142,14 @@ type QueryUserIAPOrdersParams struct {
 
 	*/
 	EndTime *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

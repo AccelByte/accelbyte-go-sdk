@@ -18,11 +18,19 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use AdminGetRoleOverrideConfigV3Identity<EnumValue>Constant instead.
 // Get the enum in AdminGetRoleOverrideConfigV3Params
 const (
 	AdminGetRoleOverrideConfigV3GAMEADMINConstant = "GAME_ADMIN"
 	AdminGetRoleOverrideConfigV3USERConstant      = "USER"
 	AdminGetRoleOverrideConfigV3VIEWONLYConstant  = "VIEW_ONLY"
+)
+
+// Get the enum in AdminGetRoleOverrideConfigV3Params
+const (
+	AdminGetRoleOverrideConfigV3IdentityGAMEADMINConstant = "GAME_ADMIN"
+	AdminGetRoleOverrideConfigV3IdentityUSERConstant      = "USER"
+	AdminGetRoleOverrideConfigV3IdentityVIEWONLYConstant  = "VIEW_ONLY"
 )
 
 // NewAdminGetRoleOverrideConfigV3Params creates a new AdminGetRoleOverrideConfigV3Params object

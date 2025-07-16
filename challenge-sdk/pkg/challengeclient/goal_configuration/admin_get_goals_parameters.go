@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminGetGoalsSortBy<EnumValue>Constant instead.
 // Get the enum in AdminGetGoalsParams
 const (
 	AdminGetGoalsCreatedAtConstant     = "createdAt"
@@ -27,6 +28,16 @@ const (
 	AdminGetGoalsUpdatedAtConstant     = "updatedAt"
 	AdminGetGoalsUpdatedAtAscConstant  = "updatedAt:asc"
 	AdminGetGoalsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in AdminGetGoalsParams
+const (
+	AdminGetGoalsSortByCreatedAtConstant     = "createdAt"
+	AdminGetGoalsSortByCreatedAtAscConstant  = "createdAt:asc"
+	AdminGetGoalsSortByCreatedAtDescConstant = "createdAt:desc"
+	AdminGetGoalsSortByUpdatedAtConstant     = "updatedAt"
+	AdminGetGoalsSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	AdminGetGoalsSortByUpdatedAtDescConstant = "updatedAt:desc"
 )
 
 // NewAdminGetGoalsParams creates a new AdminGetGoalsParams object

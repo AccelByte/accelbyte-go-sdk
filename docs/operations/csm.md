@@ -103,6 +103,12 @@
 |---|---|---|---|---|---|
 | `/csm/v2/admin/namespaces/{namespace}/resources/limits` | GET | GetResourcesLimitsShort | [GetResourcesLimitsShort](../../csm-sdk/pkg/csmclient/resources_limits/resources_limits_client.go) | [GetResourcesLimitsShort](../../services-api/pkg/service/csm/resourcesLimits.go) | [GetResourcesLimitsShort](../../samples/cli/cmd/csm/resourcesLimits/getResourcesLimits.go) |
 
+### Notification Subscription V3 Wrapper:  [NotificationSubscriptionV3](../../services-api/pkg/service/csm/notificationSubscriptionV3.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v3/admin/namespaces/{namespace}/apps/{app}/subscriptions` | GET | GetNotificationSubscriberListV3Short | [GetNotificationSubscriberListV3Short](../../csm-sdk/pkg/csmclient/notification_subscription_v3/notification_subscription_v3_client.go) | [GetNotificationSubscriberListV3Short](../../services-api/pkg/service/csm/notificationSubscriptionV3.go) | [GetNotificationSubscriberListV3Short](../../samples/cli/cmd/csm/notificationSubscriptionV3/getNotificationSubscriberListV3.go) |
+| `/csm/v3/admin/namespaces/{namespace}/apps/{app}/subscriptions` | DELETE | DeleteSubscriptionAppNotificationV3Short | [DeleteSubscriptionAppNotificationV3Short](../../csm-sdk/pkg/csmclient/notification_subscription_v3/notification_subscription_v3_client.go) | [DeleteSubscriptionAppNotificationV3Short](../../services-api/pkg/service/csm/notificationSubscriptionV3.go) | [DeleteSubscriptionAppNotificationV3Short](../../samples/cli/cmd/csm/notificationSubscriptionV3/deleteSubscriptionAppNotificationV3.go) |
+
 
 &nbsp;  
 
@@ -133,11 +139,14 @@
 | `apimodel.GetListOfConfigurationsV2DataItem` | [ApimodelGetListOfConfigurationsV2DataItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_list_of_configurations_v2_data_item.go) |
 | `apimodel.GetListOfConfigurationsV2Response` | [ApimodelGetListOfConfigurationsV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_list_of_configurations_v2_response.go) |
 | `apimodel.GetNotificationSubscriberItem` | [ApimodelGetNotificationSubscriberItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_item.go) |
+| `apimodel.GetNotificationSubscriberItemV2` | [ApimodelGetNotificationSubscriberItemV2 ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_item_v2.go) |
 | `apimodel.GetNotificationSubscriberListResponse` | [ApimodelGetNotificationSubscriberListResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_list_response.go) |
+| `apimodel.GetNotificationSubscriberListResponseV2` | [ApimodelGetNotificationSubscriberListResponseV2 ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_list_response_v2.go) |
 | `apimodel.GetNotificationSubscriberStatusResponse` | [ApimodelGetNotificationSubscriberStatusResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_status_response.go) |
 | `apimodel.IncreaseLimitFormRequest` | [ApimodelIncreaseLimitFormRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_increase_limit_form_request.go) |
 | `apimodel.MemoryRequest` | [ApimodelMemoryRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_request.go) |
 | `apimodel.MemoryResponse` | [ApimodelMemoryResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_response.go) |
+| `apimodel.NotificationType` | [ApimodelNotificationType ](../../csm-sdk/pkg/csmclientmodels/apimodel_notification_type.go) |
 | `apimodel.ReplicaRequest` | [ApimodelReplicaRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_request.go) |
 | `apimodel.ReplicaResponse` | [ApimodelReplicaResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_response.go) |
 | `apimodel.SaveConfigurationV2Request` | [ApimodelSaveConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_configuration_v2_request.go) |

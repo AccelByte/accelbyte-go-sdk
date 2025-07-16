@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.33.0"
+    "version": "7.34.0"
   },
   "schemes": [
     "https"
@@ -15981,6 +15981,14 @@
             "name": "userId",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Create target namespace account if not found",
+            "in": "query",
+            "name": "createIfNotFound",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -40780,6 +40788,10 @@
         "PlatformName": {
           "type": "string"
         },
+        "PrivateKey": {
+          "description": "private key used to decrypt JWT token",
+          "type": "string"
+        },
         "RedirectUri": {
           "type": "string"
         },
@@ -40789,6 +40801,14 @@
             "$ref": "#/definitions/accountcommon.RegisteredDomain"
           },
           "type": "array"
+        },
+        "RelyingParty": {
+          "description": "xbox relying party",
+          "type": "string"
+        },
+        "SandboxId": {
+          "description": "sandbox id",
+          "type": "string"
         },
         "Secret": {
           "type": "string"
@@ -40948,7 +40968,19 @@
         "PlatformName": {
           "type": "string"
         },
+        "PrivateKey": {
+          "description": "private key used to decrypt JWT token",
+          "type": "string"
+        },
         "RedirectUri": {
+          "type": "string"
+        },
+        "RelyingParty": {
+          "description": "xbox relying party",
+          "type": "string"
+        },
+        "SandboxId": {
+          "description": "sandbox id",
           "type": "string"
         },
         "Secret": {
@@ -43612,11 +43644,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-05-27T08:12:55+00:00",
-    "gitHash": "d178d386aa72673231f2df7944d3592e9bc8b67c",
+    "buildDate": "2025-07-03T04:20:21+00:00",
+    "gitHash": "73862d8921c9dbf7212124e8cce30a7703b484a0",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.33.0",
+    "version": "7.34.0",
     "version-roles-seeding": "1.2.91"
   }
 }

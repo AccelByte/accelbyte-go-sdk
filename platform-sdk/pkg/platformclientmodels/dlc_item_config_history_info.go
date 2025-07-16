@@ -27,6 +27,9 @@ type DLCItemConfigHistoryInfo struct {
 	// dlcid
 	DLCID string `json:"dlcId,omitempty"`
 
+	// enablerevocation
+	EnableRevocation bool `json:"enableRevocation"`
+
 	// id
 	ID string `json:"id,omitempty"`
 

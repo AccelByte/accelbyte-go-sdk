@@ -290,3 +290,22 @@ $ samples/cli/sample-apps Csm getResourcesLimits \
     > result.txt
 ```
 
+### Operation `get_notification_subscriber_list_v3`
+```sh
+$ samples/cli/sample-apps Csm getNotificationSubscriberListV3 \
+    --app 'string' \
+    --namespace 'string' \
+    --notificationType 'string' \
+    > result.txt
+```
+
+### Operation `delete_subscription_app_notification_v3`
+```sh
+$ samples/cli/sample-apps Csm deleteSubscriptionAppNotificationV3 \
+    --app 'string' \
+    --namespace 'string' \
+    --emailAddress 'string' \
+    --userId 'string' \
+    > result.txt
+```
+

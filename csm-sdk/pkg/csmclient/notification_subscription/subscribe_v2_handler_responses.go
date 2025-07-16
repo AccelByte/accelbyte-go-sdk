@@ -75,7 +75,7 @@ func NewSubscribeV2HandlerNoContent() *SubscribeV2HandlerNoContent {
 
 /*SubscribeV2HandlerNoContent handles this case with default header values.
 
-  successfully submitted request to subcribe from app down notification
+  successfully submitted request to subcribe from app notification
 */
 type SubscribeV2HandlerNoContent struct {
 }

@@ -18,6 +18,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use GetStatisticAction<EnumValue>Constant instead.
 // Get the enum in GetStatisticParams
 const (
 	GetStatisticCREATEConstant = "CREATE"
@@ -25,6 +26,7 @@ const (
 	GetStatisticUPDATEConstant = "UPDATE"
 )
 
+// Deprecated: 2025-07-16 - Use GetStatisticItemType<EnumValue>Constant instead.
 // Get the enum in GetStatisticParams
 const (
 	GetStatisticAPPConstant          = "APP"
@@ -40,6 +42,7 @@ const (
 	GetStatisticSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use GetStatisticType<EnumValue>Constant instead.
 // Get the enum in GetStatisticParams
 const (
 	GetStatisticCATEGORYConstant = "CATEGORY"
@@ -47,6 +50,37 @@ const (
 	GetStatisticSECTIONConstant  = "SECTION"
 	GetStatisticSTOREConstant    = "STORE"
 	GetStatisticVIEWConstant     = "VIEW"
+)
+
+// Get the enum in GetStatisticParams
+const (
+	GetStatisticActionCREATEConstant = "CREATE"
+	GetStatisticActionDELETEConstant = "DELETE"
+	GetStatisticActionUPDATEConstant = "UPDATE"
+)
+
+// Get the enum in GetStatisticParams
+const (
+	GetStatisticItemTypeAPPConstant          = "APP"
+	GetStatisticItemTypeBUNDLEConstant       = "BUNDLE"
+	GetStatisticItemTypeCODEConstant         = "CODE"
+	GetStatisticItemTypeCOINSConstant        = "COINS"
+	GetStatisticItemTypeEXTENSIONConstant    = "EXTENSION"
+	GetStatisticItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	GetStatisticItemTypeLOOTBOXConstant      = "LOOTBOX"
+	GetStatisticItemTypeMEDIAConstant        = "MEDIA"
+	GetStatisticItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	GetStatisticItemTypeSEASONConstant       = "SEASON"
+	GetStatisticItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in GetStatisticParams
+const (
+	GetStatisticTypeCATEGORYConstant = "CATEGORY"
+	GetStatisticTypeITEMConstant     = "ITEM"
+	GetStatisticTypeSECTIONConstant  = "SECTION"
+	GetStatisticTypeSTOREConstant    = "STORE"
+	GetStatisticTypeVIEWConstant     = "VIEW"
 )
 
 // NewGetStatisticParams creates a new GetStatisticParams object

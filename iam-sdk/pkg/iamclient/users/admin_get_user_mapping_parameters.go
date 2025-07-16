@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminGetUserMappingParams creates a new AdminGetUserMappingParams object
 // with the default values initialized.
 func NewAdminGetUserMappingParams() *AdminGetUserMappingParams {
-	var ()
+	var (
+		createIfNotFoundDefault = bool(false)
+	)
 	return &AdminGetUserMappingParams{
+		CreateIfNotFound: &createIfNotFoundDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewAdminGetUserMappingParams() *AdminGetUserMappingParams {
 // NewAdminGetUserMappingParamsWithTimeout creates a new AdminGetUserMappingParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetUserMappingParamsWithTimeout(timeout time.Duration) *AdminGetUserMappingParams {
-	var ()
+	var (
+		createIfNotFoundDefault = bool(false)
+	)
 	return &AdminGetUserMappingParams{
+		CreateIfNotFound: &createIfNotFoundDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewAdminGetUserMappingParamsWithTimeout(timeout time.Duration) *AdminGetUse
 // NewAdminGetUserMappingParamsWithContext creates a new AdminGetUserMappingParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetUserMappingParamsWithContext(ctx context.Context) *AdminGetUserMappingParams {
-	var ()
+	var (
+		createIfNotFoundDefault = bool(false)
+	)
 	return &AdminGetUserMappingParams{
+		CreateIfNotFound: &createIfNotFoundDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewAdminGetUserMappingParamsWithContext(ctx context.Context) *AdminGetUserM
 // NewAdminGetUserMappingParamsWithHTTPClient creates a new AdminGetUserMappingParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetUserMappingParamsWithHTTPClient(client *http.Client) *AdminGetUserMappingParams {
-	var ()
+	var (
+		createIfNotFoundDefault = bool(false)
+	)
 	return &AdminGetUserMappingParams{
-		HTTPClient: client,
+		CreateIfNotFound: &createIfNotFoundDefault,
+		HTTPClient:       client,
 	}
 }
 
@@ -79,6 +92,11 @@ type AdminGetUserMappingParams struct {
 
 	*/
 	UserID string
+	/*CreateIfNotFound
+	  Create target namespace account if not found
+
+	*/
+	CreateIfNotFound *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,6 +196,17 @@ func (o *AdminGetUserMappingParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
+// WithCreateIfNotFound adds the createIfNotFound to the admin get user mapping params
+func (o *AdminGetUserMappingParams) WithCreateIfNotFound(createIfNotFound *bool) *AdminGetUserMappingParams {
+	o.SetCreateIfNotFound(createIfNotFound)
+	return o
+}
+
+// SetCreateIfNotFound adds the createIfNotFound to the admin get user mapping params
+func (o *AdminGetUserMappingParams) SetCreateIfNotFound(createIfNotFound *bool) {
+	o.CreateIfNotFound = createIfNotFound
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminGetUserMappingParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -199,6 +228,22 @@ func (o *AdminGetUserMappingParams) WriteToRequest(r runtime.ClientRequest, reg 
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
+	}
+
+	if o.CreateIfNotFound != nil {
+
+		// query param createIfNotFound
+		var qrCreateIfNotFound bool
+		if o.CreateIfNotFound != nil {
+			qrCreateIfNotFound = *o.CreateIfNotFound
+		}
+		qCreateIfNotFound := swag.FormatBool(qrCreateIfNotFound)
+		if qCreateIfNotFound != "" {
+			if err := r.SetQueryParam("createIfNotFound", qCreateIfNotFound); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

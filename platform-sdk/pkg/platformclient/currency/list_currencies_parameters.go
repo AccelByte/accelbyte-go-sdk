@@ -18,10 +18,17 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
+// Deprecated: 2025-07-16 - Use ListCurrenciesCurrencyType<EnumValue>Constant instead.
 // Get the enum in ListCurrenciesParams
 const (
 	ListCurrenciesREALConstant    = "REAL"
 	ListCurrenciesVIRTUALConstant = "VIRTUAL"
+)
+
+// Get the enum in ListCurrenciesParams
+const (
+	ListCurrenciesCurrencyTypeREALConstant    = "REAL"
+	ListCurrenciesCurrencyTypeVIRTUALConstant = "VIRTUAL"
 )
 
 // NewListCurrenciesParams creates a new ListCurrenciesParams object

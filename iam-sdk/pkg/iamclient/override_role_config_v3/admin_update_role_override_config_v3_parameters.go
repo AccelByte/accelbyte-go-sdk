@@ -20,11 +20,19 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
+// Deprecated: 2025-07-16 - Use AdminUpdateRoleOverrideConfigV3Identity<EnumValue>Constant instead.
 // Get the enum in AdminUpdateRoleOverrideConfigV3Params
 const (
 	AdminUpdateRoleOverrideConfigV3GAMEADMINConstant = "GAME_ADMIN"
 	AdminUpdateRoleOverrideConfigV3USERConstant      = "USER"
 	AdminUpdateRoleOverrideConfigV3VIEWONLYConstant  = "VIEW_ONLY"
+)
+
+// Get the enum in AdminUpdateRoleOverrideConfigV3Params
+const (
+	AdminUpdateRoleOverrideConfigV3IdentityGAMEADMINConstant = "GAME_ADMIN"
+	AdminUpdateRoleOverrideConfigV3IdentityUSERConstant      = "USER"
+	AdminUpdateRoleOverrideConfigV3IdentityVIEWONLYConstant  = "VIEW_ONLY"
 )
 
 // NewAdminUpdateRoleOverrideConfigV3Params creates a new AdminUpdateRoleOverrideConfigV3Params object

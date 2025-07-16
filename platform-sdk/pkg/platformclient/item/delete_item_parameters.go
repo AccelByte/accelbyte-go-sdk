@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use DeleteItemFeaturesToCheck<EnumValue>Constant instead.
 // Get the enum in DeleteItemParams
 const (
 	DeleteItemCAMPAIGNConstant    = "CAMPAIGN"
@@ -27,6 +28,16 @@ const (
 	DeleteItemENTITLEMENTConstant = "ENTITLEMENT"
 	DeleteItemIAPConstant         = "IAP"
 	DeleteItemREWARDConstant      = "REWARD"
+)
+
+// Get the enum in DeleteItemParams
+const (
+	DeleteItemFeaturesToCheckCAMPAIGNConstant    = "CAMPAIGN"
+	DeleteItemFeaturesToCheckCATALOGConstant     = "CATALOG"
+	DeleteItemFeaturesToCheckDLCConstant         = "DLC"
+	DeleteItemFeaturesToCheckENTITLEMENTConstant = "ENTITLEMENT"
+	DeleteItemFeaturesToCheckIAPConstant         = "IAP"
+	DeleteItemFeaturesToCheckREWARDConstant      = "REWARD"
 )
 
 // NewDeleteItemParams creates a new DeleteItemParams object

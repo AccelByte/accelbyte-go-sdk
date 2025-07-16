@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use TokenGrantV4GrantType<EnumValue>Constant instead.
 // Get the enum in TokenGrantV4Params
 const (
 	TokenGrantV4AuthorizationCodeConstant                                  = "authorization_code"
@@ -29,10 +30,27 @@ const (
 	TokenGrantV4UrnIetfParamsOauthGrantTypeLoginQueueTicketConstant        = "urn:ietf:params:oauth:grant-type:login_queue_ticket"
 )
 
+// Deprecated: 2025-07-16 - Use TokenGrantV4CodeChallengeMethod<EnumValue>Constant instead.
 // Get the enum in TokenGrantV4Params
 const (
 	TokenGrantV4S256Constant  = "S256"
 	TokenGrantV4PlainConstant = "plain"
+)
+
+// Get the enum in TokenGrantV4Params
+const (
+	TokenGrantV4GrantTypeAuthorizationCodeConstant                                  = "authorization_code"
+	TokenGrantV4GrantTypeClientCredentialsConstant                                  = "client_credentials"
+	TokenGrantV4GrantTypePasswordConstant                                           = "password"
+	TokenGrantV4GrantTypeRefreshTokenConstant                                       = "refresh_token"
+	TokenGrantV4GrantTypeUrnIetfParamsOauthGrantTypeExtendClientCredentialsConstant = "urn:ietf:params:oauth:grant-type:extend_client_credentials"
+	TokenGrantV4GrantTypeUrnIetfParamsOauthGrantTypeLoginQueueTicketConstant        = "urn:ietf:params:oauth:grant-type:login_queue_ticket"
+)
+
+// Get the enum in TokenGrantV4Params
+const (
+	TokenGrantV4CodeChallengeMethodS256Constant  = "S256"
+	TokenGrantV4CodeChallengeMethodPlainConstant = "plain"
 )
 
 // NewTokenGrantV4Params creates a new TokenGrantV4Params object

@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryChangesAction<EnumValue>Constant instead.
 // Get the enum in QueryChangesParams
 const (
 	QueryChangesCREATEConstant = "CREATE"
@@ -26,6 +27,7 @@ const (
 	QueryChangesUPDATEConstant = "UPDATE"
 )
 
+// Deprecated: 2025-07-16 - Use QueryChangesItemType<EnumValue>Constant instead.
 // Get the enum in QueryChangesParams
 const (
 	QueryChangesAPPConstant          = "APP"
@@ -41,6 +43,7 @@ const (
 	QueryChangesSUBSCRIPTIONConstant = "SUBSCRIPTION"
 )
 
+// Deprecated: 2025-07-16 - Use QueryChangesSortBy<EnumValue>Constant instead.
 // Get the enum in QueryChangesParams
 const (
 	QueryChangesCreatedAtConstant     = "createdAt"
@@ -51,12 +54,14 @@ const (
 	QueryChangesUpdatedAtDescConstant = "updatedAt:desc"
 )
 
+// Deprecated: 2025-07-16 - Use QueryChangesStatus<EnumValue>Constant instead.
 // Get the enum in QueryChangesParams
 const (
 	QueryChangesPUBLISHEDConstant   = "PUBLISHED"
 	QueryChangesUNPUBLISHEDConstant = "UNPUBLISHED"
 )
 
+// Deprecated: 2025-07-16 - Use QueryChangesType<EnumValue>Constant instead.
 // Get the enum in QueryChangesParams
 const (
 	QueryChangesCATEGORYConstant = "CATEGORY"
@@ -64,6 +69,53 @@ const (
 	QueryChangesSECTIONConstant  = "SECTION"
 	QueryChangesSTOREConstant    = "STORE"
 	QueryChangesVIEWConstant     = "VIEW"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesActionCREATEConstant = "CREATE"
+	QueryChangesActionDELETEConstant = "DELETE"
+	QueryChangesActionUPDATEConstant = "UPDATE"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesItemTypeAPPConstant          = "APP"
+	QueryChangesItemTypeBUNDLEConstant       = "BUNDLE"
+	QueryChangesItemTypeCODEConstant         = "CODE"
+	QueryChangesItemTypeCOINSConstant        = "COINS"
+	QueryChangesItemTypeEXTENSIONConstant    = "EXTENSION"
+	QueryChangesItemTypeINGAMEITEMConstant   = "INGAMEITEM"
+	QueryChangesItemTypeLOOTBOXConstant      = "LOOTBOX"
+	QueryChangesItemTypeMEDIAConstant        = "MEDIA"
+	QueryChangesItemTypeOPTIONBOXConstant    = "OPTIONBOX"
+	QueryChangesItemTypeSEASONConstant       = "SEASON"
+	QueryChangesItemTypeSUBSCRIPTIONConstant = "SUBSCRIPTION"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesSortByCreatedAtConstant     = "createdAt"
+	QueryChangesSortByCreatedAtAscConstant  = "createdAt:asc"
+	QueryChangesSortByCreatedAtDescConstant = "createdAt:desc"
+	QueryChangesSortByUpdatedAtConstant     = "updatedAt"
+	QueryChangesSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	QueryChangesSortByUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesStatusPUBLISHEDConstant   = "PUBLISHED"
+	QueryChangesStatusUNPUBLISHEDConstant = "UNPUBLISHED"
+)
+
+// Get the enum in QueryChangesParams
+const (
+	QueryChangesTypeCATEGORYConstant = "CATEGORY"
+	QueryChangesTypeITEMConstant     = "ITEM"
+	QueryChangesTypeSECTIONConstant  = "SECTION"
+	QueryChangesTypeSTOREConstant    = "STORE"
+	QueryChangesTypeVIEWConstant     = "VIEW"
 )
 
 // NewQueryChangesParams creates a new QueryChangesParams object
@@ -167,7 +219,11 @@ type QueryChangesParams struct {
 	/*ItemType*/
 	ItemType *string
 	/*Limit
-	  limit
+	    limit <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
 
 	*/
 	Limit *int32

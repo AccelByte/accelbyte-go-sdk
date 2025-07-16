@@ -31,6 +31,9 @@ type UserDLCRecord struct {
 	// Enum: ['NOT_SYNCED', 'SYNCED', 'SYNCED_FAILED']
 	EntitlementOriginSyncStatus string `json:"entitlementOriginSyncStatus,omitempty"`
 
+	// entitlementsummaries
+	EntitlementSummaries []*EntitlementSummary `json:"entitlementSummaries,omitempty"`
+
 	// id
 	ID string `json:"id,omitempty"`
 

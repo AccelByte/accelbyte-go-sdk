@@ -26,8 +26,10 @@ var GetNamespaceContextCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		refreshOnCacheMiss, _ := cmd.Flags().GetBool("refreshOnCacheMiss")
 		input := &namespace_.GetNamespaceContextParams{
-			Namespace: namespace,
+			Namespace:          namespace,
+			RefreshOnCacheMiss: &refreshOnCacheMiss,
 		}
 		ok, errOK := namespaceService.GetNamespaceContextShort(input)
 		if errOK != nil {
@@ -45,4 +47,5 @@ var GetNamespaceContextCmd = &cobra.Command{
 func init() {
 	GetNamespaceContextCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetNamespaceContextCmd.MarkFlagRequired("namespace")
+	GetNamespaceContextCmd.Flags().Bool("refreshOnCacheMiss", false, "Refresh on cache miss")
 }

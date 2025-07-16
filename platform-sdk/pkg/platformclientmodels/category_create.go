@@ -18,7 +18,7 @@ import (
 // swagger:model Category create.
 type CategoryCreate struct {
 
-	// Category Path, A path separated by "/", start with "/" and end with combination of case of letters and numbers, max length is 255, min length is 2
+	// Category Path, A path separated by "/", start with "/" and end with combination of case of letters, numbers and hyphens, max length is 255, min length is 2
 	// Required: true
 	CategoryPath *string `json:"categoryPath"`
 

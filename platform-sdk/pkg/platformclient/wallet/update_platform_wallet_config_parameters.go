@@ -20,6 +20,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
+// Deprecated: 2025-07-16 - Use UpdatePlatformWalletConfigPlatform<EnumValue>Constant instead.
 // Get the enum in UpdatePlatformWalletConfigParams
 const (
 	UpdatePlatformWalletConfigEpicConstant        = "Epic"
@@ -31,6 +32,19 @@ const (
 	UpdatePlatformWalletConfigPlaystationConstant = "Playstation"
 	UpdatePlatformWalletConfigSteamConstant       = "Steam"
 	UpdatePlatformWalletConfigXboxConstant        = "Xbox"
+)
+
+// Get the enum in UpdatePlatformWalletConfigParams
+const (
+	UpdatePlatformWalletConfigPlatformEpicConstant        = "Epic"
+	UpdatePlatformWalletConfigPlatformGooglePlayConstant  = "GooglePlay"
+	UpdatePlatformWalletConfigPlatformIOSConstant         = "IOS"
+	UpdatePlatformWalletConfigPlatformNintendoConstant    = "Nintendo"
+	UpdatePlatformWalletConfigPlatformOculusConstant      = "Oculus"
+	UpdatePlatformWalletConfigPlatformOtherConstant       = "Other"
+	UpdatePlatformWalletConfigPlatformPlaystationConstant = "Playstation"
+	UpdatePlatformWalletConfigPlatformSteamConstant       = "Steam"
+	UpdatePlatformWalletConfigPlatformXboxConstant        = "Xbox"
 )
 
 // NewUpdatePlatformWalletConfigParams creates a new UpdatePlatformWalletConfigParams object

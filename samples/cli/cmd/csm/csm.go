@@ -17,6 +17,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/csm/imageV2"
 	"github.com/AccelByte/sample-apps/cmd/csm/messages"
 	"github.com/AccelByte/sample-apps/cmd/csm/notificationSubscription"
+	"github.com/AccelByte/sample-apps/cmd/csm/notificationSubscriptionV3"
 	"github.com/AccelByte/sample-apps/cmd/csm/resourcesLimits"
 	"github.com/spf13/cobra"
 )
@@ -83,4 +84,6 @@ func init() {
 	CsmCmd.AddCommand(deploymentV2.GetDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.DeleteDeploymentV2Cmd)
 	CsmCmd.AddCommand(resourcesLimits.GetResourcesLimitsCmd)
+	CsmCmd.AddCommand(notificationSubscriptionV3.GetNotificationSubscriberListV3Cmd)
+	CsmCmd.AddCommand(notificationSubscriptionV3.DeleteSubscriptionAppNotificationV3Cmd)
 }

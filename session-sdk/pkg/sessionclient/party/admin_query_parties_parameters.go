@@ -19,6 +19,56 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminQueryPartiesJoinability<EnumValue>Constant instead.
+// Get the enum in AdminQueryPartiesParams
+const (
+	AdminQueryPartiesCLOSEDConstant           = "CLOSED"
+	AdminQueryPartiesFRIENDSOFFRIENDSConstant = "FRIENDS_OF_FRIENDS"
+	AdminQueryPartiesFRIENDSOFLEADERConstant  = "FRIENDS_OF_LEADER"
+	AdminQueryPartiesFRIENDSOFMEMBERSConstant = "FRIENDS_OF_MEMBERS"
+	AdminQueryPartiesINVITEONLYConstant       = "INVITE_ONLY"
+	AdminQueryPartiesOPENConstant             = "OPEN"
+)
+
+// Deprecated: 2025-07-16 - Use AdminQueryPartiesMemberStatus<EnumValue>Constant instead.
+// Get the enum in AdminQueryPartiesParams
+const (
+	AdminQueryPartiesCANCELLEDConstant    = "CANCELLED"
+	AdminQueryPartiesCONNECTEDConstant    = "CONNECTED"
+	AdminQueryPartiesDISCONNECTEDConstant = "DISCONNECTED"
+	AdminQueryPartiesDROPPEDConstant      = "DROPPED"
+	AdminQueryPartiesINVITEDConstant      = "INVITED"
+	AdminQueryPartiesJOINEDConstant       = "JOINED"
+	AdminQueryPartiesKICKEDConstant       = "KICKED"
+	AdminQueryPartiesLEFTConstant         = "LEFT"
+	AdminQueryPartiesREJECTEDConstant     = "REJECTED"
+	AdminQueryPartiesTIMEOUTConstant      = "TIMEOUT"
+)
+
+// Get the enum in AdminQueryPartiesParams
+const (
+	AdminQueryPartiesJoinabilityCLOSEDConstant           = "CLOSED"
+	AdminQueryPartiesJoinabilityFRIENDSOFFRIENDSConstant = "FRIENDS_OF_FRIENDS"
+	AdminQueryPartiesJoinabilityFRIENDSOFLEADERConstant  = "FRIENDS_OF_LEADER"
+	AdminQueryPartiesJoinabilityFRIENDSOFMEMBERSConstant = "FRIENDS_OF_MEMBERS"
+	AdminQueryPartiesJoinabilityINVITEONLYConstant       = "INVITE_ONLY"
+	AdminQueryPartiesJoinabilityOPENConstant             = "OPEN"
+)
+
+// Get the enum in AdminQueryPartiesParams
+const (
+	AdminQueryPartiesMemberStatusCANCELLEDConstant    = "CANCELLED"
+	AdminQueryPartiesMemberStatusCONNECTEDConstant    = "CONNECTED"
+	AdminQueryPartiesMemberStatusDISCONNECTEDConstant = "DISCONNECTED"
+	AdminQueryPartiesMemberStatusDROPPEDConstant      = "DROPPED"
+	AdminQueryPartiesMemberStatusINVITEDConstant      = "INVITED"
+	AdminQueryPartiesMemberStatusJOINEDConstant       = "JOINED"
+	AdminQueryPartiesMemberStatusKICKEDConstant       = "KICKED"
+	AdminQueryPartiesMemberStatusLEFTConstant         = "LEFT"
+	AdminQueryPartiesMemberStatusREJECTEDConstant     = "REJECTED"
+	AdminQueryPartiesMemberStatusTIMEOUTConstant      = "TIMEOUT"
+)
+
 // NewAdminQueryPartiesParams creates a new AdminQueryPartiesParams object
 // with the default values initialized.
 func NewAdminQueryPartiesParams() *AdminQueryPartiesParams {
@@ -90,6 +140,11 @@ type AdminQueryPartiesParams struct {
 
 	*/
 	Namespace string
+	/*ConfigurationName
+	  configuration template name
+
+	*/
+	ConfigurationName *string
 	/*FromTime
 	  beginning of party creation time range in RFC 3339 format e.g. 2022-10-21T07:20:50Z
 
@@ -101,7 +156,7 @@ type AdminQueryPartiesParams struct {
 	*/
 	IsSoftDeleted *string
 	/*Joinability
-	  Join type
+	  game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY,FRIENDS_OF_MEMBERS,FRIENDS_OF_LEADER,FRIENDS_OF_FRIENDS
 
 	*/
 	Joinability *string
@@ -235,6 +290,17 @@ func (o *AdminQueryPartiesParams) WithNamespace(namespace string) *AdminQueryPar
 // SetNamespace adds the namespace to the admin query parties params
 func (o *AdminQueryPartiesParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
+}
+
+// WithConfigurationName adds the configurationName to the admin query parties params
+func (o *AdminQueryPartiesParams) WithConfigurationName(configurationName *string) *AdminQueryPartiesParams {
+	o.SetConfigurationName(configurationName)
+	return o
+}
+
+// SetConfigurationName adds the configurationName to the admin query parties params
+func (o *AdminQueryPartiesParams) SetConfigurationName(configurationName *string) {
+	o.ConfigurationName = configurationName
 }
 
 // WithFromTime adds the fromTime to the admin query parties params
@@ -402,6 +468,22 @@ func (o *AdminQueryPartiesParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.ConfigurationName != nil {
+
+		// query param configurationName
+		var qrConfigurationName string
+		if o.ConfigurationName != nil {
+			qrConfigurationName = *o.ConfigurationName
+		}
+		qConfigurationName := qrConfigurationName
+		if qConfigurationName != "" {
+			if err := r.SetQueryParam("configurationName", qConfigurationName); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.FromTime != nil {

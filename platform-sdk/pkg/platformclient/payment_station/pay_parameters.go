@@ -20,6 +20,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
+// Deprecated: 2025-07-16 - Use PayPaymentProvider<EnumValue>Constant instead.
 // Get the enum in PayParams
 const (
 	PayADYENConstant    = "ADYEN"
@@ -31,6 +32,19 @@ const (
 	PayWALLETConstant   = "WALLET"
 	PayWXPAYConstant    = "WXPAY"
 	PayXSOLLAConstant   = "XSOLLA"
+)
+
+// Get the enum in PayParams
+const (
+	PayPaymentProviderADYENConstant    = "ADYEN"
+	PayPaymentProviderALIPAYConstant   = "ALIPAY"
+	PayPaymentProviderCHECKOUTConstant = "CHECKOUT"
+	PayPaymentProviderNEONPAYConstant  = "NEONPAY"
+	PayPaymentProviderPAYPALConstant   = "PAYPAL"
+	PayPaymentProviderSTRIPEConstant   = "STRIPE"
+	PayPaymentProviderWALLETConstant   = "WALLET"
+	PayPaymentProviderWXPAYConstant    = "WXPAY"
+	PayPaymentProviderXSOLLAConstant   = "XSOLLA"
 )
 
 // NewPayParams creates a new PayParams object

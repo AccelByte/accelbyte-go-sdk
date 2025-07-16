@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use GetChallengesSortBy<EnumValue>Constant instead.
 // Get the enum in GetChallengesParams
 const (
 	GetChallengesCreatedAtConstant     = "createdAt"
@@ -29,11 +30,29 @@ const (
 	GetChallengesUpdatedAtDescConstant = "updatedAt:desc"
 )
 
+// Deprecated: 2025-07-16 - Use GetChallengesStatus<EnumValue>Constant instead.
 // Get the enum in GetChallengesParams
 const (
 	GetChallengesINITConstant    = "INIT"
 	GetChallengesRETIREDConstant = "RETIRED"
 	GetChallengesTIEDConstant    = "TIED"
+)
+
+// Get the enum in GetChallengesParams
+const (
+	GetChallengesSortByCreatedAtConstant     = "createdAt"
+	GetChallengesSortByCreatedAtAscConstant  = "createdAt:asc"
+	GetChallengesSortByCreatedAtDescConstant = "createdAt:desc"
+	GetChallengesSortByUpdatedAtConstant     = "updatedAt"
+	GetChallengesSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	GetChallengesSortByUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in GetChallengesParams
+const (
+	GetChallengesStatusINITConstant    = "INIT"
+	GetChallengesStatusRETIREDConstant = "RETIRED"
+	GetChallengesStatusTIEDConstant    = "TIED"
 )
 
 // NewGetChallengesParams creates a new GetChallengesParams object

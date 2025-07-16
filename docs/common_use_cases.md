@@ -697,10 +697,19 @@ updatedVariable, err := csmConfigService.UpdateVariableV2Short(&configuration_v2
 })
 ```
 
+### Delete extend app's IAM Client
+
+```go
+err = clientService.AdminDeleteClientV3Short(&clients.AdminDeleteClientV3Params{
+	Namespace: namespace,
+	ClientID:  appClientID,
+})
+```
+
 ### Delete extend app secret
 
 ```go
-err := csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
+err = csmConfigService.DeleteSecretV2Short(&configuration_v2.DeleteSecretV2Params{
 	Namespace: namespace,
 	App:       extendAppName,
 	ConfigID:  secretConfigID,

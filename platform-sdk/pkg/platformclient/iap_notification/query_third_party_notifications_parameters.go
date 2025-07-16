@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryThirdPartyNotificationsSource<EnumValue>Constant instead.
 // Get the enum in QueryThirdPartyNotificationsParams
 const (
 	QueryThirdPartyNotificationsAPPLEConstant       = "APPLE"
@@ -32,12 +33,34 @@ const (
 	QueryThirdPartyNotificationsXBOXConstant        = "XBOX"
 )
 
+// Deprecated: 2025-07-16 - Use QueryThirdPartyNotificationsStatus<EnumValue>Constant instead.
 // Get the enum in QueryThirdPartyNotificationsParams
 const (
 	QueryThirdPartyNotificationsERRORConstant     = "ERROR"
 	QueryThirdPartyNotificationsIGNOREDConstant   = "IGNORED"
 	QueryThirdPartyNotificationsPROCESSEDConstant = "PROCESSED"
 	QueryThirdPartyNotificationsWARNConstant      = "WARN"
+)
+
+// Get the enum in QueryThirdPartyNotificationsParams
+const (
+	QueryThirdPartyNotificationsSourceAPPLEConstant       = "APPLE"
+	QueryThirdPartyNotificationsSourceEPICGAMESConstant   = "EPICGAMES"
+	QueryThirdPartyNotificationsSourceGOOGLEConstant      = "GOOGLE"
+	QueryThirdPartyNotificationsSourceOCULUSConstant      = "OCULUS"
+	QueryThirdPartyNotificationsSourcePLAYSTATIONConstant = "PLAYSTATION"
+	QueryThirdPartyNotificationsSourceSTADIAConstant      = "STADIA"
+	QueryThirdPartyNotificationsSourceSTEAMConstant       = "STEAM"
+	QueryThirdPartyNotificationsSourceTWITCHConstant      = "TWITCH"
+	QueryThirdPartyNotificationsSourceXBOXConstant        = "XBOX"
+)
+
+// Get the enum in QueryThirdPartyNotificationsParams
+const (
+	QueryThirdPartyNotificationsStatusERRORConstant     = "ERROR"
+	QueryThirdPartyNotificationsStatusIGNOREDConstant   = "IGNORED"
+	QueryThirdPartyNotificationsStatusPROCESSEDConstant = "PROCESSED"
+	QueryThirdPartyNotificationsStatusWARNConstant      = "WARN"
 )
 
 // NewQueryThirdPartyNotificationsParams creates a new QueryThirdPartyNotificationsParams object
@@ -115,7 +138,14 @@ type QueryThirdPartyNotificationsParams struct {
 	EndDate *string
 	/*ExternalID*/
 	ExternalID *string
-	/*Limit*/
+	/*Limit
+	    limit. <div style="border-left: 4px solid #ffc107; background-color: #fff8e1; padding: 10px; margin: 10px 0;">
+	    For performance and stability reasons, it is recommended to keep the
+	    <code>limit</code> value <strong>no greater than 100</strong>. Using higher values may lead to increased response times or degraded service performance.
+	</div>
+
+
+	*/
 	Limit *int32
 	/*Offset*/
 	Offset *int32

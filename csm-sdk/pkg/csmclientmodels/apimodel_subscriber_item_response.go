@@ -32,8 +32,7 @@ type ApimodelSubscriberItemResponse struct {
 	NotificationType string `json:"notificationType,omitempty"`
 
 	// userid
-	// Required: true
-	UserID *string `json:"userId"`
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Apimodel subscriber item response
@@ -41,9 +40,6 @@ func (m *ApimodelSubscriberItemResponse) Validate(formats strfmt.Registry) error
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -56,15 +52,6 @@ func (m *ApimodelSubscriberItemResponse) Validate(formats strfmt.Registry) error
 func (m *ApimodelSubscriberItemResponse) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelSubscriberItemResponse) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
 	}
 

@@ -19,6 +19,61 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use AdminQueryGameSessionsJoinability<EnumValue>Constant instead.
+// Get the enum in AdminQueryGameSessionsParams
+const (
+	AdminQueryGameSessionsCLOSEDConstant           = "CLOSED"
+	AdminQueryGameSessionsFRIENDSOFFRIENDSConstant = "FRIENDS_OF_FRIENDS"
+	AdminQueryGameSessionsFRIENDSOFLEADERConstant  = "FRIENDS_OF_LEADER"
+	AdminQueryGameSessionsFRIENDSOFMEMBERSConstant = "FRIENDS_OF_MEMBERS"
+	AdminQueryGameSessionsINVITEONLYConstant       = "INVITE_ONLY"
+	AdminQueryGameSessionsOPENConstant             = "OPEN"
+)
+
+// Deprecated: 2025-07-16 - Use AdminQueryGameSessionsStatus<EnumValue>Constant instead.
+// Get the enum in AdminQueryGameSessionsParams
+const (
+	AdminQueryGameSessionsAVAILABLEConstant       = "AVAILABLE"
+	AdminQueryGameSessionsDSERRORConstant         = "DS_ERROR"
+	AdminQueryGameSessionsFAILEDTOREQUESTConstant = "FAILED_TO_REQUEST"
+	AdminQueryGameSessionsNEEDTOREQUESTConstant   = "NEED_TO_REQUEST"
+	AdminQueryGameSessionsPREPARINGConstant       = "PREPARING"
+	AdminQueryGameSessionsREQUESTEDConstant       = "REQUESTED"
+)
+
+// Get the enum in AdminQueryGameSessionsParams
+const (
+	AdminQueryGameSessionsJoinabilityCLOSEDConstant           = "CLOSED"
+	AdminQueryGameSessionsJoinabilityFRIENDSOFFRIENDSConstant = "FRIENDS_OF_FRIENDS"
+	AdminQueryGameSessionsJoinabilityFRIENDSOFLEADERConstant  = "FRIENDS_OF_LEADER"
+	AdminQueryGameSessionsJoinabilityFRIENDSOFMEMBERSConstant = "FRIENDS_OF_MEMBERS"
+	AdminQueryGameSessionsJoinabilityINVITEONLYConstant       = "INVITE_ONLY"
+	AdminQueryGameSessionsJoinabilityOPENConstant             = "OPEN"
+)
+
+// Get the enum in AdminQueryGameSessionsParams
+const (
+	AdminQueryGameSessionsStatusAVAILABLEConstant       = "AVAILABLE"
+	AdminQueryGameSessionsStatusDSERRORConstant         = "DS_ERROR"
+	AdminQueryGameSessionsStatusFAILEDTOREQUESTConstant = "FAILED_TO_REQUEST"
+	AdminQueryGameSessionsStatusNEEDTOREQUESTConstant   = "NEED_TO_REQUEST"
+	AdminQueryGameSessionsStatusPREPARINGConstant       = "PREPARING"
+	AdminQueryGameSessionsStatusREQUESTEDConstant       = "REQUESTED"
+)
+
+// Get the enum in AdminQueryGameSessionsParams
+const (
+	AdminQueryGameSessionsStatusV2AVAILABLEConstant       = "AVAILABLE"
+	AdminQueryGameSessionsStatusV2DSCANCELLEDConstant     = "DS_CANCELLED"
+	AdminQueryGameSessionsStatusV2DSERRORConstant         = "DS_ERROR"
+	AdminQueryGameSessionsStatusV2ENDEDConstant           = "ENDED"
+	AdminQueryGameSessionsStatusV2FAILEDTOREQUESTConstant = "FAILED_TO_REQUEST"
+	AdminQueryGameSessionsStatusV2NEEDTOREQUESTConstant   = "NEED_TO_REQUEST"
+	AdminQueryGameSessionsStatusV2PREPARINGConstant       = "PREPARING"
+	AdminQueryGameSessionsStatusV2REQUESTEDConstant       = "REQUESTED"
+	AdminQueryGameSessionsStatusV2UNKNOWNConstant         = "UNKNOWN"
+)
+
 // NewAdminQueryGameSessionsParams creates a new AdminQueryGameSessionsParams object
 // with the default values initialized.
 func NewAdminQueryGameSessionsParams() *AdminQueryGameSessionsParams {
@@ -121,7 +176,7 @@ type AdminQueryGameSessionsParams struct {
 	*/
 	IsSoftDeleted *string
 	/*Joinability
-	  game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY
+	  game session joinability to filter. joinability types: OPEN,CLOSED,INVITE_ONLY,FRIENDS_OF_MEMBERS,FRIENDS_OF_LEADER,FRIENDS_OF_FRIENDS
 
 	*/
 	Joinability *string

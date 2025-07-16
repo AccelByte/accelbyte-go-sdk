@@ -304,7 +304,7 @@ $ samples/cli/sample-apps Iam retrieveThirdPartyLoginPlatformCredentialV3 \
 $ samples/cli/sample-apps Iam addThirdPartyLoginPlatformCredentialV3 \
     --namespace 'string' \
     --platformId 'string' \
-    --body '{"ACSURL": "string", "AWSCognitoRegion": "string", "AWSCognitoUserPool": "string", "AllowedClients": ["string"], "AppId": "string", "AuthorizationEndpoint": "string", "ClientId": "string", "EmptyStrFieldList": ["string"], "EnableServerLicenseValidation": false, "Environment": "string", "FederationMetadataURL": "string", "GenericOauthFlow": false, "IncludePUID": false, "IsActive": false, "Issuer": "string", "JWKSEndpoint": "string", "KeyID": "string", "LogoURL": "string", "NetflixCertificates": {}, "OrganizationId": "string", "PlatformName": "string", "RedirectUri": "string", "RegisteredDomains": [{}], "Secret": "string", "TeamID": "string", "TokenAuthenticationType": "string", "TokenClaimsMapping": {"string": "string"}, "TokenEndpoint": "string", "UserInfoEndpoint": "string", "UserInfoHTTPMethod": "string", "googleAdminConsoleKey": "string", "scopes": ["string"]}' \
+    --body '{"ACSURL": "string", "AWSCognitoRegion": "string", "AWSCognitoUserPool": "string", "AllowedClients": ["string"], "AppId": "string", "AuthorizationEndpoint": "string", "ClientId": "string", "EmptyStrFieldList": ["string"], "EnableServerLicenseValidation": false, "Environment": "string", "FederationMetadataURL": "string", "GenericOauthFlow": false, "IncludePUID": false, "IsActive": false, "Issuer": "string", "JWKSEndpoint": "string", "KeyID": "string", "LogoURL": "string", "NetflixCertificates": {}, "OrganizationId": "string", "PlatformName": "string", "PrivateKey": "string", "RedirectUri": "string", "RegisteredDomains": [{}], "RelyingParty": "string", "SandboxId": "string", "Secret": "string", "TeamID": "string", "TokenAuthenticationType": "string", "TokenClaimsMapping": {"string": "string"}, "TokenEndpoint": "string", "UserInfoEndpoint": "string", "UserInfoHTTPMethod": "string", "googleAdminConsoleKey": "string", "scopes": ["string"]}' \
     > result.txt
 ```
 
@@ -321,7 +321,7 @@ $ samples/cli/sample-apps Iam deleteThirdPartyLoginPlatformCredentialV3 \
 $ samples/cli/sample-apps Iam updateThirdPartyLoginPlatformCredentialV3 \
     --namespace 'string' \
     --platformId 'string' \
-    --body '{"ACSURL": "string", "AWSCognitoRegion": "string", "AWSCognitoUserPool": "string", "AllowedClients": ["string"], "AppId": "string", "AuthorizationEndpoint": "string", "ClientId": "string", "EmptyStrFieldList": ["string"], "EnableServerLicenseValidation": false, "Environment": "string", "FederationMetadataURL": "string", "GenericOauthFlow": false, "IncludePUID": false, "IsActive": false, "Issuer": "string", "JWKSEndpoint": "string", "KeyID": "string", "LogoURL": "string", "NetflixCertificates": {}, "OrganizationId": "string", "PlatformName": "string", "RedirectUri": "string", "RegisteredDomains": [{}], "Secret": "string", "TeamID": "string", "TokenAuthenticationType": "string", "TokenClaimsMapping": {"string": "string"}, "TokenEndpoint": "string", "UserInfoEndpoint": "string", "UserInfoHTTPMethod": "string", "googleAdminConsoleKey": "string", "scopes": ["string"]}' \
+    --body '{"ACSURL": "string", "AWSCognitoRegion": "string", "AWSCognitoUserPool": "string", "AllowedClients": ["string"], "AppId": "string", "AuthorizationEndpoint": "string", "ClientId": "string", "EmptyStrFieldList": ["string"], "EnableServerLicenseValidation": false, "Environment": "string", "FederationMetadataURL": "string", "GenericOauthFlow": false, "IncludePUID": false, "IsActive": false, "Issuer": "string", "JWKSEndpoint": "string", "KeyID": "string", "LogoURL": "string", "NetflixCertificates": {}, "OrganizationId": "string", "PlatformName": "string", "PrivateKey": "string", "RedirectUri": "string", "RegisteredDomains": [{}], "RelyingParty": "string", "SandboxId": "string", "Secret": "string", "TeamID": "string", "TokenAuthenticationType": "string", "TokenClaimsMapping": {"string": "string"}, "TokenEndpoint": "string", "UserInfoEndpoint": "string", "UserInfoHTTPMethod": "string", "googleAdminConsoleKey": "string", "scopes": ["string"]}' \
     > result.txt
 ```
 
@@ -836,6 +836,7 @@ $ samples/cli/sample-apps Iam adminGetUserMapping \
     --namespace 'string' \
     --targetNamespace 'string' \
     --userId 'string' \
+    --createIfNotFound false \
     > result.txt
 ```
 

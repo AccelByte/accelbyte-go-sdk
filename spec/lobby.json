@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.38.3"
+    "version": "3.39.0"
   },
   "schemes": [
     "https"
@@ -7372,6 +7372,103 @@
         ]
       }
     },
+    "/notification/namespaces/{namespace}/notification/offline/me": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get list of user\u0026#39;s offline notifications in a namespace.",
+        "operationId": "getMyOfflineNotifications",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "filter data until a certain end time value in the notification (in unix millis)",
+            "in": "query",
+            "name": "endTime",
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "data size for pagination",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "data offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "filter data starting from a certain start time value in the notification (in unix millis)",
+            "in": "query",
+            "name": "startTime",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/model.NotificationsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseV1"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of offline notifications",
+        "tags": [
+          "notification",
+          "public"
+        ],
+        "x-errorCodes": {},
+        "x-security": []
+      }
+    },
     "/notification/namespaces/{namespace}/templated": {
       "post": {
         "consumes": [
@@ -9301,6 +9398,32 @@
         "status"
       ]
     },
+    "model.Notification": {
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "string"
+        },
+        "sentAtMs": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "to": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
     "model.NotificationResponse": {
       "properties": {
         "from": {
@@ -9462,6 +9585,19 @@
         "templateLanguage",
         "templateSlug",
         "topicName"
+      ]
+    },
+    "model.NotificationsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/model.Notification"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
       ]
     },
     "model.OutgoingFriendsWithTimeData": {
@@ -15518,14 +15654,44 @@
       "Section": "send templated notification to party",
       "Service": "lobby",
       "Text": "unable to send templated notification to party {{partyID}}, namespace {{namespace}}: unable to render template slug {{slug}} and language {{language}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "502400",
+      "CodeName": "OfflineNotificationBadRequest",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "offline notification bad request {{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "502401",
+      "CodeName": "OfflineNotificationUserNotFound",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "offline user not found {{message}}"
+    },
+    {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "502402",
+      "CodeName": "OfflineNotificationUnableToGet",
+      "Section": "notification template",
+      "Service": "lobby",
+      "Text": "unable to get offline notification {{message}}"
     }
   ],
   "x-version": {
-    "buildDate": "2025-05-26T05:00:48+00:00",
-    "gitHash": "de088178a3a7d9d78cb257979a765f247c9b5213",
+    "buildDate": "2025-07-03T06:17:29+00:00",
+    "gitHash": "0fd8b340d4c728fb0deafb604a263385000efa32",
     "name": "justice-lobby-server",
-    "revisionID": "3.38.3",
-    "version": "3.38.3",
+    "revisionID": "3.39.0",
+    "version": "3.39.0",
     "version-justice": "2024.2/3.79",
     "version-roles-seeding": "1.2.77"
   }

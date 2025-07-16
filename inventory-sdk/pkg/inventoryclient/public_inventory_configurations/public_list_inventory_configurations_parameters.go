@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use PublicListInventoryConfigurationsSortBy<EnumValue>Constant instead.
 // Get the enum in PublicListInventoryConfigurationsParams
 const (
 	PublicListInventoryConfigurationsCodeConstant          = "code"
@@ -30,6 +31,19 @@ const (
 	PublicListInventoryConfigurationsUpdatedAtConstant     = "updatedAt"
 	PublicListInventoryConfigurationsUpdatedAtAscConstant  = "updatedAt:asc"
 	PublicListInventoryConfigurationsUpdatedAtDescConstant = "updatedAt:desc"
+)
+
+// Get the enum in PublicListInventoryConfigurationsParams
+const (
+	PublicListInventoryConfigurationsSortByCodeConstant          = "code"
+	PublicListInventoryConfigurationsSortByCodeAscConstant       = "code:asc"
+	PublicListInventoryConfigurationsSortByCodeDescConstant      = "code:desc"
+	PublicListInventoryConfigurationsSortByCreatedAtConstant     = "createdAt"
+	PublicListInventoryConfigurationsSortByCreatedAtAscConstant  = "createdAt:asc"
+	PublicListInventoryConfigurationsSortByCreatedAtDescConstant = "createdAt:desc"
+	PublicListInventoryConfigurationsSortByUpdatedAtConstant     = "updatedAt"
+	PublicListInventoryConfigurationsSortByUpdatedAtAscConstant  = "updatedAt:asc"
+	PublicListInventoryConfigurationsSortByUpdatedAtDescConstant = "updatedAt:desc"
 )
 
 // NewPublicListInventoryConfigurationsParams creates a new PublicListInventoryConfigurationsParams object

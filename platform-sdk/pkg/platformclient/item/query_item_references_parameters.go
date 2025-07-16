@@ -19,6 +19,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use QueryItemReferencesFeaturesToCheck<EnumValue>Constant instead.
 // Get the enum in QueryItemReferencesParams
 const (
 	QueryItemReferencesCAMPAIGNConstant    = "CAMPAIGN"
@@ -27,6 +28,16 @@ const (
 	QueryItemReferencesENTITLEMENTConstant = "ENTITLEMENT"
 	QueryItemReferencesIAPConstant         = "IAP"
 	QueryItemReferencesREWARDConstant      = "REWARD"
+)
+
+// Get the enum in QueryItemReferencesParams
+const (
+	QueryItemReferencesFeaturesToCheckCAMPAIGNConstant    = "CAMPAIGN"
+	QueryItemReferencesFeaturesToCheckCATALOGConstant     = "CATALOG"
+	QueryItemReferencesFeaturesToCheckDLCConstant         = "DLC"
+	QueryItemReferencesFeaturesToCheckENTITLEMENTConstant = "ENTITLEMENT"
+	QueryItemReferencesFeaturesToCheckIAPConstant         = "IAP"
+	QueryItemReferencesFeaturesToCheckREWARDConstant      = "REWARD"
 )
 
 // NewQueryItemReferencesParams creates a new QueryItemReferencesParams object

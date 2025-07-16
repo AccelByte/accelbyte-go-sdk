@@ -72,6 +72,8 @@ type ClientService interface {
 	SendSpecificUserTemplatedNotificationV1AdminShort(params *SendSpecificUserTemplatedNotificationV1AdminParams, authInfo runtime.ClientAuthInfoWriter) (*SendSpecificUserTemplatedNotificationV1AdminNoContent, error)
 	GetMyNotifications(params *GetMyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyNotificationsOK, *GetMyNotificationsBadRequest, *GetMyNotificationsUnauthorized, *GetMyNotificationsForbidden, *GetMyNotificationsNotFound, *GetMyNotificationsInternalServerError, error)
 	GetMyNotificationsShort(params *GetMyNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyNotificationsOK, error)
+	GetMyOfflineNotifications(params *GetMyOfflineNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyOfflineNotificationsOK, *GetMyOfflineNotificationsBadRequest, *GetMyOfflineNotificationsUnauthorized, *GetMyOfflineNotificationsForbidden, *GetMyOfflineNotificationsNotFound, *GetMyOfflineNotificationsInternalServerError, error)
+	GetMyOfflineNotificationsShort(params *GetMyOfflineNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyOfflineNotificationsOK, error)
 	GetTopicByNamespace(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, *GetTopicByNamespaceUnauthorized, *GetTopicByNamespaceForbidden, *GetTopicByNamespaceNotFound, *GetTopicByNamespaceInternalServerError, error)
 	GetTopicByNamespaceShort(params *GetTopicByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetTopicByNamespaceOK, error)
 	CreateTopic(params *CreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicCreated, *CreateTopicBadRequest, *CreateTopicUnauthorized, *CreateTopicForbidden, *CreateTopicConflict, error)
@@ -2662,6 +2664,127 @@ func (a *Client) GetMyNotificationsShort(params *GetMyNotificationsParams, authI
 	case *GetMyNotificationsNotFound:
 		return nil, v
 	case *GetMyNotificationsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetMyOfflineNotificationsShort instead.
+
+GetMyOfflineNotifications get list of offline notifications
+Get list of user's offline notifications in a namespace.
+*/
+func (a *Client) GetMyOfflineNotifications(params *GetMyOfflineNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyOfflineNotificationsOK, *GetMyOfflineNotificationsBadRequest, *GetMyOfflineNotificationsUnauthorized, *GetMyOfflineNotificationsForbidden, *GetMyOfflineNotificationsNotFound, *GetMyOfflineNotificationsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyOfflineNotificationsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyOfflineNotifications",
+		Method:             "GET",
+		PathPattern:        "/notification/namespaces/{namespace}/notification/offline/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyOfflineNotificationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyOfflineNotificationsOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *GetMyOfflineNotificationsBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *GetMyOfflineNotificationsUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetMyOfflineNotificationsForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *GetMyOfflineNotificationsNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *GetMyOfflineNotificationsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetMyOfflineNotificationsShort get list of offline notifications
+Get list of user's offline notifications in a namespace.
+*/
+func (a *Client) GetMyOfflineNotificationsShort(params *GetMyOfflineNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetMyOfflineNotificationsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMyOfflineNotificationsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMyOfflineNotifications",
+		Method:             "GET",
+		PathPattern:        "/notification/namespaces/{namespace}/notification/offline/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMyOfflineNotificationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetMyOfflineNotificationsOK:
+		return v, nil
+	case *GetMyOfflineNotificationsBadRequest:
+		return nil, v
+	case *GetMyOfflineNotificationsUnauthorized:
+		return nil, v
+	case *GetMyOfflineNotificationsForbidden:
+		return nil, v
+	case *GetMyOfflineNotificationsNotFound:
+		return nil, v
+	case *GetMyOfflineNotificationsInternalServerError:
 		return nil, v
 
 	default:

@@ -8,6 +8,12 @@ library(
   )
 )
 
+cliTest = params.CLI_TEST
+integrationTest = params.INTEGRATION_TEST
+integrationTestCredentials = params.INTEGRATION_TEST_CREDENTIALS ? params.INTEGRATION_TEST_CREDENTIALS : "justice-codegen-sdk-integration-test-env"
+
+cliTestTapFile = 'samples/cli/tests/*.tap'
+
 bitbucketCredentialsHttps = "bitbucket-build-extend-https"
 bitbucketCredentialsSsh = "bitbucket-build-extend-ssh"
 
@@ -23,50 +29,60 @@ pipeline {
     stage('Prepare') {
       steps {
         script {
+          if (!cliTest && !integrationTest) {
+            error "At least one of CLI_TEST or INTEGRATION_TEST must be enabled"
+          }
+
           gitRepositoryName = git.getRepositoryName()
           gitCommitHash = git.getCommitHash()
           bitbucketCommitHref = "https://api.bitbucket.org/2.0/repositories/accelbyte/${gitRepositoryName}/commit/${gitCommitHash}"
-          bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+          bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "INPROGRESS", env.JOB_NAME.take(30), "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
         }
       }
     }
-    stage('Test') {
-      parallel {
-        stage('CLI Tests') {
-          steps {
-            sshagent(credentials: [bitbucketCredentialsSsh]) {
-              sh "rm -rf .justice-codegen-sdk-mock-server"
-              sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git .justice-codegen-sdk-mock-server"
-            }
-            sh "make test_cli SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
-          }
-          post {
-            always {
-              script {
-                archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
-                step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
-              }
-            }
+    stage('CLI Test') {
+      when {
+        expression {
+          return cliTest
+        }
+      }
+      steps {    
+        sh "rm -rf .justice-codegen-sdk-mock-server" 
+        sshagent(credentials: [bitbucketCredentialsSsh]) {
+          sh "git clone --depth 1 git@bitbucket.org:accelbyte/justice-codegen-sdk-mock-server.git .justice-codegen-sdk-mock-server"
+        }       
+        sh "make test_cli SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
+      }
+      post {
+        always {
+          script {
+            archiveArtifacts artifacts: cliTestTapFile
+            step([$class: "TapPublisher", testResults: cliTestTapFile])
           }
         }
-        stage('Integration Tests') {
-          options {
-            lock("justice-demo-serversdktest")
-          }
-          environment {
-            DEFAULT_IFACE = sh(script: 'ip route get 1.1.1.1 | awk \'NR==2 {print $1}\' RS=dev', returnStdout: true)
-          }
-          steps {
-            sh 'sudo tc qdisc add dev $DEFAULT_IFACE root netem delay 100ms'    // Delay sending packets due to database eventual consistency
-            withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-test-env', variable: 'ENV_FILE_PATH')]) {
-              sh 'make test_integration ENV_FILE_PATH=$ENV_FILE_PATH'
-            }
-          }
-          post {
-            always {
-              sh 'sudo tc qdisc del dev $DEFAULT_IFACE root netem delay 100ms'
-            }
-          }
+      }
+    }
+    stage('Integration Test') {
+      when {
+        expression {
+          return integrationTest
+        }
+      }
+      options {
+        lock(integrationTestCredentials)
+      }
+      environment {
+        DEFAULT_IFACE = sh(script: 'ip route get 1.1.1.1 | awk \'NR==2 {print $1}\' RS=dev', returnStdout: true)
+      }
+      steps {
+        sh 'sudo tc qdisc add dev $DEFAULT_IFACE root netem delay 100ms'    // Delay sending packets due to database eventual consistency
+        withCredentials([file(credentialsId: integrationTestCredentials, variable: 'ENV_FILE_PATH')]) {
+          sh 'make test_integration ENV_FILE_PATH="$ENV_FILE_PATH"'
+        }
+      }
+      post {
+        always {
+          sh 'sudo tc qdisc del dev $DEFAULT_IFACE root netem delay 100ms'              
         }
       }
     }
@@ -74,8 +90,8 @@ pipeline {
   post {
     success {
       script {
-        bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
-
+        bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "SUCCESSFUL", env.JOB_NAME.take(30), "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+        
         //gitRepositoryName = git.getRepositoryName()
         //gitBranchName = sh(script: "echo ${env.GIT_BRANCH} | grep -oP '(?<=origin/).+'", returnStdout: true).trim()
         //gitCommitHashShort = git.getCommitHashShort()
@@ -83,22 +99,26 @@ pipeline {
         //
         //message = """
         //    :white_check_mark: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *updated*
-        //
+        //    
         //    |*${gitRepositoryName}:*
-        //    |`${gitBranchName}` `${gitCommitHashShort}`
+        //    |`${gitBranchName}` `${gitCommitHashShort}` 
         //    |${gitCommitMessage}
-        //
+        //    
         //    |""".stripMargin()
         //slackSend(channel: jobChannel, color: '#36B37E', message: message)
       }
     }
     failure {
       script {
-        bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "FAILED", env.JOB_NAME, "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+        if (!cliTest && !integrationTest) {
+          return
+        }
 
+        bitbucket.setBuildStatus(bitbucketCredentialsHttps, bitbucketCommitHref, "FAILED", env.JOB_NAME.take(30), "${env.JOB_NAME}-${env.BUILD_NUMBER}", "Jenkins", "${env.BUILD_URL}console")
+        
         message = """
             :no_entry: <${env.BUILD_URL}|${env.JOB_NAME}-${env.BUILD_NUMBER}> *failed*
-
+            
             |""".stripMargin()
         slackSend(channel: jobChannel, color: '#FF0000', message: message)
       }

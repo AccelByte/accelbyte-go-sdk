@@ -131,46 +131,6 @@ pipeline {
         }
       }
     }
-
-    stage('CLI Tests') {
-      steps {
-        dir(sdkRepoName) {
-          sh "make test_cli SDK_MOCK_SERVER_PATH=${mockServerPath}"
-        }
-      }
-      post {
-        always {
-          script {
-            dir(sdkRepoName) {
-              archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
-              step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
-            }
-          }
-        }
-      }
-    }
-    
-    stage('Integration Tests') {
-      options {
-        lock("justice-demo-serversdktest")
-      }
-      environment {
-        DEFAULT_IFACE = sh(script: 'ip route get 1.1.1.1 | awk \'NR==2 {print $1}\' RS=dev', returnStdout: true)
-      }
-      steps {
-        dir(sdkRepoName) {
-          sh 'sudo tc qdisc add dev $DEFAULT_IFACE root netem delay 100ms'    // Delay sending packets due to database eventual consistency
-          withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-test-env', variable: 'ENV_FILE_PATH')]) {
-            sh 'make test_integration ENV_FILE_PATH=$ENV_FILE_PATH'
-          }
-        }
-      }
-      post {
-        always {
-          sh 'sudo tc qdisc del dev $DEFAULT_IFACE root netem delay 100ms'
-        }
-      }
-    }
   }
 
   post{

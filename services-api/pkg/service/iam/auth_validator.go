@@ -14,6 +14,7 @@ import (
 	"math/big"
 	"os"
 	"strings"
+	"sync"
 	"time"
 
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
@@ -34,6 +35,8 @@ type AuthTokenValidator interface {
 }
 
 type TokenValidator struct {
+	sync.RWMutex
+
 	AuthService     OAuth20Service
 	Ctx             context.Context
 	RefreshInterval time.Duration
@@ -108,6 +111,8 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		return fmt.Errorf("'kid' header not found")
 	}
 
+	v.RWMutex.RLock()
+	defer v.RWMutex.RUnlock()
 	publicKey := v.PublicKeys[kid]
 	if publicKey == nil {
 		return fmt.Errorf("public key not found")
@@ -274,7 +279,9 @@ func (v *TokenValidator) fetchJWKSet() error {
 			return err
 		}
 
+		v.RWMutex.Lock()
 		v.PublicKeys[key.Kid] = publicKey
+		v.RWMutex.Unlock()
 	}
 
 	return nil
@@ -289,7 +296,11 @@ func (v *TokenValidator) fetchRevocationList() error {
 	v.Filter = bloom.From(revocationList.RevokedTokens.Bits, uint(*revocationList.RevokedTokens.K))
 
 	for _, revokedUser := range revocationList.RevokedUsers {
+		v.RWMutex.Lock()
+
 		v.RevokedUsers[*revokedUser.ID] = time.Time(revokedUser.RevokedAt)
+
+		v.RWMutex.Unlock()
 	}
 
 	return nil
@@ -297,6 +308,9 @@ func (v *TokenValidator) fetchRevocationList() error {
 
 func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*iamclientmodels.ModelRolePermissionResponseV3, error) {
 	if !forceFetch {
+		v.RWMutex.RLock()
+		defer v.RWMutex.RUnlock()
+
 		if role, found := v.Roles[roleId]; found {
 			return role, nil
 		}
@@ -320,6 +334,8 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 		return nil, err
 	}
 
+	v.RWMutex.Lock()
+	defer v.RWMutex.Unlock()
 	v.Roles[roleId] = role
 
 	return role, nil
@@ -462,6 +478,8 @@ func (v *TokenValidator) isTokenRevoked(token string) bool {
 }
 
 func (v *TokenValidator) isUserRevoked(userId string, issuedAt int64) bool {
+	v.RWMutex.RLock()
+	defer v.RWMutex.RUnlock()
 	if revokedAt, found := v.RevokedUsers[userId]; found {
 		return revokedAt.Unix() >= issuedAt
 	}
@@ -489,6 +507,8 @@ func (v *TokenValidator) fetchNamespaceContextFromCache(keyNamespace string) err
 	}
 
 	if nsContext, found := v.namespaceContextsCache.Get(keyNamespace); found {
+		v.RWMutex.Lock()
+		defer v.RWMutex.Unlock()
 		v.NamespaceContexts = map[string]*NamespaceContext{keyNamespace: nsContext.(*NamespaceContext)}
 
 		return nil
@@ -558,10 +578,15 @@ func (v *TokenValidator) validatePermissions(permissions []Permission, resource 
 								continue
 							}
 
+							var shouldContinue bool
+							v.RWMutex.RLock()
 							if context, found := v.NamespaceContexts[s2]; found {
-								if context.Type == TypeGame && strings.HasPrefix(s1, context.StudioNamespace) {
-									continue
-								}
+								shouldContinue = context.Type == TypeGame && strings.HasPrefix(s1, context.StudioNamespace)
+							}
+							v.RWMutex.RUnlock()
+
+							if shouldContinue {
+								continue
 							}
 						}
 					}

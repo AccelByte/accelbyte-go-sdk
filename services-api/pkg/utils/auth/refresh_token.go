@@ -8,15 +8,34 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 )
 
+// RefreshTokenImpl handles automatic token refresh functionality for AccelByte SDK authentication.
+// It manages the timing and behavior of token refresh operations to maintain valid access tokens
+// throughout the application lifecycle.
 type RefreshTokenImpl struct {
-	RefreshRate         float64
-	AutoRefresh         bool
+	// RefreshRate specifies the percentage of token lifetime at which refresh should occur.
+	// Value should be between 0.0 and 1.0 (e.g., 0.8 means refresh when 80% of token lifetime has passed).
+	// This helps ensure tokens are refreshed before they expire, preventing authentication failures.
+	// If the `AutoRefresh` sets to `true` this value must be set below 1.0.
+	RefreshRate float64
+
+	// AutoRefresh enables or disables automatic token refresh in the background.
+	// When true, the SDK will automatically refresh tokens based on RefreshRate.
+	// When false, tokens must be refreshed manually by calling refresh methods.
+	AutoRefresh bool
+
+	// IsRefreshInProgress indicates whether a token refresh operation is currently running.
+	// This flag prevents multiple concurrent refresh operations and helps avoid race conditions.
+	// Should be treated as read-only in most cases.
 	IsRefreshInProgress bool
 }
 
+// DefaultRefreshTokenImpl creates a new RefreshTokenImpl with the default settings.
+// Returns a RefreshTokenImpl configured with:
+//   - RefreshRate: 0.8 (refresh when token is 80% through its lifetime)
+//   - AutoRefresh: false (manual refresh mode by default)
 func DefaultRefreshTokenImpl() *RefreshTokenImpl {
 	return &RefreshTokenImpl{
-		1.0,
+		0.8,
 		false,
 		false,
 	}

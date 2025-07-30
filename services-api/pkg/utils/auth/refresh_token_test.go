@@ -16,6 +16,6 @@ func TestDefaultRefreshTokenImpl(t *testing.T) {
 	refreshToken.SetRefreshIsRunningInBackground(true)
 
 	assert.True(t, refreshToken.DisableAutoRefresh())
-	assert.Equal(t, 1.0, refreshToken.GetRefreshRate())
+	assert.Equal(t, 0.8, refreshToken.GetRefreshRate())
 	assert.True(t, refreshToken.IsRefreshInProgress)
 }

@@ -26,7 +26,7 @@ sdkPath = null
 breakingChangeCheckExitCode = 0
 outstandingDeprecationCount = 0
 
-jobChannel = env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK ? env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK : "#activity-justice-codegen-sdk"
+jobChannel = '#activity-extend-codegen-sdk'
 
 def getTimestampUtc() {
   now = new Date()

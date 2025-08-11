@@ -18,7 +18,7 @@ githubUrl = "git@github.com:${githubOwner}/${githubRepo}.git"
 
 agentLabel = params.ACTION == 'PUSH+RELEASE' ? 'extend-builder-ci && linux-amd64' : 'extend-builder-ci'
 
-jobChannel = env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK ? env.SLACK_CHANNEL_ACTIVITY_EXTEND_CODEGEN_SDK : "#activity-justice-codegen-sdk"
+jobChannel = '#activity-extend-codegen-sdk'
 
 pipeline {
   agent {

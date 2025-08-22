@@ -24,6 +24,10 @@ type APIDevelopmentServerConfigurationListResponse struct {
 	// Required: true
 	Data []*APIDevelopmentServerConfigurationGetResponse `json:"data"`
 
+	// paging
+	// Required: true
+	Paging *PaginationPaginationInfo `json:"paging"`
+
 	// totaldata
 	// Required: true
 	// Format: int32
@@ -35,6 +39,9 @@ func (m *APIDevelopmentServerConfigurationListResponse) Validate(formats strfmt.
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePaging(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTotalData(formats); err != nil {
@@ -67,6 +74,24 @@ func (m *APIDevelopmentServerConfigurationListResponse) validateData(formats str
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *APIDevelopmentServerConfigurationListResponse) validatePaging(formats strfmt.Registry) error {
+
+	if err := validate.Required("paging", "body", m.Paging); err != nil {
+		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
+			}
+			return err
+		}
 	}
 
 	return nil

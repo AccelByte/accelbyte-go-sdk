@@ -101,7 +101,11 @@ $ samples/cli/sample-apps Ams artifactGetURL \
 $ samples/cli/sample-apps Ams developmentServerConfigurationList \
     --namespace 'string' \
     --count 1 \
+    --imageId 'string' \
+    --name 'string' \
     --offset 1 \
+    --sortBy 'created_at' \
+    --sortDirection 'asc' \
     > result.txt
 ```
 

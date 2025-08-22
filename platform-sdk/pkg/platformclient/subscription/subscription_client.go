@@ -579,7 +579,7 @@ func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSub
 	case *PlatformSubscribeSubscriptionOK:
 		return v, nil
 	case *PlatformSubscribeSubscriptionCreated:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PlatformSubscribeSubscriptionBadRequest:
 		return nil, v
 	case *PlatformSubscribeSubscriptionNotFound:

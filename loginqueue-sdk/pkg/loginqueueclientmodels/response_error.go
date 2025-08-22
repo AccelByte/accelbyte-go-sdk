@@ -19,8 +19,7 @@ import (
 type ResponseError struct {
 
 	// attributes
-	// Required: true
-	Attributes map[string]string `json:"attributes"`
+	Attributes map[string]string `json:"attributes,omitempty"`
 
 	// errorcode
 	// Required: true

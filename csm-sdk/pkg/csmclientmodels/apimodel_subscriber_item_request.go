@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ApimodelSubscriberItemRequest Apimodel subscriber item request
@@ -19,46 +18,19 @@ import (
 type ApimodelSubscriberItemRequest struct {
 
 	// emailaddress
-	// Required: true
-	EmailAddress *string `json:"emailAddress"`
+	EmailAddress string `json:"emailAddress,omitempty"`
 
 	// userid
-	// Required: true
-	UserID *string `json:"userId"`
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Apimodel subscriber item request
 func (m *ApimodelSubscriberItemRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmailAddress(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ApimodelSubscriberItemRequest) validateEmailAddress(formats strfmt.Registry) error {
-
-	if err := validate.Required("emailAddress", "body", m.EmailAddress); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelSubscriberItemRequest) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("userId", "body", m.UserID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

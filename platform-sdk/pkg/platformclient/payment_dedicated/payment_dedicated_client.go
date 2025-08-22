@@ -850,7 +850,7 @@ func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderBy
 	case *RefundPaymentOrderByDedicatedOK:
 		return v, nil
 	case *RefundPaymentOrderByDedicatedNoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *RefundPaymentOrderByDedicatedNotFound:
 		return nil, v
 	case *RefundPaymentOrderByDedicatedConflict:

@@ -47,6 +47,21 @@ $ samples/cli/sample-apps Match2 adminDeletePlayFeatureFlag \
     > result.txt
 ```
 
+### Operation `admin_get_x_ray_config`
+```sh
+$ samples/cli/sample-apps Match2 adminGetXRayConfig \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `admin_update_x_ray_config`
+```sh
+$ samples/cli/sample-apps Match2 adminUpdateXRayConfig \
+    --namespace 'string' \
+    --body '{"whitelistedUsers": ["string"]}' \
+    > result.txt
+```
+
 ### Operation `admin_get_all_config_v1`
 ```sh
 $ samples/cli/sample-apps Match2 adminGetAllConfigV1 \

@@ -8,7 +8,7 @@
     },
     "description": "Login Queue Service",
     "title": "justice-login-queue-service",
-    "version": "2.1.0"
+    "version": "2.2.1"
   },
   "schemes": [
     "https"
@@ -35,7 +35,7 @@
         "operationId": "adminGetConfiguration",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -106,7 +106,7 @@
             }
           },
           {
-            "description": "namespace of the game",
+            "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -176,7 +176,7 @@
         "operationId": "adminGetStatus",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -240,7 +240,7 @@
         "operationId": "cancelTicket",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -286,7 +286,7 @@
         "operationId": "refreshTicket",
         "parameters": [
           {
-            "description": "namespace of the game",
+            "description": "Namespace, only accept alphabet and numeric",
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -527,7 +527,6 @@
         }
       },
       "required": [
-        "attributes",
         "errorCode",
         "errorMessage",
         "message",
@@ -541,11 +540,11 @@
     "path": "/login-queue/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-05-27T08:11:18+00:00",
-    "gitHash": "031bf9c1cb7b6c24c191fe2a6be6667f7e70573d",
+    "buildDate": "2025-08-13T06:24:58+00:00",
+    "gitHash": "e3b84a39e5fbe5f5e48493c39e90bb996478dab9",
     "name": "justice-login-queue-service",
     "realm": "staging",
-    "version": "2.1.0",
-    "version-roles-seeding": "1.1.1"
+    "version": "2.2.1",
+    "version-roles-seeding": "1.2.103"
   }
 }

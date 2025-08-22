@@ -1016,7 +1016,7 @@ func (a *Client) PublicNormalizePaymentReturnURLShort(params *PublicNormalizePay
 	case *PublicNormalizePaymentReturnURLNoContent:
 		return v, nil
 	case *PublicNormalizePaymentReturnURLTemporaryRedirect:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

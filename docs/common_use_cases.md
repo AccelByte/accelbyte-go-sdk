@@ -1240,7 +1240,7 @@ if errCreated != nil {
 
 ```go
 inputCreate := &match_pools.MatchPoolListParams{
-	Limit:     &limit,
+	Limit:     &integration.Limit,
 	Namespace: integration.NamespaceTest,
 	Offset:    &offset,
 }
@@ -1319,7 +1319,7 @@ if errDeletedRule != nil {
 
 ```go
 inputCreate := &match_functions.MatchFunctionListParams{
-	Limit:     &limit,
+	Limit:     &integration.Limit,
 	Namespace: integration.NamespaceTest,
 	Offset:    &offset,
 }

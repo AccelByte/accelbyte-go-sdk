@@ -17,23 +17,23 @@ import (
 // swagger:model Api timeout.
 type APITimeout struct {
 
-	// claim
+	// Maximum time allowed for the DS to be claimed after it is created. (e.g. '4h')
 	// Format: int64
 	Claim int64 `json:"claim,omitempty"`
 
-	// creation
+	// Maximum time allowed for the DS to become ready. (e.g. '30s')
 	// Format: int64
 	Creation int64 `json:"creation,omitempty"`
 
-	// drain
+	// Maximum time allowed for the DS to drain gracefully after a drain signal before being terminated. (e.g. '30s')
 	// Format: int64
 	Drain int64 `json:"drain,omitempty"`
 
-	// session
+	// Maximum time the game session will be allowed to run, (e.g. '1h30m')
 	// Format: int64
 	Session int64 `json:"session,omitempty"`
 
-	// unresponsive
+	// Maximum time allowed for the DS to be unresponsive before being terminated. (e.g. '1m')
 	// Format: int64
 	Unresponsive int64 `json:"unresponsive,omitempty"`
 }

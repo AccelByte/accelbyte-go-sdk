@@ -19,16 +19,46 @@ import (
 	"github.com/go-openapi/swag"
 )
 
+// Deprecated: 2025-07-16 - Use DevelopmentServerConfigurationListSortBy<EnumValue>Constant instead.
+// Get the enum in DevelopmentServerConfigurationListParams
+const (
+	DevelopmentServerConfigurationListCreatedAtConstant = "created_at"
+	DevelopmentServerConfigurationListExpiresAtConstant = "expires_at"
+	DevelopmentServerConfigurationListNameConstant      = "name"
+)
+
+// Deprecated: 2025-07-16 - Use DevelopmentServerConfigurationListSortDirection<EnumValue>Constant instead.
+// Get the enum in DevelopmentServerConfigurationListParams
+const (
+	DevelopmentServerConfigurationListAscConstant  = "asc"
+	DevelopmentServerConfigurationListDescConstant = "desc"
+)
+
+// Get the enum in DevelopmentServerConfigurationListParams
+const (
+	DevelopmentServerConfigurationListSortByCreatedAtConstant = "created_at"
+	DevelopmentServerConfigurationListSortByExpiresAtConstant = "expires_at"
+	DevelopmentServerConfigurationListSortByNameConstant      = "name"
+)
+
+// Get the enum in DevelopmentServerConfigurationListParams
+const (
+	DevelopmentServerConfigurationListSortDirectionAscConstant  = "asc"
+	DevelopmentServerConfigurationListSortDirectionDescConstant = "desc"
+)
+
 // NewDevelopmentServerConfigurationListParams creates a new DevelopmentServerConfigurationListParams object
 // with the default values initialized.
 func NewDevelopmentServerConfigurationListParams() *DevelopmentServerConfigurationListParams {
 	var (
 		countDefault  = int64(100)
 		offsetDefault = int64(0)
+		sortByDefault = string("created_at")
 	)
 	return &DevelopmentServerConfigurationListParams{
 		Count:  &countDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -40,10 +70,12 @@ func NewDevelopmentServerConfigurationListParamsWithTimeout(timeout time.Duratio
 	var (
 		countDefault  = int64(100)
 		offsetDefault = int64(0)
+		sortByDefault = string("created_at")
 	)
 	return &DevelopmentServerConfigurationListParams{
 		Count:  &countDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		timeout: timeout,
 	}
@@ -55,10 +87,12 @@ func NewDevelopmentServerConfigurationListParamsWithContext(ctx context.Context)
 	var (
 		countDefault  = int64(100)
 		offsetDefault = int64(0)
+		sortByDefault = string("created_at")
 	)
 	return &DevelopmentServerConfigurationListParams{
 		Count:  &countDefault,
 		Offset: &offsetDefault,
+		SortBy: &sortByDefault,
 
 		Context: ctx,
 	}
@@ -70,10 +104,12 @@ func NewDevelopmentServerConfigurationListParamsWithHTTPClient(client *http.Clie
 	var (
 		countDefault  = int64(100)
 		offsetDefault = int64(0)
+		sortByDefault = string("created_at")
 	)
 	return &DevelopmentServerConfigurationListParams{
 		Count:      &countDefault,
 		Offset:     &offsetDefault,
+		SortBy:     &sortByDefault,
 		HTTPClient: client,
 	}
 }
@@ -95,11 +131,31 @@ type DevelopmentServerConfigurationListParams struct {
 
 	*/
 	Count *int64
+	/*ImageID
+	  filter by image ID
+
+	*/
+	ImageID *string
+	/*Name
+	  filter by config name
+
+	*/
+	Name *string
 	/*Offset
 	  specifies the start index for the records returned.
 
 	*/
 	Offset *int64
+	/*SortBy
+	  sort records by the given field
+
+	*/
+	SortBy *string
+	/*SortDirection
+	  sort direction (ascending or descending)
+
+	*/
+	SortDirection *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -188,6 +244,28 @@ func (o *DevelopmentServerConfigurationListParams) SetCount(count *int64) {
 	o.Count = count
 }
 
+// WithImageID adds the imageID to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) WithImageID(imageID *string) *DevelopmentServerConfigurationListParams {
+	o.SetImageID(imageID)
+	return o
+}
+
+// SetImageID adds the imageId to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) SetImageID(imageID *string) {
+	o.ImageID = imageID
+}
+
+// WithName adds the name to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) WithName(name *string) *DevelopmentServerConfigurationListParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) SetName(name *string) {
+	o.Name = name
+}
+
 // WithOffset adds the offset to the development server configuration list params
 func (o *DevelopmentServerConfigurationListParams) WithOffset(offset *int64) *DevelopmentServerConfigurationListParams {
 	o.SetOffset(offset)
@@ -197,6 +275,28 @@ func (o *DevelopmentServerConfigurationListParams) WithOffset(offset *int64) *De
 // SetOffset adds the offset to the development server configuration list params
 func (o *DevelopmentServerConfigurationListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithSortBy adds the sortBy to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) WithSortBy(sortBy *string) *DevelopmentServerConfigurationListParams {
+	o.SetSortBy(sortBy)
+	return o
+}
+
+// SetSortBy adds the sortBy to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) SetSortBy(sortBy *string) {
+	o.SortBy = sortBy
+}
+
+// WithSortDirection adds the sortDirection to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) WithSortDirection(sortDirection *string) *DevelopmentServerConfigurationListParams {
+	o.SetSortDirection(sortDirection)
+	return o
+}
+
+// SetSortDirection adds the sortDirection to the development server configuration list params
+func (o *DevelopmentServerConfigurationListParams) SetSortDirection(sortDirection *string) {
+	o.SortDirection = sortDirection
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -228,6 +328,38 @@ func (o *DevelopmentServerConfigurationListParams) WriteToRequest(r runtime.Clie
 
 	}
 
+	if o.ImageID != nil {
+
+		// query param imageId
+		var qrImageID string
+		if o.ImageID != nil {
+			qrImageID = *o.ImageID
+		}
+		qImageID := qrImageID
+		if qImageID != "" {
+			if err := r.SetQueryParam("imageId", qImageID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Offset != nil {
 
 		// query param offset
@@ -238,6 +370,38 @@ func (o *DevelopmentServerConfigurationListParams) WriteToRequest(r runtime.Clie
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortBy != nil {
+
+		// query param sortBy
+		var qrSortBy string
+		if o.SortBy != nil {
+			qrSortBy = *o.SortBy
+		}
+		qSortBy := qrSortBy
+		if qSortBy != "" {
+			if err := r.SetQueryParam("sortBy", qSortBy); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SortDirection != nil {
+
+		// query param sortDirection
+		var qrSortDirection string
+		if o.SortDirection != nil {
+			qrSortDirection = *o.SortDirection
+		}
+		qSortDirection := qrSortDirection
+		if qSortDirection != "" {
+			if err := r.SetQueryParam("sortDirection", qSortDirection); err != nil {
 				return err
 			}
 		}

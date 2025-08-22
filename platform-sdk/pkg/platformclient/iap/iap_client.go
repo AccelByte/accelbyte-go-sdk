@@ -3718,7 +3718,7 @@ func (a *Client) AdminRefundIAPOrderShort(params *AdminRefundIAPOrderParams, aut
 	case *AdminRefundIAPOrderOK:
 		return v, nil
 	case *AdminRefundIAPOrderNoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AdminRefundIAPOrderBadRequest:
 		return nil, v
 	case *AdminRefundIAPOrderNotFound:

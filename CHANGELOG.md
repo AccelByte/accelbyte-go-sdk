@@ -1,3 +1,18 @@
+<a name="v0.82.0"></a>
+## [v0.82.0]
+### ci
+- **nightly:** add params for cli and integration test
+- **generate:** remove cli and integration test stage
+- **nightly-starter:** remove redundant Jenkinsfile.nightly-starter
+- **github:** better utilize all available build machines
+- **:** consolidate job channel
+### fix
+- **:** concurrent map access by using rwmutex
+- **:** change default refresh token rate to 0.8
+### chore
+- **:** refresh gitignore
+
+
 <a name="v0.81.0"></a>
 ## [v0.81.0]
 ### ci

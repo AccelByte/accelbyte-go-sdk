@@ -761,7 +761,7 @@ func (a *Client) AdminPutAdminPlayerRecordConcurrentHandlerV1Short(params *Admin
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1OK:
 		return v, nil
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *AdminPutAdminPlayerRecordConcurrentHandlerV1Unauthorized:
@@ -1017,7 +1017,7 @@ func (a *Client) AdminPutPlayerRecordConcurrentHandlerV1Short(params *AdminPutPl
 	case *AdminPutPlayerRecordConcurrentHandlerV1OK:
 		return v, nil
 	case *AdminPutPlayerRecordConcurrentHandlerV1NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AdminPutPlayerRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *AdminPutPlayerRecordConcurrentHandlerV1Unauthorized:
@@ -1273,7 +1273,7 @@ func (a *Client) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(params *Admi
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1OK:
 		return v, nil
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *AdminPutPlayerPublicRecordConcurrentHandlerV1Unauthorized:

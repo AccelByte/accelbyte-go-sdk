@@ -3852,7 +3852,7 @@ func (a *Client) AdminChallengeMyMFAV4Short(params *AdminChallengeMyMFAV4Params,
 	case *AdminChallengeMyMFAV4OK:
 		return v, nil
 	case *AdminChallengeMyMFAV4NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AdminChallengeMyMFAV4BadRequest:
 		return nil, v
 	case *AdminChallengeMyMFAV4Unauthorized:
@@ -7766,7 +7766,7 @@ func (a *Client) PublicChallengeMyMFAV4Short(params *PublicChallengeMyMFAV4Param
 	case *PublicChallengeMyMFAV4OK:
 		return v, nil
 	case *PublicChallengeMyMFAV4NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PublicChallengeMyMFAV4BadRequest:
 		return nil, v
 	case *PublicChallengeMyMFAV4Unauthorized:

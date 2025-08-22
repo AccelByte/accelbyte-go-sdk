@@ -2629,7 +2629,7 @@ func (a *Client) PublicGameSessionInviteShort(params *PublicGameSessionInvitePar
 	case *PublicGameSessionInviteCreated:
 		return v, nil
 	case *PublicGameSessionInviteNoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PublicGameSessionInviteBadRequest:
 		return nil, v
 	case *PublicGameSessionInviteUnauthorized:

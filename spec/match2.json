@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.35.0"
+    "version": "2.35.2"
   },
   "schemes": [
     "https"
@@ -336,6 +336,145 @@
           {
             "userPermissions": [
               "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:PLAYFEATUREFLAG [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/match2/v1/admin/namespaces/{namespace}/xray/config": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Get XRay config",
+        "operationId": "adminGetXRayConfig",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.XRayConfigHttpResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin get XRay config",
+        "tags": [
+          "XRay Config",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:XRAY [READ]"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Admin update XRay config",
+        "operationId": "adminUpdateXRayConfig",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.XRayConfigHttpUpdateRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Admin update XRay config",
+        "tags": [
+          "XRay Config",
+          "admin"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:MATCHMAKING:XRAY [UPDATE]"
             ]
           }
         ]
@@ -4483,6 +4622,32 @@
         "UpdatedAt"
       ]
     },
+    "models.XRayConfigHttpResponse": {
+      "properties": {
+        "whitelistedUsers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "whitelistedUsers"
+      ]
+    },
+    "models.XRayConfigHttpUpdateRequest": {
+      "properties": {
+        "whitelistedUsers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "whitelistedUsers"
+      ]
+    },
     "player.PlayerData": {
       "properties": {
         "Attributes": {
@@ -4529,9 +4694,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-07-03T06:17:19+00:00",
-    "gitHash": "79cd3ad6377fc7d4ffddc966e59b5cee2cc8fe2c",
-    "version": "2.35.0",
-    "version-roles-seeding": "1.2.95"
+    "buildDate": "2025-08-06T06:45:19+00:00",
+    "gitHash": "a2279fbc3594d9358119fe57c22ae0b14510737c",
+    "version": "2.35.2",
+    "version-roles-seeding": "1.2.102"
   }
 }

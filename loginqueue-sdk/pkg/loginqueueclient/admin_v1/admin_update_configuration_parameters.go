@@ -69,7 +69,7 @@ type AdminUpdateConfigurationParams struct {
 	/*Body*/
 	Body *loginqueueclientmodels.ApimodelsConfigurationRequest
 	/*Namespace
-	  namespace of the game
+	  Namespace, only accept alphabet and numeric
 
 	*/
 	Namespace string

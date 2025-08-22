@@ -21,6 +21,11 @@ type ModelUserPublicInfoResponseV4 struct {
 	// avatarurl
 	AvatarURL string `json:"avatarUrl,omitempty"`
 
+	// createdat
+	// Required: true
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"createdAt"`
+
 	// displayname
 	// Required: true
 	DisplayName *string `json:"displayName"`
@@ -37,6 +42,9 @@ type ModelUserPublicInfoResponseV4 struct {
 func (m *ModelUserPublicInfoResponseV4) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -47,6 +55,19 @@ func (m *ModelUserPublicInfoResponseV4) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelUserPublicInfoResponseV4) validateCreatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("createdAt", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

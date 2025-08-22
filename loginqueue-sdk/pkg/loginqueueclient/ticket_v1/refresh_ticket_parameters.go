@@ -65,7 +65,7 @@ type RefreshTicketParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace of the game
+	  Namespace, only accept alphabet and numeric
 
 	*/
 	Namespace string

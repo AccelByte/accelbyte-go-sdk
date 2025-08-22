@@ -446,7 +446,7 @@ func (a *Client) PutPlayerRecordConcurrentHandlerV1Short(params *PutPlayerRecord
 	case *PutPlayerRecordConcurrentHandlerV1OK:
 		return v, nil
 	case *PutPlayerRecordConcurrentHandlerV1NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PutPlayerRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *PutPlayerRecordConcurrentHandlerV1Unauthorized:
@@ -660,7 +660,7 @@ func (a *Client) PutPlayerPublicRecordConcurrentHandlerV1Short(params *PutPlayer
 	case *PutPlayerPublicRecordConcurrentHandlerV1OK:
 		return v, nil
 	case *PutPlayerPublicRecordConcurrentHandlerV1NoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PutPlayerPublicRecordConcurrentHandlerV1BadRequest:
 		return nil, v
 	case *PutPlayerPublicRecordConcurrentHandlerV1Unauthorized:

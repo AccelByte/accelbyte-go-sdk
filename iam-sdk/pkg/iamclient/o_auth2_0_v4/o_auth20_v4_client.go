@@ -168,7 +168,7 @@ func (a *Client) AuthenticationWithPlatformLinkV4Short(params *AuthenticationWit
 	case *AuthenticationWithPlatformLinkV4OK:
 		return v, nil
 	case *AuthenticationWithPlatformLinkV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AuthenticationWithPlatformLinkV4BadRequest:
 		return nil, v
 	case *AuthenticationWithPlatformLinkV4Unauthorized:
@@ -290,7 +290,7 @@ func (a *Client) GenerateTokenByNewHeadlessAccountV4Short(params *GenerateTokenB
 	case *GenerateTokenByNewHeadlessAccountV4OK:
 		return v, nil
 	case *GenerateTokenByNewHeadlessAccountV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *GenerateTokenByNewHeadlessAccountV4BadRequest:
 		return nil, v
 	case *GenerateTokenByNewHeadlessAccountV4Unauthorized:
@@ -406,7 +406,7 @@ func (a *Client) Verify2FACodeV4Short(params *Verify2FACodeV4Params, authInfo ru
 	case *Verify2FACodeV4OK:
 		return v, nil
 	case *Verify2FACodeV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *Verify2FACodeV4Unauthorized:
 		return nil, v
 
@@ -665,7 +665,7 @@ func (a *Client) PlatformTokenGrantV4Short(params *PlatformTokenGrantV4Params, a
 	case *PlatformTokenGrantV4OK:
 		return v, nil
 	case *PlatformTokenGrantV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PlatformTokenGrantV4BadRequest:
 		return nil, v
 	case *PlatformTokenGrantV4Unauthorized:
@@ -836,7 +836,7 @@ func (a *Client) SimultaneousLoginV4Short(params *SimultaneousLoginV4Params, aut
 	case *SimultaneousLoginV4OK:
 		return v, nil
 	case *SimultaneousLoginV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *SimultaneousLoginV4BadRequest:
 		return nil, v
 	case *SimultaneousLoginV4Unauthorized:
@@ -1067,7 +1067,7 @@ func (a *Client) TokenGrantV4Short(params *TokenGrantV4Params, authInfo runtime.
 	case *TokenGrantV4OK:
 		return v, nil
 	case *TokenGrantV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *TokenGrantV4BadRequest:
 		return nil, v
 	case *TokenGrantV4Unauthorized:
@@ -1180,7 +1180,7 @@ func (a *Client) RequestTargetTokenResponseV4Short(params *RequestTargetTokenRes
 	case *RequestTargetTokenResponseV4OK:
 		return v, nil
 	case *RequestTargetTokenResponseV4Accepted:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

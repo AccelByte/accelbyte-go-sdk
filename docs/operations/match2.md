@@ -27,6 +27,12 @@
 | `/match2/v1/admin/namespaces/{namespace}/playfeatureflag` | POST | AdminUpsertPlayFeatureFlagShort | [AdminUpsertPlayFeatureFlagShort](../../match2-sdk/pkg/match2client/play_feature_flag/play_feature_flag_client.go) | [AdminUpsertPlayFeatureFlagShort](../../services-api/pkg/service/match2/playFeatureFlag.go) | [AdminUpsertPlayFeatureFlagShort](../../samples/cli/cmd/match2/playFeatureFlag/adminUpsertPlayFeatureFlag.go) |
 | `/match2/v1/admin/namespaces/{namespace}/playfeatureflag` | DELETE | AdminDeletePlayFeatureFlagShort | [AdminDeletePlayFeatureFlagShort](../../match2-sdk/pkg/match2client/play_feature_flag/play_feature_flag_client.go) | [AdminDeletePlayFeatureFlagShort](../../services-api/pkg/service/match2/playFeatureFlag.go) | [AdminDeletePlayFeatureFlagShort](../../samples/cli/cmd/match2/playFeatureFlag/adminDeletePlayFeatureFlag.go) |
 
+### XRay Config Wrapper:  [XRayConfig](../../services-api/pkg/service/match2/xRayConfig.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/match2/v1/admin/namespaces/{namespace}/xray/config` | GET | AdminGetXRayConfigShort | [AdminGetXRayConfigShort](../../match2-sdk/pkg/match2client/x_ray_config/x_ray_config_client.go) | [AdminGetXRayConfigShort](../../services-api/pkg/service/match2/xRayConfig.go) | [AdminGetXRayConfigShort](../../samples/cli/cmd/match2/xRayConfig/adminGetXRayConfig.go) |
+| `/match2/v1/admin/namespaces/{namespace}/xray/config` | POST | AdminUpdateXRayConfigShort | [AdminUpdateXRayConfigShort](../../match2-sdk/pkg/match2client/x_ray_config/x_ray_config_client.go) | [AdminUpdateXRayConfigShort](../../services-api/pkg/service/match2/xRayConfig.go) | [AdminUpdateXRayConfigShort](../../samples/cli/cmd/match2/xRayConfig/adminUpdateXRayConfig.go) |
+
 ### Environment-Variables Wrapper:  [EnvironmentVariables](../../services-api/pkg/service/match2/environmentVariables.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -139,5 +145,7 @@
 | `models.PlayFeatureFlag` | [ModelsPlayFeatureFlag ](../../match2-sdk/pkg/match2clientmodels/models_play_feature_flag.go) |
 | `models.Server` | [ModelsServer ](../../match2-sdk/pkg/match2clientmodels/models_server.go) |
 | `models.User` | [ModelsUser ](../../match2-sdk/pkg/match2clientmodels/models_user.go) |
+| `models.XRayConfigHttpResponse` | [ModelsXRayConfigHttpResponse ](../../match2-sdk/pkg/match2clientmodels/models_x_ray_config_http_response.go) |
+| `models.XRayConfigHttpUpdateRequest` | [ModelsXRayConfigHttpUpdateRequest ](../../match2-sdk/pkg/match2clientmodels/models_x_ray_config_http_update_request.go) |
 | `player.PlayerData` | [PlayerPlayerData ](../../match2-sdk/pkg/match2clientmodels/player_player_data.go) |
 | `response.Error` | [ResponseError ](../../match2-sdk/pkg/match2clientmodels/response_error.go) |

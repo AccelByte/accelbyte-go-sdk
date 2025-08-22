@@ -10,7 +10,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ApimodelBulkSubscribeItem Apimodel bulk subscribe item
@@ -19,50 +18,23 @@ import (
 type ApimodelBulkSubscribeItem struct {
 
 	// emailaddress
-	// Required: true
-	EmailAddress *string `json:"emailAddress"`
+	EmailAddress string `json:"emailAddress,omitempty"`
 
 	// notificationtype
 	// Required: true
 	NotificationType map[string]bool `json:"notificationType"`
 
 	// userid
-	// Required: true
-	UserID *string `json:"userId"`
+	UserID string `json:"userId,omitempty"`
 }
 
 // Validate validates this Apimodel bulk subscribe item
 func (m *ApimodelBulkSubscribeItem) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEmailAddress(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateUserID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ApimodelBulkSubscribeItem) validateEmailAddress(formats strfmt.Registry) error {
-
-	if err := validate.Required("emailAddress", "body", m.EmailAddress); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApimodelBulkSubscribeItem) validateUserID(formats strfmt.Registry) error {
-
-	if err := validate.Required("userId", "body", m.UserID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

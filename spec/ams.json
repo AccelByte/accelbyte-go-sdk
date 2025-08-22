@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.38.1"
+    "version": "1.39.0"
   },
   "schemes": [
     "https"
@@ -807,11 +807,45 @@
             "type": "integer"
           },
           {
+            "description": "filter by image ID",
+            "in": "query",
+            "name": "imageId",
+            "type": "string"
+          },
+          {
+            "description": "filter by config name",
+            "in": "query",
+            "name": "name",
+            "type": "string"
+          },
+          {
             "default": 0,
             "description": "specifies the start index for the records returned.",
             "in": "query",
             "name": "offset",
             "type": "integer"
+          },
+          {
+            "default": "created_at",
+            "description": "sort records by the given field",
+            "enum": [
+              "created_at",
+              "expires_at",
+              "name"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "description": "sort direction (ascending or descending)",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortDirection",
+            "type": "string"
           }
         ],
         "produces": [
@@ -3716,6 +3750,9 @@
           },
           "type": "array"
         },
+        "paging": {
+          "$ref": "#/definitions/pagination.PaginationInfo"
+        },
         "totalData": {
           "format": "int32",
           "type": "integer"
@@ -3723,6 +3760,7 @@
       },
       "required": [
         "data",
+        "paging",
         "totalData"
       ]
     },
@@ -4656,24 +4694,30 @@
       "type": "string"
     },
     "api.Timeout": {
+      "description": "Contains fleet timeout configuration.  Fields accept duration strings (e.g. '30s', '1h30m'), an integer number of seconds.",
       "properties": {
         "claim": {
+          "description": "Maximum time allowed for the DS to be claimed after it is created. (e.g. '4h')",
           "format": "int64",
           "type": "integer"
         },
         "creation": {
+          "description": "Maximum time allowed for the DS to become ready. (e.g. '30s')",
           "format": "int64",
           "type": "integer"
         },
         "drain": {
+          "description": "Maximum time allowed for the DS to drain gracefully after a drain signal before being terminated. (e.g. '30s')",
           "format": "int64",
           "type": "integer"
         },
         "session": {
+          "description": "Maximum time the game session will be allowed to run, (e.g. '1h30m')",
           "format": "int64",
           "type": "integer"
         },
         "unresponsive": {
+          "description": "Maximum time allowed for the DS to be unresponsive before being terminated. (e.g. '1m')",
           "format": "int64",
           "type": "integer"
         }
@@ -4745,10 +4789,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-07-11T00:39:02+00:00",
-    "gitHash": "3d67211a68c774623e2ab9fb62c1a40fcbc10d5a",
+    "buildDate": "2025-07-29T20:26:47+00:00",
+    "gitHash": "aeb084a355193922d16a7329508a665bd2c38814",
     "name": "fleet-commander",
-    "version": "1.38.1",
+    "version": "1.39.0",
     "version-roles-seeding": "1.2.70"
   }
 }

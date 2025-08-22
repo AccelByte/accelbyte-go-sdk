@@ -751,7 +751,7 @@ func (a *Client) AdminProfanityImportShort(params *AdminProfanityImportParams, a
 	case *AdminProfanityImportOK:
 		return v, nil
 	case *AdminProfanityImportNoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *AdminProfanityImportBadRequest:
 		return nil, v
 	case *AdminProfanityImportUnauthorized:

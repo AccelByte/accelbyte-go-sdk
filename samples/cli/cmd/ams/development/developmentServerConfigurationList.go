@@ -27,11 +27,19 @@ var DevelopmentServerConfigurationListCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		count, _ := cmd.Flags().GetInt64("count")
+		imageId, _ := cmd.Flags().GetString("imageId")
+		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
+		sortBy, _ := cmd.Flags().GetString("sortBy")
+		sortDirection, _ := cmd.Flags().GetString("sortDirection")
 		input := &development.DevelopmentServerConfigurationListParams{
-			Namespace: namespace,
-			Count:     &count,
-			Offset:    &offset,
+			Namespace:     namespace,
+			Count:         &count,
+			ImageID:       &imageId,
+			Name:          &name,
+			Offset:        &offset,
+			SortBy:        &sortBy,
+			SortDirection: &sortDirection,
 		}
 		ok, errOK := developmentService.DevelopmentServerConfigurationListShort(input)
 		if errOK != nil {
@@ -50,5 +58,9 @@ func init() {
 	DevelopmentServerConfigurationListCmd.Flags().String("namespace", "", "Namespace")
 	_ = DevelopmentServerConfigurationListCmd.MarkFlagRequired("namespace")
 	DevelopmentServerConfigurationListCmd.Flags().Int64("count", 1, "Count")
+	DevelopmentServerConfigurationListCmd.Flags().String("imageId", "", "Image id")
+	DevelopmentServerConfigurationListCmd.Flags().String("name", "", "Name")
 	DevelopmentServerConfigurationListCmd.Flags().Int64("offset", 0, "Offset")
+	DevelopmentServerConfigurationListCmd.Flags().String("sortBy", "", "Sort by")
+	DevelopmentServerConfigurationListCmd.Flags().String("sortDirection", "", "Sort direction")
 }

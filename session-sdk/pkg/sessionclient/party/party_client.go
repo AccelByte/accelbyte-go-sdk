@@ -1289,7 +1289,7 @@ func (a *Client) PublicPartyInviteShort(params *PublicPartyInviteParams, authInf
 	case *PublicPartyInviteCreated:
 		return v, nil
 	case *PublicPartyInviteNoContent:
-		return nil, v
+		return nil, nil // value not supported in the Short method
 	case *PublicPartyInviteBadRequest:
 		return nil, v
 	case *PublicPartyInviteUnauthorized:

@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodels trade item resp.
 type ApimodelsTradeItemResp struct {
 
+	// id
+	// Required: true
+	ID *string `json:"id"`
+
 	// qty
 	// Required: true
 	// Format: int32
@@ -36,6 +40,9 @@ type ApimodelsTradeItemResp struct {
 func (m *ApimodelsTradeItemResp) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateQty(formats); err != nil {
 		res = append(res, err)
 	}
@@ -49,6 +56,15 @@ func (m *ApimodelsTradeItemResp) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelsTradeItemResp) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

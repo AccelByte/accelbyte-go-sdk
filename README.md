@@ -110,8 +110,6 @@ err := oauth.LoginOrRefreshClient("clientId", "clientSecret")   // use before ca
 err := oauth.LoginOrRefresh("username", "password")     // use before calling endpoints, using username and password
 ```
 
-Working example code for on-demand refresh token is available in [ondemand-refresh-token](samples/ondemand-refresh-token).
-
 #### Local Token Validation
 Local token validation is available since version 0.37.0. 
 To enable it, import the package

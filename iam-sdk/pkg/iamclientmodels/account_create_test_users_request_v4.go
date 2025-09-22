@@ -18,6 +18,9 @@ import (
 // swagger:model Account create test users request V4.
 type AccountCreateTestUsersRequestV4 struct {
 
+	// acceptedpolicies
+	AcceptedPolicies []*LegalAcceptedPoliciesRequest `json:"acceptedPolicies,omitempty"`
+
 	// count
 	// Required: true
 	// Format: int32

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.35.2"
+    "version": "2.36.0"
   },
   "schemes": [
     "https"
@@ -3913,6 +3913,10 @@
             "type": "array"
           },
           "type": "object"
+        },
+        "xrayMaxWhitelistedUserCount": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
@@ -4099,10 +4103,15 @@
             "type": "array"
           },
           "type": "object"
+        },
+        "xrayMaxWhitelistedUserCount": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
-        "namespace"
+        "namespace",
+        "xrayMaxWhitelistedUserCount"
       ]
     },
     "logconfig.Configuration": {
@@ -4694,9 +4703,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-08-06T06:45:19+00:00",
-    "gitHash": "a2279fbc3594d9358119fe57c22ae0b14510737c",
-    "version": "2.35.2",
+    "buildDate": "2025-09-12T07:18:56+00:00",
+    "gitHash": "f6a00cc5de91f91aeeeaee3b8dff2cc4eec59194",
+    "version": "2.36.0",
     "version-roles-seeding": "1.2.102"
   }
 }

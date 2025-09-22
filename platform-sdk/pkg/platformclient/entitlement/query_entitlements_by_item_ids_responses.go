@@ -19,16 +19,16 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 )
 
-// QueryEntitlements1Reader is a Reader for the QueryEntitlements1 structure.
-type QueryEntitlements1Reader struct {
+// QueryEntitlementsByItemIdsReader is a Reader for the QueryEntitlementsByItemIds structure.
+type QueryEntitlementsByItemIdsReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *QueryEntitlements1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *QueryEntitlementsByItemIdsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewQueryEntitlements1OK()
+		result := NewQueryEntitlementsByItemIdsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -40,28 +40,28 @@ func (o *QueryEntitlements1Reader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/entitlements returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/entitlements/byItemIds returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
-// NewQueryEntitlements1OK creates a QueryEntitlements1OK with default headers values
-func NewQueryEntitlements1OK() *QueryEntitlements1OK {
-	return &QueryEntitlements1OK{}
+// NewQueryEntitlementsByItemIdsOK creates a QueryEntitlementsByItemIdsOK with default headers values
+func NewQueryEntitlementsByItemIdsOK() *QueryEntitlementsByItemIdsOK {
+	return &QueryEntitlementsByItemIdsOK{}
 }
 
-/*QueryEntitlements1OK handles this case with default header values.
+/*QueryEntitlementsByItemIdsOK handles this case with default header values.
 
   successful operation
 */
-type QueryEntitlements1OK struct {
+type QueryEntitlementsByItemIdsOK struct {
 	Payload *platformclientmodels.EntitlementPagingSlicedResult
 }
 
-func (o *QueryEntitlements1OK) Error() string {
-	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements][%d] queryEntitlements1OK  %+v", 200, o.ToJSONString())
+func (o *QueryEntitlementsByItemIdsOK) Error() string {
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/byItemIds][%d] queryEntitlementsByItemIdsOK  %+v", 200, o.ToJSONString())
 }
 
-func (o *QueryEntitlements1OK) ToJSONString() string {
+func (o *QueryEntitlementsByItemIdsOK) ToJSONString() string {
 	if o.Payload == nil {
 		return "{}"
 	}
@@ -76,11 +76,11 @@ func (o *QueryEntitlements1OK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *QueryEntitlements1OK) GetPayload() *platformclientmodels.EntitlementPagingSlicedResult {
+func (o *QueryEntitlementsByItemIdsOK) GetPayload() *platformclientmodels.EntitlementPagingSlicedResult {
 	return o.Payload
 }
 
-func (o *QueryEntitlements1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryEntitlementsByItemIdsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

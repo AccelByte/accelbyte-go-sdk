@@ -498,9 +498,9 @@ $ samples/cli/sample-apps Platform deletePlatformDLCConfig \
     > result.txt
 ```
 
-### Operation `query_entitlements_1`
+### Operation `query_entitlements`
 ```sh
-$ samples/cli/sample-apps Platform queryEntitlements1 \
+$ samples/cli/sample-apps Platform queryEntitlements \
     --namespace 'string' \
     --activeOnly false \
     --appType 'DEMO' \
@@ -514,9 +514,9 @@ $ samples/cli/sample-apps Platform queryEntitlements1 \
     > result.txt
 ```
 
-### Operation `query_entitlements`
+### Operation `query_entitlements_by_item_ids`
 ```sh
-$ samples/cli/sample-apps Platform queryEntitlements \
+$ samples/cli/sample-apps Platform queryEntitlementsByItemIds \
     --namespace 'string' \
     --activeOnly false \
     --itemIds '["string"]' \

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.34.3"
+    "version": "7.35.0"
   },
   "schemes": [
     "https"
@@ -27545,7 +27545,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create test users and not send verification code email.\nNote: \n- count : Enter the number of test users you want to create in the count field. The maximum value of the user count is 100.\n- userInfo(optional) : \n\t- country: you can specify country for the test user. Country use ISO3166-1 alpha-2 two letter, e.g. US \n",
+        "description": "Create test users and not send verification code email.\n\n**Request Body Note:**\n- **count**: Enter the number of test users you want to create in the count field. The maximum value of the user count is 100.\n- **userInfo** (optional):\n\t- country: you can specify country for the test user. Country use ISO3166-1 alpha-2 two letter, e.g. US\n- **acceptedPolicies** (optional): Contains the list of accepted agreements for the created users.\n\t\t",
         "operationId": "AdminCreateTestUsersV4",
         "parameters": [
           {
@@ -35006,6 +35006,12 @@
     },
     "account.createTestUsersRequestV4": {
       "properties": {
+        "acceptedPolicies": {
+          "items": {
+            "$ref": "#/definitions/legal.AcceptedPoliciesRequest"
+          },
+          "type": "array"
+        },
         "count": {
           "format": "int32",
           "type": "integer"
@@ -37031,6 +37037,7 @@
           "type": "array"
         },
         "namespace": {
+          "description": "DEPRECATED, this field is no longer used",
           "type": "string"
         },
         "oauthAccessTokenExpiration": {
@@ -43656,11 +43663,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-08-12T09:45:36+00:00",
-    "gitHash": "ea2c2be002b34cf67fe3c526b5e19fd2c37fad1d",
+    "buildDate": "2025-09-12T04:22:55+00:00",
+    "gitHash": "6edec44f7395a5223f332b0eac62900ef66a3e8b",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.34.3",
+    "version": "7.35.0",
     "version-roles-seeding": "1.2.91"
   }
 }

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.26.2"
+    "version": "3.26.3"
   },
   "schemes": [
     "https"
@@ -5150,7 +5150,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tUsed by game Client to Get Secret  \n\t\t\t constraints\n\t\t\t\t- EnableSecret = true\n\t\t\t\t- Type = \u0026#34;DS\u0026#34;\n\t\t\t\t- secret value will only be produced if enableSecret is true and type is DS\n\n  \t\t\t if enableSecret = false\n\t\t\t\t- empty secret will be returned as 200 OK\n\n\t\t\tExpected caller of this API\n\t\t\t\t- Game Client to get server secret\n\n\t\t\tIn the Response you will get following:\n\t\t\t\t- 200 OK { \u0026#34;secret\u0026#34;: \u0026lt;string\u0026gt; } \n\n\t\t\t\tIf there is error: \n\t\t\t\t- 400 Invalid path parameters\n\t\t\t\t- 401 unauthorized\n\t\t\t\t- 404 StatusNotFound\n\t\t\t\t- 500 Internal server error",
+        "description": "\n\t\t\tUsed by game Client to Get Secret  \n\t\t\t constraints\n\t\t\t\t- EnableSecret = true\n\t\t\t\t- Type = \u0026#34;DS\u0026#34;\n\t\t\t\t- secret value will only be produced if enableSecret is true and type is DS\n\n  \t\t\t if enableSecret = false\n\t\t\t\t- empty secret will be returned as 200 OK\n\n\t\t\tExpected caller of this API\n\t\t\t\t- Game Client to get server secret\n\n\t\t\tIn the Response you will get following:\n\t\t\t\t- 200 OK { \u0026#34;secret\u0026#34;: \u0026lt;string\u0026gt; } \n\n\t\t\t\tIf there is error: \n\t\t\t\t- 400 Invalid path parameters\n\t\t\t\t- 401 unauthorized\n\t\t\t\t- 403 status forbidden, The User is not active in session\n\t\t\t\t- 404 StatusNotFound\n\t\t\t\t- 500 Internal server error",
         "operationId": "getSessionServerSecret",
         "parameters": [
           {
@@ -5186,6 +5186,12 @@
           },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "schema": {
               "$ref": "#/definitions/response.Error"
             }
@@ -7700,6 +7706,10 @@
         "nativeSessionSetting": {
           "$ref": "#/definitions/models.NativeSessionSetting"
         },
+        "partyCodeLength": {
+          "format": "int32",
+          "type": "integer"
+        },
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
@@ -7894,6 +7904,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "partyCodeLength": {
+          "format": "int32",
+          "type": "integer"
         },
         "persistent": {
           "type": "boolean",
@@ -8868,6 +8882,10 @@
         "nativeSessionSetting": {
           "$ref": "#/definitions/models.NativeSessionSetting"
         },
+        "partyCodeLength": {
+          "format": "int32",
+          "type": "integer"
+        },
         "persistent": {
           "type": "boolean",
           "x-omitempty": false
@@ -9204,6 +9222,10 @@
         },
         "name": {
           "type": "string"
+        },
+        "partyCodeLength": {
+          "format": "int32",
+          "type": "integer"
         },
         "persistent": {
           "type": "boolean",
@@ -10161,9 +10183,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-08-06T05:14:06+00:00",
-    "gitHash": "58e94f204a03a5f9dd8fb20c86f5a97f89207627",
-    "version": "3.26.2",
+    "buildDate": "2025-09-12T03:57:23+00:00",
+    "gitHash": "2d9065a09855674b2d52cccdfab325dfe0ad28bc",
+    "version": "3.26.3",
     "version-roles-seeding": "1.2.86"
   }
 }

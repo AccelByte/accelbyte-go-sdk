@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.39.0"
+    "version": "1.41.1"
   },
   "schemes": [
     "https"
@@ -4789,10 +4789,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-07-29T20:26:47+00:00",
-    "gitHash": "aeb084a355193922d16a7329508a665bd2c38814",
+    "buildDate": "2025-09-11T02:54:57+00:00",
+    "gitHash": "f120845203a42bcf5df18d7d13a6cc838f9c6b3f",
     "name": "fleet-commander",
-    "version": "1.39.0",
+    "version": "1.41.1",
     "version-roles-seeding": "1.2.70"
   }
 }

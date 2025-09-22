@@ -45,6 +45,12 @@ func (o *GetSessionServerSecretReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewGetSessionServerSecretForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewGetSessionServerSecretNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -213,6 +219,60 @@ func (o *GetSessionServerSecretUnauthorized) GetPayload() *sessionclientmodels.R
 }
 
 func (o *GetSessionServerSecretUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(sessionclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetSessionServerSecretForbidden creates a GetSessionServerSecretForbidden with default headers values
+func NewGetSessionServerSecretForbidden() *GetSessionServerSecretForbidden {
+	return &GetSessionServerSecretForbidden{}
+}
+
+/*GetSessionServerSecretForbidden handles this case with default header values.
+
+  Forbidden
+*/
+type GetSessionServerSecretForbidden struct {
+	Payload *sessionclientmodels.ResponseError
+}
+
+func (o *GetSessionServerSecretForbidden) Error() string {
+	return fmt.Sprintf("[GET /session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/secret][%d] getSessionServerSecretForbidden  %+v", 403, o.ToJSONString())
+}
+
+func (o *GetSessionServerSecretForbidden) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *GetSessionServerSecretForbidden) GetPayload() *sessionclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *GetSessionServerSecretForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

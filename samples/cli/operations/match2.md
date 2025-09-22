@@ -79,7 +79,7 @@ $ samples/cli/sample-apps Match2 adminGetConfigV1 \
 ```sh
 $ samples/cli/sample-apps Match2 adminPatchConfigV1 \
     --namespace 'string' \
-    --body '{"crossPlatformNoCurrentPlatform": false, "extraPlatforms": ["string"], "matchAnyCommon": false, "platformGroup": {"string": []}}' \
+    --body '{"crossPlatformNoCurrentPlatform": false, "extraPlatforms": ["string"], "matchAnyCommon": false, "platformGroup": {"string": []}, "xrayMaxWhitelistedUserCount": 1}' \
     > result.txt
 ```
 

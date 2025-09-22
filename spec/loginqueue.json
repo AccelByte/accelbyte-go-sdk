@@ -8,7 +8,7 @@
     },
     "description": "Login Queue Service",
     "title": "justice-login-queue-service",
-    "version": "2.2.1"
+    "version": "2.3.0"
   },
   "schemes": [
     "https"
@@ -540,11 +540,11 @@
     "path": "/login-queue/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-08-13T06:24:58+00:00",
-    "gitHash": "e3b84a39e5fbe5f5e48493c39e90bb996478dab9",
+    "buildDate": "2025-09-12T04:20:05+00:00",
+    "gitHash": "1749677b00488c01c08951f6d04527bc13b4a35d",
     "name": "justice-login-queue-service",
     "realm": "staging",
-    "version": "2.2.1",
+    "version": "2.3.0",
     "version-roles-seeding": "1.2.103"
   }
 }

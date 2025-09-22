@@ -132,6 +132,10 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// nativesessionsetting
 	NativeSessionSetting *ModelsNativeSessionSetting `json:"nativeSessionSetting,omitempty"`
 
+	// partycodelength
+	// Format: int32
+	PartyCodeLength int32 `json:"partyCodeLength,omitempty"`
+
 	// persistent
 	// Required: true
 	Persistent *bool `json:"persistent"`

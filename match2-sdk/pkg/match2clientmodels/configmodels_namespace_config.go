@@ -33,6 +33,11 @@ type ConfigmodelsNamespaceConfig struct {
 
 	// platformgroup
 	PlatformGroup map[string][]string `json:"platformGroup,omitempty"`
+
+	// xraymaxwhitelistedusercount
+	// Required: true
+	// Format: int32
+	XrayMaxWhitelistedUserCount *int32 `json:"xrayMaxWhitelistedUserCount"`
 }
 
 // Validate validates this Configmodels namespace config
@@ -40,6 +45,9 @@ func (m *ConfigmodelsNamespaceConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateXrayMaxWhitelistedUserCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,6 +60,15 @@ func (m *ConfigmodelsNamespaceConfig) Validate(formats strfmt.Registry) error {
 func (m *ConfigmodelsNamespaceConfig) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ConfigmodelsNamespaceConfig) validateXrayMaxWhitelistedUserCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("xrayMaxWhitelistedUserCount", "body", m.XrayMaxWhitelistedUserCount); err != nil {
 		return err
 	}
 

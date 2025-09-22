@@ -44,7 +44,7 @@ type ClientmodelClientUpdateV3Request struct {
 	// modulepermissions
 	ModulePermissions []*AccountcommonClientModulePermission `json:"modulePermissions,omitempty"`
 
-	// namespace
+	// DEPRECATED, this field is no longer used
 	Namespace string `json:"namespace,omitempty"`
 
 	// min value 1 second, max value 86400 seconds

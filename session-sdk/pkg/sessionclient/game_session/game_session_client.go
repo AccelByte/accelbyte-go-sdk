@@ -78,7 +78,7 @@ type ClientService interface {
 	PublicKickGameSessionMemberShort(params *PublicKickGameSessionMemberParams, authInfo runtime.ClientAuthInfoWriter) (*PublicKickGameSessionMemberNoContent, error)
 	PublicGameSessionReject(params *PublicGameSessionRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionRejectNoContent, *PublicGameSessionRejectBadRequest, *PublicGameSessionRejectUnauthorized, *PublicGameSessionRejectForbidden, *PublicGameSessionRejectNotFound, *PublicGameSessionRejectInternalServerError, error)
 	PublicGameSessionRejectShort(params *PublicGameSessionRejectParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGameSessionRejectNoContent, error)
-	GetSessionServerSecret(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, *GetSessionServerSecretBadRequest, *GetSessionServerSecretUnauthorized, *GetSessionServerSecretNotFound, *GetSessionServerSecretInternalServerError, error)
+	GetSessionServerSecret(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, *GetSessionServerSecretBadRequest, *GetSessionServerSecretUnauthorized, *GetSessionServerSecretForbidden, *GetSessionServerSecretNotFound, *GetSessionServerSecretInternalServerError, error)
 	GetSessionServerSecretShort(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, error)
 	AppendTeamGameSession(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, *AppendTeamGameSessionUnauthorized, *AppendTeamGameSessionForbidden, *AppendTeamGameSessionNotFound, *AppendTeamGameSessionInternalServerError, error)
 	AppendTeamGameSessionShort(params *AppendTeamGameSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AppendTeamGameSessionOK, error)
@@ -3296,10 +3296,11 @@ In the Response you will get following:
 If there is error:
 - 400 Invalid path parameters
 - 401 unauthorized
+- 403 status forbidden, The User is not active in session
 - 404 StatusNotFound
 - 500 Internal server error
 */
-func (a *Client) GetSessionServerSecret(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, *GetSessionServerSecretBadRequest, *GetSessionServerSecretUnauthorized, *GetSessionServerSecretNotFound, *GetSessionServerSecretInternalServerError, error) {
+func (a *Client) GetSessionServerSecret(params *GetSessionServerSecretParams, authInfo runtime.ClientAuthInfoWriter) (*GetSessionServerSecretOK, *GetSessionServerSecretBadRequest, *GetSessionServerSecretUnauthorized, *GetSessionServerSecretForbidden, *GetSessionServerSecretNotFound, *GetSessionServerSecretInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSessionServerSecretParams()
@@ -3331,28 +3332,31 @@ func (a *Client) GetSessionServerSecret(params *GetSessionServerSecretParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetSessionServerSecretOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *GetSessionServerSecretBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *GetSessionServerSecretUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *GetSessionServerSecretForbidden:
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *GetSessionServerSecretNotFound:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *GetSessionServerSecretInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3377,6 +3381,7 @@ In the Response you will get following:
 If there is error:
 - 400 Invalid path parameters
 - 401 unauthorized
+- 403 status forbidden, The User is not active in session
 - 404 StatusNotFound
 - 500 Internal server error
 */
@@ -3418,6 +3423,8 @@ func (a *Client) GetSessionServerSecretShort(params *GetSessionServerSecretParam
 	case *GetSessionServerSecretBadRequest:
 		return nil, v
 	case *GetSessionServerSecretUnauthorized:
+		return nil, v
+	case *GetSessionServerSecretForbidden:
 		return nil, v
 	case *GetSessionServerSecretNotFound:
 		return nil, v

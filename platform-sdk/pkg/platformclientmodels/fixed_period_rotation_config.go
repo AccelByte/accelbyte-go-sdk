@@ -32,8 +32,8 @@ type FixedPeriodRotationConfig struct {
 	// Format: int32
 	ItemCount int32 `json:"itemCount,omitempty"`
 
-	// rotation rule: SEQUENCE, default is SEQUENCE
-	// Enum: ['SEQUENCE']
+	// item rotation rule: SEQUENCE/LOOP. default is SEQUENCE
+	// Enum: ['LOOP', 'SEQUENCE']
 	Rule string `json:"rule,omitempty"`
 }
 
@@ -80,7 +80,7 @@ var fixedPeriodRotationConfigTypeRulePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["SEQUENCE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["LOOP", "SEQUENCE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -89,6 +89,9 @@ func init() {
 }
 
 const (
+
+	// FixedPeriodRotationConfigRuleLOOP captures enum value "LOOP"
+	FixedPeriodRotationConfigRuleLOOP string = "LOOP"
 
 	// FixedPeriodRotationConfigRuleSEQUENCE captures enum value "SEQUENCE"
 	FixedPeriodRotationConfigRuleSEQUENCE string = "SEQUENCE"

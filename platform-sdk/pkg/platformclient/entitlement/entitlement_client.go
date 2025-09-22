@@ -30,10 +30,10 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	QueryEntitlements1(params *QueryEntitlements1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlements1OK, error)
-	QueryEntitlements1Short(params *QueryEntitlements1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlements1OK, error)
 	QueryEntitlements(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
 	QueryEntitlementsShort(params *QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsOK, error)
+	QueryEntitlementsByItemIds(params *QueryEntitlementsByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsByItemIdsOK, error)
+	QueryEntitlementsByItemIdsShort(params *QueryEntitlementsByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsByItemIdsOK, error)
 	EnableEntitlementOriginFeature(params *EnableEntitlementOriginFeatureParams, authInfo runtime.ClientAuthInfoWriter) (*EnableEntitlementOriginFeatureOK, error)
 	EnableEntitlementOriginFeatureShort(params *EnableEntitlementOriginFeatureParams, authInfo runtime.ClientAuthInfoWriter) (*EnableEntitlementOriginFeatureOK, error)
 	GetEntitlementConfigInfo(params *GetEntitlementConfigInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetEntitlementConfigInfoOK, error)
@@ -151,114 +151,10 @@ type ClientService interface {
 }
 
 /*
-Deprecated: 2022-08-10 - Use QueryEntitlements1Short instead.
-
-QueryEntitlements1 query entitlements
-Query entitlements.
-
-Other detail info:
-
-  * Returns : entitlement list
-*/
-func (a *Client) QueryEntitlements1(params *QueryEntitlements1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlements1OK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewQueryEntitlements1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	if params.XFlightId != nil {
-		params.SetFlightId(*params.XFlightId)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "queryEntitlements_1",
-		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &QueryEntitlements1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *QueryEntitlements1OK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-QueryEntitlements1Short query entitlements
-Query entitlements.
-
-Other detail info:
-
-  * Returns : entitlement list
-*/
-func (a *Client) QueryEntitlements1Short(params *QueryEntitlements1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlements1OK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewQueryEntitlements1Params()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	if params.RetryPolicy != nil {
-		params.SetHTTPClientTransport(params.RetryPolicy)
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "queryEntitlements_1",
-		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &QueryEntitlements1Reader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *QueryEntitlements1OK:
-		return v, nil
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
 Deprecated: 2022-08-10 - Use QueryEntitlementsShort instead.
 
-QueryEntitlements query entitlements by item ids
-Query entitlements by Item Ids.
+QueryEntitlements query entitlements
+Query entitlements.
 
 Other detail info:
 
@@ -285,7 +181,7 @@ func (a *Client) QueryEntitlements(params *QueryEntitlementsParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryEntitlements",
 		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/byItemIds",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -310,8 +206,8 @@ func (a *Client) QueryEntitlements(params *QueryEntitlementsParams, authInfo run
 }
 
 /*
-QueryEntitlementsShort query entitlements by item ids
-Query entitlements by Item Ids.
+QueryEntitlementsShort query entitlements
+Query entitlements.
 
 Other detail info:
 
@@ -334,7 +230,7 @@ func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryEntitlements",
 		Method:             "GET",
-		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/byItemIds",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -351,6 +247,110 @@ func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInf
 	switch v := result.(type) {
 
 	case *QueryEntitlementsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use QueryEntitlementsByItemIdsShort instead.
+
+QueryEntitlementsByItemIds query entitlements by item ids
+Query entitlements by Item Ids.
+
+Other detail info:
+
+  * Returns : entitlement list
+*/
+func (a *Client) QueryEntitlementsByItemIds(params *QueryEntitlementsByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsByItemIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryEntitlementsByItemIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryEntitlementsByItemIds",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/byItemIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryEntitlementsByItemIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryEntitlementsByItemIdsOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+QueryEntitlementsByItemIdsShort query entitlements by item ids
+Query entitlements by Item Ids.
+
+Other detail info:
+
+  * Returns : entitlement list
+*/
+func (a *Client) QueryEntitlementsByItemIdsShort(params *QueryEntitlementsByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryEntitlementsByItemIdsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewQueryEntitlementsByItemIdsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "queryEntitlementsByItemIds",
+		Method:             "GET",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/byItemIds",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &QueryEntitlementsByItemIdsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *QueryEntitlementsByItemIdsOK:
 		return v, nil
 
 	default:

@@ -28,6 +28,10 @@ type APIPatchNamespaceConfigRequest struct {
 
 	// platformgroup
 	PlatformGroup map[string][]string `json:"platformGroup,omitempty"`
+
+	// xraymaxwhitelistedusercount
+	// Format: int32
+	XrayMaxWhitelistedUserCount int32 `json:"xrayMaxWhitelistedUserCount,omitempty"`
 }
 
 // Validate validates this Api patch namespace config request

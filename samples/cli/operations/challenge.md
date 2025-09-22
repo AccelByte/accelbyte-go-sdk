@@ -206,6 +206,7 @@ $ samples/cli/sample-apps Challenge adminDeleteAssignmentPlugin \
 ```sh
 $ samples/cli/sample-apps Challenge adminEvaluateProgress \
     --namespace 'string' \
+    --challengeCode '["string"]' \
     --body '{"userIds": ["string"]}' \
     > result.txt
 ```
@@ -325,6 +326,7 @@ $ samples/cli/sample-apps Challenge publicClaimUserRewardsByGoalCode \
 ```sh
 $ samples/cli/sample-apps Challenge evaluateMyProgress \
     --namespace 'string' \
+    --challengeCode '["string"]' \
     > result.txt
 ```
 

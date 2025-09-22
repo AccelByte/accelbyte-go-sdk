@@ -8,7 +8,7 @@
     },
     "description": "Custom Service Manager",
     "title": "custom-service-manager",
-    "version": "1.26.1"
+    "version": "1.27.0"
   },
   "schemes": [
     "https"
@@ -1842,7 +1842,7 @@
         "operationId": "GetAppListV2",
         "parameters": [
           {
-            "description": "Available scenario:\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
+            "description": "Available scenario:\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2005,7 +2005,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\t\nGet extend app by name\n\nAvailable scenario:\n- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\n- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\n\n\nAvailable app status:\n- \u0026lt;code\u0026gt;app-creating\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-undeployed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-in-progress\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-running\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-down\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopping\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopped\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removing\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-remove-timeout\u0026lt;/code\u0026gt;\n\n\t",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\t\nGet extend app by name\n\nAvailable scenario:\n- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\n- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\n- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n\nAvailable app status:\n- \u0026lt;code\u0026gt;app-creating\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-undeployed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-in-progress\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-running\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-down\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopping\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopped\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removing\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-remove-timeout\u0026lt;/code\u0026gt;\n\n\t",
         "operationId": "GetAppV2",
         "parameters": [
           {
@@ -6354,10 +6354,10 @@
     }
   ],
   "x-version": {
-    "buildDate": "Thu Aug 14 05:14:36 UTC 2025",
-    "gitHash": "2d56e6eb",
+    "buildDate": "Fri Sep 12 06:37:47 UTC 2025",
+    "gitHash": "ba4ba0f9",
     "name": "custom-service-manager",
-    "version": "1.26.1",
+    "version": "1.27.0",
     "version-justice": "3.39.0",
     "version-roles-seeding": "1.2.64"
   }

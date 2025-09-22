@@ -2076,7 +2076,7 @@ $ samples/cli/sample-apps Iam adminGetNamespaceUserInvitationHistoryV4 \
 ```sh
 $ samples/cli/sample-apps Iam adminCreateTestUsersV4 \
     --namespace 'string' \
-    --body '{"count": 1, "userInfo": {}}' \
+    --body '{"acceptedPolicies": [{}], "count": 1, "userInfo": {}}' \
     > result.txt
 ```
 

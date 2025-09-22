@@ -120,6 +120,10 @@ type ApimodelsCreateConfigurationTemplateRequest struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// partycodelength
+	// Format: int32
+	PartyCodeLength int32 `json:"partyCodeLength,omitempty"`
+
 	// persistent
 	// Required: true
 	Persistent *bool `json:"persistent"`

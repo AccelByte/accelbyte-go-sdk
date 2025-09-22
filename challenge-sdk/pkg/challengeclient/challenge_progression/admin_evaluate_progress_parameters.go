@@ -16,6 +16,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclientmodels"
 )
@@ -73,6 +74,11 @@ type AdminEvaluateProgressParams struct {
 
 	*/
 	Namespace string
+	/*ChallengeCode
+	  challenge code to be evaluated, comma separated value
+
+	*/
+	ChallengeCode []string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -161,6 +167,17 @@ func (o *AdminEvaluateProgressParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithChallengeCode adds the challengeCode to the admin evaluate progress params
+func (o *AdminEvaluateProgressParams) WithChallengeCode(challengeCode []string) *AdminEvaluateProgressParams {
+	o.SetChallengeCode(challengeCode)
+	return o
+}
+
+// SetChallengeCode adds the challengeCode to the admin evaluate progress params
+func (o *AdminEvaluateProgressParams) SetChallengeCode(challengeCode []string) {
+	o.ChallengeCode = challengeCode
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminEvaluateProgressParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -177,6 +194,14 @@ func (o *AdminEvaluateProgressParams) WriteToRequest(r runtime.ClientRequest, re
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+		return err
+	}
+
+	valuesChallengeCode := o.ChallengeCode
+
+	joinedChallengeCode := swag.JoinByFormat(valuesChallengeCode, "csv")
+	// query array param challengeCode
+	if err := r.SetQueryParam("challengeCode", joinedChallengeCode...); err != nil {
 		return err
 	}
 

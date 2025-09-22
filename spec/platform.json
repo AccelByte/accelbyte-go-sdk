@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.7.3"
+    "version": "6.8.0"
   },
   "schemes": [
     "https"
@@ -3603,7 +3603,7 @@
     "/platform/admin/namespaces/{namespace}/entitlements": {
       "get": {
         "description": "Query entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "queryEntitlements_1",
+        "operationId": "queryEntitlements",
         "parameters": [
           {
             "in": "path",
@@ -3734,7 +3734,7 @@
     "/platform/admin/namespaces/{namespace}/entitlements/byItemIds": {
       "get": {
         "description": "Query entitlements by Item Ids.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "queryEntitlements",
+        "operationId": "queryEntitlementsByItemIds",
         "parameters": [
           {
             "in": "path",
@@ -38951,8 +38951,9 @@
           "type": "integer"
         },
         "rule": {
-          "description": "rotation rule: SEQUENCE, default is SEQUENCE",
+          "description": "item rotation rule: SEQUENCE/LOOP. default is SEQUENCE",
           "enum": [
+            "LOOP",
             "SEQUENCE"
           ],
           "type": "string"
@@ -52932,16 +52933,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-08-06T08:03:09+00:00",
-    "buildID": "6.7.3",
+    "buildDate": "2025-09-12T12:08:58+00:00",
+    "buildID": "6.8.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.239-236.958.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.240-238.959.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "a3030d303b",
-    "gitTag": "6.7.3",
+    "gitHash": "8116a96789",
+    "gitTag": "6.5.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.7.3",
+    "version": "6.8.0",
     "version-roles-seeding": "1.2.74"
   }
 }

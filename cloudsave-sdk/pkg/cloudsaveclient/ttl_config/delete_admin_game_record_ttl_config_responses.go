@@ -270,8 +270,8 @@ func NewDeleteAdminGameRecordTTLConfigNotFound() *DeleteAdminGameRecordTTLConfig
 
 /*DeleteAdminGameRecordTTLConfigNotFound handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18361</td><td>record not found</td></tr></table>
+*/
 type DeleteAdminGameRecordTTLConfigNotFound struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
 }
@@ -324,8 +324,8 @@ func NewDeleteAdminGameRecordTTLConfigInternalServerError() *DeleteAdminGameReco
 
 /*DeleteAdminGameRecordTTLConfigInternalServerError handles this case with default header values.
 
-
- */
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20000</td><td>internal server error</td></tr><tr><td>18362</td><td>unable to update record</td></tr></table>
+*/
 type DeleteAdminGameRecordTTLConfigInternalServerError struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError
 }

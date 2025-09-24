@@ -2,8 +2,11 @@
 ## [v0.83.0]
 ### chore
 - **:** remove irrelevant sample apps
+- **:** remove samples.err and add to gitignore
 ### docs
 - **readme:** remove broken link
+- **:** add migration guide from v0.82.0 to v0.83.0 for ags 2025.7
+- **:** update CHANGELOG.md
 
 
 <a name="v0.82.0"></a>

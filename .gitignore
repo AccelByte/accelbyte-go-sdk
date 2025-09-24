@@ -238,3 +238,4 @@ samples/**/bin/
 *.tap
 
 .env*
+/samples.err

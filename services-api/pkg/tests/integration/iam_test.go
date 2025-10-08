@@ -480,7 +480,7 @@ func TestIntegration_LoginOrRefreshClient_shouldReAuthenticate(t *testing.T) {
 		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
 		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
-		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.001}, // very small numbers to make token expire sooner
+		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.0001}, // very small numbers to make token expire sooner
 	}
 	clientId := oauthSvc.ConfigRepository.GetClientId()
 	clientSecret := oauthSvc.ConfigRepository.GetClientSecret()
@@ -517,7 +517,7 @@ func TestIntegration_LoginOrRefresh_shouldReAuthenticate(t *testing.T) {
 		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
 		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
-		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.001}, // very small numbers to make token expire sooner
+		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.0001}, // very small numbers to make token expire sooner
 	}
 
 	// first time auth

@@ -42,10 +42,11 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 		res, err := c.inner.RoundTrip(r)
 		if err != nil {
 			logrus.Error("failed to use the RoundTrip method")
+		} else {
+			logrus.Infof("Response: %v", LogResponse(res))
 		}
-		logrus.Infof("Response: %v", LogResponse(res))
 
-		return res, nil
+		return res, err
 	}
 
 	return c.inner.RoundTrip(r)

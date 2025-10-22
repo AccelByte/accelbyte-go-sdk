@@ -9,21 +9,67 @@ import (
 	"net/http"
 )
 
+const nilString = "nil"
+
 func LogRequest(r *http.Request) interface{} {
+	if r == nil {
+		return nilString
+	}
+
+	var url interface{}
+	if r.URL != nil {
+		url = r.URL
+	} else {
+		url = "unknown"
+	}
+
+	var header interface{}
+	if r.Header != nil {
+		header = r.Header
+	} else {
+		header = nilString
+	}
+
 	logString := fmt.Sprintf(
 		"`url`: `%v`, "+
 			"`method`: `%v`, "+
-			"`headers`: `%v`, ", r.URL, r.Method, r.Header)
+			"`headers`: `%v`, ", url, r.Method, header)
 
 	return logString
 }
 
 func LogResponse(r *http.Response) interface{} {
+
+	if r == nil {
+		return nilString
+	}
+
+	var url interface{}
+	if r.Request != nil {
+		url = r.Request.URL
+	} else {
+		url = "unknown"
+	}
+
+	var header interface{}
+	if r.Header != nil {
+		header = r.Header
+	} else {
+		header = nilString
+	}
+
+	var body interface{}
+	if r.Body != nil {
+		body = r.Body
+	} else {
+		body = nilString
+	}
+
 	logString := fmt.Sprintf(
 		"`url`: `%v`, "+
 			"`status_code`: `%v`, "+
 			"`headers`: `%v`, "+
-			"`data`: `%v`, ", r.Request.URL, r.StatusCode, r.Header, r.Body)
+			"`data`: `%v`, ", url, r.StatusCode, header, body)
 
 	return logString
 }

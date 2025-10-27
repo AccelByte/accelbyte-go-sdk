@@ -114,6 +114,8 @@ type ClientService interface {
 	QueryUserIAPConsumeHistoryShort(params *QueryUserIAPConsumeHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserIAPConsumeHistoryOK, error)
 	MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error)
 	MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error)
+	AdminSyncOculusSubscriptions(params *AdminSyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncOculusSubscriptionsOK, *AdminSyncOculusSubscriptionsBadRequest, *AdminSyncOculusSubscriptionsNotFound, error)
+	AdminSyncOculusSubscriptionsShort(params *AdminSyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncOculusSubscriptionsOK, error)
 	AdminGetIAPOrderLineItems(params *AdminGetIAPOrderLineItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetIAPOrderLineItemsOK, error)
 	AdminGetIAPOrderLineItemsShort(params *AdminGetIAPOrderLineItemsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetIAPOrderLineItemsOK, error)
 	AdminSyncSteamAbnormalTransaction(params *AdminSyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamAbnormalTransactionOK, *AdminSyncSteamAbnormalTransactionBadRequest, *AdminSyncSteamAbnormalTransactionNotFound, *AdminSyncSteamAbnormalTransactionConflict, error)
@@ -132,6 +134,8 @@ type ClientService interface {
 	SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error)
 	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
 	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error)
+	SyncOculusSubscriptions(params *SyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusSubscriptionsOK, *SyncOculusSubscriptionsBadRequest, *SyncOculusSubscriptionsNotFound, error)
+	SyncOculusSubscriptionsShort(params *SyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusSubscriptionsOK, error)
 	SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, *SyncOculusConsumableEntitlementsNotFound, error)
 	SyncOculusConsumableEntitlementsShort(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, error)
 	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, *PublicReconcilePlayStationStoreNotFound, error)
@@ -4337,6 +4341,112 @@ func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authI
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminSyncOculusSubscriptionsShort instead.
+
+AdminSyncOculusSubscriptions sync meta quest(oculus) subscription
+this endpoint only return existed subscription transaction info
+*/
+func (a *Client) AdminSyncOculusSubscriptions(params *AdminSyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncOculusSubscriptionsOK, *AdminSyncOculusSubscriptionsBadRequest, *AdminSyncOculusSubscriptionsNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncOculusSubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncOculusSubscriptions",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/oculus/subscription/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncOculusSubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncOculusSubscriptionsOK:
+		return v, nil, nil, nil
+
+	case *AdminSyncOculusSubscriptionsBadRequest:
+		return nil, v, nil, nil
+
+	case *AdminSyncOculusSubscriptionsNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncOculusSubscriptionsShort sync meta quest(oculus) subscription
+this endpoint only return existed subscription transaction info
+*/
+func (a *Client) AdminSyncOculusSubscriptionsShort(params *AdminSyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncOculusSubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncOculusSubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncOculusSubscriptions",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/oculus/subscription/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncOculusSubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncOculusSubscriptionsOK:
+		return v, nil
+	case *AdminSyncOculusSubscriptionsBadRequest:
+		return nil, v
+	case *AdminSyncOculusSubscriptionsNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminGetIAPOrderLineItemsShort instead.
 
 AdminGetIAPOrderLineItems query iap order line items
@@ -5288,6 +5398,112 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 	case *PublicFulfillGoogleIAPItemNotFound:
 		return nil, v
 	case *PublicFulfillGoogleIAPItemConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use SyncOculusSubscriptionsShort instead.
+
+SyncOculusSubscriptions sync meta quest(oculus) subscription
+this endpoint only return existed subscription transaction info
+*/
+func (a *Client) SyncOculusSubscriptions(params *SyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusSubscriptionsOK, *SyncOculusSubscriptionsBadRequest, *SyncOculusSubscriptionsNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOculusSubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOculusSubscriptions",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/oculus/subscription/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOculusSubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOculusSubscriptionsOK:
+		return v, nil, nil, nil
+
+	case *SyncOculusSubscriptionsBadRequest:
+		return nil, v, nil, nil
+
+	case *SyncOculusSubscriptionsNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+SyncOculusSubscriptionsShort sync meta quest(oculus) subscription
+this endpoint only return existed subscription transaction info
+*/
+func (a *Client) SyncOculusSubscriptionsShort(params *SyncOculusSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusSubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncOculusSubscriptionsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncOculusSubscriptions",
+		Method:             "PUT",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/oculus/subscription/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncOculusSubscriptionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncOculusSubscriptionsOK:
+		return v, nil
+	case *SyncOculusSubscriptionsBadRequest:
+		return nil, v
+	case *SyncOculusSubscriptionsNotFound:
 		return nil, v
 
 	default:

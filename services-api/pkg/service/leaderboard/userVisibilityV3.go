@@ -169,6 +169,10 @@ func (aaa *UserVisibilityV3Service) GetHiddenUsersV3Short(input *user_visibility
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -197,6 +201,10 @@ func (aaa *UserVisibilityV3Service) GetUserVisibilityStatusV3Short(input *user_v
 	ok, err := aaa.Client.UserVisibilityV3.GetUserVisibilityStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -229,6 +237,10 @@ func (aaa *UserVisibilityV3Service) SetUserLeaderboardVisibilityV3Short(input *u
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +269,10 @@ func (aaa *UserVisibilityV3Service) SetUserVisibilityV3Short(input *user_visibil
 	ok, err := aaa.Client.UserVisibilityV3.SetUserVisibilityV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

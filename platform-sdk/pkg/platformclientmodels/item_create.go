@@ -66,6 +66,9 @@ type ItemCreate struct {
 	// inventory config
 	InventoryConfig *InventoryConfig `json:"inventoryConfig,omitempty"`
 
+	// Item ID (optional). UUID V4 without hyphen format
+	ItemID string `json:"itemId,omitempty"`
+
 	// itemIds, should be empty if item type is not "BUNDLE"
 	ItemIds []string `json:"itemIds,omitempty"`
 

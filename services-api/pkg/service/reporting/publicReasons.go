@@ -102,6 +102,10 @@ func (aaa *PublicReasonsService) PublicListReasonGroupsShort(input *public_reaso
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -130,6 +134,10 @@ func (aaa *PublicReasonsService) PublicGetReasonsShort(input *public_reasons.Pub
 	ok, err := aaa.Client.PublicReasons.PublicGetReasonsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -294,6 +294,10 @@ func (aaa *ConfigurationService) ListGroupConfigurationAdminV1Short(input *confi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -322,6 +326,10 @@ func (aaa *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *con
 	created, err := aaa.Client.Configuration.CreateGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -354,6 +362,10 @@ func (aaa *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *c
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -382,6 +394,10 @@ func (aaa *ConfigurationService) GetGroupConfigurationAdminV1Short(input *config
 	ok, err := aaa.Client.Configuration.GetGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -444,6 +460,10 @@ func (aaa *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *con
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -474,6 +494,10 @@ func (aaa *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -502,6 +526,10 @@ func (aaa *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1Short(
 	ok, err := aaa.Client.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

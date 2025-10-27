@@ -85,5 +85,9 @@ func (aaa *NativeSessionService) AdminGetListNativeSessionShort(input *native_se
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

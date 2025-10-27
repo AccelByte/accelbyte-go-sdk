@@ -195,6 +195,10 @@ func (aaa *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_ga
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -223,6 +227,10 @@ func (aaa *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin
 	ok, err := aaa.Client.AdminGameRecord.AdminGetGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -255,6 +263,10 @@ func (aaa *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -283,6 +295,10 @@ func (aaa *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admi
 	created, err := aaa.Client.AdminGameRecord.AdminPostGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

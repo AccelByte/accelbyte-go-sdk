@@ -227,6 +227,10 @@ func (aaa *ImagesService) ImageListShort(input *images.ImageListParams) (*amscli
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +261,10 @@ func (aaa *ImagesService) ImagesStorageShort(input *images.ImagesStorageParams) 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -285,6 +293,10 @@ func (aaa *ImagesService) ImageGetShort(input *images.ImageGetParams) (*amsclien
 	ok, err := aaa.Client.Images.ImageGetShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -345,6 +357,10 @@ func (aaa *ImagesService) ImagePatchShort(input *images.ImagePatchParams) (*amsc
 	ok, err := aaa.Client.Images.ImagePatchShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

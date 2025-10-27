@@ -102,6 +102,10 @@ func (aaa *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -130,6 +134,10 @@ func (aaa *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input 
 	ok, err := aaa.Client.Eligibilities.RetrieveEligibilitiesPublicIndirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

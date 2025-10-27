@@ -79,5 +79,9 @@ func (aaa *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicyShort(inp
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }

@@ -1,0 +1,279 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+// Code generated; DO NOT EDIT.
+
+package base_legal_policies_with_namespace
+
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"strings"
+
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
+)
+
+// CreatePolicyReader is a Reader for the CreatePolicy structure.
+type CreatePolicyReader struct {
+	formats strfmt.Registry
+}
+
+// ReadResponse reads a server response into the received o.
+func (o *CreatePolicyReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+	switch response.Code() {
+	case 201:
+		result := NewCreatePolicyCreated()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewCreatePolicyBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 409:
+		result := NewCreatePolicyConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 422:
+		result := NewCreatePolicyUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+
+	default:
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested POST /agreement/admin/namespaces/{namespace}/base-policies returns an error %d: %s", response.Code(), string(data))
+	}
+}
+
+// NewCreatePolicyCreated creates a CreatePolicyCreated with default headers values
+func NewCreatePolicyCreated() *CreatePolicyCreated {
+	return &CreatePolicyCreated{}
+}
+
+/*CreatePolicyCreated handles this case with default header values.
+
+  successful operation
+*/
+type CreatePolicyCreated struct {
+	Payload *legalclientmodels.CreateBasePolicyResponse
+}
+
+func (o *CreatePolicyCreated) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/base-policies][%d] createPolicyCreated  %+v", 201, o.ToJSONString())
+}
+
+func (o *CreatePolicyCreated) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreatePolicyCreated) GetPayload() *legalclientmodels.CreateBasePolicyResponse {
+	return o.Payload
+}
+
+func (o *CreatePolicyCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.CreateBasePolicyResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreatePolicyBadRequest creates a CreatePolicyBadRequest with default headers values
+func NewCreatePolicyBadRequest() *CreatePolicyBadRequest {
+	return &CreatePolicyBadRequest{}
+}
+
+/*CreatePolicyBadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40032</td><td>errors.net.accelbyte.platform.legal.base_policy_namespace_not_match</td></tr><tr><td>40026</td><td>errors.net.accelbyte.platform.legal.not_allow_create_studio_policy</td></tr></table>
+*/
+type CreatePolicyBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *CreatePolicyBadRequest) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/base-policies][%d] createPolicyBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *CreatePolicyBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreatePolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *CreatePolicyBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreatePolicyConflict creates a CreatePolicyConflict with default headers values
+func NewCreatePolicyConflict() *CreatePolicyConflict {
+	return &CreatePolicyConflict{}
+}
+
+/*CreatePolicyConflict handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40030</td><td>errors.net.accelbyte.platform.legal.invalid_policy_type</td></tr></table>
+*/
+type CreatePolicyConflict struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *CreatePolicyConflict) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/base-policies][%d] createPolicyConflict  %+v", 409, o.ToJSONString())
+}
+
+func (o *CreatePolicyConflict) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreatePolicyConflict) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *CreatePolicyConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreatePolicyUnprocessableEntity creates a CreatePolicyUnprocessableEntity with default headers values
+func NewCreatePolicyUnprocessableEntity() *CreatePolicyUnprocessableEntity {
+	return &CreatePolicyUnprocessableEntity{}
+}
+
+/*CreatePolicyUnprocessableEntity handles this case with default header values.
+
+  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20002</td><td>validation error</td></tr></table>
+*/
+type CreatePolicyUnprocessableEntity struct {
+	Payload *legalclientmodels.ValidationErrorEntity
+}
+
+func (o *CreatePolicyUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.ToJSONString())
+}
+
+func (o *CreatePolicyUnprocessableEntity) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CreatePolicyUnprocessableEntity) GetPayload() *legalclientmodels.ValidationErrorEntity {
+	return o.Payload
+}
+
+func (o *CreatePolicyUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ValidationErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}

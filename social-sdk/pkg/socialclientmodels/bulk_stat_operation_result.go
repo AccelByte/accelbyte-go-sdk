@@ -20,6 +20,9 @@ type BulkStatOperationResult struct {
 	// details
 	Details interface{} `json:"details,omitempty"`
 
+	// requestid
+	RequestID string `json:"requestId,omitempty"`
+
 	// statcode
 	StatCode string `json:"statCode,omitempty"`
 

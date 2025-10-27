@@ -51,6 +51,12 @@ func (o *PublicMuteUserReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPublicMuteUserNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPublicMuteUserInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -240,6 +246,60 @@ func (o *PublicMuteUserForbidden) GetPayload() *chatclientmodels.RestapiErrorRes
 }
 
 func (o *PublicMuteUserForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(chatclientmodels.RestapiErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicMuteUserNotFound creates a PublicMuteUserNotFound with default headers values
+func NewPublicMuteUserNotFound() *PublicMuteUserNotFound {
+	return &PublicMuteUserNotFound{}
+}
+
+/*PublicMuteUserNotFound handles this case with default header values.
+
+  Not Found
+*/
+type PublicMuteUserNotFound struct {
+	Payload *chatclientmodels.RestapiErrorResponseBody
+}
+
+func (o *PublicMuteUserNotFound) Error() string {
+	return fmt.Sprintf("[PUT /chat/public/namespaces/{namespace}/topic/{topic}/mute][%d] publicMuteUserNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *PublicMuteUserNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicMuteUserNotFound) GetPayload() *chatclientmodels.RestapiErrorResponseBody {
+	return o.Payload
+}
+
+func (o *PublicMuteUserNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

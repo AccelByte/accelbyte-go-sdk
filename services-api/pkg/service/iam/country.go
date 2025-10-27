@@ -154,6 +154,10 @@ func (aaa *CountryService) AdminGetCountryListV3Short(input *country.AdminGetCou
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +186,10 @@ func (aaa *CountryService) AdminGetCountryBlacklistV3Short(input *country.AdminG
 	ok, err := aaa.Client.Country.AdminGetCountryBlacklistV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -242,6 +250,10 @@ func (aaa *CountryService) PublicGetCountryListV3Short(input *country.PublicGetC
 	ok, err := aaa.Client.Country.PublicGetCountryListV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -105,6 +105,10 @@ func (aaa *TicketV1Service) RefreshTicketShort(input *ticket_v1.RefreshTicketPar
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

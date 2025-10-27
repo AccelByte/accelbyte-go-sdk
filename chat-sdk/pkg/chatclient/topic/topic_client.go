@@ -36,7 +36,7 @@ type ClientService interface {
 	AdminChatHistoryShort(params *AdminChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChatHistoryOK, error)
 	AdminCreateNamespaceTopic(params *AdminCreateNamespaceTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNamespaceTopicOK, error)
 	AdminCreateNamespaceTopicShort(params *AdminCreateNamespaceTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateNamespaceTopicOK, error)
-	AdminTopicList(params *AdminTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicListOK, *AdminTopicListBadRequest, *AdminTopicListUnauthorized, *AdminTopicListForbidden, *AdminTopicListInternalServerError, error)
+	AdminTopicList(params *AdminTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicListOK, *AdminTopicListBadRequest, *AdminTopicListUnauthorized, *AdminTopicListForbidden, *AdminTopicListNotFound, *AdminTopicListInternalServerError, error)
 	AdminTopicListShort(params *AdminTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicListOK, error)
 	AdminCreateTopic(params *AdminCreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTopicOK, error)
 	AdminCreateTopicShort(params *AdminCreateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTopicOK, error)
@@ -46,29 +46,29 @@ type ClientService interface {
 	AdminChannelTopicSummaryShort(params *AdminChannelTopicSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChannelTopicSummaryOK, error)
 	AdminQueryTopicLog(params *AdminQueryTopicLogParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTopicLogOK, *AdminQueryTopicLogBadRequest, *AdminQueryTopicLogUnauthorized, *AdminQueryTopicLogForbidden, *AdminQueryTopicLogInternalServerError, error)
 	AdminQueryTopicLogShort(params *AdminQueryTopicLogParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTopicLogOK, error)
-	AdminUpdateTopic(params *AdminUpdateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTopicOK, error)
+	AdminUpdateTopic(params *AdminUpdateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTopicOK, *AdminUpdateTopicUnauthorized, *AdminUpdateTopicForbidden, *AdminUpdateTopicNotFound, *AdminUpdateTopicInternalServerError, error)
 	AdminUpdateTopicShort(params *AdminUpdateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTopicOK, error)
-	AdminDeleteTopic(params *AdminDeleteTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTopicOK, error)
+	AdminDeleteTopic(params *AdminDeleteTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTopicOK, *AdminDeleteTopicUnauthorized, *AdminDeleteTopicForbidden, *AdminDeleteTopicNotFound, *AdminDeleteTopicInternalServerError, error)
 	AdminDeleteTopicShort(params *AdminDeleteTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTopicOK, error)
-	AdminBanTopicMembers(params *AdminBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBanTopicMembersOK, *AdminBanTopicMembersBadRequest, *AdminBanTopicMembersUnauthorized, *AdminBanTopicMembersForbidden, *AdminBanTopicMembersInternalServerError, error)
+	AdminBanTopicMembers(params *AdminBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBanTopicMembersOK, *AdminBanTopicMembersBadRequest, *AdminBanTopicMembersUnauthorized, *AdminBanTopicMembersForbidden, *AdminBanTopicMembersNotFound, *AdminBanTopicMembersInternalServerError, error)
 	AdminBanTopicMembersShort(params *AdminBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBanTopicMembersOK, error)
 	AdminChannelTopicInfo(params *AdminChannelTopicInfoParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChannelTopicInfoOK, *AdminChannelTopicInfoBadRequest, *AdminChannelTopicInfoUnauthorized, *AdminChannelTopicInfoForbidden, *AdminChannelTopicInfoNotFound, *AdminChannelTopicInfoInternalServerError, error)
 	AdminChannelTopicInfoShort(params *AdminChannelTopicInfoParams, authInfo runtime.ClientAuthInfoWriter) (*AdminChannelTopicInfoOK, error)
 	AdminTopicChatHistory(params *AdminTopicChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicChatHistoryOK, *AdminTopicChatHistoryBadRequest, *AdminTopicChatHistoryUnauthorized, *AdminTopicChatHistoryForbidden, *AdminTopicChatHistoryInternalServerError, error)
 	AdminTopicChatHistoryShort(params *AdminTopicChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicChatHistoryOK, error)
-	AdminSendChat(params *AdminSendChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSendChatOK, *AdminSendChatBadRequest, *AdminSendChatUnauthorized, *AdminSendChatForbidden, *AdminSendChatInternalServerError, error)
+	AdminSendChat(params *AdminSendChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSendChatOK, *AdminSendChatBadRequest, *AdminSendChatUnauthorized, *AdminSendChatForbidden, *AdminSendChatNotFound, *AdminSendChatInternalServerError, error)
 	AdminSendChatShort(params *AdminSendChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSendChatOK, error)
-	AdminDeleteChat(params *AdminDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChatNoContent, *AdminDeleteChatBadRequest, *AdminDeleteChatUnauthorized, *AdminDeleteChatForbidden, *AdminDeleteChatInternalServerError, error)
+	AdminDeleteChat(params *AdminDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChatNoContent, *AdminDeleteChatBadRequest, *AdminDeleteChatUnauthorized, *AdminDeleteChatForbidden, *AdminDeleteChatNotFound, *AdminDeleteChatInternalServerError, error)
 	AdminDeleteChatShort(params *AdminDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChatNoContent, error)
 	AdminTopicMembers(params *AdminTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicMembersOK, *AdminTopicMembersBadRequest, *AdminTopicMembersUnauthorized, *AdminTopicMembersForbidden, *AdminTopicMembersInternalServerError, error)
 	AdminTopicMembersShort(params *AdminTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicMembersOK, error)
 	AdminTopicShards(params *AdminTopicShardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicShardsOK, *AdminTopicShardsBadRequest, *AdminTopicShardsUnauthorized, *AdminTopicShardsForbidden, *AdminTopicShardsInternalServerError, error)
 	AdminTopicShardsShort(params *AdminTopicShardsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicShardsOK, error)
-	AdminUnbanTopicMembers(params *AdminUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanTopicMembersOK, *AdminUnbanTopicMembersBadRequest, *AdminUnbanTopicMembersUnauthorized, *AdminUnbanTopicMembersForbidden, *AdminUnbanTopicMembersInternalServerError, error)
+	AdminUnbanTopicMembers(params *AdminUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanTopicMembersOK, *AdminUnbanTopicMembersBadRequest, *AdminUnbanTopicMembersUnauthorized, *AdminUnbanTopicMembersForbidden, *AdminUnbanTopicMembersNotFound, *AdminUnbanTopicMembersInternalServerError, error)
 	AdminUnbanTopicMembersShort(params *AdminUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanTopicMembersOK, error)
-	AdminAddTopicMember(params *AdminAddTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddTopicMemberOK, error)
+	AdminAddTopicMember(params *AdminAddTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddTopicMemberOK, *AdminAddTopicMemberBadRequest, *AdminAddTopicMemberUnauthorized, *AdminAddTopicMemberForbidden, *AdminAddTopicMemberNotFound, *AdminAddTopicMemberInternalServerError, error)
 	AdminAddTopicMemberShort(params *AdminAddTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddTopicMemberOK, error)
-	AdminRemoveTopicMember(params *AdminRemoveTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveTopicMemberOK, error)
+	AdminRemoveTopicMember(params *AdminRemoveTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveTopicMemberOK, *AdminRemoveTopicMemberUnauthorized, *AdminRemoveTopicMemberForbidden, *AdminRemoveTopicMemberNotFound, *AdminRemoveTopicMemberInternalServerError, error)
 	AdminRemoveTopicMemberShort(params *AdminRemoveTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveTopicMemberOK, error)
 	AdminQueryTopic(params *AdminQueryTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTopicOK, *AdminQueryTopicBadRequest, *AdminQueryTopicUnauthorized, *AdminQueryTopicForbidden, *AdminQueryTopicInternalServerError, error)
 	AdminQueryTopicShort(params *AdminQueryTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTopicOK, error)
@@ -78,17 +78,17 @@ type ClientService interface {
 	PublicGetMutedTopicsShort(params *PublicGetMutedTopicsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMutedTopicsOK, error)
 	PublicTopicList(params *PublicTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*PublicTopicListOK, *PublicTopicListBadRequest, *PublicTopicListUnauthorized, *PublicTopicListForbidden, *PublicTopicListInternalServerError, error)
 	PublicTopicListShort(params *PublicTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*PublicTopicListOK, error)
-	PublicBanTopicMembers(params *PublicBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBanTopicMembersOK, *PublicBanTopicMembersBadRequest, *PublicBanTopicMembersUnauthorized, *PublicBanTopicMembersForbidden, *PublicBanTopicMembersInternalServerError, error)
+	PublicBanTopicMembers(params *PublicBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBanTopicMembersOK, *PublicBanTopicMembersBadRequest, *PublicBanTopicMembersUnauthorized, *PublicBanTopicMembersForbidden, *PublicBanTopicMembersNotFound, *PublicBanTopicMembersInternalServerError, error)
 	PublicBanTopicMembersShort(params *PublicBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBanTopicMembersOK, error)
 	PublicChatHistory(params *PublicChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChatHistoryOK, *PublicChatHistoryBadRequest, *PublicChatHistoryUnauthorized, *PublicChatHistoryForbidden, *PublicChatHistoryInternalServerError, error)
 	PublicChatHistoryShort(params *PublicChatHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChatHistoryOK, error)
 	PublicDeleteChat(params *PublicDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteChatNoContent, *PublicDeleteChatBadRequest, *PublicDeleteChatUnauthorized, *PublicDeleteChatForbidden, *PublicDeleteChatInternalServerError, error)
 	PublicDeleteChatShort(params *PublicDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDeleteChatNoContent, error)
-	PublicMuteUser(params *PublicMuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicMuteUserNoContent, *PublicMuteUserBadRequest, *PublicMuteUserUnauthorized, *PublicMuteUserForbidden, *PublicMuteUserInternalServerError, error)
+	PublicMuteUser(params *PublicMuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicMuteUserNoContent, *PublicMuteUserBadRequest, *PublicMuteUserUnauthorized, *PublicMuteUserForbidden, *PublicMuteUserNotFound, *PublicMuteUserInternalServerError, error)
 	PublicMuteUserShort(params *PublicMuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicMuteUserNoContent, error)
-	PublicUnbanTopicMembers(params *PublicUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnbanTopicMembersOK, *PublicUnbanTopicMembersBadRequest, *PublicUnbanTopicMembersUnauthorized, *PublicUnbanTopicMembersForbidden, *PublicUnbanTopicMembersInternalServerError, error)
+	PublicUnbanTopicMembers(params *PublicUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnbanTopicMembersOK, *PublicUnbanTopicMembersBadRequest, *PublicUnbanTopicMembersUnauthorized, *PublicUnbanTopicMembersForbidden, *PublicUnbanTopicMembersNotFound, *PublicUnbanTopicMembersInternalServerError, error)
 	PublicUnbanTopicMembersShort(params *PublicUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnbanTopicMembersOK, error)
-	PublicUnmuteUser(params *PublicUnmuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnmuteUserNoContent, *PublicUnmuteUserBadRequest, *PublicUnmuteUserUnauthorized, *PublicUnmuteUserForbidden, *PublicUnmuteUserInternalServerError, error)
+	PublicUnmuteUser(params *PublicUnmuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnmuteUserNoContent, *PublicUnmuteUserBadRequest, *PublicUnmuteUserUnauthorized, *PublicUnmuteUserForbidden, *PublicUnmuteUserNotFound, *PublicUnmuteUserInternalServerError, error)
 	PublicUnmuteUserShort(params *PublicUnmuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnmuteUserNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -428,7 +428,7 @@ Deprecated: 2022-08-10 - Use AdminTopicListShort instead.
 AdminTopicList admin get list of topic
 Get chat list of topic in a namespace.
 */
-func (a *Client) AdminTopicList(params *AdminTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicListOK, *AdminTopicListBadRequest, *AdminTopicListUnauthorized, *AdminTopicListForbidden, *AdminTopicListInternalServerError, error) {
+func (a *Client) AdminTopicList(params *AdminTopicListParams, authInfo runtime.ClientAuthInfoWriter) (*AdminTopicListOK, *AdminTopicListBadRequest, *AdminTopicListUnauthorized, *AdminTopicListForbidden, *AdminTopicListNotFound, *AdminTopicListInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminTopicListParams()
@@ -460,28 +460,31 @@ func (a *Client) AdminTopicList(params *AdminTopicListParams, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminTopicListOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminTopicListBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminTopicListUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminTopicListForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminTopicListNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminTopicListInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -529,6 +532,8 @@ func (a *Client) AdminTopicListShort(params *AdminTopicListParams, authInfo runt
 	case *AdminTopicListUnauthorized:
 		return nil, v
 	case *AdminTopicListForbidden:
+		return nil, v
+	case *AdminTopicListNotFound:
 		return nil, v
 	case *AdminTopicListInternalServerError:
 		return nil, v
@@ -988,7 +993,7 @@ Deprecated: 2022-08-10 - Use AdminUpdateTopicShort instead.
 AdminUpdateTopic use to update group information. only group admin can use this operation
 Update group topic in a namespace.
 */
-func (a *Client) AdminUpdateTopic(params *AdminUpdateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTopicOK, error) {
+func (a *Client) AdminUpdateTopic(params *AdminUpdateTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTopicOK, *AdminUpdateTopicUnauthorized, *AdminUpdateTopicForbidden, *AdminUpdateTopicNotFound, *AdminUpdateTopicInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUpdateTopicParams()
@@ -1020,16 +1025,28 @@ func (a *Client) AdminUpdateTopic(params *AdminUpdateTopicParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUpdateTopicOK:
-		return v, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminUpdateTopicUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminUpdateTopicForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminUpdateTopicNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminUpdateTopicInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1072,6 +1089,14 @@ func (a *Client) AdminUpdateTopicShort(params *AdminUpdateTopicParams, authInfo 
 
 	case *AdminUpdateTopicOK:
 		return v, nil
+	case *AdminUpdateTopicUnauthorized:
+		return nil, v
+	case *AdminUpdateTopicForbidden:
+		return nil, v
+	case *AdminUpdateTopicNotFound:
+		return nil, v
+	case *AdminUpdateTopicInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1084,7 +1109,7 @@ Deprecated: 2022-08-10 - Use AdminDeleteTopicShort instead.
 AdminDeleteTopic use to delete group. only group admin can use this operation
 Delete topic in a namespace.
 */
-func (a *Client) AdminDeleteTopic(params *AdminDeleteTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTopicOK, error) {
+func (a *Client) AdminDeleteTopic(params *AdminDeleteTopicParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTopicOK, *AdminDeleteTopicUnauthorized, *AdminDeleteTopicForbidden, *AdminDeleteTopicNotFound, *AdminDeleteTopicInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteTopicParams()
@@ -1116,16 +1141,28 @@ func (a *Client) AdminDeleteTopic(params *AdminDeleteTopicParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteTopicOK:
-		return v, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminDeleteTopicUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminDeleteTopicForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminDeleteTopicNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminDeleteTopicInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1168,6 +1205,14 @@ func (a *Client) AdminDeleteTopicShort(params *AdminDeleteTopicParams, authInfo 
 
 	case *AdminDeleteTopicOK:
 		return v, nil
+	case *AdminDeleteTopicUnauthorized:
+		return nil, v
+	case *AdminDeleteTopicForbidden:
+		return nil, v
+	case *AdminDeleteTopicNotFound:
+		return nil, v
+	case *AdminDeleteTopicInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1180,7 +1225,7 @@ Deprecated: 2022-08-10 - Use AdminBanTopicMembersShort instead.
 AdminBanTopicMembers admins ban user in group topic
 Ban users in some topic. banned user not assigned to shard for channel topic, and cannot send and query chat.
 */
-func (a *Client) AdminBanTopicMembers(params *AdminBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBanTopicMembersOK, *AdminBanTopicMembersBadRequest, *AdminBanTopicMembersUnauthorized, *AdminBanTopicMembersForbidden, *AdminBanTopicMembersInternalServerError, error) {
+func (a *Client) AdminBanTopicMembers(params *AdminBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBanTopicMembersOK, *AdminBanTopicMembersBadRequest, *AdminBanTopicMembersUnauthorized, *AdminBanTopicMembersForbidden, *AdminBanTopicMembersNotFound, *AdminBanTopicMembersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminBanTopicMembersParams()
@@ -1212,28 +1257,31 @@ func (a *Client) AdminBanTopicMembers(params *AdminBanTopicMembersParams, authIn
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminBanTopicMembersOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminBanTopicMembersBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminBanTopicMembersUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminBanTopicMembersForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminBanTopicMembersNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminBanTopicMembersInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1281,6 +1329,8 @@ func (a *Client) AdminBanTopicMembersShort(params *AdminBanTopicMembersParams, a
 	case *AdminBanTopicMembersUnauthorized:
 		return nil, v
 	case *AdminBanTopicMembersForbidden:
+		return nil, v
+	case *AdminBanTopicMembersNotFound:
 		return nil, v
 	case *AdminBanTopicMembersInternalServerError:
 		return nil, v
@@ -1533,7 +1583,7 @@ Deprecated: 2022-08-10 - Use AdminSendChatShort instead.
 AdminSendChat admins send chat to group topic
 Send message to chat topic as system.
 */
-func (a *Client) AdminSendChat(params *AdminSendChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSendChatOK, *AdminSendChatBadRequest, *AdminSendChatUnauthorized, *AdminSendChatForbidden, *AdminSendChatInternalServerError, error) {
+func (a *Client) AdminSendChat(params *AdminSendChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSendChatOK, *AdminSendChatBadRequest, *AdminSendChatUnauthorized, *AdminSendChatForbidden, *AdminSendChatNotFound, *AdminSendChatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminSendChatParams()
@@ -1565,28 +1615,31 @@ func (a *Client) AdminSendChat(params *AdminSendChatParams, authInfo runtime.Cli
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminSendChatOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminSendChatBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminSendChatUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminSendChatForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminSendChatNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminSendChatInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1635,6 +1688,8 @@ func (a *Client) AdminSendChatShort(params *AdminSendChatParams, authInfo runtim
 		return nil, v
 	case *AdminSendChatForbidden:
 		return nil, v
+	case *AdminSendChatNotFound:
+		return nil, v
 	case *AdminSendChatInternalServerError:
 		return nil, v
 
@@ -1649,7 +1704,7 @@ Deprecated: 2022-08-10 - Use AdminDeleteChatShort instead.
 AdminDeleteChat admins delete chat
 Delete chat.
 */
-func (a *Client) AdminDeleteChat(params *AdminDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChatNoContent, *AdminDeleteChatBadRequest, *AdminDeleteChatUnauthorized, *AdminDeleteChatForbidden, *AdminDeleteChatInternalServerError, error) {
+func (a *Client) AdminDeleteChat(params *AdminDeleteChatParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteChatNoContent, *AdminDeleteChatBadRequest, *AdminDeleteChatUnauthorized, *AdminDeleteChatForbidden, *AdminDeleteChatNotFound, *AdminDeleteChatInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteChatParams()
@@ -1681,28 +1736,31 @@ func (a *Client) AdminDeleteChat(params *AdminDeleteChatParams, authInfo runtime
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteChatNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteChatBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteChatUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminDeleteChatForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDeleteChatNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminDeleteChatInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1750,6 +1808,8 @@ func (a *Client) AdminDeleteChatShort(params *AdminDeleteChatParams, authInfo ru
 	case *AdminDeleteChatUnauthorized:
 		return nil, v
 	case *AdminDeleteChatForbidden:
+		return nil, v
+	case *AdminDeleteChatNotFound:
 		return nil, v
 	case *AdminDeleteChatInternalServerError:
 		return nil, v
@@ -1997,7 +2057,7 @@ Deprecated: 2022-08-10 - Use AdminUnbanTopicMembersShort instead.
 AdminUnbanTopicMembers admins unban user in group topic
 Unban users in some topic.
 */
-func (a *Client) AdminUnbanTopicMembers(params *AdminUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanTopicMembersOK, *AdminUnbanTopicMembersBadRequest, *AdminUnbanTopicMembersUnauthorized, *AdminUnbanTopicMembersForbidden, *AdminUnbanTopicMembersInternalServerError, error) {
+func (a *Client) AdminUnbanTopicMembers(params *AdminUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUnbanTopicMembersOK, *AdminUnbanTopicMembersBadRequest, *AdminUnbanTopicMembersUnauthorized, *AdminUnbanTopicMembersForbidden, *AdminUnbanTopicMembersNotFound, *AdminUnbanTopicMembersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminUnbanTopicMembersParams()
@@ -2029,28 +2089,31 @@ func (a *Client) AdminUnbanTopicMembers(params *AdminUnbanTopicMembersParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminUnbanTopicMembersOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminUnbanTopicMembersBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminUnbanTopicMembersUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminUnbanTopicMembersForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminUnbanTopicMembersNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminUnbanTopicMembersInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2099,6 +2162,8 @@ func (a *Client) AdminUnbanTopicMembersShort(params *AdminUnbanTopicMembersParam
 		return nil, v
 	case *AdminUnbanTopicMembersForbidden:
 		return nil, v
+	case *AdminUnbanTopicMembersNotFound:
+		return nil, v
 	case *AdminUnbanTopicMembersInternalServerError:
 		return nil, v
 
@@ -2113,7 +2178,7 @@ Deprecated: 2022-08-10 - Use AdminAddTopicMemberShort instead.
 AdminAddTopicMember admin add user to topic
 Add new member for topic in a namespace.
 */
-func (a *Client) AdminAddTopicMember(params *AdminAddTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddTopicMemberOK, error) {
+func (a *Client) AdminAddTopicMember(params *AdminAddTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminAddTopicMemberOK, *AdminAddTopicMemberBadRequest, *AdminAddTopicMemberUnauthorized, *AdminAddTopicMemberForbidden, *AdminAddTopicMemberNotFound, *AdminAddTopicMemberInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminAddTopicMemberParams()
@@ -2145,16 +2210,31 @@ func (a *Client) AdminAddTopicMember(params *AdminAddTopicMemberParams, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminAddTopicMemberOK:
-		return v, nil
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminAddTopicMemberBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminAddTopicMemberUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminAddTopicMemberForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminAddTopicMemberNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminAddTopicMemberInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2197,6 +2277,16 @@ func (a *Client) AdminAddTopicMemberShort(params *AdminAddTopicMemberParams, aut
 
 	case *AdminAddTopicMemberOK:
 		return v, nil
+	case *AdminAddTopicMemberBadRequest:
+		return nil, v
+	case *AdminAddTopicMemberUnauthorized:
+		return nil, v
+	case *AdminAddTopicMemberForbidden:
+		return nil, v
+	case *AdminAddTopicMemberNotFound:
+		return nil, v
+	case *AdminAddTopicMemberInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2209,7 +2299,7 @@ Deprecated: 2022-08-10 - Use AdminRemoveTopicMemberShort instead.
 AdminRemoveTopicMember admin remove user from topic
 Remove member from topic in a namespace.
 */
-func (a *Client) AdminRemoveTopicMember(params *AdminRemoveTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveTopicMemberOK, error) {
+func (a *Client) AdminRemoveTopicMember(params *AdminRemoveTopicMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveTopicMemberOK, *AdminRemoveTopicMemberUnauthorized, *AdminRemoveTopicMemberForbidden, *AdminRemoveTopicMemberNotFound, *AdminRemoveTopicMemberInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminRemoveTopicMemberParams()
@@ -2241,16 +2331,28 @@ func (a *Client) AdminRemoveTopicMember(params *AdminRemoveTopicMemberParams, au
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminRemoveTopicMemberOK:
-		return v, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminRemoveTopicMemberUnauthorized:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminRemoveTopicMemberForbidden:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminRemoveTopicMemberNotFound:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminRemoveTopicMemberInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2293,6 +2395,14 @@ func (a *Client) AdminRemoveTopicMemberShort(params *AdminRemoveTopicMemberParam
 
 	case *AdminRemoveTopicMemberOK:
 		return v, nil
+	case *AdminRemoveTopicMemberUnauthorized:
+		return nil, v
+	case *AdminRemoveTopicMemberForbidden:
+		return nil, v
+	case *AdminRemoveTopicMemberNotFound:
+		return nil, v
+	case *AdminRemoveTopicMemberInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -2769,7 +2879,7 @@ Deprecated: 2022-08-10 - Use PublicBanTopicMembersShort instead.
 PublicBanTopicMembers public ban topic members in a group topic
 Ban topic members in a group topic.
 */
-func (a *Client) PublicBanTopicMembers(params *PublicBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBanTopicMembersOK, *PublicBanTopicMembersBadRequest, *PublicBanTopicMembersUnauthorized, *PublicBanTopicMembersForbidden, *PublicBanTopicMembersInternalServerError, error) {
+func (a *Client) PublicBanTopicMembers(params *PublicBanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBanTopicMembersOK, *PublicBanTopicMembersBadRequest, *PublicBanTopicMembersUnauthorized, *PublicBanTopicMembersForbidden, *PublicBanTopicMembersNotFound, *PublicBanTopicMembersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicBanTopicMembersParams()
@@ -2801,28 +2911,31 @@ func (a *Client) PublicBanTopicMembers(params *PublicBanTopicMembersParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicBanTopicMembersOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicBanTopicMembersBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicBanTopicMembersUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicBanTopicMembersForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicBanTopicMembersNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicBanTopicMembersInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -2870,6 +2983,8 @@ func (a *Client) PublicBanTopicMembersShort(params *PublicBanTopicMembersParams,
 	case *PublicBanTopicMembersUnauthorized:
 		return nil, v
 	case *PublicBanTopicMembersForbidden:
+		return nil, v
+	case *PublicBanTopicMembersNotFound:
 		return nil, v
 	case *PublicBanTopicMembersInternalServerError:
 		return nil, v
@@ -3117,7 +3232,7 @@ Deprecated: 2022-08-10 - Use PublicMuteUserShort instead.
 PublicMuteUser public mute user in a topic
 Mute user.
 */
-func (a *Client) PublicMuteUser(params *PublicMuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicMuteUserNoContent, *PublicMuteUserBadRequest, *PublicMuteUserUnauthorized, *PublicMuteUserForbidden, *PublicMuteUserInternalServerError, error) {
+func (a *Client) PublicMuteUser(params *PublicMuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicMuteUserNoContent, *PublicMuteUserBadRequest, *PublicMuteUserUnauthorized, *PublicMuteUserForbidden, *PublicMuteUserNotFound, *PublicMuteUserInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicMuteUserParams()
@@ -3149,28 +3264,31 @@ func (a *Client) PublicMuteUser(params *PublicMuteUserParams, authInfo runtime.C
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicMuteUserNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicMuteUserBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicMuteUserUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicMuteUserForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicMuteUserNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicMuteUserInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3219,6 +3337,8 @@ func (a *Client) PublicMuteUserShort(params *PublicMuteUserParams, authInfo runt
 		return nil, v
 	case *PublicMuteUserForbidden:
 		return nil, v
+	case *PublicMuteUserNotFound:
+		return nil, v
 	case *PublicMuteUserInternalServerError:
 		return nil, v
 
@@ -3233,7 +3353,7 @@ Deprecated: 2022-08-10 - Use PublicUnbanTopicMembersShort instead.
 PublicUnbanTopicMembers public unban topic members in a group topic
 Unban topic members in a group topic.
 */
-func (a *Client) PublicUnbanTopicMembers(params *PublicUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnbanTopicMembersOK, *PublicUnbanTopicMembersBadRequest, *PublicUnbanTopicMembersUnauthorized, *PublicUnbanTopicMembersForbidden, *PublicUnbanTopicMembersInternalServerError, error) {
+func (a *Client) PublicUnbanTopicMembers(params *PublicUnbanTopicMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnbanTopicMembersOK, *PublicUnbanTopicMembersBadRequest, *PublicUnbanTopicMembersUnauthorized, *PublicUnbanTopicMembersForbidden, *PublicUnbanTopicMembersNotFound, *PublicUnbanTopicMembersInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUnbanTopicMembersParams()
@@ -3265,28 +3385,31 @@ func (a *Client) PublicUnbanTopicMembers(params *PublicUnbanTopicMembersParams, 
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUnbanTopicMembersOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicUnbanTopicMembersBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicUnbanTopicMembersUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicUnbanTopicMembersForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUnbanTopicMembersNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicUnbanTopicMembersInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3335,6 +3458,8 @@ func (a *Client) PublicUnbanTopicMembersShort(params *PublicUnbanTopicMembersPar
 		return nil, v
 	case *PublicUnbanTopicMembersForbidden:
 		return nil, v
+	case *PublicUnbanTopicMembersNotFound:
+		return nil, v
 	case *PublicUnbanTopicMembersInternalServerError:
 		return nil, v
 
@@ -3349,7 +3474,7 @@ Deprecated: 2022-08-10 - Use PublicUnmuteUserShort instead.
 PublicUnmuteUser public unmute user in a topic
 Unmute user.
 */
-func (a *Client) PublicUnmuteUser(params *PublicUnmuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnmuteUserNoContent, *PublicUnmuteUserBadRequest, *PublicUnmuteUserUnauthorized, *PublicUnmuteUserForbidden, *PublicUnmuteUserInternalServerError, error) {
+func (a *Client) PublicUnmuteUser(params *PublicUnmuteUserParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUnmuteUserNoContent, *PublicUnmuteUserBadRequest, *PublicUnmuteUserUnauthorized, *PublicUnmuteUserForbidden, *PublicUnmuteUserNotFound, *PublicUnmuteUserInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicUnmuteUserParams()
@@ -3381,28 +3506,31 @@ func (a *Client) PublicUnmuteUser(params *PublicUnmuteUserParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicUnmuteUserNoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *PublicUnmuteUserBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *PublicUnmuteUserUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *PublicUnmuteUserForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUnmuteUserNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *PublicUnmuteUserInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -3450,6 +3578,8 @@ func (a *Client) PublicUnmuteUserShort(params *PublicUnmuteUserParams, authInfo 
 	case *PublicUnmuteUserUnauthorized:
 		return nil, v
 	case *PublicUnmuteUserForbidden:
+		return nil, v
+	case *PublicUnmuteUserNotFound:
 		return nil, v
 	case *PublicUnmuteUserInternalServerError:
 		return nil, v

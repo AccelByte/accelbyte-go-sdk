@@ -162,6 +162,10 @@ func (aaa *ConfigService) AdminGetLogConfigShort(input *config.AdminGetLogConfig
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -190,6 +194,10 @@ func (aaa *ConfigService) AdminPatchUpdateLogConfigShort(input *config.AdminPatc
 	ok, err := aaa.Client.Config.AdminPatchUpdateLogConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -222,6 +230,10 @@ func (aaa *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConf
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -252,6 +264,10 @@ func (aaa *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Pa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -280,6 +296,10 @@ func (aaa *ConfigService) AdminPatchConfigV1Short(input *config.AdminPatchConfig
 	ok, err := aaa.Client.Config.AdminPatchConfigV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

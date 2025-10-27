@@ -208,6 +208,10 @@ func (aaa *SectionService) QuerySectionsShort(input *section.QuerySectionsParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -236,6 +240,10 @@ func (aaa *SectionService) CreateSectionShort(input *section.CreateSectionParams
 	created, err := aaa.Client.Section.CreateSectionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -298,6 +306,10 @@ func (aaa *SectionService) GetSectionShort(input *section.GetSectionParams) (*pl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -326,6 +338,10 @@ func (aaa *SectionService) UpdateSectionShort(input *section.UpdateSectionParams
 	ok, err := aaa.Client.Section.UpdateSectionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -386,6 +402,10 @@ func (aaa *SectionService) PublicListActiveSectionsShort(input *section.PublicLi
 	ok, err := aaa.Client.Section.PublicListActiveSectionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

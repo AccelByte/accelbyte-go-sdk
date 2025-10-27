@@ -132,6 +132,9 @@ type ApimodelsConfigurationTemplateResponse struct {
 	// nativesessionsetting
 	NativeSessionSetting *ModelsNativeSessionSetting `json:"nativeSessionSetting,omitempty"`
 
+	// partycodegeneratorstring
+	PartyCodeGeneratorString string `json:"partyCodeGeneratorString,omitempty"`
+
 	// partycodelength
 	// Format: int32
 	PartyCodeLength int32 `json:"partyCodeLength,omitempty"`

@@ -82,5 +82,9 @@ func (aaa *OperationsService) PublicGetMessagesShort(input *operations.PublicGet
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

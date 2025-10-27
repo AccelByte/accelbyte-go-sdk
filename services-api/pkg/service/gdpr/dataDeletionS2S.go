@@ -120,6 +120,10 @@ func (aaa *DataDeletionS2SService) S2SGetListFinishedAccountDeletionRequestShort
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +152,10 @@ func (aaa *DataDeletionS2SService) S2SSubmitUserAccountDeletionRequestShort(inpu
 	created, err := aaa.Client.DataDeletionS2s.S2SSubmitUserAccountDeletionRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

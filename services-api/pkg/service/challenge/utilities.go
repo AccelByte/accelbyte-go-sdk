@@ -91,5 +91,9 @@ func (aaa *UtilitiesService) AdminGetItemReferencesShort(input *utilities.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

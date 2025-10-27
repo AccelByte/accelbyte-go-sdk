@@ -54,13 +54,13 @@ func (aaa *PoliciesWithNamespaceService) DeletePolicy(input *policies_with_names
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use UpdatePolicy1Short instead.
-func (aaa *PoliciesWithNamespaceService) UpdatePolicy1(input *policies_with_namespace.UpdatePolicy1Params) error {
+// Deprecated: 2022-01-10 - please use UpdatePolicyShort instead.
+func (aaa *PoliciesWithNamespaceService) UpdatePolicy(input *policies_with_namespace.UpdatePolicyParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.PoliciesWithNamespace.UpdatePolicy1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.PoliciesWithNamespace.UpdatePolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -71,13 +71,13 @@ func (aaa *PoliciesWithNamespaceService) UpdatePolicy1(input *policies_with_name
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use SetDefaultPolicy3Short instead.
-func (aaa *PoliciesWithNamespaceService) SetDefaultPolicy3(input *policies_with_namespace.SetDefaultPolicy3Params) error {
+// Deprecated: 2022-01-10 - please use SetDefaultPolicyShort instead.
+func (aaa *PoliciesWithNamespaceService) SetDefaultPolicy(input *policies_with_namespace.SetDefaultPolicyParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.PoliciesWithNamespace.SetDefaultPolicy3(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.PoliciesWithNamespace.SetDefaultPolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -118,7 +118,7 @@ func (aaa *PoliciesWithNamespaceService) DeletePolicyShort(input *policies_with_
 	return nil
 }
 
-func (aaa *PoliciesWithNamespaceService) UpdatePolicy1Short(input *policies_with_namespace.UpdatePolicy1Params) error {
+func (aaa *PoliciesWithNamespaceService) UpdatePolicyShort(input *policies_with_namespace.UpdatePolicyParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -140,7 +140,7 @@ func (aaa *PoliciesWithNamespaceService) UpdatePolicy1Short(input *policies_with
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.PoliciesWithNamespace.UpdatePolicy1Short(input, authInfoWriter)
+	_, err := aaa.Client.PoliciesWithNamespace.UpdatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -148,7 +148,7 @@ func (aaa *PoliciesWithNamespaceService) UpdatePolicy1Short(input *policies_with
 	return nil
 }
 
-func (aaa *PoliciesWithNamespaceService) SetDefaultPolicy3Short(input *policies_with_namespace.SetDefaultPolicy3Params) error {
+func (aaa *PoliciesWithNamespaceService) SetDefaultPolicyShort(input *policies_with_namespace.SetDefaultPolicyParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +170,7 @@ func (aaa *PoliciesWithNamespaceService) SetDefaultPolicy3Short(input *policies_
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.PoliciesWithNamespace.SetDefaultPolicy3Short(input, authInfoWriter)
+	_, err := aaa.Client.PoliciesWithNamespace.SetDefaultPolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

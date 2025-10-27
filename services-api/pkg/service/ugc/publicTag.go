@@ -88,5 +88,9 @@ func (aaa *PublicTagService) GetTagShort(input *public_tag.GetTagParams) (*ugccl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

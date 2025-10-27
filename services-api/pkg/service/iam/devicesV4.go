@@ -389,6 +389,10 @@ func (aaa *DevicesV4Service) AdminGetDevicesByUserV4Short(input *devices_v4.Admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -419,6 +423,10 @@ func (aaa *DevicesV4Service) AdminGetBannedDevicesV4Short(input *devices_v4.Admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -447,6 +455,10 @@ func (aaa *DevicesV4Service) AdminGetUserDeviceBansV4Short(input *devices_v4.Adm
 	ok, err := aaa.Client.DevicesV4.AdminGetUserDeviceBansV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -507,6 +519,10 @@ func (aaa *DevicesV4Service) AdminGetDeviceBanV4Short(input *devices_v4.AdminGet
 	ok, err := aaa.Client.DevicesV4.AdminGetDeviceBanV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -599,6 +615,10 @@ func (aaa *DevicesV4Service) AdminGetDeviceTypesV4Short(input *devices_v4.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -629,6 +649,10 @@ func (aaa *DevicesV4Service) AdminGetDeviceBansV4Short(input *devices_v4.AdminGe
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -657,6 +681,10 @@ func (aaa *DevicesV4Service) AdminDecryptDeviceV4Short(input *devices_v4.AdminDe
 	ok, err := aaa.Client.DevicesV4.AdminDecryptDeviceV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -717,6 +745,10 @@ func (aaa *DevicesV4Service) AdminGetUsersByDeviceV4Short(input *devices_v4.Admi
 	ok, err := aaa.Client.DevicesV4.AdminGetUsersByDeviceV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

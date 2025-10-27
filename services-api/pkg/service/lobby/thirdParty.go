@@ -172,6 +172,10 @@ func (aaa *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.A
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -200,6 +204,10 @@ func (aaa *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_part
 	ok, err := aaa.Client.ThirdParty.AdminUpdateThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -232,6 +240,10 @@ func (aaa *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_part
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -260,6 +272,10 @@ func (aaa *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_part
 	noContent, err := aaa.Client.ThirdParty.AdminDeleteThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
+	}
+
+	if noContent == nil {
+		return "", nil
 	}
 
 	return noContent.GetPayload(), nil

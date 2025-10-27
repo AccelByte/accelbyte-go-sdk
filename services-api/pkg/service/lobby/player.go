@@ -430,6 +430,10 @@ func (aaa *PlayerService) AdminGetLobbyCCUShort(input *player.AdminGetLobbyCCUPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -460,6 +464,10 @@ func (aaa *PlayerService) AdminGetBulkPlayerBlockedPlayersV1Short(input *player.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -488,6 +496,10 @@ func (aaa *PlayerService) AdminGetAllPlayerSessionAttributeShort(input *player.A
 	ok, err := aaa.Client.Player.AdminGetAllPlayerSessionAttributeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -550,6 +562,10 @@ func (aaa *PlayerService) AdminGetPlayerSessionAttributeShort(input *player.Admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -580,6 +596,10 @@ func (aaa *PlayerService) AdminGetPlayerBlockedPlayersV1Short(input *player.Admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -608,6 +628,10 @@ func (aaa *PlayerService) AdminGetPlayerBlockedByPlayersV1Short(input *player.Ad
 	ok, err := aaa.Client.Player.AdminGetPlayerBlockedByPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -730,6 +754,10 @@ func (aaa *PlayerService) PublicGetPlayerBlockedPlayersV1Short(input *player.Pub
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -758,6 +786,10 @@ func (aaa *PlayerService) PublicGetPlayerBlockedByPlayersV1Short(input *player.P
 	ok, err := aaa.Client.Player.PublicGetPlayerBlockedByPlayersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

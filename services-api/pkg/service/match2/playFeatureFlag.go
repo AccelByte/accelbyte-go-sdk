@@ -137,6 +137,10 @@ func (aaa *PlayFeatureFlagService) AdminGetPlayFeatureFlagShort(input *play_feat
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -165,6 +169,10 @@ func (aaa *PlayFeatureFlagService) AdminUpsertPlayFeatureFlagShort(input *play_f
 	ok, err := aaa.Client.PlayFeatureFlag.AdminUpsertPlayFeatureFlagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

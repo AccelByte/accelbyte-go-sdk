@@ -88,5 +88,9 @@ func (aaa *PlatformAchievementService) BulkCreatePSNEventShort(input *platform_a
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

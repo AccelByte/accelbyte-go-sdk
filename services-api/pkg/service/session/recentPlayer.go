@@ -169,6 +169,10 @@ func (aaa *RecentPlayerService) AdminGetRecentPlayerShort(input *recent_player.A
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -197,6 +201,10 @@ func (aaa *RecentPlayerService) AdminGetRecentTeamPlayerShort(input *recent_play
 	ok, err := aaa.Client.RecentPlayer.AdminGetRecentTeamPlayerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -229,6 +237,10 @@ func (aaa *RecentPlayerService) PublicGetRecentPlayerShort(input *recent_player.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +269,10 @@ func (aaa *RecentPlayerService) PublicGetRecentTeamPlayerShort(input *recent_pla
 	ok, err := aaa.Client.RecentPlayer.PublicGetRecentTeamPlayerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

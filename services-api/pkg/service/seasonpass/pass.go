@@ -197,6 +197,10 @@ func (aaa *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*seas
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -227,6 +231,10 @@ func (aaa *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpa
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -255,6 +263,10 @@ func (aaa *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclie
 	ok, err := aaa.Client.Pass.GetPassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -317,6 +329,10 @@ func (aaa *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -345,6 +361,10 @@ func (aaa *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*se
 	ok, err := aaa.Client.Pass.GrantUserPassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

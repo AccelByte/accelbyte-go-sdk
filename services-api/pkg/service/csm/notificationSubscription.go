@@ -273,6 +273,10 @@ func (aaa *NotificationSubscriptionService) GetNotificationSubscriberListV2Short
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -301,6 +305,10 @@ func (aaa *NotificationSubscriptionService) BulkSaveSubscriptionAppNotificationV
 	ok, err := aaa.Client.NotificationSubscription.BulkSaveSubscriptionAppNotificationV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -333,6 +341,10 @@ func (aaa *NotificationSubscriptionService) SubscribeAppNotificationV2Short(inpu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -361,6 +373,10 @@ func (aaa *NotificationSubscriptionService) GetSubscriptionV2HandlerShort(input 
 	ok, err := aaa.Client.NotificationSubscription.GetSubscriptionV2HandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

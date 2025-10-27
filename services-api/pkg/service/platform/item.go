@@ -975,6 +975,10 @@ func (aaa *ItemService) ListItemTypeConfigsShort(input *item.ListItemTypeConfigs
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1035,6 +1039,10 @@ func (aaa *ItemService) SearchItemTypeConfigShort(input *item.SearchItemTypeConf
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1065,6 +1073,10 @@ func (aaa *ItemService) GetItemTypeConfigShort(input *item.GetItemTypeConfigPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1093,6 +1105,10 @@ func (aaa *ItemService) UpdateItemTypeConfigShort(input *item.UpdateItemTypeConf
 	ok, err := aaa.Client.Item.UpdateItemTypeConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1155,6 +1171,10 @@ func (aaa *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1183,6 +1203,10 @@ func (aaa *ItemService) CreateItemShort(input *item.CreateItemParams) (*platform
 	created, err := aaa.Client.Item.CreateItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -1215,6 +1239,10 @@ func (aaa *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams) (*
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1243,6 +1271,10 @@ func (aaa *ItemService) QueryItemsShort(input *item.QueryItemsParams) (*platform
 	ok, err := aaa.Client.Item.QueryItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1275,6 +1307,10 @@ func (aaa *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItems
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1303,6 +1339,10 @@ func (aaa *ItemService) GetItemsShort(input *item.GetItemsParams) ([]*platformcl
 	ok, err := aaa.Client.Item.GetItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1335,6 +1375,10 @@ func (aaa *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*plat
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1363,6 +1407,10 @@ func (aaa *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPa
 	ok, err := aaa.Client.Item.GetLocaleItemBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1395,6 +1443,10 @@ func (aaa *ItemService) GetEstimatedPriceShort(input *item.GetEstimatedPricePara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1423,6 +1475,10 @@ func (aaa *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*
 	ok, err := aaa.Client.Item.GetItemIDBySkuShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1455,6 +1511,10 @@ func (aaa *ItemService) GetBulkItemIDBySkusShort(input *item.GetBulkItemIDBySkus
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1483,6 +1543,10 @@ func (aaa *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPa
 	ok, err := aaa.Client.Item.BulkGetLocaleItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1515,6 +1579,10 @@ func (aaa *ItemService) GetAvailablePredicateTypesShort(input *item.GetAvailable
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1543,6 +1611,10 @@ func (aaa *ItemService) ValidateItemPurchaseConditionShort(input *item.ValidateI
 	ok, err := aaa.Client.Item.ValidateItemPurchaseConditionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1605,6 +1677,10 @@ func (aaa *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platfo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1633,6 +1709,10 @@ func (aaa *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategori
 	ok, err := aaa.Client.Item.QueryUncategorizedItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1665,6 +1745,10 @@ func (aaa *ItemService) GetItemShort(input *item.GetItemParams) (*platformclient
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1693,6 +1777,10 @@ func (aaa *ItemService) UpdateItemShort(input *item.UpdateItemParams) (*platform
 	ok, err := aaa.Client.Item.UpdateItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1755,6 +1843,10 @@ func (aaa *ItemService) AcquireItemShort(input *item.AcquireItemParams) (*platfo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1783,6 +1875,10 @@ func (aaa *ItemService) GetAppShort(input *item.GetAppParams) (*platformclientmo
 	ok, err := aaa.Client.Item.GetAppShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1815,6 +1911,10 @@ func (aaa *ItemService) UpdateAppShort(input *item.UpdateAppParams) (*platformcl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1843,6 +1943,10 @@ func (aaa *ItemService) DisableItemShort(input *item.DisableItemParams) (*platfo
 	ok, err := aaa.Client.Item.DisableItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1875,6 +1979,10 @@ func (aaa *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1903,6 +2011,10 @@ func (aaa *ItemService) EnableItemShort(input *item.EnableItemParams) (*platform
 	ok, err := aaa.Client.Item.EnableItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1935,6 +2047,10 @@ func (aaa *ItemService) FeatureItemShort(input *item.FeatureItemParams) (*platfo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1963,6 +2079,10 @@ func (aaa *ItemService) DefeatureItemShort(input *item.DefeatureItemParams) (*pl
 	ok, err := aaa.Client.Item.DefeatureItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1995,6 +2115,10 @@ func (aaa *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams) (*pl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2025,6 +2149,10 @@ func (aaa *ItemService) UpdateItemPurchaseConditionShort(input *item.UpdateItemP
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2053,6 +2181,10 @@ func (aaa *ItemService) QueryItemReferencesShort(input *item.QueryItemReferences
 	ok, err := aaa.Client.Item.QueryItemReferencesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -2115,6 +2247,10 @@ func (aaa *ItemService) PublicGetItemByAppIDShort(input *item.PublicGetItemByApp
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2143,6 +2279,10 @@ func (aaa *ItemService) PublicQueryItemsShort(input *item.PublicQueryItemsParams
 	ok, err := aaa.Client.Item.PublicQueryItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -2175,6 +2315,10 @@ func (aaa *ItemService) PublicGetItemBySkuShort(input *item.PublicGetItemBySkuPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2203,6 +2347,10 @@ func (aaa *ItemService) PublicGetEstimatedPriceShort(input *item.PublicGetEstima
 	ok, err := aaa.Client.Item.PublicGetEstimatedPriceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -2235,6 +2383,10 @@ func (aaa *ItemService) PublicBulkGetItemsShort(input *item.PublicBulkGetItemsPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2263,6 +2415,10 @@ func (aaa *ItemService) PublicValidateItemPurchaseConditionShort(input *item.Pub
 	ok, err := aaa.Client.Item.PublicValidateItemPurchaseConditionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -2295,6 +2451,10 @@ func (aaa *ItemService) PublicSearchItemsShort(input *item.PublicSearchItemsPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2316,6 +2476,10 @@ func (aaa *ItemService) PublicGetAppShort(input *item.PublicGetAppParams) (*plat
 	ok, err := aaa.Client.Item.PublicGetAppShort(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -2348,6 +2512,10 @@ func (aaa *ItemService) PublicGetItemDynamicDataShort(input *item.PublicGetItemD
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2378,6 +2546,10 @@ func (aaa *ItemService) PublicGetItemShort(input *item.PublicGetItemParams) (*pl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2406,6 +2578,10 @@ func (aaa *ItemService) QueryItemsV2Short(input *item.QueryItemsV2Params) (*plat
 	ok, err := aaa.Client.Item.QueryItemsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -4737,6 +4737,10 @@ func (aaa *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamcli
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4765,6 +4769,10 @@ func (aaa *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersBy
 	ok, err := aaa.Client.Users.GetAdminUsersByRoleIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -4797,6 +4805,10 @@ func (aaa *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4825,6 +4837,10 @@ func (aaa *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlat
 	ok, err := aaa.Client.Users.GetUserByPlatformUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -4888,6 +4904,10 @@ func (aaa *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIds
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4949,6 +4969,10 @@ func (aaa *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamcli
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4979,6 +5003,10 @@ func (aaa *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5007,6 +5035,10 @@ func (aaa *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamcli
 	ok, err := aaa.Client.Users.UpdateUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5069,6 +5101,10 @@ func (aaa *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmod
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -5097,6 +5133,10 @@ func (aaa *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryPa
 	ok, err := aaa.Client.Users.GetUserBanHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5129,6 +5169,10 @@ func (aaa *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5157,6 +5201,10 @@ func (aaa *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*
 	ok, err := aaa.Client.Users.EnableUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5279,6 +5327,10 @@ func (aaa *UsersService) GetUserInformationShort(input *users.GetUserInformation
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5337,6 +5389,10 @@ func (aaa *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHis
 	ok, err := aaa.Client.Users.GetUserLoginHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5489,6 +5545,10 @@ func (aaa *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatfo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5519,6 +5579,10 @@ func (aaa *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5547,6 +5611,10 @@ func (aaa *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUser
 	ok, err := aaa.Client.Users.GetUserJusticePlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5637,6 +5705,10 @@ func (aaa *UsersService) GetPublisherUserShort(input *users.GetPublisherUserPara
 	ok, err := aaa.Client.Users.GetPublisherUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5759,6 +5831,10 @@ func (aaa *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadles
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5787,6 +5863,10 @@ func (aaa *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *
 	ok, err := aaa.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5879,6 +5959,10 @@ func (aaa *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5907,6 +5991,10 @@ func (aaa *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.Adm
 	ok, err := aaa.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5939,6 +6027,10 @@ func (aaa *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListC
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5967,6 +6059,10 @@ func (aaa *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCou
 	ok, err := aaa.Client.Users.UpdateCountryAgeRestrictionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -5999,6 +6095,10 @@ func (aaa *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6027,6 +6127,10 @@ func (aaa *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserBy
 	ok, err := aaa.Client.Users.AdminGetUserByUserIDV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6059,6 +6163,10 @@ func (aaa *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Pa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6089,6 +6197,10 @@ func (aaa *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) 
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -6117,6 +6229,10 @@ func (aaa *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Pa
 	ok, err := aaa.Client.Users.AdminGetUserBanV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6329,6 +6445,10 @@ func (aaa *UsersService) PublicGetCountryAgeRestrictionShort(input *users.Public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6357,6 +6477,10 @@ func (aaa *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2
 	created, err := aaa.Client.Users.PublicCreateUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -6449,6 +6573,10 @@ func (aaa *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUser
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6479,6 +6607,10 @@ func (aaa *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6507,6 +6639,10 @@ func (aaa *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanPara
 	ok, err := aaa.Client.Users.PublicGetUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6567,6 +6703,10 @@ func (aaa *UsersService) GetListJusticePlatformAccountsShort(input *users.GetLis
 	ok, err := aaa.Client.Users.GetListJusticePlatformAccountsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6659,6 +6799,10 @@ func (aaa *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*ia
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6687,6 +6831,10 @@ func (aaa *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminG
 	ok, err := aaa.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6719,6 +6867,10 @@ func (aaa *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.Adm
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6747,6 +6899,10 @@ func (aaa *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.A
 	ok, err := aaa.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6779,6 +6935,10 @@ func (aaa *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.Ad
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6807,6 +6967,10 @@ func (aaa *UsersService) AdminListUserIDByPlatformUserIDsV3Short(input *users.Ad
 	ok, err := aaa.Client.Users.AdminListUserIDByPlatformUserIDsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6839,6 +7003,10 @@ func (aaa *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6869,6 +7037,10 @@ func (aaa *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsers
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6897,6 +7069,10 @@ func (aaa *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGet
 	ok, err := aaa.Client.Users.AdminGetUserByEmailAddressV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -6959,6 +7135,10 @@ func (aaa *UsersService) AdminGetBulkUserBanV3Short(input *users.AdminGetBulkUse
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -6987,6 +7167,10 @@ func (aaa *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListU
 	ok, err := aaa.Client.Users.AdminListUserIDByUserIDsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7019,6 +7203,10 @@ func (aaa *UsersService) AdminBulkGetUsersPlatformShort(input *users.AdminBulkGe
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7047,6 +7235,10 @@ func (aaa *UsersService) AdminCursorGetUserV3Short(input *users.AdminCursorGetUs
 	ok, err := aaa.Client.Users.AdminCursorGetUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7079,6 +7271,10 @@ func (aaa *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Pa
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -7107,6 +7303,10 @@ func (aaa *UsersService) AdminQueryThirdPlatformLinkHistoryV3Short(input *users.
 	ok, err := aaa.Client.Users.AdminQueryThirdPlatformLinkHistoryV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7139,6 +7339,10 @@ func (aaa *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Para
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7167,6 +7371,10 @@ func (aaa *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Pa
 	ok, err := aaa.Client.Users.AdminSearchUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7199,6 +7407,10 @@ func (aaa *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.Admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7227,6 +7439,10 @@ func (aaa *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserBy
 	ok, err := aaa.Client.Users.AdminGetUserByUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7259,6 +7475,10 @@ func (aaa *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Pa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7287,6 +7507,10 @@ func (aaa *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Pa
 	ok, err := aaa.Client.Users.AdminGetUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7319,6 +7543,10 @@ func (aaa *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) 
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -7349,6 +7577,10 @@ func (aaa *UsersService) AdminGetUserBanSummaryV3Short(input *users.AdminGetUser
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7377,6 +7609,10 @@ func (aaa *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserB
 	ok, err := aaa.Client.Users.AdminUpdateUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7469,6 +7705,10 @@ func (aaa *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerifi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7497,6 +7737,10 @@ func (aaa *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGet
 	ok, err := aaa.Client.Users.AdminGetUserDeletionStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7559,6 +7803,10 @@ func (aaa *UsersService) AdminListUserAllPlatformAccountsDistinctV3Short(input *
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7587,6 +7835,10 @@ func (aaa *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUp
 	ok, err := aaa.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7647,6 +7899,10 @@ func (aaa *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGet
 	ok, err := aaa.Client.Users.AdminGetUserLoginHistoriesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7829,6 +8085,10 @@ func (aaa *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7857,6 +8117,10 @@ func (aaa *UsersService) AdminListAllDistinctPlatformAccountsV3Short(input *user
 	ok, err := aaa.Client.Users.AdminListAllDistinctPlatformAccountsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -7889,6 +8153,10 @@ func (aaa *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.A
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7919,6 +8187,10 @@ func (aaa *UsersService) AdminGetUserMappingShort(input *users.AdminGetUserMappi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -7947,6 +8219,10 @@ func (aaa *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJus
 	created, err := aaa.Client.Users.AdminCreateJusticeUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -8007,6 +8283,10 @@ func (aaa *UsersService) AdminGetUserLinkHistoriesV3Short(input *users.AdminGetU
 	ok, err := aaa.Client.Users.AdminGetUserLinkHistoriesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -8189,6 +8469,10 @@ func (aaa *UsersService) AdminGetThirdPartyPlatformTokenLinkStatusV3Short(input 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8217,6 +8501,10 @@ func (aaa *UsersService) AdminGetUserSinglePlatformAccountShort(input *users.Adm
 	ok, err := aaa.Client.Users.AdminGetUserSinglePlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -8369,6 +8657,10 @@ func (aaa *UsersService) AdminGetUserStateByUserIDV3Short(input *users.AdminGetU
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8489,6 +8781,10 @@ func (aaa *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Para
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8517,6 +8813,10 @@ func (aaa *UsersService) PublicGetCountryAgeRestrictionV3Short(input *users.Publ
 	ok, err := aaa.Client.Users.PublicGetCountryAgeRestrictionV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -8549,6 +8849,10 @@ func (aaa *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.P
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8577,6 +8881,10 @@ func (aaa *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.Publi
 	ok, err := aaa.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -8609,6 +8917,10 @@ func (aaa *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncSt
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8639,6 +8951,10 @@ func (aaa *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8667,6 +8983,10 @@ func (aaa *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3
 	created, err := aaa.Client.Users.PublicCreateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -8727,6 +9047,10 @@ func (aaa *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsers
 	ok, err := aaa.Client.Users.PublicBulkGetUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -8849,6 +9173,10 @@ func (aaa *UsersService) PublicValidateUserInputShort(input *users.PublicValidat
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8877,6 +9205,10 @@ func (aaa *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitati
 	ok, err := aaa.Client.Users.GetAdminInvitationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -8909,6 +9241,10 @@ func (aaa *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUser
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -8939,6 +9275,10 @@ func (aaa *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) (*ia
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -8967,6 +9307,10 @@ func (aaa *UsersService) PublicPartialUpdateUserV3Short(input *users.PublicParti
 	ok, err := aaa.Client.Users.PublicPartialUpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9059,6 +9403,10 @@ func (aaa *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.Public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9087,6 +9435,10 @@ func (aaa *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicV
 	ok, err := aaa.Client.Users.PublicVerifyHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9147,6 +9499,10 @@ func (aaa *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJ
 	created, err := aaa.Client.Users.PublicCreateJusticeUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -9299,6 +9655,10 @@ func (aaa *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9359,6 +9719,10 @@ func (aaa *UsersService) PublicProcessWebLinkPlatformV3Short(input *users.Public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9387,6 +9751,10 @@ func (aaa *UsersService) PublicGetUsersPlatformInfosV3Short(input *users.PublicG
 	ok, err := aaa.Client.Users.PublicGetUsersPlatformInfosV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9449,6 +9817,10 @@ func (aaa *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUser
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9477,6 +9849,10 @@ func (aaa *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUs
 	ok, err := aaa.Client.Users.PublicGetUserBanHistoryV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9509,6 +9885,10 @@ func (aaa *UsersService) PublicListUserAllPlatformAccountsDistinctV3Short(input 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9537,6 +9917,10 @@ func (aaa *UsersService) PublicGetUserInformationV3Short(input *users.PublicGetU
 	ok, err := aaa.Client.Users.PublicGetUserInformationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9569,6 +9953,10 @@ func (aaa *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9599,6 +9987,10 @@ func (aaa *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.Publi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9627,6 +10019,10 @@ func (aaa *UsersService) PublicListJusticePlatformAccountsV3Short(input *users.P
 	ok, err := aaa.Client.Users.PublicListJusticePlatformAccountsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9719,6 +10115,10 @@ func (aaa *UsersService) PublicGetPublisherUserV3Short(input *users.PublicGetPub
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9779,6 +10179,10 @@ func (aaa *UsersService) PublicForgotPasswordWithoutNamespaceV3Short(input *user
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9807,6 +10211,10 @@ func (aaa *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Pa
 	ok, err := aaa.Client.Users.PublicGetMyUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -9869,6 +10277,10 @@ func (aaa *UsersService) PublicGetLinkHeadlessAccountToMyAccountConflictV3Short(
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9929,6 +10341,10 @@ func (aaa *UsersService) PublicGetMyRedirectionAfterLinkV3Short(input *users.Pub
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -9957,6 +10373,10 @@ func (aaa *UsersService) PublicGetMyProfileAllowUpdateStatusV3Short(input *users
 	ok, err := aaa.Client.Users.PublicGetMyProfileAllowUpdateStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -10017,6 +10437,10 @@ func (aaa *UsersService) PublicGetOpenidUserInfoV3Short(input *users.PublicGetOp
 	ok, err := aaa.Client.Users.PublicGetOpenidUserInfoV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

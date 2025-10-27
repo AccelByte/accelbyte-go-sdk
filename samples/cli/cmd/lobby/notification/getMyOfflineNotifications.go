@@ -26,16 +26,8 @@ var GetMyOfflineNotificationsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		endTime, _ := cmd.Flags().GetInt64("endTime")
-		limit, _ := cmd.Flags().GetInt64("limit")
-		offset, _ := cmd.Flags().GetInt64("offset")
-		startTime, _ := cmd.Flags().GetInt64("startTime")
 		input := &notification.GetMyOfflineNotificationsParams{
 			Namespace: namespace,
-			EndTime:   &endTime,
-			Limit:     &limit,
-			Offset:    &offset,
-			StartTime: &startTime,
 		}
 		ok, errOK := notificationService.GetMyOfflineNotificationsShort(input)
 		if errOK != nil {
@@ -53,8 +45,4 @@ var GetMyOfflineNotificationsCmd = &cobra.Command{
 func init() {
 	GetMyOfflineNotificationsCmd.Flags().String("namespace", "", "Namespace")
 	_ = GetMyOfflineNotificationsCmd.MarkFlagRequired("namespace")
-	GetMyOfflineNotificationsCmd.Flags().Int64("endTime", 0, "End time")
-	GetMyOfflineNotificationsCmd.Flags().Int64("limit", 20, "Limit")
-	GetMyOfflineNotificationsCmd.Flags().Int64("offset", 0, "Offset")
-	GetMyOfflineNotificationsCmd.Flags().Int64("startTime", 0, "Start time")
 }

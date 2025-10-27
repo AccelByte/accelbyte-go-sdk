@@ -198,6 +198,10 @@ func (aaa *MatchFunctionsService) MatchFunctionListShort(input *match_functions.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -258,6 +262,10 @@ func (aaa *MatchFunctionsService) MatchFunctionGetShort(input *match_functions.M
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -286,6 +294,10 @@ func (aaa *MatchFunctionsService) UpdateMatchFunctionShort(input *match_function
 	ok, err := aaa.Client.MatchFunctions.UpdateMatchFunctionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

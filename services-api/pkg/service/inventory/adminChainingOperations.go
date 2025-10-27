@@ -94,5 +94,9 @@ func (aaa *AdminChainingOperationsService) AdminCreateChainingOperationsShort(in
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

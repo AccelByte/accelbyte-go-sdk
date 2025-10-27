@@ -88,5 +88,9 @@ func (aaa *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_d
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

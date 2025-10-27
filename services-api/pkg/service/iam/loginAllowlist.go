@@ -114,6 +114,10 @@ func (aaa *LoginAllowlistService) AdminGetLoginAllowlistV3Short(input *login_all
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

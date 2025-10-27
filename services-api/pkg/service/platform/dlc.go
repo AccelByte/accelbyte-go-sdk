@@ -383,6 +383,10 @@ func (aaa *DLCService) GetDLCItemConfigHistoryShort(input *dlc.GetDLCItemConfigH
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -443,6 +447,10 @@ func (aaa *DLCService) GetDLCItemConfigShort(input *dlc.GetDLCItemConfigParams) 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -471,6 +479,10 @@ func (aaa *DLCService) UpdateDLCItemConfigShort(input *dlc.UpdateDLCItemConfigPa
 	ok, err := aaa.Client.DLC.UpdateDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -533,6 +545,10 @@ func (aaa *DLCService) GetPlatformDLCConfigShort(input *dlc.GetPlatformDLCConfig
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -561,6 +577,10 @@ func (aaa *DLCService) UpdatePlatformDLCConfigShort(input *dlc.UpdatePlatformDLC
 	ok, err := aaa.Client.DLC.UpdatePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -623,6 +643,10 @@ func (aaa *DLCService) GetUserDLCByPlatformShort(input *dlc.GetUserDLCByPlatform
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -653,6 +677,10 @@ func (aaa *DLCService) GetUserDLCShort(input *dlc.GetUserDLCParams) ([]*platform
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -681,6 +709,10 @@ func (aaa *DLCService) GeDLCDurableRewardShortMapShort(input *dlc.GeDLCDurableRe
 	ok, err := aaa.Client.DLC.GeDLCDurableRewardShortMapShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -891,6 +923,10 @@ func (aaa *DLCService) PublicGetMyDLCContentShort(input *dlc.PublicGetMyDLCConte
 	ok, err := aaa.Client.DLC.PublicGetMyDLCContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

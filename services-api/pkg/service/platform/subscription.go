@@ -391,6 +391,10 @@ func (aaa *SubscriptionService) QuerySubscriptionsShort(input *subscription.Quer
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -419,6 +423,10 @@ func (aaa *SubscriptionService) RecurringChargeSubscriptionShort(input *subscrip
 	ok, err := aaa.Client.Subscription.RecurringChargeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -451,6 +459,10 @@ func (aaa *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -479,6 +491,10 @@ func (aaa *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscr
 	ok, err := aaa.Client.Subscription.GetUserSubscriptionActivitiesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -511,6 +527,10 @@ func (aaa *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscr
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -541,6 +561,10 @@ func (aaa *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(i
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -569,6 +593,10 @@ func (aaa *SubscriptionService) GetUserSubscriptionShort(input *subscription.Get
 	ok, err := aaa.Client.Subscription.GetUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -631,6 +659,10 @@ func (aaa *SubscriptionService) CancelSubscriptionShort(input *subscription.Canc
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -661,6 +693,10 @@ func (aaa *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -689,6 +725,10 @@ func (aaa *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *
 	ok, err := aaa.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -751,6 +791,10 @@ func (aaa *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscri
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -811,6 +855,10 @@ func (aaa *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDS
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -839,6 +887,10 @@ func (aaa *SubscriptionService) PublicGetUserSubscriptionShort(input *subscripti
 	ok, err := aaa.Client.Subscription.PublicGetUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -871,6 +923,10 @@ func (aaa *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(inpu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -901,6 +957,10 @@ func (aaa *SubscriptionService) PublicCancelSubscriptionShort(input *subscriptio
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -929,6 +989,10 @@ func (aaa *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(i
 	ok, err := aaa.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

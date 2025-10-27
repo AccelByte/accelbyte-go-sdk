@@ -128,6 +128,10 @@ func (aaa *AdminItemTypesService) AdminListItemTypesShort(input *admin_item_type
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -156,6 +160,10 @@ func (aaa *AdminItemTypesService) AdminCreateItemTypeShort(input *admin_item_typ
 	created, err := aaa.Client.AdminItemTypes.AdminCreateItemTypeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

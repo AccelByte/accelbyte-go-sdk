@@ -16,19 +16,13 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewGetMyOfflineNotificationsParams creates a new GetMyOfflineNotificationsParams object
 // with the default values initialized.
 func NewGetMyOfflineNotificationsParams() *GetMyOfflineNotificationsParams {
-	var (
-		limitDefault  = int64(25)
-		offsetDefault = int64(0)
-	)
+	var ()
 	return &GetMyOfflineNotificationsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -37,13 +31,8 @@ func NewGetMyOfflineNotificationsParams() *GetMyOfflineNotificationsParams {
 // NewGetMyOfflineNotificationsParamsWithTimeout creates a new GetMyOfflineNotificationsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetMyOfflineNotificationsParamsWithTimeout(timeout time.Duration) *GetMyOfflineNotificationsParams {
-	var (
-		limitDefault  = int64(25)
-		offsetDefault = int64(0)
-	)
+	var ()
 	return &GetMyOfflineNotificationsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -52,13 +41,8 @@ func NewGetMyOfflineNotificationsParamsWithTimeout(timeout time.Duration) *GetMy
 // NewGetMyOfflineNotificationsParamsWithContext creates a new GetMyOfflineNotificationsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetMyOfflineNotificationsParamsWithContext(ctx context.Context) *GetMyOfflineNotificationsParams {
-	var (
-		limitDefault  = int64(25)
-		offsetDefault = int64(0)
-	)
+	var ()
 	return &GetMyOfflineNotificationsParams{
-		Limit:  &limitDefault,
-		Offset: &offsetDefault,
 
 		Context: ctx,
 	}
@@ -67,13 +51,8 @@ func NewGetMyOfflineNotificationsParamsWithContext(ctx context.Context) *GetMyOf
 // NewGetMyOfflineNotificationsParamsWithHTTPClient creates a new GetMyOfflineNotificationsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetMyOfflineNotificationsParamsWithHTTPClient(client *http.Client) *GetMyOfflineNotificationsParams {
-	var (
-		limitDefault  = int64(25)
-		offsetDefault = int64(0)
-	)
+	var ()
 	return &GetMyOfflineNotificationsParams{
-		Limit:      &limitDefault,
-		Offset:     &offsetDefault,
 		HTTPClient: client,
 	}
 }
@@ -90,26 +69,6 @@ type GetMyOfflineNotificationsParams struct {
 
 	*/
 	Namespace string
-	/*EndTime
-	  filter data until a certain end time value in the notification (in unix millis)
-
-	*/
-	EndTime *int64
-	/*Limit
-	  data size for pagination
-
-	*/
-	Limit *int64
-	/*Offset
-	  data offset for pagination
-
-	*/
-	Offset *int64
-	/*StartTime
-	  filter data starting from a certain start time value in the notification (in unix millis)
-
-	*/
-	StartTime *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -187,50 +146,6 @@ func (o *GetMyOfflineNotificationsParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
-// WithEndTime adds the endTime to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) WithEndTime(endTime *int64) *GetMyOfflineNotificationsParams {
-	o.SetEndTime(endTime)
-	return o
-}
-
-// SetEndTime adds the endTime to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) SetEndTime(endTime *int64) {
-	o.EndTime = endTime
-}
-
-// WithLimit adds the limit to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) WithLimit(limit *int64) *GetMyOfflineNotificationsParams {
-	o.SetLimit(limit)
-	return o
-}
-
-// SetLimit adds the limit to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) SetLimit(limit *int64) {
-	o.Limit = limit
-}
-
-// WithOffset adds the offset to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) WithOffset(offset *int64) *GetMyOfflineNotificationsParams {
-	o.SetOffset(offset)
-	return o
-}
-
-// SetOffset adds the offset to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) SetOffset(offset *int64) {
-	o.Offset = offset
-}
-
-// WithStartTime adds the startTime to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) WithStartTime(startTime *int64) *GetMyOfflineNotificationsParams {
-	o.SetStartTime(startTime)
-	return o
-}
-
-// SetStartTime adds the startTime to the get my offline notifications params
-func (o *GetMyOfflineNotificationsParams) SetStartTime(startTime *int64) {
-	o.StartTime = startTime
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *GetMyOfflineNotificationsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -242,70 +157,6 @@ func (o *GetMyOfflineNotificationsParams) WriteToRequest(r runtime.ClientRequest
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
-	}
-
-	if o.EndTime != nil {
-
-		// query param endTime
-		var qrEndTime int64
-		if o.EndTime != nil {
-			qrEndTime = *o.EndTime
-		}
-		qEndTime := swag.FormatInt64(qrEndTime)
-		if qEndTime != "" {
-			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Limit != nil {
-
-		// query param limit
-		var qrLimit int64
-		if o.Limit != nil {
-			qrLimit = *o.Limit
-		}
-		qLimit := swag.FormatInt64(qrLimit)
-		if qLimit != "" {
-			if err := r.SetQueryParam("limit", qLimit); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Offset != nil {
-
-		// query param offset
-		var qrOffset int64
-		if o.Offset != nil {
-			qrOffset = *o.Offset
-		}
-		qOffset := swag.FormatInt64(qrOffset)
-		if qOffset != "" {
-			if err := r.SetQueryParam("offset", qOffset); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.StartTime != nil {
-
-		// query param startTime
-		var qrStartTime int64
-		if o.StartTime != nil {
-			qrStartTime = *o.StartTime
-		}
-		qStartTime := swag.FormatInt64(qrStartTime)
-		if qStartTime != "" {
-			if err := r.SetQueryParam("startTime", qStartTime); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// setting the default header value

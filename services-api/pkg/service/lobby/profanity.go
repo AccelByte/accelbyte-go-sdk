@@ -442,6 +442,10 @@ func (aaa *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.Ad
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -470,6 +474,10 @@ func (aaa *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanit
 	ok, err := aaa.Client.Profanity.AdminGetProfanityListFiltersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -592,6 +600,10 @@ func (aaa *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Ad
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -620,6 +632,10 @@ func (aaa *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminG
 	ok, err := aaa.Client.Profanity.AdminGetProfanityListsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -742,6 +758,10 @@ func (aaa *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGe
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -800,6 +820,10 @@ func (aaa *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *pro
 	ok, err := aaa.Client.Profanity.AdminVerifyMessageProfanityResponseShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

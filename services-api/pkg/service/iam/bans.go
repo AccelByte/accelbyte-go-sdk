@@ -255,6 +255,10 @@ func (aaa *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamcli
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -283,6 +287,10 @@ func (aaa *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams
 	ok, err := aaa.Client.Bans.GetListBanReasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -315,6 +323,10 @@ func (aaa *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Pa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -343,6 +355,10 @@ func (aaa *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBan
 	ok, err := aaa.Client.Bans.AdminGetListBanReasonV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -375,6 +391,10 @@ func (aaa *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUse
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -403,6 +423,10 @@ func (aaa *BansService) AdminBanUserBulkV3Short(input *bans.AdminBanUserBulkV3Pa
 	created, err := aaa.Client.Bans.AdminBanUserBulkV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -435,6 +459,10 @@ func (aaa *BansService) AdminUnbanUserBulkV3Short(input *bans.AdminUnbanUserBulk
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -463,6 +491,10 @@ func (aaa *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGe
 	ok, err := aaa.Client.Bans.AdminGetBansTypeWithNamespaceV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

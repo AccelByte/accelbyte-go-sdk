@@ -38,13 +38,13 @@ func (aaa *LocalizedPolicyVersionsService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveLocalizedPolicyVersionsShort instead.
-func (aaa *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersions(input *localized_policy_versions.RetrieveLocalizedPolicyVersionsParams) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use OldRetrieveLocalizedPolicyVersionsShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldRetrieveLocalizedPolicyVersions(input *localized_policy_versions.OldRetrieveLocalizedPolicyVersionsParams) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveLocalizedPolicyVersions(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.LocalizedPolicyVersions.OldRetrieveLocalizedPolicyVersions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -52,13 +52,13 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersions(input
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use CreateLocalizedPolicyVersionShort instead.
-func (aaa *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersion(input *localized_policy_versions.CreateLocalizedPolicyVersionParams) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use OldCreateLocalizedPolicyVersionShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldCreateLocalizedPolicyVersion(input *localized_policy_versions.OldCreateLocalizedPolicyVersionParams) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, conflict, err := aaa.Client.LocalizedPolicyVersions.CreateLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, conflict, err := aaa.Client.LocalizedPolicyVersions.OldCreateLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -72,13 +72,13 @@ func (aaa *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersion(input *l
 	return created.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveSingleLocalizedPolicyVersionShort instead.
-func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use OldRetrieveSingleLocalizedPolicyVersionShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldRetrieveSingleLocalizedPolicyVersion(input *localized_policy_versions.OldRetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.LocalizedPolicyVersions.OldRetrieveSingleLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -89,13 +89,13 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use UpdateLocalizedPolicyVersionShort instead.
-func (aaa *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersion(input *localized_policy_versions.UpdateLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use OldUpdateLocalizedPolicyVersionShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldUpdateLocalizedPolicyVersion(input *localized_policy_versions.OldUpdateLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.LocalizedPolicyVersions.UpdateLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.LocalizedPolicyVersions.OldUpdateLocalizedPolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -106,13 +106,13 @@ func (aaa *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersion(input *l
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RequestPresignedURLShort instead.
-func (aaa *LocalizedPolicyVersionsService) RequestPresignedURL(input *localized_policy_versions.RequestPresignedURLParams) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
+// Deprecated: 2022-01-10 - please use OldRequestPresignedURLShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldRequestPresignedURL(input *localized_policy_versions.OldRequestPresignedURLParams) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, err := aaa.Client.LocalizedPolicyVersions.RequestPresignedURL(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, err := aaa.Client.LocalizedPolicyVersions.OldRequestPresignedURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -123,13 +123,13 @@ func (aaa *LocalizedPolicyVersionsService) RequestPresignedURL(input *localized_
 	return created.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use SetDefaultPolicyShort instead.
-func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_policy_versions.SetDefaultPolicyParams) error {
+// Deprecated: 2022-01-10 - please use OldSetDefaultLocalizedPolicyShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldSetDefaultLocalizedPolicy(input *localized_policy_versions.OldSetDefaultLocalizedPolicyParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.LocalizedPolicyVersions.SetDefaultPolicy(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.LocalizedPolicyVersions.OldSetDefaultLocalizedPolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -140,9 +140,9 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_pol
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveSingleLocalizedPolicyVersion2Short instead.
-func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
-	ok, forbidden, notFound, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2(input)
+// Deprecated: 2022-01-10 - please use OldPublicRetrieveSingleLocalizedPolicyVersionShort instead.
+func (aaa *LocalizedPolicyVersionsService) OldPublicRetrieveSingleLocalizedPolicyVersion(input *localized_policy_versions.OldPublicRetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
+	ok, forbidden, notFound, err := aaa.Client.LocalizedPolicyVersions.OldPublicRetrieveSingleLocalizedPolicyVersion(input)
 	if forbidden != nil {
 		return nil, forbidden
 	}
@@ -156,7 +156,7 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2
 	return ok.GetPayload(), nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersionsShort(input *localized_policy_versions.RetrieveLocalizedPolicyVersionsParams) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
+func (aaa *LocalizedPolicyVersionsService) OldRetrieveLocalizedPolicyVersionsShort(input *localized_policy_versions.OldRetrieveLocalizedPolicyVersionsParams) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -178,15 +178,19 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersionsShort(
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveLocalizedPolicyVersionsShort(input, authInfoWriter)
+	ok, err := aaa.Client.LocalizedPolicyVersions.OldRetrieveLocalizedPolicyVersionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(input *localized_policy_versions.CreateLocalizedPolicyVersionParams) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
+func (aaa *LocalizedPolicyVersionsService) OldCreateLocalizedPolicyVersionShort(input *localized_policy_versions.OldCreateLocalizedPolicyVersionParams) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -208,15 +212,19 @@ func (aaa *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(inp
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	created, err := aaa.Client.LocalizedPolicyVersions.CreateLocalizedPolicyVersionShort(input, authInfoWriter)
+	created, err := aaa.Client.LocalizedPolicyVersions.OldCreateLocalizedPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionShort(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
+func (aaa *LocalizedPolicyVersionsService) OldRetrieveSingleLocalizedPolicyVersionShort(input *localized_policy_versions.OldRetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -238,15 +246,19 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionS
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersionShort(input, authInfoWriter)
+	ok, err := aaa.Client.LocalizedPolicyVersions.OldRetrieveSingleLocalizedPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersionShort(input *localized_policy_versions.UpdateLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
+func (aaa *LocalizedPolicyVersionsService) OldUpdateLocalizedPolicyVersionShort(input *localized_policy_versions.OldUpdateLocalizedPolicyVersionParams) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -268,15 +280,19 @@ func (aaa *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersionShort(inp
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.LocalizedPolicyVersions.UpdateLocalizedPolicyVersionShort(input, authInfoWriter)
+	ok, err := aaa.Client.LocalizedPolicyVersions.OldUpdateLocalizedPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) RequestPresignedURLShort(input *localized_policy_versions.RequestPresignedURLParams) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
+func (aaa *LocalizedPolicyVersionsService) OldRequestPresignedURLShort(input *localized_policy_versions.OldRequestPresignedURLParams) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -298,15 +314,19 @@ func (aaa *LocalizedPolicyVersionsService) RequestPresignedURLShort(input *local
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	created, err := aaa.Client.LocalizedPolicyVersions.RequestPresignedURLShort(input, authInfoWriter)
+	created, err := aaa.Client.LocalizedPolicyVersions.OldRequestPresignedURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localized_policy_versions.SetDefaultPolicyParams) error {
+func (aaa *LocalizedPolicyVersionsService) OldSetDefaultLocalizedPolicyShort(input *localized_policy_versions.OldSetDefaultLocalizedPolicyParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -328,7 +348,7 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localize
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.LocalizedPolicyVersions.SetDefaultPolicyShort(input, authInfoWriter)
+	_, err := aaa.Client.LocalizedPolicyVersions.OldSetDefaultLocalizedPolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -336,7 +356,7 @@ func (aaa *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localize
 	return nil
 }
 
-func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2Short(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion2Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
+func (aaa *LocalizedPolicyVersionsService) OldPublicRetrieveSingleLocalizedPolicyVersionShort(input *localized_policy_versions.OldPublicRetrieveSingleLocalizedPolicyVersionParams) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
@@ -351,9 +371,13 @@ func (aaa *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion2
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion2Short(input)
+	ok, err := aaa.Client.LocalizedPolicyVersions.OldPublicRetrieveSingleLocalizedPolicyVersionShort(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

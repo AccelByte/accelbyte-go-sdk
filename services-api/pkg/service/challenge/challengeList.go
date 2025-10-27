@@ -117,6 +117,10 @@ func (aaa *ChallengeListService) GetChallengesShort(input *challenge_list.GetCha
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -145,6 +149,10 @@ func (aaa *ChallengeListService) PublicGetScheduledGoalsShort(input *challenge_l
 	ok, err := aaa.Client.ChallengeList.PublicGetScheduledGoalsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

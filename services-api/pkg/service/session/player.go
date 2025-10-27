@@ -218,6 +218,10 @@ func (aaa *PlayerService) AdminQueryPlayerAttributesShort(input *player.AdminQue
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -246,6 +250,10 @@ func (aaa *PlayerService) AdminGetPlayerAttributesShort(input *player.AdminGetPl
 	ok, err := aaa.Client.Player.AdminGetPlayerAttributesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -278,6 +286,10 @@ func (aaa *PlayerService) PublicGetBulkPlayerCurrentPlatformShort(input *player.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -308,6 +320,10 @@ func (aaa *PlayerService) PublicGetPlayerAttributesShort(input *player.PublicGet
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -336,6 +352,10 @@ func (aaa *PlayerService) PublicStorePlayerAttributesShort(input *player.PublicS
 	ok, err := aaa.Client.Player.PublicStorePlayerAttributesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

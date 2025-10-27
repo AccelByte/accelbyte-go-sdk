@@ -137,6 +137,10 @@ func (aaa *AdminV1Service) AdminGetConfigurationShort(input *admin_v1.AdminGetCo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +171,10 @@ func (aaa *AdminV1Service) AdminUpdateConfigurationShort(input *admin_v1.AdminUp
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -195,6 +203,10 @@ func (aaa *AdminV1Service) AdminGetStatusShort(input *admin_v1.AdminGetStatusPar
 	ok, err := aaa.Client.AdminV1.AdminGetStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

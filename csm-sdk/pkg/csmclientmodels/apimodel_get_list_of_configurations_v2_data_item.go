@@ -41,7 +41,8 @@ type ApimodelGetListOfConfigurationsV2DataItem struct {
 	Description string `json:"description,omitempty"`
 
 	// editable
-	Editable bool `json:"editable"`
+	// Required: true
+	Editable *bool `json:"editable"`
 
 	// ishidden
 	// Required: true
@@ -69,6 +70,9 @@ func (m *ApimodelGetListOfConfigurationsV2DataItem) Validate(formats strfmt.Regi
 		res = append(res, err)
 	}
 	if err := m.validateDeploymentStatus(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateEditable(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIsHidden(formats); err != nil {
@@ -114,6 +118,15 @@ func (m *ApimodelGetListOfConfigurationsV2DataItem) validateConfigType(formats s
 func (m *ApimodelGetListOfConfigurationsV2DataItem) validateDeploymentStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("deploymentStatus", "body", m.DeploymentStatus); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelGetListOfConfigurationsV2DataItem) validateEditable(formats strfmt.Registry) error {
+
+	if err := validate.Required("editable", "body", m.Editable); err != nil {
 		return err
 	}
 

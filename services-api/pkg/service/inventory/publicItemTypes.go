@@ -85,5 +85,9 @@ func (aaa *PublicItemTypesService) PublicListItemTypesShort(input *public_item_t
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

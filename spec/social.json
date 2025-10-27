@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "4.0.0"
+    "version": "4.1.0"
   },
   "schemes": [
     "https"
@@ -9022,6 +9022,9 @@
           "description": "Additional data to be published in event payload",
           "type": "object"
         },
+        "requestId": {
+          "type": "string"
+        },
         "statCode": {
           "type": "string"
         },
@@ -9050,6 +9053,9 @@
       "properties": {
         "details": {
           "type": "object"
+        },
+        "requestId": {
+          "type": "string"
         },
         "statCode": {
           "type": "string"
@@ -9121,6 +9127,9 @@
         },
         "additionalKey": {
           "description": "Additional key to identify multi level user's statitems, e.g. character's statitems",
+          "type": "string"
+        },
+        "requestId": {
           "type": "string"
         },
         "statCode": {
@@ -10487,16 +10496,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-09-12T04:37:15+00:00",
-    "buildID": "4.0.0",
+    "buildDate": "2025-10-16T09:49:03+00:00",
+    "buildID": "4.1.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.240-238.959.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.244-240.965.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "a64125ea4d",
-    "gitTag": "4.0.0",
+    "gitHash": "3ff0e4f13d",
+    "gitTag": "4.1.0",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "version-roles-seeding": "0.0.12"
   }
 }

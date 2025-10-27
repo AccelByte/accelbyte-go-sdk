@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "4.4.1"
+    "version": "4.5.0"
   },
   "schemes": [
     "https"
@@ -147,7 +147,7 @@
     "/agreement/admin/agreements/policies/users/{userId}": {
       "get": {
         "description": "This API will return all accepted Legal Agreements for specified user",
-        "operationId": "retrieveAcceptedAgreements",
+        "operationId": "oldRetrieveAcceptedAgreements",
         "parameters": [
           {
             "description": "User Id",
@@ -189,7 +189,7 @@
     "/agreement/admin/agreements/policy-versions/users": {
       "get": {
         "description": "This API will return users who has accepted a specific policy version.",
-        "operationId": "retrieveAllUsersByPolicyVersion",
+        "operationId": "oldRetrieveAllUsersByPolicyVersion",
         "parameters": [
           {
             "in": "query",
@@ -304,7 +304,7 @@
           "application/json"
         ],
         "description": "Create a legal policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
-        "operationId": "createPolicy",
+        "operationId": "oldCreatePolicy",
         "parameters": [
           {
             "in": "body",
@@ -367,7 +367,7 @@
     "/agreement/admin/base-policies/{basePolicyId}": {
       "get": {
         "description": "Retrieve a base policy.",
-        "operationId": "retrieveSinglePolicy",
+        "operationId": "oldRetrieveSinglePolicy",
         "parameters": [
           {
             "description": "BasePolicy Id",
@@ -415,7 +415,7 @@
           "application/json"
         ],
         "description": "Update an existing base policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
-        "operationId": "partialUpdatePolicy",
+        "operationId": "oldPartialUpdatePolicy",
         "parameters": [
           {
             "description": "BasePolicy Id",
@@ -478,7 +478,7 @@
     "/agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
         "description": "Retrieve a Base Legal Policy based on a Particular Country.",
-        "operationId": "retrievePolicyCountry",
+        "operationId": "oldRetrievePolicyCountry",
         "parameters": [
           {
             "description": "BasePolicy Id",
@@ -532,7 +532,7 @@
     "/agreement/admin/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
         "description": "Retrieve versions of a particular country-specific policy.",
-        "operationId": "retrieveLocalizedPolicyVersions",
+        "operationId": "oldRetrieveLocalizedPolicyVersions",
         "parameters": [
           {
             "description": "Policy Version Id",
@@ -575,7 +575,7 @@
           "application/json"
         ],
         "description": "Create a version of a particular country-specific policy.",
-        "operationId": "createLocalizedPolicyVersion",
+        "operationId": "oldCreateLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Policy Version Id",
@@ -637,7 +637,7 @@
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve a version of a particular country-specific policy.",
-        "operationId": "retrieveSingleLocalizedPolicyVersion",
+        "operationId": "oldRetrieveSingleLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -685,7 +685,7 @@
           "application/json"
         ],
         "description": "Update a version of a particular country-specific policy.",
-        "operationId": "updateLocalizedPolicyVersion",
+        "operationId": "oldUpdateLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -743,7 +743,7 @@
           "application/json"
         ],
         "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.",
-        "operationId": "requestPresignedURL",
+        "operationId": "oldRequestPresignedURL",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -800,7 +800,7 @@
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
         "description": "Update a localized version policy to be the default.",
-        "operationId": "setDefaultPolicy",
+        "operationId": "oldSetDefaultLocalizedPolicy",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -897,7 +897,7 @@
     "/agreement/admin/namespaces/{namespace}/agreements/policies/users/{userId}": {
       "get": {
         "description": "This API will return all accepted Legal Agreements for specified user.",
-        "operationId": "retrieveAcceptedAgreements_1",
+        "operationId": "retrieveAcceptedAgreements",
         "parameters": [
           {
             "description": "Namespace",
@@ -955,7 +955,7 @@
     "/agreement/admin/namespaces/{namespace}/agreements/policy-versions/users": {
       "get": {
         "description": "This API will return all users who has accepted a specific policy version.",
-        "operationId": "retrieveAllUsersByPolicyVersion_1",
+        "operationId": "retrieveAllUsersByPolicyVersion",
         "parameters": [
           {
             "description": "Namespace",
@@ -1229,7 +1229,7 @@
           "application/json"
         ],
         "description": "Create a legal policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
-        "operationId": "createPolicy_1",
+        "operationId": "createPolicy",
         "parameters": [
           {
             "description": "Namespace",
@@ -1350,7 +1350,7 @@
       },
       "get": {
         "description": "Retrieve a base policy.",
-        "operationId": "retrieveSinglePolicy_1",
+        "operationId": "retrieveSinglePolicy",
         "parameters": [
           {
             "description": "BasePolicy Id",
@@ -1405,7 +1405,7 @@
           "application/json"
         ],
         "description": "Update an existing base policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
-        "operationId": "partialUpdatePolicy_1",
+        "operationId": "partialUpdatePolicy",
         "parameters": [
           {
             "description": "BasePolicy Id",
@@ -1467,7 +1467,7 @@
     "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
         "description": "Retrieve a Base Legal Policy based on a Particular Country.",
-        "operationId": "retrievePolicyCountry_1",
+        "operationId": "retrievePolicyCountry",
         "parameters": [
           {
             "description": "BasePolicy Id",
@@ -1700,7 +1700,7 @@
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
         "description": "Retrieve versions of a particular country-specific policy.",
-        "operationId": "retrieveLocalizedPolicyVersions_1",
+        "operationId": "retrieveLocalizedPolicyVersions",
         "parameters": [
           {
             "description": "Namespace",
@@ -1750,7 +1750,7 @@
           "application/json"
         ],
         "description": "Create a version of a particular country-specific policy.",
-        "operationId": "createLocalizedPolicyVersion_1",
+        "operationId": "createLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Namespace",
@@ -1819,7 +1819,7 @@
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve a version of a particular country-specific policy.",
-        "operationId": "retrieveSingleLocalizedPolicyVersion_1",
+        "operationId": "retrieveSingleLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -1874,7 +1874,7 @@
           "application/json"
         ],
         "description": "Update a version of a particular country-specific policy.",
-        "operationId": "updateLocalizedPolicyVersion_1",
+        "operationId": "updateLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -1939,7 +1939,7 @@
           "application/json"
         ],
         "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.",
-        "operationId": "requestPresignedURL_1",
+        "operationId": "requestPresignedURL",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -2003,7 +2003,7 @@
     "/agreement/admin/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
         "description": "Update a localized version policy to be the default.",
-        "operationId": "setDefaultPolicy_1",
+        "operationId": "setDefaultLocalizedPolicy",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -2100,7 +2100,7 @@
           "application/json"
         ],
         "description": "Update a particular policy version.",
-        "operationId": "updatePolicyVersion_1",
+        "operationId": "updatePolicyVersion",
         "parameters": [
           {
             "description": "Namespace",
@@ -2170,7 +2170,7 @@
     "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/latest": {
       "patch": {
         "description": "Manually publish a version of a particular country-specific policy.",
-        "operationId": "publishPolicyVersion_1",
+        "operationId": "publishPolicyVersion",
         "parameters": [
           {
             "description": "Namespace",
@@ -2347,7 +2347,7 @@
           "application/json"
         ],
         "description": "Update country-specific and country-group policy.",
-        "operationId": "updatePolicy_1",
+        "operationId": "updatePolicy",
         "parameters": [
           {
             "description": "Namespace",
@@ -2406,7 +2406,7 @@
     "/agreement/admin/namespaces/{namespace}/policies/{policyId}/default": {
       "patch": {
         "description": "Update a policy to be the default.",
-        "operationId": "setDefaultPolicy_3",
+        "operationId": "setDefaultPolicy",
         "parameters": [
           {
             "description": "Namespace",
@@ -2457,7 +2457,7 @@
     "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions": {
       "get": {
         "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.",
-        "operationId": "retrieveSinglePolicyVersion_1",
+        "operationId": "retrieveSinglePolicyVersion",
         "parameters": [
           {
             "description": "Namespace",
@@ -2522,7 +2522,7 @@
           "application/json"
         ],
         "description": "Create a version of a particular country-specific policy.",
-        "operationId": "createPolicyVersion_1",
+        "operationId": "createPolicyVersion",
         "parameters": [
           {
             "description": "Namespace",
@@ -2584,7 +2584,7 @@
     "/agreement/admin/namespaces/{namespace}/policy-types": {
       "get": {
         "description": "Retrieve all supported policy types.",
-        "operationId": "retrieveAllPolicyTypes_1",
+        "operationId": "retrieveAllPolicyTypes",
         "parameters": [
           {
             "description": "Namespace",
@@ -2843,7 +2843,7 @@
           "application/json"
         ],
         "description": "Update a particular policy version.",
-        "operationId": "updatePolicyVersion",
+        "operationId": "oldUpdatePolicyVersion",
         "parameters": [
           {
             "description": "Policy Version Id",
@@ -2906,7 +2906,7 @@
     "/agreement/admin/policies/versions/{policyVersionId}/latest": {
       "patch": {
         "description": "Manually publish a version of a particular country-specific policy.",
-        "operationId": "publishPolicyVersion",
+        "operationId": "oldPublishPolicyVersion",
         "parameters": [
           {
             "description": "Policy Version Id",
@@ -2972,7 +2972,7 @@
           "application/json"
         ],
         "description": "Update country-specific and country-group policy.",
-        "operationId": "updatePolicy",
+        "operationId": "oldUpdatePolicy",
         "parameters": [
           {
             "description": "Policy Id",
@@ -3024,7 +3024,7 @@
     "/agreement/admin/policies/{policyId}/default": {
       "patch": {
         "description": "Update a policy to be the default.",
-        "operationId": "setDefaultPolicy_2",
+        "operationId": "oldSetDefaultPolicy",
         "parameters": [
           {
             "description": "Policy Id",
@@ -3068,7 +3068,7 @@
     "/agreement/admin/policies/{policyId}/versions": {
       "get": {
         "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.",
-        "operationId": "retrieveSinglePolicyVersion",
+        "operationId": "oldRetrieveSinglePolicyVersion",
         "parameters": [
           {
             "description": "Policy Id",
@@ -3126,7 +3126,7 @@
           "application/json"
         ],
         "description": "Create a version of a particular country-specific policy.",
-        "operationId": "createPolicyVersion",
+        "operationId": "oldCreatePolicyVersion",
         "parameters": [
           {
             "description": "Policy Id",
@@ -3181,7 +3181,7 @@
     "/agreement/admin/policy-types": {
       "get": {
         "description": "Retrieve all supported policy types.",
-        "operationId": "retrieveAllPolicyTypes",
+        "operationId": "oldRetrieveAllPolicyTypes",
         "parameters": [
           {
             "description": "Limit",
@@ -3392,7 +3392,7 @@
           "application/json"
         ],
         "description": "Change marketing preference consent.",
-        "operationId": "changePreferenceConsent_1",
+        "operationId": "publicChangePreferenceConsent",
         "parameters": [
           {
             "in": "body",
@@ -3660,7 +3660,7 @@
         ],
         "deprecated": true,
         "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.",
-        "operationId": "indirectBulkAcceptVersionedPolicy_1",
+        "operationId": "publicIndirectBulkAcceptVersionedPolicy",
         "parameters": [
           {
             "description": "User Id",
@@ -3843,7 +3843,7 @@
     "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "retrieveSingleLocalizedPolicyVersion_2",
+        "operationId": "oldPublicRetrieveSingleLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -3889,7 +3889,7 @@
     "/agreement/public/namespaces/{namespace}/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "retrieveSingleLocalizedPolicyVersion_3",
+        "operationId": "publicRetrieveSingleLocalizedPolicyVersion",
         "parameters": [
           {
             "description": "Localized Policy Version Id",
@@ -4128,7 +4128,7 @@
     "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}": {
       "get": {
         "description": "Retrieve all active latest policies based on a namespace and country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic",
+        "operationId": "oldRetrieveLatestPoliciesByNamespaceAndCountryPublic",
         "parameters": [
           {
             "description": "Country Code",
@@ -4242,7 +4242,7 @@
     "/agreement/v2/public/policies/namespaces/{namespace}/countries/{countryCode}": {
       "get": {
         "description": "This API is used to list all the related doc in register page, include optional \u0026amp; mandatory (when env config APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=true).\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;Here are the result of different cases\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1,  Region US (default, mandatory), UA (optional); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2,  Region US (default, optional), UA (mandatory); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3,  Region UA (default, mandatory); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 4,  Region US (default, optional); clientID: [client_A]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 5,  Region US (default, optional); clientID: [client_B]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 6,  Region CA (mandatory, optional), UA (optional); clientID: [client_B]\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_A\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA, optional), Document 2 (UA, mandatory), Document 3 (UA, mandatory), Document 4 (US, optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region CA  + client_A\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (US, mandatory), Document 2 (US, mandatory), Document 3 (UA, mandatory), Document 4 (US, optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_B\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 5 (US, optional), Document 6 (UA, optional)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region CN  + client_B\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 5 (US, optional), Document 6 (CA, mandatory)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Note: If APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=false the behavior will be same with `/agreement/public/policies/namespaces/{namespace}/countries/{country_code}?defaultOnEmpty=true\u0026amp;visibleOnly=true`;Here are the result of different cases\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_A\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA, optional), Document 2 (UA, mandatory), Document 3 (UA, mandatory)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query by: Region UA  + client_B\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 5 (US, optional)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic_1",
+        "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic",
         "parameters": [
           {
             "description": "Country Code",
@@ -6406,16 +6406,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-09-12T04:19:59+00:00",
-    "buildID": "4.4.1",
+    "buildDate": "2025-10-16T08:05:50+00:00",
+    "buildID": "4.5.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.240-238.959.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.244-240.965.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "1c913448a3",
-    "gitTag": "4.4.1",
+    "gitHash": "34dae3ab64",
+    "gitTag": "4.5.0",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "4.4.1",
+    "version": "4.5.0",
     "version-roles-seeding": "0.0.3"
   }
 }

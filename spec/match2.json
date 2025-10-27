@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.36.0"
+    "version": "2.37.0"
   },
   "schemes": [
     "https"
@@ -4703,9 +4703,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-09-12T07:18:56+00:00",
-    "gitHash": "f6a00cc5de91f91aeeeaee3b8dff2cc4eec59194",
-    "version": "2.36.0",
-    "version-roles-seeding": "1.2.102"
+    "buildDate": "2025-10-16T03:11:22+00:00",
+    "gitHash": "c8284433b188642001f3b0a1ae4e00cf14d91bdc",
+    "version": "2.37.0",
+    "version-roles-seeding": "1.2.108"
   }
 }

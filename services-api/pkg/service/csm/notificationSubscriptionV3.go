@@ -117,6 +117,10 @@ func (aaa *NotificationSubscriptionV3Service) GetNotificationSubscriberListV3Sho
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

@@ -53,6 +53,10 @@ type APIInstanceType struct {
 	// Required: true
 	OwnerAccountID *string `json:"ownerAccountId"`
 
+	// processorarchitecture
+	// Required: true
+	ProcessorArchitecture *string `json:"processorArchitecture"`
+
 	// provider
 	// Required: true
 	Provider *string `json:"provider"`
@@ -89,6 +93,9 @@ func (m *APIInstanceType) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateOwnerAccountID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateProcessorArchitecture(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateProvider(formats); err != nil {
@@ -186,6 +193,15 @@ func (m *APIInstanceType) validateName(formats strfmt.Registry) error {
 func (m *APIInstanceType) validateOwnerAccountID(formats strfmt.Registry) error {
 
 	if err := validate.Required("ownerAccountId", "body", m.OwnerAccountID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIInstanceType) validateProcessorArchitecture(formats strfmt.Registry) error {
+
+	if err := validate.Required("processorArchitecture", "body", m.ProcessorArchitecture); err != nil {
 		return err
 	}
 

@@ -7,8 +7,8 @@
       "url": "https://accelbyte.io"
     },
     "description": "Justice Inventory Service",
-    "title": "justice-inventory-service",
-    "version": "0.2.17"
+    "title": "justice-inventory-service (Early Access)",
+    "version": "0.2.19"
   },
   "schemes": [
     "https"
@@ -4793,11 +4793,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-08-06T08:03:06+00:00",
-    "gitHash": "9c67ee861dd5d13ee75583d68545f06035a60df5",
+    "buildDate": "2025-10-16T09:48:28+00:00",
+    "gitHash": "b75020e3fa5135afb803cda674d2f527f7dd57e3",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.17",
+    "version": "0.2.19",
     "version-roles-seeding": "1.2.34"
   }
 }

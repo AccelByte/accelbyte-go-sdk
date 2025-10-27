@@ -394,6 +394,10 @@ func (aaa *AdminService) AdminGetGlobalConfigShort(input *admin.AdminGetGlobalCo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -424,6 +428,10 @@ func (aaa *AdminService) AdminUpdateGlobalConfigShort(input *admin.AdminUpdateGl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -452,6 +460,10 @@ func (aaa *AdminService) AdminDeleteGlobalConfigShort(input *admin.AdminDeleteGl
 	noContent, err := aaa.Client.Admin.AdminDeleteGlobalConfigShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
+	}
+
+	if noContent == nil {
+		return "", nil
 	}
 
 	return noContent.GetPayload(), nil
@@ -544,6 +556,10 @@ func (aaa *AdminService) GetGameTemplateShort(input *admin.GetGameTemplateParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -604,6 +620,10 @@ func (aaa *AdminService) GetSlugTemplateShort(input *admin.GetSlugTemplateParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -662,6 +682,10 @@ func (aaa *AdminService) GetLocalizationTemplateShort(input *admin.GetLocalizati
 	ok, err := aaa.Client.Admin.GetLocalizationTemplateShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

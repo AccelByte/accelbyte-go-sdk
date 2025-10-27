@@ -107,6 +107,10 @@ func (aaa *TradeActionService) CommitShort(input *trade_action.CommitParams) (*p
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -137,6 +141,10 @@ func (aaa *TradeActionService) GetTradeHistoryByCriteriaShort(input *trade_actio
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -165,6 +173,10 @@ func (aaa *TradeActionService) GetTradeHistoryByTransactionIDShort(input *trade_
 	ok, err := aaa.Client.TradeAction.GetTradeHistoryByTransactionIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

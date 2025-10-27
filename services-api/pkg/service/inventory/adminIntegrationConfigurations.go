@@ -160,6 +160,10 @@ func (aaa *AdminIntegrationConfigurationsService) AdminListIntegrationConfigurat
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -188,6 +192,10 @@ func (aaa *AdminIntegrationConfigurationsService) AdminCreateIntegrationConfigur
 	created, err := aaa.Client.AdminIntegrationConfigurations.AdminCreateIntegrationConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -220,6 +228,10 @@ func (aaa *AdminIntegrationConfigurationsService) AdminUpdateIntegrationConfigur
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -248,6 +260,10 @@ func (aaa *AdminIntegrationConfigurationsService) AdminUpdateStatusIntegrationCo
 	ok, err := aaa.Client.AdminIntegrationConfigurations.AdminUpdateStatusIntegrationConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -114,6 +114,10 @@ func (aaa *XRayConfigService) AdminGetXRayConfigShort(input *x_ray_config.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

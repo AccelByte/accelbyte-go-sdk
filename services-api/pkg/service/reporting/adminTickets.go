@@ -173,6 +173,10 @@ func (aaa *AdminTicketsService) ListTicketsShort(input *admin_tickets.ListTicket
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -203,6 +207,10 @@ func (aaa *AdminTicketsService) TicketStatisticShort(input *admin_tickets.Ticket
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -231,6 +239,10 @@ func (aaa *AdminTicketsService) GetTicketDetailShort(input *admin_tickets.GetTic
 	ok, err := aaa.Client.AdminTickets.GetTicketDetailShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -293,6 +305,10 @@ func (aaa *AdminTicketsService) GetReportsByTicketShort(input *admin_tickets.Get
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -321,6 +337,10 @@ func (aaa *AdminTicketsService) UpdateTicketResolutionsShort(input *admin_ticket
 	ok, err := aaa.Client.AdminTickets.UpdateTicketResolutionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

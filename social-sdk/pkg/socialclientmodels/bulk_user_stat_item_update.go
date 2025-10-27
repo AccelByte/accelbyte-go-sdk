@@ -26,6 +26,9 @@ type BulkUserStatItemUpdate struct {
 	// Additional key to identify multi level user's statitems, e.g. character's statitems
 	AdditionalKey string `json:"additionalKey,omitempty"`
 
+	// requestid
+	RequestID string `json:"requestId,omitempty"`
+
 	// statcode
 	// Required: true
 	StatCode *string `json:"statCode"`

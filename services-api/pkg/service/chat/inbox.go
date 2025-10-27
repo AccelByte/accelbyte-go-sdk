@@ -429,6 +429,10 @@ func (aaa *InboxService) AdminGetInboxCategoriesShort(input *inbox.AdminGetInbox
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -457,6 +461,10 @@ func (aaa *InboxService) AdminAddInboxCategoryShort(input *inbox.AdminAddInboxCa
 	ok, err := aaa.Client.Inbox.AdminAddInboxCategoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -549,6 +557,10 @@ func (aaa *InboxService) AdminGetCategorySchemaShort(input *inbox.AdminGetCatego
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -577,6 +589,10 @@ func (aaa *InboxService) AdminListKafkaTopicShort(input *inbox.AdminListKafkaTop
 	ok, err := aaa.Client.Inbox.AdminListKafkaTopicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -639,6 +655,10 @@ func (aaa *InboxService) AdminGetInboxMessagesShort(input *inbox.AdminGetInboxMe
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -667,6 +687,10 @@ func (aaa *InboxService) AdminSaveInboxMessageShort(input *inbox.AdminSaveInboxM
 	ok, err := aaa.Client.Inbox.AdminSaveInboxMessageShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -699,6 +723,10 @@ func (aaa *InboxService) AdminUnsendInboxMessageShort(input *inbox.AdminUnsendIn
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -727,6 +755,10 @@ func (aaa *InboxService) AdminGetInboxUsersShort(input *inbox.AdminGetInboxUsers
 	ok, err := aaa.Client.Inbox.AdminGetInboxUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -789,6 +821,10 @@ func (aaa *InboxService) AdminSendInboxMessageShort(input *inbox.AdminSendInboxM
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -817,6 +853,10 @@ func (aaa *InboxService) AdminGetInboxStatsShort(input *inbox.AdminGetInboxStats
 	ok, err := aaa.Client.Inbox.AdminGetInboxStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

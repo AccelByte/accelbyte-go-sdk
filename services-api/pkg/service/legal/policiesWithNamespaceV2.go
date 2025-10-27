@@ -37,9 +37,9 @@ func (aaa *PoliciesWithNamespaceV2Service) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short instead.
-func (aaa *PoliciesWithNamespaceV2Service) RetrieveLatestPoliciesByNamespaceAndCountryPublic1(input *policies_with_namespace_v2.RetrieveLatestPoliciesByNamespaceAndCountryPublic1Params) ([]*legalclientmodels.RetrieveSimplePolicyPublicResponseV2, error) {
-	ok, err := aaa.Client.PoliciesWithNamespaceV2.RetrieveLatestPoliciesByNamespaceAndCountryPublic1(input)
+// Deprecated: 2022-01-10 - please use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
+func (aaa *PoliciesWithNamespaceV2Service) RetrieveLatestPoliciesByNamespaceAndCountryPublic(input *policies_with_namespace_v2.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrieveSimplePolicyPublicResponseV2, error) {
+	ok, err := aaa.Client.PoliciesWithNamespaceV2.RetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (aaa *PoliciesWithNamespaceV2Service) RetrieveLatestPoliciesByNamespaceAndC
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PoliciesWithNamespaceV2Service) RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short(input *policies_with_namespace_v2.RetrieveLatestPoliciesByNamespaceAndCountryPublic1Params) ([]*legalclientmodels.RetrieveSimplePolicyPublicResponseV2, error) {
+func (aaa *PoliciesWithNamespaceV2Service) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input *policies_with_namespace_v2.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrieveSimplePolicyPublicResponseV2, error) {
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
@@ -62,9 +62,13 @@ func (aaa *PoliciesWithNamespaceV2Service) RetrieveLatestPoliciesByNamespaceAndC
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.PoliciesWithNamespaceV2.RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short(input)
+	ok, err := aaa.Client.PoliciesWithNamespaceV2.RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -23,6 +23,9 @@ type BulkStatItemUpdate struct {
 	// Additional data to be published in event payload
 	AdditionalData interface{} `json:"additionalData,omitempty"`
 
+	// requestid
+	RequestID string `json:"requestId,omitempty"`
+
 	// statcode
 	// Required: true
 	StatCode *string `json:"statCode"`

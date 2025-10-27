@@ -117,6 +117,10 @@ func (aaa *PublicLikeV2Service) PublicListContentLikeV2Short(input *public_like_
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -145,6 +149,10 @@ func (aaa *PublicLikeV2Service) UpdateContentLikeStatusV2Short(input *public_lik
 	ok, err := aaa.Client.PublicLikeV2.UpdateContentLikeStatusV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

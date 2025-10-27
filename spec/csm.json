@@ -8,7 +8,7 @@
     },
     "description": "Custom Service Manager",
     "title": "custom-service-manager",
-    "version": "1.27.0"
+    "version": "1.29.1"
   },
   "schemes": [
     "https"
@@ -352,7 +352,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
         "operationId": "CreateAppV1",
         "parameters": [
           {
@@ -1842,7 +1842,7 @@
         "operationId": "GetAppListV2",
         "parameters": [
           {
-            "description": "Available scenario:\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
+            "description": "Available scenario:\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2005,7 +2005,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\t\nGet extend app by name\n\nAvailable scenario:\n- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\n- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\n- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n\nAvailable app status:\n- \u0026lt;code\u0026gt;app-creating\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-undeployed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-in-progress\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-running\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-down\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopping\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopped\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removing\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-remove-timeout\u0026lt;/code\u0026gt;\n\n\t",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\t\nGet extend app by name\n\nAvailable scenario:\n- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\n- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\n\n\nAvailable app status:\n- \u0026lt;code\u0026gt;app-creating\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-creation-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-undeployed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-in-progress\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-running\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;deployment-down\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopping\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-failed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stop-timeout\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-stopped\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removing\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-removed\u0026lt;/code\u0026gt;\n- \u0026lt;code\u0026gt;app-remove-timeout\u0026lt;/code\u0026gt;\n\n\t",
         "operationId": "GetAppV2",
         "parameters": [
           {
@@ -2470,6 +2470,346 @@
         "summary": "Get a list of container images",
         "tags": [
           "Image V2"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/crendentials": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:DATABASECREDENTIALS [CREATE]\u0026lt;/code\u0026gt;\n\t\nCreates a new database credential for the customer. This will soft-delete the old credential and create a new one.\n",
+        "operationId": "CreateNoSQLDatabaseCredentialV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodel.CreateNoSQLDatabaseCredentialRequest"
+            }
+          },
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLDatabaseCredentialResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Creates a new database credential for the customer",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/databases": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:DATABASES [DELETE]\u0026lt;/code\u0026gt;\n\nDeletes a NoSQL database and its credentials associated with given extend app and game namespace. The database will be removed from the provisioned NoSQL cluster.\n",
+        "operationId": "DeleteNoSQLDatabaseV2",
+        "parameters": [
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLDatabaseDeleteResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Deletes NoSQL Database for Extend App",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:DATABASES [READ]\u0026lt;/code\u0026gt;\n\nGet a NoSQL database information returns the NoSQL database related information by given game namespace\nand app name.\n\n\u0026lt;code\u0026gt;resourceStatus\u0026lt;/code\u0026gt; field - indicates the NoSQL cluster status:\n- \u0026lt;code\u0026gt;available\u0026lt;/code\u0026gt; : The cluster is accessible. \n- \u0026lt;code\u0026gt;updating\u0026lt;/code\u0026gt; : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU). \n- \u0026lt;code\u0026gt;deleting\u0026lt;/code\u0026gt; : The cluster is in the process of being deleted and is not accessible. \n- \u0026lt;code\u0026gt;failed\u0026lt;/code\u0026gt; : The cluster failed to provision or is in an error state and not accessible. \n- \u0026lt;code\u0026gt;stopped\u0026lt;/code\u0026gt; : The cluster is stopped and not accessible. \n- \u0026lt;code\u0026gt;maintenance\u0026lt;/code\u0026gt; : The cluster is undergoing maintenance operations and is not accessible. \n- \u0026lt;code\u0026gt;unknown\u0026lt;/code\u0026gt; : The cluster status is not recognized \n- \u0026lt;code\u0026gt;creating\u0026lt;/code\u0026gt; : The cluster or instance is being created and is not yet accessible. \n- \u0026lt;code\u0026gt;stopping\u0026lt;/code\u0026gt; : The cluster is in the process of stopping and will soon become inaccessible. \n- \u0026lt;code\u0026gt;starting\u0026lt;/code\u0026gt; : The cluster is transitioning from stopped to running, or is rebooting. \n\n\n",
+        "operationId": "GetNoSQLDatabaseV2",
+        "parameters": [
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLDatabaseResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get NoSQL Database for Extend App",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:DATABASES [CREATE]\u0026lt;/code\u0026gt;\n\nCreates a NoSQL database along with its credentials associated with given extend app. The database will be created in the provisioned NoSQL cluster.\n",
+        "operationId": "CreateNoSQLDatabaseV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodel.CreateNoSQLAppDatabaseRequest"
+            }
+          },
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLDatabaseResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Creates NoSQL Database for Extend App",
+        "tags": [
+          "Managed Resources"
         ],
         "x-errorCodes": {}
       }
@@ -4231,6 +4571,361 @@
         "x-errorCodes": {}
       }
     },
+    "/csm/v2/admin/namespaces/{namespace}/nosql/clusters": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [DELETE]\u0026lt;/code\u0026gt;\n\nYou can only delete the cluster when its status is \u0026#34;available\u0026#34;.\n\nDeleting the cluster will:\n\t- Remove NoSQL integration.\n\t- Remove all the data from the NoSQL\n\t- Remove all the credentials, including the Extend App’s credentials.\n",
+        "operationId": "DeleteNoSQLClusterV2",
+        "parameters": [
+          {
+            "description": "Studio Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.DeleteNoSQLResourceResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete NoSQL Cluster",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      },
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]\u0026lt;/code\u0026gt;\n\nGet NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.\n\n\u0026lt;code\u0026gt;status\u0026lt;/code\u0026gt; field - indicates the NoSQL cluster status:\n- \u0026lt;code\u0026gt;available\u0026lt;/code\u0026gt; : The cluster is accessible. \n- \u0026lt;code\u0026gt;updating\u0026lt;/code\u0026gt; : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU). \n- \u0026lt;code\u0026gt;deleting\u0026lt;/code\u0026gt; : The cluster is in the process of being deleted and is not accessible. \n- \u0026lt;code\u0026gt;failed\u0026lt;/code\u0026gt; : The cluster failed to provision or is in an error state and not accessible. \n- \u0026lt;code\u0026gt;stopped\u0026lt;/code\u0026gt; : The cluster is stopped and not accessible. \n- \u0026lt;code\u0026gt;maintenance\u0026lt;/code\u0026gt; : The cluster is undergoing maintenance operations and is not accessible. \n- \u0026lt;code\u0026gt;unknown\u0026lt;/code\u0026gt; : The cluster status is not recognized \n- \u0026lt;code\u0026gt;creating\u0026lt;/code\u0026gt; : The cluster or instance is being created and is not yet accessible. \n- \u0026lt;code\u0026gt;stopping\u0026lt;/code\u0026gt; : The cluster is in the process of stopping and will soon become inaccessible. \n- \u0026lt;code\u0026gt;starting\u0026lt;/code\u0026gt; : The cluster is transitioning from stopped to running, or is rebooting. \n\n",
+        "operationId": "GetNoSQLClusterV2",
+        "parameters": [
+          {
+            "description": "Studio Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLResourceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get NoSQL Cluster Information",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [CREATE]\u0026lt;/code\u0026gt;\n\nProvision NoSQL database cluster and instances that can be used by extend apps in game namespace within the studio.\nOnly one NoSQL resource can be created for one studio/publisher namespace.\n\nProvisioning process is done asynchronously, you can check from the \u0026lt;code\u0026gt;status\u0026lt;/code\u0026gt; field of the resource response.\n",
+        "operationId": "CreateNoSQLClusterV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/nosqlresource.NoSQLResourceConfiguration"
+            }
+          },
+          {
+            "description": "Studio Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLResourceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Creates NoSQL Cluster",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]\u0026lt;/code\u0026gt;\n\nUpdate NoSQL cluster configurations such as min/max DCU (Database Capacity Units) for the NoSQL cluster in the given studio/publisher namespace.\nThe cluster must be in an available state to allow configuration updates.\n\nConfiguration update process may take some time to complete, you can check the updated status from the \u0026lt;code\u0026gt;status\u0026lt;/code\u0026gt; field of the resource response.\n",
+        "operationId": "UpdateNoSQLClusterV2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/nosqlresource.NoSQLResourceConfiguration"
+            }
+          },
+          {
+            "description": "Studio Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.NoSQLResourceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update NoSQL Cluster Configurations",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/nosql/tunnels": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the NoSQL access tunnel information for a specified game namespace",
+        "operationId": "GetNoSQLAccessTunnelV2",
+        "parameters": [
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.TunnelInfoResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get NoSQL Access Tunnel",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      }
+    },
     "/csm/v2/admin/namespaces/{namespace}/resources/limits": {
       "get": {
         "consumes": [
@@ -4707,6 +5402,64 @@
         "deploymentId"
       ]
     },
+    "apimodel.CreateNoSQLAppDatabaseRequest": {
+      "properties": {
+        "dbName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dbName",
+        "password",
+        "username"
+      ]
+    },
+    "apimodel.CreateNoSQLDatabaseCredentialRequest": {
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "username"
+      ]
+    },
+    "apimodel.DeleteNoSQLResourceResponse": {
+      "properties": {
+        "platformName": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "resourceName": {
+          "type": "string"
+        },
+        "resourceType": {
+          "type": "string"
+        },
+        "studioName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformName",
+        "resourceId",
+        "resourceName",
+        "resourceType",
+        "studioName"
+      ]
+    },
     "apimodel.GetAppImageListV2DataItem": {
       "properties": {
         "IsActive": {
@@ -4938,6 +5691,7 @@
         "configName",
         "configType",
         "deploymentStatus",
+        "editable",
         "isHidden",
         "value"
       ]
@@ -5114,6 +5868,122 @@
           "type": "integer"
         }
       }
+    },
+    "apimodel.NoSQLDatabaseCredentialResponse": {
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "createdAt",
+        "owner",
+        "username"
+      ]
+    },
+    "apimodel.NoSQLDatabaseDeleteResponse": {
+      "properties": {
+        "dbId": {
+          "type": "string"
+        },
+        "dbName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dbId",
+        "dbName"
+      ]
+    },
+    "apimodel.NoSQLDatabaseResponse": {
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "credentials": {
+          "$ref": "#/definitions/apimodel.NoSQLDatabaseCredentialResponse"
+        },
+        "dbId": {
+          "type": "string"
+        },
+        "dbName": {
+          "type": "string"
+        },
+        "gameNamespace": {
+          "type": "string"
+        },
+        "hostnames": {
+          "type": "string"
+        },
+        "platformName": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "resourceStatus": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "appId",
+        "credentials",
+        "dbId",
+        "dbName",
+        "gameNamespace",
+        "hostnames",
+        "platformName",
+        "resourceId",
+        "resourceStatus"
+      ]
+    },
+    "apimodel.NoSQLResourceResponse": {
+      "properties": {
+        "configuration": {
+          "$ref": "#/definitions/nosqlresource.NoSQLResourceConfiguration"
+        },
+        "hostnames": {
+          "type": "string"
+        },
+        "lastRotatedAt": {
+          "type": "string"
+        },
+        "platformName": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "resourceId": {
+          "type": "string"
+        },
+        "resourceName": {
+          "type": "string"
+        },
+        "resourceType": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "studioName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "platformName",
+        "resourceId",
+        "resourceName",
+        "resourceType",
+        "status",
+        "studioName"
+      ]
     },
     "apimodel.NotificationType": {
       "properties": {
@@ -5295,6 +6165,16 @@
       },
       "required": [
         "id"
+      ]
+    },
+    "apimodel.TunnelInfoResponse": {
+      "properties": {
+        "tunnel": {
+          "$ref": "#/definitions/resourceaccesstunnel.TunnelInfo"
+        }
+      },
+      "required": [
+        "tunnel"
       ]
     },
     "apimodel.UpdateAppResourceRequest": {
@@ -6059,6 +6939,43 @@
         "uri"
       ]
     },
+    "nosqlresource.NoSQLResourceConfiguration": {
+      "properties": {
+        "maxDCU": {
+          "format": "double",
+          "type": "number"
+        },
+        "minDCU": {
+          "format": "double",
+          "type": "number"
+        },
+        "profileName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "maxDCU",
+        "minDCU"
+      ]
+    },
+    "resourceaccesstunnel.TunnelInfo": {
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "endpoint",
+        "name",
+        "token"
+      ]
+    },
     "response.ErrorResponse": {
       "properties": {
         "error": {
@@ -6244,6 +7161,59 @@
     },
     {
       "Attributes": [
+        "dbName"
+      ],
+      "Code": "13900",
+      "CodeName": "NoSQLDatabaseAlreadyExists",
+      "Section": "extend nosql resource",
+      "Service": "Custom Service Manager",
+      "Text": "NoSQL app database already exists. dbName: {{dbName}}"
+    },
+    {
+      "Attributes": [
+        "dbName",
+        "username"
+      ],
+      "Code": "13901",
+      "CodeName": "NoSQLCredentialUsernameAlreadyExists",
+      "Section": "extend nosql resource",
+      "Service": "Custom Service Manager",
+      "Text": "NoSQL credential username already exists. dbName: {{dbName}}, username: {{username}}"
+    },
+    {
+      "Attributes": [
+        "studioNamespace"
+      ],
+      "Code": "13902",
+      "CodeName": "NoSQLDeleteClusterNotAvailable",
+      "Section": "extend nosql resource",
+      "Service": "Custom Service Manager",
+      "Text": "unable to delete NoSQL cluster. Cluster not in an available state. studioNamespace: {{studioNamespace}}"
+    },
+    {
+      "Attributes": [
+        "appName",
+        "gameNamespace"
+      ],
+      "Code": "13903",
+      "CodeName": "NoSQLClusterNotFound",
+      "Section": "extend nosql resource",
+      "Service": "Custom Service Manager",
+      "Text": "NoSQL cluster not found. gameNamespace: {{gameNamespace}}, appName: {{appName}}"
+    },
+    {
+      "Attributes": [
+        "appName",
+        "gameNamespace"
+      ],
+      "Code": "13904",
+      "CodeName": "NoSQLDatabaseNotFound",
+      "Section": "extend nosql resource",
+      "Service": "Custom Service Manager",
+      "Text": "NoSQL database not found. gameNamespace: {{gameNamespace}}, appName: {{appName}}"
+    },
+    {
+      "Attributes": [
         "action",
         "additionalFields",
         "appName",
@@ -6354,10 +7324,10 @@
     }
   ],
   "x-version": {
-    "buildDate": "Fri Sep 12 06:37:47 UTC 2025",
-    "gitHash": "ba4ba0f9",
+    "buildDate": "Thu Oct 23 08:41:56 UTC 2025",
+    "gitHash": "bc5a8a2d",
     "name": "custom-service-manager",
-    "version": "1.27.0",
+    "version": "1.29.1",
     "version-justice": "3.39.0",
     "version-roles-seeding": "1.2.64"
   }

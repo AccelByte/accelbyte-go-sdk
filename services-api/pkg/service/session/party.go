@@ -557,6 +557,10 @@ func (aaa *PartyService) AdminQueryPartiesShort(input *party.AdminQueryPartiesPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -585,6 +589,10 @@ func (aaa *PartyService) AdminDeleteBulkPartiesShort(input *party.AdminDeleteBul
 	ok, err := aaa.Client.Party.AdminDeleteBulkPartiesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -647,6 +655,10 @@ func (aaa *PartyService) PublicPartyJoinCodeShort(input *party.PublicPartyJoinCo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -675,6 +687,10 @@ func (aaa *PartyService) PublicGetPartyShort(input *party.PublicGetPartyParams) 
 	ok, err := aaa.Client.Party.PublicGetPartyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -707,6 +723,10 @@ func (aaa *PartyService) PublicUpdatePartyShort(input *party.PublicUpdatePartyPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -737,6 +757,10 @@ func (aaa *PartyService) PublicPatchUpdatePartyShort(input *party.PublicPatchUpd
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -765,6 +789,10 @@ func (aaa *PartyService) PublicGeneratePartyCodeShort(input *party.PublicGenerat
 	ok, err := aaa.Client.Party.PublicGeneratePartyCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -827,6 +855,10 @@ func (aaa *PartyService) PublicPartyInviteShort(input *party.PublicPartyInvitePa
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -857,6 +889,10 @@ func (aaa *PartyService) PublicPromotePartyLeaderShort(input *party.PublicPromot
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -885,6 +921,10 @@ func (aaa *PartyService) PublicPartyJoinShort(input *party.PublicPartyJoinParams
 	ok, err := aaa.Client.Party.PublicPartyJoinShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1007,6 +1047,10 @@ func (aaa *PartyService) PublicPartyKickShort(input *party.PublicPartyKickParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1037,6 +1081,10 @@ func (aaa *PartyService) PublicCreatePartyShort(input *party.PublicCreatePartyPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1065,6 +1113,10 @@ func (aaa *PartyService) PublicQueryMyPartiesShort(input *party.PublicQueryMyPar
 	ok, err := aaa.Client.Party.PublicQueryMyPartiesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

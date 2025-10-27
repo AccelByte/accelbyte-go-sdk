@@ -81,5 +81,9 @@ func (aaa *SessionPlatformService) RegisterXblSessionsShort(input *session_platf
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

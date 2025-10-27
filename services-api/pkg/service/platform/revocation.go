@@ -141,6 +141,10 @@ func (aaa *RevocationService) GetRevocationConfigShort(input *revocation.GetRevo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -169,6 +173,10 @@ func (aaa *RevocationService) UpdateRevocationConfigShort(input *revocation.Upda
 	ok, err := aaa.Client.Revocation.UpdateRevocationConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -231,6 +239,10 @@ func (aaa *RevocationService) QueryRevocationHistoriesShort(input *revocation.Qu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -259,6 +271,10 @@ func (aaa *RevocationService) DoRevocationShort(input *revocation.DoRevocationPa
 	ok, err := aaa.Client.Revocation.DoRevocationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

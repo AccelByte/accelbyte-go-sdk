@@ -481,6 +481,10 @@ func (aaa *AdminPlayerRecordService) BulkGetPlayerRecordSizeHandlerV1Short(input
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -509,6 +513,10 @@ func (aaa *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin
 	ok, err := aaa.Client.AdminPlayerRecord.ListPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -541,6 +549,10 @@ func (aaa *AdminPlayerRecordService) AdminBulkPutPlayerRecordsByKeyHandlerV1Shor
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -569,6 +581,10 @@ func (aaa *AdminPlayerRecordService) AdminBulkGetPlayerRecordsByUserIDsHandlerV1
 	ok, err := aaa.Client.AdminPlayerRecord.AdminBulkGetPlayerRecordsByUserIDsHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -601,6 +617,10 @@ func (aaa *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -629,6 +649,10 @@ func (aaa *AdminPlayerRecordService) AdminPutPlayerRecordsHandlerV1Short(input *
 	ok, err := aaa.Client.AdminPlayerRecord.AdminPutPlayerRecordsHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -661,6 +685,10 @@ func (aaa *AdminPlayerRecordService) AdminGetPlayerRecordsHandlerV1Short(input *
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -689,6 +717,10 @@ func (aaa *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *a
 	ok, err := aaa.Client.AdminPlayerRecord.AdminGetPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -721,6 +753,10 @@ func (aaa *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *a
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -749,6 +785,10 @@ func (aaa *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *
 	created, err := aaa.Client.AdminPlayerRecord.AdminPostPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -811,6 +851,10 @@ func (aaa *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(in
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -841,6 +885,10 @@ func (aaa *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(in
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -869,6 +917,10 @@ func (aaa *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(i
 	created, err := aaa.Client.AdminPlayerRecord.AdminPostPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -929,6 +981,10 @@ func (aaa *AdminPlayerRecordService) AdminGetPlayerRecordSizeHandlerV1Short(inpu
 	ok, err := aaa.Client.AdminPlayerRecord.AdminGetPlayerRecordSizeHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

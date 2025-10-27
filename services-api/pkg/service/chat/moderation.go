@@ -152,6 +152,10 @@ func (aaa *ModerationService) AdminGetChatSnapshotShort(input *moderation.AdminG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -210,6 +214,10 @@ func (aaa *ModerationService) PublicGetChatSnapshotShort(input *moderation.Publi
 	ok, err := aaa.Client.Moderation.PublicGetChatSnapshotShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

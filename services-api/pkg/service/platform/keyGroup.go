@@ -207,6 +207,10 @@ func (aaa *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsP
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -235,6 +239,10 @@ func (aaa *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupP
 	created, err := aaa.Client.KeyGroup.CreateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -267,6 +275,10 @@ func (aaa *KeyGroupService) GetKeyGroupByBoothNameShort(input *key_group.GetKeyG
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -295,6 +307,10 @@ func (aaa *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams)
 	ok, err := aaa.Client.KeyGroup.GetKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -327,6 +343,10 @@ func (aaa *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupP
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -355,6 +375,10 @@ func (aaa *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroup
 	ok, err := aaa.Client.KeyGroup.GetKeyGroupDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -387,6 +411,10 @@ func (aaa *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*pla
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -415,6 +443,10 @@ func (aaa *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (
 	ok, err := aaa.Client.KeyGroup.UploadKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

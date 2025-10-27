@@ -188,6 +188,10 @@ func (aaa *ConcurrentRecordService) PutPlayerRecordConcurrentHandlerV1Short(inpu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,6 +220,10 @@ func (aaa *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1Shor
 	ok, err := aaa.Client.ConcurrentRecord.PutPlayerPublicRecordConcurrentHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

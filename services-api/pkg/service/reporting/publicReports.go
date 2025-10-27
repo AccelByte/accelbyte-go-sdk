@@ -91,5 +91,9 @@ func (aaa *PublicReportsService) SubmitReportShort(input *public_reports.SubmitR
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }

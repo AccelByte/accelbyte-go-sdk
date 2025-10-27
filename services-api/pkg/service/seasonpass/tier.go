@@ -223,6 +223,10 @@ func (aaa *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -253,6 +257,10 @@ func (aaa *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*season
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -281,6 +289,10 @@ func (aaa *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpa
 	ok, err := aaa.Client.Tier.UpdateTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -343,6 +355,10 @@ func (aaa *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*season
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -373,6 +389,10 @@ func (aaa *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*seas
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -401,6 +421,10 @@ func (aaa *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*se
 	ok, err := aaa.Client.Tier.GrantUserTierShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

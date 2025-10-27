@@ -249,6 +249,7 @@ $ samples/cli/sample-apps Ams imageList \
     --sortDirection 'string' \
     --status 'string' \
     --tag 'string' \
+    --targetArchitecture 'string' \
     > result.txt
 ```
 

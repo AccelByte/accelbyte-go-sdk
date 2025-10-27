@@ -60,6 +60,10 @@ type APIImageDetails struct {
 	// Required: true
 	Tags []string `json:"tags"`
 
+	// targetarchitecture
+	// Required: true
+	TargetArchitecture *string `json:"targetArchitecture"`
+
 	// uploadedat
 	// Required: true
 	UploadedAt *string `json:"uploadedAt"`
@@ -98,6 +102,9 @@ func (m *APIImageDetails) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTargetArchitecture(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUploadedAt(formats); err != nil {
@@ -204,6 +211,15 @@ func (m *APIImageDetails) validateStatus(formats strfmt.Registry) error {
 func (m *APIImageDetails) validateTags(formats strfmt.Registry) error {
 
 	if err := validate.Required("tags", "body", m.Tags); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIImageDetails) validateTargetArchitecture(formats strfmt.Registry) error {
+
+	if err := validate.Required("targetArchitecture", "body", m.TargetArchitecture); err != nil {
 		return err
 	}
 

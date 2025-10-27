@@ -24,6 +24,9 @@ type OculusIAPConfigRequest struct {
 
 	// oculus api app secret, don't allow white space and *
 	AppSecret string `json:"appSecret,omitempty"`
+
+	// oculus webhook verify token, please refer this link: https://developers.meta.com/horizon/documentation/unity/ps-webhooks-getting-started
+	WebhookVerifyToken string `json:"webhookVerifyToken,omitempty"`
 }
 
 // Validate validates this Oculus IAP config request

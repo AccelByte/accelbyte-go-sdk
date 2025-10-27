@@ -146,6 +146,10 @@ func (aaa *AdminTagsService) AdminListTagsHandlerV1Short(input *admin_tags.Admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

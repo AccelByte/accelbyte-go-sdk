@@ -230,6 +230,10 @@ func (aaa *AdminModerationRuleService) UpdateModerationRuleShort(input *admin_mo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -320,6 +324,10 @@ func (aaa *AdminModerationRuleService) GetModerationRulesShort(input *admin_mode
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -348,6 +356,10 @@ func (aaa *AdminModerationRuleService) GetModerationRuleDetailsShort(input *admi
 	ok, err := aaa.Client.AdminModerationRule.GetModerationRuleDetailsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

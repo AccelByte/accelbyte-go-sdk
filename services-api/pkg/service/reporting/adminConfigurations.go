@@ -102,6 +102,10 @@ func (aaa *AdminConfigurationsService) GetShort(input *admin_configurations.GetP
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -130,6 +134,10 @@ func (aaa *AdminConfigurationsService) UpsertShort(input *admin_configurations.U
 	ok, err := aaa.Client.AdminConfigurations.UpsertShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

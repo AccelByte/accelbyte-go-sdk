@@ -51,6 +51,12 @@ func (o *AdminTopicListReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewAdminTopicListNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminTopicListInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -265,6 +271,60 @@ func (o *AdminTopicListForbidden) GetPayload() *chatclientmodels.RestapiErrorRes
 }
 
 func (o *AdminTopicListForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(chatclientmodels.RestapiErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminTopicListNotFound creates a AdminTopicListNotFound with default headers values
+func NewAdminTopicListNotFound() *AdminTopicListNotFound {
+	return &AdminTopicListNotFound{}
+}
+
+/*AdminTopicListNotFound handles this case with default header values.
+
+  Not Found
+*/
+type AdminTopicListNotFound struct {
+	Payload *chatclientmodels.RestapiErrorResponseBody
+}
+
+func (o *AdminTopicListNotFound) Error() string {
+	return fmt.Sprintf("[GET /chat/admin/namespaces/{namespace}/topic][%d] adminTopicListNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminTopicListNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminTopicListNotFound) GetPayload() *chatclientmodels.RestapiErrorResponseBody {
+	return o.Payload
+}
+
+func (o *AdminTopicListNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

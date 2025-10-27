@@ -186,9 +186,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
 Get extend app by name
 
 Available scenario:
+- scenario 1: `function-override`
 - scenario 2: `service-extension`
 - scenario 3: `event-handler`
-- scenario 1: `function-override`
 
 
 Available app status:
@@ -273,9 +273,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
 Get extend app by name
 
 Available scenario:
+- scenario 1: `function-override`
 - scenario 2: `service-extension`
 - scenario 3: `event-handler`
-- scenario 1: `function-override`
 
 
 Available app status:

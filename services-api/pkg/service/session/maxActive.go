@@ -111,6 +111,10 @@ func (aaa *MaxActiveService) AdminGetMemberActiveSessionShort(input *max_active.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

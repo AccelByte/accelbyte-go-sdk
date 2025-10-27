@@ -268,6 +268,10 @@ func (aaa *BackfillService) AdminQueryBackfillShort(input *backfill.AdminQueryBa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -296,6 +300,10 @@ func (aaa *BackfillService) CreateBackfillShort(input *backfill.CreateBackfillPa
 	created, err := aaa.Client.Backfill.CreateBackfillShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -328,6 +336,10 @@ func (aaa *BackfillService) GetBackfillProposalShort(input *backfill.GetBackfill
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -356,6 +368,10 @@ func (aaa *BackfillService) GetBackfillShort(input *backfill.GetBackfillParams) 
 	ok, err := aaa.Client.Backfill.GetBackfillShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -416,6 +432,10 @@ func (aaa *BackfillService) AcceptBackfillShort(input *backfill.AcceptBackfillPa
 	ok, err := aaa.Client.Backfill.AcceptBackfillShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

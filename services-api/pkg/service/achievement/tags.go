@@ -117,6 +117,10 @@ func (aaa *TagsService) AdminListTagsShort(input *tags.AdminListTagsParams) (*ac
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -145,6 +149,10 @@ func (aaa *TagsService) PublicListTagsShort(input *tags.PublicListTagsParams) (*
 	ok, err := aaa.Client.Tags.PublicListTagsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

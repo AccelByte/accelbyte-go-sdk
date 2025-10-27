@@ -111,6 +111,10 @@ func (aaa *PublicCreatorService) PublicSearchCreatorShort(input *public_creator.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -139,6 +143,10 @@ func (aaa *PublicCreatorService) PublicGetCreatorShort(input *public_creator.Pub
 	ok, err := aaa.Client.PublicCreator.PublicGetCreatorShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

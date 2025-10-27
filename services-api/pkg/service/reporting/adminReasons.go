@@ -305,6 +305,10 @@ func (aaa *AdminReasonsService) AdminListReasonGroupsShort(input *admin_reasons.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -335,6 +339,10 @@ func (aaa *AdminReasonsService) CreateReasonGroupShort(input *admin_reasons.Crea
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -363,6 +371,10 @@ func (aaa *AdminReasonsService) GetReasonGroupShort(input *admin_reasons.GetReas
 	ok, err := aaa.Client.AdminReasons.GetReasonGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -425,6 +437,10 @@ func (aaa *AdminReasonsService) UpdateReasonGroupShort(input *admin_reasons.Upda
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -453,6 +469,10 @@ func (aaa *AdminReasonsService) AdminGetReasonsShort(input *admin_reasons.AdminG
 	ok, err := aaa.Client.AdminReasons.AdminGetReasonsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -485,6 +505,10 @@ func (aaa *AdminReasonsService) CreateReasonShort(input *admin_reasons.CreateRea
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -513,6 +537,10 @@ func (aaa *AdminReasonsService) AdminGetAllReasonsShort(input *admin_reasons.Adm
 	ok, err := aaa.Client.AdminReasons.AdminGetAllReasonsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -545,6 +573,10 @@ func (aaa *AdminReasonsService) AdminGetUnusedReasonsShort(input *admin_reasons.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -573,6 +605,10 @@ func (aaa *AdminReasonsService) AdminGetReasonShort(input *admin_reasons.AdminGe
 	ok, err := aaa.Client.AdminReasons.AdminGetReasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -633,6 +669,10 @@ func (aaa *AdminReasonsService) UpdateReasonShort(input *admin_reasons.UpdateRea
 	ok, err := aaa.Client.AdminReasons.UpdateReasonShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

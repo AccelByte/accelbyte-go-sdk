@@ -64,6 +64,10 @@ type APIImageListItem struct {
 	// Required: true
 	Tags []string `json:"tags"`
 
+	// targetarchitecture
+	// Required: true
+	TargetArchitecture *string `json:"targetArchitecture"`
+
 	// uploadedat
 	// Required: true
 	UploadedAt *string `json:"uploadedAt"`
@@ -105,6 +109,9 @@ func (m *APIImageListItem) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateTargetArchitecture(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUploadedAt(formats); err != nil {
@@ -204,6 +211,15 @@ func (m *APIImageListItem) validateStatus(formats strfmt.Registry) error {
 func (m *APIImageListItem) validateTags(formats strfmt.Registry) error {
 
 	if err := validate.Required("tags", "body", m.Tags); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIImageListItem) validateTargetArchitecture(formats strfmt.Registry) error {
+
+	if err := validate.Required("targetArchitecture", "body", m.TargetArchitecture); err != nil {
 		return err
 	}
 

@@ -149,6 +149,10 @@ func (aaa *AchievementPlatformService) GetXblUserAchievementsShort(input *achiev
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

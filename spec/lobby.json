@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Lobby Server",
     "title": "justice-lobby-server",
-    "version": "3.40.0"
+    "version": "3.41.0"
   },
   "schemes": [
     "https"
@@ -7386,32 +7386,6 @@
             "name": "namespace",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "filter data until a certain end time value in the notification (in unix millis)",
-            "in": "query",
-            "name": "endTime",
-            "type": "integer"
-          },
-          {
-            "default": 25,
-            "description": "data size for pagination",
-            "in": "query",
-            "name": "limit",
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "data offset for pagination",
-            "in": "query",
-            "name": "offset",
-            "type": "integer"
-          },
-          {
-            "description": "filter data starting from a certain start time value in the notification (in unix millis)",
-            "in": "query",
-            "name": "startTime",
-            "type": "integer"
           }
         ],
         "produces": [
@@ -9344,6 +9318,10 @@
         },
         "psnEnv": {
           "type": "string"
+        },
+        "syncDeletedFriend": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -15687,12 +15665,12 @@
     }
   ],
   "x-version": {
-    "buildDate": "2025-09-12T03:56:20+00:00",
-    "gitHash": "2b5008d324c3a5dae0e19e45a147ecf914c7f92d",
+    "buildDate": "2025-10-16T03:09:22+00:00",
+    "gitHash": "6e41a7e5995fce08711bf357b50585e8e70062d4",
     "name": "justice-lobby-server",
-    "revisionID": "3.40.0",
-    "version": "3.40.0",
-    "version-justice": "2024.2/3.79",
-    "version-roles-seeding": "1.2.77"
+    "revisionID": "3.41.0",
+    "version": "3.41.0",
+    "version-justice": "2025.7",
+    "version-roles-seeding": "1.2.102"
   }
 }

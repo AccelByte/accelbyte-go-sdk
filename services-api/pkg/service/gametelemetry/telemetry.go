@@ -104,6 +104,10 @@ func (aaa *TelemetryService) GetNamespacesGameTelemetryV1AdminNamespacesGetShort
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -133,6 +137,10 @@ func (aaa *TelemetryService) GetEventsGameTelemetryV1AdminNamespacesNamespaceEve
 	ok, err := aaa.Client.Telemetry.GetEventsGameTelemetryV1AdminNamespacesNamespaceEventsGetShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

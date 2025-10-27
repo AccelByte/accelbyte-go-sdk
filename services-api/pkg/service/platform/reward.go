@@ -283,6 +283,10 @@ func (aaa *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -313,6 +317,10 @@ func (aaa *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -341,6 +349,10 @@ func (aaa *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams, 
 	ok, err := aaa.Client.Reward.ExportRewardsShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -403,6 +415,10 @@ func (aaa *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platfo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -431,6 +447,10 @@ func (aaa *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*
 	ok, err := aaa.Client.Reward.UpdateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -463,6 +483,10 @@ func (aaa *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -491,6 +515,10 @@ func (aaa *RewardService) CheckEventConditionShort(input *reward.CheckEventCondi
 	ok, err := aaa.Client.Reward.CheckEventConditionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -553,6 +581,10 @@ func (aaa *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodePara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -583,6 +615,10 @@ func (aaa *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -611,6 +647,10 @@ func (aaa *RewardService) GetReward1Short(input *reward.GetReward1Params) (*plat
 	ok, err := aaa.Client.Reward.GetReward1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

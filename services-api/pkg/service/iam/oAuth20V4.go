@@ -240,6 +240,10 @@ func (aaa *OAuth20v4Service) AuthenticationWithPlatformLinkV4Short(input *o_auth
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -268,6 +272,10 @@ func (aaa *OAuth20v4Service) GenerateTokenByNewHeadlessAccountV4Short(input *o_a
 	ok, err := aaa.Client.OAuth20V4.GenerateTokenByNewHeadlessAccountV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -300,6 +308,10 @@ func (aaa *OAuth20v4Service) Verify2FACodeV4Short(input *o_auth2_0_v4.Verify2FAC
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -328,6 +340,10 @@ func (aaa *OAuth20v4Service) PlatformTokenGrantV4Short(input *o_auth2_0_v4.Platf
 	ok, err := aaa.Client.OAuth20V4.PlatformTokenGrantV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -360,6 +376,10 @@ func (aaa *OAuth20v4Service) SimultaneousLoginV4Short(input *o_auth2_0_v4.Simult
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -390,6 +410,10 @@ func (aaa *OAuth20v4Service) TokenGrantV4Short(input *o_auth2_0_v4.TokenGrantV4P
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -418,6 +442,10 @@ func (aaa *OAuth20v4Service) RequestTargetTokenResponseV4Short(input *o_auth2_0_
 	ok, err := aaa.Client.OAuth20V4.RequestTargetTokenResponseV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

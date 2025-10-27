@@ -345,6 +345,10 @@ func (aaa *StatConfigurationService) GetStatsShort(input *stat_configuration.Get
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -373,6 +377,10 @@ func (aaa *StatConfigurationService) CreateStatShort(input *stat_configuration.C
 	created, err := aaa.Client.StatConfiguration.CreateStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -405,6 +413,10 @@ func (aaa *StatConfigurationService) ExportStatsShort(input *stat_configuration.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -433,6 +445,10 @@ func (aaa *StatConfigurationService) ImportStatsShort(input *stat_configuration.
 	created, err := aaa.Client.StatConfiguration.ImportStatsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -465,6 +481,10 @@ func (aaa *StatConfigurationService) QueryStatsShort(input *stat_configuration.Q
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -493,6 +513,10 @@ func (aaa *StatConfigurationService) GetStatShort(input *stat_configuration.GetS
 	ok, err := aaa.Client.StatConfiguration.GetStatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -555,6 +579,10 @@ func (aaa *StatConfigurationService) UpdateStatShort(input *stat_configuration.U
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -613,6 +641,10 @@ func (aaa *StatConfigurationService) CreateStat1Short(input *stat_configuration.
 	created, err := aaa.Client.StatConfiguration.CreateStat1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

@@ -55,13 +55,13 @@ func (aaa *PolicyVersionsWithNamespaceService) DeletePolicyVersion(input *policy
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use UpdatePolicyVersion1Short instead.
-func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion1(input *policy_versions_with_namespace.UpdatePolicyVersion1Params) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use UpdatePolicyVersionShort instead.
+func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion(input *policy_versions_with_namespace.UpdatePolicyVersionParams) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, conflict, err := aaa.Client.PolicyVersionsWithNamespace.UpdatePolicyVersion1(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, conflict, err := aaa.Client.PolicyVersionsWithNamespace.UpdatePolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -75,13 +75,13 @@ func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion1(input *polic
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PublishPolicyVersion1Short instead.
-func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersion1(input *policy_versions_with_namespace.PublishPolicyVersion1Params) error {
+// Deprecated: 2022-01-10 - please use PublishPolicyVersionShort instead.
+func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersion(input *policy_versions_with_namespace.PublishPolicyVersionParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, conflict, err := aaa.Client.PolicyVersionsWithNamespace.PublishPolicyVersion1(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, conflict, err := aaa.Client.PolicyVersionsWithNamespace.PublishPolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -112,13 +112,13 @@ func (aaa *PolicyVersionsWithNamespaceService) UnpublishPolicyVersion(input *pol
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveSinglePolicyVersion1Short instead.
-func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersion1(input *policy_versions_with_namespace.RetrieveSinglePolicyVersion1Params) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use RetrieveSinglePolicyVersionShort instead.
+func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersion(input *policy_versions_with_namespace.RetrieveSinglePolicyVersionParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.PolicyVersionsWithNamespace.RetrieveSinglePolicyVersion1(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.PolicyVersionsWithNamespace.RetrieveSinglePolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -129,13 +129,13 @@ func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersion1(inpu
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use CreatePolicyVersion1Short instead.
-func (aaa *PolicyVersionsWithNamespaceService) CreatePolicyVersion1(input *policy_versions_with_namespace.CreatePolicyVersion1Params) (*legalclientmodels.CreatePolicyVersionResponse, error) {
+// Deprecated: 2022-01-10 - please use CreatePolicyVersionShort instead.
+func (aaa *PolicyVersionsWithNamespaceService) CreatePolicyVersion(input *policy_versions_with_namespace.CreatePolicyVersionParams) (*legalclientmodels.CreatePolicyVersionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, err := aaa.Client.PolicyVersionsWithNamespace.CreatePolicyVersion1(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, err := aaa.Client.PolicyVersionsWithNamespace.CreatePolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -176,7 +176,7 @@ func (aaa *PolicyVersionsWithNamespaceService) DeletePolicyVersionShort(input *p
 	return nil
 }
 
-func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion1Short(input *policy_versions_with_namespace.UpdatePolicyVersion1Params) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
+func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersionShort(input *policy_versions_with_namespace.UpdatePolicyVersionParams) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -198,15 +198,19 @@ func (aaa *PolicyVersionsWithNamespaceService) UpdatePolicyVersion1Short(input *
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.PolicyVersionsWithNamespace.UpdatePolicyVersion1Short(input, authInfoWriter)
+	ok, err := aaa.Client.PolicyVersionsWithNamespace.UpdatePolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersion1Short(input *policy_versions_with_namespace.PublishPolicyVersion1Params) error {
+func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersionShort(input *policy_versions_with_namespace.PublishPolicyVersionParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -228,7 +232,7 @@ func (aaa *PolicyVersionsWithNamespaceService) PublishPolicyVersion1Short(input 
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.PolicyVersionsWithNamespace.PublishPolicyVersion1Short(input, authInfoWriter)
+	_, err := aaa.Client.PolicyVersionsWithNamespace.PublishPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -266,7 +270,7 @@ func (aaa *PolicyVersionsWithNamespaceService) UnpublishPolicyVersionShort(input
 	return nil
 }
 
-func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersion1Short(input *policy_versions_with_namespace.RetrieveSinglePolicyVersion1Params) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersionShort(input *policy_versions_with_namespace.RetrieveSinglePolicyVersionParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -288,15 +292,19 @@ func (aaa *PolicyVersionsWithNamespaceService) RetrieveSinglePolicyVersion1Short
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.PolicyVersionsWithNamespace.RetrieveSinglePolicyVersion1Short(input, authInfoWriter)
+	ok, err := aaa.Client.PolicyVersionsWithNamespace.RetrieveSinglePolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PolicyVersionsWithNamespaceService) CreatePolicyVersion1Short(input *policy_versions_with_namespace.CreatePolicyVersion1Params) (*legalclientmodels.CreatePolicyVersionResponse, error) {
+func (aaa *PolicyVersionsWithNamespaceService) CreatePolicyVersionShort(input *policy_versions_with_namespace.CreatePolicyVersionParams) (*legalclientmodels.CreatePolicyVersionResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -318,9 +326,13 @@ func (aaa *PolicyVersionsWithNamespaceService) CreatePolicyVersion1Short(input *
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	created, err := aaa.Client.PolicyVersionsWithNamespace.CreatePolicyVersion1Short(input, authInfoWriter)
+	created, err := aaa.Client.PolicyVersionsWithNamespace.CreatePolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

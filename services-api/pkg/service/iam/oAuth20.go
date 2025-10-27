@@ -428,6 +428,10 @@ func (aaa *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -529,6 +533,10 @@ func (aaa *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntro
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -557,6 +565,10 @@ func (aaa *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*ia
 	ok, err := aaa.Client.OAuth20.GetJWKSV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -649,6 +661,10 @@ func (aaa *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodePara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -707,6 +723,10 @@ func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_a
 	ok, err := aaa.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -769,6 +789,10 @@ func (aaa *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTo
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -797,6 +821,10 @@ func (aaa *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocati
 	ok, err := aaa.Client.OAuth20.GetRevocationListV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -859,6 +887,10 @@ func (aaa *OAuth20Service) SimultaneousLoginV3Short(input *o_auth2_0.Simultaneou
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -896,6 +928,10 @@ func (aaa *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params
 	if err != nil {
 		return nil, err
 	}
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -924,6 +960,10 @@ func (aaa *OAuth20Service) VerifyTokenV3Short(input *o_auth2_0.VerifyTokenV3Para
 	ok, err := aaa.Client.OAuth20.VerifyTokenV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

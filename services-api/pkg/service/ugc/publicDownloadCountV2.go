@@ -114,6 +114,10 @@ func (aaa *PublicDownloadCountV2Service) PublicAddDownloadCountV2Short(input *pu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -142,6 +146,10 @@ func (aaa *PublicDownloadCountV2Service) PublicListContentDownloaderV2Short(inpu
 	ok, err := aaa.Client.PublicDownloadCountV2.PublicListContentDownloaderV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

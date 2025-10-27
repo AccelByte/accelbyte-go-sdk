@@ -319,6 +319,10 @@ func (aaa *AdminItemsService) AdminListItemsShort(input *admin_items.AdminListIt
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -347,6 +351,10 @@ func (aaa *AdminItemsService) AdminGetInventoryItemShort(input *admin_items.Admi
 	ok, err := aaa.Client.AdminItems.AdminGetInventoryItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -379,6 +387,10 @@ func (aaa *AdminItemsService) AdminConsumeUserItemShort(input *admin_items.Admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -407,6 +419,10 @@ func (aaa *AdminItemsService) AdminBulkUpdateMyItemsShort(input *admin_items.Adm
 	ok, err := aaa.Client.AdminItems.AdminBulkUpdateMyItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -439,6 +455,10 @@ func (aaa *AdminItemsService) AdminSaveItemToInventoryShort(input *admin_items.A
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -467,6 +487,10 @@ func (aaa *AdminItemsService) AdminBulkRemoveItemsShort(input *admin_items.Admin
 	ok, err := aaa.Client.AdminItems.AdminBulkRemoveItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -499,6 +523,10 @@ func (aaa *AdminItemsService) AdminBulkSaveItemToInventoryShort(input *admin_ite
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -529,6 +557,10 @@ func (aaa *AdminItemsService) AdminSaveItemShort(input *admin_items.AdminSaveIte
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -557,6 +589,10 @@ func (aaa *AdminItemsService) AdminBulkSaveItemShort(input *admin_items.AdminBul
 	ok, err := aaa.Client.AdminItems.AdminBulkSaveItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -52,13 +52,13 @@ func (aaa *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesPar
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use UpdatePolicyShort instead.
-func (aaa *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error {
+// Deprecated: 2022-01-10 - please use OldUpdatePolicyShort instead.
+func (aaa *PoliciesService) OldUpdatePolicy(input *policies.OldUpdatePolicyParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Policies.UpdatePolicy(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Policies.OldUpdatePolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -69,13 +69,13 @@ func (aaa *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) err
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use SetDefaultPolicy2Short instead.
-func (aaa *PoliciesService) SetDefaultPolicy2(input *policies.SetDefaultPolicy2Params) error {
+// Deprecated: 2022-01-10 - please use OldSetDefaultPolicyShort instead.
+func (aaa *PoliciesService) OldSetDefaultPolicy(input *policies.OldSetDefaultPolicyParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := aaa.Client.Policies.SetDefaultPolicy2(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, err := aaa.Client.Policies.OldSetDefaultPolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -123,9 +123,9 @@ func (aaa *PoliciesService) RetrieveLatestPoliciesPublic(input *policies.Retriev
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
-func (aaa *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	ok, err := aaa.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
+// Deprecated: 2022-01-10 - please use OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
+func (aaa *PoliciesService) OldRetrieveLatestPoliciesByNamespaceAndCountryPublic(input *policies.OldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	ok, err := aaa.Client.Policies.OldRetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
 	if err != nil {
 		return nil, err
 	}
@@ -160,10 +160,14 @@ func (aaa *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePolici
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams) error {
+func (aaa *PoliciesService) OldUpdatePolicyShort(input *policies.OldUpdatePolicyParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -185,7 +189,7 @@ func (aaa *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.Policies.UpdatePolicyShort(input, authInfoWriter)
+	_, err := aaa.Client.Policies.OldUpdatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -193,7 +197,7 @@ func (aaa *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams
 	return nil
 }
 
-func (aaa *PoliciesService) SetDefaultPolicy2Short(input *policies.SetDefaultPolicy2Params) error {
+func (aaa *PoliciesService) OldSetDefaultPolicyShort(input *policies.OldSetDefaultPolicyParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -215,7 +219,7 @@ func (aaa *PoliciesService) SetDefaultPolicy2Short(input *policies.SetDefaultPol
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.Policies.SetDefaultPolicy2Short(input, authInfoWriter)
+	_, err := aaa.Client.Policies.OldSetDefaultPolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -243,6 +247,10 @@ func (aaa *PoliciesService) RetrieveCountryListWithPoliciesShort(input *policies
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -264,6 +272,10 @@ func (aaa *PoliciesService) RetrieveLatestPoliciesShort(input *policies.Retrieve
 	ok, err := aaa.Client.Policies.RetrieveLatestPoliciesShort(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -296,10 +308,14 @@ func (aaa *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.Re
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+func (aaa *PoliciesService) OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input *policies.OldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
@@ -314,9 +330,13 @@ func (aaa *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublicSho
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
+	ok, err := aaa.Client.Policies.OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

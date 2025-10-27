@@ -22,6 +22,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/deployment_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/image"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/image_v2"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/managed_resources"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/messages"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/notification_subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/notification_subscription_v3"
@@ -84,6 +85,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.DeploymentV2 = deployment_v2.New(transport, formats)
 	cli.Image = image.New(transport, formats)
 	cli.ImageV2 = image_v2.New(transport, formats)
+	cli.ManagedResources = managed_resources.New(transport, formats)
 	cli.Messages = messages.New(transport, formats)
 	cli.NotificationSubscription = notification_subscription.New(transport, formats)
 	cli.NotificationSubscriptionV3 = notification_subscription_v3.New(transport, formats)
@@ -164,6 +166,8 @@ type JusticeCsmService struct {
 
 	ImageV2 image_v2.ClientService
 
+	ManagedResources managed_resources.ClientService
+
 	Messages messages.ClientService
 
 	NotificationSubscription notification_subscription.ClientService
@@ -187,6 +191,7 @@ func (c *JusticeCsmService) SetTransport(transport runtime.ClientTransport) {
 	c.DeploymentV2.SetTransport(transport)
 	c.Image.SetTransport(transport)
 	c.ImageV2.SetTransport(transport)
+	c.ManagedResources.SetTransport(transport)
 	c.Messages.SetTransport(transport)
 	c.NotificationSubscription.SetTransport(transport)
 	c.NotificationSubscriptionV3.SetTransport(transport)

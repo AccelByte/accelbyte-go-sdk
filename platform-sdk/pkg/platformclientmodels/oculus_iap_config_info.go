@@ -27,6 +27,9 @@ type OculusIAPConfigInfo struct {
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// oculus webhook verify token
+	WebhookVerifyToken string `json:"webhookVerifyToken,omitempty"`
 }
 
 // Validate validates this Oculus IAP config info

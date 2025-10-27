@@ -151,6 +151,11 @@ type ImageListParams struct {
 
 	*/
 	Tag *string
+	/*TargetArchitecture
+	  the target architecture (currently only 'linux-x86_64' and 'linux-arm_64' are supported)
+
+	*/
+	TargetArchitecture *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -327,6 +332,17 @@ func (o *ImageListParams) SetTag(tag *string) {
 	o.Tag = tag
 }
 
+// WithTargetArchitecture adds the targetArchitecture to the image list params
+func (o *ImageListParams) WithTargetArchitecture(targetArchitecture *string) *ImageListParams {
+	o.SetTargetArchitecture(targetArchitecture)
+	return o
+}
+
+// SetTargetArchitecture adds the targetArchitecture to the image list params
+func (o *ImageListParams) SetTargetArchitecture(targetArchitecture *string) {
+	o.TargetArchitecture = targetArchitecture
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ImageListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -478,6 +494,22 @@ func (o *ImageListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		qTag := qrTag
 		if qTag != "" {
 			if err := r.SetQueryParam("tag", qTag); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TargetArchitecture != nil {
+
+		// query param targetArchitecture
+		var qrTargetArchitecture string
+		if o.TargetArchitecture != nil {
+			qrTargetArchitecture = *o.TargetArchitecture
+		}
+		qTargetArchitecture := qrTargetArchitecture
+		if qTargetArchitecture != "" {
+			if err := r.SetQueryParam("targetArchitecture", qTargetArchitecture); err != nil {
 				return err
 			}
 		}

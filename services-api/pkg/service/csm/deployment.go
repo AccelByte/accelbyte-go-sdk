@@ -172,6 +172,10 @@ func (aaa *DeploymentService) CreateDeploymentV1Short(input *deployment.CreateDe
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -202,6 +206,10 @@ func (aaa *DeploymentService) GetListOfDeploymentV1Short(input *deployment.GetLi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -230,6 +238,10 @@ func (aaa *DeploymentService) GetDeploymentV1Short(input *deployment.GetDeployme
 	ok, err := aaa.Client.Deployment.GetDeploymentV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

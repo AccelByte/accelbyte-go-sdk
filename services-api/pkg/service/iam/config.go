@@ -122,6 +122,10 @@ func (aaa *ConfigService) AdminGetConfigValueV3Short(input *config.AdminGetConfi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +156,10 @@ func (aaa *ConfigService) PublicGetSystemConfigV3Short(input *config.PublicGetSy
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -180,6 +188,10 @@ func (aaa *ConfigService) PublicGetConfigValueV3Short(input *config.PublicGetCon
 	ok, err := aaa.Client.Config.PublicGetConfigValueV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

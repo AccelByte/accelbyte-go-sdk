@@ -9,16 +9,16 @@ $ samples/cli/sample-apps Legal changePreferenceConsent \
     > result.txt
 ```
 
-### Operation `retrieve_accepted_agreements`
+### Operation `old_retrieve_accepted_agreements`
 ```sh
-$ samples/cli/sample-apps Legal retrieveAcceptedAgreements \
+$ samples/cli/sample-apps Legal oldRetrieveAcceptedAgreements \
     --userId 'string' \
     > result.txt
 ```
 
-### Operation `retrieve_all_users_by_policy_version`
+### Operation `old_retrieve_all_users_by_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveAllUsersByPolicyVersion \
+$ samples/cli/sample-apps Legal oldRetrieveAllUsersByPolicyVersion \
     --keyword 'string' \
     --limit 1 \
     --offset 1 \
@@ -33,77 +33,77 @@ $ samples/cli/sample-apps Legal retrieveAllLegalPolicies \
     > result.txt
 ```
 
-### Operation `create_policy`
+### Operation `old_create_policy`
 ```sh
-$ samples/cli/sample-apps Legal createPolicy \
+$ samples/cli/sample-apps Legal oldCreatePolicy \
     --body '{"affectedClientIds": ["string"], "affectedCountries": ["string"], "basePolicyName": "string", "countryGroupName": "string", "countryType": "COUNTRY", "description": "string", "isHidden": false, "isHiddenPublic": false, "namespace": "string", "tags": ["string"], "typeId": "string"}' \
     > result.txt
 ```
 
-### Operation `retrieve_single_policy`
+### Operation `old_retrieve_single_policy`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSinglePolicy \
+$ samples/cli/sample-apps Legal oldRetrieveSinglePolicy \
     --basePolicyId 'string' \
     > result.txt
 ```
 
-### Operation `partial_update_policy`
+### Operation `old_partial_update_policy`
 ```sh
-$ samples/cli/sample-apps Legal partialUpdatePolicy \
+$ samples/cli/sample-apps Legal oldPartialUpdatePolicy \
     --basePolicyId 'string' \
     --body '{"affectedClientIds": ["string"], "affectedCountries": ["string"], "basePolicyName": "string", "countryGroupName": "string", "countryType": "COUNTRY", "description": "string", "isHidden": false, "isHiddenPublic": false, "namespace": "string", "tags": ["string"]}' \
     > result.txt
 ```
 
-### Operation `retrieve_policy_country`
+### Operation `old_retrieve_policy_country`
 ```sh
-$ samples/cli/sample-apps Legal retrievePolicyCountry \
+$ samples/cli/sample-apps Legal oldRetrievePolicyCountry \
     --basePolicyId 'string' \
     --countryCode 'string' \
     > result.txt
 ```
 
-### Operation `retrieve_localized_policy_versions`
+### Operation `old_retrieve_localized_policy_versions`
 ```sh
-$ samples/cli/sample-apps Legal retrieveLocalizedPolicyVersions \
+$ samples/cli/sample-apps Legal oldRetrieveLocalizedPolicyVersions \
     --policyVersionId 'string' \
     > result.txt
 ```
 
-### Operation `create_localized_policy_version`
+### Operation `old_create_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal createLocalizedPolicyVersion \
+$ samples/cli/sample-apps Legal oldCreateLocalizedPolicyVersion \
     --policyVersionId 'string' \
     --body '{"contentType": "string", "description": "string", "localeCode": "string"}' \
     > result.txt
 ```
 
-### Operation `retrieve_single_localized_policy_version`
+### Operation `old_retrieve_single_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion \
+$ samples/cli/sample-apps Legal oldRetrieveSingleLocalizedPolicyVersion \
     --localizedPolicyVersionId 'string' \
     > result.txt
 ```
 
-### Operation `update_localized_policy_version`
+### Operation `old_update_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal updateLocalizedPolicyVersion \
+$ samples/cli/sample-apps Legal oldUpdateLocalizedPolicyVersion \
     --localizedPolicyVersionId 'string' \
     --body '{"attachmentChecksum": "string", "attachmentLocation": "string", "attachmentVersionIdentifier": "string", "contentType": "string", "description": "string"}' \
     > result.txt
 ```
 
-### Operation `request_presigned_url`
+### Operation `old_request_presigned_url`
 ```sh
-$ samples/cli/sample-apps Legal requestPresignedURL \
+$ samples/cli/sample-apps Legal oldRequestPresignedURL \
     --localizedPolicyVersionId 'string' \
     --body '{"contentMD5": "string", "contentType": "string"}' \
     > result.txt
 ```
 
-### Operation `set_default_policy`
+### Operation `old_set_default_localized_policy`
 ```sh
-$ samples/cli/sample-apps Legal setDefaultPolicy \
+$ samples/cli/sample-apps Legal oldSetDefaultLocalizedPolicy \
     --localizedPolicyVersionId 'string' \
     > result.txt
 ```
@@ -116,18 +116,18 @@ $ samples/cli/sample-apps Legal retrieveAcceptedAgreementsForMultiUsers \
     > result.txt
 ```
 
-### Operation `retrieve_accepted_agreements_1`
+### Operation `retrieve_accepted_agreements`
 ```sh
-$ samples/cli/sample-apps Legal retrieveAcceptedAgreements1 \
+$ samples/cli/sample-apps Legal retrieveAcceptedAgreements \
     --namespace 'string' \
     --userId 'string' \
     --excludeOtherNamespacesPolicies false \
     > result.txt
 ```
 
-### Operation `retrieve_all_users_by_policy_version_1`
+### Operation `retrieve_all_users_by_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveAllUsersByPolicyVersion1 \
+$ samples/cli/sample-apps Legal retrieveAllUsersByPolicyVersion \
     --namespace 'string' \
     --convertGameUserId false \
     --keyword 'string' \
@@ -163,17 +163,17 @@ $ samples/cli/sample-apps Legal retrieveAllLegalPoliciesByNamespace \
     > result.txt
 ```
 
-### Operation `create_policy_1`
+### Operation `create_policy`
 ```sh
-$ samples/cli/sample-apps Legal createPolicy1 \
+$ samples/cli/sample-apps Legal createPolicy \
     --namespace 'string' \
     --body '{"affectedClientIds": ["string"], "affectedCountries": ["string"], "basePolicyName": "string", "countryGroupName": "string", "countryType": "COUNTRY", "description": "string", "isHidden": false, "isHiddenPublic": false, "tags": ["string"], "typeId": "string"}' \
     > result.txt
 ```
 
-### Operation `retrieve_single_policy_1`
+### Operation `retrieve_single_policy`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSinglePolicy1 \
+$ samples/cli/sample-apps Legal retrieveSinglePolicy \
     --basePolicyId 'string' \
     --namespace 'string' \
     > result.txt
@@ -187,18 +187,18 @@ $ samples/cli/sample-apps Legal deleteBasePolicy \
     > result.txt
 ```
 
-### Operation `partial_update_policy_1`
+### Operation `partial_update_policy`
 ```sh
-$ samples/cli/sample-apps Legal partialUpdatePolicy1 \
+$ samples/cli/sample-apps Legal partialUpdatePolicy \
     --basePolicyId 'string' \
     --namespace 'string' \
     --body '{"affectedClientIds": ["string"], "affectedCountries": ["string"], "basePolicyName": "string", "countryGroupName": "string", "countryType": "COUNTRY", "description": "string", "isHidden": false, "isHiddenPublic": false, "tags": ["string"]}' \
     > result.txt
 ```
 
-### Operation `retrieve_policy_country_1`
+### Operation `retrieve_policy_country`
 ```sh
-$ samples/cli/sample-apps Legal retrievePolicyCountry1 \
+$ samples/cli/sample-apps Legal retrievePolicyCountry \
     --basePolicyId 'string' \
     --countryCode 'string' \
     --namespace 'string' \
@@ -230,52 +230,52 @@ $ samples/cli/sample-apps Legal deleteLocalizedPolicy \
     > result.txt
 ```
 
-### Operation `retrieve_localized_policy_versions_1`
+### Operation `retrieve_localized_policy_versions`
 ```sh
-$ samples/cli/sample-apps Legal retrieveLocalizedPolicyVersions1 \
+$ samples/cli/sample-apps Legal retrieveLocalizedPolicyVersions \
     --namespace 'string' \
     --policyVersionId 'string' \
     > result.txt
 ```
 
-### Operation `create_localized_policy_version_1`
+### Operation `create_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal createLocalizedPolicyVersion1 \
+$ samples/cli/sample-apps Legal createLocalizedPolicyVersion \
     --namespace 'string' \
     --policyVersionId 'string' \
     --body '{"contentType": "string", "description": "string", "localeCode": "string"}' \
     > result.txt
 ```
 
-### Operation `retrieve_single_localized_policy_version_1`
+### Operation `retrieve_single_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion1 \
+$ samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion \
     --localizedPolicyVersionId 'string' \
     --namespace 'string' \
     > result.txt
 ```
 
-### Operation `update_localized_policy_version_1`
+### Operation `update_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal updateLocalizedPolicyVersion1 \
+$ samples/cli/sample-apps Legal updateLocalizedPolicyVersion \
     --localizedPolicyVersionId 'string' \
     --namespace 'string' \
     --body '{"attachmentChecksum": "string", "attachmentLocation": "string", "attachmentVersionIdentifier": "string", "contentType": "string", "description": "string"}' \
     > result.txt
 ```
 
-### Operation `request_presigned_url_1`
+### Operation `request_presigned_url`
 ```sh
-$ samples/cli/sample-apps Legal requestPresignedURL1 \
+$ samples/cli/sample-apps Legal requestPresignedURL \
     --localizedPolicyVersionId 'string' \
     --namespace 'string' \
     --body '{"contentMD5": "string", "contentType": "string"}' \
     > result.txt
 ```
 
-### Operation `set_default_policy_1`
+### Operation `set_default_localized_policy`
 ```sh
-$ samples/cli/sample-apps Legal setDefaultPolicy1 \
+$ samples/cli/sample-apps Legal setDefaultLocalizedPolicy \
     --localizedPolicyVersionId 'string' \
     --namespace 'string' \
     > result.txt
@@ -289,18 +289,18 @@ $ samples/cli/sample-apps Legal deletePolicyVersion \
     > result.txt
 ```
 
-### Operation `update_policy_version_1`
+### Operation `update_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal updatePolicyVersion1 \
+$ samples/cli/sample-apps Legal updatePolicyVersion \
     --namespace 'string' \
     --policyVersionId 'string' \
     --body '{"description": "string", "displayVersion": "string", "isCommitted": false}' \
     > result.txt
 ```
 
-### Operation `publish_policy_version_1`
+### Operation `publish_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal publishPolicyVersion1 \
+$ samples/cli/sample-apps Legal publishPolicyVersion \
     --namespace 'string' \
     --policyVersionId 'string' \
     --shouldNotify false \
@@ -323,44 +323,44 @@ $ samples/cli/sample-apps Legal deletePolicy \
     > result.txt
 ```
 
-### Operation `update_policy_1`
+### Operation `update_policy`
 ```sh
-$ samples/cli/sample-apps Legal updatePolicy1 \
+$ samples/cli/sample-apps Legal updatePolicy \
     --namespace 'string' \
     --policyId 'string' \
     --body '{"countries": ["string"], "countryGroupName": "string", "description": "string", "isDefaultOpted": false, "isMandatory": false, "policyName": "string", "readableId": "string", "shouldNotifyOnUpdate": false}' \
     > result.txt
 ```
 
-### Operation `set_default_policy_3`
+### Operation `set_default_policy`
 ```sh
-$ samples/cli/sample-apps Legal setDefaultPolicy3 \
+$ samples/cli/sample-apps Legal setDefaultPolicy \
     --namespace 'string' \
     --policyId 'string' \
     > result.txt
 ```
 
-### Operation `retrieve_single_policy_version_1`
+### Operation `retrieve_single_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSinglePolicyVersion1 \
+$ samples/cli/sample-apps Legal retrieveSinglePolicyVersion \
     --namespace 'string' \
     --policyId 'string' \
     --versionId 'string' \
     > result.txt
 ```
 
-### Operation `create_policy_version_1`
+### Operation `create_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal createPolicyVersion1 \
+$ samples/cli/sample-apps Legal createPolicyVersion \
     --namespace 'string' \
     --policyId 'string' \
     --body '{"description": "string", "displayVersion": "string", "isCommitted": false}' \
     > result.txt
 ```
 
-### Operation `retrieve_all_policy_types_1`
+### Operation `retrieve_all_policy_types`
 ```sh
-$ samples/cli/sample-apps Legal retrieveAllPolicyTypes1 \
+$ samples/cli/sample-apps Legal retrieveAllPolicyTypes \
     --namespace 'string' \
     --offset 1 \
     --limit 1 \
@@ -397,56 +397,56 @@ $ samples/cli/sample-apps Legal retrievePolicies \
     > result.txt
 ```
 
-### Operation `update_policy_version`
+### Operation `old_update_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal updatePolicyVersion \
+$ samples/cli/sample-apps Legal oldUpdatePolicyVersion \
     --policyVersionId 'string' \
     --body '{"description": "string", "displayVersion": "string", "isCommitted": false}' \
     > result.txt
 ```
 
-### Operation `publish_policy_version`
+### Operation `old_publish_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal publishPolicyVersion \
+$ samples/cli/sample-apps Legal oldPublishPolicyVersion \
     --policyVersionId 'string' \
     --shouldNotify false \
     > result.txt
 ```
 
-### Operation `update_policy`
+### Operation `old_update_policy`
 ```sh
-$ samples/cli/sample-apps Legal updatePolicy \
+$ samples/cli/sample-apps Legal oldUpdatePolicy \
     --policyId 'string' \
     --body '{"countries": ["string"], "countryGroupName": "string", "description": "string", "isDefaultOpted": false, "isMandatory": false, "policyName": "string", "readableId": "string", "shouldNotifyOnUpdate": false}' \
     > result.txt
 ```
 
-### Operation `set_default_policy_2`
+### Operation `old_set_default_policy`
 ```sh
-$ samples/cli/sample-apps Legal setDefaultPolicy2 \
+$ samples/cli/sample-apps Legal oldSetDefaultPolicy \
     --policyId 'string' \
     > result.txt
 ```
 
-### Operation `retrieve_single_policy_version`
+### Operation `old_retrieve_single_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSinglePolicyVersion \
+$ samples/cli/sample-apps Legal oldRetrieveSinglePolicyVersion \
     --policyId 'string' \
     --versionId 'string' \
     > result.txt
 ```
 
-### Operation `create_policy_version`
+### Operation `old_create_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal createPolicyVersion \
+$ samples/cli/sample-apps Legal oldCreatePolicyVersion \
     --policyId 'string' \
     --body '{"description": "string", "displayVersion": "string", "isCommitted": false}' \
     > result.txt
 ```
 
-### Operation `retrieve_all_policy_types`
+### Operation `old_retrieve_all_policy_types`
 ```sh
-$ samples/cli/sample-apps Legal retrieveAllPolicyTypes \
+$ samples/cli/sample-apps Legal oldRetrieveAllPolicyTypes \
     --offset 1 \
     --limit 1 \
     > result.txt
@@ -466,9 +466,9 @@ $ samples/cli/sample-apps Legal anonymizeUserAgreement \
     > result.txt
 ```
 
-### Operation `change_preference_consent_1`
+### Operation `public_change_preference_consent`
 ```sh
-$ samples/cli/sample-apps Legal changePreferenceConsent1 \
+$ samples/cli/sample-apps Legal publicChangePreferenceConsent \
     --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "string", "policyId": "string", "policyVersionId": "string"}]' \
     > result.txt
 ```
@@ -510,16 +510,16 @@ $ samples/cli/sample-apps Legal retrieveEligibilitiesPublicIndirect \
     > result.txt
 ```
 
-### Operation `retrieve_single_localized_policy_version_2`
+### Operation `old_public_retrieve_single_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion2 \
+$ samples/cli/sample-apps Legal oldPublicRetrieveSingleLocalizedPolicyVersion \
     --localizedPolicyVersionId 'string' \
     > result.txt
 ```
 
-### Operation `retrieve_single_localized_policy_version_3`
+### Operation `public_retrieve_single_localized_policy_version`
 ```sh
-$ samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion3 \
+$ samples/cli/sample-apps Legal publicRetrieveSingleLocalizedPolicyVersion \
     --localizedPolicyVersionId 'string' \
     --namespace 'string' \
     > result.txt
@@ -554,9 +554,9 @@ $ samples/cli/sample-apps Legal retrieveLatestPoliciesPublic \
     > result.txt
 ```
 
-### Operation `retrieve_latest_policies_by_namespace_and_country_public`
+### Operation `old_retrieve_latest_policies_by_namespace_and_country_public`
 ```sh
-$ samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic \
+$ samples/cli/sample-apps Legal oldRetrieveLatestPoliciesByNamespaceAndCountryPublic \
     --countryCode 'string' \
     --namespace 'string' \
     --alwaysIncludeDefault false \
@@ -573,9 +573,9 @@ $ samples/cli/sample-apps Legal checkReadiness \
     > result.txt
 ```
 
-### Operation `retrieve_latest_policies_by_namespace_and_country_public_1`
+### Operation `retrieve_latest_policies_by_namespace_and_country_public`
 ```sh
-$ samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic1 \
+$ samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic \
     --countryCode 'string' \
     --namespace 'string' \
     --clientId 'string' \

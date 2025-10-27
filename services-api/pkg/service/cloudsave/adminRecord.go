@@ -412,6 +412,10 @@ func (aaa *AdminRecordService) AdminListAdminGameRecordV1Short(input *admin_reco
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -440,6 +444,10 @@ func (aaa *AdminRecordService) AdminBulkGetAdminGameRecordV1Short(input *admin_r
 	ok, err := aaa.Client.AdminRecord.AdminBulkGetAdminGameRecordV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -472,6 +480,10 @@ func (aaa *AdminRecordService) AdminGetAdminGameRecordV1Short(input *admin_recor
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -502,6 +514,10 @@ func (aaa *AdminRecordService) AdminPutAdminGameRecordV1Short(input *admin_recor
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -530,6 +546,10 @@ func (aaa *AdminRecordService) AdminPostAdminGameRecordV1Short(input *admin_reco
 	created, err := aaa.Client.AdminRecord.AdminPostAdminGameRecordV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -592,6 +612,10 @@ func (aaa *AdminRecordService) BulkGetAdminPlayerRecordByUserIdsV1Short(input *a
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -620,6 +644,10 @@ func (aaa *AdminRecordService) AdminListAdminUserRecordsV1Short(input *admin_rec
 	ok, err := aaa.Client.AdminRecord.AdminListAdminUserRecordsV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -652,6 +680,10 @@ func (aaa *AdminRecordService) AdminBulkGetAdminPlayerRecordV1Short(input *admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -680,6 +712,10 @@ func (aaa *AdminRecordService) AdminGetAdminPlayerRecordV1Short(input *admin_rec
 	ok, err := aaa.Client.AdminRecord.AdminGetAdminPlayerRecordV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -712,6 +748,10 @@ func (aaa *AdminRecordService) AdminPutAdminPlayerRecordV1Short(input *admin_rec
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -740,6 +780,10 @@ func (aaa *AdminRecordService) AdminPostPlayerAdminRecordV1Short(input *admin_re
 	created, err := aaa.Client.AdminRecord.AdminPostPlayerAdminRecordV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

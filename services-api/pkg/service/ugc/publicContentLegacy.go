@@ -559,6 +559,10 @@ func (aaa *PublicContentLegacyService) SearchChannelSpecificContentShort(input *
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -587,6 +591,10 @@ func (aaa *PublicContentLegacyService) PublicSearchContentShort(input *public_co
 	ok, err := aaa.Client.PublicContentLegacy.PublicSearchContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -619,6 +627,10 @@ func (aaa *PublicContentLegacyService) PublicGetContentBulkShort(input *public_c
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -647,6 +659,10 @@ func (aaa *PublicContentLegacyService) PublicGetContentBulkByShareCodesShort(inp
 	ok, err := aaa.Client.PublicContentLegacy.PublicGetContentBulkByShareCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -679,6 +695,10 @@ func (aaa *PublicContentLegacyService) PublicDownloadContentByShareCodeShort(inp
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -707,6 +727,10 @@ func (aaa *PublicContentLegacyService) PublicDownloadContentByContentIDShort(inp
 	ok, err := aaa.Client.PublicContentLegacy.PublicDownloadContentByContentIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -739,6 +763,10 @@ func (aaa *PublicContentLegacyService) PublicDownloadContentPreviewShort(input *
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -767,6 +795,10 @@ func (aaa *PublicContentLegacyService) CreateContentDirectShort(input *public_co
 	created, err := aaa.Client.PublicContentLegacy.CreateContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -799,6 +831,10 @@ func (aaa *PublicContentLegacyService) CreateContentS3Short(input *public_conten
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -829,6 +865,10 @@ func (aaa *PublicContentLegacyService) PublicUpdateContentByShareCodeShort(input
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -857,6 +897,10 @@ func (aaa *PublicContentLegacyService) UpdateContentS3Short(input *public_conten
 	ok, err := aaa.Client.PublicContentLegacy.UpdateContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -919,6 +963,10 @@ func (aaa *PublicContentLegacyService) UpdateContentDirectShort(input *public_co
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -979,6 +1027,10 @@ func (aaa *PublicContentLegacyService) UpdateContentShareCodeShort(input *public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1007,6 +1059,10 @@ func (aaa *PublicContentLegacyService) PublicGetUserContentShort(input *public_c
 	ok, err := aaa.Client.PublicContentLegacy.PublicGetUserContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1039,6 +1095,10 @@ func (aaa *PublicContentLegacyService) UpdateScreenshotsShort(input *public_cont
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1067,6 +1127,10 @@ func (aaa *PublicContentLegacyService) UploadContentScreenshotShort(input *publi
 	created, err := aaa.Client.PublicContentLegacy.UploadContentScreenshotShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

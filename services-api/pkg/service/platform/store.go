@@ -455,6 +455,10 @@ func (aaa *StoreService) GetCatalogConfigShort(input *store.GetCatalogConfigPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -483,6 +487,10 @@ func (aaa *StoreService) UpdateCatalogConfigShort(input *store.UpdateCatalogConf
 	ok, err := aaa.Client.Store.UpdateCatalogConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -515,6 +523,10 @@ func (aaa *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*plat
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -543,6 +555,10 @@ func (aaa *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*plat
 	created, err := aaa.Client.Store.CreateStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -575,6 +591,10 @@ func (aaa *StoreService) GetCatalogDefinitionShort(input *store.GetCatalogDefini
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -603,6 +623,10 @@ func (aaa *StoreService) DownloadCSVTemplatesShort(input *store.DownloadCSVTempl
 	ok, err := aaa.Client.Store.DownloadCSVTemplatesShort(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -635,6 +659,10 @@ func (aaa *StoreService) ExportStoreByCSVShort(input *store.ExportStoreByCSVPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -663,6 +691,10 @@ func (aaa *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*plat
 	ok, err := aaa.Client.Store.ImportStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -695,6 +727,10 @@ func (aaa *StoreService) GetPublishedStoreShort(input *store.GetPublishedStorePa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -723,6 +759,10 @@ func (aaa *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedS
 	ok, err := aaa.Client.Store.DeletePublishedStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -755,6 +795,10 @@ func (aaa *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedS
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -783,6 +827,10 @@ func (aaa *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublis
 	ok, err := aaa.Client.Store.RollbackPublishedStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -815,6 +863,10 @@ func (aaa *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformcl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -843,6 +895,10 @@ func (aaa *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*plat
 	ok, err := aaa.Client.Store.UpdateStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -875,6 +931,10 @@ func (aaa *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*plat
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -903,6 +963,10 @@ func (aaa *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platfo
 	ok, err := aaa.Client.Store.CloneStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -935,6 +999,10 @@ func (aaa *StoreService) ExportStoreShort(input *store.ExportStoreParams, writer
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -963,6 +1031,10 @@ func (aaa *StoreService) QueryImportHistoryShort(input *store.QueryImportHistory
 	ok, err := aaa.Client.Store.QueryImportHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -995,6 +1067,10 @@ func (aaa *StoreService) ImportStoreByCSVShort(input *store.ImportStoreByCSVPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1016,6 +1092,10 @@ func (aaa *StoreService) PublicListStoresShort(input *store.PublicListStoresPara
 	ok, err := aaa.Client.Store.PublicListStoresShort(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1048,6 +1128,10 @@ func (aaa *StoreService) ImportStore1Short(input *store.ImportStore1Params) (*pl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1076,6 +1160,10 @@ func (aaa *StoreService) ExportStore1Short(input *store.ExportStore1Params, writ
 	ok, err := aaa.Client.Store.ExportStore1Short(input, authInfoWriter, writer)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

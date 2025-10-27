@@ -210,6 +210,10 @@ func (aaa *PlatformCredentialService) AdminGetPlatformCredentialsShort(input *pl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -238,6 +242,10 @@ func (aaa *PlatformCredentialService) AdminUpdatePlatformCredentialsShort(input 
 	ok, err := aaa.Client.PlatformCredential.AdminUpdatePlatformCredentialsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -328,6 +336,10 @@ func (aaa *PlatformCredentialService) AdminSyncPlatformCredentialsShort(input *p
 	ok, err := aaa.Client.PlatformCredential.AdminSyncPlatformCredentialsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

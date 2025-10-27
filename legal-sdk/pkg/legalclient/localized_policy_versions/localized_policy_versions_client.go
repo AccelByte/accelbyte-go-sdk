@@ -30,34 +30,34 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error)
-	RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error)
-	CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, *CreateLocalizedPolicyVersionBadRequest, *CreateLocalizedPolicyVersionConflict, error)
-	CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, error)
-	RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionNotFound, error)
-	RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, error)
-	UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, *UpdateLocalizedPolicyVersionBadRequest, error)
-	UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, error)
-	RequestPresignedURL(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, *RequestPresignedURLBadRequest, error)
-	RequestPresignedURLShort(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, error)
-	SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error)
-	SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error)
-	RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2Forbidden, *RetrieveSingleLocalizedPolicyVersion2NotFound, error)
-	RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, error)
+	OldRetrieveLocalizedPolicyVersions(params *OldRetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveLocalizedPolicyVersionsOK, error)
+	OldRetrieveLocalizedPolicyVersionsShort(params *OldRetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveLocalizedPolicyVersionsOK, error)
+	OldCreateLocalizedPolicyVersion(params *OldCreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldCreateLocalizedPolicyVersionCreated, *OldCreateLocalizedPolicyVersionBadRequest, *OldCreateLocalizedPolicyVersionConflict, error)
+	OldCreateLocalizedPolicyVersionShort(params *OldCreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldCreateLocalizedPolicyVersionCreated, error)
+	OldRetrieveSingleLocalizedPolicyVersion(params *OldRetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveSingleLocalizedPolicyVersionOK, *OldRetrieveSingleLocalizedPolicyVersionNotFound, error)
+	OldRetrieveSingleLocalizedPolicyVersionShort(params *OldRetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveSingleLocalizedPolicyVersionOK, error)
+	OldUpdateLocalizedPolicyVersion(params *OldUpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdateLocalizedPolicyVersionOK, *OldUpdateLocalizedPolicyVersionBadRequest, error)
+	OldUpdateLocalizedPolicyVersionShort(params *OldUpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdateLocalizedPolicyVersionOK, error)
+	OldRequestPresignedURL(params *OldRequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*OldRequestPresignedURLCreated, *OldRequestPresignedURLBadRequest, error)
+	OldRequestPresignedURLShort(params *OldRequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*OldRequestPresignedURLCreated, error)
+	OldSetDefaultLocalizedPolicy(params *OldSetDefaultLocalizedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultLocalizedPolicyOK, *OldSetDefaultLocalizedPolicyBadRequest, error)
+	OldSetDefaultLocalizedPolicyShort(params *OldSetDefaultLocalizedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultLocalizedPolicyOK, error)
+	OldPublicRetrieveSingleLocalizedPolicyVersion(params *OldPublicRetrieveSingleLocalizedPolicyVersionParams) (*OldPublicRetrieveSingleLocalizedPolicyVersionOK, *OldPublicRetrieveSingleLocalizedPolicyVersionForbidden, *OldPublicRetrieveSingleLocalizedPolicyVersionNotFound, error)
+	OldPublicRetrieveSingleLocalizedPolicyVersionShort(params *OldPublicRetrieveSingleLocalizedPolicyVersionParams) (*OldPublicRetrieveSingleLocalizedPolicyVersionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveLocalizedPolicyVersionsShort instead.
+Deprecated: 2022-08-10 - Use OldRetrieveLocalizedPolicyVersionsShort instead.
 
-RetrieveLocalizedPolicyVersions retrieve versions from country-specific policy
+OldRetrieveLocalizedPolicyVersions retrieve versions from country-specific policy
 Retrieve versions of a particular country-specific policy.
 */
-func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error) {
+func (a *Client) OldRetrieveLocalizedPolicyVersions(params *OldRetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveLocalizedPolicyVersionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveLocalizedPolicyVersionsParams()
+		params = NewOldRetrieveLocalizedPolicyVersionsParams()
 	}
 
 	if params.Context == nil {
@@ -73,14 +73,14 @@ func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicy
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveLocalizedPolicyVersions",
+		ID:                 "oldRetrieveLocalizedPolicyVersions",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveLocalizedPolicyVersionsReader{formats: a.formats},
+		Reader:             &OldRetrieveLocalizedPolicyVersionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -91,7 +91,7 @@ func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicy
 
 	switch v := result.(type) {
 
-	case *RetrieveLocalizedPolicyVersionsOK:
+	case *OldRetrieveLocalizedPolicyVersionsOK:
 		return v, nil
 
 	default:
@@ -100,13 +100,13 @@ func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicy
 }
 
 /*
-RetrieveLocalizedPolicyVersionsShort retrieve versions from country-specific policy
+OldRetrieveLocalizedPolicyVersionsShort retrieve versions from country-specific policy
 Retrieve versions of a particular country-specific policy.
 */
-func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLocalizedPolicyVersionsOK, error) {
+func (a *Client) OldRetrieveLocalizedPolicyVersionsShort(params *OldRetrieveLocalizedPolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveLocalizedPolicyVersionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveLocalizedPolicyVersionsParams()
+		params = NewOldRetrieveLocalizedPolicyVersionsParams()
 	}
 
 	if params.Context == nil {
@@ -118,14 +118,14 @@ func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedP
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveLocalizedPolicyVersions",
+		ID:                 "oldRetrieveLocalizedPolicyVersions",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveLocalizedPolicyVersionsReader{formats: a.formats},
+		Reader:             &OldRetrieveLocalizedPolicyVersionsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -136,7 +136,7 @@ func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedP
 
 	switch v := result.(type) {
 
-	case *RetrieveLocalizedPolicyVersionsOK:
+	case *OldRetrieveLocalizedPolicyVersionsOK:
 		return v, nil
 
 	default:
@@ -145,15 +145,15 @@ func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedP
 }
 
 /*
-Deprecated: 2022-08-10 - Use CreateLocalizedPolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use OldCreateLocalizedPolicyVersionShort instead.
 
-CreateLocalizedPolicyVersion create a localized version from country-specific policy
+OldCreateLocalizedPolicyVersion create a localized version from country-specific policy
 Create a version of a particular country-specific policy.
 */
-func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, *CreateLocalizedPolicyVersionBadRequest, *CreateLocalizedPolicyVersionConflict, error) {
+func (a *Client) OldCreateLocalizedPolicyVersion(params *OldCreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldCreateLocalizedPolicyVersionCreated, *OldCreateLocalizedPolicyVersionBadRequest, *OldCreateLocalizedPolicyVersionConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateLocalizedPolicyVersionParams()
+		params = NewOldCreateLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -169,14 +169,14 @@ func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersi
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createLocalizedPolicyVersion",
+		ID:                 "oldCreateLocalizedPolicyVersion",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreateLocalizedPolicyVersionReader{formats: a.formats},
+		Reader:             &OldCreateLocalizedPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -187,13 +187,13 @@ func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersi
 
 	switch v := result.(type) {
 
-	case *CreateLocalizedPolicyVersionCreated:
+	case *OldCreateLocalizedPolicyVersionCreated:
 		return v, nil, nil, nil
 
-	case *CreateLocalizedPolicyVersionBadRequest:
+	case *OldCreateLocalizedPolicyVersionBadRequest:
 		return nil, v, nil, nil
 
-	case *CreateLocalizedPolicyVersionConflict:
+	case *OldCreateLocalizedPolicyVersionConflict:
 		return nil, nil, v, nil
 
 	default:
@@ -202,13 +202,13 @@ func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersi
 }
 
 /*
-CreateLocalizedPolicyVersionShort create a localized version from country-specific policy
+OldCreateLocalizedPolicyVersionShort create a localized version from country-specific policy
 Create a version of a particular country-specific policy.
 */
-func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateLocalizedPolicyVersionCreated, error) {
+func (a *Client) OldCreateLocalizedPolicyVersionShort(params *OldCreateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldCreateLocalizedPolicyVersionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateLocalizedPolicyVersionParams()
+		params = NewOldCreateLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -220,14 +220,14 @@ func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicy
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createLocalizedPolicyVersion",
+		ID:                 "oldCreateLocalizedPolicyVersion",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreateLocalizedPolicyVersionReader{formats: a.formats},
+		Reader:             &OldCreateLocalizedPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -238,11 +238,11 @@ func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicy
 
 	switch v := result.(type) {
 
-	case *CreateLocalizedPolicyVersionCreated:
+	case *OldCreateLocalizedPolicyVersionCreated:
 		return v, nil
-	case *CreateLocalizedPolicyVersionBadRequest:
+	case *OldCreateLocalizedPolicyVersionBadRequest:
 		return nil, v
-	case *CreateLocalizedPolicyVersionConflict:
+	case *OldCreateLocalizedPolicyVersionConflict:
 		return nil, v
 
 	default:
@@ -251,15 +251,15 @@ func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicy
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveSingleLocalizedPolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use OldRetrieveSingleLocalizedPolicyVersionShort instead.
 
-RetrieveSingleLocalizedPolicyVersion retrieve a localized version from country-specific policy
+OldRetrieveSingleLocalizedPolicyVersion retrieve a localized version from country-specific policy
 Retrieve a version of a particular country-specific policy.
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, *RetrieveSingleLocalizedPolicyVersionNotFound, error) {
+func (a *Client) OldRetrieveSingleLocalizedPolicyVersion(params *OldRetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveSingleLocalizedPolicyVersionOK, *OldRetrieveSingleLocalizedPolicyVersionNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSingleLocalizedPolicyVersionParams()
+		params = NewOldRetrieveSingleLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -275,14 +275,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSingleLocalizedPolicyVersion",
+		ID:                 "oldRetrieveSingleLocalizedPolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSingleLocalizedPolicyVersionReader{formats: a.formats},
+		Reader:             &OldRetrieveSingleLocalizedPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -293,10 +293,10 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 
 	switch v := result.(type) {
 
-	case *RetrieveSingleLocalizedPolicyVersionOK:
+	case *OldRetrieveSingleLocalizedPolicyVersionOK:
 		return v, nil, nil
 
-	case *RetrieveSingleLocalizedPolicyVersionNotFound:
+	case *OldRetrieveSingleLocalizedPolicyVersionNotFound:
 		return nil, v, nil
 
 	default:
@@ -305,13 +305,13 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 }
 
 /*
-RetrieveSingleLocalizedPolicyVersionShort retrieve a localized version from country-specific policy
+OldRetrieveSingleLocalizedPolicyVersionShort retrieve a localized version from country-specific policy
 Retrieve a version of a particular country-specific policy.
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSingleLocalizedPolicyVersionOK, error) {
+func (a *Client) OldRetrieveSingleLocalizedPolicyVersionShort(params *OldRetrieveSingleLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveSingleLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSingleLocalizedPolicyVersionParams()
+		params = NewOldRetrieveSingleLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -323,14 +323,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSingleLocalizedPolicyVersion",
+		ID:                 "oldRetrieveSingleLocalizedPolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSingleLocalizedPolicyVersionReader{formats: a.formats},
+		Reader:             &OldRetrieveSingleLocalizedPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -341,9 +341,9 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 
 	switch v := result.(type) {
 
-	case *RetrieveSingleLocalizedPolicyVersionOK:
+	case *OldRetrieveSingleLocalizedPolicyVersionOK:
 		return v, nil
-	case *RetrieveSingleLocalizedPolicyVersionNotFound:
+	case *OldRetrieveSingleLocalizedPolicyVersionNotFound:
 		return nil, v
 
 	default:
@@ -352,15 +352,15 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 }
 
 /*
-Deprecated: 2022-08-10 - Use UpdateLocalizedPolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use OldUpdateLocalizedPolicyVersionShort instead.
 
-UpdateLocalizedPolicyVersion update a localized version from country-specific policy
+OldUpdateLocalizedPolicyVersion update a localized version from country-specific policy
 Update a version of a particular country-specific policy.
 */
-func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, *UpdateLocalizedPolicyVersionBadRequest, error) {
+func (a *Client) OldUpdateLocalizedPolicyVersion(params *OldUpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdateLocalizedPolicyVersionOK, *OldUpdateLocalizedPolicyVersionBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateLocalizedPolicyVersionParams()
+		params = NewOldUpdateLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -376,14 +376,14 @@ func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersi
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateLocalizedPolicyVersion",
+		ID:                 "oldUpdateLocalizedPolicyVersion",
 		Method:             "PUT",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateLocalizedPolicyVersionReader{formats: a.formats},
+		Reader:             &OldUpdateLocalizedPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -394,10 +394,10 @@ func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersi
 
 	switch v := result.(type) {
 
-	case *UpdateLocalizedPolicyVersionOK:
+	case *OldUpdateLocalizedPolicyVersionOK:
 		return v, nil, nil
 
-	case *UpdateLocalizedPolicyVersionBadRequest:
+	case *OldUpdateLocalizedPolicyVersionBadRequest:
 		return nil, v, nil
 
 	default:
@@ -406,13 +406,13 @@ func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersi
 }
 
 /*
-UpdateLocalizedPolicyVersionShort update a localized version from country-specific policy
+OldUpdateLocalizedPolicyVersionShort update a localized version from country-specific policy
 Update a version of a particular country-specific policy.
 */
-func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateLocalizedPolicyVersionOK, error) {
+func (a *Client) OldUpdateLocalizedPolicyVersionShort(params *OldUpdateLocalizedPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdateLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateLocalizedPolicyVersionParams()
+		params = NewOldUpdateLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -424,14 +424,14 @@ func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicy
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateLocalizedPolicyVersion",
+		ID:                 "oldUpdateLocalizedPolicyVersion",
 		Method:             "PUT",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateLocalizedPolicyVersionReader{formats: a.formats},
+		Reader:             &OldUpdateLocalizedPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -442,9 +442,9 @@ func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicy
 
 	switch v := result.(type) {
 
-	case *UpdateLocalizedPolicyVersionOK:
+	case *OldUpdateLocalizedPolicyVersionOK:
 		return v, nil
-	case *UpdateLocalizedPolicyVersionBadRequest:
+	case *OldUpdateLocalizedPolicyVersionBadRequest:
 		return nil, v
 
 	default:
@@ -453,15 +453,15 @@ func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicy
 }
 
 /*
-Deprecated: 2022-08-10 - Use RequestPresignedURLShort instead.
+Deprecated: 2022-08-10 - Use OldRequestPresignedURLShort instead.
 
-RequestPresignedURL request presigned url for upload document
+OldRequestPresignedURL request presigned url for upload document
 Request presigned URL for upload attachment for a particular localized version of base policy.
 */
-func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, *RequestPresignedURLBadRequest, error) {
+func (a *Client) OldRequestPresignedURL(params *OldRequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*OldRequestPresignedURLCreated, *OldRequestPresignedURLBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestPresignedURLParams()
+		params = NewOldRequestPresignedURLParams()
 	}
 
 	if params.Context == nil {
@@ -477,14 +477,14 @@ func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "requestPresignedURL",
+		ID:                 "oldRequestPresignedURL",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RequestPresignedURLReader{formats: a.formats},
+		Reader:             &OldRequestPresignedURLReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -495,10 +495,10 @@ func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo
 
 	switch v := result.(type) {
 
-	case *RequestPresignedURLCreated:
+	case *OldRequestPresignedURLCreated:
 		return v, nil, nil
 
-	case *RequestPresignedURLBadRequest:
+	case *OldRequestPresignedURLBadRequest:
 		return nil, v, nil
 
 	default:
@@ -507,13 +507,13 @@ func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo
 }
 
 /*
-RequestPresignedURLShort request presigned url for upload document
+OldRequestPresignedURLShort request presigned url for upload document
 Request presigned URL for upload attachment for a particular localized version of base policy.
 */
-func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*RequestPresignedURLCreated, error) {
+func (a *Client) OldRequestPresignedURLShort(params *OldRequestPresignedURLParams, authInfo runtime.ClientAuthInfoWriter) (*OldRequestPresignedURLCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRequestPresignedURLParams()
+		params = NewOldRequestPresignedURLParams()
 	}
 
 	if params.Context == nil {
@@ -525,14 +525,14 @@ func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, aut
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "requestPresignedURL",
+		ID:                 "oldRequestPresignedURL",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RequestPresignedURLReader{formats: a.formats},
+		Reader:             &OldRequestPresignedURLReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -543,9 +543,9 @@ func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, aut
 
 	switch v := result.(type) {
 
-	case *RequestPresignedURLCreated:
+	case *OldRequestPresignedURLCreated:
 		return v, nil
-	case *RequestPresignedURLBadRequest:
+	case *OldRequestPresignedURLBadRequest:
 		return nil, v
 
 	default:
@@ -554,15 +554,15 @@ func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, aut
 }
 
 /*
-Deprecated: 2022-08-10 - Use SetDefaultPolicyShort instead.
+Deprecated: 2022-08-10 - Use OldSetDefaultLocalizedPolicyShort instead.
 
-SetDefaultPolicy set default localized policy
+OldSetDefaultLocalizedPolicy set default localized policy
 Update a localized version policy to be the default.
 */
-func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error) {
+func (a *Client) OldSetDefaultLocalizedPolicy(params *OldSetDefaultLocalizedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultLocalizedPolicyOK, *OldSetDefaultLocalizedPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicyParams()
+		params = NewOldSetDefaultLocalizedPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -578,14 +578,14 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy",
+		ID:                 "oldSetDefaultLocalizedPolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicyReader{formats: a.formats},
+		Reader:             &OldSetDefaultLocalizedPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -596,10 +596,10 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicyOK:
+	case *OldSetDefaultLocalizedPolicyOK:
 		return v, nil, nil
 
-	case *SetDefaultPolicyBadRequest:
+	case *OldSetDefaultLocalizedPolicyBadRequest:
 		return nil, v, nil
 
 	default:
@@ -608,13 +608,13 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 }
 
 /*
-SetDefaultPolicyShort set default localized policy
+OldSetDefaultLocalizedPolicyShort set default localized policy
 Update a localized version policy to be the default.
 */
-func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error) {
+func (a *Client) OldSetDefaultLocalizedPolicyShort(params *OldSetDefaultLocalizedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultLocalizedPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicyParams()
+		params = NewOldSetDefaultLocalizedPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -626,14 +626,14 @@ func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo 
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy",
+		ID:                 "oldSetDefaultLocalizedPolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicyReader{formats: a.formats},
+		Reader:             &OldSetDefaultLocalizedPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -644,9 +644,9 @@ func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo 
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicyOK:
+	case *OldSetDefaultLocalizedPolicyOK:
 		return v, nil
-	case *SetDefaultPolicyBadRequest:
+	case *OldSetDefaultLocalizedPolicyBadRequest:
 		return nil, v
 
 	default:
@@ -655,16 +655,16 @@ func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo 
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveSingleLocalizedPolicyVersion2Short instead.
+Deprecated: 2022-08-10 - Use OldPublicRetrieveSingleLocalizedPolicyVersionShort instead.
 
-RetrieveSingleLocalizedPolicyVersion2 retrieve a localized version
+OldPublicRetrieveSingleLocalizedPolicyVersion retrieve a localized version
 Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.
 Other detail info:
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, *RetrieveSingleLocalizedPolicyVersion2Forbidden, *RetrieveSingleLocalizedPolicyVersion2NotFound, error) {
+func (a *Client) OldPublicRetrieveSingleLocalizedPolicyVersion(params *OldPublicRetrieveSingleLocalizedPolicyVersionParams) (*OldPublicRetrieveSingleLocalizedPolicyVersionOK, *OldPublicRetrieveSingleLocalizedPolicyVersionForbidden, *OldPublicRetrieveSingleLocalizedPolicyVersionNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSingleLocalizedPolicyVersion2Params()
+		params = NewOldPublicRetrieveSingleLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -680,14 +680,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLoc
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSingleLocalizedPolicyVersion_2",
+		ID:                 "oldPublicRetrieveSingleLocalizedPolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSingleLocalizedPolicyVersion2Reader{formats: a.formats},
+		Reader:             &OldPublicRetrieveSingleLocalizedPolicyVersionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -697,13 +697,13 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLoc
 
 	switch v := result.(type) {
 
-	case *RetrieveSingleLocalizedPolicyVersion2OK:
+	case *OldPublicRetrieveSingleLocalizedPolicyVersionOK:
 		return v, nil, nil, nil
 
-	case *RetrieveSingleLocalizedPolicyVersion2Forbidden:
+	case *OldPublicRetrieveSingleLocalizedPolicyVersionForbidden:
 		return nil, v, nil, nil
 
-	case *RetrieveSingleLocalizedPolicyVersion2NotFound:
+	case *OldPublicRetrieveSingleLocalizedPolicyVersionNotFound:
 		return nil, nil, v, nil
 
 	default:
@@ -712,14 +712,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2(params *RetrieveSingleLoc
 }
 
 /*
-RetrieveSingleLocalizedPolicyVersion2Short retrieve a localized version
+OldPublicRetrieveSingleLocalizedPolicyVersionShort retrieve a localized version
 Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.
 Other detail info:
 */
-func (a *Client) RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSingleLocalizedPolicyVersion2Params) (*RetrieveSingleLocalizedPolicyVersion2OK, error) {
+func (a *Client) OldPublicRetrieveSingleLocalizedPolicyVersionShort(params *OldPublicRetrieveSingleLocalizedPolicyVersionParams) (*OldPublicRetrieveSingleLocalizedPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSingleLocalizedPolicyVersion2Params()
+		params = NewOldPublicRetrieveSingleLocalizedPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -731,14 +731,14 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSing
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSingleLocalizedPolicyVersion_2",
+		ID:                 "oldPublicRetrieveSingleLocalizedPolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSingleLocalizedPolicyVersion2Reader{formats: a.formats},
+		Reader:             &OldPublicRetrieveSingleLocalizedPolicyVersionReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -748,11 +748,11 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion2Short(params *RetrieveSing
 
 	switch v := result.(type) {
 
-	case *RetrieveSingleLocalizedPolicyVersion2OK:
+	case *OldPublicRetrieveSingleLocalizedPolicyVersionOK:
 		return v, nil
-	case *RetrieveSingleLocalizedPolicyVersion2Forbidden:
+	case *OldPublicRetrieveSingleLocalizedPolicyVersionForbidden:
 		return nil, v
-	case *RetrieveSingleLocalizedPolicyVersion2NotFound:
+	case *OldPublicRetrieveSingleLocalizedPolicyVersionNotFound:
 		return nil, v
 
 	default:

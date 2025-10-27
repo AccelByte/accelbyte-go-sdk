@@ -94,5 +94,9 @@ func (aaa *DSMCDefaultConfigurationService) AdminGetDSMCConfigurationDefaultShor
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

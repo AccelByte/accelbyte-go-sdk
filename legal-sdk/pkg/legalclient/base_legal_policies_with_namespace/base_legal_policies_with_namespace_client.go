@@ -32,22 +32,22 @@ type Client struct {
 type ClientService interface {
 	RetrieveAllLegalPoliciesByNamespace(params *RetrieveAllLegalPoliciesByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesByNamespaceOK, error)
 	RetrieveAllLegalPoliciesByNamespaceShort(params *RetrieveAllLegalPoliciesByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllLegalPoliciesByNamespaceOK, error)
-	CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, *CreatePolicy1BadRequest, *CreatePolicy1Conflict, *CreatePolicy1UnprocessableEntity, error)
-	CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, error)
-	RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, *RetrieveSinglePolicy1NotFound, error)
-	RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, error)
+	CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyBadRequest, *CreatePolicyConflict, *CreatePolicyUnprocessableEntity, error)
+	CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error)
+	RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, *RetrieveSinglePolicyNotFound, error)
+	RetrieveSinglePolicyShort(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, error)
 	DeleteBasePolicy(params *DeleteBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBasePolicyNoContent, *DeleteBasePolicyBadRequest, error)
 	DeleteBasePolicyShort(params *DeleteBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteBasePolicyNoContent, error)
-	PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, *PartialUpdatePolicy1BadRequest, error)
-	PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, error)
-	RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, *RetrievePolicyCountry1NotFound, error)
-	RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, error)
+	PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, error)
+	PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, error)
+	RetrievePolicyCountry(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, *RetrievePolicyCountryNotFound, error)
+	RetrievePolicyCountryShort(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, error)
 	RetrieveAllPoliciesFromBasePolicy(params *RetrieveAllPoliciesFromBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPoliciesFromBasePolicyOK, *RetrieveAllPoliciesFromBasePolicyNotFound, error)
 	RetrieveAllPoliciesFromBasePolicyShort(params *RetrieveAllPoliciesFromBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPoliciesFromBasePolicyOK, error)
 	CreatePolicyUnderBasePolicy(params *CreatePolicyUnderBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyUnderBasePolicyCreated, *CreatePolicyUnderBasePolicyBadRequest, error)
 	CreatePolicyUnderBasePolicyShort(params *CreatePolicyUnderBasePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyUnderBasePolicyCreated, error)
-	RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error)
-	RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error)
+	RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error)
+	RetrieveAllPolicyTypesShort(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -149,9 +149,9 @@ func (a *Client) RetrieveAllLegalPoliciesByNamespaceShort(params *RetrieveAllLeg
 }
 
 /*
-Deprecated: 2022-08-10 - Use CreatePolicy1Short instead.
+Deprecated: 2022-08-10 - Use CreatePolicyShort instead.
 
-CreatePolicy1 create a base legal policy
+CreatePolicy create a base legal policy
 Create a legal policy.
 Note:
 
@@ -162,10 +162,10 @@ Note:
 
 * policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
-func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, *CreatePolicy1BadRequest, *CreatePolicy1Conflict, *CreatePolicy1UnprocessableEntity, error) {
+func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, *CreatePolicyBadRequest, *CreatePolicyConflict, *CreatePolicyUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreatePolicy1Params()
+		params = NewCreatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -181,14 +181,14 @@ func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.Cli
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createPolicy_1",
+		ID:                 "createPolicy",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreatePolicy1Reader{formats: a.formats},
+		Reader:             &CreatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -199,16 +199,16 @@ func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *CreatePolicy1Created:
+	case *CreatePolicyCreated:
 		return v, nil, nil, nil, nil
 
-	case *CreatePolicy1BadRequest:
+	case *CreatePolicyBadRequest:
 		return nil, v, nil, nil, nil
 
-	case *CreatePolicy1Conflict:
+	case *CreatePolicyConflict:
 		return nil, nil, v, nil, nil
 
-	case *CreatePolicy1UnprocessableEntity:
+	case *CreatePolicyUnprocessableEntity:
 		return nil, nil, nil, v, nil
 
 	default:
@@ -217,7 +217,7 @@ func (a *Client) CreatePolicy1(params *CreatePolicy1Params, authInfo runtime.Cli
 }
 
 /*
-CreatePolicy1Short create a base legal policy
+CreatePolicyShort create a base legal policy
 Create a legal policy.
 Note:
 
@@ -228,10 +228,10 @@ Note:
 
 * policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
-func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicy1Created, error) {
+func (a *Client) CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreatePolicy1Params()
+		params = NewCreatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -243,14 +243,14 @@ func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtim
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createPolicy_1",
+		ID:                 "createPolicy",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreatePolicy1Reader{formats: a.formats},
+		Reader:             &CreatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -261,13 +261,13 @@ func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *CreatePolicy1Created:
+	case *CreatePolicyCreated:
 		return v, nil
-	case *CreatePolicy1BadRequest:
+	case *CreatePolicyBadRequest:
 		return nil, v
-	case *CreatePolicy1Conflict:
+	case *CreatePolicyConflict:
 		return nil, v
-	case *CreatePolicy1UnprocessableEntity:
+	case *CreatePolicyUnprocessableEntity:
 		return nil, v
 
 	default:
@@ -276,15 +276,15 @@ func (a *Client) CreatePolicy1Short(params *CreatePolicy1Params, authInfo runtim
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveSinglePolicy1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveSinglePolicyShort instead.
 
-RetrieveSinglePolicy1 retrieve a base legal policy
+RetrieveSinglePolicy retrieve a base legal policy
 Retrieve a base policy.
 */
-func (a *Client) RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, *RetrieveSinglePolicy1NotFound, error) {
+func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, *RetrieveSinglePolicyNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSinglePolicy1Params()
+		params = NewRetrieveSinglePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -300,14 +300,14 @@ func (a *Client) RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, auth
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSinglePolicy_1",
+		ID:                 "retrieveSinglePolicy",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSinglePolicy1Reader{formats: a.formats},
+		Reader:             &RetrieveSinglePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -318,10 +318,10 @@ func (a *Client) RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, auth
 
 	switch v := result.(type) {
 
-	case *RetrieveSinglePolicy1OK:
+	case *RetrieveSinglePolicyOK:
 		return v, nil, nil
 
-	case *RetrieveSinglePolicy1NotFound:
+	case *RetrieveSinglePolicyNotFound:
 		return nil, v, nil
 
 	default:
@@ -330,13 +330,13 @@ func (a *Client) RetrieveSinglePolicy1(params *RetrieveSinglePolicy1Params, auth
 }
 
 /*
-RetrieveSinglePolicy1Short retrieve a base legal policy
+RetrieveSinglePolicyShort retrieve a base legal policy
 Retrieve a base policy.
 */
-func (a *Client) RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicy1OK, error) {
+func (a *Client) RetrieveSinglePolicyShort(params *RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSinglePolicy1Params()
+		params = NewRetrieveSinglePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -348,14 +348,14 @@ func (a *Client) RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params,
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSinglePolicy_1",
+		ID:                 "retrieveSinglePolicy",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSinglePolicy1Reader{formats: a.formats},
+		Reader:             &RetrieveSinglePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -366,9 +366,9 @@ func (a *Client) RetrieveSinglePolicy1Short(params *RetrieveSinglePolicy1Params,
 
 	switch v := result.(type) {
 
-	case *RetrieveSinglePolicy1OK:
+	case *RetrieveSinglePolicyOK:
 		return v, nil
-	case *RetrieveSinglePolicy1NotFound:
+	case *RetrieveSinglePolicyNotFound:
 		return nil, v
 
 	default:
@@ -486,9 +486,9 @@ func (a *Client) DeleteBasePolicyShort(params *DeleteBasePolicyParams, authInfo 
 }
 
 /*
-Deprecated: 2022-08-10 - Use PartialUpdatePolicy1Short instead.
+Deprecated: 2022-08-10 - Use PartialUpdatePolicyShort instead.
 
-PartialUpdatePolicy1 update base legal policy
+PartialUpdatePolicy update base legal policy
 Update an existing base policy.
 Note:
 
@@ -499,10 +499,10 @@ Note:
 
 * policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
-func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, *PartialUpdatePolicy1BadRequest, error) {
+func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, *PartialUpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPartialUpdatePolicy1Params()
+		params = NewPartialUpdatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -518,14 +518,14 @@ func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authIn
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "partialUpdatePolicy_1",
+		ID:                 "partialUpdatePolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PartialUpdatePolicy1Reader{formats: a.formats},
+		Reader:             &PartialUpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -536,10 +536,10 @@ func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authIn
 
 	switch v := result.(type) {
 
-	case *PartialUpdatePolicy1OK:
+	case *PartialUpdatePolicyOK:
 		return v, nil, nil
 
-	case *PartialUpdatePolicy1BadRequest:
+	case *PartialUpdatePolicyBadRequest:
 		return nil, v, nil
 
 	default:
@@ -548,7 +548,7 @@ func (a *Client) PartialUpdatePolicy1(params *PartialUpdatePolicy1Params, authIn
 }
 
 /*
-PartialUpdatePolicy1Short update base legal policy
+PartialUpdatePolicyShort update base legal policy
 Update an existing base policy.
 Note:
 
@@ -559,10 +559,10 @@ Note:
 
 * policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries
 */
-func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicy1OK, error) {
+func (a *Client) PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PartialUpdatePolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPartialUpdatePolicy1Params()
+		params = NewPartialUpdatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -574,14 +574,14 @@ func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, a
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "partialUpdatePolicy_1",
+		ID:                 "partialUpdatePolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PartialUpdatePolicy1Reader{formats: a.formats},
+		Reader:             &PartialUpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -592,9 +592,9 @@ func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, a
 
 	switch v := result.(type) {
 
-	case *PartialUpdatePolicy1OK:
+	case *PartialUpdatePolicyOK:
 		return v, nil
-	case *PartialUpdatePolicy1BadRequest:
+	case *PartialUpdatePolicyBadRequest:
 		return nil, v
 
 	default:
@@ -603,15 +603,15 @@ func (a *Client) PartialUpdatePolicy1Short(params *PartialUpdatePolicy1Params, a
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrievePolicyCountry1Short instead.
+Deprecated: 2022-08-10 - Use RetrievePolicyCountryShort instead.
 
-RetrievePolicyCountry1 retrieve a base legal policy based on a particular country
+RetrievePolicyCountry retrieve a base legal policy based on a particular country
 Retrieve a Base Legal Policy based on a Particular Country.
 */
-func (a *Client) RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, *RetrievePolicyCountry1NotFound, error) {
+func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, *RetrievePolicyCountryNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrievePolicyCountry1Params()
+		params = NewRetrievePolicyCountryParams()
 	}
 
 	if params.Context == nil {
@@ -627,14 +627,14 @@ func (a *Client) RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, au
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrievePolicyCountry_1",
+		ID:                 "retrievePolicyCountry",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrievePolicyCountry1Reader{formats: a.formats},
+		Reader:             &RetrievePolicyCountryReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -645,10 +645,10 @@ func (a *Client) RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, au
 
 	switch v := result.(type) {
 
-	case *RetrievePolicyCountry1OK:
+	case *RetrievePolicyCountryOK:
 		return v, nil, nil
 
-	case *RetrievePolicyCountry1NotFound:
+	case *RetrievePolicyCountryNotFound:
 		return nil, v, nil
 
 	default:
@@ -657,13 +657,13 @@ func (a *Client) RetrievePolicyCountry1(params *RetrievePolicyCountry1Params, au
 }
 
 /*
-RetrievePolicyCountry1Short retrieve a base legal policy based on a particular country
+RetrievePolicyCountryShort retrieve a base legal policy based on a particular country
 Retrieve a Base Legal Policy based on a Particular Country.
 */
-func (a *Client) RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountry1OK, error) {
+func (a *Client) RetrievePolicyCountryShort(params *RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePolicyCountryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrievePolicyCountry1Params()
+		params = NewRetrievePolicyCountryParams()
 	}
 
 	if params.Context == nil {
@@ -675,14 +675,14 @@ func (a *Client) RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Param
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrievePolicyCountry_1",
+		ID:                 "retrievePolicyCountry",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/base-policies/{basePolicyId}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrievePolicyCountry1Reader{formats: a.formats},
+		Reader:             &RetrievePolicyCountryReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -693,9 +693,9 @@ func (a *Client) RetrievePolicyCountry1Short(params *RetrievePolicyCountry1Param
 
 	switch v := result.(type) {
 
-	case *RetrievePolicyCountry1OK:
+	case *RetrievePolicyCountryOK:
 		return v, nil
-	case *RetrievePolicyCountry1NotFound:
+	case *RetrievePolicyCountryNotFound:
 		return nil, v
 
 	default:
@@ -922,15 +922,15 @@ func (a *Client) CreatePolicyUnderBasePolicyShort(params *CreatePolicyUnderBaseP
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveAllPolicyTypes1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveAllPolicyTypesShort instead.
 
-RetrieveAllPolicyTypes1 retrieve all policy type
+RetrieveAllPolicyTypes retrieve all policy type
 Retrieve all supported policy types.
 */
-func (a *Client) RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error) {
+func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveAllPolicyTypes1Params()
+		params = NewRetrieveAllPolicyTypesParams()
 	}
 
 	if params.Context == nil {
@@ -946,14 +946,14 @@ func (a *Client) RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, 
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveAllPolicyTypes_1",
+		ID:                 "retrieveAllPolicyTypes",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policy-types",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveAllPolicyTypes1Reader{formats: a.formats},
+		Reader:             &RetrieveAllPolicyTypesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -964,7 +964,7 @@ func (a *Client) RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, 
 
 	switch v := result.(type) {
 
-	case *RetrieveAllPolicyTypes1OK:
+	case *RetrieveAllPolicyTypesOK:
 		return v, nil
 
 	default:
@@ -973,13 +973,13 @@ func (a *Client) RetrieveAllPolicyTypes1(params *RetrieveAllPolicyTypes1Params, 
 }
 
 /*
-RetrieveAllPolicyTypes1Short retrieve all policy type
+RetrieveAllPolicyTypesShort retrieve all policy type
 Retrieve all supported policy types.
 */
-func (a *Client) RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypes1OK, error) {
+func (a *Client) RetrieveAllPolicyTypesShort(params *RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllPolicyTypesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveAllPolicyTypes1Params()
+		params = NewRetrieveAllPolicyTypesParams()
 	}
 
 	if params.Context == nil {
@@ -991,14 +991,14 @@ func (a *Client) RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Par
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveAllPolicyTypes_1",
+		ID:                 "retrieveAllPolicyTypes",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policy-types",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveAllPolicyTypes1Reader{formats: a.formats},
+		Reader:             &RetrieveAllPolicyTypesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1009,7 +1009,7 @@ func (a *Client) RetrieveAllPolicyTypes1Short(params *RetrieveAllPolicyTypes1Par
 
 	switch v := result.(type) {
 
-	case *RetrieveAllPolicyTypes1OK:
+	case *RetrieveAllPolicyTypesOK:
 		return v, nil
 
 	default:

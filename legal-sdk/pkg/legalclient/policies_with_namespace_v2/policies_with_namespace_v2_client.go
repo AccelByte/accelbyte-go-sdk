@@ -30,16 +30,16 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	RetrieveLatestPoliciesByNamespaceAndCountryPublic1(params *RetrieveLatestPoliciesByNamespaceAndCountryPublic1Params) (*RetrieveLatestPoliciesByNamespaceAndCountryPublic1OK, error)
-	RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short(params *RetrieveLatestPoliciesByNamespaceAndCountryPublic1Params) (*RetrieveLatestPoliciesByNamespaceAndCountryPublic1OK, error)
+	RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error)
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
 
-RetrieveLatestPoliciesByNamespaceAndCountryPublic1 retrieve latest policies by namespace and country
+RetrieveLatestPoliciesByNamespaceAndCountryPublic retrieve latest policies by namespace and country
 This API is used to list all the related doc in register page, include optional & mandatory (when env config APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=true).
 Other detail info: Here are the result of different cases
         * Document 1, Region US (default, mandatory), UA (optional); clientID: [client_A]
@@ -62,10 +62,10 @@ Note: If APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=false the behavior will be s
         * Query by: Region UA + client_B
         * Response: Document 5 (US, optional)
 */
-func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1(params *RetrieveLatestPoliciesByNamespaceAndCountryPublic1Params) (*RetrieveLatestPoliciesByNamespaceAndCountryPublic1OK, error) {
+func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveLatestPoliciesByNamespaceAndCountryPublic1Params()
+		params = NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams()
 	}
 
 	if params.Context == nil {
@@ -81,14 +81,14 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1(params *Retr
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic_1",
+		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic",
 		Method:             "GET",
 		PathPattern:        "/agreement/v2/public/policies/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveLatestPoliciesByNamespaceAndCountryPublic1Reader{formats: a.formats},
+		Reader:             &RetrieveLatestPoliciesByNamespaceAndCountryPublicReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -98,7 +98,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1(params *Retr
 
 	switch v := result.(type) {
 
-	case *RetrieveLatestPoliciesByNamespaceAndCountryPublic1OK:
+	case *RetrieveLatestPoliciesByNamespaceAndCountryPublicOK:
 		return v, nil
 
 	default:
@@ -107,7 +107,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1(params *Retr
 }
 
 /*
-RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short retrieve latest policies by namespace and country
+RetrieveLatestPoliciesByNamespaceAndCountryPublicShort retrieve latest policies by namespace and country
 This API is used to list all the related doc in register page, include optional & mandatory (when env config APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=true).
 Other detail info: Here are the result of different cases
           * Document 1, Region US (default, mandatory), UA (optional); clientID: [client_A]
@@ -130,10 +130,10 @@ Note: If APP_LEGAL_AGREEMENT_ALWAYS_INCLUDE_DEFAULT=false the behavior will be s
           * Query by: Region UA + client_B
           * Response: Document 5 (US, optional)
 */
-func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short(params *RetrieveLatestPoliciesByNamespaceAndCountryPublic1Params) (*RetrieveLatestPoliciesByNamespaceAndCountryPublic1OK, error) {
+func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveLatestPoliciesByNamespaceAndCountryPublic1Params()
+		params = NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams()
 	}
 
 	if params.Context == nil {
@@ -145,14 +145,14 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short(params 
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic_1",
+		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic",
 		Method:             "GET",
 		PathPattern:        "/agreement/v2/public/policies/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveLatestPoliciesByNamespaceAndCountryPublic1Reader{formats: a.formats},
+		Reader:             &RetrieveLatestPoliciesByNamespaceAndCountryPublicReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -162,7 +162,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic1Short(params 
 
 	switch v := result.(type) {
 
-	case *RetrieveLatestPoliciesByNamespaceAndCountryPublic1OK:
+	case *RetrieveLatestPoliciesByNamespaceAndCountryPublicOK:
 		return v, nil
 
 	default:

@@ -117,6 +117,10 @@ func (aaa *ImageV2Service) GetAppImageListV2Short(input *image_v2.GetAppImageLis
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

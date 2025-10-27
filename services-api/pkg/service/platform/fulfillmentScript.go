@@ -144,6 +144,10 @@ func (aaa *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillm
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +178,10 @@ func (aaa *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillmen
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -202,6 +210,10 @@ func (aaa *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfill
 	created, err := aaa.Client.FulfillmentScript.CreateFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -262,6 +274,10 @@ func (aaa *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfill
 	ok, err := aaa.Client.FulfillmentScript.UpdateFulfillmentScriptShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

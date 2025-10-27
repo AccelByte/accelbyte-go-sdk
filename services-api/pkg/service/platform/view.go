@@ -188,6 +188,10 @@ func (aaa *ViewService) ListViewsShort(input *view.ListViewsParams) ([]*platform
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,6 +220,10 @@ func (aaa *ViewService) CreateViewShort(input *view.CreateViewParams) (*platform
 	created, err := aaa.Client.View.CreateViewShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -248,6 +256,10 @@ func (aaa *ViewService) GetViewShort(input *view.GetViewParams) (*platformclient
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -276,6 +288,10 @@ func (aaa *ViewService) UpdateViewShort(input *view.UpdateViewParams) (*platform
 	ok, err := aaa.Client.View.UpdateViewShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -336,6 +352,10 @@ func (aaa *ViewService) PublicListViewsShort(input *view.PublicListViewsParams) 
 	ok, err := aaa.Client.View.PublicListViewsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -88,5 +88,9 @@ func (aaa *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams) (*u
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

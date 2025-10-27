@@ -52,13 +52,13 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsForMultiUser
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveAcceptedAgreements1Short instead.
-func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1(input *agreement_with_namespace.RetrieveAcceptedAgreements1Params) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+// Deprecated: 2022-01-10 - please use RetrieveAcceptedAgreementsShort instead.
+func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements(input *agreement_with_namespace.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAcceptedAgreements1(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAcceptedAgreements(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -66,13 +66,13 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1(input *agr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveAllUsersByPolicyVersion1Short instead.
-func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+// Deprecated: 2022-01-10 - please use RetrieveAllUsersByPolicyVersionShort instead.
+func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersionParams) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.AgreementWithNamespace.RetrieveAllUsersByPolicyVersion1(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.AgreementWithNamespace.RetrieveAllUsersByPolicyVersion(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -150,10 +150,14 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsForMultiUser
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1Short(input *agreement_with_namespace.RetrieveAcceptedAgreements1Params) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreementsShort(input *agreement_with_namespace.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -175,15 +179,19 @@ func (aaa *AgreementWithNamespaceService) RetrieveAcceptedAgreements1Short(input
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAcceptedAgreements1Short(input, authInfoWriter)
+	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAcceptedAgreementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1Short(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersion1Params) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersionShort(input *agreement_with_namespace.RetrieveAllUsersByPolicyVersionParams) (*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -205,9 +213,13 @@ func (aaa *AgreementWithNamespaceService) RetrieveAllUsersByPolicyVersion1Short(
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAllUsersByPolicyVersion1Short(input, authInfoWriter)
+	ok, err := aaa.Client.AgreementWithNamespace.RetrieveAllUsersByPolicyVersionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -240,6 +252,10 @@ func (aaa *AgreementWithNamespaceService) DownloadExportedAgreementsInCSVShort(i
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -268,6 +284,10 @@ func (aaa *AgreementWithNamespaceService) InitiateExportAgreementsToCSVShort(inp
 	ok, err := aaa.Client.AgreementWithNamespace.InitiateExportAgreementsToCSVShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

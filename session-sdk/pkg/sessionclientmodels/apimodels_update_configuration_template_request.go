@@ -120,6 +120,9 @@ type ApimodelsUpdateConfigurationTemplateRequest struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// partycodegeneratorstring
+	PartyCodeGeneratorString string `json:"partyCodeGeneratorString,omitempty"`
+
 	// partycodelength
 	// Format: int32
 	PartyCodeLength int32 `json:"partyCodeLength,omitempty"`

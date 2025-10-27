@@ -124,7 +124,7 @@ $ samples/cli/sample-apps Lobby bulkDeleteFriends \
 ```sh
 $ samples/cli/sample-apps Lobby syncNativeFriends \
     --namespace 'string' \
-    --body '[{"isLogin": false, "platformId": "string", "platformToken": "string", "psnEnv": "string"}]' \
+    --body '[{"isLogin": false, "platformId": "string", "platformToken": "string", "psnEnv": "string", "syncDeletedFriend": false}]' \
     > result.txt
 ```
 
@@ -512,10 +512,6 @@ $ samples/cli/sample-apps Lobby getMyNotifications \
 ```sh
 $ samples/cli/sample-apps Lobby getMyOfflineNotifications \
     --namespace 'string' \
-    --endTime 1 \
-    --limit 1 \
-    --offset 1 \
-    --startTime 1 \
     > result.txt
 ```
 

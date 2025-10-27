@@ -32,18 +32,18 @@ type Client struct {
 type ClientService interface {
 	RetrievePolicies(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error)
 	RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*RetrievePoliciesOK, error)
-	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error)
-	UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error)
-	SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, *SetDefaultPolicy2BadRequest, error)
-	SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, error)
+	OldUpdatePolicy(params *OldUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdatePolicyOK, *OldUpdatePolicyBadRequest, error)
+	OldUpdatePolicyShort(params *OldUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdatePolicyOK, error)
+	OldSetDefaultPolicy(params *OldSetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultPolicyOK, *OldSetDefaultPolicyBadRequest, error)
+	OldSetDefaultPolicyShort(params *OldSetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultPolicyOK, error)
 	RetrieveCountryListWithPolicies(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error)
 	RetrieveCountryListWithPoliciesShort(params *RetrieveCountryListWithPoliciesParams) (*RetrieveCountryListWithPoliciesOK, error)
 	RetrieveLatestPolicies(params *RetrieveLatestPoliciesParams) (*RetrieveLatestPoliciesOK, error)
 	RetrieveLatestPoliciesShort(params *RetrieveLatestPoliciesParams) (*RetrieveLatestPoliciesOK, error)
 	RetrieveLatestPoliciesPublic(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, *RetrieveLatestPoliciesPublicNotFound, error)
 	RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveLatestPoliciesPublicOK, error)
-	RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error)
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error)
+	OldRetrieveLatestPoliciesByNamespaceAndCountryPublic(params *OldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*OldRetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error)
+	OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *OldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*OldRetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -145,15 +145,15 @@ func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo 
 }
 
 /*
-Deprecated: 2022-08-10 - Use UpdatePolicyShort instead.
+Deprecated: 2022-08-10 - Use OldUpdatePolicyShort instead.
 
-UpdatePolicy update country-specific policy
+OldUpdatePolicy update country-specific policy
 Update country-specific and country-group policy.
 */
-func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error) {
+func (a *Client) OldUpdatePolicy(params *OldUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdatePolicyOK, *OldUpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdatePolicyParams()
+		params = NewOldUpdatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -169,14 +169,14 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updatePolicy",
+		ID:                 "oldUpdatePolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/policies/{policyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdatePolicyReader{formats: a.formats},
+		Reader:             &OldUpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -187,10 +187,10 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 
 	switch v := result.(type) {
 
-	case *UpdatePolicyOK:
+	case *OldUpdatePolicyOK:
 		return v, nil, nil
 
-	case *UpdatePolicyBadRequest:
+	case *OldUpdatePolicyBadRequest:
 		return nil, v, nil
 
 	default:
@@ -199,13 +199,13 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 }
 
 /*
-UpdatePolicyShort update country-specific policy
+OldUpdatePolicyShort update country-specific policy
 Update country-specific and country-group policy.
 */
-func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error) {
+func (a *Client) OldUpdatePolicyShort(params *OldUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldUpdatePolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdatePolicyParams()
+		params = NewOldUpdatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -217,14 +217,14 @@ func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updatePolicy",
+		ID:                 "oldUpdatePolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/policies/{policyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdatePolicyReader{formats: a.formats},
+		Reader:             &OldUpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -235,9 +235,9 @@ func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.
 
 	switch v := result.(type) {
 
-	case *UpdatePolicyOK:
+	case *OldUpdatePolicyOK:
 		return v, nil
-	case *UpdatePolicyBadRequest:
+	case *OldUpdatePolicyBadRequest:
 		return nil, v
 
 	default:
@@ -246,15 +246,15 @@ func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.
 }
 
 /*
-Deprecated: 2022-08-10 - Use SetDefaultPolicy2Short instead.
+Deprecated: 2022-08-10 - Use OldSetDefaultPolicyShort instead.
 
-SetDefaultPolicy2 set default policy
+OldSetDefaultPolicy set default policy
 Update a policy to be the default.
 */
-func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, *SetDefaultPolicy2BadRequest, error) {
+func (a *Client) OldSetDefaultPolicy(params *OldSetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultPolicyOK, *OldSetDefaultPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicy2Params()
+		params = NewOldSetDefaultPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -270,14 +270,14 @@ func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo run
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy_2",
+		ID:                 "oldSetDefaultPolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicy2Reader{formats: a.formats},
+		Reader:             &OldSetDefaultPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -288,10 +288,10 @@ func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo run
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicy2OK:
+	case *OldSetDefaultPolicyOK:
 		return v, nil, nil
 
-	case *SetDefaultPolicy2BadRequest:
+	case *OldSetDefaultPolicyBadRequest:
 		return nil, v, nil
 
 	default:
@@ -300,13 +300,13 @@ func (a *Client) SetDefaultPolicy2(params *SetDefaultPolicy2Params, authInfo run
 }
 
 /*
-SetDefaultPolicy2Short set default policy
+OldSetDefaultPolicyShort set default policy
 Update a policy to be the default.
 */
-func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy2OK, error) {
+func (a *Client) OldSetDefaultPolicyShort(params *OldSetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*OldSetDefaultPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicy2Params()
+		params = NewOldSetDefaultPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -318,14 +318,14 @@ func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInf
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy_2",
+		ID:                 "oldSetDefaultPolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicy2Reader{formats: a.formats},
+		Reader:             &OldSetDefaultPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -336,9 +336,9 @@ func (a *Client) SetDefaultPolicy2Short(params *SetDefaultPolicy2Params, authInf
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicy2OK:
+	case *OldSetDefaultPolicyOK:
 		return v, nil
-	case *SetDefaultPolicy2BadRequest:
+	case *OldSetDefaultPolicyBadRequest:
 		return nil, v
 
 	default:
@@ -670,9 +670,9 @@ func (a *Client) RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPolicie
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
+Deprecated: 2022-08-10 - Use OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort instead.
 
-RetrieveLatestPoliciesByNamespaceAndCountryPublic retrieve latest policies by namespace and country
+OldRetrieveLatestPoliciesByNamespaceAndCountryPublic retrieve latest policies by namespace and country
 Retrieve all active latest policies based on a namespace and country.
 Other detail info:
 
@@ -687,10 +687,10 @@ Other detail info:
     * Query: alwaysIncludeDefault: true
     * Response: Document 1 (UA), Document 2 (US), Document 3 (US)
 */
-func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error) {
+func (a *Client) OldRetrieveLatestPoliciesByNamespaceAndCountryPublic(params *OldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*OldRetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams()
+		params = NewOldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams()
 	}
 
 	if params.Context == nil {
@@ -706,14 +706,14 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *Retri
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic",
+		ID:                 "oldRetrieveLatestPoliciesByNamespaceAndCountryPublic",
 		Method:             "GET",
 		PathPattern:        "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveLatestPoliciesByNamespaceAndCountryPublicReader{formats: a.formats},
+		Reader:             &OldRetrieveLatestPoliciesByNamespaceAndCountryPublicReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -723,7 +723,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *Retri
 
 	switch v := result.(type) {
 
-	case *RetrieveLatestPoliciesByNamespaceAndCountryPublicOK:
+	case *OldRetrieveLatestPoliciesByNamespaceAndCountryPublicOK:
 		return v, nil
 
 	default:
@@ -732,7 +732,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *Retri
 }
 
 /*
-RetrieveLatestPoliciesByNamespaceAndCountryPublicShort retrieve latest policies by namespace and country
+OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort retrieve latest policies by namespace and country
 Retrieve all active latest policies based on a namespace and country.
 Other detail info:
     * Leave the policyType empty if you want to be responded with all policy type
@@ -746,10 +746,10 @@ Other detail info:
       * Query: alwaysIncludeDefault: true
       * Response: Document 1 (UA), Document 2 (US), Document 3 (US)
 */
-func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*RetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error) {
+func (a *Client) OldRetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *OldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams) (*OldRetrieveLatestPoliciesByNamespaceAndCountryPublicOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveLatestPoliciesByNamespaceAndCountryPublicParams()
+		params = NewOldRetrieveLatestPoliciesByNamespaceAndCountryPublicParams()
 	}
 
 	if params.Context == nil {
@@ -761,14 +761,14 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic",
+		ID:                 "oldRetrieveLatestPoliciesByNamespaceAndCountryPublic",
 		Method:             "GET",
 		PathPattern:        "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveLatestPoliciesByNamespaceAndCountryPublicReader{formats: a.formats},
+		Reader:             &OldRetrieveLatestPoliciesByNamespaceAndCountryPublicReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -778,7 +778,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *
 
 	switch v := result.(type) {
 
-	case *RetrieveLatestPoliciesByNamespaceAndCountryPublicOK:
+	case *OldRetrieveLatestPoliciesByNamespaceAndCountryPublicOK:
 		return v, nil
 
 	default:

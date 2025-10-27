@@ -107,6 +107,10 @@ func (aaa *ClawbackService) QueryIAPClawbackHistoryShort(input *clawback.QueryIA
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -137,6 +141,10 @@ func (aaa *ClawbackService) MockPlayStationStreamEventShort(input *clawback.Mock
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -165,6 +173,10 @@ func (aaa *ClawbackService) MockXblClawbackEventShort(input *clawback.MockXblCla
 	ok, err := aaa.Client.Clawback.MockXblClawbackEventShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

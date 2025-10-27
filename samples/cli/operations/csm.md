@@ -86,6 +86,40 @@ $ samples/cli/sample-apps Csm deleteAppImagesV2 \
     > result.txt
 ```
 
+### Operation `create_no_sql_database_credential_v2`
+```sh
+$ samples/cli/sample-apps Csm createNoSQLDatabaseCredentialV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"password": "string", "username": "string"}' \
+    > result.txt
+```
+
+### Operation `get_no_sql_database_v2`
+```sh
+$ samples/cli/sample-apps Csm getNoSQLDatabaseV2 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `create_no_sql_database_v2`
+```sh
+$ samples/cli/sample-apps Csm createNoSQLDatabaseV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"dbName": "string", "password": "string", "username": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_no_sql_database_v2`
+```sh
+$ samples/cli/sample-apps Csm deleteNoSQLDatabaseV2 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `update_app_resources_v2`
 ```sh
 $ samples/cli/sample-apps Csm updateAppResourcesV2 \
@@ -279,6 +313,43 @@ $ samples/cli/sample-apps Csm getDeploymentV2 \
 ```sh
 $ samples/cli/sample-apps Csm deleteDeploymentV2 \
     --deploymentId 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `get_no_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm getNoSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `update_no_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm updateNoSQLClusterV2 \
+    --namespace 'string' \
+    --body '{"maxDCU": 3.14, "minDCU": 3.14, "profileName": "string"}' \
+    > result.txt
+```
+
+### Operation `create_no_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm createNoSQLClusterV2 \
+    --namespace 'string' \
+    --body '{"maxDCU": 3.14, "minDCU": 3.14, "profileName": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_no_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm deleteNoSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `get_no_sql_access_tunnel_v2`
+```sh
+$ samples/cli/sample-apps Csm getNoSQLAccessTunnelV2 \
     --namespace 'string' \
     > result.txt
 ```

@@ -721,7 +721,7 @@ $ samples/cli/sample-apps Platform getOculusIAPConfig \
 ```sh
 $ samples/cli/sample-apps Platform updateOculusIAPConfig \
     --namespace 'string' \
-    --body '{"appId": "string", "appSecret": "string"}' \
+    --body '{"appId": "string", "appSecret": "string", "webhookVerifyToken": "string"}' \
     > result.txt
 ```
 
@@ -729,6 +729,53 @@ $ samples/cli/sample-apps Platform updateOculusIAPConfig \
 ```sh
 $ samples/cli/sample-apps Platform deleteOculusIAPConfig \
     --namespace 'string' \
+    > result.txt
+```
+
+### Operation `list_oculus_subscription_groups`
+```sh
+$ samples/cli/sample-apps Platform listOculusSubscriptionGroups \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `create_oculus_subscription_group`
+```sh
+$ samples/cli/sample-apps Platform createOculusSubscriptionGroup \
+    --namespace 'string' \
+    --body '{"sku": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_oculus_subscription_group`
+```sh
+$ samples/cli/sample-apps Platform deleteOculusSubscriptionGroup \
+    --namespace 'string' \
+    --sku 'string' \
+    > result.txt
+```
+
+### Operation `list_oculus_subscription_group_tier`
+```sh
+$ samples/cli/sample-apps Platform listOculusSubscriptionGroupTier \
+    --namespace 'string' \
+    --sku 'string' \
+    > result.txt
+```
+
+### Operation `add_tier_into_meta_quest_subscription_group`
+```sh
+$ samples/cli/sample-apps Platform addTierIntoMetaQuestSubscriptionGroup \
+    --namespace 'string' \
+    --body '{"groupSku": "string", "sku": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_oculus_subscription_tier`
+```sh
+$ samples/cli/sample-apps Platform deleteOculusSubscriptionTier \
+    --namespace 'string' \
+    --sku 'string' \
     > result.txt
 ```
 
@@ -965,7 +1012,7 @@ $ samples/cli/sample-apps Platform syncInGameItem \
 $ samples/cli/sample-apps Platform createItem \
     --namespace 'string' \
     --storeId 'string' \
-    --body '{"appId": "string", "appType": "DEMO", "baseAppId": "string", "boothName": "string", "categoryPath": "string", "clazz": "string", "displayOrder": 1, "entitlementType": "CONSUMABLE", "ext": {"string": {}}, "features": ["string"], "flexible": false, "images": [{}], "inventoryConfig": {}, "itemIds": ["string"], "itemQty": {"string": 1}, "itemType": "APP", "listable": false, "localizations": {"string": {}}, "lootBoxConfig": {}, "maxCount": 1, "maxCountPerUser": 1, "name": "string", "optionBoxConfig": {}, "purchasable": false, "recurring": {}, "regionData": {"string": []}, "saleConfig": {}, "seasonType": "PASS", "sectionExclusive": false, "sellable": false, "sku": "string", "stackable": false, "status": "ACTIVE", "tags": ["string"], "targetCurrencyCode": "string", "targetNamespace": "string", "thumbnailUrl": "string", "useCount": 1}' \
+    --body '{"appId": "string", "appType": "DEMO", "baseAppId": "string", "boothName": "string", "categoryPath": "string", "clazz": "string", "displayOrder": 1, "entitlementType": "CONSUMABLE", "ext": {"string": {}}, "features": ["string"], "flexible": false, "images": [{}], "inventoryConfig": {}, "itemId": "string", "itemIds": ["string"], "itemQty": {"string": 1}, "itemType": "APP", "listable": false, "localizations": {"string": {}}, "lootBoxConfig": {}, "maxCount": 1, "maxCountPerUser": 1, "name": "string", "optionBoxConfig": {}, "purchasable": false, "recurring": {}, "regionData": {"string": []}, "saleConfig": {}, "seasonType": "PASS", "sectionExclusive": false, "sellable": false, "sku": "string", "stackable": false, "status": "ACTIVE", "tags": ["string"], "targetCurrencyCode": "string", "targetNamespace": "string", "thumbnailUrl": "string", "useCount": 1}' \
     > result.txt
 ```
 
@@ -2538,6 +2585,15 @@ $ samples/cli/sample-apps Platform mockFulfillIAPItem \
     > result.txt
 ```
 
+### Operation `admin_sync_oculus_subscriptions`
+```sh
+$ samples/cli/sample-apps Platform adminSyncOculusSubscriptions \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '{"skus": ["string"]}' \
+    > result.txt
+```
+
 ### Operation `admin_get_iap_order_line_items`
 ```sh
 $ samples/cli/sample-apps Platform adminGetIAPOrderLineItems \
@@ -4008,6 +4064,15 @@ $ samples/cli/sample-apps Platform publicFulfillGoogleIAPItem \
     --namespace 'string' \
     --userId 'string' \
     --body '{"autoAck": false, "autoConsume": false, "language": "string", "orderId": "string", "packageName": "string", "productId": "string", "purchaseTime": 1, "purchaseToken": "string", "region": "string", "subscriptionPurchase": false}' \
+    > result.txt
+```
+
+### Operation `sync_oculus_subscriptions`
+```sh
+$ samples/cli/sample-apps Platform syncOculusSubscriptions \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '{"skus": ["string"]}' \
     > result.txt
 ```
 

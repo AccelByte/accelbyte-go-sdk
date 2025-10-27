@@ -31,6 +31,9 @@ type ModelNativeFriendRequest struct {
 
 	// psnenv
 	PsnEnv string `json:"psnEnv,omitempty"`
+
+	// syncdeletedfriend
+	SyncDeletedFriend bool `json:"syncDeletedFriend"`
 }
 
 // Validate validates this Model native friend request

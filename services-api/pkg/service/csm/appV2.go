@@ -326,6 +326,10 @@ func (aaa *AppV2Service) GetAppListV2Short(input *app_v2.GetAppListV2Params) (*c
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -356,6 +360,10 @@ func (aaa *AppV2Service) GetAppV2Short(input *app_v2.GetAppV2Params) (*csmclient
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -384,6 +392,10 @@ func (aaa *AppV2Service) CreateAppV2Short(input *app_v2.CreateAppV2Params) (*csm
 	ok, err := aaa.Client.AppV2.CreateAppV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -446,6 +458,10 @@ func (aaa *AppV2Service) UpdateAppV2Short(input *app_v2.UpdateAppV2Params) (*csm
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -474,6 +490,10 @@ func (aaa *AppV2Service) UpdateAppResourcesV2Short(input *app_v2.UpdateAppResour
 	ok, err := aaa.Client.AppV2.UpdateAppResourcesV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

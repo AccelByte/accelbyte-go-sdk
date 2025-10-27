@@ -114,6 +114,10 @@ func (aaa *PublicLikeLegacyService) GetLikedContentShort(input *public_like_lega
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -142,6 +146,10 @@ func (aaa *PublicLikeLegacyService) UpdateContentLikeStatusShort(input *public_l
 	ok, err := aaa.Client.PublicLikeLegacy.UpdateContentLikeStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

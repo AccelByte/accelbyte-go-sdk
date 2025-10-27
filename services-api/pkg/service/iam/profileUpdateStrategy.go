@@ -143,6 +143,10 @@ func (aaa *ProfileUpdateStrategyService) AdminGetProfileUpdateStrategyV3Short(in
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -173,6 +177,10 @@ func (aaa *ProfileUpdateStrategyService) AdminUpdateProfileUpdateStrategyV3Short
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -201,6 +209,10 @@ func (aaa *ProfileUpdateStrategyService) PublicGetProfileUpdateStrategyV3Short(i
 	ok, err := aaa.Client.ProfileUpdateStrategy.PublicGetProfileUpdateStrategyV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

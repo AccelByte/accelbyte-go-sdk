@@ -346,6 +346,10 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1S
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -374,6 +378,10 @@ func (aaa *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV
 	created, err := aaa.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -406,6 +414,10 @@ func (aaa *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAd
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -436,6 +448,10 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Sh
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -464,6 +480,10 @@ func (aaa *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV
 	ok, err := aaa.Client.LeaderboardConfiguration.UpdateLeaderboardConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -556,6 +576,10 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -586,6 +610,10 @@ func (aaa *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublic
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -614,6 +642,10 @@ func (aaa *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2
 	ok, err := aaa.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

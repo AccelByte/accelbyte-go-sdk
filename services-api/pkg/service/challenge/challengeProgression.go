@@ -240,6 +240,10 @@ func (aaa *ChallengeProgressionService) AdminGetUserProgressionShort(input *chal
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -300,6 +304,10 @@ func (aaa *ChallengeProgressionService) PublicGetUserProgressionShort(input *cha
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -328,6 +336,10 @@ func (aaa *ChallengeProgressionService) PublicGetPastUserProgressionShort(input 
 	ok, err := aaa.Client.ChallengeProgression.PublicGetPastUserProgressionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

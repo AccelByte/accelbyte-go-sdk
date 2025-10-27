@@ -32,16 +32,16 @@ type Client struct {
 type ClientService interface {
 	DeletePolicyVersion(params *DeletePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyVersionNoContent, *DeletePolicyVersionBadRequest, error)
 	DeletePolicyVersionShort(params *DeletePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyVersionNoContent, error)
-	UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, *UpdatePolicyVersion1BadRequest, *UpdatePolicyVersion1Conflict, error)
-	UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, error)
-	PublishPolicyVersion1(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, *PublishPolicyVersion1BadRequest, *PublishPolicyVersion1Conflict, error)
-	PublishPolicyVersion1Short(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, error)
+	UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, *UpdatePolicyVersionBadRequest, *UpdatePolicyVersionConflict, error)
+	UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, error)
+	PublishPolicyVersion(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, *PublishPolicyVersionBadRequest, *PublishPolicyVersionConflict, error)
+	PublishPolicyVersionShort(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, error)
 	UnpublishPolicyVersion(params *UnpublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishPolicyVersionNoContent, *UnpublishPolicyVersionBadRequest, error)
 	UnpublishPolicyVersionShort(params *UnpublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishPolicyVersionNoContent, error)
-	RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, *RetrieveSinglePolicyVersion1NotFound, error)
-	RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, error)
-	CreatePolicyVersion1(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, *CreatePolicyVersion1BadRequest, error)
-	CreatePolicyVersion1Short(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, error)
+	RetrieveSinglePolicyVersion(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, *RetrieveSinglePolicyVersionNotFound, error)
+	RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, error)
+	CreatePolicyVersion(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, *CreatePolicyVersionBadRequest, error)
+	CreatePolicyVersionShort(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -156,15 +156,15 @@ func (a *Client) DeletePolicyVersionShort(params *DeletePolicyVersionParams, aut
 }
 
 /*
-Deprecated: 2022-08-10 - Use UpdatePolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use UpdatePolicyVersionShort instead.
 
-UpdatePolicyVersion1 update a version of policy
+UpdatePolicyVersion update a version of policy
 Update a particular policy version.
 */
-func (a *Client) UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, *UpdatePolicyVersion1BadRequest, *UpdatePolicyVersion1Conflict, error) {
+func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, *UpdatePolicyVersionBadRequest, *UpdatePolicyVersionConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdatePolicyVersion1Params()
+		params = NewUpdatePolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -180,14 +180,14 @@ func (a *Client) UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authIn
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updatePolicyVersion_1",
+		ID:                 "updatePolicyVersion",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdatePolicyVersion1Reader{formats: a.formats},
+		Reader:             &UpdatePolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -198,13 +198,13 @@ func (a *Client) UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authIn
 
 	switch v := result.(type) {
 
-	case *UpdatePolicyVersion1OK:
+	case *UpdatePolicyVersionOK:
 		return v, nil, nil, nil
 
-	case *UpdatePolicyVersion1BadRequest:
+	case *UpdatePolicyVersionBadRequest:
 		return nil, v, nil, nil
 
-	case *UpdatePolicyVersion1Conflict:
+	case *UpdatePolicyVersionConflict:
 		return nil, nil, v, nil
 
 	default:
@@ -213,13 +213,13 @@ func (a *Client) UpdatePolicyVersion1(params *UpdatePolicyVersion1Params, authIn
 }
 
 /*
-UpdatePolicyVersion1Short update a version of policy
+UpdatePolicyVersionShort update a version of policy
 Update a particular policy version.
 */
-func (a *Client) UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersion1OK, error) {
+func (a *Client) UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdatePolicyVersion1Params()
+		params = NewUpdatePolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -231,14 +231,14 @@ func (a *Client) UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, a
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updatePolicyVersion_1",
+		ID:                 "updatePolicyVersion",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdatePolicyVersion1Reader{formats: a.formats},
+		Reader:             &UpdatePolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -249,11 +249,11 @@ func (a *Client) UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, a
 
 	switch v := result.(type) {
 
-	case *UpdatePolicyVersion1OK:
+	case *UpdatePolicyVersionOK:
 		return v, nil
-	case *UpdatePolicyVersion1BadRequest:
+	case *UpdatePolicyVersionBadRequest:
 		return nil, v
-	case *UpdatePolicyVersion1Conflict:
+	case *UpdatePolicyVersionConflict:
 		return nil, v
 
 	default:
@@ -262,15 +262,15 @@ func (a *Client) UpdatePolicyVersion1Short(params *UpdatePolicyVersion1Params, a
 }
 
 /*
-Deprecated: 2022-08-10 - Use PublishPolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use PublishPolicyVersionShort instead.
 
-PublishPolicyVersion1 manually publish a version from country-specific policy
+PublishPolicyVersion manually publish a version from country-specific policy
 Manually publish a version of a particular country-specific policy.
 */
-func (a *Client) PublishPolicyVersion1(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, *PublishPolicyVersion1BadRequest, *PublishPolicyVersion1Conflict, error) {
+func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, *PublishPolicyVersionBadRequest, *PublishPolicyVersionConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublishPolicyVersion1Params()
+		params = NewPublishPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -286,14 +286,14 @@ func (a *Client) PublishPolicyVersion1(params *PublishPolicyVersion1Params, auth
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publishPolicyVersion_1",
+		ID:                 "publishPolicyVersion",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/latest",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublishPolicyVersion1Reader{formats: a.formats},
+		Reader:             &PublishPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -304,13 +304,13 @@ func (a *Client) PublishPolicyVersion1(params *PublishPolicyVersion1Params, auth
 
 	switch v := result.(type) {
 
-	case *PublishPolicyVersion1OK:
+	case *PublishPolicyVersionOK:
 		return v, nil, nil, nil
 
-	case *PublishPolicyVersion1BadRequest:
+	case *PublishPolicyVersionBadRequest:
 		return nil, v, nil, nil
 
-	case *PublishPolicyVersion1Conflict:
+	case *PublishPolicyVersionConflict:
 		return nil, nil, v, nil
 
 	default:
@@ -319,13 +319,13 @@ func (a *Client) PublishPolicyVersion1(params *PublishPolicyVersion1Params, auth
 }
 
 /*
-PublishPolicyVersion1Short manually publish a version from country-specific policy
+PublishPolicyVersionShort manually publish a version from country-specific policy
 Manually publish a version of a particular country-specific policy.
 */
-func (a *Client) PublishPolicyVersion1Short(params *PublishPolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersion1OK, error) {
+func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*PublishPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPublishPolicyVersion1Params()
+		params = NewPublishPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -337,14 +337,14 @@ func (a *Client) PublishPolicyVersion1Short(params *PublishPolicyVersion1Params,
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "publishPolicyVersion_1",
+		ID:                 "publishPolicyVersion",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/versions/{policyVersionId}/latest",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PublishPolicyVersion1Reader{formats: a.formats},
+		Reader:             &PublishPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -355,11 +355,11 @@ func (a *Client) PublishPolicyVersion1Short(params *PublishPolicyVersion1Params,
 
 	switch v := result.(type) {
 
-	case *PublishPolicyVersion1OK:
+	case *PublishPolicyVersionOK:
 		return v, nil
-	case *PublishPolicyVersion1BadRequest:
+	case *PublishPolicyVersionBadRequest:
 		return nil, v
-	case *PublishPolicyVersion1Conflict:
+	case *PublishPolicyVersionConflict:
 		return nil, v
 
 	default:
@@ -475,15 +475,15 @@ func (a *Client) UnpublishPolicyVersionShort(params *UnpublishPolicyVersionParam
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveSinglePolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use RetrieveSinglePolicyVersionShort instead.
 
-RetrieveSinglePolicyVersion1 retrieve a version from country-specific policy
+RetrieveSinglePolicyVersion retrieve a version from country-specific policy
 Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.
 */
-func (a *Client) RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, *RetrieveSinglePolicyVersion1NotFound, error) {
+func (a *Client) RetrieveSinglePolicyVersion(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, *RetrieveSinglePolicyVersionNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSinglePolicyVersion1Params()
+		params = NewRetrieveSinglePolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -499,14 +499,14 @@ func (a *Client) RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersio
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSinglePolicyVersion_1",
+		ID:                 "retrieveSinglePolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSinglePolicyVersion1Reader{formats: a.formats},
+		Reader:             &RetrieveSinglePolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -517,10 +517,10 @@ func (a *Client) RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersio
 
 	switch v := result.(type) {
 
-	case *RetrieveSinglePolicyVersion1OK:
+	case *RetrieveSinglePolicyVersionOK:
 		return v, nil, nil
 
-	case *RetrieveSinglePolicyVersion1NotFound:
+	case *RetrieveSinglePolicyVersionNotFound:
 		return nil, v, nil
 
 	default:
@@ -529,13 +529,13 @@ func (a *Client) RetrieveSinglePolicyVersion1(params *RetrieveSinglePolicyVersio
 }
 
 /*
-RetrieveSinglePolicyVersion1Short retrieve a version from country-specific policy
+RetrieveSinglePolicyVersionShort retrieve a version from country-specific policy
 Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.
 */
-func (a *Client) RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersion1OK, error) {
+func (a *Client) RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSinglePolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveSinglePolicyVersion1Params()
+		params = NewRetrieveSinglePolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -547,14 +547,14 @@ func (a *Client) RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyV
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveSinglePolicyVersion_1",
+		ID:                 "retrieveSinglePolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveSinglePolicyVersion1Reader{formats: a.formats},
+		Reader:             &RetrieveSinglePolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -565,9 +565,9 @@ func (a *Client) RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyV
 
 	switch v := result.(type) {
 
-	case *RetrieveSinglePolicyVersion1OK:
+	case *RetrieveSinglePolicyVersionOK:
 		return v, nil
-	case *RetrieveSinglePolicyVersion1NotFound:
+	case *RetrieveSinglePolicyVersionNotFound:
 		return nil, v
 
 	default:
@@ -576,15 +576,15 @@ func (a *Client) RetrieveSinglePolicyVersion1Short(params *RetrieveSinglePolicyV
 }
 
 /*
-Deprecated: 2022-08-10 - Use CreatePolicyVersion1Short instead.
+Deprecated: 2022-08-10 - Use CreatePolicyVersionShort instead.
 
-CreatePolicyVersion1 create a version from country-specific policy
+CreatePolicyVersion create a version from country-specific policy
 Create a version of a particular country-specific policy.
 */
-func (a *Client) CreatePolicyVersion1(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, *CreatePolicyVersion1BadRequest, error) {
+func (a *Client) CreatePolicyVersion(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, *CreatePolicyVersionBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreatePolicyVersion1Params()
+		params = NewCreatePolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -600,14 +600,14 @@ func (a *Client) CreatePolicyVersion1(params *CreatePolicyVersion1Params, authIn
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createPolicyVersion_1",
+		ID:                 "createPolicyVersion",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreatePolicyVersion1Reader{formats: a.formats},
+		Reader:             &CreatePolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -618,10 +618,10 @@ func (a *Client) CreatePolicyVersion1(params *CreatePolicyVersion1Params, authIn
 
 	switch v := result.(type) {
 
-	case *CreatePolicyVersion1Created:
+	case *CreatePolicyVersionCreated:
 		return v, nil, nil
 
-	case *CreatePolicyVersion1BadRequest:
+	case *CreatePolicyVersionBadRequest:
 		return nil, v, nil
 
 	default:
@@ -630,13 +630,13 @@ func (a *Client) CreatePolicyVersion1(params *CreatePolicyVersion1Params, authIn
 }
 
 /*
-CreatePolicyVersion1Short create a version from country-specific policy
+CreatePolicyVersionShort create a version from country-specific policy
 Create a version of a particular country-specific policy.
 */
-func (a *Client) CreatePolicyVersion1Short(params *CreatePolicyVersion1Params, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersion1Created, error) {
+func (a *Client) CreatePolicyVersionShort(params *CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyVersionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreatePolicyVersion1Params()
+		params = NewCreatePolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -648,14 +648,14 @@ func (a *Client) CreatePolicyVersion1Short(params *CreatePolicyVersion1Params, a
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "createPolicyVersion_1",
+		ID:                 "createPolicyVersion",
 		Method:             "POST",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreatePolicyVersion1Reader{formats: a.formats},
+		Reader:             &CreatePolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -666,9 +666,9 @@ func (a *Client) CreatePolicyVersion1Short(params *CreatePolicyVersion1Params, a
 
 	switch v := result.(type) {
 
-	case *CreatePolicyVersion1Created:
+	case *CreatePolicyVersionCreated:
 		return v, nil
-	case *CreatePolicyVersion1BadRequest:
+	case *CreatePolicyVersionBadRequest:
 		return nil, v
 
 	default:

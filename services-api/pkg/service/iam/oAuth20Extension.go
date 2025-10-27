@@ -332,6 +332,10 @@ func (aaa *OAuth20ExtensionService) AuthenticationWithPlatformLinkV3Short(input 
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -392,6 +396,10 @@ func (aaa *OAuth20ExtensionService) GenerateTokenByNewHeadlessAccountV3Short(inp
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -422,6 +430,10 @@ func (aaa *OAuth20ExtensionService) RequestOneTimeLinkingCodeV3Short(input *o_au
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -445,6 +457,10 @@ func (aaa *OAuth20ExtensionService) ValidateOneTimeLinkingCodeV3Short(input *o_a
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -466,6 +482,10 @@ func (aaa *OAuth20ExtensionService) RequestTokenByOneTimeLinkCodeResponseV3Short
 	ok, err := aaa.Client.OAuth20Extension.RequestTokenByOneTimeLinkCodeResponseV3Short(input)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -496,6 +516,10 @@ func (aaa *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_e
 	ok, err := aaa.Client.OAuth20Extension.GetCountryLocationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -558,6 +582,10 @@ func (aaa *OAuth20ExtensionService) RequestTokenExchangeCodeV3Short(input *o_aut
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -618,6 +646,10 @@ func (aaa *OAuth20ExtensionService) PlatformTokenRefreshV3Short(input *o_auth2_0
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -646,6 +678,10 @@ func (aaa *OAuth20ExtensionService) RequestTargetTokenResponseV3Short(input *o_a
 	ok, err := aaa.Client.OAuth20Extension.RequestTargetTokenResponseV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

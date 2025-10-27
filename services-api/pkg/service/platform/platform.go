@@ -93,6 +93,10 @@ func (aaa *PlatformService) GetPsnEntitlementOwnershipShort(input *platform.GetP
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -121,6 +125,10 @@ func (aaa *PlatformService) GetXboxEntitlementOwnershipShort(input *platform.Get
 	ok, err := aaa.Client.Platform.GetXboxEntitlementOwnershipShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -145,6 +145,10 @@ func (aaa *ClientsConfigV3Service) AdminListClientAvailablePermissionsShort(inpu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -233,6 +237,10 @@ func (aaa *ClientsConfigV3Service) AdminListClientTemplatesShort(input *clients_
 	ok, err := aaa.Client.ClientsConfigV3.AdminListClientTemplatesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

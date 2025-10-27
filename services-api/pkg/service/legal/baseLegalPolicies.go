@@ -52,13 +52,13 @@ func (aaa *BaseLegalPoliciesService) RetrieveAllLegalPolicies(input *base_legal_
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use CreatePolicyShort instead.
-func (aaa *BaseLegalPoliciesService) CreatePolicy(input *base_legal_policies.CreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
+// Deprecated: 2022-01-10 - please use OldCreatePolicyShort instead.
+func (aaa *BaseLegalPoliciesService) OldCreatePolicy(input *base_legal_policies.OldCreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, unprocessableEntity, err := aaa.Client.BaseLegalPolicies.CreatePolicy(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, notFound, unprocessableEntity, err := aaa.Client.BaseLegalPolicies.OldCreatePolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -75,13 +75,13 @@ func (aaa *BaseLegalPoliciesService) CreatePolicy(input *base_legal_policies.Cre
 	return created.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveSinglePolicyShort instead.
-func (aaa *BaseLegalPoliciesService) RetrieveSinglePolicy(input *base_legal_policies.RetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
+// Deprecated: 2022-01-10 - please use OldRetrieveSinglePolicyShort instead.
+func (aaa *BaseLegalPoliciesService) OldRetrieveSinglePolicy(input *base_legal_policies.OldRetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.BaseLegalPolicies.RetrieveSinglePolicy(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.BaseLegalPolicies.OldRetrieveSinglePolicy(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -92,13 +92,13 @@ func (aaa *BaseLegalPoliciesService) RetrieveSinglePolicy(input *base_legal_poli
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PartialUpdatePolicyShort instead.
-func (aaa *BaseLegalPoliciesService) PartialUpdatePolicy(input *base_legal_policies.PartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
+// Deprecated: 2022-01-10 - please use OldPartialUpdatePolicyShort instead.
+func (aaa *BaseLegalPoliciesService) OldPartialUpdatePolicy(input *base_legal_policies.OldPartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := aaa.Client.BaseLegalPolicies.PartialUpdatePolicy(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, notFound, err := aaa.Client.BaseLegalPolicies.OldPartialUpdatePolicy(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -112,13 +112,13 @@ func (aaa *BaseLegalPoliciesService) PartialUpdatePolicy(input *base_legal_polic
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrievePolicyCountryShort instead.
-func (aaa *BaseLegalPoliciesService) RetrievePolicyCountry(input *base_legal_policies.RetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
+// Deprecated: 2022-01-10 - please use OldRetrievePolicyCountryShort instead.
+func (aaa *BaseLegalPoliciesService) OldRetrievePolicyCountry(input *base_legal_policies.OldRetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := aaa.Client.BaseLegalPolicies.RetrievePolicyCountry(input, client.BearerToken(*token.AccessToken))
+	ok, notFound, err := aaa.Client.BaseLegalPolicies.OldRetrievePolicyCountry(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -129,13 +129,13 @@ func (aaa *BaseLegalPoliciesService) RetrievePolicyCountry(input *base_legal_pol
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use RetrieveAllPolicyTypesShort instead.
-func (aaa *BaseLegalPoliciesService) RetrieveAllPolicyTypes(input *base_legal_policies.RetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
+// Deprecated: 2022-01-10 - please use OldRetrieveAllPolicyTypesShort instead.
+func (aaa *BaseLegalPoliciesService) OldRetrieveAllPolicyTypes(input *base_legal_policies.OldRetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.BaseLegalPolicies.RetrieveAllPolicyTypes(input, client.BearerToken(*token.AccessToken))
+	ok, err := aaa.Client.BaseLegalPolicies.OldRetrieveAllPolicyTypes(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -170,10 +170,14 @@ func (aaa *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_l
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
-func (aaa *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.CreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
+func (aaa *BaseLegalPoliciesService) OldCreatePolicyShort(input *base_legal_policies.OldCreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -195,15 +199,19 @@ func (aaa *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policie
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	created, err := aaa.Client.BaseLegalPolicies.CreatePolicyShort(input, authInfoWriter)
+	created, err := aaa.Client.BaseLegalPolicies.OldCreatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
 }
 
-func (aaa *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_policies.RetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
+func (aaa *BaseLegalPoliciesService) OldRetrieveSinglePolicyShort(input *base_legal_policies.OldRetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -225,15 +233,19 @@ func (aaa *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.BaseLegalPolicies.RetrieveSinglePolicyShort(input, authInfoWriter)
+	ok, err := aaa.Client.BaseLegalPolicies.OldRetrieveSinglePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_policies.PartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
+func (aaa *BaseLegalPoliciesService) OldPartialUpdatePolicyShort(input *base_legal_policies.OldPartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -255,15 +267,19 @@ func (aaa *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.BaseLegalPolicies.PartialUpdatePolicyShort(input, authInfoWriter)
+	ok, err := aaa.Client.BaseLegalPolicies.OldPartialUpdatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_policies.RetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
+func (aaa *BaseLegalPoliciesService) OldRetrievePolicyCountryShort(input *base_legal_policies.OldRetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -285,15 +301,19 @@ func (aaa *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_lega
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.BaseLegalPolicies.RetrievePolicyCountryShort(input, authInfoWriter)
+	ok, err := aaa.Client.BaseLegalPolicies.OldRetrievePolicyCountryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
 }
 
-func (aaa *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal_policies.RetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
+func (aaa *BaseLegalPoliciesService) OldRetrieveAllPolicyTypesShort(input *base_legal_policies.OldRetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -315,9 +335,13 @@ func (aaa *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_leg
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.BaseLegalPolicies.RetrieveAllPolicyTypesShort(input, authInfoWriter)
+	ok, err := aaa.Client.BaseLegalPolicies.OldRetrieveAllPolicyTypesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -1,3 +1,15 @@
+<a name="v0.84.0"></a>
+## [v0.84.0]
+### chore
+- **:** add renovate.json
+### test
+- **integration:** iam - shouldReauth - make refresh rate smaller
+### fix
+- **core:** fix error handling in custom transport
+### docs
+- **:** update README.md for refreshRate
+
+
 <a name="v0.83.0"></a>
 ## [v0.83.0]
 ### chore

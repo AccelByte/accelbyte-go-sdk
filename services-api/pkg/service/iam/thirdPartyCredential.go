@@ -380,6 +380,10 @@ func (aaa *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCreden
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -408,6 +412,10 @@ func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatform
 	ok, err := aaa.Client.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -440,6 +448,10 @@ func (aaa *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentia
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -468,6 +480,10 @@ func (aaa *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Sh
 	created, err := aaa.Client.ThirdPartyCredential.AddThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -530,6 +546,10 @@ func (aaa *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -558,6 +578,10 @@ func (aaa *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Sho
 	ok, err := aaa.Client.ThirdPartyCredential.UpdateThirdPartyLoginPlatformDomainV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -620,6 +644,10 @@ func (aaa *ThirdPartyCredentialService) PartialUpdateThirdPartyLoginPlatformDoma
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -648,6 +676,10 @@ func (aaa *ThirdPartyCredentialService) AdminCheckThirdPartyLoginPlatformAvailab
 	ok, err := aaa.Client.ThirdPartyCredential.AdminCheckThirdPartyLoginPlatformAvailabilityV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -680,6 +712,10 @@ func (aaa *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatform
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -708,6 +744,10 @@ func (aaa *ThirdPartyCredentialService) RetrieveActiveOIDCClientsPublicV3Short(i
 	ok, err := aaa.Client.ThirdPartyCredential.RetrieveActiveOIDCClientsPublicV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

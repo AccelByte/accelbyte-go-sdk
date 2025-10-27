@@ -282,6 +282,10 @@ func (aaa *FleetsService) FleetListShort(input *fleets.FleetListParams) (*amscli
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -312,6 +316,10 @@ func (aaa *FleetsService) FleetCreateShort(input *fleets.FleetCreateParams) (*am
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -340,6 +348,10 @@ func (aaa *FleetsService) FleetGetShort(input *fleets.FleetGetParams) (*amsclien
 	ok, err := aaa.Client.Fleets.FleetGetShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -432,6 +444,10 @@ func (aaa *FleetsService) FleetServersShort(input *fleets.FleetServersParams) (*
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -462,6 +478,10 @@ func (aaa *FleetsService) FleetClaimByIDShort(input *fleets.FleetClaimByIDParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -490,6 +510,10 @@ func (aaa *FleetsService) FleetClaimByKeysShort(input *fleets.FleetClaimByKeysPa
 	ok, err := aaa.Client.Fleets.FleetClaimByKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

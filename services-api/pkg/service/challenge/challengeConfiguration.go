@@ -346,6 +346,10 @@ func (aaa *ChallengeConfigurationService) AdminGetChallengesShort(input *challen
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -374,6 +378,10 @@ func (aaa *ChallengeConfigurationService) AdminCreateChallengeShort(input *chall
 	created, err := aaa.Client.ChallengeConfiguration.AdminCreateChallengeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -406,6 +414,10 @@ func (aaa *ChallengeConfigurationService) AdminGetActiveChallengesShort(input *c
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -436,6 +448,10 @@ func (aaa *ChallengeConfigurationService) AdminGetChallengeShort(input *challeng
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -464,6 +480,10 @@ func (aaa *ChallengeConfigurationService) AdminUpdateChallengeShort(input *chall
 	ok, err := aaa.Client.ChallengeConfiguration.AdminUpdateChallengeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -526,6 +546,10 @@ func (aaa *ChallengeConfigurationService) AdminGetPeriodsShort(input *challenge_
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -554,6 +578,10 @@ func (aaa *ChallengeConfigurationService) AdminRandomizeChallengeShort(input *ch
 	ok, err := aaa.Client.ChallengeConfiguration.AdminRandomizeChallengeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -614,6 +642,10 @@ func (aaa *ChallengeConfigurationService) AdminUpdateTiedChallengeScheduleShort(
 	ok, err := aaa.Client.ChallengeConfiguration.AdminUpdateTiedChallengeScheduleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

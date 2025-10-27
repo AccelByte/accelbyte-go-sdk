@@ -1,0 +1,132 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+// Code generated; DO NOT EDIT.
+
+package localized_policy_versions
+
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"strings"
+
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
+)
+
+// OldSetDefaultLocalizedPolicyReader is a Reader for the OldSetDefaultLocalizedPolicy structure.
+type OldSetDefaultLocalizedPolicyReader struct {
+	formats strfmt.Registry
+}
+
+// ReadResponse reads a server response into the received o.
+func (o *OldSetDefaultLocalizedPolicyReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+	switch response.Code() {
+	case 200:
+		result := NewOldSetDefaultLocalizedPolicyOK()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 400:
+		result := NewOldSetDefaultLocalizedPolicyBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+
+	default:
+		data, err := ioutil.ReadAll(response.Body())
+		if err != nil {
+			return nil, err
+		}
+
+		return nil, fmt.Errorf("Requested PATCH /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default returns an error %d: %s", response.Code(), string(data))
+	}
+}
+
+// NewOldSetDefaultLocalizedPolicyOK creates a OldSetDefaultLocalizedPolicyOK with default headers values
+func NewOldSetDefaultLocalizedPolicyOK() *OldSetDefaultLocalizedPolicyOK {
+	return &OldSetDefaultLocalizedPolicyOK{}
+}
+
+/*OldSetDefaultLocalizedPolicyOK handles this case with default header values.
+
+  Successful operation
+*/
+type OldSetDefaultLocalizedPolicyOK struct {
+}
+
+func (o *OldSetDefaultLocalizedPolicyOK) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default][%d] oldSetDefaultLocalizedPolicyOK ", 200)
+}
+
+func (o *OldSetDefaultLocalizedPolicyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	return nil
+}
+
+// NewOldSetDefaultLocalizedPolicyBadRequest creates a OldSetDefaultLocalizedPolicyBadRequest with default headers values
+func NewOldSetDefaultLocalizedPolicyBadRequest() *OldSetDefaultLocalizedPolicyBadRequest {
+	return &OldSetDefaultLocalizedPolicyBadRequest{}
+}
+
+/*OldSetDefaultLocalizedPolicyBadRequest handles this case with default header values.
+
+  <table><tr><td>NumericErrorCode</td><td>ErrorCode</td></tr><tr><td>40035</td><td>errors.net.accelbyte.platform.legal.invalid_localize_policy_version</td></tr></table>
+*/
+type OldSetDefaultLocalizedPolicyBadRequest struct {
+	Payload *legalclientmodels.ErrorEntity
+}
+
+func (o *OldSetDefaultLocalizedPolicyBadRequest) Error() string {
+	return fmt.Sprintf("[PATCH /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default][%d] oldSetDefaultLocalizedPolicyBadRequest  %+v", 400, o.ToJSONString())
+}
+
+func (o *OldSetDefaultLocalizedPolicyBadRequest) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *OldSetDefaultLocalizedPolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
+	return o.Payload
+}
+
+func (o *OldSetDefaultLocalizedPolicyBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(legalclientmodels.ErrorEntity)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}

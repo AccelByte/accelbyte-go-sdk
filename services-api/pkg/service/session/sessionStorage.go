@@ -281,6 +281,10 @@ func (aaa *SessionStorageService) AdminReadPartySessionStorageShort(input *sessi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -309,6 +313,10 @@ func (aaa *SessionStorageService) AdminReadSessionStorageShort(input *session_st
 	ok, err := aaa.Client.SessionStorage.AdminReadSessionStorageShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -371,6 +379,10 @@ func (aaa *SessionStorageService) AdminReadUserSessionStorageShort(input *sessio
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -399,6 +411,10 @@ func (aaa *SessionStorageService) PublicReadPartySessionStorageShort(input *sess
 	ok, err := aaa.Client.SessionStorage.PublicReadPartySessionStorageShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -431,6 +447,10 @@ func (aaa *SessionStorageService) PublicUpdateInsertPartySessionStorageReservedS
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -461,6 +481,10 @@ func (aaa *SessionStorageService) PublicUpdateInsertSessionStorageLeaderShort(in
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -489,6 +513,10 @@ func (aaa *SessionStorageService) PublicUpdateInsertSessionStorageShort(input *s
 	ok, err := aaa.Client.SessionStorage.PublicUpdateInsertSessionStorageShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

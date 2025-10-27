@@ -166,6 +166,10 @@ func (aaa *DataRetrievalS2SService) S2SGetListFinishedPersonalDataRequestShort(i
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -194,6 +198,10 @@ func (aaa *DataRetrievalS2SService) S2SGetDataRequestByRequestIDShort(input *dat
 	ok, err := aaa.Client.DataRetrievalS2s.S2SGetDataRequestByRequestIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -226,6 +234,10 @@ func (aaa *DataRetrievalS2SService) S2SRequestDataRetrievalShort(input *data_ret
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -254,6 +266,10 @@ func (aaa *DataRetrievalS2SService) S2SGeneratePersonalDataURLShort(input *data_
 	ok, err := aaa.Client.DataRetrievalS2s.S2SGeneratePersonalDataURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

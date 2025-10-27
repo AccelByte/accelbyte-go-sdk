@@ -197,6 +197,10 @@ func (aaa *PublicItemsService) PublicConsumeMyItemShort(input *public_items.Publ
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -225,6 +229,10 @@ func (aaa *PublicItemsService) PublicListItemsShort(input *public_items.PublicLi
 	ok, err := aaa.Client.PublicItems.PublicListItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -257,6 +265,10 @@ func (aaa *PublicItemsService) PublicBulkUpdateMyItemsShort(input *public_items.
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -285,6 +297,10 @@ func (aaa *PublicItemsService) PublicBulkRemoveMyItemsShort(input *public_items.
 	ok, err := aaa.Client.PublicItems.PublicBulkRemoveMyItemsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -317,6 +333,10 @@ func (aaa *PublicItemsService) PublicMoveMyItemsShort(input *public_items.Public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -345,6 +365,10 @@ func (aaa *PublicItemsService) PublicGetItemShort(input *public_items.PublicGetI
 	ok, err := aaa.Client.PublicItems.PublicGetItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

@@ -107,6 +107,10 @@ func (aaa *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoS
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 

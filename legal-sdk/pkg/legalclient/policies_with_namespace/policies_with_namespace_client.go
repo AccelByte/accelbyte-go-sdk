@@ -32,10 +32,10 @@ type Client struct {
 type ClientService interface {
 	DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, *DeletePolicyBadRequest, error)
 	DeletePolicyShort(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, error)
-	UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, *UpdatePolicy1BadRequest, error)
-	UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, error)
-	SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy3OK, *SetDefaultPolicy3BadRequest, error)
-	SetDefaultPolicy3Short(params *SetDefaultPolicy3Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy3OK, error)
+	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error)
+	UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error)
+	SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error)
+	SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -150,15 +150,15 @@ func (a *Client) DeletePolicyShort(params *DeletePolicyParams, authInfo runtime.
 }
 
 /*
-Deprecated: 2022-08-10 - Use UpdatePolicy1Short instead.
+Deprecated: 2022-08-10 - Use UpdatePolicyShort instead.
 
-UpdatePolicy1 update country-specific policy
+UpdatePolicy update country-specific policy
 Update country-specific and country-group policy.
 */
-func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, *UpdatePolicy1BadRequest, error) {
+func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, *UpdatePolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdatePolicy1Params()
+		params = NewUpdatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -174,14 +174,14 @@ func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.Cli
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updatePolicy_1",
+		ID:                 "updatePolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdatePolicy1Reader{formats: a.formats},
+		Reader:             &UpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -192,10 +192,10 @@ func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *UpdatePolicy1OK:
+	case *UpdatePolicyOK:
 		return v, nil, nil
 
-	case *UpdatePolicy1BadRequest:
+	case *UpdatePolicyBadRequest:
 		return nil, v, nil
 
 	default:
@@ -204,13 +204,13 @@ func (a *Client) UpdatePolicy1(params *UpdatePolicy1Params, authInfo runtime.Cli
 }
 
 /*
-UpdatePolicy1Short update country-specific policy
+UpdatePolicyShort update country-specific policy
 Update country-specific and country-group policy.
 */
-func (a *Client) UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicy1OK, error) {
+func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdatePolicy1Params()
+		params = NewUpdatePolicyParams()
 	}
 
 	if params.Context == nil {
@@ -222,14 +222,14 @@ func (a *Client) UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtim
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updatePolicy_1",
+		ID:                 "updatePolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdatePolicy1Reader{formats: a.formats},
+		Reader:             &UpdatePolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -240,9 +240,9 @@ func (a *Client) UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *UpdatePolicy1OK:
+	case *UpdatePolicyOK:
 		return v, nil
-	case *UpdatePolicy1BadRequest:
+	case *UpdatePolicyBadRequest:
 		return nil, v
 
 	default:
@@ -251,15 +251,15 @@ func (a *Client) UpdatePolicy1Short(params *UpdatePolicy1Params, authInfo runtim
 }
 
 /*
-Deprecated: 2022-08-10 - Use SetDefaultPolicy3Short instead.
+Deprecated: 2022-08-10 - Use SetDefaultPolicyShort instead.
 
-SetDefaultPolicy3 set default policy
+SetDefaultPolicy set default policy
 Update a policy to be the default.
 */
-func (a *Client) SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy3OK, *SetDefaultPolicy3BadRequest, error) {
+func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, *SetDefaultPolicyBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicy3Params()
+		params = NewSetDefaultPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -275,14 +275,14 @@ func (a *Client) SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo run
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy_3",
+		ID:                 "setDefaultPolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicy3Reader{formats: a.formats},
+		Reader:             &SetDefaultPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -293,10 +293,10 @@ func (a *Client) SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo run
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicy3OK:
+	case *SetDefaultPolicyOK:
 		return v, nil, nil
 
-	case *SetDefaultPolicy3BadRequest:
+	case *SetDefaultPolicyBadRequest:
 		return nil, v, nil
 
 	default:
@@ -305,13 +305,13 @@ func (a *Client) SetDefaultPolicy3(params *SetDefaultPolicy3Params, authInfo run
 }
 
 /*
-SetDefaultPolicy3Short set default policy
+SetDefaultPolicyShort set default policy
 Update a policy to be the default.
 */
-func (a *Client) SetDefaultPolicy3Short(params *SetDefaultPolicy3Params, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicy3OK, error) {
+func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*SetDefaultPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetDefaultPolicy3Params()
+		params = NewSetDefaultPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -323,14 +323,14 @@ func (a *Client) SetDefaultPolicy3Short(params *SetDefaultPolicy3Params, authInf
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "setDefaultPolicy_3",
+		ID:                 "setDefaultPolicy",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/admin/namespaces/{namespace}/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetDefaultPolicy3Reader{formats: a.formats},
+		Reader:             &SetDefaultPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -341,9 +341,9 @@ func (a *Client) SetDefaultPolicy3Short(params *SetDefaultPolicy3Params, authInf
 
 	switch v := result.(type) {
 
-	case *SetDefaultPolicy3OK:
+	case *SetDefaultPolicyOK:
 		return v, nil
-	case *SetDefaultPolicy3BadRequest:
+	case *SetDefaultPolicyBadRequest:
 		return nil, v
 
 	default:

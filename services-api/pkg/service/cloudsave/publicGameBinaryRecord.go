@@ -259,6 +259,10 @@ func (aaa *PublicGameBinaryRecordService) ListGameBinaryRecordsV1Short(input *pu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -287,6 +291,10 @@ func (aaa *PublicGameBinaryRecordService) PostGameBinaryRecordV1Short(input *pub
 	created, err := aaa.Client.PublicGameBinaryRecord.PostGameBinaryRecordV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -319,6 +327,10 @@ func (aaa *PublicGameBinaryRecordService) BulkGetGameBinaryRecordV1Short(input *
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -349,6 +361,10 @@ func (aaa *PublicGameBinaryRecordService) GetGameBinaryRecordV1Short(input *publ
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +393,10 @@ func (aaa *PublicGameBinaryRecordService) PutGameBinaryRecordV1Short(input *publ
 	ok, err := aaa.Client.PublicGameBinaryRecord.PutGameBinaryRecordV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -437,6 +457,10 @@ func (aaa *PublicGameBinaryRecordService) PostGameBinaryPresignedURLV1Short(inpu
 	created, err := aaa.Client.PublicGameBinaryRecord.PostGameBinaryPresignedURLV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

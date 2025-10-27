@@ -152,6 +152,10 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItemsShort(input *user_sta
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +186,10 @@ func (aaa *UserStatisticCycleService) PublicListMyStatCycleItemsShort(input *use
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -210,6 +218,10 @@ func (aaa *UserStatisticCycleService) GetUserStatCycleItems1Short(input *user_st
 	ok, err := aaa.Client.UserStatisticCycle.GetUserStatCycleItems1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

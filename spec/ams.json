@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.41.1"
+    "version": "1.42.0"
   },
   "schemes": [
     "https"
@@ -2036,6 +2036,12 @@
             "description": "the image tag",
             "in": "query",
             "name": "tag",
+            "type": "string"
+          },
+          {
+            "description": "the target architecture (currently only 'linux-x86_64' and 'linux-arm_64' are supported)",
+            "in": "query",
+            "name": "targetArchitecture",
             "type": "string"
           }
         ],
@@ -4321,6 +4327,9 @@
           },
           "type": "array"
         },
+        "targetArchitecture": {
+          "type": "string"
+        },
         "uploadedAt": {
           "$ref": "#/definitions/time.Time"
         },
@@ -4338,6 +4347,7 @@
         "sizeInByte",
         "status",
         "tags",
+        "targetArchitecture",
         "uploadedAt",
         "uploadedBy"
       ]
@@ -4401,6 +4411,9 @@
           },
           "type": "array"
         },
+        "targetArchitecture": {
+          "type": "string"
+        },
         "uploadedAt": {
           "$ref": "#/definitions/time.Time"
         },
@@ -4419,6 +4432,7 @@
         "sizeInByte",
         "status",
         "tags",
+        "targetArchitecture",
         "uploadedAt",
         "uploadedBy"
       ]
@@ -4502,6 +4516,9 @@
         "ownerAccountId": {
           "type": "string"
         },
+        "processorArchitecture": {
+          "type": "string"
+        },
         "provider": {
           "type": "string"
         },
@@ -4519,6 +4536,7 @@
         "minSpeed",
         "name",
         "ownerAccountId",
+        "processorArchitecture",
         "provider",
         "virtualCpu"
       ]
@@ -4789,10 +4807,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-09-11T02:54:57+00:00",
-    "gitHash": "f120845203a42bcf5df18d7d13a6cc838f9c6b3f",
+    "buildDate": "2025-10-22T02:40:29+00:00",
+    "gitHash": "b47d5fe13419d918918263dc5e23ef55d078dbc6",
     "name": "fleet-commander",
-    "version": "1.41.1",
+    "version": "1.42.0",
     "version-roles-seeding": "1.2.70"
   }
 }

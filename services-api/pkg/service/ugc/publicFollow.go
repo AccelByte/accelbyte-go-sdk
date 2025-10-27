@@ -180,6 +180,10 @@ func (aaa *PublicFollowService) GetFollowedContentShort(input *public_follow.Get
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -208,6 +212,10 @@ func (aaa *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFo
 	ok, err := aaa.Client.PublicFollow.GetFollowedUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -240,6 +248,10 @@ func (aaa *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -270,6 +282,10 @@ func (aaa *PublicFollowService) GetPublicFollowersShort(input *public_follow.Get
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -298,6 +314,10 @@ func (aaa *PublicFollowService) GetPublicFollowingShort(input *public_follow.Get
 	ok, err := aaa.Client.PublicFollow.GetPublicFollowingShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

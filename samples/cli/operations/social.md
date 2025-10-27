@@ -588,7 +588,7 @@ $ samples/cli/sample-apps Social resetUserStatItemValue1 \
 ```sh
 $ samples/cli/sample-apps Social bulkUpdateUserStatItemV2 \
     --namespace 'string' \
-    --body '[{"additionalData": {"string": {}}, "additionalKey": "string", "statCode": "string", "updateStrategy": "INCREMENT", "userId": "string", "value": 3.14}]' \
+    --body '[{"additionalData": {"string": {}}, "additionalKey": "string", "requestId": "string", "statCode": "string", "updateStrategy": "INCREMENT", "userId": "string", "value": 3.14}]' \
     > result.txt
 ```
 
@@ -619,7 +619,7 @@ $ samples/cli/sample-apps Social bulkUpdateUserStatItem \
     --namespace 'string' \
     --userId 'string' \
     --additionalKey 'string' \
-    --body '[{"additionalData": {"string": {}}, "statCode": "string", "updateStrategy": "INCREMENT", "value": 3.14}]' \
+    --body '[{"additionalData": {"string": {}}, "requestId": "string", "statCode": "string", "updateStrategy": "INCREMENT", "value": 3.14}]' \
     > result.txt
 ```
 
@@ -668,7 +668,7 @@ $ samples/cli/sample-apps Social updateUserStatItemValue \
 ```sh
 $ samples/cli/sample-apps Social bulkUpdateUserStatItem1 \
     --namespace 'string' \
-    --body '[{"additionalData": {"string": {}}, "additionalKey": "string", "statCode": "string", "updateStrategy": "INCREMENT", "userId": "string", "value": 3.14}]' \
+    --body '[{"additionalData": {"string": {}}, "additionalKey": "string", "requestId": "string", "statCode": "string", "updateStrategy": "INCREMENT", "userId": "string", "value": 3.14}]' \
     > result.txt
 ```
 
@@ -689,7 +689,7 @@ $ samples/cli/sample-apps Social bulkUpdateUserStatItem2 \
     --namespace 'string' \
     --userId 'string' \
     --additionalKey 'string' \
-    --body '[{"additionalData": {"string": {}}, "statCode": "string", "updateStrategy": "INCREMENT", "value": 3.14}]' \
+    --body '[{"additionalData": {"string": {}}, "requestId": "string", "statCode": "string", "updateStrategy": "INCREMENT", "value": 3.14}]' \
     > result.txt
 ```
 

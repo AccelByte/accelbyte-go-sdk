@@ -192,6 +192,10 @@ func (aaa *DevelopmentService) DevelopmentServerConfigurationListShort(input *de
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -222,6 +226,10 @@ func (aaa *DevelopmentService) DevelopmentServerConfigurationCreateShort(input *
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -250,6 +258,10 @@ func (aaa *DevelopmentService) DevelopmentServerConfigurationGetShort(input *dev
 	ok, err := aaa.Client.Development.DevelopmentServerConfigurationGetShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

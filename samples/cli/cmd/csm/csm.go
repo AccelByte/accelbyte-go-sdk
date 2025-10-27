@@ -15,6 +15,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/csm/deploymentV2"
 	"github.com/AccelByte/sample-apps/cmd/csm/image"
 	"github.com/AccelByte/sample-apps/cmd/csm/imageV2"
+	"github.com/AccelByte/sample-apps/cmd/csm/managedResources"
 	"github.com/AccelByte/sample-apps/cmd/csm/messages"
 	"github.com/AccelByte/sample-apps/cmd/csm/notificationSubscription"
 	"github.com/AccelByte/sample-apps/cmd/csm/notificationSubscriptionV3"
@@ -60,6 +61,10 @@ func init() {
 	CsmCmd.AddCommand(deploymentV2.CreateDeploymentV2Cmd)
 	CsmCmd.AddCommand(imageV2.GetAppImageListV2Cmd)
 	CsmCmd.AddCommand(imageV2.DeleteAppImagesV2Cmd)
+	CsmCmd.AddCommand(managedResources.CreateNoSQLDatabaseCredentialV2Cmd)
+	CsmCmd.AddCommand(managedResources.GetNoSQLDatabaseV2Cmd)
+	CsmCmd.AddCommand(managedResources.CreateNoSQLDatabaseV2Cmd)
+	CsmCmd.AddCommand(managedResources.DeleteNoSQLDatabaseV2Cmd)
 	CsmCmd.AddCommand(appV2.UpdateAppResourcesV2Cmd)
 	CsmCmd.AddCommand(appV2.UpdateAppResourcesResourceLimitFormV2Cmd)
 	CsmCmd.AddCommand(configurationV2.GetListOfSecretsV2Cmd)
@@ -83,6 +88,11 @@ func init() {
 	CsmCmd.AddCommand(deploymentV2.GetListOfDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.GetDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.DeleteDeploymentV2Cmd)
+	CsmCmd.AddCommand(managedResources.GetNoSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.UpdateNoSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.CreateNoSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.DeleteNoSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.GetNoSQLAccessTunnelV2Cmd)
 	CsmCmd.AddCommand(resourcesLimits.GetResourcesLimitsCmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.GetNotificationSubscriberListV3Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.DeleteSubscriptionAppNotificationV3Cmd)

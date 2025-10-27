@@ -32,12 +32,12 @@ type Client struct {
 type ClientService interface {
 	ChangePreferenceConsent(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, *ChangePreferenceConsentNotFound, error)
 	ChangePreferenceConsentShort(params *ChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsentOK, error)
-	RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error)
-	RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error)
-	RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, *RetrieveAllUsersByPolicyVersionNotFound, error)
-	RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, error)
-	ChangePreferenceConsent1(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, *ChangePreferenceConsent1BadRequest, error)
-	ChangePreferenceConsent1Short(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, error)
+	OldRetrieveAcceptedAgreements(params *OldRetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAcceptedAgreementsOK, error)
+	OldRetrieveAcceptedAgreementsShort(params *OldRetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAcceptedAgreementsOK, error)
+	OldRetrieveAllUsersByPolicyVersion(params *OldRetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAllUsersByPolicyVersionOK, *OldRetrieveAllUsersByPolicyVersionNotFound, error)
+	OldRetrieveAllUsersByPolicyVersionShort(params *OldRetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAllUsersByPolicyVersionOK, error)
+	PublicChangePreferenceConsent(params *PublicChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangePreferenceConsentOK, *PublicChangePreferenceConsentBadRequest, error)
+	PublicChangePreferenceConsentShort(params *PublicChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangePreferenceConsentOK, error)
 	AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, *AcceptVersionedPolicyBadRequest, error)
 	AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptVersionedPolicyCreated, error)
 	RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAgreementsPublicOK, *RetrieveAgreementsPublicBadRequest, error)
@@ -46,8 +46,8 @@ type ClientService interface {
 	BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAcceptVersionedPolicyCreated, error)
 	IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error)
 	IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAcceptVersionedPolicyV2Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicyV2Created, error)
-	IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, *IndirectBulkAcceptVersionedPolicy1NotFound, error)
-	IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error)
+	PublicIndirectBulkAcceptVersionedPolicy(params *PublicIndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIndirectBulkAcceptVersionedPolicyCreated, *PublicIndirectBulkAcceptVersionedPolicyNotFound, error)
+	PublicIndirectBulkAcceptVersionedPolicyShort(params *PublicIndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIndirectBulkAcceptVersionedPolicyCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -154,15 +154,15 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveAcceptedAgreementsShort instead.
+Deprecated: 2022-08-10 - Use OldRetrieveAcceptedAgreementsShort instead.
 
-RetrieveAcceptedAgreements retrieve accepted legal agreements
+OldRetrieveAcceptedAgreements retrieve accepted legal agreements
 This API will return all accepted Legal Agreements for specified user
 */
-func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error) {
+func (a *Client) OldRetrieveAcceptedAgreements(params *OldRetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAcceptedAgreementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveAcceptedAgreementsParams()
+		params = NewOldRetrieveAcceptedAgreementsParams()
 	}
 
 	if params.Context == nil {
@@ -178,14 +178,14 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveAcceptedAgreements",
+		ID:                 "oldRetrieveAcceptedAgreements",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveAcceptedAgreementsReader{formats: a.formats},
+		Reader:             &OldRetrieveAcceptedAgreementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -196,7 +196,7 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 
 	switch v := result.(type) {
 
-	case *RetrieveAcceptedAgreementsOK:
+	case *OldRetrieveAcceptedAgreementsOK:
 		return v, nil
 
 	default:
@@ -205,13 +205,13 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 }
 
 /*
-RetrieveAcceptedAgreementsShort retrieve accepted legal agreements
+OldRetrieveAcceptedAgreementsShort retrieve accepted legal agreements
 This API will return all accepted Legal Agreements for specified user
 */
-func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAcceptedAgreementsOK, error) {
+func (a *Client) OldRetrieveAcceptedAgreementsShort(params *OldRetrieveAcceptedAgreementsParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAcceptedAgreementsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveAcceptedAgreementsParams()
+		params = NewOldRetrieveAcceptedAgreementsParams()
 	}
 
 	if params.Context == nil {
@@ -223,14 +223,14 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveAcceptedAgreements",
+		ID:                 "oldRetrieveAcceptedAgreements",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveAcceptedAgreementsReader{formats: a.formats},
+		Reader:             &OldRetrieveAcceptedAgreementsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -241,7 +241,7 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 
 	switch v := result.(type) {
 
-	case *RetrieveAcceptedAgreementsOK:
+	case *OldRetrieveAcceptedAgreementsOK:
 		return v, nil
 
 	default:
@@ -250,15 +250,15 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 }
 
 /*
-Deprecated: 2022-08-10 - Use RetrieveAllUsersByPolicyVersionShort instead.
+Deprecated: 2022-08-10 - Use OldRetrieveAllUsersByPolicyVersionShort instead.
 
-RetrieveAllUsersByPolicyVersion retrieve users accepting legal agreements
+OldRetrieveAllUsersByPolicyVersion retrieve users accepting legal agreements
 This API will return users who has accepted a specific policy version.
 */
-func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, *RetrieveAllUsersByPolicyVersionNotFound, error) {
+func (a *Client) OldRetrieveAllUsersByPolicyVersion(params *OldRetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAllUsersByPolicyVersionOK, *OldRetrieveAllUsersByPolicyVersionNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveAllUsersByPolicyVersionParams()
+		params = NewOldRetrieveAllUsersByPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -274,14 +274,14 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveAllUsersByPolicyVersion",
+		ID:                 "oldRetrieveAllUsersByPolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/agreements/policy-versions/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveAllUsersByPolicyVersionReader{formats: a.formats},
+		Reader:             &OldRetrieveAllUsersByPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -292,10 +292,10 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 
 	switch v := result.(type) {
 
-	case *RetrieveAllUsersByPolicyVersionOK:
+	case *OldRetrieveAllUsersByPolicyVersionOK:
 		return v, nil, nil
 
-	case *RetrieveAllUsersByPolicyVersionNotFound:
+	case *OldRetrieveAllUsersByPolicyVersionNotFound:
 		return nil, v, nil
 
 	default:
@@ -304,13 +304,13 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 }
 
 /*
-RetrieveAllUsersByPolicyVersionShort retrieve users accepting legal agreements
+OldRetrieveAllUsersByPolicyVersionShort retrieve users accepting legal agreements
 This API will return users who has accepted a specific policy version.
 */
-func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllUsersByPolicyVersionOK, error) {
+func (a *Client) OldRetrieveAllUsersByPolicyVersionShort(params *OldRetrieveAllUsersByPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*OldRetrieveAllUsersByPolicyVersionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRetrieveAllUsersByPolicyVersionParams()
+		params = NewOldRetrieveAllUsersByPolicyVersionParams()
 	}
 
 	if params.Context == nil {
@@ -322,14 +322,14 @@ func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersBy
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "retrieveAllUsersByPolicyVersion",
+		ID:                 "oldRetrieveAllUsersByPolicyVersion",
 		Method:             "GET",
 		PathPattern:        "/agreement/admin/agreements/policy-versions/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RetrieveAllUsersByPolicyVersionReader{formats: a.formats},
+		Reader:             &OldRetrieveAllUsersByPolicyVersionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -340,9 +340,9 @@ func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersBy
 
 	switch v := result.(type) {
 
-	case *RetrieveAllUsersByPolicyVersionOK:
+	case *OldRetrieveAllUsersByPolicyVersionOK:
 		return v, nil
-	case *RetrieveAllUsersByPolicyVersionNotFound:
+	case *OldRetrieveAllUsersByPolicyVersionNotFound:
 		return nil, v
 
 	default:
@@ -351,15 +351,15 @@ func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersBy
 }
 
 /*
-Deprecated: 2022-08-10 - Use ChangePreferenceConsent1Short instead.
+Deprecated: 2022-08-10 - Use PublicChangePreferenceConsentShort instead.
 
-ChangePreferenceConsent1 accept/revoke marketing preference consent
+PublicChangePreferenceConsent accept/revoke marketing preference consent
 Change marketing preference consent.
 */
-func (a *Client) ChangePreferenceConsent1(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, *ChangePreferenceConsent1BadRequest, error) {
+func (a *Client) PublicChangePreferenceConsent(params *PublicChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangePreferenceConsentOK, *PublicChangePreferenceConsentBadRequest, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewChangePreferenceConsent1Params()
+		params = NewPublicChangePreferenceConsentParams()
 	}
 
 	if params.Context == nil {
@@ -375,14 +375,14 @@ func (a *Client) ChangePreferenceConsent1(params *ChangePreferenceConsent1Params
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "changePreferenceConsent_1",
+		ID:                 "publicChangePreferenceConsent",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/public/agreements/localized-policy-versions/preferences",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ChangePreferenceConsent1Reader{formats: a.formats},
+		Reader:             &PublicChangePreferenceConsentReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -393,10 +393,10 @@ func (a *Client) ChangePreferenceConsent1(params *ChangePreferenceConsent1Params
 
 	switch v := result.(type) {
 
-	case *ChangePreferenceConsent1OK:
+	case *PublicChangePreferenceConsentOK:
 		return v, nil, nil
 
-	case *ChangePreferenceConsent1BadRequest:
+	case *PublicChangePreferenceConsentBadRequest:
 		return nil, v, nil
 
 	default:
@@ -405,13 +405,13 @@ func (a *Client) ChangePreferenceConsent1(params *ChangePreferenceConsent1Params
 }
 
 /*
-ChangePreferenceConsent1Short accept/revoke marketing preference consent
+PublicChangePreferenceConsentShort accept/revoke marketing preference consent
 Change marketing preference consent.
 */
-func (a *Client) ChangePreferenceConsent1Short(params *ChangePreferenceConsent1Params, authInfo runtime.ClientAuthInfoWriter) (*ChangePreferenceConsent1OK, error) {
+func (a *Client) PublicChangePreferenceConsentShort(params *PublicChangePreferenceConsentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicChangePreferenceConsentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewChangePreferenceConsent1Params()
+		params = NewPublicChangePreferenceConsentParams()
 	}
 
 	if params.Context == nil {
@@ -423,14 +423,14 @@ func (a *Client) ChangePreferenceConsent1Short(params *ChangePreferenceConsent1P
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "changePreferenceConsent_1",
+		ID:                 "publicChangePreferenceConsent",
 		Method:             "PATCH",
 		PathPattern:        "/agreement/public/agreements/localized-policy-versions/preferences",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ChangePreferenceConsent1Reader{formats: a.formats},
+		Reader:             &PublicChangePreferenceConsentReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -441,9 +441,9 @@ func (a *Client) ChangePreferenceConsent1Short(params *ChangePreferenceConsent1P
 
 	switch v := result.(type) {
 
-	case *ChangePreferenceConsent1OK:
+	case *PublicChangePreferenceConsentOK:
 		return v, nil
-	case *ChangePreferenceConsent1BadRequest:
+	case *PublicChangePreferenceConsentBadRequest:
 		return nil, v
 
 	default:
@@ -851,15 +851,15 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAc
 }
 
 /*
-Deprecated: 2022-08-10 - Use IndirectBulkAcceptVersionedPolicy1Short instead.
+Deprecated: 2022-08-10 - Use PublicIndirectBulkAcceptVersionedPolicyShort instead.
 
-IndirectBulkAcceptVersionedPolicy1 bulk accept policy versions (indirect)
+PublicIndirectBulkAcceptVersionedPolicy bulk accept policy versions (indirect)
 Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.
 */
-func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, *IndirectBulkAcceptVersionedPolicy1NotFound, error) {
+func (a *Client) PublicIndirectBulkAcceptVersionedPolicy(params *PublicIndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIndirectBulkAcceptVersionedPolicyCreated, *PublicIndirectBulkAcceptVersionedPolicyNotFound, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewIndirectBulkAcceptVersionedPolicy1Params()
+		params = NewPublicIndirectBulkAcceptVersionedPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -875,14 +875,14 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "indirectBulkAcceptVersionedPolicy_1",
+		ID:                 "publicIndirectBulkAcceptVersionedPolicy",
 		Method:             "POST",
 		PathPattern:        "/agreement/public/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &IndirectBulkAcceptVersionedPolicy1Reader{formats: a.formats},
+		Reader:             &PublicIndirectBulkAcceptVersionedPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -893,10 +893,10 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 
 	switch v := result.(type) {
 
-	case *IndirectBulkAcceptVersionedPolicy1Created:
+	case *PublicIndirectBulkAcceptVersionedPolicyCreated:
 		return v, nil, nil
 
-	case *IndirectBulkAcceptVersionedPolicy1NotFound:
+	case *PublicIndirectBulkAcceptVersionedPolicyNotFound:
 		return nil, v, nil
 
 	default:
@@ -905,13 +905,13 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 }
 
 /*
-IndirectBulkAcceptVersionedPolicy1Short bulk accept policy versions (indirect)
+PublicIndirectBulkAcceptVersionedPolicyShort bulk accept policy versions (indirect)
 Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.
 */
-func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcceptVersionedPolicy1Params, authInfo runtime.ClientAuthInfoWriter) (*IndirectBulkAcceptVersionedPolicy1Created, error) {
+func (a *Client) PublicIndirectBulkAcceptVersionedPolicyShort(params *PublicIndirectBulkAcceptVersionedPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*PublicIndirectBulkAcceptVersionedPolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewIndirectBulkAcceptVersionedPolicy1Params()
+		params = NewPublicIndirectBulkAcceptVersionedPolicyParams()
 	}
 
 	if params.Context == nil {
@@ -923,14 +923,14 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcc
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "indirectBulkAcceptVersionedPolicy_1",
+		ID:                 "publicIndirectBulkAcceptVersionedPolicy",
 		Method:             "POST",
 		PathPattern:        "/agreement/public/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &IndirectBulkAcceptVersionedPolicy1Reader{formats: a.formats},
+		Reader:             &PublicIndirectBulkAcceptVersionedPolicyReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -941,9 +941,9 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcc
 
 	switch v := result.(type) {
 
-	case *IndirectBulkAcceptVersionedPolicy1Created:
+	case *PublicIndirectBulkAcceptVersionedPolicyCreated:
 		return v, nil
-	case *IndirectBulkAcceptVersionedPolicy1NotFound:
+	case *PublicIndirectBulkAcceptVersionedPolicyNotFound:
 		return nil, v
 
 	default:

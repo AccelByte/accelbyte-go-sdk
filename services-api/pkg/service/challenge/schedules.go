@@ -181,6 +181,10 @@ func (aaa *SchedulesService) AdminListSchedulesByGoalShort(input *schedules.Admi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -209,6 +213,10 @@ func (aaa *SchedulesService) AdminListSchedulesShort(input *schedules.AdminListS
 	ok, err := aaa.Client.Schedules.AdminListSchedulesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -241,6 +249,10 @@ func (aaa *SchedulesService) PublicListSchedulesByGoalShort(input *schedules.Pub
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -269,6 +281,10 @@ func (aaa *SchedulesService) PublicListSchedulesShort(input *schedules.PublicLis
 	ok, err := aaa.Client.Schedules.PublicListSchedulesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

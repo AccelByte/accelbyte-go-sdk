@@ -51,6 +51,12 @@ func (o *PublicBanTopicMembersReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewPublicBanTopicMembersNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewPublicBanTopicMembersInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -267,6 +273,60 @@ func (o *PublicBanTopicMembersForbidden) GetPayload() *chatclientmodels.RestapiE
 }
 
 func (o *PublicBanTopicMembersForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(chatclientmodels.RestapiErrorResponseBody)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPublicBanTopicMembersNotFound creates a PublicBanTopicMembersNotFound with default headers values
+func NewPublicBanTopicMembersNotFound() *PublicBanTopicMembersNotFound {
+	return &PublicBanTopicMembersNotFound{}
+}
+
+/*PublicBanTopicMembersNotFound handles this case with default header values.
+
+  Not Found
+*/
+type PublicBanTopicMembersNotFound struct {
+	Payload *chatclientmodels.RestapiErrorResponseBody
+}
+
+func (o *PublicBanTopicMembersNotFound) Error() string {
+	return fmt.Sprintf("[POST /chat/public/namespaces/{namespace}/topic/{topic}/ban-members][%d] publicBanTopicMembersNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *PublicBanTopicMembersNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *PublicBanTopicMembersNotFound) GetPayload() *chatclientmodels.RestapiErrorResponseBody {
+	return o.Payload
+}
+
+func (o *PublicBanTopicMembersNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

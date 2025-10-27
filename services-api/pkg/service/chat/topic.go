@@ -110,7 +110,7 @@ func (aaa *TopicService) AdminTopicList(input *topic.AdminTopicListParams) ([]*c
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.AdminTopicList(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminTopicList(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -119,6 +119,9 @@ func (aaa *TopicService) AdminTopicList(input *topic.AdminTopicListParams) ([]*c
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -228,7 +231,19 @@ func (aaa *TopicService) AdminUpdateTopic(input *topic.AdminUpdateTopicParams) (
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Topic.AdminUpdateTopic(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminUpdateTopic(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -242,7 +257,19 @@ func (aaa *TopicService) AdminDeleteTopic(input *topic.AdminDeleteTopicParams) (
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Topic.AdminDeleteTopic(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminDeleteTopic(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -256,7 +283,7 @@ func (aaa *TopicService) AdminBanTopicMembers(input *topic.AdminBanTopicMembersP
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.AdminBanTopicMembers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminBanTopicMembers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -265,6 +292,9 @@ func (aaa *TopicService) AdminBanTopicMembers(input *topic.AdminBanTopicMembersP
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -337,7 +367,7 @@ func (aaa *TopicService) AdminSendChat(input *topic.AdminSendChatParams) ([]*cha
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.AdminSendChat(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminSendChat(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -346,6 +376,9 @@ func (aaa *TopicService) AdminSendChat(input *topic.AdminSendChatParams) ([]*cha
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -363,7 +396,7 @@ func (aaa *TopicService) AdminDeleteChat(input *topic.AdminDeleteChatParams) err
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.AdminDeleteChat(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminDeleteChat(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -372,6 +405,9 @@ func (aaa *TopicService) AdminDeleteChat(input *topic.AdminDeleteChatParams) err
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError
@@ -441,7 +477,7 @@ func (aaa *TopicService) AdminUnbanTopicMembers(input *topic.AdminUnbanTopicMemb
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.AdminUnbanTopicMembers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminUnbanTopicMembers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -450,6 +486,9 @@ func (aaa *TopicService) AdminUnbanTopicMembers(input *topic.AdminUnbanTopicMemb
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -467,7 +506,22 @@ func (aaa *TopicService) AdminAddTopicMember(input *topic.AdminAddTopicMemberPar
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Topic.AdminAddTopicMember(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminAddTopicMember(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -481,7 +535,19 @@ func (aaa *TopicService) AdminRemoveTopicMember(input *topic.AdminRemoveTopicMem
 	if err != nil {
 		return nil, err
 	}
-	ok, err := aaa.Client.Topic.AdminRemoveTopicMember(input, client.BearerToken(*token.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.AdminRemoveTopicMember(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -599,7 +665,7 @@ func (aaa *TopicService) PublicBanTopicMembers(input *topic.PublicBanTopicMember
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.PublicBanTopicMembers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.PublicBanTopicMembers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -608,6 +674,9 @@ func (aaa *TopicService) PublicBanTopicMembers(input *topic.PublicBanTopicMember
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -677,7 +746,7 @@ func (aaa *TopicService) PublicMuteUser(input *topic.PublicMuteUserParams) error
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.PublicMuteUser(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.PublicMuteUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -686,6 +755,9 @@ func (aaa *TopicService) PublicMuteUser(input *topic.PublicMuteUserParams) error
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError
@@ -703,7 +775,7 @@ func (aaa *TopicService) PublicUnbanTopicMembers(input *topic.PublicUnbanTopicMe
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.PublicUnbanTopicMembers(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.PublicUnbanTopicMembers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -712,6 +784,9 @@ func (aaa *TopicService) PublicUnbanTopicMembers(input *topic.PublicUnbanTopicMe
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -729,7 +804,7 @@ func (aaa *TopicService) PublicUnmuteUser(input *topic.PublicUnmuteUserParams) e
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Topic.PublicUnmuteUser(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Topic.PublicUnmuteUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -738,6 +813,9 @@ func (aaa *TopicService) PublicUnmuteUser(input *topic.PublicUnmuteUserParams) e
 	}
 	if forbidden != nil {
 		return forbidden
+	}
+	if notFound != nil {
+		return notFound
 	}
 	if internalServerError != nil {
 		return internalServerError
@@ -776,6 +854,10 @@ func (aaa *TopicService) AdminFilterChatMessageShort(input *topic.AdminFilterCha
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -804,6 +886,10 @@ func (aaa *TopicService) AdminChatHistoryShort(input *topic.AdminChatHistoryPara
 	ok, err := aaa.Client.Topic.AdminChatHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -836,6 +922,10 @@ func (aaa *TopicService) AdminCreateNamespaceTopicShort(input *topic.AdminCreate
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -864,6 +954,10 @@ func (aaa *TopicService) AdminTopicListShort(input *topic.AdminTopicListParams) 
 	ok, err := aaa.Client.Topic.AdminTopicListShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -896,6 +990,10 @@ func (aaa *TopicService) AdminCreateTopicShort(input *topic.AdminCreateTopicPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -924,6 +1022,10 @@ func (aaa *TopicService) AdminChannelTopicListShort(input *topic.AdminChannelTop
 	ok, err := aaa.Client.Topic.AdminChannelTopicListShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -956,6 +1058,10 @@ func (aaa *TopicService) AdminChannelTopicSummaryShort(input *topic.AdminChannel
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -984,6 +1090,10 @@ func (aaa *TopicService) AdminQueryTopicLogShort(input *topic.AdminQueryTopicLog
 	ok, err := aaa.Client.Topic.AdminQueryTopicLogShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1016,6 +1126,10 @@ func (aaa *TopicService) AdminUpdateTopicShort(input *topic.AdminUpdateTopicPara
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1044,6 +1158,10 @@ func (aaa *TopicService) AdminDeleteTopicShort(input *topic.AdminDeleteTopicPara
 	ok, err := aaa.Client.Topic.AdminDeleteTopicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1076,6 +1194,10 @@ func (aaa *TopicService) AdminBanTopicMembersShort(input *topic.AdminBanTopicMem
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1104,6 +1226,10 @@ func (aaa *TopicService) AdminChannelTopicInfoShort(input *topic.AdminChannelTop
 	ok, err := aaa.Client.Topic.AdminChannelTopicInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1136,6 +1262,10 @@ func (aaa *TopicService) AdminTopicChatHistoryShort(input *topic.AdminTopicChatH
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1164,6 +1294,10 @@ func (aaa *TopicService) AdminSendChatShort(input *topic.AdminSendChatParams) ([
 	ok, err := aaa.Client.Topic.AdminSendChatShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1226,6 +1360,10 @@ func (aaa *TopicService) AdminTopicMembersShort(input *topic.AdminTopicMembersPa
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1254,6 +1392,10 @@ func (aaa *TopicService) AdminTopicShardsShort(input *topic.AdminTopicShardsPara
 	ok, err := aaa.Client.Topic.AdminTopicShardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1286,6 +1428,10 @@ func (aaa *TopicService) AdminUnbanTopicMembersShort(input *topic.AdminUnbanTopi
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1314,6 +1460,10 @@ func (aaa *TopicService) AdminAddTopicMemberShort(input *topic.AdminAddTopicMemb
 	ok, err := aaa.Client.Topic.AdminAddTopicMemberShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1346,6 +1496,10 @@ func (aaa *TopicService) AdminRemoveTopicMemberShort(input *topic.AdminRemoveTop
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1374,6 +1528,10 @@ func (aaa *TopicService) AdminQueryTopicShort(input *topic.AdminQueryTopicParams
 	ok, err := aaa.Client.Topic.AdminQueryTopicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1406,6 +1564,10 @@ func (aaa *TopicService) AdminQueryUsersTopicShort(input *topic.AdminQueryUsersT
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1434,6 +1596,10 @@ func (aaa *TopicService) PublicGetMutedTopicsShort(input *topic.PublicGetMutedTo
 	ok, err := aaa.Client.Topic.PublicGetMutedTopicsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1466,6 +1632,10 @@ func (aaa *TopicService) PublicTopicListShort(input *topic.PublicTopicListParams
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1496,6 +1666,10 @@ func (aaa *TopicService) PublicBanTopicMembersShort(input *topic.PublicBanTopicM
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1524,6 +1698,10 @@ func (aaa *TopicService) PublicChatHistoryShort(input *topic.PublicChatHistoryPa
 	ok, err := aaa.Client.Topic.PublicChatHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1614,6 +1792,10 @@ func (aaa *TopicService) PublicUnbanTopicMembersShort(input *topic.PublicUnbanTo
 	ok, err := aaa.Client.Topic.PublicUnbanTopicMembersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

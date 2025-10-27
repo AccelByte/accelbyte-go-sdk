@@ -233,6 +233,10 @@ func (aaa *PlatformAccountClosureClientService) AdminGetPlatformAccountClosureCl
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -263,6 +267,10 @@ func (aaa *PlatformAccountClosureClientService) AdminValidateXboxBPCertFileShort
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -291,6 +299,10 @@ func (aaa *PlatformAccountClosureClientService) AdminGetPlatformAccountClosureCl
 	ok, err := aaa.Client.PlatformAccountClosureClient.AdminGetPlatformAccountClosureClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

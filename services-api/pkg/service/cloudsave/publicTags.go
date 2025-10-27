@@ -91,5 +91,9 @@ func (aaa *PublicTagsService) PublicListTagsHandlerV1Short(input *public_tags.Pu
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }

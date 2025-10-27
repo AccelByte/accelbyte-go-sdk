@@ -536,6 +536,10 @@ func (aaa *PublicContentV2Service) PublicGetContentByChannelIDV2Short(input *pub
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -564,6 +568,10 @@ func (aaa *PublicContentV2Service) PublicListContentV2Short(input *public_conten
 	ok, err := aaa.Client.PublicContentV2.PublicListContentV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -596,6 +604,10 @@ func (aaa *PublicContentV2Service) PublicBulkGetContentByIDV2Short(input *public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -624,6 +636,10 @@ func (aaa *PublicContentV2Service) PublicGetContentBulkByShareCodesV2Short(input
 	ok, err := aaa.Client.PublicContentV2.PublicGetContentBulkByShareCodesV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -656,6 +672,10 @@ func (aaa *PublicContentV2Service) PublicGetContentByShareCodeV2Short(input *pub
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -684,6 +704,10 @@ func (aaa *PublicContentV2Service) PublicGetContentByIDV2Short(input *public_con
 	ok, err := aaa.Client.PublicContentV2.PublicGetContentByIDV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -716,6 +740,10 @@ func (aaa *PublicContentV2Service) PublicCreateContentV2Short(input *public_cont
 		return nil, err
 	}
 
+	if created == nil {
+		return nil, nil
+	}
+
 	return created.GetPayload(), nil
 }
 
@@ -744,6 +772,10 @@ func (aaa *PublicContentV2Service) PublicUpdateContentByShareCodeV2Short(input *
 	ok, err := aaa.Client.PublicContentV2.PublicUpdateContentByShareCodeV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -836,6 +868,10 @@ func (aaa *PublicContentV2Service) PublicUpdateContentV2Short(input *public_cont
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -864,6 +900,10 @@ func (aaa *PublicContentV2Service) PublicUpdateContentFileLocationShort(input *p
 	ok, err := aaa.Client.PublicContentV2.PublicUpdateContentFileLocationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -896,6 +936,10 @@ func (aaa *PublicContentV2Service) UpdateContentShareCodeV2Short(input *public_c
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -924,6 +968,10 @@ func (aaa *PublicContentV2Service) PublicGenerateContentUploadURLV2Short(input *
 	ok, err := aaa.Client.PublicContentV2.PublicGenerateContentUploadURLV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -956,6 +1004,10 @@ func (aaa *PublicContentV2Service) PublicGetContentByUserIDV2Short(input *public
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -986,6 +1038,10 @@ func (aaa *PublicContentV2Service) UpdateScreenshotsV2Short(input *public_conten
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1014,6 +1070,10 @@ func (aaa *PublicContentV2Service) UploadContentScreenshotV2Short(input *public_
 	created, err := aaa.Client.PublicContentV2.UploadContentScreenshotV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

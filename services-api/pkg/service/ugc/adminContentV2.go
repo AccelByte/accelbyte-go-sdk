@@ -724,6 +724,10 @@ func (aaa *AdminContentV2Service) AdminGetContentByChannelIDV2Short(input *admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -752,6 +756,10 @@ func (aaa *AdminContentV2Service) AdminCreateContentV2Short(input *admin_content
 	created, err := aaa.Client.AdminContentV2.AdminCreateContentV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -814,6 +822,10 @@ func (aaa *AdminContentV2Service) AdminUpdateOfficialContentV2Short(input *admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -842,6 +854,10 @@ func (aaa *AdminContentV2Service) AdminCopyContentShort(input *admin_content_v2.
 	created, err := aaa.Client.AdminContentV2.AdminCopyContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -874,6 +890,10 @@ func (aaa *AdminContentV2Service) AdminUpdateOfficialContentFileLocationShort(in
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -902,6 +922,10 @@ func (aaa *AdminContentV2Service) AdminGenerateOfficialContentUploadURLV2Short(i
 	ok, err := aaa.Client.AdminContentV2.AdminGenerateOfficialContentUploadURLV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -934,6 +958,10 @@ func (aaa *AdminContentV2Service) AdminListContentV2Short(input *admin_content_v
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -962,6 +990,10 @@ func (aaa *AdminContentV2Service) AdminBulkGetContentByIDsV2Short(input *admin_c
 	ok, err := aaa.Client.AdminContentV2.AdminBulkGetContentByIDsV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -994,6 +1026,10 @@ func (aaa *AdminContentV2Service) AdminGetContentBulkByShareCodesV2Short(input *
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1022,6 +1058,10 @@ func (aaa *AdminContentV2Service) AdminGetContentByShareCodeV2Short(input *admin
 	ok, err := aaa.Client.AdminContentV2.AdminGetContentByShareCodeV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1054,6 +1094,10 @@ func (aaa *AdminContentV2Service) AdminGetContentByContentIDV2Short(input *admin
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1082,6 +1126,10 @@ func (aaa *AdminContentV2Service) RollbackContentVersionV2Short(input *admin_con
 	ok, err := aaa.Client.AdminContentV2.RollbackContentVersionV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1114,6 +1162,10 @@ func (aaa *AdminContentV2Service) AdminUpdateScreenshotsV2Short(input *admin_con
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1142,6 +1194,10 @@ func (aaa *AdminContentV2Service) AdminUploadContentScreenshotV2Short(input *adm
 	created, err := aaa.Client.AdminContentV2.AdminUploadContentScreenshotV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil
@@ -1204,6 +1260,10 @@ func (aaa *AdminContentV2Service) ListContentVersionsV2Short(input *admin_conten
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1232,6 +1292,10 @@ func (aaa *AdminContentV2Service) AdminUpdateContentByShareCodeV2Short(input *ad
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateContentByShareCodeV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1324,6 +1388,10 @@ func (aaa *AdminContentV2Service) AdminUpdateUserContentV2Short(input *admin_con
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1352,6 +1420,10 @@ func (aaa *AdminContentV2Service) AdminUpdateUserContentFileLocationShort(input 
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateUserContentFileLocationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -1384,6 +1456,10 @@ func (aaa *AdminContentV2Service) AdminGenerateUserContentUploadURLV2Short(input
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1414,6 +1490,10 @@ func (aaa *AdminContentV2Service) AdminGetContentByUserIDV2Short(input *admin_co
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1442,6 +1522,10 @@ func (aaa *AdminContentV2Service) AdminUpdateContentHideStatusV2Short(input *adm
 	ok, err := aaa.Client.AdminContentV2.AdminUpdateContentHideStatusV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

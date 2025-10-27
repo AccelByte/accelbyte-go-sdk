@@ -128,6 +128,10 @@ func (aaa *AdminTagsService) AdminListTagsShort(input *admin_tags.AdminListTagsP
 		return nil, err
 	}
 
+	if ok == nil {
+		return nil, nil
+	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -156,6 +160,10 @@ func (aaa *AdminTagsService) AdminCreateTagShort(input *admin_tags.AdminCreateTa
 	created, err := aaa.Client.AdminTags.AdminCreateTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
 	}
 
 	return created.GetPayload(), nil

@@ -8,6 +8,8 @@
 - **core:** fix error handling in custom transport
 ### docs
 - **:** update README.md for refreshRate
+- **:** add migration guide from v0.83.0 to v0.84.0 for ags 2025.8
+- **:** update CHANGELOG.md
 
 
 <a name="v0.83.0"></a>

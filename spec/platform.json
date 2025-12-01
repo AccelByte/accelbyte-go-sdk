@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.9.0"
+    "version": "6.10.0"
   },
   "schemes": [
     "https"
@@ -51355,7 +51355,7 @@
     "ThirdPartySubscriptionGroupCreate": {
       "properties": {
         "sku": {
-          "description": "subscription group sku, unique identification",
+          "description": "subscription group sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 32",
           "type": "string"
         }
       },
@@ -51390,7 +51390,7 @@
           "type": "string"
         },
         "sku": {
-          "description": "Tier sku",
+          "description": "Tier sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 32",
           "type": "string"
         }
       },
@@ -53465,16 +53465,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-10-16T09:48:51+00:00",
-    "buildID": "6.9.0",
+    "buildDate": "2025-11-19T03:12:09+00:00",
+    "buildID": "6.10.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.244-240.965.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.245-241.978.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "c260997de5",
-    "gitTag": "6.9.0",
+    "gitHash": "b7d3e1d68a",
+    "gitTag": "6.10.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.9.0",
+    "version": "6.10.0",
     "version-roles-seeding": "1.2.118"
   }
 }

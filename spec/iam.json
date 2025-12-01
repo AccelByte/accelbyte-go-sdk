@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.35.1"
+    "version": "7.36.0"
   },
   "schemes": [
     "https"
@@ -24481,7 +24481,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/bans": {
       "get": {
-        "description": "Notes:\n- This endpoint retrieve the first page of the data if after and before parameters is empty\n- **The pagination is not working yet**\n\n\n**Authentication:**\nThe _**userId**_ parameter should match the one in the access token.",
+        "description": "Notes:\n\n**Authentication:**\nThe _**userId**_ parameter should match the one in the access token.",
         "operationId": "PublicGetUserBanHistoryV3",
         "parameters": [
           {
@@ -24506,21 +24506,15 @@
             "x-omitempty": false
           },
           {
-            "description": "Filter ban based on the date creation. If you set this, only user bans created after the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. _Doesn't work yet_",
-            "in": "query",
-            "name": "after",
-            "type": "string"
-          },
-          {
-            "description": "Filter ban based on the date creation. If you set this, only user bans created before the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. _Doesn't work yet_",
-            "in": "query",
-            "name": "before",
-            "type": "string"
-          },
-          {
-            "description": "The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1. _Doesn't work yet_.",
+            "description": "The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1.",
             "in": "query",
             "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "The number of offset from expected limit. Default: 0",
+            "in": "query",
+            "name": "offset",
             "type": "integer"
           }
         ],
@@ -24535,7 +24529,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20021\u003c/td\u003e\u003ctd\u003einvalid pagination parameter\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -24580,7 +24574,7 @@
           "20001": "unauthorized access",
           "20008": "user not found",
           "20013": "insufficient permissions",
-          "20019": "unable to parse request body"
+          "20021": "invalid pagination parameter"
         },
         "x-security": {}
       }
@@ -43663,11 +43657,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-10-16T08:09:39+00:00",
-    "gitHash": "e117219a1eddcc0c39525dbf338ada8ed3ac3c90",
+    "buildDate": "2025-11-19T03:15:31+00:00",
+    "gitHash": "9b4b248bfd6cc8859c16f9d6c10d035903f05d10",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.35.1",
+    "version": "7.36.0",
     "version-roles-seeding": "1.2.91"
   }
 }

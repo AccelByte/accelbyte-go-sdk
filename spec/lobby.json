@@ -15665,8 +15665,8 @@
     }
   ],
   "x-version": {
-    "buildDate": "2025-10-16T03:09:22+00:00",
-    "gitHash": "6e41a7e5995fce08711bf357b50585e8e70062d4",
+    "buildDate": "2025-11-11T09:58:01+00:00",
+    "gitHash": "be88ad7c82f74057fa9e8ffb014403c13c0cdefd",
     "name": "justice-lobby-server",
     "revisionID": "3.41.0",
     "version": "3.41.0",

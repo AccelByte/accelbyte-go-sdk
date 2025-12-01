@@ -20,7 +20,7 @@ type ThirdPartySubscriptionTierCreate struct {
 	// Group sku
 	GroupSku string `json:"groupSku,omitempty"`
 
-	// Tier sku
+	// Tier sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 32
 	Sku string `json:"sku,omitempty"`
 }
 

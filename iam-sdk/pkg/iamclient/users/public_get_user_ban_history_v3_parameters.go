@@ -80,21 +80,16 @@ type PublicGetUserBanHistoryV3Params struct {
 
 	*/
 	ActiveOnly *bool
-	/*After
-	  Filter ban based on the date creation. If you set this, only user bans created after the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. _Doesn't work yet_
-
-	*/
-	After *string
-	/*Before
-	  Filter ban based on the date creation. If you set this, only user bans created before the date returned. The date is in ISO-8601. Example value: 2019-05-18T07:17:45Z. _Doesn't work yet_
-
-	*/
-	Before *string
 	/*Limit
-	  The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1. _Doesn't work yet_.
+	  The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1.
 
 	*/
 	Limit *int64
+	/*Offset
+	  The number of offset from expected limit. Default: 0
+
+	*/
+	Offset *int64
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -194,28 +189,6 @@ func (o *PublicGetUserBanHistoryV3Params) SetActiveOnly(activeOnly *bool) {
 	o.ActiveOnly = activeOnly
 }
 
-// WithAfter adds the after to the public get user ban history v3 params
-func (o *PublicGetUserBanHistoryV3Params) WithAfter(after *string) *PublicGetUserBanHistoryV3Params {
-	o.SetAfter(after)
-	return o
-}
-
-// SetAfter adds the after to the public get user ban history v3 params
-func (o *PublicGetUserBanHistoryV3Params) SetAfter(after *string) {
-	o.After = after
-}
-
-// WithBefore adds the before to the public get user ban history v3 params
-func (o *PublicGetUserBanHistoryV3Params) WithBefore(before *string) *PublicGetUserBanHistoryV3Params {
-	o.SetBefore(before)
-	return o
-}
-
-// SetBefore adds the before to the public get user ban history v3 params
-func (o *PublicGetUserBanHistoryV3Params) SetBefore(before *string) {
-	o.Before = before
-}
-
 // WithLimit adds the limit to the public get user ban history v3 params
 func (o *PublicGetUserBanHistoryV3Params) WithLimit(limit *int64) *PublicGetUserBanHistoryV3Params {
 	o.SetLimit(limit)
@@ -225,6 +198,17 @@ func (o *PublicGetUserBanHistoryV3Params) WithLimit(limit *int64) *PublicGetUser
 // SetLimit adds the limit to the public get user ban history v3 params
 func (o *PublicGetUserBanHistoryV3Params) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithOffset adds the offset to the public get user ban history v3 params
+func (o *PublicGetUserBanHistoryV3Params) WithOffset(offset *int64) *PublicGetUserBanHistoryV3Params {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the public get user ban history v3 params
+func (o *PublicGetUserBanHistoryV3Params) SetOffset(offset *int64) {
+	o.Offset = offset
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -261,38 +245,6 @@ func (o *PublicGetUserBanHistoryV3Params) WriteToRequest(r runtime.ClientRequest
 
 	}
 
-	if o.After != nil {
-
-		// query param after
-		var qrAfter string
-		if o.After != nil {
-			qrAfter = *o.After
-		}
-		qAfter := qrAfter
-		if qAfter != "" {
-			if err := r.SetQueryParam("after", qAfter); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Before != nil {
-
-		// query param before
-		var qrBefore string
-		if o.Before != nil {
-			qrBefore = *o.Before
-		}
-		qBefore := qrBefore
-		if qBefore != "" {
-			if err := r.SetQueryParam("before", qBefore); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	if o.Limit != nil {
 
 		// query param limit
@@ -303,6 +255,22 @@ func (o *PublicGetUserBanHistoryV3Params) WriteToRequest(r runtime.ClientRequest
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int64
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt64(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err
 			}
 		}

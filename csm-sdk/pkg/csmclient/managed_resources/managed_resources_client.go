@@ -46,6 +46,10 @@ type ClientService interface {
 	CreateNoSQLClusterV2Short(params *CreateNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateNoSQLClusterV2OK, error)
 	DeleteNoSQLClusterV2(params *DeleteNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteNoSQLClusterV2OK, *DeleteNoSQLClusterV2Unauthorized, *DeleteNoSQLClusterV2Forbidden, *DeleteNoSQLClusterV2NotFound, *DeleteNoSQLClusterV2Conflict, *DeleteNoSQLClusterV2InternalServerError, error)
 	DeleteNoSQLClusterV2Short(params *DeleteNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteNoSQLClusterV2OK, error)
+	StartNoSQLClusterV2(params *StartNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StartNoSQLClusterV2NoContent, *StartNoSQLClusterV2BadRequest, *StartNoSQLClusterV2Unauthorized, *StartNoSQLClusterV2Forbidden, *StartNoSQLClusterV2NotFound, *StartNoSQLClusterV2InternalServerError, *StartNoSQLClusterV2ServiceUnavailable, error)
+	StartNoSQLClusterV2Short(params *StartNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StartNoSQLClusterV2NoContent, error)
+	StopNoSQLClusterV2(params *StopNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StopNoSQLClusterV2NoContent, *StopNoSQLClusterV2BadRequest, *StopNoSQLClusterV2Unauthorized, *StopNoSQLClusterV2Forbidden, *StopNoSQLClusterV2NotFound, *StopNoSQLClusterV2InternalServerError, *StopNoSQLClusterV2ServiceUnavailable, error)
+	StopNoSQLClusterV2Short(params *StopNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StopNoSQLClusterV2NoContent, error)
 	GetNoSQLAccessTunnelV2(params *GetNoSQLAccessTunnelV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAccessTunnelV2OK, *GetNoSQLAccessTunnelV2Unauthorized, *GetNoSQLAccessTunnelV2NotFound, *GetNoSQLAccessTunnelV2InternalServerError, *GetNoSQLAccessTunnelV2ServiceUnavailable, error)
 	GetNoSQLAccessTunnelV2Short(params *GetNoSQLAccessTunnelV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAccessTunnelV2OK, error)
 
@@ -197,16 +201,16 @@ Get a NoSQL database information returns the NoSQL database related information 
 and app name.
 
 `resourceStatus` field - indicates the NoSQL cluster status:
-- `available` : The cluster is accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
+- `available` : The cluster is accessible.
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
 */
 func (a *Client) GetNoSQLDatabaseV2(params *GetNoSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLDatabaseV2OK, *GetNoSQLDatabaseV2Unauthorized, *GetNoSQLDatabaseV2Forbidden, *GetNoSQLDatabaseV2NotFound, *GetNoSQLDatabaseV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -273,16 +277,16 @@ Get a NoSQL database information returns the NoSQL database related information 
 and app name.
 
 `resourceStatus` field - indicates the NoSQL cluster status:
-- `available` : The cluster is accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
+- `available` : The cluster is accessible.
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
 */
 func (a *Client) GetNoSQLDatabaseV2Short(params *GetNoSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLDatabaseV2OK, error) {
 	// TODO: Validate the params before sending
@@ -607,16 +611,16 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 Get NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the NoSQL cluster status:
-- `available` : The cluster is accessible.
 - `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
+- `available` : The cluster is accessible.
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 */
 func (a *Client) GetNoSQLClusterV2(params *GetNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLClusterV2OK, *GetNoSQLClusterV2BadRequest, *GetNoSQLClusterV2Unauthorized, *GetNoSQLClusterV2Forbidden, *GetNoSQLClusterV2NotFound, *GetNoSQLClusterV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -685,16 +689,16 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 Get NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the NoSQL cluster status:
-- `available` : The cluster is accessible.
 - `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
+- `available` : The cluster is accessible.
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 */
 func (a *Client) GetNoSQLClusterV2Short(params *GetNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLClusterV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1142,6 +1146,278 @@ func (a *Client) DeleteNoSQLClusterV2Short(params *DeleteNoSQLClusterV2Params, a
 	case *DeleteNoSQLClusterV2Conflict:
 		return nil, v
 	case *DeleteNoSQLClusterV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use StartNoSQLClusterV2Short instead.
+
+StartNoSQLClusterV2 start nosql cluster
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]`
+
+Start NoSQL cluster.
+You can only start the cluster when its status is "stopped".
+
+Cluster starting process may take some time to complete.
+*/
+func (a *Client) StartNoSQLClusterV2(params *StartNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StartNoSQLClusterV2NoContent, *StartNoSQLClusterV2BadRequest, *StartNoSQLClusterV2Unauthorized, *StartNoSQLClusterV2Forbidden, *StartNoSQLClusterV2NotFound, *StartNoSQLClusterV2InternalServerError, *StartNoSQLClusterV2ServiceUnavailable, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStartNoSQLClusterV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StartNoSQLClusterV2",
+		Method:             "PUT",
+		PathPattern:        "/csm/v2/admin/namespaces/{namespace}/nosql/clusters/start",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StartNoSQLClusterV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StartNoSQLClusterV2NoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *StartNoSQLClusterV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *StartNoSQLClusterV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *StartNoSQLClusterV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *StartNoSQLClusterV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *StartNoSQLClusterV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *StartNoSQLClusterV2ServiceUnavailable:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+StartNoSQLClusterV2Short start nosql cluster
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]`
+
+Start NoSQL cluster.
+You can only start the cluster when its status is "stopped".
+
+Cluster starting process may take some time to complete.
+*/
+func (a *Client) StartNoSQLClusterV2Short(params *StartNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StartNoSQLClusterV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStartNoSQLClusterV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StartNoSQLClusterV2",
+		Method:             "PUT",
+		PathPattern:        "/csm/v2/admin/namespaces/{namespace}/nosql/clusters/start",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StartNoSQLClusterV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StartNoSQLClusterV2NoContent:
+		return v, nil
+	case *StartNoSQLClusterV2BadRequest:
+		return nil, v
+	case *StartNoSQLClusterV2Unauthorized:
+		return nil, v
+	case *StartNoSQLClusterV2Forbidden:
+		return nil, v
+	case *StartNoSQLClusterV2NotFound:
+		return nil, v
+	case *StartNoSQLClusterV2InternalServerError:
+		return nil, v
+	case *StartNoSQLClusterV2ServiceUnavailable:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use StopNoSQLClusterV2Short instead.
+
+StopNoSQLClusterV2 stop nosql cluster
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]`
+
+Stop NoSQL cluster.
+You can only start the cluster when its status is "available".
+
+Cluster stopping process may take some time to complete.
+*/
+func (a *Client) StopNoSQLClusterV2(params *StopNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StopNoSQLClusterV2NoContent, *StopNoSQLClusterV2BadRequest, *StopNoSQLClusterV2Unauthorized, *StopNoSQLClusterV2Forbidden, *StopNoSQLClusterV2NotFound, *StopNoSQLClusterV2InternalServerError, *StopNoSQLClusterV2ServiceUnavailable, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStopNoSQLClusterV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StopNoSQLClusterV2",
+		Method:             "PUT",
+		PathPattern:        "/csm/v2/admin/namespaces/{namespace}/nosql/clusters/stop",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StopNoSQLClusterV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StopNoSQLClusterV2NoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *StopNoSQLClusterV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *StopNoSQLClusterV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *StopNoSQLClusterV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *StopNoSQLClusterV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *StopNoSQLClusterV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *StopNoSQLClusterV2ServiceUnavailable:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+StopNoSQLClusterV2Short stop nosql cluster
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]`
+
+Stop NoSQL cluster.
+You can only start the cluster when its status is "available".
+
+Cluster stopping process may take some time to complete.
+*/
+func (a *Client) StopNoSQLClusterV2Short(params *StopNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StopNoSQLClusterV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewStopNoSQLClusterV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "StopNoSQLClusterV2",
+		Method:             "PUT",
+		PathPattern:        "/csm/v2/admin/namespaces/{namespace}/nosql/clusters/stop",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &StopNoSQLClusterV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *StopNoSQLClusterV2NoContent:
+		return v, nil
+	case *StopNoSQLClusterV2BadRequest:
+		return nil, v
+	case *StopNoSQLClusterV2Unauthorized:
+		return nil, v
+	case *StopNoSQLClusterV2Forbidden:
+		return nil, v
+	case *StopNoSQLClusterV2NotFound:
+		return nil, v
+	case *StopNoSQLClusterV2InternalServerError:
+		return nil, v
+	case *StopNoSQLClusterV2ServiceUnavailable:
 		return nil, v
 
 	default:

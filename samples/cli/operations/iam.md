@@ -1739,9 +1739,8 @@ $ samples/cli/sample-apps Iam publicGetUserBanHistoryV3 \
     --namespace 'string' \
     --userId 'string' \
     --activeOnly false \
-    --after 'string' \
-    --before 'string' \
     --limit 1 \
+    --offset 1 \
     > result.txt
 ```
 

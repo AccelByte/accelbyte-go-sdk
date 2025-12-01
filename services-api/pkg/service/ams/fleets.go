@@ -81,6 +81,38 @@ func (aaa *FleetsService) FleetCreate(input *fleets.FleetCreateParams) (*amsclie
 	return created.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkFleetDeleteShort instead.
+func (aaa *FleetsService) BulkFleetDelete(input *fleets.BulkFleetDeleteParams) (*amsclientmodels.APIFleetBulkDeleteResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, multiStatus, badRequest, unauthorized, forbidden, unprocessableEntity, internalServerError, err := aaa.Client.Fleets.BulkFleetDelete(input, client.BearerToken(*token.AccessToken))
+	if multiStatus != nil {
+		return nil, multiStatus
+	}
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use FleetGetShort instead.
 func (aaa *FleetsService) FleetGet(input *fleets.FleetGetParams) (*amsclientmodels.APIFleetGetResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -321,6 +353,40 @@ func (aaa *FleetsService) FleetCreateShort(input *fleets.FleetCreateParams) (*am
 	}
 
 	return created.GetPayload(), nil
+}
+
+func (aaa *FleetsService) BulkFleetDeleteShort(input *fleets.BulkFleetDeleteParams) (*amsclientmodels.APIFleetBulkDeleteResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdFleets != nil {
+		input.XFlightId = tempFlightIdFleets
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Fleets.BulkFleetDeleteShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *FleetsService) FleetGetShort(input *fleets.FleetGetParams) (*amsclientmodels.APIFleetGetResponse, error) {

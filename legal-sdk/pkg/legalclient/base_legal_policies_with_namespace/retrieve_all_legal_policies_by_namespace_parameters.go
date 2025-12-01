@@ -23,9 +23,13 @@ import (
 // with the default values initialized.
 func NewRetrieveAllLegalPoliciesByNamespaceParams() *RetrieveAllLegalPoliciesByNamespaceParams {
 	var (
+		limitDefault       = int32(-1)
+		offsetDefault      = int32(0)
 		visibleOnlyDefault = bool(false)
 	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		Limit:       &limitDefault,
+		Offset:      &offsetDefault,
 		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -36,9 +40,13 @@ func NewRetrieveAllLegalPoliciesByNamespaceParams() *RetrieveAllLegalPoliciesByN
 // with the default values initialized, and the ability to set a timeout on a request
 func NewRetrieveAllLegalPoliciesByNamespaceParamsWithTimeout(timeout time.Duration) *RetrieveAllLegalPoliciesByNamespaceParams {
 	var (
+		limitDefault       = int32(-1)
+		offsetDefault      = int32(0)
 		visibleOnlyDefault = bool(false)
 	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		Limit:       &limitDefault,
+		Offset:      &offsetDefault,
 		VisibleOnly: &visibleOnlyDefault,
 
 		timeout: timeout,
@@ -49,9 +57,13 @@ func NewRetrieveAllLegalPoliciesByNamespaceParamsWithTimeout(timeout time.Durati
 // with the default values initialized, and the ability to set a context for a request
 func NewRetrieveAllLegalPoliciesByNamespaceParamsWithContext(ctx context.Context) *RetrieveAllLegalPoliciesByNamespaceParams {
 	var (
+		limitDefault       = int32(-1)
+		offsetDefault      = int32(0)
 		visibleOnlyDefault = bool(false)
 	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		Limit:       &limitDefault,
+		Offset:      &offsetDefault,
 		VisibleOnly: &visibleOnlyDefault,
 
 		Context: ctx,
@@ -62,9 +74,13 @@ func NewRetrieveAllLegalPoliciesByNamespaceParamsWithContext(ctx context.Context
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewRetrieveAllLegalPoliciesByNamespaceParamsWithHTTPClient(client *http.Client) *RetrieveAllLegalPoliciesByNamespaceParams {
 	var (
+		limitDefault       = int32(-1)
+		offsetDefault      = int32(0)
 		visibleOnlyDefault = bool(false)
 	)
 	return &RetrieveAllLegalPoliciesByNamespaceParams{
+		Limit:       &limitDefault,
+		Offset:      &offsetDefault,
 		VisibleOnly: &visibleOnlyDefault,
 		HTTPClient:  client,
 	}
@@ -82,6 +98,16 @@ type RetrieveAllLegalPoliciesByNamespaceParams struct {
 
 	*/
 	Namespace string
+	/*Limit
+	  Limit
+
+	*/
+	Limit *int32
+	/*Offset
+	  Offset
+
+	*/
+	Offset *int32
 	/*VisibleOnly*/
 	VisibleOnly *bool
 
@@ -161,6 +187,28 @@ func (o *RetrieveAllLegalPoliciesByNamespaceParams) SetNamespace(namespace strin
 	o.Namespace = namespace
 }
 
+// WithLimit adds the limit to the retrieve all legal policies by namespace params
+func (o *RetrieveAllLegalPoliciesByNamespaceParams) WithLimit(limit *int32) *RetrieveAllLegalPoliciesByNamespaceParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the retrieve all legal policies by namespace params
+func (o *RetrieveAllLegalPoliciesByNamespaceParams) SetLimit(limit *int32) {
+	o.Limit = limit
+}
+
+// WithOffset adds the offset to the retrieve all legal policies by namespace params
+func (o *RetrieveAllLegalPoliciesByNamespaceParams) WithOffset(offset *int32) *RetrieveAllLegalPoliciesByNamespaceParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the retrieve all legal policies by namespace params
+func (o *RetrieveAllLegalPoliciesByNamespaceParams) SetOffset(offset *int32) {
+	o.Offset = offset
+}
+
 // WithVisibleOnly adds the visibleOnly to the retrieve all legal policies by namespace params
 func (o *RetrieveAllLegalPoliciesByNamespaceParams) WithVisibleOnly(visibleOnly *bool) *RetrieveAllLegalPoliciesByNamespaceParams {
 	o.SetVisibleOnly(visibleOnly)
@@ -183,6 +231,38 @@ func (o *RetrieveAllLegalPoliciesByNamespaceParams) WriteToRequest(r runtime.Cli
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int32
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt32(qrLimit)
+		if qLimit != "" {
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int32
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.VisibleOnly != nil {

@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "4.5.0"
+    "version": "4.6.0"
   },
   "schemes": [
     "https"
@@ -1177,7 +1177,7 @@
     },
     "/agreement/admin/namespaces/{namespace}/base-policies": {
       "get": {
-        "description": "Retrieve all base policies in the namespace.",
+        "description": "Retrieve base policies in the namespace. Set `limit = -1` to retrieve all records",
         "operationId": "retrieveAllLegalPoliciesByNamespace",
         "parameters": [
           {
@@ -1186,6 +1186,24 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": -1,
+            "description": "Limit",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Offset",
+            "format": "int32",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
           },
           {
             "default": false,
@@ -1215,7 +1233,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve All Base Legal Policy in the namespace",
+        "summary": "Retrieve Base Legal Policy in the namespace",
         "tags": [
           "Base Legal Policies With Namespace"
         ],
@@ -6406,16 +6424,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-10-16T08:05:50+00:00",
-    "buildID": "4.5.0",
+    "buildDate": "2025-11-19T03:12:20+00:00",
+    "buildID": "4.6.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.244-240.965.amzn2.x86_64",
+    "buildOS": "Linux amd64 5.10.245-241.978.amzn2.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "34dae3ab64",
-    "gitTag": "4.5.0",
+    "gitHash": "9f4799f639",
+    "gitTag": "4.6.0",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "4.5.0",
+    "version": "4.6.0",
     "version-roles-seeding": "0.0.3"
   }
 }

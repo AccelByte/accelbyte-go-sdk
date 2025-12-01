@@ -34,6 +34,8 @@ type ClientService interface {
 	FleetListShort(params *FleetListParams, authInfo runtime.ClientAuthInfoWriter) (*FleetListOK, error)
 	FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateInternalServerError, error)
 	FleetCreateShort(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, error)
+	BulkFleetDelete(params *BulkFleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFleetDeleteOK, *BulkFleetDeleteMultiStatus, *BulkFleetDeleteBadRequest, *BulkFleetDeleteUnauthorized, *BulkFleetDeleteForbidden, *BulkFleetDeleteUnprocessableEntity, *BulkFleetDeleteInternalServerError, error)
+	BulkFleetDeleteShort(params *BulkFleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFleetDeleteOK, error)
 	FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, *FleetGetBadRequest, *FleetGetUnauthorized, *FleetGetForbidden, *FleetGetNotFound, *FleetGetInternalServerError, error)
 	FleetGetShort(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, error)
 	FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateInternalServerError, error)
@@ -264,6 +266,136 @@ func (a *Client) FleetCreateShort(params *FleetCreateParams, authInfo runtime.Cl
 	case *FleetCreateForbidden:
 		return nil, v
 	case *FleetCreateInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use BulkFleetDeleteShort instead.
+
+BulkFleetDelete delete one or more fleets. maximum of 1000 fleets allowed
+Maximum of 1000 fleets allowed
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]
+*/
+func (a *Client) BulkFleetDelete(params *BulkFleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFleetDeleteOK, *BulkFleetDeleteMultiStatus, *BulkFleetDeleteBadRequest, *BulkFleetDeleteUnauthorized, *BulkFleetDeleteForbidden, *BulkFleetDeleteUnprocessableEntity, *BulkFleetDeleteInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFleetDeleteParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "BulkFleetDelete",
+		Method:             "DELETE",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/fleets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFleetDeleteReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFleetDeleteOK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *BulkFleetDeleteMultiStatus:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *BulkFleetDeleteBadRequest:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *BulkFleetDeleteUnauthorized:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *BulkFleetDeleteForbidden:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *BulkFleetDeleteUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *BulkFleetDeleteInternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+BulkFleetDeleteShort delete one or more fleets. maximum of 1000 fleets allowed
+Maximum of 1000 fleets allowed
+
+Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]
+*/
+func (a *Client) BulkFleetDeleteShort(params *BulkFleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFleetDeleteOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkFleetDeleteParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "BulkFleetDelete",
+		Method:             "DELETE",
+		PathPattern:        "/ams/v1/admin/namespaces/{namespace}/fleets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkFleetDeleteReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkFleetDeleteOK:
+		return v, nil
+	case *BulkFleetDeleteMultiStatus:
+		return nil, nil // value not supported in the Short method
+	case *BulkFleetDeleteBadRequest:
+		return nil, v
+	case *BulkFleetDeleteUnauthorized:
+		return nil, v
+	case *BulkFleetDeleteForbidden:
+		return nil, v
+	case *BulkFleetDeleteUnprocessableEntity:
+		return nil, v
+	case *BulkFleetDeleteInternalServerError:
 		return nil, v
 
 	default:

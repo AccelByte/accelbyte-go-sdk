@@ -50,6 +50,7 @@
 |---|---|---|---|---|---|
 | `/ams/v1/admin/namespaces/{namespace}/fleets` | GET | FleetListShort | [FleetListShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetListShort](../../services-api/pkg/service/ams/fleets.go) | [FleetListShort](../../samples/cli/cmd/ams/fleets/fleetList.go) |
 | `/ams/v1/admin/namespaces/{namespace}/fleets` | POST | FleetCreateShort | [FleetCreateShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetCreateShort](../../services-api/pkg/service/ams/fleets.go) | [FleetCreateShort](../../samples/cli/cmd/ams/fleets/fleetCreate.go) |
+| `/ams/v1/admin/namespaces/{namespace}/fleets` | DELETE | BulkFleetDeleteShort | [BulkFleetDeleteShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [BulkFleetDeleteShort](../../services-api/pkg/service/ams/fleets.go) | [BulkFleetDeleteShort](../../samples/cli/cmd/ams/fleets/bulkFleetDelete.go) |
 | `/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}` | GET | FleetGetShort | [FleetGetShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetGetShort](../../services-api/pkg/service/ams/fleets.go) | [FleetGetShort](../../samples/cli/cmd/ams/fleets/fleetGet.go) |
 | `/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}` | PUT | FleetUpdateShort | [FleetUpdateShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetUpdateShort](../../services-api/pkg/service/ams/fleets.go) | [FleetUpdateShort](../../samples/cli/cmd/ams/fleets/fleetUpdate.go) |
 | `/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}` | DELETE | FleetDeleteShort | [FleetDeleteShort](../../ams-sdk/pkg/amsclient/fleets/fleets_client.go) | [FleetDeleteShort](../../services-api/pkg/service/ams/fleets.go) | [FleetDeleteShort](../../samples/cli/cmd/ams/fleets/fleetDelete.go) |
@@ -127,6 +128,9 @@
 | `api.DevelopmentServerConfigurationListResponse` | [ApiDevelopmentServerConfigurationListResponse ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_list_response.go) |
 | `api.DevelopmentServerConfigurationUpdateRequest` | [ApiDevelopmentServerConfigurationUpdateRequest ](../../ams-sdk/pkg/amsclientmodels/api_development_server_configuration_update_request.go) |
 | `api.FleetArtifactsSampleRules` | [ApiFleetArtifactsSampleRules ](../../ams-sdk/pkg/amsclientmodels/api_fleet_artifacts_sample_rules.go) |
+| `api.FleetBulkActionErrorItemResponse` | [ApiFleetBulkActionErrorItemResponse ](../../ams-sdk/pkg/amsclientmodels/api_fleet_bulk_action_error_item_response.go) |
+| `api.FleetBulkDeleteRequest` | [ApiFleetBulkDeleteRequest ](../../ams-sdk/pkg/amsclientmodels/api_fleet_bulk_delete_request.go) |
+| `api.FleetBulkDeleteResponse` | [ApiFleetBulkDeleteResponse ](../../ams-sdk/pkg/amsclientmodels/api_fleet_bulk_delete_response.go) |
 | `api.FleetClaimByKeysReq` | [ApiFleetClaimByKeysReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_by_keys_req.go) |
 | `api.FleetClaimReq` | [ApiFleetClaimReq ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_req.go) |
 | `api.FleetClaimResponse` | [ApiFleetClaimResponse ](../../ams-sdk/pkg/amsclientmodels/api_fleet_claim_response.go) |

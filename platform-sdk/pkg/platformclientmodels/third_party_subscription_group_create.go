@@ -17,7 +17,7 @@ import (
 // swagger:model Third party subscription group create.
 type ThirdPartySubscriptionGroupCreate struct {
 
-	// subscription group sku, unique identification
+	// subscription group sku, allowed characters from a-zA-Z0-9_:- and start/end in alphanumeric, max length is 32
 	Sku string `json:"sku,omitempty"`
 }
 

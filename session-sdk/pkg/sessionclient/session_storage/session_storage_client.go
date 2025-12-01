@@ -40,6 +40,8 @@ type ClientService interface {
 	AdminReadUserSessionStorageShort(params *AdminReadUserSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReadUserSessionStorageOK, error)
 	PublicReadPartySessionStorage(params *PublicReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReadPartySessionStorageOK, *PublicReadPartySessionStorageBadRequest, *PublicReadPartySessionStorageUnauthorized, *PublicReadPartySessionStorageNotFound, *PublicReadPartySessionStorageInternalServerError, error)
 	PublicReadPartySessionStorageShort(params *PublicReadPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReadPartySessionStorageOK, error)
+	PublicUpdateInsertPartySessionStorage(params *PublicUpdateInsertPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageOK, *PublicUpdateInsertPartySessionStorageBadRequest, *PublicUpdateInsertPartySessionStorageUnauthorized, *PublicUpdateInsertPartySessionStorageForbidden, *PublicUpdateInsertPartySessionStorageNotFound, *PublicUpdateInsertPartySessionStorageInternalServerError, error)
+	PublicUpdateInsertPartySessionStorageShort(params *PublicUpdateInsertPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageOK, error)
 	PublicUpdateInsertPartySessionStorageReserved(params *PublicUpdateInsertPartySessionStorageReservedParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageReservedOK, *PublicUpdateInsertPartySessionStorageReservedBadRequest, *PublicUpdateInsertPartySessionStorageReservedUnauthorized, *PublicUpdateInsertPartySessionStorageReservedForbidden, *PublicUpdateInsertPartySessionStorageReservedNotFound, *PublicUpdateInsertPartySessionStorageReservedInternalServerError, error)
 	PublicUpdateInsertPartySessionStorageReservedShort(params *PublicUpdateInsertPartySessionStorageReservedParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageReservedOK, error)
 	PublicUpdateInsertSessionStorageLeader(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, *PublicUpdateInsertSessionStorageLeaderBadRequest, *PublicUpdateInsertSessionStorageLeaderUnauthorized, *PublicUpdateInsertSessionStorageLeaderForbidden, *PublicUpdateInsertSessionStorageLeaderNotFound, *PublicUpdateInsertSessionStorageLeaderInternalServerError, error)
@@ -550,11 +552,18 @@ func (a *Client) AdminReadUserSessionStorageShort(params *AdminReadUserSessionSt
 Deprecated: 2022-08-10 - Use PublicReadPartySessionStorageShort instead.
 
 PublicReadPartySessionStorage read party session storage.
-Read Party Session Storage by partyID
+Read Party Session Storage by partyID (with reserved and member).
+Contains "reserved" when Update Insert Party Session Reserved Storage User.
+Contains "member" when Update Insert Party Session Storage User.
 Party Storage example:
 ```
 {
 "reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+},
+"member": {
 "userID1": {"key": "value"},
 "userID2": {"key": "value"},
 ...
@@ -621,11 +630,18 @@ func (a *Client) PublicReadPartySessionStorage(params *PublicReadPartySessionSto
 
 /*
 PublicReadPartySessionStorageShort read party session storage.
-Read Party Session Storage by partyID
+Read Party Session Storage by partyID (with reserved and member).
+Contains "reserved" when Update Insert Party Session Reserved Storage User.
+Contains "member" when Update Insert Party Session Storage User.
 Party Storage example:
 ```
 {
 "reserved": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+},
+"member": {
 "userID1": {"key": "value"},
 "userID2": {"key": "value"},
 ...
@@ -683,11 +699,170 @@ func (a *Client) PublicReadPartySessionStorageShort(params *PublicReadPartySessi
 }
 
 /*
+Deprecated: 2022-08-10 - Use PublicUpdateInsertPartySessionStorageShort instead.
+
+PublicUpdateInsertPartySessionStorage update insert party session storage user.
+Update Insert Party Session Storage User. User can only update or insert their own party storage (non-immutable).
+can store generic json
+example json can store :
+```
+{
+"key": "value",
+"number": 123,
+}
+```
+The data will be stored on the "member" storage field
+example stored data :
+```
+{
+"member": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) PublicUpdateInsertPartySessionStorage(params *PublicUpdateInsertPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageOK, *PublicUpdateInsertPartySessionStorageBadRequest, *PublicUpdateInsertPartySessionStorageUnauthorized, *PublicUpdateInsertPartySessionStorageForbidden, *PublicUpdateInsertPartySessionStorageNotFound, *PublicUpdateInsertPartySessionStorageInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertPartySessionStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertPartySessionStorage",
+		Method:             "PATCH",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/storage/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertPartySessionStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertPartySessionStorageOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateInsertPartySessionStorageInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUpdateInsertPartySessionStorageShort update insert party session storage user.
+Update Insert Party Session Storage User. User can only update or insert their own party storage (non-immutable).
+can store generic json
+example json can store :
+```
+{
+"key": "value",
+"number": 123,
+}
+```
+The data will be stored on the "member" storage field
+example stored data :
+```
+{
+"member": {
+"userID1": {"key": "value"},
+"userID2": {"key": "value"},
+...
+}
+}
+```
+*/
+func (a *Client) PublicUpdateInsertPartySessionStorageShort(params *PublicUpdateInsertPartySessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertPartySessionStorageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertPartySessionStorageParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertPartySessionStorage",
+		Method:             "PATCH",
+		PathPattern:        "/session/v1/public/namespaces/{namespace}/parties/{partyId}/storage/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertPartySessionStorageReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertPartySessionStorageOK:
+		return v, nil
+	case *PublicUpdateInsertPartySessionStorageBadRequest:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageUnauthorized:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageForbidden:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageNotFound:
+		return nil, v
+	case *PublicUpdateInsertPartySessionStorageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use PublicUpdateInsertPartySessionStorageReservedShort instead.
 
-PublicUpdateInsertPartySessionStorageReserved update insert party session storage user.
+PublicUpdateInsertPartySessionStorageReserved update insert party session reserved storage user.
 **For Internal Use Only**
-Update Insert Party Session Reserved Storage User. User can only update or insert user party session storage data itself.
+Update Insert Party Session Reserved Storage User. User can only update or insert their own reserve storage (non-immutable).
 can store generic json
 example json can store :
 ```
@@ -769,9 +944,9 @@ func (a *Client) PublicUpdateInsertPartySessionStorageReserved(params *PublicUpd
 }
 
 /*
-PublicUpdateInsertPartySessionStorageReservedShort update insert party session storage user.
+PublicUpdateInsertPartySessionStorageReservedShort update insert party session reserved storage user.
 **For Internal Use Only**
-Update Insert Party Session Reserved Storage User. User can only update or insert user party session storage data itself.
+Update Insert Party Session Reserved Storage User. User can only update or insert their own reserve storage (non-immutable).
 can store generic json
 example json can store :
 ```

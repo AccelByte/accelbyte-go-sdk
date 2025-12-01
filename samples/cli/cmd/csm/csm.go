@@ -9,6 +9,7 @@ package csm
 import (
 	"github.com/AccelByte/sample-apps/cmd/csm/app"
 	"github.com/AccelByte/sample-apps/cmd/csm/appV2"
+	"github.com/AccelByte/sample-apps/cmd/csm/asyncMessaging"
 	"github.com/AccelByte/sample-apps/cmd/csm/configuration"
 	"github.com/AccelByte/sample-apps/cmd/csm/configurationV2"
 	"github.com/AccelByte/sample-apps/cmd/csm/deployment"
@@ -58,6 +59,8 @@ func init() {
 	CsmCmd.AddCommand(appV2.CreateAppV2Cmd)
 	CsmCmd.AddCommand(appV2.DeleteAppV2Cmd)
 	CsmCmd.AddCommand(appV2.UpdateAppV2Cmd)
+	CsmCmd.AddCommand(asyncMessaging.CreateSubscriptionHandlerCmd)
+	CsmCmd.AddCommand(asyncMessaging.UnsubscribeTopicHandlerCmd)
 	CsmCmd.AddCommand(deploymentV2.CreateDeploymentV2Cmd)
 	CsmCmd.AddCommand(imageV2.GetAppImageListV2Cmd)
 	CsmCmd.AddCommand(imageV2.DeleteAppImagesV2Cmd)
@@ -85,6 +88,9 @@ func init() {
 	CsmCmd.AddCommand(configurationV2.SaveVariableV2Cmd)
 	CsmCmd.AddCommand(configurationV2.UpdateVariableV2Cmd)
 	CsmCmd.AddCommand(configurationV2.DeleteVariableV2Cmd)
+	CsmCmd.AddCommand(asyncMessaging.ListTopicsHandlerCmd)
+	CsmCmd.AddCommand(asyncMessaging.CreateTopicHandlerCmd)
+	CsmCmd.AddCommand(asyncMessaging.DeleteTopicHandlerCmd)
 	CsmCmd.AddCommand(deploymentV2.GetListOfDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.GetDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.DeleteDeploymentV2Cmd)
@@ -92,6 +98,8 @@ func init() {
 	CsmCmd.AddCommand(managedResources.UpdateNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.CreateNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.DeleteNoSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.StartNoSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.StopNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.GetNoSQLAccessTunnelV2Cmd)
 	CsmCmd.AddCommand(resourcesLimits.GetResourcesLimitsCmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.GetNotificationSubscriberListV3Cmd)

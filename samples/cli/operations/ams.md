@@ -164,6 +164,14 @@ $ samples/cli/sample-apps Ams fleetCreate \
     > result.txt
 ```
 
+### Operation `bulk_fleet_delete`
+```sh
+$ samples/cli/sample-apps Ams bulkFleetDelete \
+    --namespace 'string' \
+    --body '{"fleetIds": ["string"]}' \
+    > result.txt
+```
+
 ### Operation `fleet_get`
 ```sh
 $ samples/cli/sample-apps Ams fleetGet \

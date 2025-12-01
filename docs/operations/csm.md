@@ -60,6 +60,15 @@
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/start` | PUT | StartAppV2Short | [StartAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [StartAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [StartAppV2Short](../../samples/cli/cmd/csm/appV2/startAppV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/stop` | PUT | StopAppV2Short | [StopAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [StopAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [StopAppV2Short](../../samples/cli/cmd/csm/appV2/stopAppV2.go) |
 
+### Async Messaging Wrapper:  [AsyncMessaging](../../services-api/pkg/service/csm/asyncMessaging.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/asyncmessaging/topics/subscriptions` | POST | CreateSubscriptionHandlerShort | [CreateSubscriptionHandlerShort](../../csm-sdk/pkg/csmclient/async_messaging/async_messaging_client.go) | [CreateSubscriptionHandlerShort](../../services-api/pkg/service/csm/asyncMessaging.go) | [CreateSubscriptionHandlerShort](../../samples/cli/cmd/csm/asyncMessaging/createSubscriptionHandler.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/asyncmessaging/topics/{topicName}/subscriptions` | DELETE | UnsubscribeTopicHandlerShort | [UnsubscribeTopicHandlerShort](../../csm-sdk/pkg/csmclient/async_messaging/async_messaging_client.go) | [UnsubscribeTopicHandlerShort](../../services-api/pkg/service/csm/asyncMessaging.go) | [UnsubscribeTopicHandlerShort](../../samples/cli/cmd/csm/asyncMessaging/unsubscribeTopicHandler.go) |
+| `/csm/v2/admin/namespaces/{namespace}/asyncmessaging/topics` | GET | ListTopicsHandlerShort | [ListTopicsHandlerShort](../../csm-sdk/pkg/csmclient/async_messaging/async_messaging_client.go) | [ListTopicsHandlerShort](../../services-api/pkg/service/csm/asyncMessaging.go) | [ListTopicsHandlerShort](../../samples/cli/cmd/csm/asyncMessaging/listTopicsHandler.go) |
+| `/csm/v2/admin/namespaces/{namespace}/asyncmessaging/topics` | POST | CreateTopicHandlerShort | [CreateTopicHandlerShort](../../csm-sdk/pkg/csmclient/async_messaging/async_messaging_client.go) | [CreateTopicHandlerShort](../../services-api/pkg/service/csm/asyncMessaging.go) | [CreateTopicHandlerShort](../../samples/cli/cmd/csm/asyncMessaging/createTopicHandler.go) |
+| `/csm/v2/admin/namespaces/{namespace}/asyncmessaging/topics/{topicName}` | DELETE | DeleteTopicHandlerShort | [DeleteTopicHandlerShort](../../csm-sdk/pkg/csmclient/async_messaging/async_messaging_client.go) | [DeleteTopicHandlerShort](../../services-api/pkg/service/csm/asyncMessaging.go) | [DeleteTopicHandlerShort](../../samples/cli/cmd/csm/asyncMessaging/deleteTopicHandler.go) |
+
 ### Deployment V2 Wrapper:  [DeploymentV2](../../services-api/pkg/service/csm/deploymentV2.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -85,6 +94,8 @@
 | `/csm/v2/admin/namespaces/{namespace}/nosql/clusters` | PUT | UpdateNoSQLClusterV2Short | [UpdateNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [UpdateNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [UpdateNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/updateNoSQLClusterV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/nosql/clusters` | POST | CreateNoSQLClusterV2Short | [CreateNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [CreateNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [CreateNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/createNoSQLClusterV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/nosql/clusters` | DELETE | DeleteNoSQLClusterV2Short | [DeleteNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [DeleteNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [DeleteNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/deleteNoSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/nosql/clusters/start` | PUT | StartNoSQLClusterV2Short | [StartNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [StartNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [StartNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/startNoSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/nosql/clusters/stop` | PUT | StopNoSQLClusterV2Short | [StopNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [StopNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [StopNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/stopNoSQLClusterV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/nosql/tunnels` | GET | GetNoSQLAccessTunnelV2Short | [GetNoSQLAccessTunnelV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [GetNoSQLAccessTunnelV2Short](../../services-api/pkg/service/csm/managedResources.go) | [GetNoSQLAccessTunnelV2Short](../../samples/cli/cmd/csm/managedResources/getNoSQLAccessTunnelV2.go) |
 
 ### Configuration V2 Wrapper:  [ConfigurationV2](../../services-api/pkg/service/csm/configurationV2.go)
@@ -142,6 +153,9 @@
 | `apimodel.CreateDeploymentV2Response` | [ApimodelCreateDeploymentV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_deployment_v2_response.go) |
 | `apimodel.CreateNoSQLAppDatabaseRequest` | [ApimodelCreateNoSQLAppDatabaseRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_no_sql_app_database_request.go) |
 | `apimodel.CreateNoSQLDatabaseCredentialRequest` | [ApimodelCreateNoSQLDatabaseCredentialRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_no_sql_database_credential_request.go) |
+| `apimodel.CreateSubscriptionRequest` | [ApimodelCreateSubscriptionRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_subscription_request.go) |
+| `apimodel.CreateSubscriptionResponse` | [ApimodelCreateSubscriptionResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_subscription_response.go) |
+| `apimodel.CreateTopicRequest` | [ApimodelCreateTopicRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_topic_request.go) |
 | `apimodel.DeleteNoSQLResourceResponse` | [ApimodelDeleteNoSQLResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_delete_no_sql_resource_response.go) |
 | `apimodel.GetAppImageListV2DataItem` | [ApimodelGetAppImageListV2DataItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_image_list_v2_data_item.go) |
 | `apimodel.GetAppImageListV2DataItemImageScanResult` | [ApimodelGetAppImageListV2DataItemImageScanResult ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_image_list_v2_data_item_image_scan_result.go) |
@@ -160,6 +174,7 @@
 | `apimodel.GetNotificationSubscriberListResponseV2` | [ApimodelGetNotificationSubscriberListResponseV2 ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_list_response_v2.go) |
 | `apimodel.GetNotificationSubscriberStatusResponse` | [ApimodelGetNotificationSubscriberStatusResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_status_response.go) |
 | `apimodel.IncreaseLimitFormRequest` | [ApimodelIncreaseLimitFormRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_increase_limit_form_request.go) |
+| `apimodel.ListTopicsResponse` | [ApimodelListTopicsResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_list_topics_response.go) |
 | `apimodel.MemoryRequest` | [ApimodelMemoryRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_request.go) |
 | `apimodel.MemoryResponse` | [ApimodelMemoryResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_response.go) |
 | `apimodel.NoSQLDatabaseCredentialResponse` | [ApimodelNoSQLDatabaseCredentialResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_credential_response.go) |
@@ -167,6 +182,7 @@
 | `apimodel.NoSQLDatabaseResponse` | [ApimodelNoSQLDatabaseResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_response.go) |
 | `apimodel.NoSQLResourceResponse` | [ApimodelNoSQLResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_resource_response.go) |
 | `apimodel.NotificationType` | [ApimodelNotificationType ](../../csm-sdk/pkg/csmclientmodels/apimodel_notification_type.go) |
+| `apimodel.PaginationResponse` | [ApimodelPaginationResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_pagination_response.go) |
 | `apimodel.ReplicaRequest` | [ApimodelReplicaRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_request.go) |
 | `apimodel.ReplicaResponse` | [ApimodelReplicaResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_response.go) |
 | `apimodel.SaveConfigurationV2Request` | [ApimodelSaveConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_configuration_v2_request.go) |
@@ -177,6 +193,9 @@
 | `apimodel.SubscribeNotificationResponse` | [ApimodelSubscribeNotificationResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_subscribe_notification_response.go) |
 | `apimodel.SubscriberItemRequest` | [ApimodelSubscriberItemRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_subscriber_item_request.go) |
 | `apimodel.SubscriberItemResponse` | [ApimodelSubscriberItemResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_subscriber_item_response.go) |
+| `apimodel.TopicDetailResponse` | [ApimodelTopicDetailResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_topic_detail_response.go) |
+| `apimodel.TopicResponse` | [ApimodelTopicResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_topic_response.go) |
+| `apimodel.TopicSubscription` | [ApimodelTopicSubscription ](../../csm-sdk/pkg/csmclientmodels/apimodel_topic_subscription.go) |
 | `apimodel.TunnelInfoResponse` | [ApimodelTunnelInfoResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_tunnel_info_response.go) |
 | `apimodel.UpdateAppResourceRequest` | [ApimodelUpdateAppResourceRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_app_resource_request.go) |
 | `apimodel.UpdateAppV2Request` | [ApimodelUpdateAppV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_app_v2_request.go) |
@@ -214,6 +233,8 @@
 | `generated.UpdateConfigurationV1Request` | [GeneratedUpdateConfigurationV1Request ](../../csm-sdk/pkg/csmclientmodels/generated_update_configuration_v1_request.go) |
 | `generated.UpdateConfigurationV1Response` | [GeneratedUpdateConfigurationV1Response ](../../csm-sdk/pkg/csmclientmodels/generated_update_configuration_v1_response.go) |
 | `log.AppMessageDeclaration` | [LogAppMessageDeclaration ](../../csm-sdk/pkg/csmclientmodels/log_app_message_declaration.go) |
+| `model.AppRedeploymentDetail` | [ModelAppRedeploymentDetail ](../../csm-sdk/pkg/csmclientmodels/model_app_redeployment_detail.go) |
+| `model.AppRedeploymentInfo` | [ModelAppRedeploymentInfo ](../../csm-sdk/pkg/csmclientmodels/model_app_redeployment_info.go) |
 | `model.CSMAutoscalingDefaults` | [ModelCSMAutoscalingDefaults ](../../csm-sdk/pkg/csmclientmodels/model_c_s_m_autoscaling_defaults.go) |
 | `model.ImageScanFinding` | [ModelImageScanFinding ](../../csm-sdk/pkg/csmclientmodels/model_image_scan_finding.go) |
 | `nosqlresource.NoSQLResourceConfiguration` | [NosqlresourceNoSQLResourceConfiguration ](../../csm-sdk/pkg/csmclientmodels/nosqlresource_no_sql_resource_configuration.go) |

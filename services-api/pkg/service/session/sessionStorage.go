@@ -167,6 +167,35 @@ func (aaa *SessionStorageService) PublicReadPartySessionStorage(input *session_s
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicUpdateInsertPartySessionStorageShort instead.
+func (aaa *SessionStorageService) PublicUpdateInsertPartySessionStorage(input *session_storage.PublicUpdateInsertPartySessionStorageParams) (map[string]interface{}, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.SessionStorage.PublicUpdateInsertPartySessionStorage(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicUpdateInsertPartySessionStorageReservedShort instead.
 func (aaa *SessionStorageService) PublicUpdateInsertPartySessionStorageReserved(input *session_storage.PublicUpdateInsertPartySessionStorageReservedParams) (map[string]interface{}, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -409,6 +438,40 @@ func (aaa *SessionStorageService) PublicReadPartySessionStorageShort(input *sess
 	}
 
 	ok, err := aaa.Client.SessionStorage.PublicReadPartySessionStorageShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *SessionStorageService) PublicUpdateInsertPartySessionStorageShort(input *session_storage.PublicUpdateInsertPartySessionStorageParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdSessionStorage != nil {
+		input.XFlightId = tempFlightIdSessionStorage
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.SessionStorage.PublicUpdateInsertPartySessionStorageShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -116,6 +116,7 @@
 | `models.BulkUserRankingResponseV3` | [ModelsBulkUserRankingResponseV3 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_bulk_user_ranking_response_v3.go) |
 | `models.DailyConfig` | [ModelsDailyConfig ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_daily_config.go) |
 | `models.DeleteBulkLeaderboardFailedResp` | [ModelsDeleteBulkLeaderboardFailedResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_delete_bulk_leaderboard_failed_resp.go) |
+| `models.DeleteBulkLeaderboardSuccessResp` | [ModelsDeleteBulkLeaderboardSuccessResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_delete_bulk_leaderboard_success_resp.go) |
 | `models.DeleteBulkLeaderboardsReq` | [ModelsDeleteBulkLeaderboardsReq ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_delete_bulk_leaderboards_req.go) |
 | `models.DeleteBulkLeaderboardsResp` | [ModelsDeleteBulkLeaderboardsResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_delete_bulk_leaderboards_resp.go) |
 | `models.GetAllLeaderboardConfigsPublicResp` | [ModelsGetAllLeaderboardConfigsPublicResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_get_all_leaderboard_configs_public_resp.go) |

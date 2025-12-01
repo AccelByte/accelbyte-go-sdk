@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.33.1"
+    "version": "2.34.0"
   },
   "schemes": [
     "https"
@@ -6096,6 +6096,16 @@
         "leaderboardCode"
       ]
     },
+    "models.DeleteBulkLeaderboardSuccessResp": {
+      "properties": {
+        "leaderboardCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "leaderboardCode"
+      ]
+    },
     "models.DeleteBulkLeaderboardsReq": {
       "properties": {
         "leaderboardCodes": {
@@ -6116,10 +6126,17 @@
             "$ref": "#/definitions/models.DeleteBulkLeaderboardFailedResp"
           },
           "type": "array"
+        },
+        "success": {
+          "items": {
+            "$ref": "#/definitions/models.DeleteBulkLeaderboardSuccessResp"
+          },
+          "type": "array"
         }
       },
       "required": [
-        "failed"
+        "failed",
+        "success"
       ]
     },
     "models.GetAllLeaderboardConfigsPublicResp": {
@@ -7070,11 +7087,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-09-12T04:36:56+00:00",
-    "gitHash": "fa60aed59b5a7f5993ab6e0bb2e5370c55f5457c",
+    "buildDate": "2025-11-19T03:12:23+00:00",
+    "gitHash": "4cb113ea516caa1acbdda755dff9ac5f5201261b",
     "name": "justice-leaderboard-service",
     "realm": "staging",
-    "version": "2.33.1",
+    "version": "2.34.0",
     "version-roles-seeding": "1.2.32"
   }
 }

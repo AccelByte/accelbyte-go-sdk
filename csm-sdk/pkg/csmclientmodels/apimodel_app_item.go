@@ -78,6 +78,9 @@ type ApimodelAppItem struct {
 	// message
 	Message string `json:"message,omitempty"`
 
+	// redeploymentinfo
+	RedeploymentInfo *ModelAppRedeploymentInfo `json:"redeploymentInfo,omitempty"`
+
 	// replica
 	Replica *ApimodelReplicaResponse `json:"replica,omitempty"`
 

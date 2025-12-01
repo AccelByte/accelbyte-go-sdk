@@ -28,16 +28,14 @@ var PublicGetUserBanHistoryV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		activeOnly, _ := cmd.Flags().GetBool("activeOnly")
-		after, _ := cmd.Flags().GetString("after")
-		before, _ := cmd.Flags().GetString("before")
 		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &users.PublicGetUserBanHistoryV3Params{
 			Namespace:  namespace,
 			UserID:     userId,
 			ActiveOnly: &activeOnly,
-			After:      &after,
-			Before:     &before,
 			Limit:      &limit,
+			Offset:     &offset,
 		}
 		ok, errOK := usersService.PublicGetUserBanHistoryV3Short(input)
 		if errOK != nil {
@@ -58,7 +56,6 @@ func init() {
 	PublicGetUserBanHistoryV3Cmd.Flags().String("userId", "", "User id")
 	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("userId")
 	PublicGetUserBanHistoryV3Cmd.Flags().Bool("activeOnly", false, "Active only")
-	PublicGetUserBanHistoryV3Cmd.Flags().String("after", "0", "After")
-	PublicGetUserBanHistoryV3Cmd.Flags().String("before", "0", "Before")
 	PublicGetUserBanHistoryV3Cmd.Flags().Int64("limit", 20, "Limit")
+	PublicGetUserBanHistoryV3Cmd.Flags().Int64("offset", 0, "Offset")
 }

@@ -16,6 +16,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_v2"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/async_messaging"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/deployment"
@@ -79,6 +80,7 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Runtime = runtime
 	cli.App = app.New(transport, formats)
 	cli.AppV2 = app_v2.New(transport, formats)
+	cli.AsyncMessaging = async_messaging.New(transport, formats)
 	cli.Configuration = configuration.New(transport, formats)
 	cli.ConfigurationV2 = configuration_v2.New(transport, formats)
 	cli.Deployment = deployment.New(transport, formats)
@@ -154,6 +156,8 @@ type JusticeCsmService struct {
 
 	AppV2 app_v2.ClientService
 
+	AsyncMessaging async_messaging.ClientService
+
 	Configuration configuration.ClientService
 
 	ConfigurationV2 configuration_v2.ClientService
@@ -185,6 +189,7 @@ func (c *JusticeCsmService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.App.SetTransport(transport)
 	c.AppV2.SetTransport(transport)
+	c.AsyncMessaging.SetTransport(transport)
 	c.Configuration.SetTransport(transport)
 	c.ConfigurationV2.SetTransport(transport)
 	c.Deployment.SetTransport(transport)

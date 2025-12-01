@@ -59,6 +59,24 @@ $ samples/cli/sample-apps Csm updateAppV2 \
     > result.txt
 ```
 
+### Operation `create_subscription_handler`
+```sh
+$ samples/cli/sample-apps Csm createSubscriptionHandler \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"topicNames": ["string"]}' \
+    > result.txt
+```
+
+### Operation `unsubscribe_topic_handler`
+```sh
+$ samples/cli/sample-apps Csm unsubscribeTopicHandler \
+    --app 'string' \
+    --namespace 'string' \
+    --topicName 'string' \
+    > result.txt
+```
+
 ### Operation `create_deployment_v2`
 ```sh
 $ samples/cli/sample-apps Csm createDeploymentV2 \
@@ -291,6 +309,34 @@ $ samples/cli/sample-apps Csm deleteVariableV2 \
     > result.txt
 ```
 
+### Operation `list_topics_handler`
+```sh
+$ samples/cli/sample-apps Csm listTopicsHandler \
+    --namespace 'string' \
+    --fuzzyTopicName 'string' \
+    --isSubscribedByAppName 'string' \
+    --isUnsubscribedByAppName 'string' \
+    --limit 1 \
+    --offset 1 \
+    > result.txt
+```
+
+### Operation `create_topic_handler`
+```sh
+$ samples/cli/sample-apps Csm createTopicHandler \
+    --namespace 'string' \
+    --body '{"description": "string", "topicName": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_topic_handler`
+```sh
+$ samples/cli/sample-apps Csm deleteTopicHandler \
+    --namespace 'string' \
+    --topicName 'string' \
+    > result.txt
+```
+
 ### Operation `get_list_of_deployment_v2`
 ```sh
 $ samples/cli/sample-apps Csm getListOfDeploymentV2 \
@@ -343,6 +389,20 @@ $ samples/cli/sample-apps Csm createNoSQLClusterV2 \
 ### Operation `delete_no_sql_cluster_v2`
 ```sh
 $ samples/cli/sample-apps Csm deleteNoSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `start_no_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm startNoSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `stop_no_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm stopNoSQLClusterV2 \
     --namespace 'string' \
     > result.txt
 ```

@@ -285,6 +285,70 @@ func (aaa *ManagedResourcesService) DeleteNoSQLClusterV2(input *managed_resource
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use StartNoSQLClusterV2Short instead.
+func (aaa *ManagedResourcesService) StartNoSQLClusterV2(input *managed_resources.StartNoSQLClusterV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, serviceUnavailable, err := aaa.Client.ManagedResources.StartNoSQLClusterV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if serviceUnavailable != nil {
+		return serviceUnavailable
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use StopNoSQLClusterV2Short instead.
+func (aaa *ManagedResourcesService) StopNoSQLClusterV2(input *managed_resources.StopNoSQLClusterV2Params) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, serviceUnavailable, err := aaa.Client.ManagedResources.StopNoSQLClusterV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if serviceUnavailable != nil {
+		return serviceUnavailable
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetNoSQLAccessTunnelV2Short instead.
 func (aaa *ManagedResourcesService) GetNoSQLAccessTunnelV2(input *managed_resources.GetNoSQLAccessTunnelV2Params) (*csmclientmodels.ApimodelTunnelInfoResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -581,6 +645,66 @@ func (aaa *ManagedResourcesService) DeleteNoSQLClusterV2Short(input *managed_res
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *ManagedResourcesService) StartNoSQLClusterV2Short(input *managed_resources.StartNoSQLClusterV2Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdManagedResources != nil {
+		input.XFlightId = tempFlightIdManagedResources
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.ManagedResources.StartNoSQLClusterV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ManagedResourcesService) StopNoSQLClusterV2Short(input *managed_resources.StopNoSQLClusterV2Params) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdManagedResources != nil {
+		input.XFlightId = tempFlightIdManagedResources
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.ManagedResources.StopNoSQLClusterV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *ManagedResourcesService) GetNoSQLAccessTunnelV2Short(input *managed_resources.GetNoSQLAccessTunnelV2Params) (*csmclientmodels.ApimodelTunnelInfoResponse, error) {

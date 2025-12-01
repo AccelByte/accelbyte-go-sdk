@@ -46,6 +46,7 @@ func init() {
 	AmsCmd.AddCommand(development.DevelopmentServerConfigurationPatchCmd)
 	AmsCmd.AddCommand(fleets.FleetListCmd)
 	AmsCmd.AddCommand(fleets.FleetCreateCmd)
+	AmsCmd.AddCommand(fleets.BulkFleetDeleteCmd)
 	AmsCmd.AddCommand(fleets.FleetGetCmd)
 	AmsCmd.AddCommand(fleets.FleetUpdateCmd)
 	AmsCmd.AddCommand(fleets.FleetDeleteCmd)

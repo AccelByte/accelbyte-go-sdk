@@ -21616,9 +21616,6 @@ Deprecated: 2022-08-10 - Use PublicGetUserBanHistoryV3Short instead.
 
 PublicGetUserBanHistoryV3 get user's bans
 Notes:
-- This endpoint retrieve the first page of the data if after and before parameters is empty
-- **The pagination is not working yet**
-
 
 **Authentication:**
 The _**userId**_ parameter should match the one in the access token.
@@ -21686,9 +21683,6 @@ func (a *Client) PublicGetUserBanHistoryV3(params *PublicGetUserBanHistoryV3Para
 /*
 PublicGetUserBanHistoryV3Short get user's bans
 Notes:
-- This endpoint retrieve the first page of the data if after and before parameters is empty
-- **The pagination is not working yet**
-
 
 **Authentication:**
 The _**userId**_ parameter should match the one in the access token.

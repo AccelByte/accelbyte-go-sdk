@@ -26,9 +26,13 @@ var RetrieveAllLegalPoliciesByNamespaceCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		limit, _ := cmd.Flags().GetInt32("limit")
+		offset, _ := cmd.Flags().GetInt32("offset")
 		visibleOnly, _ := cmd.Flags().GetBool("visibleOnly")
 		input := &base_legal_policies_with_namespace.RetrieveAllLegalPoliciesByNamespaceParams{
 			Namespace:   namespace,
+			Limit:       &limit,
+			Offset:      &offset,
 			VisibleOnly: &visibleOnly,
 		}
 		ok, errOK := baseLegalPoliciesWithNamespaceService.RetrieveAllLegalPoliciesByNamespaceShort(input)
@@ -47,5 +51,7 @@ var RetrieveAllLegalPoliciesByNamespaceCmd = &cobra.Command{
 func init() {
 	RetrieveAllLegalPoliciesByNamespaceCmd.Flags().String("namespace", "", "Namespace")
 	_ = RetrieveAllLegalPoliciesByNamespaceCmd.MarkFlagRequired("namespace")
+	RetrieveAllLegalPoliciesByNamespaceCmd.Flags().Int32("limit", 20, "Limit")
+	RetrieveAllLegalPoliciesByNamespaceCmd.Flags().Int32("offset", 0, "Offset")
 	RetrieveAllLegalPoliciesByNamespaceCmd.Flags().Bool("visibleOnly", false, "Visible only")
 }

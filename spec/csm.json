@@ -8,7 +8,7 @@
     },
     "description": "Custom Service Manager",
     "title": "custom-service-manager",
-    "version": "1.29.1"
+    "version": "1.30.0"
   },
   "schemes": [
     "https"
@@ -32,7 +32,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\nGets the List of Apps for AB-Extend Customer\n\nAvailable scenario:\n\t- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\n\t",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]\u0026lt;/code\u0026gt;\n\nGets the List of Apps for AB-Extend Customer\n\nAvailable scenario:\n\t- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\n\n\t",
         "operationId": "GetAppListV1",
         "parameters": [
           {
@@ -352,7 +352,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]\u0026lt;/code\u0026gt;\n\nCreates new App for AB-Extend Customers\n\nAvailable scenario:\n\t- scenario 3: \u0026lt;code\u0026gt;event-handler\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 1: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;- scenario 2: \u0026lt;code\u0026gt;service-extension\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;\nDefault: \u0026lt;code\u0026gt;function-override\u0026lt;/code\u0026gt;\n\n",
         "operationId": "CreateAppV1",
         "parameters": [
           {
@@ -1842,7 +1842,7 @@
         "operationId": "GetAppListV2",
         "parameters": [
           {
-            "description": "Available scenario:\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
+            "description": "Available scenario:\n- scenario 3: \u003ccode\u003eevent-handler\u003c/code\u003e\n- scenario 1: \u003ccode\u003efunction-override\u003c/code\u003e\n- scenario 2: \u003ccode\u003eservice-extension\u003c/code\u003e\n\n\nAvailable app status:\n- \u003ccode\u003eapp-creating\u003c/code\u003e\n- \u003ccode\u003eapp-creation-failed\u003c/code\u003e\n- \u003ccode\u003eapp-creation-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-undeployed\u003c/code\u003e\n- \u003ccode\u003edeployment-in-progress\u003c/code\u003e\n- \u003ccode\u003edeployment-failed\u003c/code\u003e\n- \u003ccode\u003edeployment-timeout\u003c/code\u003e\n- \u003ccode\u003edeployment-running\u003c/code\u003e\n- \u003ccode\u003edeployment-down\u003c/code\u003e\n- \u003ccode\u003eapp-stopping\u003c/code\u003e\n- \u003ccode\u003eapp-stop-failed\u003c/code\u003e\n- \u003ccode\u003eapp-stop-timeout\u003c/code\u003e\n- \u003ccode\u003eapp-stopped\u003c/code\u003e\n- \u003ccode\u003eapp-removing\u003c/code\u003e\n- \u003ccode\u003eapp-removed\u003c/code\u003e\n- \u003ccode\u003eapp-remove-timeout\u003c/code\u003e\n\n\nPut empty object {} for no filter",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2236,6 +2236,167 @@
         "summary": "Create new extend app",
         "tags": [
           "App V2"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/apps/{app}/asyncmessaging/topics/subscriptions": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:SUBSCRIPTIONS [CREATE]\u0026lt;/code\u0026gt;\n\nSubscribe App queue to given Topic name list inside a game namespace.\n",
+        "operationId": "CreateSubscriptionHandler",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodel.CreateSubscriptionRequest"
+            }
+          },
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.CreateSubscriptionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Subscribe To Topic",
+        "tags": [
+          "Async Messaging"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/apps/{app}/asyncmessaging/topics/{topicName}/subscriptions": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:SUBSCRIPTIONS [DELETE]\u0026lt;/code\u0026gt;\n\nUnsubscribe App queue from a topic by Topic Name.\n",
+        "operationId": "UnsubscribeTopicHandler",
+        "parameters": [
+          {
+            "description": "App Name",
+            "in": "path",
+            "name": "app",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Topic Name",
+            "in": "path",
+            "name": "topicName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.TopicSubscription"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Unsubscribe From Topic",
+        "tags": [
+          "Async Messaging"
         ],
         "x-errorCodes": {}
       }
@@ -2655,7 +2816,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:DATABASES [READ]\u0026lt;/code\u0026gt;\n\nGet a NoSQL database information returns the NoSQL database related information by given game namespace\nand app name.\n\n\u0026lt;code\u0026gt;resourceStatus\u0026lt;/code\u0026gt; field - indicates the NoSQL cluster status:\n- \u0026lt;code\u0026gt;available\u0026lt;/code\u0026gt; : The cluster is accessible. \n- \u0026lt;code\u0026gt;updating\u0026lt;/code\u0026gt; : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU). \n- \u0026lt;code\u0026gt;deleting\u0026lt;/code\u0026gt; : The cluster is in the process of being deleted and is not accessible. \n- \u0026lt;code\u0026gt;failed\u0026lt;/code\u0026gt; : The cluster failed to provision or is in an error state and not accessible. \n- \u0026lt;code\u0026gt;stopped\u0026lt;/code\u0026gt; : The cluster is stopped and not accessible. \n- \u0026lt;code\u0026gt;maintenance\u0026lt;/code\u0026gt; : The cluster is undergoing maintenance operations and is not accessible. \n- \u0026lt;code\u0026gt;unknown\u0026lt;/code\u0026gt; : The cluster status is not recognized \n- \u0026lt;code\u0026gt;creating\u0026lt;/code\u0026gt; : The cluster or instance is being created and is not yet accessible. \n- \u0026lt;code\u0026gt;stopping\u0026lt;/code\u0026gt; : The cluster is in the process of stopping and will soon become inaccessible. \n- \u0026lt;code\u0026gt;starting\u0026lt;/code\u0026gt; : The cluster is transitioning from stopped to running, or is rebooting. \n\n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:DATABASES [READ]\u0026lt;/code\u0026gt;\n\nGet a NoSQL database information returns the NoSQL database related information by given game namespace\nand app name.\n\n\u0026lt;code\u0026gt;resourceStatus\u0026lt;/code\u0026gt; field - indicates the NoSQL cluster status:\n- \u0026lt;code\u0026gt;stopping\u0026lt;/code\u0026gt; : The cluster is in the process of stopping and will soon become inaccessible. \n- \u0026lt;code\u0026gt;stopped\u0026lt;/code\u0026gt; : The cluster is stopped and not accessible. \n- \u0026lt;code\u0026gt;available\u0026lt;/code\u0026gt; : The cluster is accessible. \n- \u0026lt;code\u0026gt;failed\u0026lt;/code\u0026gt; : The cluster failed to provision or is in an error state and not accessible. \n- \u0026lt;code\u0026gt;starting\u0026lt;/code\u0026gt; : The cluster is transitioning from stopped to running, or is rebooting. \n- \u0026lt;code\u0026gt;maintenance\u0026lt;/code\u0026gt; : The cluster is undergoing maintenance operations and is not accessible. \n- \u0026lt;code\u0026gt;unknown\u0026lt;/code\u0026gt; : The cluster status is not recognized \n- \u0026lt;code\u0026gt;updating\u0026lt;/code\u0026gt; : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU). \n- \u0026lt;code\u0026gt;creating\u0026lt;/code\u0026gt; : The cluster or instance is being created and is not yet accessible. \n- \u0026lt;code\u0026gt;deleting\u0026lt;/code\u0026gt; : The cluster is in the process of being deleted and is not accessible. \n\n\n",
         "operationId": "GetNoSQLDatabaseV2",
         "parameters": [
           {
@@ -4353,6 +4514,244 @@
         "x-errorCodes": {}
       }
     },
+    "/csm/v2/admin/namespaces/{namespace}/asyncmessaging/topics": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [READ]\u0026lt;/code\u0026gt;\n\nList all Async Messaging Topics inside a game namespace.\n",
+        "operationId": "ListTopicsHandler",
+        "parameters": [
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Fuzzy search for topic name",
+            "in": "query",
+            "name": "fuzzyTopicName",
+            "type": "string"
+          },
+          {
+            "description": "Filter to get only topics subscribed by given app name",
+            "in": "query",
+            "name": "isSubscribedByAppName",
+            "type": "string"
+          },
+          {
+            "description": "Filter to get only topics unsubscribed by given app name",
+            "in": "query",
+            "name": "isUnsubscribedByAppName",
+            "type": "string"
+          },
+          {
+            "description": "Limit for pagination",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Offset for pagination",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.ListTopicsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List Async Messaging Topics",
+        "tags": [
+          "Async Messaging"
+        ],
+        "x-errorCodes": {}
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [CREATE]\u0026lt;/code\u0026gt;\n\nCreate New Async Messaging Topic, the topic name is unique inside a game namespace.\n",
+        "operationId": "CreateTopicHandler",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apimodel.CreateTopicRequest"
+            }
+          },
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.TopicResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create Async Messaging Topic",
+        "tags": [
+          "Async Messaging"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/asyncmessaging/topics/{topicName}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [DELETE]\u0026lt;/code\u0026gt;\n\nDelete Async Messaging Topic inside a game namespace given its topic name.\n",
+        "operationId": "DeleteTopicHandler",
+        "parameters": [
+          {
+            "description": "Game Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Topic Name",
+            "in": "path",
+            "name": "topicName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/apimodel.TopicResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Delete Async Messaging Topic",
+        "tags": [
+          "Async Messaging"
+        ],
+        "x-errorCodes": {}
+      }
+    },
     "/csm/v2/admin/namespaces/{namespace}/deployments": {
       "post": {
         "consumes": [
@@ -4643,7 +5042,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]\u0026lt;/code\u0026gt;\n\nGet NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.\n\n\u0026lt;code\u0026gt;status\u0026lt;/code\u0026gt; field - indicates the NoSQL cluster status:\n- \u0026lt;code\u0026gt;available\u0026lt;/code\u0026gt; : The cluster is accessible. \n- \u0026lt;code\u0026gt;updating\u0026lt;/code\u0026gt; : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU). \n- \u0026lt;code\u0026gt;deleting\u0026lt;/code\u0026gt; : The cluster is in the process of being deleted and is not accessible. \n- \u0026lt;code\u0026gt;failed\u0026lt;/code\u0026gt; : The cluster failed to provision or is in an error state and not accessible. \n- \u0026lt;code\u0026gt;stopped\u0026lt;/code\u0026gt; : The cluster is stopped and not accessible. \n- \u0026lt;code\u0026gt;maintenance\u0026lt;/code\u0026gt; : The cluster is undergoing maintenance operations and is not accessible. \n- \u0026lt;code\u0026gt;unknown\u0026lt;/code\u0026gt; : The cluster status is not recognized \n- \u0026lt;code\u0026gt;creating\u0026lt;/code\u0026gt; : The cluster or instance is being created and is not yet accessible. \n- \u0026lt;code\u0026gt;stopping\u0026lt;/code\u0026gt; : The cluster is in the process of stopping and will soon become inaccessible. \n- \u0026lt;code\u0026gt;starting\u0026lt;/code\u0026gt; : The cluster is transitioning from stopped to running, or is rebooting. \n\n",
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]\u0026lt;/code\u0026gt;\n\nGet NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.\n\n\u0026lt;code\u0026gt;status\u0026lt;/code\u0026gt; field - indicates the NoSQL cluster status:\n- \u0026lt;code\u0026gt;updating\u0026lt;/code\u0026gt; : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU). \n- \u0026lt;code\u0026gt;creating\u0026lt;/code\u0026gt; : The cluster or instance is being created and is not yet accessible. \n- \u0026lt;code\u0026gt;deleting\u0026lt;/code\u0026gt; : The cluster is in the process of being deleted and is not accessible. \n- \u0026lt;code\u0026gt;stopping\u0026lt;/code\u0026gt; : The cluster is in the process of stopping and will soon become inaccessible. \n- \u0026lt;code\u0026gt;stopped\u0026lt;/code\u0026gt; : The cluster is stopped and not accessible. \n- \u0026lt;code\u0026gt;available\u0026lt;/code\u0026gt; : The cluster is accessible. \n- \u0026lt;code\u0026gt;failed\u0026lt;/code\u0026gt; : The cluster failed to provision or is in an error state and not accessible. \n- \u0026lt;code\u0026gt;starting\u0026lt;/code\u0026gt; : The cluster is transitioning from stopped to running, or is rebooting. \n- \u0026lt;code\u0026gt;maintenance\u0026lt;/code\u0026gt; : The cluster is undergoing maintenance operations and is not accessible. \n- \u0026lt;code\u0026gt;unknown\u0026lt;/code\u0026gt; : The cluster status is not recognized \n\n",
         "operationId": "GetNoSQLClusterV2",
         "parameters": [
           {
@@ -4857,6 +5256,150 @@
           }
         ],
         "summary": "Update NoSQL Cluster Configurations",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/nosql/clusters/start": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]\u0026lt;/code\u0026gt;\n\nStart NoSQL cluster.\nYou can only start the cluster when its status is \u0026#34;stopped\u0026#34;.\n\nCluster starting process may take some time to complete.\n",
+        "operationId": "StartNoSQLClusterV2",
+        "parameters": [
+          {
+            "description": "Studio Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Start NoSQL Cluster",
+        "tags": [
+          "Managed Resources"
+        ],
+        "x-errorCodes": {}
+      }
+    },
+    "/csm/v2/admin/namespaces/{namespace}/nosql/clusters/stop": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [UPDATE]\u0026lt;/code\u0026gt;\n\nStop NoSQL cluster.\nYou can only start the cluster when its status is \u0026#34;available\u0026#34;.\n\nCluster stopping process may take some time to complete.\n",
+        "operationId": "StopNoSQLClusterV2",
+        "parameters": [
+          {
+            "description": "Studio Name",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Stop NoSQL Cluster",
         "tags": [
           "Managed Resources"
         ],
@@ -5202,6 +5745,9 @@
         "message": {
           "type": "string"
         },
+        "redeploymentInfo": {
+          "$ref": "#/definitions/model.AppRedeploymentInfo"
+        },
         "replica": {
           "$ref": "#/definitions/apimodel.ReplicaResponse"
         },
@@ -5432,6 +5978,42 @@
       "required": [
         "password",
         "username"
+      ]
+    },
+    "apimodel.CreateSubscriptionRequest": {
+      "properties": {
+        "topicNames": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "topicNames"
+      ]
+    },
+    "apimodel.CreateSubscriptionResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodel.TopicSubscription"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "apimodel.CreateTopicRequest": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "topicName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "topicName"
       ]
     },
     "apimodel.DeleteNoSQLResourceResponse": {
@@ -5849,6 +6431,22 @@
         "requestReason"
       ]
     },
+    "apimodel.ListTopicsResponse": {
+      "properties": {
+        "data": {
+          "items": {
+            "$ref": "#/definitions/apimodel.TopicDetailResponse"
+          },
+          "type": "array"
+        },
+        "pagination": {
+          "$ref": "#/definitions/apimodel.PaginationResponse"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "apimodel.MemoryRequest": {
       "properties": {
         "requestMemory": {
@@ -5997,6 +6595,29 @@
       "required": [
         "subcriptionID",
         "type"
+      ]
+    },
+    "apimodel.PaginationResponse": {
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "last": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "totalData": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "totalData"
       ]
     },
     "apimodel.ReplicaRequest": {
@@ -6165,6 +6786,108 @@
       },
       "required": [
         "id"
+      ]
+    },
+    "apimodel.TopicDetailResponse": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "gameName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "studioName": {
+          "type": "string"
+        },
+        "subscribers": {
+          "items": {
+            "$ref": "#/definitions/apimodel.TopicSubscription"
+          },
+          "type": "array"
+        },
+        "topicArn": {
+          "type": "string"
+        },
+        "topicName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "gameName",
+        "id",
+        "region",
+        "studioName",
+        "topicArn",
+        "topicName"
+      ]
+    },
+    "apimodel.TopicResponse": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "gameName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "studioName": {
+          "type": "string"
+        },
+        "topicArn": {
+          "type": "string"
+        },
+        "topicName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "gameName",
+        "id",
+        "region",
+        "studioName",
+        "topicArn",
+        "topicName"
+      ]
+    },
+    "apimodel.TopicSubscription": {
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "appName": {
+          "type": "string"
+        },
+        "queueId": {
+          "type": "string"
+        },
+        "subscriptionArn": {
+          "type": "string"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "subscriptionTime": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "appId",
+        "appName",
+        "queueId",
+        "subscriptionArn",
+        "subscriptionId",
+        "subscriptionTime"
       ]
     },
     "apimodel.TunnelInfoResponse": {
@@ -6897,6 +7620,36 @@
         "Text"
       ]
     },
+    "model.AppRedeploymentDetail": {
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "reasonId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "reasonId"
+      ]
+    },
+    "model.AppRedeploymentInfo": {
+      "properties": {
+        "details": {
+          "items": {
+            "$ref": "#/definitions/model.AppRedeploymentDetail"
+          },
+          "type": "array"
+        },
+        "shouldRedeploy": {
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "shouldRedeploy"
+      ]
+    },
     "model.CSMAutoscalingDefaults": {
       "properties": {
         "cpuUtilizationDefaultPercent": {
@@ -7324,10 +8077,10 @@
     }
   ],
   "x-version": {
-    "buildDate": "Thu Oct 23 08:41:56 UTC 2025",
-    "gitHash": "bc5a8a2d",
+    "buildDate": "Mon Nov 24 09:07:09 UTC 2025",
+    "gitHash": "4f9db587",
     "name": "custom-service-manager",
-    "version": "1.29.1",
+    "version": "1.30.0",
     "version-justice": "3.39.0",
     "version-roles-seeding": "1.2.64"
   }

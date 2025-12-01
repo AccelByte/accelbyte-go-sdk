@@ -159,6 +159,8 @@ $ samples/cli/sample-apps Legal initiateExportAgreementsToCSV \
 ```sh
 $ samples/cli/sample-apps Legal retrieveAllLegalPoliciesByNamespace \
     --namespace 'string' \
+    --limit 1 \
+    --offset 1 \
     --visibleOnly false \
     > result.txt
 ```

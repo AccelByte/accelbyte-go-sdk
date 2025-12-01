@@ -23,6 +23,10 @@ type ModelsDeleteBulkLeaderboardsResp struct {
 	// failed
 	// Required: true
 	Failed []*ModelsDeleteBulkLeaderboardFailedResp `json:"failed"`
+
+	// success
+	// Required: true
+	Success []*ModelsDeleteBulkLeaderboardSuccessResp `json:"success"`
 }
 
 // Validate validates this Models delete bulk leaderboards resp
@@ -30,6 +34,9 @@ func (m *ModelsDeleteBulkLeaderboardsResp) Validate(formats strfmt.Registry) err
 	var res []error
 
 	if err := m.validateFailed(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateSuccess(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,6 +61,31 @@ func (m *ModelsDeleteBulkLeaderboardsResp) validateFailed(formats strfmt.Registr
 			if err := m.Failed[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("failed" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ModelsDeleteBulkLeaderboardsResp) validateSuccess(formats strfmt.Registry) error {
+
+	if err := validate.Required("success", "body", m.Success); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Success); i++ {
+		if swag.IsZero(m.Success[i]) { // not required
+			continue
+		}
+
+		if m.Success[i] != nil {
+			if err := m.Success[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("success" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

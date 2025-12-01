@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.42.0"
+    "version": "1.43.0"
   },
   "schemes": [
     "https"
@@ -1167,6 +1167,87 @@
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Maximum of 1000 fleets allowed\n\nRequired Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [DELETE]",
+        "operationId": "BulkFleetDelete",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/api.FleetBulkDeleteRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetBulkDeleteResponse"
+            }
+          },
+          "207": {
+            "description": "partial success",
+            "schema": {
+              "$ref": "#/definitions/api.FleetBulkDeleteResponse"
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "no authorization provided",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "insufficient permissions",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
+          "422": {
+            "description": "one or more fleet(s) are invalid",
+            "schema": {
+              "$ref": "#/definitions/api.FleetBulkDeleteResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "delete one or more fleets. maximum of 1000 fleets allowed",
+        "tags": [
+          "Fleets"
+        ],
+        "x-errorCodes": {}
+      },
       "get": {
         "consumes": [
           "application/json"
@@ -3794,6 +3875,58 @@
         "logs"
       ]
     },
+    "api.FleetBulkActionErrorItemResponse": {
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "errorType": {
+          "type": "string"
+        },
+        "fleetId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fleetId"
+      ]
+    },
+    "api.FleetBulkDeleteRequest": {
+      "properties": {
+        "fleetIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "fleetIds"
+      ]
+    },
+    "api.FleetBulkDeleteResponse": {
+      "properties": {
+        "errors": {
+          "items": {
+            "$ref": "#/definitions/api.FleetBulkActionErrorItemResponse"
+          },
+          "type": "array"
+        },
+        "successCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "errors",
+        "successCount",
+        "totalCount"
+      ]
+    },
     "api.FleetClaimByKeysReq": {
       "properties": {
         "claimKeys": {
@@ -4807,10 +4940,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-10-22T02:40:29+00:00",
-    "gitHash": "b47d5fe13419d918918263dc5e23ef55d078dbc6",
+    "buildDate": "2025-11-19T03:04:23+00:00",
+    "gitHash": "ee33b3bbd80204d26fe90ea9cc8028e4fe8ca8b1",
     "name": "fleet-commander",
-    "version": "1.42.0",
+    "version": "1.43.0",
     "version-roles-seeding": "1.2.70"
   }
 }

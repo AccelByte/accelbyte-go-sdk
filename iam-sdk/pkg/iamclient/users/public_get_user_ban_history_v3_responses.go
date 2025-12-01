@@ -135,7 +135,7 @@ func NewPublicGetUserBanHistoryV3BadRequest() *PublicGetUserBanHistoryV3BadReque
 
 /*PublicGetUserBanHistoryV3BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20019</td><td>unable to parse request body</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20021</td><td>invalid pagination parameter</td></tr></table>
 */
 type PublicGetUserBanHistoryV3BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse

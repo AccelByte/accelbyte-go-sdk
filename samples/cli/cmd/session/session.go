@@ -108,6 +108,7 @@ func init() {
 	SessionCmd.AddCommand(party.PublicPartyInviteCmd)
 	SessionCmd.AddCommand(party.PublicPromotePartyLeaderCmd)
 	SessionCmd.AddCommand(sessionStorage.PublicReadPartySessionStorageCmd)
+	SessionCmd.AddCommand(sessionStorage.PublicUpdateInsertPartySessionStorageCmd)
 	SessionCmd.AddCommand(sessionStorage.PublicUpdateInsertPartySessionStorageReservedCmd)
 	SessionCmd.AddCommand(party.PublicPartyJoinCmd)
 	SessionCmd.AddCommand(party.PublicPartyLeaveCmd)

@@ -609,6 +609,16 @@ $ samples/cli/sample-apps Session publicReadPartySessionStorage \
     > result.txt
 ```
 
+### Operation `public_update_insert_party_session_storage`
+```sh
+$ samples/cli/sample-apps Session publicUpdateInsertPartySessionStorage \
+    --namespace 'string' \
+    --partyId 'string' \
+    --userId 'string' \
+    --body '{"string": {}}' \
+    > result.txt
+```
+
 ### Operation `public_update_insert_party_session_storage_reserved`
 ```sh
 $ samples/cli/sample-apps Session publicUpdateInsertPartySessionStorageReserved \

@@ -966,7 +966,6 @@ func (o *OAuth20Service) initTokenValidator(value bool) {
 
 		Filter:                nil,
 		JwkSet:                nil,
-		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
 		LocalValidationActive: value,
@@ -987,7 +986,6 @@ func (o *OAuth20Service) initTokenValidatorWithContext(ctx context.Context, valu
 
 		Filter:                nil,
 		JwkSet:                nil,
-		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
 		LocalValidationActive: value,

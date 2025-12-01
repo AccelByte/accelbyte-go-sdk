@@ -408,7 +408,6 @@ func NewTokenValidatorTest(authService OAuth20Service, refreshInterval time.Dura
 
 		Filter:      nil,
 		JwkSet:      nil,
-		JwtClaims:   JWTClaims{},
 		JwtEncoding: *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys: map[string]*rsa.PublicKey{
 			"test": pubKey,
@@ -431,7 +430,6 @@ func NewTokenValidatorTest2(authService OAuth20Service, refreshInterval time.Dur
 
 		Filter:      nil,
 		JwkSet:      nil,
-		JwtClaims:   JWTClaims{},
 		JwtEncoding: *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys: map[string]*rsa.PublicKey{
 			"test": pubKey,
@@ -461,7 +459,6 @@ func NewTokenValidatorTest3(authService OAuth20Service, refreshInterval time.Dur
 
 		Filter:      nil,
 		JwkSet:      nil,
-		JwtClaims:   JWTClaims{},
 		JwtEncoding: *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys: map[string]*rsa.PublicKey{
 			"test": pubKey,

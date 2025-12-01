@@ -43,7 +43,6 @@ type TokenValidator struct {
 
 	Filter                *bloom.Filter
 	JwkSet                *iamclientmodels.OauthcommonJWKSet
-	JwtClaims             JWTClaims
 	JwtEncoding           base64.Encoding
 	LocalValidationActive bool
 	PublicKeys            map[string]*rsa.PublicKey
@@ -112,13 +111,14 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 	}
 
 	v.RWMutex.RLock()
-	defer v.RWMutex.RUnlock()
 	publicKey := v.PublicKeys[kid]
+	v.RWMutex.RUnlock()
 	if publicKey == nil {
 		return fmt.Errorf("public key not found")
 	}
 
-	err = jsonWebToken.Claims(publicKey, &v.JwtClaims)
+	var jwtClaims JWTClaims
+	err = jsonWebToken.Claims(publicKey, &jwtClaims)
 	if err != nil {
 		return err
 	}
@@ -135,11 +135,11 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		}
 		fmt.Println("token verified")
 
-		if errNamespace := v.hasValidNamespace(v.JwtClaims, namespace); errNamespace != nil {
+		if errNamespace := v.hasValidNamespace(jwtClaims, namespace); errNamespace != nil {
 			return fmt.Errorf(errNamespace.Error())
 		}
 
-		hasValidPermission, errPermission := v.hasValidPermissions(v.JwtClaims, permission, namespace, userId)
+		hasValidPermission, errPermission := v.hasValidPermissions(jwtClaims, permission, namespace, userId)
 		if !hasValidPermission {
 			return fmt.Errorf("insufficient permissions. %v", errPermission)
 		}
@@ -147,7 +147,7 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		return nil
 	}
 
-	err = v.JwtClaims.Validate()
+	err = jwtClaims.Validate()
 	if err != nil {
 		return err
 	}
@@ -156,15 +156,15 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		return fmt.Errorf("token was revoked")
 	}
 
-	if v.isUserRevoked(v.JwtClaims.Subject, int64(v.JwtClaims.IssuedAt)) {
+	if v.isUserRevoked(jwtClaims.Subject, int64(jwtClaims.IssuedAt)) {
 		return fmt.Errorf("user was revoked")
 	}
 
-	if errNamespace := v.hasValidNamespace(v.JwtClaims, namespace); errNamespace != nil {
+	if errNamespace := v.hasValidNamespace(jwtClaims, namespace); errNamespace != nil {
 		return fmt.Errorf(errNamespace.Error())
 	}
 
-	hasValidPermission, errPermission := v.hasValidPermissions(v.JwtClaims, permission, namespace, userId)
+	hasValidPermission, errPermission := v.hasValidPermissions(jwtClaims, permission, namespace, userId)
 	if !hasValidPermission {
 		return fmt.Errorf("insufficient permissions in local validation. %v", errPermission)
 	}
@@ -646,7 +646,6 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 
 		Filter:                nil,
 		JwkSet:                nil,
-		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
 		LocalValidationActive: false,

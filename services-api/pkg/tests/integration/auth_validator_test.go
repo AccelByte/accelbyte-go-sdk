@@ -2,7 +2,7 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package iam
+package integration_test
 
 import (
 	"crypto/rand"
@@ -19,70 +19,155 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/go-jose"
 	"github.com/AccelByte/go-jose/jwt"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTokenValidator_ValidateToken(t *testing.T) {
-	// should be moved and run as integration test, skip for now
-	t.Skip()
-
-	// Arrange
-	configRepo := auth.DefaultConfigRepositoryImpl()
-	tokenRepo := auth.DefaultTokenRepositoryImpl()
-	authService := OAuth20Service{
-		Client:           factory.NewIamClient(configRepo),
-		ConfigRepository: configRepo,
-		TokenRepository:  tokenRepo,
+func TestTokenValidator_ValidateTokenClient(t *testing.T) {
+	tests := []struct {
+		name            string
+		localValidation bool
+		action          int
+		resource        string
+		expectError     bool
+	}{
+		{"LocalValidation_False_Valid", false, 2, "ROLE", false},
+		{"LocalValidation_False_InvalidResource", false, 2, "ROLE:INVALID", true},
+		{"LocalValidation_False_InvalidAction", false, 1, "ROLE", true},
+		{"LocalValidation_True_Valid", true, 2, "ROLE", false},
+		{"LocalValidation_True_InvalidResource", true, 2, "ROLE:INVALID", true},
+		{"LocalValidation_True_InvalidAction", true, 1, "ROLE", true},
 	}
 
-	err := authService.LoginClient(&configRepo.ClientId, &configRepo.ClientSecret)
-	if err != nil {
-		assert.Fail(t, err.Error())
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// Arrange
+			configRepo := auth.DefaultConfigRepositoryImpl()
+			tokenRepo := auth.DefaultTokenRepositoryImpl()
+			authService := iam.OAuth20Service{
+				Client:           factory.NewIamClient(configRepo),
+				ConfigRepository: configRepo,
+				TokenRepository:  tokenRepo,
+			}
 
-		return
+			err := authService.LoginClient(&configRepo.ClientId, &configRepo.ClientSecret)
+			if err != nil {
+				assert.Fail(t, err.Error())
+				return
+			}
+
+			accessToken, err := authService.GetToken()
+			if err != nil {
+				assert.Fail(t, err.Error())
+				return
+			}
+
+			namespace := os.Getenv("AB_NAMESPACE")
+			requiredPermission := iam.Permission{
+				Action:   tt.action,
+				Resource: tt.resource,
+			}
+
+			authService.SetLocalValidation(tt.localValidation)
+			claims, errClaims := authService.ParseAccessTokenToClaims(accessToken, false)
+			if errClaims != nil {
+				assert.Fail(t, errClaims.Error())
+				return
+			}
+
+			// Act
+			err = authService.Validate(accessToken, &requiredPermission, &namespace, nil)
+
+			// Assert
+			if tt.expectError {
+				assert.NotNil(t, err)
+			} else {
+				assert.Nil(t, err)
+				assert.Equal(t, claims.Namespace, namespace)
+			}
+		})
+	}
+}
+
+func TestTokenValidator_ValidateTokenUser(t *testing.T) {
+	tests := []struct {
+		name            string
+		localValidation bool
+		action          int
+		resource        string
+		expectError     bool
+	}{
+		{"LocalValidation_False_Valid", false, 2, "NAMESPACE:{namespace}:WALLET", false},
+		{"LocalValidation_False_InvalidResource", false, 2, "NAMESPACE:{namespace}:WALLET:INVALID", true},
+		{"LocalValidation_False_InvalidAction", false, 1, "NAMESPACE:{namespace}:WALLET", true},
+		{"LocalValidation_True_Valid", true, 2, "NAMESPACE:{namespace}:WALLET", false},
+		{"LocalValidation_True_InvalidResource", true, 2, "NAMESPACE:{namespace}:WALLET:INVALID", true},
+		{"LocalValidation_True_InvalidAction", true, 1, "NAMESPACE:{namespace}:WALLET", true},
 	}
 
-	accessToken, err := authService.GetToken()
-	if err != nil {
-		assert.Fail(t, err.Error())
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			// Arrange
+			configRepo := auth.DefaultConfigRepositoryImpl()
+			tokenRepo := auth.DefaultTokenRepositoryImpl()
+			authService := iam.OAuth20Service{
+				Client:           factory.NewIamClient(configRepo),
+				ConfigRepository: configRepo,
+				TokenRepository:  tokenRepo,
+			}
 
-		return
+			username := os.Getenv("AB_USERNAME")
+			password := os.Getenv("AB_PASSWORD")
+
+			err := authService.LoginUser(username, password)
+			if err != nil {
+				assert.Fail(t, err.Error())
+				return
+			}
+
+			accessToken, err := authService.GetToken()
+			if err != nil {
+				assert.Fail(t, err.Error())
+				return
+			}
+
+			namespace := os.Getenv("AB_NAMESPACE")
+			requiredPermission := iam.Permission{
+				Action:   tt.action,
+				Resource: tt.resource,
+			}
+
+			authService.SetLocalValidation(tt.localValidation)
+			claims, errClaims := authService.ParseAccessTokenToClaims(accessToken, false)
+			if errClaims != nil {
+				assert.Fail(t, errClaims.Error())
+				return
+			}
+
+			// Act
+			err = authService.Validate(accessToken, &requiredPermission, &namespace, nil)
+
+			// Assert
+			if tt.expectError {
+				assert.NotNil(t, err)
+			} else {
+				assert.Nil(t, err)
+				assert.Equal(t, claims.Namespace, namespace)
+			}
+		})
 	}
-
-	namespace := os.Getenv("AB_NAMESPACE")
-	resourceName := "MMV2GRPCSERVICE"
-	requiredPermission := Permission{
-		Action:   2,
-		Resource: fmt.Sprintf("NAMESPACE:%s:%s", namespace, resourceName),
-	}
-
-	authService.SetLocalValidation(true)                                          // true will do it locally, false will do it remotely
-	claims, errClaims := authService.ParseAccessTokenToClaims(accessToken, false) // false will not validate using client namespace
-	if errClaims != nil {
-		assert.Fail(t, errClaims.Error())
-
-		return
-	}
-
-	// Act
-	err = authService.Validate(accessToken, &requiredPermission, &namespace, nil)
-
-	// Assert
-	assert.Nil(t, err)
-	assert.Equal(t, claims.Namespace, namespace)
 }
 
 func TestTokenValidator_ValidateExtendNamespace(t *testing.T) {
-	// should be moved and run as integration test, skip for now
-	t.Skip()
+	t.Skip() // only allow publisher/studio namespace oauth client for this grant type
 
 	// Arrange
 	configRepo := auth.DefaultConfigRepositoryImpl()
 	tokenRepo := auth.DefaultTokenRepositoryImpl()
-	authService := OAuth20Service{
+	authService := iam.OAuth20Service{
 		Client:           factory.NewIamClient(configRepo),
 		ConfigRepository: configRepo,
 		TokenRepository:  tokenRepo,
@@ -117,7 +202,7 @@ func TestTokenValidator_ValidateExtendNamespace(t *testing.T) {
 }
 
 func TestTokenValidator_ValidateNamespaceRevamp(t *testing.T) {
-	validator := NewTokenValidatorTest(OAuth20Service{}, time.Hour)
+	validator := NewTokenValidatorTest(iam.OAuth20Service{}, time.Hour)
 	jwtClaims := jwt.Claims{
 		Subject:  "user1",
 		Audience: []string{"client-id-1"},
@@ -129,23 +214,23 @@ func TestTokenValidator_ValidateNamespaceRevamp(t *testing.T) {
 	tests := []struct {
 		Name               string
 		Key                *rsa.PrivateKey
-		Claims             JWTClaims
+		Claims             iam.JWTClaims
 		IsErrorNil         bool
-		ExpectedPermission Permission
+		ExpectedPermission iam.Permission
 	}{
 		{
 			Name:       "assert 1",
 			IsErrorNil: true,
 			Key:        privateKey,
-			Claims: JWTClaims{
+			Claims: iam.JWTClaims{
 				Namespace: "studio1",
-				Permissions: []Permission{{
+				Permissions: []iam.Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
 				}},
 				Claims: jwtClaims,
 			},
-			ExpectedPermission: Permission{
+			ExpectedPermission: iam.Permission{
 				Resource: "NAMESPACE:{namespace}:CLIENT",
 				Action:   2,
 			},
@@ -155,15 +240,15 @@ func TestTokenValidator_ValidateNamespaceRevamp(t *testing.T) {
 			Name:       "assert 2",
 			IsErrorNil: false,
 			Key:        privateKey,
-			Claims: JWTClaims{
+			Claims: iam.JWTClaims{
 				Namespace: "studio2",
-				Permissions: []Permission{{
+				Permissions: []iam.Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
 				}},
 				Claims: jwtClaims,
 			},
-			ExpectedPermission: Permission{
+			ExpectedPermission: iam.Permission{
 				Resource: "NAMESPACE:studio2-:CLIENT",
 				Action:   2,
 			},
@@ -173,15 +258,15 @@ func TestTokenValidator_ValidateNamespaceRevamp(t *testing.T) {
 			Name:       "assert 3",
 			IsErrorNil: true,
 			Key:        privateKey,
-			Claims: JWTClaims{
+			Claims: iam.JWTClaims{
 				Namespace: "studio1-game1",
-				Permissions: []Permission{{
+				Permissions: []iam.Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
 				}},
 				Claims: jwtClaims,
 			},
-			ExpectedPermission: Permission{
+			ExpectedPermission: iam.Permission{
 				Resource: "NAMESPACE:{namespace}:CLIENT",
 				Action:   2,
 			},
@@ -226,7 +311,7 @@ func TestTokenValidator_ValidateNamespaceRevamp(t *testing.T) {
 }
 
 func TestTokenValidator_ValidateNamespaceRevamp2(t *testing.T) {
-	validator := NewTokenValidatorTest2(OAuth20Service{}, time.Hour)
+	validator := NewTokenValidatorTest2(iam.OAuth20Service{}, time.Hour)
 	jwtClaims := jwt.Claims{
 		Subject:  "user1",
 		Audience: []string{"client-id-1"},
@@ -235,7 +320,7 @@ func TestTokenValidator_ValidateNamespaceRevamp2(t *testing.T) {
 		Expiry:   jwt.NewNumericDate(time.Now().UTC().Add(1 * time.Hour)),
 	}
 
-	expectedPermission := Permission{
+	expectedPermission := iam.Permission{
 		Resource: "NAMESPACE:{namespace}:CLIENT",
 		Action:   2,
 	}
@@ -243,16 +328,16 @@ func TestTokenValidator_ValidateNamespaceRevamp2(t *testing.T) {
 	tests := []struct {
 		Name       string
 		Key        *rsa.PrivateKey
-		Claims     JWTClaims
+		Claims     iam.JWTClaims
 		IsErrorNil bool
 	}{
 		{
 			Name:       "assert 4",
 			IsErrorNil: true,
 			Key:        privateKey,
-			Claims: JWTClaims{
+			Claims: iam.JWTClaims{
 				Namespace: "studio1", // game1 in the NewTokenValidatorTest2
-				Permissions: []Permission{{
+				Permissions: []iam.Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
 				}},
@@ -264,9 +349,9 @@ func TestTokenValidator_ValidateNamespaceRevamp2(t *testing.T) {
 			Name:       "assert 5",
 			IsErrorNil: false,
 			Key:        privateKey,
-			Claims: JWTClaims{
+			Claims: iam.JWTClaims{
 				Namespace: "game2",
-				Permissions: []Permission{{
+				Permissions: []iam.Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
 				}},
@@ -313,7 +398,7 @@ func TestTokenValidator_ValidateNamespaceRevamp2(t *testing.T) {
 }
 
 func TestTokenValidator_ValidateNamespaceRevamp3(t *testing.T) {
-	validator := NewTokenValidatorTest3(OAuth20Service{}, time.Hour)
+	validator := NewTokenValidatorTest3(iam.OAuth20Service{}, time.Hour)
 	jwtClaims := jwt.Claims{
 		Subject:  "user1",
 		Audience: []string{"client-id-1"},
@@ -322,7 +407,7 @@ func TestTokenValidator_ValidateNamespaceRevamp3(t *testing.T) {
 		Expiry:   jwt.NewNumericDate(time.Now().UTC().Add(1 * time.Hour)),
 	}
 
-	expectedPermission := Permission{
+	expectedPermission := iam.Permission{
 		Resource: "NAMESPACE:{namespace}:CLIENT",
 		Action:   2,
 	}
@@ -330,7 +415,7 @@ func TestTokenValidator_ValidateNamespaceRevamp3(t *testing.T) {
 	tests := []struct {
 		Name       string
 		Key        *rsa.PrivateKey
-		Claims     JWTClaims
+		Claims     iam.JWTClaims
 		IsErrorNil bool
 	}{
 
@@ -338,9 +423,9 @@ func TestTokenValidator_ValidateNamespaceRevamp3(t *testing.T) {
 			Name:       "assert 5",
 			IsErrorNil: false,
 			Key:        privateKey,
-			Claims: JWTClaims{
+			Claims: iam.JWTClaims{
 				Namespace: "game2", // the NewTokenValidatorTest3 is using game1 as namespace
-				Permissions: []Permission{{
+				Permissions: []iam.Permission{{
 					Resource: "NAMESPACE:studio1-:CLIENT",
 					Action:   2,
 				}},
@@ -397,18 +482,18 @@ func getKey() (*rsa.PublicKey, *rsa.PrivateKey) {
 
 var privateKey *rsa.PrivateKey
 
-func NewTokenValidatorTest(authService OAuth20Service, refreshInterval time.Duration) AuthTokenValidator {
+func NewTokenValidatorTest(authService iam.OAuth20Service, refreshInterval time.Duration) iam.AuthTokenValidator {
 	pubKey, privKey := getKey()
 
 	privateKey = privKey
 
-	return &TokenValidator{
+	return &iam.TokenValidator{
 		AuthService:     authService,
 		RefreshInterval: refreshInterval,
 
 		Filter:      nil,
 		JwkSet:      nil,
-		JwtClaims:   JWTClaims{},
+		JwtClaims:   iam.JWTClaims{},
 		JwtEncoding: *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys: map[string]*rsa.PublicKey{
 			"test": pubKey,
@@ -416,22 +501,22 @@ func NewTokenValidatorTest(authService OAuth20Service, refreshInterval time.Dura
 		LocalValidationActive: true,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
-		NamespaceContexts:     make(map[string]*NamespaceContext),
+		NamespaceContexts:     make(map[string]*iam.NamespaceContext),
 	}
 }
 
-func NewTokenValidatorTest2(authService OAuth20Service, refreshInterval time.Duration) AuthTokenValidator {
+func NewTokenValidatorTest2(authService iam.OAuth20Service, refreshInterval time.Duration) iam.AuthTokenValidator {
 	pubKey, privKey := getKey()
 
 	privateKey = privKey
 
-	return &TokenValidator{
+	return &iam.TokenValidator{
 		AuthService:     authService,
 		RefreshInterval: refreshInterval,
 
 		Filter:      nil,
 		JwkSet:      nil,
-		JwtClaims:   JWTClaims{},
+		JwtClaims:   iam.JWTClaims{},
 		JwtEncoding: *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys: map[string]*rsa.PublicKey{
 			"test": pubKey,
@@ -439,10 +524,10 @@ func NewTokenValidatorTest2(authService OAuth20Service, refreshInterval time.Dur
 		LocalValidationActive: true,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
-		NamespaceContexts: map[string]*NamespaceContext{
+		NamespaceContexts: map[string]*iam.NamespaceContext{
 			"studio1": {
 				Namespace:          "game1",
-				Type:               TypeGame,
+				Type:               iam.TypeGame,
 				PublisherNamespace: "accelbyte",
 				StudioNamespace:    "studio1",
 			},
@@ -450,18 +535,18 @@ func NewTokenValidatorTest2(authService OAuth20Service, refreshInterval time.Dur
 	}
 }
 
-func NewTokenValidatorTest3(authService OAuth20Service, refreshInterval time.Duration) AuthTokenValidator {
+func NewTokenValidatorTest3(authService iam.OAuth20Service, refreshInterval time.Duration) iam.AuthTokenValidator {
 	pubKey, privKey := getKey()
 
 	privateKey = privKey
 
-	return &TokenValidator{
+	return &iam.TokenValidator{
 		AuthService:     authService,
 		RefreshInterval: refreshInterval,
 
 		Filter:      nil,
 		JwkSet:      nil,
-		JwtClaims:   JWTClaims{},
+		JwtClaims:   iam.JWTClaims{},
 		JwtEncoding: *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys: map[string]*rsa.PublicKey{
 			"test": pubKey,
@@ -469,10 +554,10 @@ func NewTokenValidatorTest3(authService OAuth20Service, refreshInterval time.Dur
 		LocalValidationActive: true,
 		RevokedUsers:          make(map[string]time.Time),
 		Roles:                 make(map[string]*iamclientmodels.ModelRolePermissionResponseV3),
-		NamespaceContexts: map[string]*NamespaceContext{
+		NamespaceContexts: map[string]*iam.NamespaceContext{
 			"game1": {
 				Namespace:          "game1",
-				Type:               TypeGame,
+				Type:               iam.TypeGame,
 				PublisherNamespace: "accelbyte",
 				StudioNamespace:    "studio1",
 			},
@@ -485,7 +570,7 @@ func findAndCheckResourceFromRole(configRepo *auth.ConfigRepositoryImpl, tokenRe
 
 	resultAction := -1
 
-	overrideRoleService := OverrideRoleConfigv3Service{
+	overrideRoleService := iam.OverrideRoleConfigv3Service{
 		Client:           iamClient,
 		ConfigRepository: configRepo,
 		TokenRepository:  tokenRepo,
@@ -527,7 +612,7 @@ func Test_RoleOverride(t *testing.T) {
 	tokenRepo := auth.DefaultTokenRepositoryImpl()
 	iamClient := factory.NewIamClient(configRepo)
 
-	authService := OAuth20Service{
+	authService := iam.OAuth20Service{
 		Client:           iamClient,
 		ConfigRepository: configRepo,
 		TokenRepository:  tokenRepo,
@@ -539,7 +624,7 @@ func Test_RoleOverride(t *testing.T) {
 	tkn, err := tokenRepo.GetToken()
 	assert.NoError(t, err)
 
-	roleService := RolesService{
+	roleService := iam.RolesService{
 		Client:           iamClient,
 		ConfigRepository: configRepo,
 		TokenRepository:  tokenRepo,
@@ -565,7 +650,7 @@ func Test_RoleOverride(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, actionToCheck, action)
 
-	overrideRoleService := OverrideRoleConfigv3Service{
+	overrideRoleService := iam.OverrideRoleConfigv3Service{
 		Client:           iamClient,
 		ConfigRepository: configRepo,
 		TokenRepository:  tokenRepo,

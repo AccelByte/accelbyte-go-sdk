@@ -1,5 +1,11 @@
 <a name="v0.85.0"></a>
 ## [v0.85.0]
+### fix
+- **auth-validator:** potential deadlock when get role
+- **auth-validator:** make jwtClaims local variable
+- **auth-validator:**: string trailing hyphen from namespace
+### test
+- **auth-validator:**: add tests
 
 
 <a name="v0.84.0"></a>

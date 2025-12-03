@@ -43,6 +43,7 @@ type TokenValidator struct {
 
 	Filter                *bloom.Filter
 	JwkSet                *iamclientmodels.OauthcommonJWKSet
+	JwtClaims             JWTClaims // Not used, preserved for backward compatibility
 	JwtEncoding           base64.Encoding
 	LocalValidationActive bool
 	PublicKeys            map[string]*rsa.PublicKey
@@ -322,7 +323,7 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 
 	v.RWMutex.Lock()
 	defer v.RWMutex.Unlock()
-	
+
 	// Double-check after acquiring write lock
 	if !forceFetch {
 		if role, found := v.Roles[roleId]; found {
@@ -654,6 +655,7 @@ func NewTokenValidator(authService OAuth20Service, refreshInterval time.Duration
 
 		Filter:                nil,
 		JwkSet:                nil,
+		JwtClaims:             JWTClaims{},
 		JwtEncoding:           *base64.URLEncoding.WithPadding(base64.NoPadding),
 		PublicKeys:            make(map[string]*rsa.PublicKey),
 		LocalValidationActive: false,

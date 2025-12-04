@@ -321,6 +321,9 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 		namespace = os.Getenv("AB_NAMESPACE")
 	}
 
+	// Strip trailing hyphen from namespace
+	namespace = strings.TrimSuffix(namespace, "-")
+
 	v.RWMutex.Lock()
 	defer v.RWMutex.Unlock()
 

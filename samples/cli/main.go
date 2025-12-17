@@ -10,13 +10,13 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
@@ -68,11 +68,41 @@ const (
 	quitCmd                   = "99"
 )
 
+// parseSlogLevel converts string log level to slog.Level
+func parseSlogLevel(levelStr string) slog.Level {
+	switch strings.ToLower(levelStr) {
+	case "debug":
+		return slog.LevelDebug
+	case "info":
+		return slog.LevelInfo
+	case "warn", "warning":
+		return slog.LevelWarn
+	case "error", "fatal", "panic":
+		return slog.LevelError
+	default:
+		return slog.LevelInfo
+	}
+}
+
 func main() {
+	// Initialize default slog logger
+	logLevel := os.Getenv("LOG_LEVEL")
+	if logLevel == "" {
+		logLevel = "info"
+	}
+
+	slogLevel := parseSlogLevel(logLevel)
+	opts := &slog.HandlerOptions{
+		Level: slogLevel,
+	}
+	handler := slog.NewJSONHandler(os.Stdout, opts)
+	logger := slog.New(handler)
+	slog.SetDefault(logger)
+
 	args := os.Args
 	if standbyModeFlag := args[1]; standbyModeFlag == "--wsMode" {
 		reader = bufio.NewReader(os.Stdin)
-		logrus.Info("Enter websocket mode")
+		slog.Info("Enter websocket mode")
 		connMgr = &utils.ConnectionManagerImpl{}
 		configRepo := &repository.ConfigRepositoryImpl{}
 		tokenRepo := &repository.TokenRepositoryImpl{}
@@ -113,10 +143,10 @@ func main() {
 		serve()
 
 		defer connMgr.Close()
-		logrus.Info("Done")
+		slog.Info("Done")
 	} else if standbyModeFlag = args[1]; standbyModeFlag == "--wsModeStandalone" {
 		reader = bufio.NewReader(os.Stdin)
-		logrus.Info("Enter websocket mode")
+		slog.Info("Enter websocket mode")
 		connMgr = &utils.ConnectionManagerImpl{}
 		configRepo := &repository.ConfigRepositoryImpl{}
 		tokenRepo := &repository.TokenRepositoryImpl{}
@@ -165,7 +195,7 @@ func main() {
 		time.Sleep(2 * time.Second)
 
 		defer connMgr.Close()
-		logrus.Info("Done")
+		slog.Info("Done")
 	} else {
 		cmd.Execute()
 	}
@@ -175,19 +205,20 @@ func main() {
 var messageHandler = func(dataByte []byte) {
 	message, err := parser.UnmarshalResponse(dataByte)
 	if err != nil {
-		logrus.Error(err)
+		slog.Error("failed to unmarshal websocket message", "error", err)
 
 		return
 	}
 	// print all incoming message type
-	logrus.Infof("Message type: %v", message.Type())
+	slog.Info("websocket message received", "type", message.Type())
 
 	marshal, err := json.Marshal(message)
 	if err != nil {
+		slog.Error("failed to marshal message content", "error", err)
 		return
 	}
 	// print all incoming message content
-	logrus.Infof("Message content: %v", string(marshal))
+	slog.Info("websocket message content", "content", string(marshal))
 }
 
 func printHelp() {
@@ -271,31 +302,31 @@ func serve() {
 		case infoCmd:
 			err := partyService.GetPartyInfo()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
 		case createCmd:
 			err := partyService.CreateParty()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
 		case leaveCmd:
 			err := partyService.LeaveParty()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
 		case inviteCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
-			logrus.Debug("Sending invite message")
+			slog.Debug("Sending invite message")
 			err := partyService.InviteParty(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
@@ -304,20 +335,20 @@ func serve() {
 			partyID := getInput()
 			fmt.Println("Invitation token:")
 			token := getInput()
-			logrus.Debug("Sending join message")
+			slog.Debug("Sending join message")
 			err := partyService.JoinParty(partyID, token)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
 		case kickCmd:
 			fmt.Println("Member ID:")
 			id := getInput()
-			logrus.Debug("Sending kick message")
+			slog.Debug("Sending kick message")
 			err := partyService.KickPartyMember(id)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
@@ -326,20 +357,20 @@ func serve() {
 			partyID := getInput()
 			fmt.Println("Invitation token:")
 			token := getInput()
-			logrus.Debug("Sending reject message")
+			slog.Debug("Sending reject message")
 			err := partyService.RejectPartyInvitation(partyID, token)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
 		case promoteLeaderCmd:
 			fmt.Println("New leader User ID:")
 			leaderUserID := getInput()
-			logrus.Debug("Sending kick message")
+			slog.Debug("Sending kick message")
 			err := partyService.PromotePartyLeader(leaderUserID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
@@ -350,29 +381,29 @@ func serve() {
 			content := getInput()
 			err := chatService.SendPersonalChat(friendID, content)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case partyChatCmd:
 			fmt.Println("Message:")
 			content := getInput()
 			err := chatService.SendPartyChat(content)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case joinDefaultChatChannelCmd:
 			err := chatService.JoinDefaultChannel()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case getOfflineNotificationCmd:
 			err := notificationService.GetOfflineNotification()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case getFriendsCmd:
 			err := friendService.GetFriendPresenceStatus()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case setUserStatusCmd:
 			fmt.Println("Availability:")
@@ -381,77 +412,77 @@ func serve() {
 			activity := getInput()
 			i, err := strconv.Atoi(availability)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 
 				return
 			}
 			err = friendService.SetUserStatus(i, activity)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case requestFriendsCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := friendService.RequestFriend(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case listIncomingFriendsCmd:
 			err := friendService.GetIncomingFriendRequest()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case listOutgoingFriendsCmd:
 			err := friendService.GetOutgoingFriendRequest()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case acceptFriendsCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := friendService.AcceptFriendRequest(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case rejectFriendsCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := friendService.RejectFriendRequest(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case cancelFriendsRequestCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := friendService.CancelFriendRequest(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case unfriendCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := friendService.Unfriend(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case listOfFriendsCmd:
 			err := friendService.GetFriends()
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case getFriendshipStatusCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := friendService.GetFriendshipStatus(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case personalChatHistoryCmd:
 			fmt.Println("Friend ID:")
 			friendID := getInput()
 			err := chatService.GetPersonalChatHistory(friendID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case sendChatChannelCmd:
 			fmt.Println("Channel Slug:")
@@ -460,7 +491,7 @@ func serve() {
 			content := getInput()
 			err := chatService.SendChannelChat(channelSlug, content)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case blockCmd:
 			fmt.Println("Namespace:")
@@ -471,7 +502,7 @@ func serve() {
 			blockedUserID := getInput()
 			err := friendService.Block(namespace, userID, blockedUserID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case unblockCmd:
 			fmt.Println("Namespace:")
@@ -482,10 +513,10 @@ func serve() {
 			blockedUserID := getInput()
 			err := friendService.Unblock(namespace, userID, blockedUserID)
 			if err != nil {
-				logrus.Error(err)
+				slog.Error("operation failed", "error", err)
 			}
 		case quitCmd:
-			logrus.Print("disconnect message: ")
+			slog.Info("disconnect message: ")
 			msg := getInput()
 			_ = connMgr.Get().Conn.WriteMessage(websocket.CloseMessage,
 				websocket.FormatCloseMessage(websocket.CloseNormalClosure, msg))
@@ -509,7 +540,7 @@ func serveStandalone() {
 		friendId := m["friendId"]
 		err := lobbyService.AcceptFriendsNotif(friendId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -522,7 +553,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.AcceptFriendsRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -536,7 +567,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.AcceptFriendsResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -549,7 +580,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.BlockPlayerNotif(blockedUserId, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -563,7 +594,7 @@ func serveStandalone() {
 		namespace := m["namespace"]
 		err := lobbyService.BlockPlayerRequest(&blockUserId, &id, &namespace)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -579,7 +610,7 @@ func serveStandalone() {
 		namespace := m["namespace"]
 		err := lobbyService.BlockPlayerResponse(blockUserId, code, id, namespace)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -591,7 +622,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.CancelFriendsNotif(userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -604,7 +635,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.CancelFriendsRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -618,7 +649,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.CancelFriendsResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -633,7 +664,7 @@ func serveStandalone() {
 		isTempParty, _ := strconv.ParseBool(isTempPartyString)
 		err := lobbyService.CancelMatchmakingRequest(&gameMode, &id, &isTempParty)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -647,7 +678,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.CancelMatchmakingResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -662,7 +693,7 @@ func serveStandalone() {
 		sentAt := m["sentAt"]
 		err := lobbyService.ChannelChatNotif(channelSlug, from, payload, sentAt)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -675,7 +706,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.ClientResetRequest(&namespace, &userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -687,7 +718,7 @@ func serveStandalone() {
 		lobbySessionID := m["lobbySessionID"]
 		err := lobbyService.ConnectNotif(lobbySessionID)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -700,7 +731,7 @@ func serveStandalone() {
 		namespace := m["namespace"]
 		err := lobbyService.DisconnectNotif(connectionId, namespace)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -736,7 +767,7 @@ func serveStandalone() {
 		status := m["status"]
 		err := lobbyService.DsNotif(alternateIps, customAttribute, deployment, gameVersion, imageVersion, ip, isOK, isOverrideGameVersion, lastUpdate, matchId, message, namespace, podName, port, ports, protocol, provider, region, sessionId, status)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -748,7 +779,7 @@ func serveStandalone() {
 		message := m["message"]
 		err := lobbyService.ErrorNotif(message)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -761,7 +792,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.ExitAllChannel(namespace, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -773,7 +804,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.FriendsStatusRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -799,7 +830,7 @@ func serveStandalone() {
 		lastSeenAt = append(lastSeenAt, lastSeenAtString)
 		err := lobbyService.FriendsStatusResponse(activity, availability, code, friendIds, id, lastSeenAt)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -811,7 +842,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.GetAllSessionAttributeRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -826,7 +857,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.GetAllSessionAttributeResponse(attributes, code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -839,7 +870,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.GetFriendshipStatusRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -854,7 +885,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.GetFriendshipStatusResponse(code, friendshipStatus, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -867,7 +898,7 @@ func serveStandalone() {
 		key := m["key"]
 		err := lobbyService.GetSessionAttributeRequest(&id, &key)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -882,14 +913,14 @@ func serveStandalone() {
 		value := m["value"]
 		err := lobbyService.GetSessionAttributeResponse(code, id, value)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
 	case model.TypeHeartbeat:
 		err := lobbyService.Heartbeat()
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -901,7 +932,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.JoinDefaultChannelRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -916,7 +947,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.JoinDefaultChannelResponse(channelSlug, code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -928,7 +959,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.ListIncomingFriendsRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -945,7 +976,7 @@ func serveStandalone() {
 		userIds = append(userIds, userIdsString)
 		err := lobbyService.ListIncomingFriendsResponse(code, id, userIds)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -958,7 +989,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.ListOfFriendsRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -975,7 +1006,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.ListOfFriendsResponse(code, friendIds, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -987,7 +1018,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.ListOnlineFriendsRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -999,7 +1030,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.ListOutgoingFriendsRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1016,7 +1047,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.ListOutgoingFriendsResponse(code, friendIds, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1038,7 +1069,7 @@ func serveStandalone() {
 		status := m["status"]
 		err := lobbyService.MatchmakingNotif(counterPartyMember, matchId, message, partyMember, readyDuration, status)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1055,7 +1086,7 @@ func serveStandalone() {
 		topic := m["topic"]
 		err := lobbyService.MessageNotif(from, id, payload, sentAt, to, topic)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1072,7 +1103,7 @@ func serveStandalone() {
 		topic := m["topic"]
 		err := lobbyService.MessageSessionNotif(from, id, payload, sentAt, to, topic)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1084,7 +1115,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.OfflineNotificationRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1098,7 +1129,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.OfflineNotificationResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1115,7 +1146,7 @@ func serveStandalone() {
 		onlineFriendIds = append(onlineFriendIds, onlineFriendIdsString)
 		err := lobbyService.OnlineFriends(code, id, onlineFriendIds)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1131,7 +1162,7 @@ func serveStandalone() {
 		to := m["to"]
 		err := lobbyService.PartyChatNotif(from, id, payload, receivedAt, to)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1147,7 +1178,7 @@ func serveStandalone() {
 		to := m["to"]
 		err := lobbyService.PartyChatRequest(&from, &id, &payload, &receivedAt, &to)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1161,7 +1192,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyChatResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1173,7 +1204,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyCreateRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1192,7 +1223,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyCreateResponse(code, id, invitationToken, invitees, leaderId, members, partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1214,7 +1245,7 @@ func serveStandalone() {
 		updatedAt := m["updatedAt"]
 		err := lobbyService.PartyDataUpdateNotif(customAttributes, invitees, leader, members, namespace, partyId, updatedAt)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1228,7 +1259,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyGetInvitedNotif(from, invitationToken, partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1240,7 +1271,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyInfoRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1260,7 +1291,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyInfoResponse(code, customAttributes, id, invitationToken, invitees, leaderId, members, partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1273,7 +1304,7 @@ func serveStandalone() {
 		inviterId := m["inviterId"]
 		err := lobbyService.PartyInviteNotif(inviteeId, inviterId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1286,7 +1317,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyInviteRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1300,7 +1331,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyInviteResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1312,7 +1343,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.PartyJoinNotif(userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1326,7 +1357,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyJoinRequest(&id, &invitationToken, &partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1345,7 +1376,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyJoinResponse(code, id, invitationToken, invitees, leaderId, members, partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1359,7 +1390,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.PartyKickNotif(leaderId, partyId, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1372,7 +1403,7 @@ func serveStandalone() {
 		memberId := m["memberId"]
 		err := lobbyService.PartyKickRequest(&id, &memberId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1386,7 +1417,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyKickResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1399,7 +1430,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.PartyLeaveNotif(leaderId, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1413,7 +1444,7 @@ func serveStandalone() {
 		ignoreUserRegistry, _ := strconv.ParseBool(ignoreUserRegistryString)
 		err := lobbyService.PartyLeaveRequest(&id, &ignoreUserRegistry)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1427,7 +1458,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PartyLeaveResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1440,7 +1471,7 @@ func serveStandalone() {
 		newLeaderUserId := m["newLeaderUserId"]
 		err := lobbyService.PartyPromoteLeaderRequest(&id, &newLeaderUserId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1459,7 +1490,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyPromoteLeaderResponse(code, id, invitationToken, invitees, leaderId, members, partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1473,7 +1504,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.PartyRejectNotif(leaderId, partyId, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1487,7 +1518,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyRejectRequest(&id, &invitationToken, &partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1502,7 +1533,7 @@ func serveStandalone() {
 		partyId := m["partyId"]
 		err := lobbyService.PartyRejectResponse(code, id, partyId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1515,7 +1546,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PersonalChatHistoryRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1531,7 +1562,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PersonalChatHistoryResponse(chat, code, friendId, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1547,7 +1578,7 @@ func serveStandalone() {
 		to := m["to"]
 		err := lobbyService.PersonalChatNotif(from, id, payload, receivedAt, to)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1563,7 +1594,7 @@ func serveStandalone() {
 		to := m["to"]
 		err := lobbyService.PersonalChatRequest(&from, &id, &payload, &receivedAt, &to)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1577,7 +1608,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.PersonalChatResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1590,7 +1621,7 @@ func serveStandalone() {
 		token := m["token"]
 		err := lobbyService.RefreshTokenRequest(&id, &token)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1604,7 +1635,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.RefreshTokenResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1616,7 +1647,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.RejectFriendsNotif(userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1629,7 +1660,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.RejectFriendsRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1643,7 +1674,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.RejectFriendsResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1656,7 +1687,7 @@ func serveStandalone() {
 		banDuration, _ := strconv.ParseInt(banDurationString, 10, 64)
 		err := lobbyService.RematchmakingNotif(banDuration)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1668,7 +1699,7 @@ func serveStandalone() {
 		friendId := m["friendId"]
 		err := lobbyService.RequestFriendsNotif(friendId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1681,7 +1712,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.RequestFriendsRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1695,7 +1726,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.RequestFriendsResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1709,7 +1740,7 @@ func serveStandalone() {
 		payload := m["payload"]
 		err := lobbyService.SendChannelChatRequest(&channelSlug, &id, &payload)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1723,7 +1754,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.SendChannelChatResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1736,7 +1767,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.SetReadyConsentNotif(matchId, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1749,7 +1780,7 @@ func serveStandalone() {
 		matchId := m["matchId"]
 		err := lobbyService.SetReadyConsentRequest(&id, &matchId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1763,7 +1794,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.SetReadyConsentResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1778,7 +1809,7 @@ func serveStandalone() {
 		value := m["value"]
 		err := lobbyService.SetSessionAttributeRequest(&id, &key, &namespace, &value)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1792,7 +1823,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.SetSessionAttributeResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1807,7 +1838,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.SetUserStatusRequest(&activity, &availability, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1821,7 +1852,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.SetUserStatusResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1833,7 +1864,7 @@ func serveStandalone() {
 		message := m["message"]
 		err := lobbyService.ShutdownNotif(message)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1846,7 +1877,7 @@ func serveStandalone() {
 		message := m["message"]
 		err := lobbyService.SignalingP2PNotif(destinationId, message)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1864,7 +1895,7 @@ func serveStandalone() {
 		tempParty := m["tempParty"]
 		err := lobbyService.StartMatchmakingRequest(&extraAttributes, &gameMode, &id, partyAttributes, &priority, &tempParty)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1878,7 +1909,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.StartMatchmakingResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1891,7 +1922,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.UnblockPlayerNotif(unblockedUserId, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1905,7 +1936,7 @@ func serveStandalone() {
 		unblockedUserId := m["unblockedUserId"]
 		err := lobbyService.UnblockPlayerRequest(&id, &namespace, &unblockedUserId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1921,7 +1952,7 @@ func serveStandalone() {
 		unblockedUserId := m["unblockedUserId"]
 		err := lobbyService.UnblockPlayerResponse(code, id, namespace, unblockedUserId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1933,7 +1964,7 @@ func serveStandalone() {
 		friendId := m["friendId"]
 		err := lobbyService.UnfriendNotif(friendId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1946,7 +1977,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.UnfriendRequest(&friendId, &id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1960,14 +1991,14 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.UnfriendResponse(code, id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
 	case model.TypeUserBannedNotification:
 		err := lobbyService.UserBannedNotification()
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1979,7 +2010,7 @@ func serveStandalone() {
 		id := m["id"]
 		err := lobbyService.UserMetricRequest(&id)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -1995,7 +2026,7 @@ func serveStandalone() {
 		playerCount, _ := strconv.ParseInt(playerCountString, 10, 64)
 		err := lobbyService.UserMetricResponse(code, id, playerCount)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}
@@ -2011,7 +2042,7 @@ func serveStandalone() {
 		userId := m["userId"]
 		err := lobbyService.UserStatusNotif(activity, availability, lastSeenAt, userId)
 		if err != nil {
-			logrus.Error(err)
+			slog.Error("operation failed", "error", err)
 
 			return
 		}

@@ -5,6 +5,7 @@
 package utils
 
 import (
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -14,7 +15,6 @@ import (
 
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
-	"github.com/sirupsen/logrus"
 )
 
 const (
@@ -36,14 +36,14 @@ func (c *CustomTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	// enabling log
 	if os.Getenv("ENABLE_LOG") == "true" {
 		// logger request
-		logrus.Infof("LogRequest: %v", LogRequest(r))
+		slog.Info("HTTP request", "request", LogRequest(r))
 
 		// logger response
 		res, err := c.inner.RoundTrip(r)
 		if err != nil {
-			logrus.Error("failed to use the RoundTrip method")
+			slog.Error("RoundTrip failed", "error", err)
 		} else {
-			logrus.Infof("Response: %v", LogResponse(res))
+			slog.Info("HTTP response", "response", LogResponse(res))
 		}
 
 		return res, err

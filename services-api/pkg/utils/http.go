@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"log/slog"
 	"mime"
 	"mime/multipart"
 	"net/http"
@@ -27,7 +28,6 @@ import (
 	oarLogger "github.com/go-openapi/runtime/logger"
 	oarYaml "github.com/go-openapi/runtime/yamlpc"
 	oaStrFmt "github.com/go-openapi/strfmt"
-	"github.com/sirupsen/logrus"
 )
 
 func GetClient() http.Client {
@@ -42,7 +42,7 @@ func UploadBinaryFile(url, token, filePath string) (*http.Response, error) {
 	writer := multipart.NewWriter(body)
 	file, err := ReadByChunks(filePath)
 	if err != nil {
-		logrus.Error("file open error. ", err.Error())
+		slog.Error("file open error", "error", err)
 
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func DownloadBinary(endpoint, token, filePath string) (*http.Response, error) {
 
 	file, err := os.Create(filePath)
 	if err != nil {
-		logrus.Error("file create error. ", err.Error())
+		slog.Error("file create error", "error", err)
 
 		return nil, err
 	}
@@ -72,7 +72,7 @@ func DownloadBinary(endpoint, token, filePath string) (*http.Response, error) {
 
 	_, err = io.Copy(file, resp.Body)
 	if err != nil {
-		logrus.Error("file write error. ", err.Error())
+		slog.Error("file write error", "error", err)
 
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func DownloadBinary(endpoint, token, filePath string) (*http.Response, error) {
 func SimpleHTTPCall(client http.Client, endpoint, httpMethod, authorizationValue, contentType string, requestBody io.Reader) (*http.Response, error) {
 	req, err := http.NewRequest(httpMethod, endpoint, requestBody)
 	if err != nil {
-		logrus.Error("invalid request")
+		slog.Error("invalid request", "error", err)
 
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func SimpleHTTPCall(client http.Client, endpoint, httpMethod, authorizationValue
 	req.Header.Set("Authorization", authorizationValue)
 	resp, err := client.Do(req)
 	if err != nil {
-		logrus.Error("http call error. ", err.Error())
+		slog.Error("http call error", "error", err)
 
 		return nil, err
 	}

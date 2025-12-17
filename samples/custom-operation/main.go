@@ -6,14 +6,45 @@ package main
 
 import (
 	"encoding/json"
+	"log/slog"
 	"os"
+	"strings"
 
 	custom_sdk "custom-operation/custom-sdk"
 	"custom-operation/services-api/pkg/service/custom"
-	"github.com/sirupsen/logrus"
 )
 
+// parseSlogLevel converts string log level to slog.Level
+func parseSlogLevel(levelStr string) slog.Level {
+	switch strings.ToLower(levelStr) {
+	case "debug":
+		return slog.LevelDebug
+	case "info":
+		return slog.LevelInfo
+	case "warn", "warning":
+		return slog.LevelWarn
+	case "error", "fatal", "panic":
+		return slog.LevelError
+	default:
+		return slog.LevelInfo
+	}
+}
+
 func main() {
+	// Initialize default slog logger
+	logLevel := os.Getenv("LOG_LEVEL")
+	if logLevel == "" {
+		logLevel = "info"
+	}
+
+	slogLevel := parseSlogLevel(logLevel)
+	opts := &slog.HandlerOptions{
+		Level: slogLevel,
+	}
+	handler := slog.NewJSONHandler(os.Stdout, opts)
+	logger := slog.New(handler)
+	slog.SetDefault(logger)
+
 	// Arrange - call custom service client (wrapper)
 	CustomService := &custom.CustomService{
 		Client: custom_sdk.NewClientWithBasePath("www.googleapis.com", ""),
@@ -29,7 +60,7 @@ func main() {
 		Key:  os.Getenv("KEY"),
 	})
 	if err != nil {
-		logrus.Errorf("unable to call the custom service: %s", err.Error())
+		slog.Error("unable to call the custom service", "error", err)
 
 		return
 	}
@@ -37,10 +68,10 @@ func main() {
 	// Result
 	val, err := json.MarshalIndent(ok, "", "    ")
 	if err != nil {
-		logrus.Errorf("unable to marshal the response: %s", err.Error())
+		slog.Error("unable to marshal the response", "error", err)
 
 		return
 	}
 
-	logrus.Printf("successfully invoke the custom service: %s", val)
+	slog.Info("successfully invoked custom service", "response", string(val))
 }

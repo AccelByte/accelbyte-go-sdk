@@ -2,6 +2,8 @@
 ## [v0.86.0]
 ### docs
 - **migration-guide:** add migration guide 0.85.0
+- **:** add migration guide from v0.85.0 to v0.86.0 for ags 2026.1
+- **:** update CHANGELOG.md
 ### chore
 - **:** replace logrus with slog
 - **:** update golang image to 1.24.1

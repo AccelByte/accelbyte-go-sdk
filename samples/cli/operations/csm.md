@@ -421,6 +421,18 @@ $ samples/cli/sample-apps Csm getResourcesLimits \
     > result.txt
 ```
 
+### Operation `get_no_sql_app_list_v2`
+```sh
+$ samples/cli/sample-apps Csm getNoSQLAppListV2 \
+    --resourceId 'string' \
+    --studioName 'string' \
+    --appName 'string' \
+    --limit 1 \
+    --namespace 'string' \
+    --offset 1 \
+    > result.txt
+```
+
 ### Operation `get_notification_subscriber_list_v3`
 ```sh
 $ samples/cli/sample-apps Csm getNotificationSubscriberListV3 \

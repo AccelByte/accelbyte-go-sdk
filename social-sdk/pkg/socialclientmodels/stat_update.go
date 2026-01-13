@@ -45,11 +45,29 @@ type StatUpdate struct {
 	// ignoreadditionaldataonvaluerejected
 	IgnoreAdditionalDataOnValueRejected bool `json:"ignoreAdditionalDataOnValueRejected"`
 
+	// incrementonly
+	IncrementOnly bool `json:"incrementOnly"`
+
 	// ispublic
 	IsPublic bool `json:"isPublic"`
 
+	// maximum
+	// Format: double
+	Maximum float64 `json:"maximum,omitempty"`
+
+	// minimum
+	// Format: double
+	Minimum float64 `json:"minimum,omitempty"`
+
 	// name
 	Name string `json:"name,omitempty"`
+
+	// setasglobal
+	SetAsGlobal bool `json:"setAsGlobal"`
+
+	// setby
+	// Enum: ['CLIENT', 'SERVER']
+	SetBy string `json:"setBy,omitempty"`
 
 	// tags
 	// Unique: true
@@ -100,6 +118,35 @@ const (
 // prop value enum
 func (m *StatUpdate) validateGlobalAggregationMethodEnum(path, location string, value string) error {
 	if err := validate.EnumCase(path, location, value, statUpdateTypeGlobalAggregationMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+var statUpdateTypeSetByPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT", "SERVER"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		statUpdateTypeSetByPropEnum = append(statUpdateTypeSetByPropEnum, v)
+	}
+}
+
+const (
+
+	// StatUpdateSetByCLIENT captures enum value "CLIENT"
+	StatUpdateSetByCLIENT string = "CLIENT"
+
+	// StatUpdateSetBySERVER captures enum value "SERVER"
+	StatUpdateSetBySERVER string = "SERVER"
+)
+
+// prop value enum
+func (m *StatUpdate) validateSetByEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, statUpdateTypeSetByPropEnum, true); err != nil {
 		return err
 	}
 	return nil

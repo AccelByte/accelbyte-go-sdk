@@ -20,6 +20,9 @@ import (
 // swagger:model Model predicate.
 type ModelPredicate struct {
 
+	// this is only required for updating existing predicates, it will be ignored when creating goals
+	ID string `json:"id,omitempty"`
+
 	// matcher
 	// Enum: ['EQUAL', 'GREATER_THAN', 'GREATER_THAN_EQUAL', 'LESS_THAN', 'LESS_THAN_EQUAL']
 	// Required: true

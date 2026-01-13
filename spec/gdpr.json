@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.21.0"
+    "version": "2.22.0"
   },
   "schemes": [
     "https"
@@ -3543,6 +3543,10 @@
           "description": "service id",
           "type": "string"
         },
+        "package": {
+          "description": "associated AccelByte package (e.g., foundations, online, multiplayer)",
+          "type": "string"
+        },
         "serviceConfig": {
           "$ref": "#/definitions/dto.ServiceConfigDTO",
           "description": "service configuration detail, required when \"type\" is \"SERVICE\""
@@ -3987,11 +3991,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-10-16T08:05:37+00:00",
-    "gitHash": "8f438aa7f784e74bc4e3eb29ff93be7f36d7169c",
+    "buildDate": "2026-01-08T09:21:22+00:00",
+    "gitHash": "185c6abb4ab5ed9e660699c7d4730879c482bddd",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.21.0",
+    "version": "2.22.0",
     "version-roles-seeding": "1.2.82"
   }
 }

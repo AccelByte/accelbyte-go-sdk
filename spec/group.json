@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.22.1"
+    "version": "2.22.2"
   },
   "schemes": [
     "https"
@@ -2378,7 +2378,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
       "post": {
-        "description": "Required valid user authentication\n\nThis endpoint is used to accept group invitation.\n\nAccept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nThis endpoint will also check if the user who access this endpoint is already joined to specific group\n\nAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\n\nExisting members will receive notification of newly accepted member.\n\nAction Code: 73401\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to accept group invitation.\n\nAccept group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.\n\nThis endpoint will also check if the user who access this endpoint is already joined to specific group\n\nAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\n\nExisting members will receive notification of newly accepted member.\n\nAction Code: 73401\n\t\t",
         "operationId": "acceptGroupInvitationPublicV1",
         "parameters": [
           {
@@ -2473,7 +2473,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
       "post": {
-        "description": "Required valid user authentication\n\nThis endpoint is used to reject group invitation.\n\nReject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nAction Code: 73402\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to reject group invitation.\n\nReject group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.\n\nAction Code: 73402\n\t\t",
         "operationId": "rejectGroupInvitationPublicV1",
         "parameters": [
           {
@@ -2568,7 +2568,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/groups/{groupId}/join": {
       "post": {
-        "description": "Required valid user authentication\n\nThis endpoint is used to join as group member\n\nJoin to the group. This endpoint will check the the the type of the group based on the groupID.\n\nAdditional Information:\n\n*   User cannot join to the group with PRIVATE type\n*   Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\n*   Joining OPEN group type will make this user become member of that group immediately\n\nThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\n\nAction Code: 73403\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to join as group member\n\nJoin to the group. This endpoint will check the type of the group based on the groupID.\n\nAdditional Information:\n\n*   User cannot join to the group with PRIVATE type\n*   Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\n*   Joining OPEN group type will make this user become member of that group immediately\n\nThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\n\nAction Code: 73403\n\t\t",
         "operationId": "JoinGroupV1",
         "parameters": [
           {
@@ -3891,7 +3891,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/join/accept": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to accept group join request.\n\nAccept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73407\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to accept group join request.\n\nAccept group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73407\n\t\t",
         "operationId": "acceptGroupJoinRequestPublicV1",
         "parameters": [
           {
@@ -3987,7 +3987,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/join/reject": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to reject group join request.\n\nReject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73408\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to reject group join request.\n\nReject group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73408\n\t\t",
         "operationId": "rejectGroupJoinRequestPublicV1",
         "parameters": [
           {
@@ -4083,7 +4083,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/kick": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\n\nThis endpoint is used to kick group member.\n\nKick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\n\nThis endpoint is used to kick group member.\n\nKick group member. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "kickGroupMemberPublicV1",
         "parameters": [
           {
@@ -5016,7 +5016,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/accept": {
       "post": {
-        "description": "Required valid user authentication\n\nThis endpoint is used to accept group invitation.\n\nAccept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nThis endpoint will also check if the user who access this endpoint is already joined to specific group\n\nAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\n\nExisting members will receive notification of newly accepted member.\n\nAction Code: 73401\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to accept group invitation.\n\nAccept group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.\n\nThis endpoint will also check if the user who access this endpoint is already joined to specific group\n\nAccessing this endpoint will make all requests (invite / join request) will be deleted for the user who access this endpoint\n\nExisting members will receive notification of newly accepted member.\n\nAction Code: 73401\n\t\t",
         "operationId": "acceptGroupInvitationPublicV2",
         "parameters": [
           {
@@ -5111,7 +5111,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/invite/reject": {
       "post": {
-        "description": "Required valid user authentication\n\nThis endpoint is used to reject group invitation.\n\nReject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.\n\nAction Code: 73402\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to reject group invitation.\n\nReject group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.\n\nAction Code: 73402\n\t\t",
         "operationId": "rejectGroupInvitationPublicV2",
         "parameters": [
           {
@@ -5300,7 +5300,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/groups/{groupId}/join": {
       "post": {
-        "description": "Required valid user authentication\n\nThis endpoint is used to join as group member\n\nJoin to the group. This endpoint will check the the the type of the group based on the groupID.\n\nAdditional Information:\n\n*   User cannot join to the group with PRIVATE type\n*   Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\n*   Joining OPEN group type will make this user become member of that group immediately\n\nThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\n\nAction Code: 73403\n\t\t",
+        "description": "Required valid user authentication\n\nThis endpoint is used to join as group member\n\nJoin to the group. This endpoint will check the type of the group based on the groupID.\n\nAdditional Information:\n\n*   User cannot join to the group with PRIVATE type\n*   Joining PUBLIC group type will create join request and need approval from the privileged group member to accept the request to become the member\n*   Joining OPEN group type will make this user become member of that group immediately\n\nThis endpoint will return status field to give information whether the user is JOINED or REQUESTED to join to the specific group\n\nAction Code: 73403\n\t\t",
         "operationId": "JoinGroupV2",
         "parameters": [
           {
@@ -6462,7 +6462,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/invite/cancel": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:INVITE [DELETE]\u0026#34;\n\nThis endpoint is used to cancel invitation group member.\n\ncancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:INVITE [DELETE]\u0026#34;\n\nThis endpoint is used to cancel invitation group member.\n\ncancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "CancelInvitationGroupMemberV2",
         "parameters": [
           {
@@ -6559,7 +6559,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/accept": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to accept group join request.\n\nAccept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73407\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to accept group join request.\n\nAccept group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73407\n\t\t",
         "operationId": "acceptGroupJoinRequestPublicV2",
         "parameters": [
           {
@@ -6662,7 +6662,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/join/reject": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to reject group join request.\n\nReject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73408\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:JOIN [CREATE]\u0026#34;\n\nThis endpoint is used to reject group join request.\n\nReject group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.\n\nThis endpoint will also check if the specific user is already joined to specific group\n\nAction Code: 73408\n\t\t",
         "operationId": "rejectGroupJoinRequestPublicV2",
         "parameters": [
           {
@@ -6765,7 +6765,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/kick": {
       "post": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\n\nThis endpoint is used to kick group member.\n\nKick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP:KICK [CREATE]\u0026#34;\n\nThis endpoint is used to kick group member.\n\nKick group member. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "kickGroupMemberPublicV2",
         "parameters": [
           {
@@ -6862,7 +6862,7 @@
     },
     "/group/v2/public/namespaces/{namespace}/users/{userId}/groups/{groupId}/status": {
       "get": {
-        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [READ]\u0026#34;\n\nThis endpoint is used to get user group status information.\n\nget user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
+        "description": "Required valid user authentication\n\nRequired Member Role Permission: \u0026#34;GROUP [READ]\u0026#34;\n\nThis endpoint is used to get user group status information.\n\nget user group status information. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint\n\nAction Code: 73409\n\t\t",
         "operationId": "GetUserGroupStatusInformationV2",
         "parameters": [
           {
@@ -7851,11 +7851,11 @@
     "path": "/group/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-11-19T03:11:20+00:00",
-    "gitHash": "791a89b0e40da52aa4c82bfaa3f0d0363491ec00",
+    "buildDate": "2026-01-08T09:25:29+00:00",
+    "gitHash": "5a8737b1655ca763d37e8836ba025167d589317d",
     "name": "justice-group-service",
     "realm": "staging",
-    "version": "2.22.1",
+    "version": "2.22.2",
     "version-roles-seeding": "0.0.3"
   }
 }

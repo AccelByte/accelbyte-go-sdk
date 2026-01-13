@@ -27,6 +27,9 @@ type DTOServiceConfigurationDTO struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// associated AccelByte package (e.g., foundations, online, multiplayer)
+	Package string `json:"package,omitempty"`
+
 	// service configuration detail, required when "type" is "SERVICE"
 	ServiceConfig *DTOServiceConfigDTO `json:"serviceConfig,omitempty"`
 

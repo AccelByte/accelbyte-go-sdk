@@ -71,6 +71,7 @@ func init() {
 	SessionCmd.AddCommand(platformCredential.AdminDeletePlatformCredentialsCmd)
 	SessionCmd.AddCommand(platformCredential.AdminDeletePlatformCredentialsByPlatformIdCmd)
 	SessionCmd.AddCommand(platformCredential.AdminSyncPlatformCredentialsCmd)
+	SessionCmd.AddCommand(platformCredential.AdminUploadPlatformCredentialsCmd)
 	SessionCmd.AddCommand(recentPlayer.AdminGetRecentPlayerCmd)
 	SessionCmd.AddCommand(recentPlayer.AdminGetRecentTeamPlayerCmd)
 	SessionCmd.AddCommand(sessionStorage.AdminReadSessionStorageCmd)

@@ -1,3 +1,13 @@
+<a name="v0.86.0"></a>
+## [v0.86.0]
+### docs
+- **migration-guide:** add migration guide 0.85.0
+### chore
+- **:** replace logrus with slog
+- **:** update golang image to 1.24.1
+- **:** remove unused function
+
+
 <a name="v0.85.0"></a>
 ## [v0.85.0]
 ### fix

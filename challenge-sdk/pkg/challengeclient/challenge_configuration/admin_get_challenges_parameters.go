@@ -22,9 +22,13 @@ import (
 // Deprecated: 2025-07-16 - Use AdminGetChallengesSortBy<EnumValue>Constant instead.
 // Get the enum in AdminGetChallengesParams
 const (
+	AdminGetChallengesCodeAscConstant       = "code:asc"
+	AdminGetChallengesCodeDescConstant      = "code:desc"
 	AdminGetChallengesCreatedAtConstant     = "createdAt"
 	AdminGetChallengesCreatedAtAscConstant  = "createdAt:asc"
 	AdminGetChallengesCreatedAtDescConstant = "createdAt:desc"
+	AdminGetChallengesNameAscConstant       = "name:asc"
+	AdminGetChallengesNameDescConstant      = "name:desc"
 	AdminGetChallengesUpdatedAtConstant     = "updatedAt"
 	AdminGetChallengesUpdatedAtAscConstant  = "updatedAt:asc"
 	AdminGetChallengesUpdatedAtDescConstant = "updatedAt:desc"
@@ -40,9 +44,13 @@ const (
 
 // Get the enum in AdminGetChallengesParams
 const (
+	AdminGetChallengesSortByCodeAscConstant       = "code:asc"
+	AdminGetChallengesSortByCodeDescConstant      = "code:desc"
 	AdminGetChallengesSortByCreatedAtConstant     = "createdAt"
 	AdminGetChallengesSortByCreatedAtAscConstant  = "createdAt:asc"
 	AdminGetChallengesSortByCreatedAtDescConstant = "createdAt:desc"
+	AdminGetChallengesSortByNameAscConstant       = "name:asc"
+	AdminGetChallengesSortByNameDescConstant      = "name:desc"
 	AdminGetChallengesSortByUpdatedAtConstant     = "updatedAt"
 	AdminGetChallengesSortByUpdatedAtAscConstant  = "updatedAt:asc"
 	AdminGetChallengesSortByUpdatedAtDescConstant = "updatedAt:desc"

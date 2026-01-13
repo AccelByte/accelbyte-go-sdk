@@ -195,6 +195,10 @@ CreateClient create client
 ## The endpoint is going to be deprecated
 **Endpoint migration guide**
 - **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [POST]_**
+
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module in _/v3/admin/namespaces/{namespace}/clients [POST]_.
 */
 func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, *CreateClientBadRequest, *CreateClientUnauthorized, *CreateClientForbidden, *CreateClientConflict, error) {
 	// TODO: Validate the params before sending
@@ -258,6 +262,10 @@ CreateClientShort create client
 ## The endpoint is going to be deprecated
 **Endpoint migration guide**
 - **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [POST]_**
+
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module in _/v3/admin/namespaces/{namespace}/clients [POST]_.
 */
 func (a *Client) CreateClientShort(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error) {
 	// TODO: Validate the params before sending
@@ -1255,6 +1263,10 @@ CreateClientByNamespace create client
 ## The endpoint is going to be deprecated
 **Endpoint migration guide**
 - **Substitute endpoint: _/v3/admin/namespaces/{namespace}/clients [POST]_**
+
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module in _/v3/admin/namespaces/{namespace}/clients [POST]_.
 */
 func (a *Client) CreateClientByNamespace(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, *CreateClientByNamespaceBadRequest, *CreateClientByNamespaceUnauthorized, *CreateClientByNamespaceForbidden, *CreateClientByNamespaceConflict, error) {
 	// TODO: Validate the params before sending
@@ -1318,6 +1330,10 @@ CreateClientByNamespaceShort create client
 ## The endpoint is going to be deprecated
 **Endpoint migration guide**
 - **Substitute endpoint: _/v3/admin/namespaces/{namespace}/clients [POST]_**
+
+**Note for Multi Tenant Mode (Confidential Client):**
+Only Super admin can set permission with resource & action.
+Studio admin & game admin need set permission with permission module in _/v3/admin/namespaces/{namespace}/clients [POST]_.
 */
 func (a *Client) CreateClientByNamespaceShort(params *CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientByNamespaceCreated, error) {
 	// TODO: Validate the params before sending

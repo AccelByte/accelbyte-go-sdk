@@ -306,6 +306,17 @@ $ samples/cli/sample-apps Session adminSyncPlatformCredentials \
     > result.txt
 ```
 
+### Operation `admin_upload_platform_credentials`
+```sh
+$ samples/cli/sample-apps Session adminUploadPlatformCredentials \
+    --namespace 'string' \
+    --platformId 'XBOX' \
+    --description 'string' \
+    --file 'tmp.dat' \
+    --password 'string' \
+    > result.txt
+```
+
 ### Operation `admin_get_recent_player`
 ```sh
 $ samples/cli/sample-apps Session adminGetRecentPlayer \

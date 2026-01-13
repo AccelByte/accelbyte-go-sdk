@@ -97,6 +97,7 @@
 | `/csm/v2/admin/namespaces/{namespace}/nosql/clusters/start` | PUT | StartNoSQLClusterV2Short | [StartNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [StartNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [StartNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/startNoSQLClusterV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/nosql/clusters/stop` | PUT | StopNoSQLClusterV2Short | [StopNoSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [StopNoSQLClusterV2Short](../../services-api/pkg/service/csm/managedResources.go) | [StopNoSQLClusterV2Short](../../samples/cli/cmd/csm/managedResources/stopNoSQLClusterV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/nosql/tunnels` | GET | GetNoSQLAccessTunnelV2Short | [GetNoSQLAccessTunnelV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [GetNoSQLAccessTunnelV2Short](../../services-api/pkg/service/csm/managedResources.go) | [GetNoSQLAccessTunnelV2Short](../../samples/cli/cmd/csm/managedResources/getNoSQLAccessTunnelV2.go) |
+| `/csm/v2/admin/namespaces/{studioName}/nosql/{resourceId}/apps` | GET | GetNoSQLAppListV2Short | [GetNoSQLAppListV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [GetNoSQLAppListV2Short](../../services-api/pkg/service/csm/managedResources.go) | [GetNoSQLAppListV2Short](../../samples/cli/cmd/csm/managedResources/getNoSQLAppListV2.go) |
 
 ### Configuration V2 Wrapper:  [ConfigurationV2](../../services-api/pkg/service/csm/configurationV2.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -177,6 +178,8 @@
 | `apimodel.ListTopicsResponse` | [ApimodelListTopicsResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_list_topics_response.go) |
 | `apimodel.MemoryRequest` | [ApimodelMemoryRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_request.go) |
 | `apimodel.MemoryResponse` | [ApimodelMemoryResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_response.go) |
+| `apimodel.NoSQLAppListResponse` | [ApimodelNoSQLAppListResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_app_list_response.go) |
+| `apimodel.NoSQLAppResponse` | [ApimodelNoSQLAppResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_app_response.go) |
 | `apimodel.NoSQLDatabaseCredentialResponse` | [ApimodelNoSQLDatabaseCredentialResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_credential_response.go) |
 | `apimodel.NoSQLDatabaseDeleteResponse` | [ApimodelNoSQLDatabaseDeleteResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_delete_response.go) |
 | `apimodel.NoSQLDatabaseResponse` | [ApimodelNoSQLDatabaseResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_response.go) |

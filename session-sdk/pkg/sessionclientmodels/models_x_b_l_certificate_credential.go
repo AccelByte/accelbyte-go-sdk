@@ -35,6 +35,9 @@ type ModelsXBLCertificateCredential struct {
 	// Required: true
 	CreatedBy *string `json:"createdBy"`
 
+	// description
+	Description string `json:"description,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

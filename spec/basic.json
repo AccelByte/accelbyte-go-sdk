@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "4.2.1"
+    "version": "4.2.2"
   },
   "schemes": [
     "https"
@@ -5211,16 +5211,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-10-16T08:04:29+00:00",
-    "buildID": "4.2.1",
+    "buildDate": "2026-01-08T09:21:19+00:00",
+    "buildID": "4.2.2",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.244-240.965.amzn2.x86_64",
+    "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "b7b7fd9ab1",
-    "gitTag": "4.2.1",
+    "gitHash": "56b5177c59",
+    "gitTag": "4.2.2",
     "name": "justice-basic-service",
     "realm": "staging",
-    "version": "4.2.1",
+    "version": "4.2.2",
     "version-roles-seeding": "0.0.10"
   }
 }

@@ -217,7 +217,7 @@ Required valid user authentication
 
 This endpoint is used to accept group invitation.
 
-Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Accept group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 This endpoint will also check if the user who access this endpoint is already joined to specific group
 
@@ -296,7 +296,7 @@ Required valid user authentication
 
 This endpoint is used to accept group invitation.
 
-Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Accept group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 This endpoint will also check if the user who access this endpoint is already joined to specific group
 
@@ -367,7 +367,7 @@ Required valid user authentication
 
 This endpoint is used to reject group invitation.
 
-Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Reject group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 Action Code: 73402
 */
@@ -440,7 +440,7 @@ Required valid user authentication
 
 This endpoint is used to reject group invitation.
 
-Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Reject group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 Action Code: 73402
 */
@@ -505,7 +505,7 @@ Required valid user authentication
 
 This endpoint is used to join as group member
 
-Join to the group. This endpoint will check the the the type of the group based on the groupID.
+Join to the group. This endpoint will check the type of the group based on the groupID.
 
 Additional Information:
 
@@ -583,7 +583,7 @@ Required valid user authentication
 
 This endpoint is used to join as group member
 
-Join to the group. This endpoint will check the the the type of the group based on the groupID.
+Join to the group. This endpoint will check the type of the group based on the groupID.
 
 Additional Information:
 
@@ -1358,7 +1358,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to accept group join request.
 
-Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Accept group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -1435,7 +1435,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to accept group join request.
 
-Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Accept group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -1504,7 +1504,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to reject group join request.
 
-Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Reject group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -1581,7 +1581,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to reject group join request.
 
-Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Reject group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -1650,7 +1650,7 @@ Required Member Role Permission: "GROUP:KICK [CREATE]"
 
 This endpoint is used to kick group member.
 
-Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint
+Kick group member. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -1722,7 +1722,7 @@ Required Member Role Permission: "GROUP:KICK [CREATE]"
 
 This endpoint is used to kick group member.
 
-Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint
+Kick group member. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -2038,7 +2038,7 @@ Required valid user authentication
 
 This endpoint is used to accept group invitation.
 
-Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Accept group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 This endpoint will also check if the user who access this endpoint is already joined to specific group
 
@@ -2117,7 +2117,7 @@ Required valid user authentication
 
 This endpoint is used to accept group invitation.
 
-Accept group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Accept group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 This endpoint will also check if the user who access this endpoint is already joined to specific group
 
@@ -2188,7 +2188,7 @@ Required valid user authentication
 
 This endpoint is used to reject group invitation.
 
-Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Reject group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 Action Code: 73402
 */
@@ -2261,7 +2261,7 @@ Required valid user authentication
 
 This endpoint is used to reject group invitation.
 
-Reject group invitation. If specific user is not invited in the specific group ID, it will show the the error to show if the user is not invited yet.
+Reject group invitation. If specific user is not invited in the specific group ID, it will show the error to show if the user is not invited yet.
 
 Action Code: 73402
 */
@@ -2326,7 +2326,7 @@ Required valid user authentication
 
 This endpoint is used to join as group member
 
-Join to the group. This endpoint will check the the the type of the group based on the groupID.
+Join to the group. This endpoint will check the type of the group based on the groupID.
 
 Additional Information:
 
@@ -2404,7 +2404,7 @@ Required valid user authentication
 
 This endpoint is used to join as group member
 
-Join to the group. This endpoint will check the the the type of the group based on the groupID.
+Join to the group. This endpoint will check the type of the group based on the groupID.
 
 Additional Information:
 
@@ -2917,7 +2917,7 @@ Required Member Role Permission: "GROUP:INVITE [DELETE]"
 
 This endpoint is used to cancel invitation group member.
 
-cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint
+cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -2989,7 +2989,7 @@ Required Member Role Permission: "GROUP:INVITE [DELETE]"
 
 This endpoint is used to cancel invitation group member.
 
-cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the the user who accesses this endpoint
+cancel invitation group member. This endpoint will cancel invitation to specific user, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -3054,7 +3054,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to accept group join request.
 
-Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Accept group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -3131,7 +3131,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to accept group join request.
 
-Accept group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Accept group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -3200,7 +3200,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to reject group join request.
 
-Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Reject group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -3277,7 +3277,7 @@ Required Member Role Permission: "GROUP:JOIN [CREATE]"
 
 This endpoint is used to reject group join request.
 
-Reject group join request. If specific user is not asked to join the specific group ID, it will show the the error to show if the user is not asked to join yet.
+Reject group join request. If specific user is not asked to join the specific group ID, it will show the error to show if the user is not asked to join yet.
 
 This endpoint will also check if the specific user is already joined to specific group
 
@@ -3346,7 +3346,7 @@ Required Member Role Permission: "GROUP:KICK [CREATE]"
 
 This endpoint is used to kick group member.
 
-Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint
+Kick group member. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -3418,7 +3418,7 @@ Required Member Role Permission: "GROUP:KICK [CREATE]"
 
 This endpoint is used to kick group member.
 
-Kick group member. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint
+Kick group member. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -3483,7 +3483,7 @@ Required Member Role Permission: "GROUP [READ]"
 
 This endpoint is used to get user group status information.
 
-get user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint
+get user group status information. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */
@@ -3552,7 +3552,7 @@ Required Member Role Permission: "GROUP [READ]"
 
 This endpoint is used to get user group status information.
 
-get user group status information. This endpoint will check the member and group information, and also the role permission of the the user who accesses this endpoint
+get user group status information. This endpoint will check the member and group information, and also the role permission of the user who accesses this endpoint
 
 Action Code: 73409
 */

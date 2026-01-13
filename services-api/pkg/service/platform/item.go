@@ -304,7 +304,7 @@ func (aaa *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams)
 }
 
 // Deprecated: 2022-01-10 - please use GetEstimatedPriceShort instead.
-func (aaa *ItemService) GetEstimatedPrice(input *item.GetEstimatedPriceParams) (*platformclientmodels.EstimatedPriceInfo, error) {
+func (aaa *ItemService) GetEstimatedPrice(input *item.GetEstimatedPriceParams) ([]*platformclientmodels.EstimatedPriceInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -1416,7 +1416,7 @@ func (aaa *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPa
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ItemService) GetEstimatedPriceShort(input *item.GetEstimatedPriceParams) (*platformclientmodels.EstimatedPriceInfo, error) {
+func (aaa *ItemService) GetEstimatedPriceShort(input *item.GetEstimatedPriceParams) ([]*platformclientmodels.EstimatedPriceInfo, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{

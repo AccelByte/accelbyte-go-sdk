@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "7.36.0"
+    "version": "7.37.0"
   },
   "schemes": [
     "https"
@@ -196,7 +196,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "## The endpoint is going to be deprecated\n**Endpoint migration guide**\n- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [POST]_**",
+        "description": "## The endpoint is going to be deprecated\n**Endpoint migration guide**\n- **Substitute endpoint: _/iam/v3/admin/namespaces/{namespace}/clients [POST]_**\n\n**Note for Multi Tenant Mode (Confidential Client):**\nOnly Super admin can set permission with resource \u0026amp; action.\nStudio admin \u0026amp; game admin need set permission with permission module in _/v3/admin/namespaces/{namespace}/clients [POST]_.\n",
         "operationId": "CreateClient",
         "parameters": [
           {
@@ -847,7 +847,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "## The endpoint is going to be deprecated\n**Endpoint migration guide**\n- **Substitute endpoint: _/v3/admin/namespaces/{namespace}/clients [POST]_**",
+        "description": "## The endpoint is going to be deprecated\n**Endpoint migration guide**\n- **Substitute endpoint: _/v3/admin/namespaces/{namespace}/clients [POST]_**\n\n**Note for Multi Tenant Mode (Confidential Client):**\nOnly Super admin can set permission with resource \u0026amp; action.\nStudio admin \u0026amp; game admin need set permission with permission module in _/v3/admin/namespaces/{namespace}/clients [POST]_.\n",
         "operationId": "CreateClientByNamespace",
         "parameters": [
           {
@@ -15153,7 +15153,7 @@
     },
     "/iam/v3/admin/namespaces/{namespace}/users/{userId}/logins/histories": {
       "get": {
-        "description": "Notes for this endpoint:  \nThis endpoint retrieve the first page of the data if \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameters is empty.\n- The maximum value of the limit is 100 and the minimum value of the limit is 1.\n- This endpoint retrieve the next page of the data if we provide \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; parameters with valid Unix timestamp.\n- This endpoint retrieve the previous page of the data if we provide \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameter with valid data Unix timestamp.\u0026#34;",
+        "description": "Notes for this endpoint:  \nThis endpoint retrieve the first page of the data if \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameters is empty.\n- The maximum value of the limit is 100 and the minimum value of the limit is 1.\n- This endpoint retrieve the next page of the data if we provide \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; parameters with valid Unix timestamp.\n- This endpoint retrieve the previous page of the data if we provide \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameter with valid data Unix timestamp.",
         "operationId": "AdminGetUserLoginHistoriesV3",
         "parameters": [
           {
@@ -15183,7 +15183,7 @@
             "type": "number"
           },
           {
-            "description": "The number of data retrieved in a page",
+            "description": "The number of data retrieved in a page. Default: 100",
             "in": "query",
             "name": "limit",
             "type": "integer"
@@ -24736,7 +24736,7 @@
     },
     "/iam/v3/public/namespaces/{namespace}/users/{userId}/logins/histories": {
       "get": {
-        "description": "Notes for this endpoint:\n- This endpoint retrieve the first page of the data if \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameters is empty.\n- The maximum value of the limit is 100 and the minimum value of the limit is 1.\n- This endpoint retrieve the next page of the data if we provide \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; parameters with valid Unix timestamp.\n- This endpoint retrieve the previous page of the data if we provide \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameter with valid data Unix timestamp.\n\n\n**Authentication:**\nThe _**userId**_ parameter should match the one in the access token.",
+        "description": "Notes for this endpoint:\n- The maximum value of the limit is 100 and the minimum value of the limit is 1.\n- This endpoint retrieve the first page of the data if \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameters is empty.\n- This endpoint retrieve the next page of the data if we provide \u0026lt;code\u0026gt;after\u0026lt;/code\u0026gt; parameters with valid Unix timestamp.\n- This endpoint retrieve the previous page of the data if we provide \u0026lt;code\u0026gt;before\u0026lt;/code\u0026gt; parameter with valid data Unix timestamp.\n\n\n**Authentication:**\nThe _**userId**_ parameter should match the one in the access token.",
         "operationId": "PublicGetUserLoginHistoriesV3",
         "parameters": [
           {
@@ -24766,7 +24766,7 @@
             "type": "number"
           },
           {
-            "description": "The number of data retrieved in a page",
+            "description": "The number of data retrieved in a page. Default: 100",
             "in": "query",
             "name": "limit",
             "type": "integer"
@@ -43657,11 +43657,11 @@
     "path": "/iam/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-11-19T03:15:31+00:00",
-    "gitHash": "9b4b248bfd6cc8859c16f9d6c10d035903f05d10",
+    "buildDate": "2026-01-09T04:39:21+00:00",
+    "gitHash": "3e78f2b17100b418b0779f72d01d182df14f4ec3",
     "name": "justice-iam-service",
     "realm": "staging",
-    "version": "7.36.0",
+    "version": "7.37.0",
     "version-roles-seeding": "1.2.91"
   }
 }

@@ -52,6 +52,8 @@ type ClientService interface {
 	StopNoSQLClusterV2Short(params *StopNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*StopNoSQLClusterV2NoContent, error)
 	GetNoSQLAccessTunnelV2(params *GetNoSQLAccessTunnelV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAccessTunnelV2OK, *GetNoSQLAccessTunnelV2Unauthorized, *GetNoSQLAccessTunnelV2NotFound, *GetNoSQLAccessTunnelV2InternalServerError, *GetNoSQLAccessTunnelV2ServiceUnavailable, error)
 	GetNoSQLAccessTunnelV2Short(params *GetNoSQLAccessTunnelV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAccessTunnelV2OK, error)
+	GetNoSQLAppListV2(params *GetNoSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAppListV2OK, *GetNoSQLAppListV2BadRequest, *GetNoSQLAppListV2Unauthorized, *GetNoSQLAppListV2Forbidden, *GetNoSQLAppListV2InternalServerError, error)
+	GetNoSQLAppListV2Short(params *GetNoSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAppListV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -201,16 +203,16 @@ Get a NoSQL database information returns the NoSQL database related information 
 and app name.
 
 `resourceStatus` field - indicates the NoSQL cluster status:
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `available` : The cluster is accessible.
 - `creating` : The cluster or instance is being created and is not yet accessible.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 */
 func (a *Client) GetNoSQLDatabaseV2(params *GetNoSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLDatabaseV2OK, *GetNoSQLDatabaseV2Unauthorized, *GetNoSQLDatabaseV2Forbidden, *GetNoSQLDatabaseV2NotFound, *GetNoSQLDatabaseV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -277,16 +279,16 @@ Get a NoSQL database information returns the NoSQL database related information 
 and app name.
 
 `resourceStatus` field - indicates the NoSQL cluster status:
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `available` : The cluster is accessible.
 - `creating` : The cluster or instance is being created and is not yet accessible.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 */
 func (a *Client) GetNoSQLDatabaseV2Short(params *GetNoSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLDatabaseV2OK, error) {
 	// TODO: Validate the params before sending
@@ -611,16 +613,16 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 Get NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the NoSQL cluster status:
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `stopped` : The cluster is stopped and not accessible.
-- `available` : The cluster is accessible.
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `available` : The cluster is accessible.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `stopped` : The cluster is stopped and not accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
 */
 func (a *Client) GetNoSQLClusterV2(params *GetNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLClusterV2OK, *GetNoSQLClusterV2BadRequest, *GetNoSQLClusterV2Unauthorized, *GetNoSQLClusterV2Forbidden, *GetNoSQLClusterV2NotFound, *GetNoSQLClusterV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -689,16 +691,16 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 Get NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the NoSQL cluster status:
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `stopped` : The cluster is stopped and not accessible.
-- `available` : The cluster is accessible.
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `available` : The cluster is accessible.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `stopped` : The cluster is stopped and not accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
 */
 func (a *Client) GetNoSQLClusterV2Short(params *GetNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLClusterV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1534,6 +1536,146 @@ func (a *Client) GetNoSQLAccessTunnelV2Short(params *GetNoSQLAccessTunnelV2Param
 	case *GetNoSQLAccessTunnelV2InternalServerError:
 		return nil, v
 	case *GetNoSQLAccessTunnelV2ServiceUnavailable:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use GetNoSQLAppListV2Short instead.
+
+GetNoSQLAppListV2 get list of extend app using nosql
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
+
+Get List of Extend App using NoSQL database by given studio/publisher namespace and the NoSQL cluster resourceId.
+- `available` : The cluster is accessible.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `stopped` : The cluster is stopped and not accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
+- `unknown` : The cluster status is not recognized
+*/
+func (a *Client) GetNoSQLAppListV2(params *GetNoSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAppListV2OK, *GetNoSQLAppListV2BadRequest, *GetNoSQLAppListV2Unauthorized, *GetNoSQLAppListV2Forbidden, *GetNoSQLAppListV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNoSQLAppListV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetNoSQLAppListV2",
+		Method:             "GET",
+		PathPattern:        "/csm/v2/admin/namespaces/{studioName}/nosql/{resourceId}/apps",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNoSQLAppListV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNoSQLAppListV2OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *GetNoSQLAppListV2BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *GetNoSQLAppListV2Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *GetNoSQLAppListV2Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *GetNoSQLAppListV2InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetNoSQLAppListV2Short get list of extend app using nosql
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
+
+Get List of Extend App using NoSQL database by given studio/publisher namespace and the NoSQL cluster resourceId.
+- `available` : The cluster is accessible.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `stopped` : The cluster is stopped and not accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
+- `unknown` : The cluster status is not recognized
+*/
+func (a *Client) GetNoSQLAppListV2Short(params *GetNoSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAppListV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetNoSQLAppListV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetNoSQLAppListV2",
+		Method:             "GET",
+		PathPattern:        "/csm/v2/admin/namespaces/{studioName}/nosql/{resourceId}/apps",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetNoSQLAppListV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetNoSQLAppListV2OK:
+		return v, nil
+	case *GetNoSQLAppListV2BadRequest:
+		return nil, v
+	case *GetNoSQLAppListV2Unauthorized:
+		return nil, v
+	case *GetNoSQLAppListV2Forbidden:
+		return nil, v
+	case *GetNoSQLAppListV2InternalServerError:
 		return nil, v
 
 	default:

@@ -32,7 +32,7 @@ eval_tap() {
 }
 
 echo "TAP version 13"
-echo "1..74"
+echo "1..75"
 
 #- 1 Login
 samples/cli/sample-apps login \
@@ -74,7 +74,7 @@ eval_tap 0 9 'DeleteAppImagesV1 # SKIP deprecated' test.out
 
 #- 10 GetAppReleaseV1
 samples/cli/sample-apps Csm getAppReleaseV1 \
-    --app 'tCLgWYdjnw74EBGO' \
+    --app 'fFmsE7eHerCSY04G' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 10 'GetAppReleaseV1' test.out
@@ -126,228 +126,228 @@ eval_tap $? 24 'PublicGetMessages' test.out
 #- 25 GetAppListV2
 samples/cli/sample-apps Csm getAppListV2 \
     --namespace $AB_NAMESPACE \
-    --limit '1' \
-    --offset '25' \
-    --body '{"appNames": ["J7U8rxRqBnReciWn", "qqHX3gWyNHRhGiWk", "8OINHnH6RgAbmA4o"], "appStatuses": ["rvGyuCYkTYWcda6W", "bsvdKmR8bZF1qzUG", "OJZNFlyhTXUNEWfD"], "fuzzyAppName": "PSHa2WAygL4JAQ3B", "scenario": "DdOX5RXv7uRZJFqa"}' \
+    --limit '29' \
+    --offset '86' \
+    --body '{"appNames": ["xtSV8AjcWYKqNZ9h", "xXvxYPy45DpwvxtT", "3BBdWNHJUm1QdaRf"], "appStatuses": ["Re3EOwFzoS8ktlah", "QWdWroPoNKMQpqWE", "g3NgpcaNVu9s6xte"], "fuzzyAppName": "2owwczpraNMMOkfu", "scenario": "7219fC4q5uKTjX3L"}' \
     > test.out 2>&1
 eval_tap $? 25 'GetAppListV2' test.out
 
 #- 26 GetAppV2
 samples/cli/sample-apps Csm getAppV2 \
-    --app 'bOheNjQDf5SbWlL2' \
+    --app 'V8aENPpSP7JmLUtR' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 26 'GetAppV2' test.out
 
 #- 27 CreateAppV2
 samples/cli/sample-apps Csm createAppV2 \
-    --app 'ApKUZYgrc6WX2J0t' \
+    --app 'AAbNrFO9FZ4nACHa' \
     --namespace $AB_NAMESPACE \
-    --body '{"autoscaling": {"targetCPUUtilizationPercent": 3}, "cpu": {"requestCPU": 63}, "description": "s4Nvdtz5d9PFNqNi", "memory": {"requestMemory": 71}, "replica": {"maxReplica": 15, "minReplica": 44}, "scenario": "Cvbr9kNMlevg9yUq", "vmSharingConfiguration": "ca6G4kWQ2RekaDFp"}' \
+    --body '{"autoscaling": {"targetCPUUtilizationPercent": 94}, "cpu": {"requestCPU": 20}, "description": "10ruSw4FpdGWApaa", "memory": {"requestMemory": 72}, "replica": {"maxReplica": 25, "minReplica": 72}, "scenario": "IjjP3d99nGca1kVj", "vmSharingConfiguration": "YHPJVRNLSMp2EZxm"}' \
     > test.out 2>&1
 eval_tap $? 27 'CreateAppV2' test.out
 
 #- 28 DeleteAppV2
 samples/cli/sample-apps Csm deleteAppV2 \
-    --app 'idEBc8El6qPHXZ5z' \
+    --app 'IdKNBD4YsOsxaZVQ' \
     --namespace $AB_NAMESPACE \
-    --forced 'BwcdLpxkGKoG9zBw' \
+    --forced 'sXU1195zT7qV6Q1i' \
     > test.out 2>&1
 eval_tap $? 28 'DeleteAppV2' test.out
 
 #- 29 UpdateAppV2
 samples/cli/sample-apps Csm updateAppV2 \
-    --app 'cANnnZiZonN3PH9M' \
+    --app 'iM5yzSCKhu1FzAXK' \
     --namespace $AB_NAMESPACE \
-    --body '{"description": "tGDi2zRJbYkslFYZ"}' \
+    --body '{"description": "LlsPyC6WedwXKzmG"}' \
     > test.out 2>&1
 eval_tap $? 29 'UpdateAppV2' test.out
 
 #- 30 CreateSubscriptionHandler
 samples/cli/sample-apps Csm createSubscriptionHandler \
-    --app 'm4fetFbMWmmjJaMi' \
+    --app 'pnxWjFLVOU2xFefV' \
     --namespace $AB_NAMESPACE \
-    --body '{"topicNames": ["wNUgWyhcOq7ZdKXd", "QBJ3uD2km52S9Oz9", "aGMZMGE092nmzolh"]}' \
+    --body '{"topicNames": ["gNwWXQ7URhN1Sht3", "ovaaQIUJmjbsslPH", "YiBjojbdXi2MvbfS"]}' \
     > test.out 2>&1
 eval_tap $? 30 'CreateSubscriptionHandler' test.out
 
 #- 31 UnsubscribeTopicHandler
 samples/cli/sample-apps Csm unsubscribeTopicHandler \
-    --app 'letH3We0hU8L0p5P' \
+    --app 'BYQE9jZN99vxuo9o' \
     --namespace $AB_NAMESPACE \
-    --topicName 'DglEDAJynSZZ0WDL' \
+    --topicName 'HJw2sJEi7w7YNMmP' \
     > test.out 2>&1
 eval_tap $? 31 'UnsubscribeTopicHandler' test.out
 
 #- 32 CreateDeploymentV2
 samples/cli/sample-apps Csm createDeploymentV2 \
-    --app 'A5R1cuq2DsUgQrFK' \
+    --app 'g6xuNT6BUlmBNd28' \
     --namespace $AB_NAMESPACE \
-    --body '{"imageTag": "cSlFUOgVNGhTY95w"}' \
+    --body '{"imageTag": "WurqtiOxLCEJZ1vo"}' \
     > test.out 2>&1
 eval_tap $? 32 'CreateDeploymentV2' test.out
 
 #- 33 GetAppImageListV2
 samples/cli/sample-apps Csm getAppImageListV2 \
-    --app '4F37wNiYVjrzCu5o' \
+    --app 'ogIU2mmcyosv9iCQ' \
     --namespace $AB_NAMESPACE \
-    --cached 'iRmUUDf0YvJF7Z00' \
+    --cached 'Dr8Wl694Gm52PzWH' \
     > test.out 2>&1
 eval_tap $? 33 'GetAppImageListV2' test.out
 
 #- 34 DeleteAppImagesV2
 samples/cli/sample-apps Csm deleteAppImagesV2 \
-    --app '8ftCBrpWAzIixUXZ' \
+    --app 'TLWFkYZlIxaG6PqB' \
     --namespace $AB_NAMESPACE \
-    --body '{"imageTags": ["wkc1sHH7FMQqmLQb", "rLpGeJk7j1ilLUQo", "WKMbkx2h6DsykHC2"]}' \
+    --body '{"imageTags": ["bAm4Q7ohMJZkKvDL", "vBd3QdCtKzTfNBkw", "D4Zndk1e2HYOw1mO"]}' \
     > test.out 2>&1
 eval_tap $? 34 'DeleteAppImagesV2' test.out
 
 #- 35 CreateNoSQLDatabaseCredentialV2
 samples/cli/sample-apps Csm createNoSQLDatabaseCredentialV2 \
-    --app 'AFy04XWmP3m3dDSo' \
+    --app 'rk8DImm6op7jyNzd' \
     --namespace $AB_NAMESPACE \
-    --body '{"password": "qFqUZ8oGC4rP9sMi", "username": "BOBcF8LDoboSJFyo"}' \
+    --body '{"password": "wbxaxH0P1q65hhlF", "username": "bDFDof59NJWA44Aq"}' \
     > test.out 2>&1
 eval_tap $? 35 'CreateNoSQLDatabaseCredentialV2' test.out
 
 #- 36 GetNoSQLDatabaseV2
 samples/cli/sample-apps Csm getNoSQLDatabaseV2 \
-    --app 'MDP3hu3ud9rbrrFG' \
+    --app 'ViYdT1sYmMusMUmY' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 36 'GetNoSQLDatabaseV2' test.out
 
 #- 37 CreateNoSQLDatabaseV2
 samples/cli/sample-apps Csm createNoSQLDatabaseV2 \
-    --app 'VZKpxsfgJH51fmq5' \
+    --app 'mJrcX5EUXnitQytN' \
     --namespace $AB_NAMESPACE \
-    --body '{"dbName": "426qm5ebDsqU23t1", "password": "WPjSjHHW3HQxRR86", "username": "8R4CLZT72fFbiIzZ"}' \
+    --body '{"dbName": "3Loz8xbr0lKJ9bgs", "password": "tFmFNGRmAJa1vlGG", "username": "xc4VoEd3UIMGCTgd"}' \
     > test.out 2>&1
 eval_tap $? 37 'CreateNoSQLDatabaseV2' test.out
 
 #- 38 DeleteNoSQLDatabaseV2
 samples/cli/sample-apps Csm deleteNoSQLDatabaseV2 \
-    --app 'OtpHjNHvXlcScqZA' \
+    --app 'A1PyZsGCmncLXR0u' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 38 'DeleteNoSQLDatabaseV2' test.out
 
 #- 39 UpdateAppResourcesV2
 samples/cli/sample-apps Csm updateAppResourcesV2 \
-    --app 'BByBRwnUVuQvuGav' \
+    --app '1XaqG494rHIyZkru' \
     --namespace $AB_NAMESPACE \
-    --body '{"autoscaling": {"targetCPUUtilizationPercent": 20}, "cpu": {"requestCPU": 88}, "memory": {"requestMemory": 21}, "replica": {"maxReplica": 4, "minReplica": 29}, "vmSharingConfiguration": "WNvtSPa4t3cieNd5"}' \
+    --body '{"autoscaling": {"targetCPUUtilizationPercent": 91}, "cpu": {"requestCPU": 60}, "memory": {"requestMemory": 54}, "replica": {"maxReplica": 43, "minReplica": 64}, "vmSharingConfiguration": "mCs3IWVrXhkfzeGh"}' \
     > test.out 2>&1
 eval_tap $? 39 'UpdateAppResourcesV2' test.out
 
 #- 40 UpdateAppResourcesResourceLimitFormV2
 samples/cli/sample-apps Csm updateAppResourcesResourceLimitFormV2 \
-    --app 'pSpRd9WJTLJI7yS0' \
+    --app '0T6eHKaCVa5lhCHp' \
     --namespace $AB_NAMESPACE \
-    --body '{"clientEmail": "iU0R10jCLsU7WLhD", "preferredLimitReplica": 96, "requestReason": "nSwF2QJd24aqHZw9"}' \
+    --body '{"clientEmail": "0WIA869FnIw1QarX", "preferredLimitReplica": 93, "requestReason": "bBkhuCdKaByCVJHY"}' \
     > test.out 2>&1
 eval_tap $? 40 'UpdateAppResourcesResourceLimitFormV2' test.out
 
 #- 41 GetListOfSecretsV2
 samples/cli/sample-apps Csm getListOfSecretsV2 \
-    --app 'FbsehkpQl5THwDoZ' \
+    --app '6t1jqUpuuUkPpxOC' \
     --namespace $AB_NAMESPACE \
-    --limit '45' \
-    --offset '77' \
+    --limit '91' \
+    --offset '10' \
     > test.out 2>&1
 eval_tap $? 41 'GetListOfSecretsV2' test.out
 
 #- 42 SaveSecretV2
 samples/cli/sample-apps Csm saveSecretV2 \
-    --app '8P8CtYlEkgFC49E5' \
+    --app 'Deq6x2cui5KS944a' \
     --namespace $AB_NAMESPACE \
-    --body '{"configName": "d4SIjW2b1NuTIsfm", "description": "1OldxUWVvxCf71MV", "source": "SiXOEoMwqRg6lJYo", "value": "TnQRzkwv2jCtLSBg"}' \
+    --body '{"configName": "uzMSJOIoOhC8BAP5", "description": "WCjS9T0453G595fP", "source": "YA7SDl8cXr5ChakN", "value": "v8VKq6puKP7jPY3c"}' \
     > test.out 2>&1
 eval_tap $? 42 'SaveSecretV2' test.out
 
 #- 43 UpdateSecretV2
 samples/cli/sample-apps Csm updateSecretV2 \
-    --app 'rDp4TZuiltjXXDnI' \
-    --configId 'vcoqKcxjGnbfUPFS' \
+    --app 'mmLiPsDmv7oi82pG' \
+    --configId 'IkJJYvamK9BZUki2' \
     --namespace $AB_NAMESPACE \
-    --body '{"description": "UotxyY5ys2KN4vTr", "value": "rW04OoPBj6fm22Uj"}' \
+    --body '{"description": "YQ5mjs4AFJRy1hOo", "value": "3jugpXB3KT6B1ASz"}' \
     > test.out 2>&1
 eval_tap $? 43 'UpdateSecretV2' test.out
 
 #- 44 DeleteSecretV2
 samples/cli/sample-apps Csm deleteSecretV2 \
-    --app 'a8Ut5XBjDapirFy6' \
-    --configId 'hEUsxdRrmierDwiN' \
+    --app 'v9bG23ZNJKVUGAnO' \
+    --configId '4yOZgNVuZcC1891e' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 44 'DeleteSecretV2' test.out
 
 #- 45 StartAppV2
 samples/cli/sample-apps Csm startAppV2 \
-    --app 'cxSrx4YblKpcnWti' \
+    --app 'ZcpFOi3CoZxnFci7' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 45 'StartAppV2' test.out
 
 #- 46 StopAppV2
 samples/cli/sample-apps Csm stopAppV2 \
-    --app 'ET1x22uqvtKGJRTH' \
+    --app 'Nsx0xF10IHKaanyM' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 46 'StopAppV2' test.out
 
 #- 47 GetNotificationSubscriberListV2
 samples/cli/sample-apps Csm getNotificationSubscriberListV2 \
-    --app 'd3HaY2fkdVEiuCR8' \
+    --app 'mY9LYmTy6wiM4e3E' \
     --namespace $AB_NAMESPACE \
-    --notificationType 'bsijMLyUk2Ji9vt2' \
+    --notificationType 'UvvTcxVpbQC71gL8' \
     > test.out 2>&1
 eval_tap $? 47 'GetNotificationSubscriberListV2' test.out
 
 #- 48 BulkSaveSubscriptionAppNotificationV2
 samples/cli/sample-apps Csm bulkSaveSubscriptionAppNotificationV2 \
-    --app 'VMf999BxjR4y765L' \
+    --app 'oL9GaIymTF3XGtKq' \
     --namespace $AB_NAMESPACE \
-    --body '{"subscribers": [{"emailAddress": "TQHUJyZEQVbGNBW8", "notificationType": {"aJRdIf6zTGzqEajp": false, "4T15xV6HzbpZzmq1": true, "lGJn3altYaoN4gn3": true}, "userId": "8SjpGc8bo2dTZHE2"}, {"emailAddress": "nJJvMbyFl38YPeDo", "notificationType": {"vkJBDbV1vw8FEJ1d": true, "zVkfDk1UPanb0c4l": true, "Q9R6PV9m2AjVc3JJ": false}, "userId": "8zPrEvQyGnPBvVsa"}, {"emailAddress": "aIhXpeJUXHpT981n", "notificationType": {"7ZiP1fuLHDwa3Dg4": true, "nfIr6QHJ5Pa2I6dV": false, "SYD8Szvx8wNywQL4": true}, "userId": "UkbQ9lAV7yS6wrkQ"}]}' \
+    --body '{"subscribers": [{"emailAddress": "QNJzZJtPCTCyCjsJ", "notificationType": {"9UNYa8P8VRPGfy3x": true, "Xlj52U85dEZd7tUy": false, "KHWr7dKQCGoMql1b": false}, "userId": "i1ACSRrPAqBZCsxm"}, {"emailAddress": "L6rPA6ev2xxiNjsh", "notificationType": {"BDyn3k5G273Pxpe2": false, "1NkeuS2Xr8SuZEYg": false, "aPnzqAycdJHGLmEn": false}, "userId": "yxZfkyKfPFxf96eS"}, {"emailAddress": "q84zpwoFu5riqQRr", "notificationType": {"n4y5KAGtzEJddtSZ": true, "asvjkzWrifzLUuI3": false, "LFASi8LiPPG3mnQz": true}, "userId": "OsBOkTbpdt27DCaM"}]}' \
     > test.out 2>&1
 eval_tap $? 48 'BulkSaveSubscriptionAppNotificationV2' test.out
 
 #- 49 SubscribeAppNotificationV2
 samples/cli/sample-apps Csm subscribeAppNotificationV2 \
-    --app 'VtDrcC93vvoo4qHx' \
+    --app 'qlhdGhMZVbh0F7Z3' \
     --namespace $AB_NAMESPACE \
-    --body '{"notificationType": "LdtKKh0H1EG9CxNx", "subscribers": [{"emailAddress": "p9G12c7aHTZQFDT6", "userId": "KwgYKibVjXnfyPQD"}, {"emailAddress": "H0exZIZTIa4QYlg6", "userId": "cv0SplqTwuzcYkjI"}, {"emailAddress": "fHpWHuJSuLQhsLTu", "userId": "WjyfIn2KLZjapOSu"}]}' \
+    --body '{"notificationType": "krFWZUvWwH6dmYFr", "subscribers": [{"emailAddress": "4qtYhIurCsFqiLnm", "userId": "j6qY8dihIuwDhB6k"}, {"emailAddress": "RDFpXuhmbosfDdFx", "userId": "dB5Wz9h1f26VfaGS"}, {"emailAddress": "y8LxkDgbV9ptXKg4", "userId": "hVl4vhTTxjkb3Zi6"}]}' \
     > test.out 2>&1
 eval_tap $? 49 'SubscribeAppNotificationV2' test.out
 
 #- 50 GetSubscriptionV2Handler
 samples/cli/sample-apps Csm getSubscriptionV2Handler \
-    --app 'RZjwuIf4dD1b5iR5' \
+    --app 'HNzGoREZdN7EtHTc' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 50 'GetSubscriptionV2Handler' test.out
 
 #- 51 SubscribeV2Handler
 samples/cli/sample-apps Csm subscribeV2Handler \
-    --app 'ZXPv5519uQfw4k3H' \
+    --app 'm2bD3josnZGLpfyy' \
     --namespace $AB_NAMESPACE \
-    --body '{"notificationType": "Fmt55dq6snf9O5HB"}' \
+    --body '{"notificationType": "IULzHL8sUPnfQgab"}' \
     > test.out 2>&1
 eval_tap $? 51 'SubscribeV2Handler' test.out
 
 #- 52 UnsubscribeV2Handler
 samples/cli/sample-apps Csm unsubscribeV2Handler \
-    --app 'gWkAcbTmM7Hh58b8' \
+    --app 'IPjwgOQxV0mMmAx6' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 52 'UnsubscribeV2Handler' test.out
 
 #- 53 DeleteSubscriptionAppNotificationByUserIDV2
 samples/cli/sample-apps Csm deleteSubscriptionAppNotificationByUserIDV2 \
-    --app 'm5PpxOnI5Q16jjnA' \
+    --app 'oyMeJ4nbceiLC2yF' \
     --namespace $AB_NAMESPACE \
-    --userId 'b0C0m7i4ytxF1aFU' \
+    --userId 'eCnaC7r01GnDSkGO' \
     > test.out 2>&1
 eval_tap $? 53 'DeleteSubscriptionAppNotificationByUserIDV2' test.out
 
@@ -356,34 +356,34 @@ eval_tap 0 54 'DeleteSubscriptionAppNotificationV2 # SKIP deprecated' test.out
 
 #- 55 GetListOfVariablesV2
 samples/cli/sample-apps Csm getListOfVariablesV2 \
-    --app 'gTav29SVqzU6R5oj' \
+    --app '64FAanr42n7x2TB5' \
     --namespace $AB_NAMESPACE \
-    --limit '22' \
-    --offset '72' \
+    --limit '75' \
+    --offset '96' \
     > test.out 2>&1
 eval_tap $? 55 'GetListOfVariablesV2' test.out
 
 #- 56 SaveVariableV2
 samples/cli/sample-apps Csm saveVariableV2 \
-    --app 'IbktHvIRvFj0ndgM' \
+    --app '6V36W5tNmQKSw0bn' \
     --namespace $AB_NAMESPACE \
-    --body '{"applyMask": false, "configName": "YUy76W1nVCEioDhe", "description": "cQFehVCUXzmRkSl5", "source": "2a5M7uU7kBooFSoM", "value": "hTNDfBE9zktgXUm0"}' \
+    --body '{"applyMask": true, "configName": "HZFAfSg38g5zy01v", "description": "zUOvOpdhgeTnKrEu", "source": "nZhe50RlsVbiCfzS", "value": "KD7N12r4RWY6EYH2"}' \
     > test.out 2>&1
 eval_tap $? 56 'SaveVariableV2' test.out
 
 #- 57 UpdateVariableV2
 samples/cli/sample-apps Csm updateVariableV2 \
-    --app 'NHACbRvTBk2zWNn5' \
-    --configId 'AjjPC3kRdn8aKCRI' \
+    --app 'Z0JB9pitUPq20hRa' \
+    --configId 'zch97CVz3tKZSBlX' \
     --namespace $AB_NAMESPACE \
-    --body '{"applyMask": false, "description": "AZficb6E4sQKKU6l", "value": "2kUOnKb4bmkWQ4gv"}' \
+    --body '{"applyMask": true, "description": "X3su3NKk3F2bXJfT", "value": "yY7gIvBGsE1Q2Y8J"}' \
     > test.out 2>&1
 eval_tap $? 57 'UpdateVariableV2' test.out
 
 #- 58 DeleteVariableV2
 samples/cli/sample-apps Csm deleteVariableV2 \
-    --app 'pcF6z7BUGdae2j6M' \
-    --configId 'Twje5CJ9hTIj9SAj' \
+    --app '1IDGsYFmo1DYLoho' \
+    --configId '0cYkLdaEKDTsOEYf' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 58 'DeleteVariableV2' test.out
@@ -391,47 +391,47 @@ eval_tap $? 58 'DeleteVariableV2' test.out
 #- 59 ListTopicsHandler
 samples/cli/sample-apps Csm listTopicsHandler \
     --namespace $AB_NAMESPACE \
-    --fuzzyTopicName 'Y8k6Ie4RXbw57k6h' \
-    --isSubscribedByAppName 'SJfWO3GREPqKEv3i' \
-    --isUnsubscribedByAppName 'cE6bnEIJr6Y7cOkp' \
-    --limit '30' \
-    --offset '55' \
+    --fuzzyTopicName 'jOKgXL9BrsGy4yle' \
+    --isSubscribedByAppName 'YYFNLRkXGxJgdwL6' \
+    --isUnsubscribedByAppName '3ljvISCYxhFVfmiN' \
+    --limit '18' \
+    --offset '22' \
     > test.out 2>&1
 eval_tap $? 59 'ListTopicsHandler' test.out
 
 #- 60 CreateTopicHandler
 samples/cli/sample-apps Csm createTopicHandler \
     --namespace $AB_NAMESPACE \
-    --body '{"description": "rxUYAV6EOSEkSHC2", "topicName": "LyC4vTxkoQu5kJIe"}' \
+    --body '{"description": "BkDZn99RVNb1QgZ4", "topicName": "JIKCDbwIxbjE3K73"}' \
     > test.out 2>&1
 eval_tap $? 60 'CreateTopicHandler' test.out
 
 #- 61 DeleteTopicHandler
 samples/cli/sample-apps Csm deleteTopicHandler \
     --namespace $AB_NAMESPACE \
-    --topicName '2JHlcyxKOjywc0wA' \
+    --topicName '4soFV3dK4IojLktG' \
     > test.out 2>&1
 eval_tap $? 61 'DeleteTopicHandler' test.out
 
 #- 62 GetListOfDeploymentV2
 samples/cli/sample-apps Csm getListOfDeploymentV2 \
     --namespace $AB_NAMESPACE \
-    --limit '80' \
-    --offset '47' \
-    --body '{"appIds": ["5ceBUPAstM79KnOe", "xPySoEcF3FMRbw8l", "mAzaDpdjm3fy3342"], "deploymentIds": ["TjFjqWBpK1Il7nyp", "UG9XJaaAc28U3oXQ", "gk6eXg7WXgW6TaoU"], "statuses": ["wiFiya98t1sSABJ1", "uazplO0s45DMEVRs", "GWEHjOaG91hXZQxA"]}' \
+    --limit '68' \
+    --offset '98' \
+    --body '{"appIds": ["uymNVAX7oeXum75N", "Mkihvk3vyQDnDqLN", "qrUzf4m6670JIJaE"], "deploymentIds": ["EbYpszSC6cIIUk81", "hr1E9nAEp39D8znO", "aS4cDRALDVv71Wzj"], "statuses": ["dhuNUCKhso8YwG20", "HngGhAo4TB7X83Es", "2Bh6Aks9esxzuSeT"]}' \
     > test.out 2>&1
 eval_tap $? 62 'GetListOfDeploymentV2' test.out
 
 #- 63 GetDeploymentV2
 samples/cli/sample-apps Csm getDeploymentV2 \
-    --deploymentId 'asfOAslyBCssnOBt' \
+    --deploymentId 'xY9QiNqQ8uf62UFZ' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 63 'GetDeploymentV2' test.out
 
 #- 64 DeleteDeploymentV2
 samples/cli/sample-apps Csm deleteDeploymentV2 \
-    --deploymentId 'ZGUUXUfp32NnQqQc' \
+    --deploymentId 'D5vuHPvXm7uvvdQ7' \
     --namespace $AB_NAMESPACE \
     > test.out 2>&1
 eval_tap $? 64 'DeleteDeploymentV2' test.out
@@ -445,14 +445,14 @@ eval_tap $? 65 'GetNoSQLClusterV2' test.out
 #- 66 UpdateNoSQLClusterV2
 samples/cli/sample-apps Csm updateNoSQLClusterV2 \
     --namespace $AB_NAMESPACE \
-    --body '{"maxDCU": 0.3588560633396608, "minDCU": 0.7106363486423874, "profileName": "EMwCH2anAeySzEXu"}' \
+    --body '{"maxDCU": 0.6257388033906403, "minDCU": 0.49204996274269175, "profileName": "Iuogb7gk40bKvxO9"}' \
     > test.out 2>&1
 eval_tap $? 66 'UpdateNoSQLClusterV2' test.out
 
 #- 67 CreateNoSQLClusterV2
 samples/cli/sample-apps Csm createNoSQLClusterV2 \
     --namespace $AB_NAMESPACE \
-    --body '{"maxDCU": 0.95801597703774, "minDCU": 0.8744468685179193, "profileName": "XIm4pSk25Vs7mLdo"}' \
+    --body '{"maxDCU": 0.7965016145245667, "minDCU": 0.6786113135450248, "profileName": "9CCRBqBEf6QaVlQN"}' \
     > test.out 2>&1
 eval_tap $? 67 'CreateNoSQLClusterV2' test.out
 
@@ -486,22 +486,33 @@ samples/cli/sample-apps Csm getResourcesLimits \
     > test.out 2>&1
 eval_tap $? 72 'GetResourcesLimits' test.out
 
-#- 73 GetNotificationSubscriberListV3
-samples/cli/sample-apps Csm getNotificationSubscriberListV3 \
-    --app '4x6aJ2RtqwXST45a' \
-    --namespace $AB_NAMESPACE \
-    --notificationType 'l8gbNpoCn4ggnlbs' \
+#- 73 GetNoSQLAppListV2
+samples/cli/sample-apps Csm getNoSQLAppListV2 \
+    --resourceId 's3Ro5REVfcucmVWs' \
+    --studioName '9A2pQj3k25QxGdA9' \
+    --appName 'R2IBYjjoSpNaTKpY' \
+    --limit '39' \
+    --namespace 'DWiXW1p9oMV27QRO' \
+    --offset '69' \
     > test.out 2>&1
-eval_tap $? 73 'GetNotificationSubscriberListV3' test.out
+eval_tap $? 73 'GetNoSQLAppListV2' test.out
 
-#- 74 DeleteSubscriptionAppNotificationV3
-samples/cli/sample-apps Csm deleteSubscriptionAppNotificationV3 \
-    --app 'UTdcOi1vdp9Vjwk4' \
+#- 74 GetNotificationSubscriberListV3
+samples/cli/sample-apps Csm getNotificationSubscriberListV3 \
+    --app 'LSUX3BbGYp49K8Lv' \
     --namespace $AB_NAMESPACE \
-    --emailAddress 'GEnZ0ezrDS03aYmQ' \
-    --userId 'yTdpaEB7MriVJUZj' \
+    --notificationType '7mJF2hl1EWfdQepl' \
     > test.out 2>&1
-eval_tap $? 74 'DeleteSubscriptionAppNotificationV3' test.out
+eval_tap $? 74 'GetNotificationSubscriberListV3' test.out
+
+#- 75 DeleteSubscriptionAppNotificationV3
+samples/cli/sample-apps Csm deleteSubscriptionAppNotificationV3 \
+    --app 'sqPAEFBlzv3TA9rP' \
+    --namespace $AB_NAMESPACE \
+    --emailAddress 'g50iCjfqCNTvzAQ3' \
+    --userId 'XrVfXe6xxOM49Wz7' \
+    > test.out 2>&1
+eval_tap $? 75 'DeleteSubscriptionAppNotificationV3' test.out
 
 
 rm -f "tmp.dat"

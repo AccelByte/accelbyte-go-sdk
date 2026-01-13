@@ -216,7 +216,7 @@ $ samples/cli/sample-apps Social deleteStat \
 $ samples/cli/sample-apps Social updateStat \
     --namespace 'string' \
     --statCode 'string' \
-    --body '{"capCycleOverride": false, "cycleIds": ["string"], "cycleOverrides": [{}], "defaultValue": 3.14, "description": "string", "globalAggregationMethod": "LAST", "ignoreAdditionalDataOnValueRejected": false, "isPublic": false, "name": "string", "tags": ["string"], "visibility": "SERVERONLY"}' \
+    --body '{"capCycleOverride": false, "cycleIds": ["string"], "cycleOverrides": [{}], "defaultValue": 3.14, "description": "string", "globalAggregationMethod": "LAST", "ignoreAdditionalDataOnValueRejected": false, "incrementOnly": false, "isPublic": false, "maximum": 3.14, "minimum": 3.14, "name": "string", "setAsGlobal": false, "setBy": "CLIENT", "tags": ["string"], "visibility": "SERVERONLY"}' \
     > result.txt
 ```
 

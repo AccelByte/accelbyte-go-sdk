@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.10.0"
+    "version": "6.11.0"
   },
   "schemes": [
     "https"
@@ -7565,7 +7565,10 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/EstimatedPriceInfo"
+              "items": {
+                "$ref": "#/definitions/EstimatedPriceInfo"
+              },
+              "type": "array"
             }
           },
           "404": {
@@ -53465,16 +53468,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2025-11-19T03:12:09+00:00",
-    "buildID": "6.10.0",
+    "buildDate": "2026-01-08T09:26:59+00:00",
+    "buildID": "6.11.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
-    "buildOS": "Linux amd64 5.10.245-241.978.amzn2.x86_64",
+    "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "b7d3e1d68a",
-    "gitTag": "6.10.0",
+    "gitHash": "d43f63f653",
+    "gitTag": "6.11.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.10.0",
+    "version": "6.11.0",
     "version-roles-seeding": "1.2.118"
   }
 }

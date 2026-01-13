@@ -7,7 +7,7 @@ $ samples/cli/sample-apps Challenge adminGetChallenges \
     --keyword 'string' \
     --limit 1 \
     --offset 1 \
-    --sortBy 'createdAt' \
+    --sortBy 'code:asc' \
     --status 'INIT' \
     --tags '["string"]' \
     > result.txt
@@ -273,7 +273,7 @@ $ samples/cli/sample-apps Challenge getChallenges \
     --keyword 'string' \
     --limit 1 \
     --offset 1 \
-    --sortBy 'createdAt' \
+    --sortBy 'code:asc' \
     --status 'INIT' \
     --tags '["string"]' \
     > result.txt

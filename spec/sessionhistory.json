@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.14.5"
+    "version": "1.14.6"
   },
   "schemes": [
     "https"
@@ -389,9 +389,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-11-24T06:59:42+00:00",
-    "gitHash": "bbc2880bb1323e685e3e5f9d1a88cc3bc22c3217",
-    "version": "1.14.5",
+    "buildDate": "2026-01-08T11:52:23+00:00",
+    "gitHash": "1e9bf0571257c5007ed3236fb6ff0de93eb113b9",
+    "version": "1.14.6",
     "version-roles-seeding": "1.2.102"
   }
 }

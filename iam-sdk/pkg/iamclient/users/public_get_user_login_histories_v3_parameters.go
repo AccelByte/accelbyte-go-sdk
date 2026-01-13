@@ -86,7 +86,7 @@ type PublicGetUserLoginHistoriesV3Params struct {
 	*/
 	Before *float64
 	/*Limit
-	  The number of data retrieved in a page
+	  The number of data retrieved in a page. Default: 100
 
 	*/
 	Limit *int64

@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.28.0"
+    "version": "3.29.0"
   },
   "schemes": [
     "https"
@@ -3024,7 +3024,7 @@
     },
     "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}/sync": {
       "put": {
-        "description": "Sync Platform Credentials. \n\nSupported Platforms:\n1. XBOX\nWith this method, we will be performing sync to Platform Service to retrieve the existing PFX certificate which uploaded through IAP.\nIf the API returns Not Found, alternatively what you can do is either:\na. upload PFX file to IAP. You can access it from Admin Portal {BASE_URL}/admin/namespaces/{NAMESPACE}/in-app-purchase/xbox, or directly through API /platform/admin/namespaces/{NAMESPACE}/iap/config/xbl/cert.\nb. upload PFX file through Session API /session/v1/admin/namespaces/{namespace}/certificates/pfx/platforms/xbl\nWe recommend approach #a, since you need to only upload the file once, and the service will do the sync. \nIf you set the PFX through Session service, when this API is invoked, we will sync and replace the existing PFX file with the one from Platform (IAP).\n",
+        "description": "Sync Platform Credentials. \n\nSupported Platforms:\n1. XBOX\nWith this method, we will be performing sync to Platform Service to retrieve the existing PFX certificate which uploaded through IAP.\nIf the API returns Not Found, alternatively what you can do is either:\na. upload PFX file to IAP. You can access it from Admin Portal {BASE_URL}/admin/namespaces/{NAMESPACE}/in-app-purchase/xbox, or directly through API /platform/admin/namespaces/{NAMESPACE}/iap/config/xbl/cert.\nb. upload PFX file through Session API /session/v1/admin/namespaces/{namespace}/platform-credentials/xbox/upload\nWe recommend approach #a, since you need to only upload the file once, and the service will do the sync. \nIf you set the PFX through Session service, when this API is invoked, we will sync and replace the existing PFX file with the one from Platform (IAP).\n",
         "operationId": "adminSyncPlatformCredentials",
         "parameters": [
           {
@@ -3092,6 +3092,103 @@
           }
         ],
         "summary": "Sync Platform Credentials.",
+        "tags": [
+          "Platform Credential"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:SESSION:PLATFORMCREDENTIAL [UPDATE]"
+            ]
+          }
+        ]
+      }
+    },
+    "/session/v1/admin/namespaces/{namespace}/platform-credentials/{platformId}/upload": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "Upload certificates for XBox. Certificate must be in the valid form of PFX format.",
+        "operationId": "adminUploadPlatformCredentials",
+        "parameters": [
+          {
+            "description": "the file to upload",
+            "in": "formData",
+            "name": "file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "description": "the uploaded file password",
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform ID",
+            "enum": [
+              "XBOX"
+            ],
+            "in": "path",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "the description of the uploaded file",
+            "in": "formData",
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Upload certificates for XBOX Platform",
         "tags": [
           "Platform Credential"
         ],
@@ -10240,6 +10337,9 @@
         "createdBy": {
           "type": "string"
         },
+        "description": {
+          "type": "string"
+        },
         "namespace": {
           "type": "string"
         },
@@ -10295,9 +10395,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2025-11-19T03:13:16+00:00",
-    "gitHash": "44a34dbb12e615e138e6e6c01abc8c45be47b9f4",
-    "version": "3.28.0",
+    "buildDate": "2026-01-08T11:52:12+00:00",
+    "gitHash": "eb9fc2ad58e316390d8f799a578c33d318b89097",
+    "version": "3.29.0",
     "version-roles-seeding": "1.2.86"
   }
 }

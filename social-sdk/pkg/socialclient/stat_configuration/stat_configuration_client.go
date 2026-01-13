@@ -894,11 +894,10 @@ Deprecated: 2022-08-10 - Use UpdateStatShort instead.
 
 UpdateStat update stat
 Update stat.
+ Update a TIED stat will affect users' data, the updated stat will take effect in the next evaluation.
 Other detail info:
                       *  Returns : updated stat
                       *  Field globalAggregationMethod will be ignored when the stat is not set as global
-                      *  Field globalAggregationMethod is not updatable when the stat status is TIED
-                      *  Field visibility is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, *UpdateStatBadRequest, *UpdateStatUnauthorized, *UpdateStatForbidden, *UpdateStatNotFound, *UpdateStatUnprocessableEntity, *UpdateStatInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -966,11 +965,10 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 /*
 UpdateStatShort update stat
 Update stat.
+ Update a TIED stat will affect users' data, the updated stat will take effect in the next evaluation.
 Other detail info:
                       *  Returns : updated stat
                       *  Field globalAggregationMethod will be ignored when the stat is not set as global
-                      *  Field globalAggregationMethod is not updatable when the stat status is TIED
-                      *  Field visibility is not updatable when the stat status is TIED
 */
 func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatOK, error) {
 	// TODO: Validate the params before sending

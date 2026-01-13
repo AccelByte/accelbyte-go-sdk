@@ -32,6 +32,11 @@ type ApimodelCSMAppLimitsResponse struct {
 	// Format: int32
 	ExtendAppEventHandlerCPULimit *int32 `json:"extendAppEventHandlerCPULimit"`
 
+	// extendappeventhandlermemorylimit
+	// Required: true
+	// Format: int32
+	ExtendAppEventHandlerMemoryLimit *int32 `json:"extendAppEventHandlerMemoryLimit"`
+
 	// extendappmemorylimit
 	// Required: true
 	// Format: int32
@@ -41,6 +46,16 @@ type ApimodelCSMAppLimitsResponse struct {
 	// Required: true
 	// Format: int32
 	ExtendAppReplicaLimit *int32 `json:"extendAppReplicaLimit"`
+
+	// extendappserviceextensioncpulimit
+	// Required: true
+	// Format: int32
+	ExtendAppServiceExtensionCPULimit *int32 `json:"extendAppServiceExtensionCPULimit"`
+
+	// extendappserviceextensionmemorylimit
+	// Required: true
+	// Format: int32
+	ExtendAppServiceExtensionMemoryLimit *int32 `json:"extendAppServiceExtensionMemoryLimit"`
 
 	// extendappeeventhandlermemorylimit
 	// Required: true
@@ -66,10 +81,19 @@ func (m *ApimodelCSMAppLimitsResponse) Validate(formats strfmt.Registry) error {
 	if err := m.validateExtendAppEventHandlerCPULimit(formats); err != nil {
 		res = append(res, err)
 	}
+	if err := m.validateExtendAppEventHandlerMemoryLimit(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateExtendAppMemoryLimit(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateExtendAppReplicaLimit(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateExtendAppServiceExtensionCPULimit(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateExtendAppServiceExtensionMemoryLimit(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateExtendAppeEventHandlerMemoryLimit(formats); err != nil {
@@ -121,6 +145,15 @@ func (m *ApimodelCSMAppLimitsResponse) validateExtendAppEventHandlerCPULimit(for
 	return nil
 }
 
+func (m *ApimodelCSMAppLimitsResponse) validateExtendAppEventHandlerMemoryLimit(formats strfmt.Registry) error {
+
+	if err := validate.Required("extendAppEventHandlerMemoryLimit", "body", m.ExtendAppEventHandlerMemoryLimit); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ApimodelCSMAppLimitsResponse) validateExtendAppMemoryLimit(formats strfmt.Registry) error {
 
 	if err := validate.Required("extendAppMemoryLimit", "body", m.ExtendAppMemoryLimit); err != nil {
@@ -133,6 +166,24 @@ func (m *ApimodelCSMAppLimitsResponse) validateExtendAppMemoryLimit(formats strf
 func (m *ApimodelCSMAppLimitsResponse) validateExtendAppReplicaLimit(formats strfmt.Registry) error {
 
 	if err := validate.Required("extendAppReplicaLimit", "body", m.ExtendAppReplicaLimit); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelCSMAppLimitsResponse) validateExtendAppServiceExtensionCPULimit(formats strfmt.Registry) error {
+
+	if err := validate.Required("extendAppServiceExtensionCPULimit", "body", m.ExtendAppServiceExtensionCPULimit); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelCSMAppLimitsResponse) validateExtendAppServiceExtensionMemoryLimit(formats strfmt.Registry) error {
+
+	if err := validate.Required("extendAppServiceExtensionMemoryLimit", "body", m.ExtendAppServiceExtensionMemoryLimit); err != nil {
 		return err
 	}
 

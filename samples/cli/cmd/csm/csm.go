@@ -102,6 +102,7 @@ func init() {
 	CsmCmd.AddCommand(managedResources.StopNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.GetNoSQLAccessTunnelV2Cmd)
 	CsmCmd.AddCommand(resourcesLimits.GetResourcesLimitsCmd)
+	CsmCmd.AddCommand(managedResources.GetNoSQLAppListV2Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.GetNotificationSubscriberListV3Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.DeleteSubscriptionAppNotificationV3Cmd)
 }

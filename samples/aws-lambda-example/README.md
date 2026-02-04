@@ -15,7 +15,7 @@ This app is using lambda function url, token validation, and a token refresh ins
 
 5. AccelByte `CLIENT_ID` and `CLIENT_SECRET` for accessing services in AccelByte environment.
 
-    See https://docs.accelbyte.io/gaming-services/services/access/authorization/manage-access-control-for-applications/#manage-iam-clients
+    See https://docs.accelbyte.io/gaming-services/modules/foundations/identity-access/authorization/manage-access-control-for-applications/#manage-iam-clients
 
     Required permissions:
 
@@ -24,7 +24,7 @@ This app is using lambda function url, token validation, and a token refresh ins
 
 6. An existing `Stat Code`
 
-    [Create a statistic configuration](https://docs.accelbyte.io/gaming-services/services/storage/statistics/tracking-game-wide-global-statistics/#configure-user-and-global-statistics)
+    [Create a statistic configuration](https://docs.accelbyte.io/gaming-services/modules/online/statistics/tracking-game-wide-global-statistics/#configure-user-and-global-statistics)
     if you do not have it yet. 
 
 7. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`

@@ -92,6 +92,152 @@ func TestTokenValidator_ValidateTokenClient(t *testing.T) {
 	}
 }
 
+func TestTokenValidator_DefaultOverridePermissionUser(t *testing.T) {
+	if strings.Contains(configRepository.BaseUrl, "gamingservices.accelbyte.io") {
+		t.Skip("skip for ags private for now")
+	}
+
+	var nsA, nsB, roleIdA, roleIdB string
+	roleTracker := make(map[string][]string)
+	resourceToCheck := "NAMESPACE:{namespace}:PROFILE"
+
+	// Arrange
+	configRepo := auth.DefaultConfigRepositoryImpl()
+	tokenRepo := auth.DefaultTokenRepositoryImpl()
+	authService := iam.OAuth20Service{
+		Client:           factory.NewIamClient(configRepo),
+		ConfigRepository: configRepo,
+		TokenRepository:  tokenRepo,
+	}
+
+	username := os.Getenv("AB_USERNAME")
+	password := os.Getenv("AB_PASSWORD")
+
+	if err := authService.LoginUser(username, password); err != nil {
+		assert.FailNow(t, "Login failed: "+err.Error())
+	}
+
+	accessToken, err := authService.GetToken()
+	if err != nil {
+		assert.FailNow(t, "Token retrieval failed: "+err.Error())
+	}
+
+	jwtClaims, err := authService.ParseAccessTokenToClaims(accessToken, false)
+	if err != nil {
+		assert.FailNow(t, "Failed to parse token: "+err.Error())
+	} else {
+		for _, nr := range jwtClaims.NamespaceRoles {
+			roleTracker[nr.RoleID] = append(roleTracker[nr.RoleID], nr.Namespace)
+
+			// if found a RoleID with 2 or more namespaces, grab them
+			if len(roleTracker[nr.RoleID]) >= 2 {
+				roleIdA = nr.RoleID
+				roleIdB = nr.RoleID
+				nsA = roleTracker[nr.RoleID][0]
+				nsB = roleTracker[nr.RoleID][1]
+				break // found pair
+			}
+		}
+	}
+
+	if roleIdA != roleIdB {
+		assert.FailNow(t, "Role is different: "+roleIdA+" != "+roleIdB)
+	}
+
+	overrideRoleService := iam.OverrideRoleConfigv3Service{
+		Client:           factory.NewIamClient(configRepo),
+		ConfigRepository: configRepo,
+		TokenRepository:  tokenRepo,
+	}
+
+	updateResponse, err := overrideRoleService.AdminUpdateRoleOverrideConfigV3Short(&override_role_config_v3.AdminUpdateRoleOverrideConfigV3Params{
+		Body: &iamclientmodels.ModelRoleOverrideUpdateRequest{
+			Exclusions: []*iamclientmodels.AccountcommonOverrideRolePermission{
+				{
+					Actions:  []int32{1, 4},
+					Resource: &resourceToCheck,
+				},
+			},
+		},
+		Namespace: nsB,
+		Identity:  "USER",
+	})
+	assert.NoError(t, err)
+
+	assert.NotNil(t, updateResponse)
+
+	active := true
+	activateResponse, err := overrideRoleService.AdminChangeRoleOverrideConfigStatusV3Short(&override_role_config_v3.AdminChangeRoleOverrideConfigStatusV3Params{
+		Body: &iamclientmodels.ModelRoleOverrideStatsUpdateRequest{
+			Active: &active,
+		},
+		Namespace: nsB,
+		Identity:  "USER",
+	})
+	assert.NoError(t, err)
+
+	assert.NotNil(t, activateResponse)
+
+	if activateResponse != nil {
+		assert.Equal(t, true, *activateResponse.Active)
+	}
+
+	tests := []struct {
+		name            string
+		targetNamespace string
+		targetRoleID    string
+		action          int
+		resource        string
+		expectError     bool
+	}{
+		{
+			name:            "ValidAccess_NamespaceA",
+			targetNamespace: nsA,
+			targetRoleID:    roleIdA,
+			action:          7, // Update, Read
+			resource:        resourceToCheck,
+			expectError:     false,
+		},
+		{
+			name:            "UnauthorizedAccess_NamespaceB",
+			targetNamespace: nsB,
+			targetRoleID:    roleIdB,
+			action:          4, // not have Update
+			resource:        resourceToCheck,
+			expectError:     true, // should fail because the role isn't assigned here
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			requiredPermission := iam.Permission{
+				Action:   tt.action,
+				Resource: tt.resource,
+			}
+
+			// Act
+			t.Logf("roleId: %s and namespace: %s", tt.targetRoleID, tt.targetNamespace)
+			err = authService.Validate(accessToken, &requiredPermission, &tt.targetNamespace, nil)
+
+			// Assert
+			if tt.expectError {
+				assert.NotNil(t, err, "Expected an error for %s but got nil", tt.name)
+			} else {
+				assert.Nil(t, err, "Expected no error for %s but got: %v", tt.name, err)
+			}
+		})
+	}
+
+	active = false
+	overrideRoleService.AdminChangeRoleOverrideConfigStatusV3Short(&override_role_config_v3.AdminChangeRoleOverrideConfigStatusV3Params{
+		Body: &iamclientmodels.ModelRoleOverrideStatsUpdateRequest{
+			Active: &active,
+		},
+		Namespace: nsB,
+		Identity:  "USER",
+	})
+}
+
 func TestTokenValidator_ValidateTokenUser(t *testing.T) {
 	tests := []struct {
 		name            string
@@ -600,7 +746,7 @@ func findAndCheckResourceFromRole(configRepo *auth.ConfigRepositoryImpl, tokenRe
 	return resultAction, err
 }
 
-func Test_RoleOverride(t *testing.T) {
+func Test_RoleOverrideClient(t *testing.T) {
 	roleIdentityToUpdate := "USER"
 	resourceToCheck := "NAMESPACE:{namespace}:PROFILE"
 	actionToCheck := 7
@@ -618,7 +764,10 @@ func Test_RoleOverride(t *testing.T) {
 		TokenRepository:  tokenRepo,
 	}
 
-	err := authService.LoginClient(&configRepo.ClientId, &configRepo.ClientSecret)
+	username := os.Getenv("AB_USERNAME")
+	password := os.Getenv("AB_PASSWORD")
+
+	err := authService.LoginUser(username, password)
 	assert.NoError(t, err)
 
 	tkn, err := tokenRepo.GetToken()
@@ -714,5 +863,4 @@ func Test_RoleOverride(t *testing.T) {
 		Namespace: *tkn.Namespace,
 		Identity:  roleIdentityToUpdate,
 	})
-
 }

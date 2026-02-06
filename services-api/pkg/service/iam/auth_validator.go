@@ -12,7 +12,6 @@ import (
 	"encoding/binary"
 	"fmt"
 	"math/big"
-	"os"
 	"strings"
 	"sync"
 	"time"
@@ -308,28 +307,27 @@ func (v *TokenValidator) fetchRevocationList() error {
 }
 
 func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*iamclientmodels.ModelRolePermissionResponseV3, error) {
+	// Strip trailing hyphen from namespace
+	namespace = strings.TrimSuffix(namespace, "-")
+
+	// use combination roleId + namespace as cache key
+	cacheKey := roleId + ":" + namespace
+
 	if !forceFetch {
 		v.RWMutex.RLock()
-		if role, found := v.Roles[roleId]; found {
+		if role, found := v.Roles[cacheKey]; found {
 			v.RWMutex.RUnlock()
 			return role, nil
 		}
 		v.RWMutex.RUnlock()
 	}
 
-	if namespace == "*" {
-		namespace = os.Getenv("AB_NAMESPACE")
-	}
-
-	// Strip trailing hyphen from namespace
-	namespace = strings.TrimSuffix(namespace, "-")
-
 	v.RWMutex.Lock()
 	defer v.RWMutex.Unlock()
 
 	// Double-check after acquiring write lock
 	if !forceFetch {
-		if role, found := v.Roles[roleId]; found {
+		if role, found := v.Roles[cacheKey]; found {
 			return role, nil
 		}
 	}
@@ -348,7 +346,7 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 		return nil, err
 	}
 
-	v.Roles[roleId] = role
+	v.Roles[cacheKey] = role
 
 	return role, nil
 }
@@ -424,6 +422,7 @@ func (v *TokenValidator) hasValidPermissions(claims JWTClaims, permission *Permi
 
 	claimsUserId := claims.Subject
 	namespaceRoles := claims.NamespaceRoles
+
 	if claimsUserId != "" && len(namespaceRoles) > 0 {
 		allRoleNamespacePermissions := make([]Permission, 0)
 		for _, namespaceRole := range namespaceRoles {

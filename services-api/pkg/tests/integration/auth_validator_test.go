@@ -764,10 +764,7 @@ func Test_RoleOverrideClient(t *testing.T) {
 		TokenRepository:  tokenRepo,
 	}
 
-	username := os.Getenv("AB_USERNAME")
-	password := os.Getenv("AB_PASSWORD")
-
-	err := authService.LoginUser(username, password)
+	err := authService.LoginClient(&configRepo.ClientId, &configRepo.ClientSecret)
 	assert.NoError(t, err)
 
 	tkn, err := tokenRepo.GetToken()

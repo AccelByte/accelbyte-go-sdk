@@ -260,6 +260,35 @@ func (aaa *StatCycleConfigurationService) DeleteStatCycle(input *stat_cycle_conf
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use ResetStatCycleShort instead.
+func (aaa *StatCycleConfigurationService) ResetStatCycle(input *stat_cycle_configuration.ResetStatCycleParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.StatCycleConfiguration.ResetStatCycle(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use BulkAddStatsShort instead.
 func (aaa *StatCycleConfigurationService) BulkAddStats(input *stat_cycle_configuration.BulkAddStatsParams) ([]*socialclientmodels.BulkStatCycleOperationResult, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -660,6 +689,36 @@ func (aaa *StatCycleConfigurationService) DeleteStatCycleShort(input *stat_cycle
 	}
 
 	_, err := aaa.Client.StatCycleConfiguration.DeleteStatCycleShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *StatCycleConfigurationService) ResetStatCycleShort(input *stat_cycle_configuration.ResetStatCycleParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdStatCycleConfiguration != nil {
+		input.XFlightId = tempFlightIdStatCycleConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.StatCycleConfiguration.ResetStatCycleShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -59,6 +59,14 @@
             "required": false,
             "type": "boolean",
             "x-omitempty": false
+          },
+          {
+            "description": "filter namespaces by testing flag (true, false, or empty for all)",
+            "in": "query",
+            "name": "isTesting",
+            "required": false,
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1854,6 +1862,93 @@
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]"
+        }
+      }
+    },
+    "/basic/v1/admin/namespaces/{namespace}/testingFlag": {
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update namespace testing flag.\u0026lt;br\u0026gt;In multi-tenant mode, this is only applicable for studio namespaces, not game namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateTestingFlag",
+        "parameters": [
+          {
+            "description": "namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NamespaceTestingFlagUpdate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/NamespaceInfo"
+            }
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11337\u003c/td\u003e\u003ctd\u003eUnable to {action}: Namespace not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Update namespace testing flag",
+        "tags": [
+          "Namespace"
+        ],
+        "x-errorCodes": {
+          "11337": "Unable to {action}: Namespace not found",
+          "20001": "unauthorized",
+          "20002": "validation error",
+          "20006": "optimistic lock",
+          "20013": "insufficient permission",
+          "20019": "unable to parse request body"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:NAMESPACE:TESTINGFLAG [UPDATE]"
         }
       }
     },
@@ -4589,6 +4684,11 @@
           "description": "display name",
           "type": "string"
         },
+        "isTesting": {
+          "description": "flag to indicate whether the namespace is for testing purposes. In multi-tenant mode, only applicable for studio namespaces",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "description": "namespace, only accept alphabet and numeric. Will be converted to lowercase",
           "type": "string"
@@ -4614,6 +4714,11 @@
         "displayName": {
           "description": "namespace display name",
           "type": "string"
+        },
+        "isTesting": {
+          "description": "isTesting flag to indicate whether the namespace is for testing purposes. In multi-tenant mode, only applicable for studio namespaces",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "description": "namespace",
@@ -4683,6 +4788,20 @@
       },
       "required": [
         "status"
+      ],
+      "type": "object"
+    },
+    "NamespaceTestingFlagUpdate": {
+      "description": "A DTO object for updating namespace testing flag API call.",
+      "properties": {
+        "isTesting": {
+          "description": "testing flag to indicate whether the namespace is for testing purposes",
+          "type": "boolean",
+          "x-omitempty": false
+        }
+      },
+      "required": [
+        "isTesting"
       ],
       "type": "object"
     },
@@ -5211,16 +5330,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2026-01-08T09:21:19+00:00",
+    "buildDate": "2026-02-16T03:02:18+00:00",
     "buildID": "4.2.2",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
     "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "56b5177c59",
-    "gitTag": "4.2.2",
+    "gitHash": "2da9d9d0d9",
+    "gitTag": "4.2.1",
     "name": "justice-basic-service",
     "realm": "staging",
     "version": "4.2.2",
-    "version-roles-seeding": "0.0.10"
+    "version-roles-seeding": "1.2.121"
   }
 }

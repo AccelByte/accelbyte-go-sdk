@@ -53,6 +53,9 @@ type ApimodelNoSQLResourceResponse struct {
 	// studioname
 	// Required: true
 	StudioName *string `json:"studioName"`
+
+	// tlsenabled
+	TLSEnabled bool `json:"tlsEnabled"`
 }
 
 // Validate validates this Apimodel no SQL resource response

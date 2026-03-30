@@ -41,10 +41,12 @@ var AdminEvaluateProgressCmd = &cobra.Command{
 		if errChallengeCode != nil {
 			return errChallengeCode
 		}
+		includeOneTimeEvent, _ := cmd.Flags().GetString("includeOneTimeEvent")
 		input := &challenge_progression.AdminEvaluateProgressParams{
-			Body:          body,
-			Namespace:     namespace,
-			ChallengeCode: challengeCode,
+			Body:                body,
+			Namespace:           namespace,
+			ChallengeCode:       challengeCode,
+			IncludeOneTimeEvent: &includeOneTimeEvent,
 		}
 		errNoContent := challengeProgressionService.AdminEvaluateProgressShort(input)
 		if errNoContent != nil {
@@ -65,4 +67,5 @@ func init() {
 	AdminEvaluateProgressCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminEvaluateProgressCmd.MarkFlagRequired("namespace")
 	AdminEvaluateProgressCmd.Flags().String("challengeCode", "", "Challenge code")
+	AdminEvaluateProgressCmd.Flags().String("includeOneTimeEvent", "", "Include one time event")
 }

@@ -268,7 +268,7 @@ func (a *Client) CreateOculusSubscriptionGroupShort(params *CreateOculusSubscrip
 /*
 Deprecated: 2022-08-10 - Use DeleteOculusSubscriptionGroupShort instead.
 
-DeleteOculusSubscriptionGroup delete a ags meta quest(oculus) subscriptions group
+DeleteOculusSubscriptionGroup delete an ags meta quest(oculus) subscriptions group
 can't delete it if this subscription group is used.
 */
 func (a *Client) DeleteOculusSubscriptionGroup(params *DeleteOculusSubscriptionGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusSubscriptionGroupNoContent, *DeleteOculusSubscriptionGroupNotFound, *DeleteOculusSubscriptionGroupConflict, error) {
@@ -323,7 +323,7 @@ func (a *Client) DeleteOculusSubscriptionGroup(params *DeleteOculusSubscriptionG
 }
 
 /*
-DeleteOculusSubscriptionGroupShort delete a ags meta quest(oculus) subscriptions group
+DeleteOculusSubscriptionGroupShort delete an ags meta quest(oculus) subscriptions group
 can't delete it if this subscription group is used.
 */
 func (a *Client) DeleteOculusSubscriptionGroupShort(params *DeleteOculusSubscriptionGroupParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusSubscriptionGroupNoContent, error) {
@@ -571,7 +571,7 @@ func (a *Client) AddTierIntoMetaQuestSubscriptionGroupShort(params *AddTierIntoM
 /*
 Deprecated: 2022-08-10 - Use DeleteOculusSubscriptionTierShort instead.
 
-DeleteOculusSubscriptionTier delete a ags meta quest(oculus) subscriptions tier
+DeleteOculusSubscriptionTier delete an ags meta quest(oculus) subscriptions tier
 
 */
 func (a *Client) DeleteOculusSubscriptionTier(params *DeleteOculusSubscriptionTierParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusSubscriptionTierNoContent, *DeleteOculusSubscriptionTierNotFound, *DeleteOculusSubscriptionTierConflict, error) {
@@ -626,7 +626,7 @@ func (a *Client) DeleteOculusSubscriptionTier(params *DeleteOculusSubscriptionTi
 }
 
 /*
-DeleteOculusSubscriptionTierShort delete a ags meta quest(oculus) subscriptions tier
+DeleteOculusSubscriptionTierShort delete an ags meta quest(oculus) subscriptions tier
 
 */
 func (a *Client) DeleteOculusSubscriptionTierShort(params *DeleteOculusSubscriptionTierParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteOculusSubscriptionTierNoContent, error) {

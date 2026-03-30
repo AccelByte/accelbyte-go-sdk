@@ -50,6 +50,8 @@ type ClientService interface {
 	GetNamespacePublisherShort(params *GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*GetNamespacePublisherOK, error)
 	ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, *ChangeNamespaceStatusBadRequest, *ChangeNamespaceStatusUnauthorized, *ChangeNamespaceStatusForbidden, *ChangeNamespaceStatusNotFound, *ChangeNamespaceStatusConflict, error)
 	ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ChangeNamespaceStatusOK, error)
+	UpdateTestingFlag(params *UpdateTestingFlagParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTestingFlagOK, *UpdateTestingFlagBadRequest, *UpdateTestingFlagUnauthorized, *UpdateTestingFlagForbidden, *UpdateTestingFlagNotFound, *UpdateTestingFlagConflict, error)
+	UpdateTestingFlagShort(params *UpdateTestingFlagParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTestingFlagOK, error)
 	PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, *PublicGetNamespacesUnauthorized, error)
 	PublicGetNamespacesShort(params *PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetNamespacesOK, error)
 	GetNamespace1(params *GetNamespace1Params) (*GetNamespace1OK, *GetNamespace1NotFound, error)
@@ -1312,6 +1314,135 @@ func (a *Client) ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams,
 	case *ChangeNamespaceStatusNotFound:
 		return nil, v
 	case *ChangeNamespaceStatusConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use UpdateTestingFlagShort instead.
+
+UpdateTestingFlag update namespace testing flag
+Update namespace testing flag.
+In multi-tenant mode, this is only applicable for studio namespaces, not game namespaces.
+Other detail info:
+
+  * Returns : updated namespace
+*/
+func (a *Client) UpdateTestingFlag(params *UpdateTestingFlagParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTestingFlagOK, *UpdateTestingFlagBadRequest, *UpdateTestingFlagUnauthorized, *UpdateTestingFlagForbidden, *UpdateTestingFlagNotFound, *UpdateTestingFlagConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateTestingFlagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateTestingFlag",
+		Method:             "PATCH",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/testingFlag",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateTestingFlagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateTestingFlagOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *UpdateTestingFlagBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *UpdateTestingFlagUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *UpdateTestingFlagForbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *UpdateTestingFlagNotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *UpdateTestingFlagConflict:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+UpdateTestingFlagShort update namespace testing flag
+Update namespace testing flag.
+In multi-tenant mode, this is only applicable for studio namespaces, not game namespaces.
+Other detail info:
+
+  * Returns : updated namespace
+*/
+func (a *Client) UpdateTestingFlagShort(params *UpdateTestingFlagParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTestingFlagOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateTestingFlagParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateTestingFlag",
+		Method:             "PATCH",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/testingFlag",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateTestingFlagReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateTestingFlagOK:
+		return v, nil
+	case *UpdateTestingFlagBadRequest:
+		return nil, v
+	case *UpdateTestingFlagUnauthorized:
+		return nil, v
+	case *UpdateTestingFlagForbidden:
+		return nil, v
+	case *UpdateTestingFlagNotFound:
+		return nil, v
+	case *UpdateTestingFlagConflict:
 		return nil, v
 
 	default:

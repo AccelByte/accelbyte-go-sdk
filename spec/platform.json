@@ -5198,7 +5198,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete a AGS Meta Quest(Oculus) subscriptions group",
+        "summary": "Delete an AGS Meta Quest(Oculus) subscriptions group",
         "tags": [
           "IAP(Subscription)"
         ],
@@ -5358,7 +5358,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete a AGS Meta Quest(Oculus) subscriptions tier",
+        "summary": "Delete an AGS Meta Quest(Oculus) subscriptions tier",
         "tags": [
           "IAP(Subscription)"
         ],
@@ -11841,13 +11841,13 @@
         }
       }
     },
-    "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation/revocation/customConfig/cert": {
+    "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation/customConfig/cert": {
       "put": {
         "consumes": [
           "multipart/form-data"
         ],
         "description": "Upload revocation plugin custom config tls cert.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
-        "operationId": "uploadRevocationPluginConfigCert",
+        "operationId": "uploadRevocationPluginConfigCertV2",
         "parameters": [
           {
             "in": "path",
@@ -11885,6 +11885,62 @@
           }
         ],
         "summary": "Upload revocation plugin custom config tls cert",
+        "tags": [
+          "ServicePluginConfig"
+        ],
+        "x-errorCodes": {
+          "20002": "validation error"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION[UPDATE]"
+        }
+      }
+    },
+    "/platform/admin/namespaces/{namespace}/revocation/plugins/revocation/revocation/customConfig/cert": {
+      "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "deprecated": true,
+        "description": "Upload revocation plugin custom config tls cert.  This api has been deprecated, please use /admin/namespaces/{namespace}/revocation/plugins/revocation/customConfig/cert to update revocation certOther detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated service plugin config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "uploadRevocationPluginConfigCert",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "file",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RevocationPluginConfigInfo"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "[Deprecated]Upload revocation plugin custom config tls cert",
         "tags": [
           "ServicePluginConfig"
         ],
@@ -12843,7 +12899,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "This API is used to update s section.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated section data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for section extension and localization extension\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
+        "description": "This API is used to update a section.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated section data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;h2\u0026gt;Restrictions for section extension and localization extension\u0026lt;/h2\u0026gt;\n1. Cannot use \u0026lt;b\u0026gt;\u0026#34;.\u0026#34;\u0026lt;/b\u0026gt; as the key name\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;data.2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n2. Cannot use \u0026lt;b\u0026gt;\u0026#34;$\u0026#34;\u0026lt;/b\u0026gt; as the prefix in key names\n-\t\u0026lt;pre\u0026gt;{ \u0026#34;$data\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;",
         "operationId": "updateSection",
         "parameters": [
           {
@@ -12913,7 +12969,7 @@
             "authorization": []
           }
         ],
-        "summary": "Update s section",
+        "summary": "Update a section",
         "tags": [
           "Section"
         ],
@@ -33261,6 +33317,67 @@
         }
       }
     },
+    "/platform/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/bulk": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;b\u0026gt;[Not supported yet in AGS Shared Cloud]\u0026lt;/b\u0026gt; Fulfill multiple transactions.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Request body\u0026lt;/i\u0026gt;: list of fulfillment v3 requests. storeId, region, language, and entitlementCollectionId can be ignored.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of fulfillment v2 result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "bulkFulfillItemsV3",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/FulfillmentV3Request"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/FulfillmentV2Result"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Fulfill multiple transactions",
+        "tags": [
+          "Fulfillment"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
+        }
+      }
+    },
     "/platform/v3/admin/namespaces/{namespace}/users/{userId}/fulfillments/{transactionId}": {
       "put": {
         "consumes": [
@@ -40251,6 +40368,10 @@
           "$ref": "#/definitions/FulfillmentStateInfo",
           "description": "stateInfo"
         },
+        "stateReason": {
+          "description": "reason",
+          "type": "string"
+        },
         "subscriptionSummaries": {
           "description": "affected subscriptions",
           "items": {
@@ -40275,6 +40396,23 @@
         "transactionId",
         "userId"
       ],
+      "type": "object"
+    },
+    "FulfillmentV3Request": {
+      "description": "A DTO object for fulfillment v3 request API call.",
+      "properties": {
+        "items": {
+          "description": "items",
+          "items": {
+            "$ref": "#/definitions/FulfillmentV2RequestItem"
+          },
+          "type": "array"
+        },
+        "transactionId": {
+          "description": "transactionId",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "FullAppInfo": {
@@ -53468,13 +53606,13 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2026-01-08T09:26:59+00:00",
+    "buildDate": "2026-02-16T03:11:03+00:00",
     "buildID": "6.11.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
     "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "d43f63f653",
-    "gitTag": "6.11.0",
+    "gitHash": "f602488eb0",
+    "gitTag": "6.10.0",
     "name": "justice-platform-service",
     "realm": "staging",
     "version": "6.11.0",

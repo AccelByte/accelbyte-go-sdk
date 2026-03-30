@@ -203,16 +203,16 @@ Get a NoSQL database information returns the NoSQL database related information 
 and app name.
 
 `resourceStatus` field - indicates the NoSQL cluster status:
+- `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `unknown` : The cluster status is not recognized
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
-- `unknown` : The cluster status is not recognized
-- `available` : The cluster is accessible.
-- `creating` : The cluster or instance is being created and is not yet accessible.
 */
 func (a *Client) GetNoSQLDatabaseV2(params *GetNoSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLDatabaseV2OK, *GetNoSQLDatabaseV2Unauthorized, *GetNoSQLDatabaseV2Forbidden, *GetNoSQLDatabaseV2NotFound, *GetNoSQLDatabaseV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -279,16 +279,16 @@ Get a NoSQL database information returns the NoSQL database related information 
 and app name.
 
 `resourceStatus` field - indicates the NoSQL cluster status:
+- `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `unknown` : The cluster status is not recognized
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
-- `unknown` : The cluster status is not recognized
-- `available` : The cluster is accessible.
-- `creating` : The cluster or instance is being created and is not yet accessible.
 */
 func (a *Client) GetNoSQLDatabaseV2Short(params *GetNoSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLDatabaseV2OK, error) {
 	// TODO: Validate the params before sending
@@ -613,16 +613,16 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 Get NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the NoSQL cluster status:
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 */
 func (a *Client) GetNoSQLClusterV2(params *GetNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLClusterV2OK, *GetNoSQLClusterV2BadRequest, *GetNoSQLClusterV2Unauthorized, *GetNoSQLClusterV2Forbidden, *GetNoSQLClusterV2NotFound, *GetNoSQLClusterV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -691,16 +691,16 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 Get NoSQL cluster information returns the NoSQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the NoSQL cluster status:
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
 */
 func (a *Client) GetNoSQLClusterV2Short(params *GetNoSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLClusterV2OK, error) {
 	// TODO: Validate the params before sending
@@ -1550,16 +1550,16 @@ GetNoSQLAppListV2 get list of extend app using nosql
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 
 Get List of Extend App using NoSQL database by given studio/publisher namespace and the NoSQL cluster resourceId.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
 */
 func (a *Client) GetNoSQLAppListV2(params *GetNoSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAppListV2OK, *GetNoSQLAppListV2BadRequest, *GetNoSQLAppListV2Unauthorized, *GetNoSQLAppListV2Forbidden, *GetNoSQLAppListV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1623,16 +1623,16 @@ GetNoSQLAppListV2Short get list of extend app using nosql
 Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:NOSQL:CLUSTERS [READ]`
 
 Get List of Extend App using NoSQL database by given studio/publisher namespace and the NoSQL cluster resourceId.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
 - `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `stopped` : The cluster is stopped and not accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max DCU).
-- `failed` : The cluster failed to provision or is in an error state and not accessible.
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
+- `failed` : The cluster failed to provision or is in an error state and not accessible.
 */
 func (a *Client) GetNoSQLAppListV2Short(params *GetNoSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetNoSQLAppListV2OK, error) {
 	// TODO: Validate the params before sending

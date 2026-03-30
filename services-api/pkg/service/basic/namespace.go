@@ -283,6 +283,35 @@ func (aaa *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamesp
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use UpdateTestingFlagShort instead.
+func (aaa *NamespaceService) UpdateTestingFlag(input *namespace.UpdateTestingFlagParams) (*basicclientmodels.NamespaceInfo, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, err := aaa.Client.Namespace.UpdateTestingFlag(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetNamespacesShort instead.
 func (aaa *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -668,6 +697,40 @@ func (aaa *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeN
 	}
 
 	ok, err := aaa.Client.Namespace.ChangeNamespaceStatusShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *NamespaceService) UpdateTestingFlagShort(input *namespace.UpdateTestingFlagParams) (*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdNamespace != nil {
+		input.XFlightId = tempFlightIdNamespace
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Namespace.UpdateTestingFlagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

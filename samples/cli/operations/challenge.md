@@ -207,6 +207,7 @@ $ samples/cli/sample-apps Challenge adminDeleteAssignmentPlugin \
 $ samples/cli/sample-apps Challenge adminEvaluateProgress \
     --namespace 'string' \
     --challengeCode '["string"]' \
+    --includeOneTimeEvent 'string' \
     --body '{"userIds": ["string"]}' \
     > result.txt
 ```
@@ -327,6 +328,7 @@ $ samples/cli/sample-apps Challenge publicClaimUserRewardsByGoalCode \
 $ samples/cli/sample-apps Challenge evaluateMyProgress \
     --namespace 'string' \
     --challengeCode '["string"]' \
+    --includeOneTimeEvent 'string' \
     > result.txt
 ```
 

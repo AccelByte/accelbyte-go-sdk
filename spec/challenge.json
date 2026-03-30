@@ -1056,7 +1056,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\n### Request body:\n- name: name of the goal.\n- description: text describing the goal (optional).\n- schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\n- requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\n\t- operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\n\t- predicates: list of progression parameters to be tracked.\n\t\t- parameterType: the type of parameter for challenge to be progressed with. the available options are:\n\t\t\t- STATISTIC: progress by user statistic item value.\n\t\t\t- STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\n\t\t\t- ACHIEVEMENT: progress by user achievement.\n\t\t\t- USERACCOUNT: progress by user account event.\n\t\t\t- ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\n\t\t- parameterName: the name of the parameter for challenge to be progressed with.\n\t\t\t- STATISTIC: refers to stat code.\n\t\t\t- STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\n\t\t\t- ACHIEVEMENT: refers to achievement code.\n\t\t\t- USERACCOUNT: one of the user account event. Current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\n\t\t\t- ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\n\t- matcher: the comparison operator used to compare the curent value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\n\t- targetValue: the target number to be reached by the parameter.\n\t- statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\n- rewards: list of rewards that will be claimable once a goal is complete.\n- tags: goal\u0026#39;s labels.\n- isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).\nGoal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX\n         \n**Important**\n- Update a goal in a TIED challenge may affect users\u0026#39; data, please do not update a TIED goal unless it\u0026#39;s necessary. The updated goal will take effect in the next evaluation.\n- When updating an existing predicate, ensure to put the predicate id in the request, otherwise a new predicate will be created with a new id",
+        "description": "- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]\n### Request body:\n- name: name of the goal.\n- description: text describing the goal (optional).\n- schedule: a time range that indicated the availability of a goal within a timeframe. Used in FIXED assignment rule, this will be required in that case.\n- requirementGroups: contains array of objects consisting of operator and predicates attribute. When requirements evaluation happened, each item\u0026#39;s predicates will be evaluated first, by operating the predicates with given operator. After all items evaluated, the results of the evaluation on each item then will be logically evaluated using OR operator.\n\t- operator: logical operator used to validate the completion of a goal. a goal is considered complete once complete predicates operated with operator result in true.\n\t- predicates: list of progression parameters to be tracked.\n\t\t- parameterType: the type of parameter for challenge to be progressed with. the available options are:\n\t\t\t- STATISTIC: progress by user statistic item value.\n\t\t\t- STATISTIC_CYCLE: progress user statistic cycle item value. statCycleId must be included.\n\t\t\t- ACHIEVEMENT: progress by user achievement.\n\t\t\t- USERACCOUNT: progress by user account event.\n\t\t\t- ENTITLEMENT: progress by user\u0026#39;s item entitlement ownership. Supported item types are APP, CODE, INGAMEITEM, LOOTBOX, MEDIA, and OPTIONBOX.\n\t\t- parameterName: the name of the parameter for challenge to be progressed with.\n\t\t\t- STATISTIC: refers to stat code.\n\t\t\t- STATISTIC_CYCLE: refers to stat code with statCycleId must be included.\n\t\t\t- ACHIEVEMENT: refers to achievement code.\n\t\t\t- USERACCOUNT: one of the user account event. Current possible values are (userAccountCreated, gameUserAccountCreated, userAccountVerified, userAccountLinked, userAccountUpgraded,thirdPartyAccountCreated).\n\t\t\t- ENTITLEMENT: ecommerce store\u0026#39;s item SKU.\n\t- matcher: the comparison operator used to compare the current value of a parameter and targetValue to validate the completion of a predicate. Possible values are EQUAL, LESS_THAN, GREATER_THAN, LESS_THAN_EQUAL, and GREATER_THAN_EQUAL.\n\t- targetValue: the target number to be reached by the parameter.\n\t- statCycleId: specify the statCycleId used to track statistic value in a cycle with STATISTIC_CYCLE parameterType (optional).\n- rewards: list of rewards that will be claimable once a goal is complete.\n- tags: goal\u0026#39;s labels.\n- isActive: when goal is in a schedule, isActive determine whether goal is active to progress or not (optional).\nGoal describe set of requirements that need to be fulfilled by players in order to complete it and describe what is the rewards given to player when they complete the goal.\nThe requirement will have target value and a operator that will evaluate that against an observable player’s attribute (e.g. statistic, entitlement). Goal belongs to a challenge.\nSupported item type for ENTITLEMENT reward type: APP, BUNDLE, CODE, COINS, EXTENSION, INGAMEITEM, LOOTBOX, MEDIA, OPTIONBOX\n         \n**Important**\n- Update a goal in a TIED challenge may affect users\u0026#39; data, please do not update a TIED goal unless it\u0026#39;s necessary. The updated goal will take effect in the next evaluation.\n- When updating an existing predicate, ensure to put the predicate id in the request, otherwise a new predicate will be created with a new id",
         "operationId": "adminUpdateGoals",
         "parameters": [
           {
@@ -2071,6 +2071,13 @@
             },
             "name": "challengeCode",
             "type": "array"
+          },
+          {
+            "default": "false",
+            "description": "Include one-time events (e.g. user achievement unlocks, platform linking). Normally this flag should be disabled and is only used to recover from failed one-time event processing.",
+            "in": "query",
+            "name": "includeOneTimeEvent",
+            "type": "string"
           }
         ],
         "produces": [
@@ -3280,6 +3287,13 @@
             },
             "name": "challengeCode",
             "type": "array"
+          },
+          {
+            "default": "false",
+            "description": "Include one-time events (e.g. user achievement unlocks, platform linking). Normally this flag should be disabled and is only used to recover from failed one-time event processing.",
+            "in": "query",
+            "name": "includeOneTimeEvent",
+            "type": "string"
           }
         ],
         "produces": [
@@ -5218,11 +5232,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-01-08T09:24:16+00:00",
-    "gitHash": "541ac42934ce3c63a931e6fd39024dfa850ae5e4",
+    "buildDate": "2026-02-16T04:40:50+00:00",
+    "gitHash": "3a3de50507ab31c2927cb0ff77a63299247c1939",
     "name": "justice-challenge-service",
     "realm": "stage",
-    "version": "1.27.0",
+    "version": "1.27.2",
     "version-roles-seeding": "1.2.74"
   }
 }

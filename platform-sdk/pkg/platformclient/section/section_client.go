@@ -521,8 +521,8 @@ func (a *Client) GetSectionShort(params *GetSectionParams, authInfo runtime.Clie
 /*
 Deprecated: 2022-08-10 - Use UpdateSectionShort instead.
 
-UpdateSection update s section
-This API is used to update s section.
+UpdateSection update a section
+This API is used to update a section.
 
 Other detail info:
                       * Returns : updated section data
@@ -599,8 +599,8 @@ func (a *Client) UpdateSection(params *UpdateSectionParams, authInfo runtime.Cli
 }
 
 /*
-UpdateSectionShort update s section
-This API is used to update s section.
+UpdateSectionShort update a section
+This API is used to update a section.
 
 Other detail info:
                       * Returns : updated section data

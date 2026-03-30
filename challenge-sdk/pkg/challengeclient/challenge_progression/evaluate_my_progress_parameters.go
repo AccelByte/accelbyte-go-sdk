@@ -22,8 +22,11 @@ import (
 // NewEvaluateMyProgressParams creates a new EvaluateMyProgressParams object
 // with the default values initialized.
 func NewEvaluateMyProgressParams() *EvaluateMyProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &EvaluateMyProgressParams{
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -32,8 +35,11 @@ func NewEvaluateMyProgressParams() *EvaluateMyProgressParams {
 // NewEvaluateMyProgressParamsWithTimeout creates a new EvaluateMyProgressParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewEvaluateMyProgressParamsWithTimeout(timeout time.Duration) *EvaluateMyProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &EvaluateMyProgressParams{
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
 
 		timeout: timeout,
 	}
@@ -42,8 +48,11 @@ func NewEvaluateMyProgressParamsWithTimeout(timeout time.Duration) *EvaluateMyPr
 // NewEvaluateMyProgressParamsWithContext creates a new EvaluateMyProgressParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewEvaluateMyProgressParamsWithContext(ctx context.Context) *EvaluateMyProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &EvaluateMyProgressParams{
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
 
 		Context: ctx,
 	}
@@ -52,9 +61,12 @@ func NewEvaluateMyProgressParamsWithContext(ctx context.Context) *EvaluateMyProg
 // NewEvaluateMyProgressParamsWithHTTPClient creates a new EvaluateMyProgressParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewEvaluateMyProgressParamsWithHTTPClient(client *http.Client) *EvaluateMyProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &EvaluateMyProgressParams{
-		HTTPClient: client,
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
+		HTTPClient:          client,
 	}
 }
 
@@ -75,6 +87,11 @@ type EvaluateMyProgressParams struct {
 
 	*/
 	ChallengeCode []string
+	/*IncludeOneTimeEvent
+	  Include one-time events (e.g. user achievement unlocks, platform linking). Normally this flag should be disabled and is only used to recover from failed one-time event processing.
+
+	*/
+	IncludeOneTimeEvent *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -163,6 +180,17 @@ func (o *EvaluateMyProgressParams) SetChallengeCode(challengeCode []string) {
 	o.ChallengeCode = challengeCode
 }
 
+// WithIncludeOneTimeEvent adds the includeOneTimeEvent to the evaluate my progress params
+func (o *EvaluateMyProgressParams) WithIncludeOneTimeEvent(includeOneTimeEvent *string) *EvaluateMyProgressParams {
+	o.SetIncludeOneTimeEvent(includeOneTimeEvent)
+	return o
+}
+
+// SetIncludeOneTimeEvent adds the includeOneTimeEvent to the evaluate my progress params
+func (o *EvaluateMyProgressParams) SetIncludeOneTimeEvent(includeOneTimeEvent *string) {
+	o.IncludeOneTimeEvent = includeOneTimeEvent
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *EvaluateMyProgressParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -182,6 +210,22 @@ func (o *EvaluateMyProgressParams) WriteToRequest(r runtime.ClientRequest, reg s
 	// query array param challengeCode
 	if err := r.SetQueryParam("challengeCode", joinedChallengeCode...); err != nil {
 		return err
+	}
+
+	if o.IncludeOneTimeEvent != nil {
+
+		// query param includeOneTimeEvent
+		var qrIncludeOneTimeEvent string
+		if o.IncludeOneTimeEvent != nil {
+			qrIncludeOneTimeEvent = *o.IncludeOneTimeEvent
+		}
+		qIncludeOneTimeEvent := qrIncludeOneTimeEvent
+		if qIncludeOneTimeEvent != "" {
+			if err := r.SetQueryParam("includeOneTimeEvent", qIncludeOneTimeEvent); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

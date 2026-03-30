@@ -26,6 +26,9 @@ type ModelsGetLeaderboardConfigPublicRespV3 struct {
 	// Required: true
 	CycleIds []string `json:"cycleIds"`
 
+	// cyclemetadata
+	CycleMetadata map[string]ModelsCycleInfo `json:"cycleMetadata,omitempty"`
+
 	// iconurl
 	// Required: true
 	IconURL *string `json:"iconURL"`

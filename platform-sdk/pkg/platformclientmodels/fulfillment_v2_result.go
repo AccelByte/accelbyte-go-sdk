@@ -47,6 +47,9 @@ type FulfillmentV2Result struct {
 	// Required: true
 	StateInfo *FulfillmentStateInfo `json:"stateInfo"`
 
+	// reason
+	StateReason string `json:"stateReason,omitempty"`
+
 	// affected subscriptions
 	SubscriptionSummaries []*SubscriptionSummary `json:"subscriptionSummaries,omitempty"`
 

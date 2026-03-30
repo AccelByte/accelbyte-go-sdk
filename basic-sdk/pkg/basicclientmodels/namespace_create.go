@@ -22,6 +22,9 @@ type NamespaceCreate struct {
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
+	// flag to indicate whether the namespace is for testing purposes. In multi-tenant mode, only applicable for studio namespaces
+	IsTesting bool `json:"isTesting"`
+
 	// namespace, only accept alphabet and numeric. Will be converted to lowercase
 	// Required: true
 	Namespace *string `json:"namespace"`

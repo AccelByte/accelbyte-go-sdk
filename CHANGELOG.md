@@ -1,3 +1,13 @@
+<a name="v0.87.0"></a>
+## [v0.87.0]
+### docs
+- **:**  update doc portal links 
+### fix
+- **auth:**  support role override permission by using roleId and namespace as cache key 
+### chore
+- **auth:**  rollback unnecessary changes in test 
+
+
 <a name="v0.86.0"></a>
 ## [v0.86.0]
 ### docs

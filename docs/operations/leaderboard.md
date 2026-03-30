@@ -114,6 +114,7 @@
 | `models.ArchiveLeaderboardSignedURLResponse` | [ModelsArchiveLeaderboardSignedURLResponse ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_archive_leaderboard_signed_url_response.go) |
 | `models.BulkUserIDsRequest` | [ModelsBulkUserIDsRequest ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_bulk_user_i_ds_request.go) |
 | `models.BulkUserRankingResponseV3` | [ModelsBulkUserRankingResponseV3 ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_bulk_user_ranking_response_v3.go) |
+| `models.CycleInfo` | [ModelsCycleInfo ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_cycle_info.go) |
 | `models.DailyConfig` | [ModelsDailyConfig ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_daily_config.go) |
 | `models.DeleteBulkLeaderboardFailedResp` | [ModelsDeleteBulkLeaderboardFailedResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_delete_bulk_leaderboard_failed_resp.go) |
 | `models.DeleteBulkLeaderboardSuccessResp` | [ModelsDeleteBulkLeaderboardSuccessResp ](../../leaderboard-sdk/pkg/leaderboardclientmodels/models_delete_bulk_leaderboard_success_resp.go) |

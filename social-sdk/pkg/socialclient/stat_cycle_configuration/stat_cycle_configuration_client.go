@@ -47,6 +47,8 @@ type ClientService interface {
 	UpdateStatCycleShort(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, error)
 	DeleteStatCycle(params *DeleteStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatCycleNoContent, *DeleteStatCycleUnauthorized, *DeleteStatCycleForbidden, *DeleteStatCycleNotFound, *DeleteStatCycleInternalServerError, error)
 	DeleteStatCycleShort(params *DeleteStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStatCycleNoContent, error)
+	ResetStatCycle(params *ResetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ResetStatCycleNoContent, *ResetStatCycleUnauthorized, *ResetStatCycleForbidden, *ResetStatCycleNotFound, *ResetStatCycleConflict, *ResetStatCycleInternalServerError, error)
+	ResetStatCycleShort(params *ResetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ResetStatCycleNoContent, error)
 	BulkAddStats(params *BulkAddStatsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAddStatsOK, *BulkAddStatsBadRequest, *BulkAddStatsUnauthorized, *BulkAddStatsForbidden, *BulkAddStatsNotFound, *BulkAddStatsUnprocessableEntity, *BulkAddStatsInternalServerError, error)
 	BulkAddStatsShort(params *BulkAddStatsParams, authInfo runtime.ClientAuthInfoWriter) (*BulkAddStatsOK, error)
 	StopStatCycle(params *StopStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*StopStatCycleOK, *StopStatCycleUnauthorized, *StopStatCycleForbidden, *StopStatCycleNotFound, *StopStatCycleConflict, *StopStatCycleInternalServerError, error)
@@ -804,7 +806,9 @@ Deprecated: 2022-08-10 - Use UpdateStatCycleShort instead.
 UpdateStatCycle update stat cycle
 Update stat cycle.
 Other detail info:
-              *  Returns : updated stat cycle
+              * STOPPED cycles cannot be updated
+              * If changing the start time of an ACTIVE cycle to a future time, the status will be set to INIT and the related user data will be removed
+              * If changing the cycle type of an ACTIVE cycle, the related user data will be removed
 */
 func (a *Client) UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, *UpdateStatCycleBadRequest, *UpdateStatCycleUnauthorized, *UpdateStatCycleForbidden, *UpdateStatCycleNotFound, *UpdateStatCycleConflict, *UpdateStatCycleUnprocessableEntity, *UpdateStatCycleInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -876,7 +880,9 @@ func (a *Client) UpdateStatCycle(params *UpdateStatCycleParams, authInfo runtime
 UpdateStatCycleShort update stat cycle
 Update stat cycle.
 Other detail info:
-              *  Returns : updated stat cycle
+              * STOPPED cycles cannot be updated
+              * If changing the start time of an ACTIVE cycle to a future time, the status will be set to INIT and the related user data will be removed
+              * If changing the cycle type of an ACTIVE cycle, the related user data will be removed
 */
 func (a *Client) UpdateStatCycleShort(params *UpdateStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStatCycleOK, error) {
 	// TODO: Validate the params before sending
@@ -1042,6 +1048,131 @@ func (a *Client) DeleteStatCycleShort(params *DeleteStatCycleParams, authInfo ru
 	case *DeleteStatCycleNotFound:
 		return nil, v
 	case *DeleteStatCycleInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ResetStatCycleShort instead.
+
+ResetStatCycle reset stat cycle
+Reset stat cycle.
+Other detail info:
+              * This endpoint will reset the cycle immediately
+*/
+func (a *Client) ResetStatCycle(params *ResetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ResetStatCycleNoContent, *ResetStatCycleUnauthorized, *ResetStatCycleForbidden, *ResetStatCycleNotFound, *ResetStatCycleConflict, *ResetStatCycleInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResetStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "resetStatCycle",
+		Method:             "POST",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ResetStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ResetStatCycleNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *ResetStatCycleUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *ResetStatCycleForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *ResetStatCycleNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *ResetStatCycleConflict:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *ResetStatCycleInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ResetStatCycleShort reset stat cycle
+Reset stat cycle.
+Other detail info:
+              * This endpoint will reset the cycle immediately
+*/
+func (a *Client) ResetStatCycleShort(params *ResetStatCycleParams, authInfo runtime.ClientAuthInfoWriter) (*ResetStatCycleNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResetStatCycleParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "resetStatCycle",
+		Method:             "POST",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ResetStatCycleReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ResetStatCycleNoContent:
+		return v, nil
+	case *ResetStatCycleUnauthorized:
+		return nil, v
+	case *ResetStatCycleForbidden:
+		return nil, v
+	case *ResetStatCycleNotFound:
+		return nil, v
+	case *ResetStatCycleConflict:
+		return nil, v
+	case *ResetStatCycleInternalServerError:
 		return nil, v
 
 	default:

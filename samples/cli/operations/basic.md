@@ -4,13 +4,14 @@
 ```sh
 $ samples/cli/sample-apps Basic getNamespaces \
     --activeOnly false \
+    --isTesting false \
     > result.txt
 ```
 
 ### Operation `create_namespace`
 ```sh
 $ samples/cli/sample-apps Basic createNamespace \
-    --body '{"displayName": "string", "namespace": "string"}' \
+    --body '{"displayName": "string", "isTesting": false, "namespace": "string"}' \
     > result.txt
 ```
 
@@ -186,6 +187,14 @@ $ samples/cli/sample-apps Basic getPublisherConfig \
 $ samples/cli/sample-apps Basic changeNamespaceStatus \
     --namespace 'string' \
     --body '{"status": "ACTIVE"}' \
+    > result.txt
+```
+
+### Operation `update_testing_flag`
+```sh
+$ samples/cli/sample-apps Basic updateTestingFlag \
+    --namespace 'string' \
+    --body '{"isTesting": false}' \
     > result.txt
 ```
 

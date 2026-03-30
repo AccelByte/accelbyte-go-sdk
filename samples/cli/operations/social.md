@@ -88,6 +88,14 @@ $ samples/cli/sample-apps Social deleteStatCycle \
     > result.txt
 ```
 
+### Operation `reset_stat_cycle`
+```sh
+$ samples/cli/sample-apps Social resetStatCycle \
+    --cycleId 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `bulk_add_stats`
 ```sh
 $ samples/cli/sample-apps Social bulkAddStats \

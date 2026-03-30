@@ -267,6 +267,20 @@ func (aaa *FulfillmentService) RevokeItems(input *fulfillment.RevokeItemsParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use BulkFulfillItemsV3Short instead.
+func (aaa *FulfillmentService) BulkFulfillItemsV3(input *fulfillment.BulkFulfillItemsV3Params) ([]*platformclientmodels.FulfillmentV2Result, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.Fulfillment.BulkFulfillItemsV3(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use FulfillItemsV3Short instead.
 func (aaa *FulfillmentService) FulfillItemsV3(input *fulfillment.FulfillItemsV3Params) (*platformclientmodels.FulfillmentV2Result, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -680,6 +694,40 @@ func (aaa *FulfillmentService) RevokeItemsShort(input *fulfillment.RevokeItemsPa
 	}
 
 	ok, err := aaa.Client.Fulfillment.RevokeItemsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *FulfillmentService) BulkFulfillItemsV3Short(input *fulfillment.BulkFulfillItemsV3Params) ([]*platformclientmodels.FulfillmentV2Result, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdFulfillment != nil {
+		input.XFlightId = tempFlightIdFulfillment
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Fulfillment.BulkFulfillItemsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

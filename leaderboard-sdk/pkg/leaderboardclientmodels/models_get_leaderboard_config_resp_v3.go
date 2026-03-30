@@ -31,6 +31,9 @@ type ModelsGetLeaderboardConfigRespV3 struct {
 	// Required: true
 	CycleIds []string `json:"cycleIds"`
 
+	// cyclemetadata
+	CycleMetadata map[string]ModelsCycleInfo `json:"cycleMetadata,omitempty"`
+
 	// deletedat
 	// Format: date-time
 	DeletedAt *strfmt.DateTime `json:"deletedAt,omitempty"`

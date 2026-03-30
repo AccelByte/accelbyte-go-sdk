@@ -82,6 +82,11 @@ type GetNamespacesParams struct {
 
 	*/
 	ActiveOnly *bool
+	/*IsTesting
+	  filter namespaces by testing flag (true, false, or empty for all)
+
+	*/
+	IsTesting *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -159,6 +164,17 @@ func (o *GetNamespacesParams) SetActiveOnly(activeOnly *bool) {
 	o.ActiveOnly = activeOnly
 }
 
+// WithIsTesting adds the isTesting to the get namespaces params
+func (o *GetNamespacesParams) WithIsTesting(isTesting *bool) *GetNamespacesParams {
+	o.SetIsTesting(isTesting)
+	return o
+}
+
+// SetIsTesting adds the isTesting to the get namespaces params
+func (o *GetNamespacesParams) SetIsTesting(isTesting *bool) {
+	o.IsTesting = isTesting
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetNamespacesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -177,6 +193,22 @@ func (o *GetNamespacesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qActiveOnly := swag.FormatBool(qrActiveOnly)
 		if qActiveOnly != "" {
 			if err := r.SetQueryParam("activeOnly", qActiveOnly); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IsTesting != nil {
+
+		// query param isTesting
+		var qrIsTesting bool
+		if o.IsTesting != nil {
+			qrIsTesting = *o.IsTesting
+		}
+		qIsTesting := swag.FormatBool(qrIsTesting)
+		if qIsTesting != "" {
+			if err := r.SetQueryParam("isTesting", qIsTesting); err != nil {
 				return err
 			}
 		}

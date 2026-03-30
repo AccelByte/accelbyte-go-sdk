@@ -31,6 +31,9 @@ type NamespaceInfo struct {
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
+	// isTesting flag to indicate whether the namespace is for testing purposes. In multi-tenant mode, only applicable for studio namespaces
+	IsTesting bool `json:"isTesting"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

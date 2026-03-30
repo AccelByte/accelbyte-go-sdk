@@ -1659,9 +1659,9 @@ $ samples/cli/sample-apps Platform deleteRevocationPluginConfig \
     > result.txt
 ```
 
-### Operation `upload_revocation_plugin_config_cert`
+### Operation `upload_revocation_plugin_config_cert_v2`
 ```sh
-$ samples/cli/sample-apps Platform uploadRevocationPluginConfigCert \
+$ samples/cli/sample-apps Platform uploadRevocationPluginConfigCertV2 \
     --namespace 'string' \
     --file 'tmp.dat' \
     > result.txt
@@ -4442,6 +4442,15 @@ $ samples/cli/sample-apps Platform v2PublicFulfillAppleIAPItem \
     --namespace 'string' \
     --userId 'string' \
     --body '{"transactionId": "string"}' \
+    > result.txt
+```
+
+### Operation `bulk_fulfill_items_v3`
+```sh
+$ samples/cli/sample-apps Platform bulkFulfillItemsV3 \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '[{"items": [{}], "transactionId": "string"}]' \
     > result.txt
 ```
 

@@ -24,8 +24,11 @@ import (
 // NewAdminEvaluateProgressParams creates a new AdminEvaluateProgressParams object
 // with the default values initialized.
 func NewAdminEvaluateProgressParams() *AdminEvaluateProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &AdminEvaluateProgressParams{
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +37,11 @@ func NewAdminEvaluateProgressParams() *AdminEvaluateProgressParams {
 // NewAdminEvaluateProgressParamsWithTimeout creates a new AdminEvaluateProgressParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminEvaluateProgressParamsWithTimeout(timeout time.Duration) *AdminEvaluateProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &AdminEvaluateProgressParams{
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +50,11 @@ func NewAdminEvaluateProgressParamsWithTimeout(timeout time.Duration) *AdminEval
 // NewAdminEvaluateProgressParamsWithContext creates a new AdminEvaluateProgressParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminEvaluateProgressParamsWithContext(ctx context.Context) *AdminEvaluateProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &AdminEvaluateProgressParams{
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
 
 		Context: ctx,
 	}
@@ -54,9 +63,12 @@ func NewAdminEvaluateProgressParamsWithContext(ctx context.Context) *AdminEvalua
 // NewAdminEvaluateProgressParamsWithHTTPClient creates a new AdminEvaluateProgressParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminEvaluateProgressParamsWithHTTPClient(client *http.Client) *AdminEvaluateProgressParams {
-	var ()
+	var (
+		includeOneTimeEventDefault = string("false")
+	)
 	return &AdminEvaluateProgressParams{
-		HTTPClient: client,
+		IncludeOneTimeEvent: &includeOneTimeEventDefault,
+		HTTPClient:          client,
 	}
 }
 
@@ -79,6 +91,11 @@ type AdminEvaluateProgressParams struct {
 
 	*/
 	ChallengeCode []string
+	/*IncludeOneTimeEvent
+	  Include one-time events (e.g. user achievement unlocks, platform linking). Normally this flag should be disabled and is only used to recover from failed one-time event processing.
+
+	*/
+	IncludeOneTimeEvent *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -178,6 +195,17 @@ func (o *AdminEvaluateProgressParams) SetChallengeCode(challengeCode []string) {
 	o.ChallengeCode = challengeCode
 }
 
+// WithIncludeOneTimeEvent adds the includeOneTimeEvent to the admin evaluate progress params
+func (o *AdminEvaluateProgressParams) WithIncludeOneTimeEvent(includeOneTimeEvent *string) *AdminEvaluateProgressParams {
+	o.SetIncludeOneTimeEvent(includeOneTimeEvent)
+	return o
+}
+
+// SetIncludeOneTimeEvent adds the includeOneTimeEvent to the admin evaluate progress params
+func (o *AdminEvaluateProgressParams) SetIncludeOneTimeEvent(includeOneTimeEvent *string) {
+	o.IncludeOneTimeEvent = includeOneTimeEvent
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminEvaluateProgressParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -203,6 +231,22 @@ func (o *AdminEvaluateProgressParams) WriteToRequest(r runtime.ClientRequest, re
 	// query array param challengeCode
 	if err := r.SetQueryParam("challengeCode", joinedChallengeCode...); err != nil {
 		return err
+	}
+
+	if o.IncludeOneTimeEvent != nil {
+
+		// query param includeOneTimeEvent
+		var qrIncludeOneTimeEvent string
+		if o.IncludeOneTimeEvent != nil {
+			qrIncludeOneTimeEvent = *o.IncludeOneTimeEvent
+		}
+		qIncludeOneTimeEvent := qrIncludeOneTimeEvent
+		if qIncludeOneTimeEvent != "" {
+			if err := r.SetQueryParam("includeOneTimeEvent", qIncludeOneTimeEvent); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

@@ -8,7 +8,7 @@
     },
     "description": "Justice Statistics Service",
     "title": "justice-statistics-service",
-    "version": "4.3.0"
+    "version": "4.3.2"
   },
   "schemes": [
     "https"
@@ -2486,7 +2486,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated stat cycle\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Update stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;STOPPED cycles cannot be updated\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If changing the start time of an ACTIVE cycle to a future time, the status will be set to INIT and the related user data will be removed\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;If changing the cycle type of an ACTIVE cycle, the related user data will be removed\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateStatCycle",
         "parameters": [
           {
@@ -2582,6 +2582,82 @@
           "20000": "Internal server error",
           "20001": "Unauthorized",
           "20002": "validation error",
+          "20013": "insufficient permission"
+        },
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]"
+        }
+      }
+    },
+    "/social/v1/admin/namespaces/{namespace}/statCycles/{cycleId}/reset": {
+      "post": {
+        "description": "Reset stat cycle.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;This endpoint will reset the cycle immediately\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "resetStatCycle",
+        "parameters": [
+          {
+            "description": "cycle id",
+            "in": "path",
+            "name": "cycleId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eUnauthorized\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permission\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12245\u003c/td\u003e\u003ctd\u003eStat cycle [{id}] cannot be found in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e12279\u003c/td\u003e\u003ctd\u003eInvalid stat cycle status: Stat cycle [{id}], namespace [{namespace}], status [{status}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003eInternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Reset stat cycle",
+        "tags": [
+          "StatCycleConfiguration"
+        ],
+        "x-errorCodes": {
+          "12245": "Stat cycle [{id}] cannot be found in namespace [{namespace}]",
+          "12279": "Invalid stat cycle status: Stat cycle [{id}], namespace [{namespace}], status [{status}]",
+          "20000": "Internal server error",
+          "20001": "Unauthorized",
           "20013": "insufficient permission"
         },
         "x-security": {
@@ -10519,16 +10595,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2026-01-08T09:25:44+00:00",
-    "buildID": "4.3.0",
+    "buildDate": "2026-02-16T03:11:27+00:00",
+    "buildID": "4.3.2",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
     "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "4ab953f37a",
-    "gitTag": "4.3.0",
+    "gitHash": "c180f82290",
+    "gitTag": "4.2.0",
     "name": "justice-social-service",
     "realm": "staging",
-    "version": "4.3.0",
+    "version": "4.3.2",
     "version-roles-seeding": "0.0.12"
   }
 }

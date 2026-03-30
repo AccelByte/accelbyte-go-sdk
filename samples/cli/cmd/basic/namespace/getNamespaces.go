@@ -26,8 +26,10 @@ var GetNamespacesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		activeOnly, _ := cmd.Flags().GetBool("activeOnly")
+		isTesting, _ := cmd.Flags().GetBool("isTesting")
 		input := &namespace.GetNamespacesParams{
 			ActiveOnly: &activeOnly,
+			IsTesting:  &isTesting,
 		}
 		ok, errOK := namespaceService.GetNamespacesShort(input)
 		if errOK != nil {
@@ -44,4 +46,5 @@ var GetNamespacesCmd = &cobra.Command{
 
 func init() {
 	GetNamespacesCmd.Flags().Bool("activeOnly", false, "Active only")
+	GetNamespacesCmd.Flags().Bool("isTesting", false, "Is testing")
 }

@@ -4793,8 +4793,8 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-01-08T09:25:28+00:00",
-    "gitHash": "858f9c31f3b9dfd9d20bd3c68d86606611e92e7f",
+    "buildDate": "2026-02-16T03:07:07+00:00",
+    "gitHash": "e24f8ec37da5e2e1e9915bcdc917ad3ff2ca8801",
     "name": "justice-inventory-service",
     "realm": "stage",
     "version": "0.2.22",

@@ -2,6 +2,8 @@
 ## [v0.87.0]
 ### docs
 - **:**  update doc portal links 
+- **:** add migration guide from v0.86.0 to v0.87.0 for ags 2026.2
+- **:** update CHANGELOG.md
 ### fix
 - **auth:**  support role override permission by using roleId and namespace as cache key 
 ### chore

@@ -335,7 +335,8 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 	}
 
 	var role *iamclientmodels.ModelRolePermissionResponseV3
-	if namespace == "*" {
+	var fetchErr error
+	if namespace == "*" && utils.GetAllowGlobalRoleFetch() {
 		// Wildcard namespace is not valid for namespace override endpoint; fetch global role permissions instead
 		rolesService := RolesService{
 			Client:           v.AuthService.Client,
@@ -347,31 +348,39 @@ func (v *TokenValidator) getRole(roleId, namespace string, forceFetch bool) (*ia
 			Context: v.Ctx,
 		})
 		if err != nil {
-			return nil, err
-		}
-		permissions := make([]*iamclientmodels.AccountcommonPermission, len(globalRole.Permissions))
-		for i, p := range globalRole.Permissions {
-			permissions[i] = &iamclientmodels.AccountcommonPermission{
-				Action:   p.Action,
-				Resource: p.Resource,
+			fetchErr = err
+		} else {
+			permissions := make([]*iamclientmodels.AccountcommonPermission, len(globalRole.Permissions))
+			for i, p := range globalRole.Permissions {
+				permissions[i] = &iamclientmodels.AccountcommonPermission{
+					Action:   p.Action,
+					Resource: p.Resource,
+				}
 			}
+			role = &iamclientmodels.ModelRolePermissionResponseV3{Permissions: permissions}
 		}
-		role = &iamclientmodels.ModelRolePermissionResponseV3{Permissions: permissions}
 	} else {
 		overrideRoleService := OverrideRoleConfigv3Service{
 			Client:           v.AuthService.Client,
 			ConfigRepository: v.AuthService.ConfigRepository,
 			TokenRepository:  v.AuthService.TokenRepository,
 		}
-		var err error
-		role, err = overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
+		role, fetchErr = overrideRoleService.AdminGetRoleNamespacePermissionV3Short(&override_role_config_v3.AdminGetRoleNamespacePermissionV3Params{
 			RoleID:    roleId,
 			Namespace: namespace,
 			Context:   v.Ctx,
 		})
-		if err != nil {
-			return nil, err
+	}
+
+	if fetchErr != nil {
+		if utils.GetSuppressGetRoleError() {
+			emptyRole := &iamclientmodels.ModelRolePermissionResponseV3{}
+			v.Roles[cacheKey] = emptyRole
+
+			return emptyRole, nil
 		}
+
+		return nil, fetchErr
 	}
 
 	v.Roles[cacheKey] = role

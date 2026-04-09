@@ -52,3 +52,21 @@ func GetNamespaceContextExpirationTime() time.Duration {
 
 	return time.Hour
 }
+
+func GetAllowGlobalRoleFetch() bool {
+	v := os.Getenv("AB_ALLOW_GLOBAL_ROLE_FETCH")
+	if v == "" {
+		return true // default: enabled
+	}
+
+	return v == "1" || v == "true"
+}
+
+func GetSuppressGetRoleError() bool {
+	v := os.Getenv("AB_SUPPRESS_GET_ROLE_ERROR")
+	if v == "" {
+		return true // default: enabled
+	}
+
+	return v == "1" || v == "true"
+}

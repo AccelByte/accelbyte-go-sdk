@@ -7,7 +7,6 @@ package integration_test
 import (
 	"testing"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
@@ -18,9 +17,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
+const serviceNameLegal = "LEGAL"
+
 var (
 	agreementService = &legal.AgreementService{
-		Client:          factory.NewLegalClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewLegalClient(getServiceConfigRepository(serviceNameLegal)),
 		TokenRepository: tokenRepository,
 	}
 	isAccepted               = true

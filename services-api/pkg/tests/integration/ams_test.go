@@ -20,18 +20,20 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const serviceNameAMS = "AMS"
+
 var (
 	imagesService = &ams.ImagesService{
-		Client:          factory.NewAmsClient(configRepo),
+		Client:          factory.NewAmsClient(getServiceConfigRepository(serviceNameAMS)),
 		TokenRepository: tokenRepository,
 	}
 	accountService = &ams.AccountService{
-		Client:          factory.NewAmsClient(configRepo),
+		Client:          factory.NewAmsClient(getServiceConfigRepository(serviceNameAMS)),
 		TokenRepository: tokenRepository,
 	}
 	accountName  = "GoSDKAccountName"
 	fleetService = &ams.FleetsService{
-		Client:          factory.NewAmsClient(configRepo),
+		Client:          factory.NewAmsClient(getServiceConfigRepository(serviceNameAMS)),
 		TokenRepository: tokenRepository,
 	}
 	fleetName       = "GoSDKFleet"

@@ -7,7 +7,6 @@ package integration_test
 import (
 	"testing"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
@@ -17,13 +16,15 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
+const serviceNameCloudsave = "CLOUDSAVE"
+
 var (
 	publicGameRecordService = &cloudsave.PublicGameRecordService{
-		Client:          factory.NewCloudsaveClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewCloudsaveClient(getServiceConfigRepository(serviceNameCloudsave)),
 		TokenRepository: tokenRepository,
 	}
 	publicPlayerRecordService = &cloudsave.PublicPlayerRecordService{
-		Client:          factory.NewCloudsaveClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewCloudsaveClient(getServiceConfigRepository(serviceNameCloudsave)),
 		TokenRepository: tokenRepository,
 	}
 	key = "sample-player-record"

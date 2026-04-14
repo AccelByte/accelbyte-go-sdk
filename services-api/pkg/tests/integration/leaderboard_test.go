@@ -16,15 +16,16 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyz1234567890"
 
+const serviceNameLeaderboard = "LEADERBOARD"
+
 var (
 	leaderboardConfigurationService = &leaderboard.LeaderboardConfigurationService{
-		Client:          factory.NewLeaderboardClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewLeaderboardClient(getServiceConfigRepository(serviceNameLeaderboard)),
 		TokenRepository: tokenRepository,
 	}
 	nameLeaderboard     = "test"

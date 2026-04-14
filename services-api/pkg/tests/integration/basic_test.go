@@ -12,8 +12,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -22,11 +20,13 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
+const serviceNameBasic = "BASIC"
+
 var (
 	timezone           = "Asia/Jakarta"
 	basicLanguange     = "en"
 	userProfileService = &basic.UserProfileService{
-		Client:          factory.NewBasicClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewBasicClient(getServiceConfigRepository(serviceNameBasic)),
 		TokenRepository: tokenRepository,
 	}
 	bodyBasic = &basicclientmodels.UserProfilePrivateCreate{

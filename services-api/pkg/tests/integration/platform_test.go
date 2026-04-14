@@ -15,7 +15,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/catalog_changes"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -24,17 +23,19 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
+const serviceNamePlatform = "PLATFORM"
+
 var (
 	storeService = &platform.StoreService{
-		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewPlatformClient(getServiceConfigRepository(serviceNamePlatform)),
 		TokenRepository: tokenRepository,
 	}
 	catalogChangesService = &platform.CatalogChangesService{
-		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewPlatformClient(getServiceConfigRepository(serviceNamePlatform)),
 		TokenRepository: tokenRepository,
 	}
 	rewardService = &platform.RewardService{
-		Client:          factory.NewPlatformClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewPlatformClient(getServiceConfigRepository(serviceNamePlatform)),
 		TokenRepository: tokenRepository,
 	}
 	language  = "en-US"

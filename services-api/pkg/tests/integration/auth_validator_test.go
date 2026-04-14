@@ -45,7 +45,7 @@ func TestTokenValidator_ValidateTokenClient(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			// Arrange
-			configRepo := auth.DefaultConfigRepositoryImpl()
+			configRepo := getServiceConfigRepository(serviceNameIAM)
 			tokenRepo := auth.DefaultTokenRepositoryImpl()
 			authService := iam.OAuth20Service{
 				Client:           factory.NewIamClient(configRepo),
@@ -102,7 +102,7 @@ func TestTokenValidator_DefaultOverridePermissionUser(t *testing.T) {
 	resourceToCheck := "NAMESPACE:{namespace}:PROFILE"
 
 	// Arrange
-	configRepo := auth.DefaultConfigRepositoryImpl()
+	configRepo := getServiceConfigRepository(serviceNameIAM)
 	tokenRepo := auth.DefaultTokenRepositoryImpl()
 	authService := iam.OAuth20Service{
 		Client:           factory.NewIamClient(configRepo),
@@ -257,7 +257,7 @@ func TestTokenValidator_ValidateTokenUser(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			// Arrange
-			configRepo := auth.DefaultConfigRepositoryImpl()
+			configRepo := getServiceConfigRepository(serviceNameIAM)
 			tokenRepo := auth.DefaultTokenRepositoryImpl()
 			authService := iam.OAuth20Service{
 				Client:           factory.NewIamClient(configRepo),
@@ -311,7 +311,7 @@ func TestTokenValidator_ValidateExtendNamespace(t *testing.T) {
 	t.Skip() // only allow publisher/studio namespace oauth client for this grant type
 
 	// Arrange
-	configRepo := auth.DefaultConfigRepositoryImpl()
+	configRepo := getServiceConfigRepository(serviceNameIAM)
 	tokenRepo := auth.DefaultTokenRepositoryImpl()
 	authService := iam.OAuth20Service{
 		Client:           factory.NewIamClient(configRepo),
@@ -1059,7 +1059,7 @@ func TestTokenValidator_UserTokenFromParentNamespace(t *testing.T) {
 	}
 
 	// Set up the main SDK with admin client credentials
-	configRepo := auth.DefaultConfigRepositoryImpl()
+	configRepo := getServiceConfigRepository(serviceNameIAM)
 	tokenRepo := auth.DefaultTokenRepositoryImpl()
 	authService := iam.OAuth20Service{
 		Client:           factory.NewIamClient(configRepo),
@@ -1123,7 +1123,7 @@ func TestTokenValidator_UserTokenFromDifferentStudio(t *testing.T) {
 	}
 
 	// Login studio admin using the original studio's credentials
-	origConfigRepo := auth.DefaultConfigRepositoryImpl()
+	origConfigRepo := getServiceConfigRepository(serviceNameIAM)
 	userTokenRepo := auth.DefaultTokenRepositoryImpl()
 	userAuthService := iam.OAuth20Service{
 		Client:           factory.NewIamClient(origConfigRepo),
@@ -1214,7 +1214,7 @@ func Test_RoleOverrideClient(t *testing.T) {
 	checkCount := 20
 	checkInterval := 1000
 
-	configRepo := auth.DefaultConfigRepositoryImpl()
+	configRepo := getServiceConfigRepository(serviceNameIAM)
 	tokenRepo := auth.DefaultTokenRepositoryImpl()
 	iamClient := factory.NewIamClient(configRepo)
 

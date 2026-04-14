@@ -9,8 +9,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -18,9 +16,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
+const serviceNameAchievement = "ACHIEVEMENT"
+
 var (
 	achievementsService = &achievement.AchievementsService{
-		Client:          factory.NewAchievementClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewAchievementClient(getServiceConfigRepository(serviceNameAchievement)),
 		TokenRepository: tokenRepository,
 	}
 	achievementCode = "GOLANG"

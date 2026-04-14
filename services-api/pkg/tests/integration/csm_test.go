@@ -19,14 +19,16 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const serviceNameCSM = "CSM"
+
 var (
 	csmAppService = &csm.AppV2Service{
-		Client:          factory.NewCsmClient(configRepository),
+		Client:          factory.NewCsmClient(getServiceConfigRepository(serviceNameCSM)),
 		TokenRepository: tokenRepository,
 	}
 
 	csmConfigService = &csm.ConfigurationV2Service{
-		Client:          factory.NewCsmClient(configRepository),
+		Client:          factory.NewCsmClient(getServiceConfigRepository(serviceNameCSM)),
 		TokenRepository: tokenRepository,
 	}
 

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/loginqueue"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"strings"
@@ -19,7 +18,7 @@ import (
 
 var (
 	loginQueueAdminV1Service = &loginqueue.AdminV1Service{
-		Client:          factory.NewLoginQueueClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewLoginQueueClient(getServiceConfigRepository(serviceNameIAM)),
 		TokenRepository: tokenRepository,
 	}
 	updateMaxLoginRate = int32(100)

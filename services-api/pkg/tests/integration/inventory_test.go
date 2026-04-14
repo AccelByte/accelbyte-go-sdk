@@ -17,13 +17,15 @@ import (
 	"testing"
 )
 
+const serviceNameInventory = "INVENTORY"
+
 var (
 	adminInventoriesService = &inventory.AdminInventoriesService{
-		Client:          factory.NewInventoryClient(configRepo),
+		Client:          factory.NewInventoryClient(getServiceConfigRepository(serviceNameInventory)),
 		TokenRepository: tokenRepository,
 	}
 	adminInventoryConfigurationsService = &inventory.AdminInventoryConfigurationsService{
-		Client:          factory.NewInventoryClient(configRepo),
+		Client:          factory.NewInventoryClient(getServiceConfigRepository(serviceNameInventory)),
 		TokenRepository: tokenRepository,
 	}
 	inventoryConfigurationCode = "go-sdk-code-" + RandStringBytes(4)

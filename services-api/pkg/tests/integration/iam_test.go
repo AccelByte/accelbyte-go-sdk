@@ -32,6 +32,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
+const serviceNameIAM = "IAM"
+
 var (
 	httpClient = &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
@@ -39,30 +41,30 @@ var (
 		},
 	}
 	tokenRepository  = auth.DefaultTokenRepositoryImpl()
-	configRepository = auth.DefaultConfigRepositoryImpl()
+	configRepository = getServiceConfigRepository(serviceNameIAM)
 	oAuth20Service   = &iam.OAuth20Service{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
+		Client:           factory.NewIamClient(configRepository),
 		ConfigRepository: configRepository,
 		TokenRepository:  tokenRepository,
 	}
 	userService = &iam.UsersService{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		Client:           factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository: getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:  tokenRepository,
 	}
 	userV4Service = &iam.UsersV4Service{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		Client:           factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository: getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:  tokenRepository,
 	}
 	oAuth20ExtensionService = &iam.OAuth20ExtensionService{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		Client:           factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository: getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:  tokenRepository,
 	}
 	clientService = &iam.ClientsService{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		Client:           factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository: getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:  tokenRepository,
 	}
 	codeChallengeMethod = o_auth2_0.AuthorizeV3S256Constant
@@ -440,8 +442,8 @@ func TestIntegrationParseAccessTokenAndValidateRemotely(t *testing.T) {
 
 func TestIntegration_LoginOrRefreshClient_shouldReuseValidToken(t *testing.T) {
 	oauthSvc := &iam.OAuth20Service{
-		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
+		Client:                 factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository:       getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
 		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 1},
 	}
@@ -477,8 +479,8 @@ func TestIntegration_LoginOrRefreshClient_shouldReuseValidToken(t *testing.T) {
 
 func TestIntegration_LoginOrRefreshClient_shouldReAuthenticate(t *testing.T) {
 	oauthSvc := &iam.OAuth20Service{
-		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
+		Client:                 factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository:       getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
 		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.0001}, // very small numbers to make token expire sooner
 	}
@@ -514,8 +516,8 @@ func TestIntegration_LoginOrRefresh_shouldReAuthenticate(t *testing.T) {
 	username = os.Getenv("AB_USERNAME")
 	password = os.Getenv("AB_PASSWORD")
 	oauthSvc := &iam.OAuth20Service{
-		Client:                 factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository:       auth.DefaultConfigRepositoryImpl(),
+		Client:                 factory.NewIamClient(getServiceConfigRepository(serviceNameIAM)),
+		ConfigRepository:       getServiceConfigRepository(serviceNameIAM),
 		TokenRepository:        auth.DefaultTokenRepositoryImpl(),
 		RefreshTokenRepository: &auth.RefreshTokenImpl{AutoRefresh: false, RefreshRate: 0.0001}, // very small numbers to make token expire sooner
 	}

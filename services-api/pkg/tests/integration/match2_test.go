@@ -23,21 +23,23 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
 
+const serviceNameMatchmaking = "MATCHMAKING"
+
 var (
 	ruleSetsService = &match2.RuleSetsService{
-		Client:          factory.NewMatch2Client(configRepo),
+		Client:          factory.NewMatch2Client(getServiceConfigRepository(serviceNameMatchmaking)),
 		TokenRepository: tokenRepository,
 	}
 	matchPoolService = &match2.MatchPoolsService{
-		Client:          factory.NewMatch2Client(configRepo),
+		Client:          factory.NewMatch2Client(getServiceConfigRepository(serviceNameMatchmaking)),
 		TokenRepository: tokenRepository,
 	}
 	matchTicketService = &match2.MatchTicketsService{
-		Client:          factory.NewMatch2Client(configRepo),
+		Client:          factory.NewMatch2Client(getServiceConfigRepository(serviceNameMatchmaking)),
 		TokenRepository: tokenRepository,
 	}
 	matchFunctionService = &match2.MatchFunctionsService{
-		Client:          factory.NewMatch2Client(configRepo),
+		Client:          factory.NewMatch2Client(getServiceConfigRepository(serviceNameMatchmaking)),
 		TokenRepository: tokenRepository,
 	}
 	ruleSetName       = "go_sdk_ruleset_" + RandStringBytes(4)

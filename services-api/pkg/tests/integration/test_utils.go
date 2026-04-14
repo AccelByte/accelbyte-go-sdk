@@ -11,16 +11,17 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
 
-func LoginUser(t *testing.T) *iam.OAuth20Service {
+func LoginUser(t *testing.T, configRepo repository.ConfigRepository) *iam.OAuth20Service {
 	t.Helper()
 
 	oAuth20Service := &iam.OAuth20Service{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		Client:           factory.NewIamClient(configRepo),
+		ConfigRepository: configRepo,
 		TokenRepository:  auth.DefaultTokenRepositoryImpl(),
 	}
 	username := os.Getenv("AB_USERNAME")

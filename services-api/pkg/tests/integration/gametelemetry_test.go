@@ -15,12 +15,13 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gametelemetry"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 )
+
+const serviceNameGametelemetry = "GAMETELEMETRY"
 
 var (
 	gameTelemetryOperationsService = &gametelemetry.GametelemetryOperationsService{
-		Client:          factory.NewGametelemetryClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewGametelemetryClient(getServiceConfigRepository(serviceNameGametelemetry)),
 		TokenRepository: tokenRepository,
 	}
 	telemetryBodyArray []*gametelemetryclientmodels.TelemetryBody

@@ -7,7 +7,6 @@ package integration_test
 import (
 	"testing"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -17,9 +16,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
 )
 
+const serviceNameUGC = "UGC"
+
 var (
 	adminTagService = &ugc.AdminTagService{
-		Client:          factory.NewUgcClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewUgcClient(getServiceConfigRepository(serviceNameUGC)),
 		TokenRepository: tokenRepository,
 	}
 	tag           = "GoSDKTag"

@@ -10,7 +10,6 @@ import (
 	"testing"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -20,9 +19,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 )
 
+const serviceNameSocial = "SOCIAL"
+
 var (
 	statConfigurationService = &social.StatConfigurationService{
-		Client:          factory.NewSocialClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewSocialClient(getServiceConfigRepository(serviceNameSocial)),
 		TokenRepository: tokenRepository,
 	}
 	statCodeSocial = "123gosdkstat"

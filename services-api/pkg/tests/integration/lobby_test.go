@@ -23,6 +23,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 )
 
+const serviceNameLobby = "LOBBY"
+
 var (
 	connMgr             *integration.ConnectionManagerImpl
 	msgType             string
@@ -109,7 +111,7 @@ func TestIntegrationNotification(t *testing.T) {
 
 func TestIntegrationLobbyFreeFormNotification(t *testing.T) {
 	// Login User - Arrange
-	oAuth20Service := integration.LoginUser(t)
+	oAuth20Service := integration.LoginUser(t, getServiceConfigRepository(serviceNameLobby))
 
 	lobbyAdminSvc := &lobby.AdminService{
 		Client:           factory.NewLobbyClient(oAuth20Service.ConfigRepository),
@@ -134,7 +136,7 @@ func TestIntegrationLobbyFreeFormNotification(t *testing.T) {
 
 func TestIntegrationLobbyNotificationTopics(t *testing.T) {
 	// prepare
-	oauthSvc := integration.LoginUser(t)
+	oauthSvc := integration.LoginUser(t, getServiceConfigRepository(serviceNameLobby))
 	lobbyNotifSvc := &lobby.NotificationService{
 		Client:           factory.NewLobbyClient(oauthSvc.ConfigRepository),
 		ConfigRepository: oauthSvc.ConfigRepository,
@@ -195,7 +197,7 @@ func TestIntegrationLobbyNotificationTopics(t *testing.T) {
 
 func TestIntegrationLobbyNotificationTemplates(t *testing.T) {
 	// prepare
-	oauthSvc := integration.LoginUser(t)
+	oauthSvc := integration.LoginUser(t, getServiceConfigRepository(serviceNameLobby))
 	lobbyNotifSvc := &lobby.NotificationService{
 		Client:           factory.NewLobbyClient(oauthSvc.ConfigRepository),
 		ConfigRepository: oauthSvc.ConfigRepository,

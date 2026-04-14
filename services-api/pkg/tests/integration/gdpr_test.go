@@ -8,7 +8,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/configuration"
@@ -17,9 +16,11 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
 
+const serviceNameGDPR = "GDPR"
+
 var (
 	gdprConfigurationService = &gdpr.ConfigurationService{
-		Client:          factory.NewGdprClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewGdprClient(getServiceConfigRepository(serviceNameGDPR)),
 		TokenRepository: tokenRepository,
 	}
 	body   []string

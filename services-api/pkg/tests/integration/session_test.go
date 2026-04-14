@@ -25,10 +25,12 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
 
+const serviceNameSession = "SESSION"
+
 var (
 	tokenRepository2ndPlayer = auth.DefaultTokenRepositoryImpl()
 	configService            = &session.ConfigurationTemplateService{
-		Client:          factory.NewSessionClient(configRepo),
+		Client:          factory.NewSessionClient(getServiceConfigRepository(serviceNameSession)),
 		TokenRepository: tokenRepository,
 	}
 	cfgTemplateType  = "P2P"
@@ -54,11 +56,11 @@ var (
 		Type:        &cfgTemplateType,
 	}
 	gameSessionService = &session.GameSessionService{
-		Client:          factory.NewSessionClient(configRepo),
+		Client:          factory.NewSessionClient(getServiceConfigRepository(serviceNameSession)),
 		TokenRepository: tokenRepository,
 	}
 	gameSessionServiceFor2ndPlayer = &session.GameSessionService{
-		Client:          factory.NewSessionClient(configRepo),
+		Client:          factory.NewSessionClient(getServiceConfigRepository(serviceNameSession)),
 		TokenRepository: tokenRepository2ndPlayer,
 	}
 	gameSessionBody = &sessionclientmodels.ApimodelsCreateGameSessionRequest{
@@ -73,11 +75,11 @@ var (
 		Type:             &cfgTemplateType,
 	}
 	partyService = &session.PartyService{
-		Client:          factory.NewSessionClient(configRepo),
+		Client:          factory.NewSessionClient(getServiceConfigRepository(serviceNameSession)),
 		TokenRepository: tokenRepository,
 	}
 	partyServiceFor2ndPlayer = &session.PartyService{
-		Client:          factory.NewSessionClient(configRepo),
+		Client:          factory.NewSessionClient(getServiceConfigRepository(serviceNameSession)),
 		TokenRepository: tokenRepository2ndPlayer,
 	}
 	members   []*sessionclientmodels.ApimodelsRequestMember
@@ -431,8 +433,8 @@ func createPlayer2() string {
 
 	// login
 	oAuth20Service2 := &iam.OAuth20Service{
-		Client:           factory.NewIamClient(auth.DefaultConfigRepositoryImpl()),
-		ConfigRepository: auth.DefaultConfigRepositoryImpl(),
+		Client:           factory.NewIamClient(getServiceConfigRepository(serviceNameSession)),
+		ConfigRepository: getServiceConfigRepository(serviceNameSession),
 		TokenRepository:  tokenRepository2ndPlayer,
 	}
 	errLogin := oAuth20Service2.Login(*user.EmailAddress, pwd)

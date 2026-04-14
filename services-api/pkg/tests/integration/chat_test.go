@@ -15,17 +15,18 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/stretchr/testify/assert"
 )
 
+const serviceNameChat = "CHAT"
+
 var (
 	inboxOperationsService = &chat.InboxService{
-		Client:          factory.NewChatClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewChatClient(getServiceConfigRepository(serviceNameChat)),
 		TokenRepository: tokenRepository,
 	}
 	profanityOperationsService = &chat.ProfanityService{
-		Client:          factory.NewChatClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewChatClient(getServiceConfigRepository(serviceNameChat)),
 		TokenRepository: tokenRepository,
 	}
 )

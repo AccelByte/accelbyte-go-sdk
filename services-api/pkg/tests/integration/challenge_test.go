@@ -12,8 +12,6 @@ import (
 	// "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/challenge_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclient/goal_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/challenge-sdk/pkg/challengeclientmodels"
@@ -23,6 +21,8 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
+
+const serviceNameChallenge = "CHALLENGE"
 
 var (
 	challengeCode               = "go-" + RandStringBytes(6) + "-challenge"
@@ -43,11 +43,11 @@ var (
 	scheduleOrder       int32   = 1
 
 	challengeConfigSvc = &challenge.ChallengeConfigurationService{
-		Client:          factory.NewChallengeClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewChallengeClient(getServiceConfigRepository(serviceNameChallenge)),
 		TokenRepository: tokenRepository,
 	}
 	goalConfigSvc = &challenge.GoalConfigurationService{
-		Client:          factory.NewChallengeClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewChallengeClient(getServiceConfigRepository(serviceNameChallenge)),
 		TokenRepository: tokenRepository,
 	}
 

@@ -14,18 +14,19 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/reporting"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 )
 
+const serviceNameReporting = "REPORTING"
+
 var (
 	adminReasonsService = &reporting.AdminReasonsService{
-		Client:          factory.NewReportingClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewReportingClient(getServiceConfigRepository(serviceNameReporting)),
 		TokenRepository: tokenRepository,
 	}
 	publicReportsService = &reporting.PublicReportsService{
-		Client:          factory.NewReportingClient(auth.DefaultConfigRepositoryImpl()),
+		Client:          factory.NewReportingClient(getServiceConfigRepository(serviceNameReporting)),
 		TokenRepository: tokenRepository2ndPlayer,
 	}
 	reasonTitle = "reason_title_go" + RandStringBytes(4)

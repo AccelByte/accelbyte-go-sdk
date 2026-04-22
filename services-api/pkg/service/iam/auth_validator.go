@@ -116,7 +116,15 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 	publicKey := v.PublicKeys[kid]
 	v.RWMutex.RUnlock()
 	if publicKey == nil {
-		return fmt.Errorf("public key not found")
+		if err := v.fetchJWKSet(); err != nil {
+			return fmt.Errorf("failed to refresh jwks key. %w", err)
+		}
+		v.RWMutex.RLock()
+		publicKey = v.PublicKeys[kid]
+		v.RWMutex.RUnlock()
+		if publicKey == nil {
+			return fmt.Errorf("public key not found")
+		}
 	}
 
 	var jwtClaims JWTClaims

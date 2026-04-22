@@ -1021,10 +1021,18 @@ func (o *OAuth20Service) getPublicKey(parsedToken *jwt.JSONWebToken) (*rsa.Publi
 	}
 
 	o.tokenValidation.RWMutex.RLock()
-	defer o.tokenValidation.RWMutex.RUnlock()
 	publicKey, ok := o.tokenValidation.PublicKeys[kid]
+	o.tokenValidation.RWMutex.RUnlock()
 	if !ok {
-		return nil, fmt.Errorf("unable to find public key with kid %s", kid)
+		if err := o.tokenValidation.fetchJWKSet(); err != nil {
+			return nil, fmt.Errorf("failed to refresh jwks key. %w", err)
+		}
+		o.tokenValidation.RWMutex.RLock()
+		publicKey, ok = o.tokenValidation.PublicKeys[kid]
+		o.tokenValidation.RWMutex.RUnlock()
+		if !ok {
+			return nil, fmt.Errorf("unable to find public key with kid %s", kid)
+		}
 	}
 
 	return publicKey, nil

@@ -60,10 +60,30 @@ func NewCheckBalanceOK() *CheckBalanceOK {
   Successfully determined if user has enough balance.
 */
 type CheckBalanceOK struct {
+	Payload *platformclientmodels.CheckBalanceResponse
 }
 
 func (o *CheckBalanceOK) Error() string {
-	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/balanceCheck][%d] checkBalanceOK ", 200)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/balanceCheck][%d] checkBalanceOK  %+v", 200, o.ToJSONString())
+}
+
+func (o *CheckBalanceOK) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *CheckBalanceOK) GetPayload() *platformclientmodels.CheckBalanceResponse {
+	return o.Payload
 }
 
 func (o *CheckBalanceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -72,6 +92,13 @@ func (o *CheckBalanceOK) readResponse(response runtime.ClientResponse, consumer 
 	contentDisposition := response.GetHeader("Content-Disposition")
 	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
 		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(platformclientmodels.CheckBalanceResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
 	}
 
 	return nil

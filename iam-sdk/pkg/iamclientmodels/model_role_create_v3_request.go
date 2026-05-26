@@ -20,30 +20,30 @@ import (
 // swagger:model Model role create V3 request.
 type ModelRoleCreateV3Request struct {
 
-	// adminrole
+	// Specify if the role is for admin users. Default: false.
 	// Required: true
 	AdminRole *bool `json:"adminRole"`
 
-	// deletable
+	// Specify if the role can be deleted. Default: true.
 	Deletable bool `json:"deletable"`
 
-	// iswildcard
+	// Specify if the role can be assigned to wildcard (*) namespace. Default: false.
 	// Required: true
 	IsWildcard *bool `json:"isWildcard"`
 
-	// managers
+	// List of users that will act as managers of this role.
 	// Required: true
 	Managers []*AccountcommonRoleManagerV3 `json:"managers"`
 
-	// members
+	// List of users that will act as members of this role.
 	// Required: true
 	Members []*AccountcommonRoleMemberV3 `json:"members"`
 
-	// permissions
+	// Permissions that this role grants.
 	// Required: true
 	Permissions []*AccountcommonPermissionV3 `json:"permissions"`
 
-	// rolename
+	// Role name, alphanumeric, cannot have special characters.
 	// Required: true
 	RoleName *string `json:"roleName"`
 }

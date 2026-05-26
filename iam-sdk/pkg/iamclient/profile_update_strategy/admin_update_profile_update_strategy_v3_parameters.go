@@ -86,7 +86,7 @@ type AdminUpdateProfileUpdateStrategyV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelUpdateProfileUpdateStrategyConfigRequest
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

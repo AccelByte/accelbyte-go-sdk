@@ -183,6 +183,38 @@ func (aaa *AppV2Service) UpdateAppV2(input *app_v2.UpdateAppV2Params) (*csmclien
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use ApplyAppConfigV2Short instead.
+func (aaa *AppV2Service) ApplyAppConfigV2(input *app_v2.ApplyAppConfigV2Params) (*csmclientmodels.ApimodelAppItem, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.AppV2.ApplyAppConfigV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use UpdateAppResourcesV2Short instead.
 func (aaa *AppV2Service) UpdateAppResourcesV2(input *app_v2.UpdateAppResourcesV2Params) (*csmclientmodels.ApimodelAppItem, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -454,6 +486,40 @@ func (aaa *AppV2Service) UpdateAppV2Short(input *app_v2.UpdateAppV2Params) (*csm
 	}
 
 	ok, err := aaa.Client.AppV2.UpdateAppV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *AppV2Service) ApplyAppConfigV2Short(input *app_v2.ApplyAppConfigV2Params) (*csmclientmodels.ApimodelAppItem, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdAppV2 != nil {
+		input.XFlightId = tempFlightIdAppV2
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.AppV2.ApplyAppConfigV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

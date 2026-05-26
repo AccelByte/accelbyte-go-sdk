@@ -69,7 +69,7 @@ type AdminUpdateAgeRestrictionConfigV2Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelAgeRestrictionRequest
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

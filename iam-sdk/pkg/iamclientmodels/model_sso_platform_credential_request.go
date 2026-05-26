@@ -18,7 +18,7 @@ import (
 // swagger:model Model SSO platform credential request.
 type ModelSSOPlatformCredentialRequest struct {
 
-	// acsurl
+	// For Azure with SAML: the SAML Assertion Consumer Service (ACS) URL on the service provider where the IdP sends its authentication response.
 	// Required: true
 	AcsURL *string `json:"acsUrl"`
 
@@ -26,17 +26,16 @@ type ModelSSOPlatformCredentialRequest struct {
 	// Required: true
 	APIKey *string `json:"apiKey"`
 
-	// appid
+	// Application identifier in the IdP. For Azure with SAML, this is the EntityID.
 	// Required: true
 	AppID *string `json:"appId"`
 
-	// federationmetadataurl
+	// For Azure with SAML: the IdP federation metadata endpoint used by the service provider to build a trust relationship.
 	// Required: true
 	FederationMetadataURL *string `json:"federationMetadataUrl"`
 
 	// isactive
-	// Required: true
-	IsActive *bool `json:"isActive"`
+	IsActive bool `json:"isActive"`
 
 	// redirecturi
 	// Required: true
@@ -46,7 +45,7 @@ type ModelSSOPlatformCredentialRequest struct {
 	// Required: true
 	Secret *string `json:"secret"`
 
-	// ssourl
+	// For Discourse: the forum base URL.
 	// Required: true
 	SSOURL *string `json:"ssoUrl"`
 }
@@ -65,9 +64,6 @@ func (m *ModelSSOPlatformCredentialRequest) Validate(formats strfmt.Registry) er
 		res = append(res, err)
 	}
 	if err := m.validateFederationMetadataURL(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateIsActive(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRedirectURI(formats); err != nil {
@@ -116,15 +112,6 @@ func (m *ModelSSOPlatformCredentialRequest) validateAppID(formats strfmt.Registr
 func (m *ModelSSOPlatformCredentialRequest) validateFederationMetadataURL(formats strfmt.Registry) error {
 
 	if err := validate.Required("federationMetadataUrl", "body", m.FederationMetadataURL); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelSSOPlatformCredentialRequest) validateIsActive(formats strfmt.Registry) error {
-
-	if err := validate.Required("isActive", "body", m.IsActive); err != nil {
 		return err
 	}
 

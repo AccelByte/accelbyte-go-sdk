@@ -52,6 +52,20 @@ func (aaa *OAuth20Service) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use GetAuthorizationServerMetadataWithNamespaceShort instead.
+func (aaa *OAuth20Service) GetAuthorizationServerMetadataWithNamespace(input *o_auth2_0.GetAuthorizationServerMetadataWithNamespaceParams) (*iamclientmodels.OauthcommonASMetadataResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := aaa.Client.OAuth20.GetAuthorizationServerMetadataWithNamespace(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
 func (aaa *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -235,6 +249,32 @@ func (aaa *OAuth20Service) Verify2FACodeForward(input *o_auth2_0.Verify2FACodeFo
 	return found.Location, nil
 }
 
+// Deprecated: 2022-01-10 - please use OAuthDynamicClientRegisterWithNamespaceV3Short instead.
+func (aaa *OAuth20Service) OAuthDynamicClientRegisterWithNamespaceV3(input *o_auth2_0.OAuthDynamicClientRegisterWithNamespaceV3Params) (*iamclientmodels.OauthmodelClientRegisterResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, badRequest, tooManyRequests, internalServerError, notImplemented, err := aaa.Client.OAuth20.OAuthDynamicClientRegisterWithNamespaceV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if notImplemented != nil {
+		return nil, notImplemented
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use RetrieveUserThirdPartyPlatformTokenV3Short instead.
 func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -396,6 +436,40 @@ func (aaa *OAuth20Service) VerifyTokenV3(input *o_auth2_0.VerifyTokenV3Params) (
 	}
 	if err != nil {
 		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *OAuth20Service) GetAuthorizationServerMetadataWithNamespaceShort(input *o_auth2_0.GetAuthorizationServerMetadataWithNamespaceParams) (*iamclientmodels.OauthcommonASMetadataResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdOAuth20 != nil {
+		input.XFlightId = tempFlightIdOAuth20
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.OAuth20.GetAuthorizationServerMetadataWithNamespaceShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil
@@ -696,6 +770,40 @@ func (aaa *OAuth20Service) Verify2FACodeForwardShort(input *o_auth2_0.Verify2FAC
 	}
 
 	return found.Location, nil
+}
+
+func (aaa *OAuth20Service) OAuthDynamicClientRegisterWithNamespaceV3Short(input *o_auth2_0.OAuthDynamicClientRegisterWithNamespaceV3Params) (*iamclientmodels.OauthmodelClientRegisterResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdOAuth20 != nil {
+		input.XFlightId = tempFlightIdOAuth20
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	created, err := aaa.Client.OAuth20.OAuthDynamicClientRegisterWithNamespaceV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if created == nil {
+		return nil, nil
+	}
+
+	return created.GetPayload(), nil
 }
 
 func (aaa *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {

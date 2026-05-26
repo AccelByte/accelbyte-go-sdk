@@ -135,20 +135,20 @@ func (aaa *WalletService) ListUserCurrencyTransactions(input *wallet.ListUserCur
 }
 
 // Deprecated: 2022-01-10 - please use CheckBalanceShort instead.
-func (aaa *WalletService) CheckBalance(input *wallet.CheckBalanceParams) error {
+func (aaa *WalletService) CheckBalance(input *wallet.CheckBalanceParams) (*platformclientmodels.CheckBalanceResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, err := aaa.Client.Wallet.CheckBalance(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, err := aaa.Client.Wallet.CheckBalance(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: 2022-01-10 - please use CheckWalletShort instead.
@@ -673,7 +673,7 @@ func (aaa *WalletService) ListUserCurrencyTransactionsShort(input *wallet.ListUs
 	return ok.GetPayload(), nil
 }
 
-func (aaa *WalletService) CheckBalanceShort(input *wallet.CheckBalanceParams) error {
+func (aaa *WalletService) CheckBalanceShort(input *wallet.CheckBalanceParams) (*platformclientmodels.CheckBalanceResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -695,12 +695,16 @@ func (aaa *WalletService) CheckBalanceShort(input *wallet.CheckBalanceParams) er
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.Wallet.CheckBalanceShort(input, authInfoWriter)
+	ok, err := aaa.Client.Wallet.CheckBalanceShort(input, authInfoWriter)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
 }
 
 func (aaa *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error {

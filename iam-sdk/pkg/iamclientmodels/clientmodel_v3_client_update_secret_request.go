@@ -18,7 +18,7 @@ import (
 // swagger:model Clientmodel V3 client update secret request.
 type ClientmodelV3ClientUpdateSecretRequest struct {
 
-	// newsecret
+	// The new client secret value.
 	// Required: true
 	NewSecret *string `json:"newSecret"`
 }

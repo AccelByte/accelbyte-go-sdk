@@ -69,7 +69,7 @@ type UpdateRoleParams struct {
 	/*Body*/
 	Body *iamclientmodels.ModelRoleUpdateRequest
 	/*RoleID
-	  Role id
+	  Role ID
 
 	*/
 	RoleID string

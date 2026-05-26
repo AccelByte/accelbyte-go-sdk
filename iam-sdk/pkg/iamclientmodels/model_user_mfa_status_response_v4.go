@@ -25,7 +25,7 @@ type ModelUserMFAStatusResponseV4 struct {
 	// Required: true
 	Enabled *bool `json:"enabled"`
 
-	// enabledfactors
+	// list of enabled MFA factors; valid values: authenticator, backupCode, email
 	EnabledFactors []string `json:"enabledFactors,omitempty"`
 }
 

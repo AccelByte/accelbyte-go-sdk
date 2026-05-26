@@ -2715,6 +2715,15 @@ $ samples/cli/sample-apps Platform syncSubscription \
     > result.txt
 ```
 
+### Operation `admin_sync_twitch_drops_entitlement`
+```sh
+$ samples/cli/sample-apps Platform adminSyncTwitchDropsEntitlement \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '{"gameId": "string", "language": "string", "region": "string"}' \
+    > result.txt
+```
+
 ### Operation `query_user_orders`
 ```sh
 $ samples/cli/sample-apps Platform queryUserOrders \

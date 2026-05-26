@@ -18,21 +18,21 @@ import (
 // swagger:model Model public invite user request V4.
 type ModelPublicInviteUserRequestV4 struct {
 
-	// additionaldata
+	// Optional UTM parameter data.
 	AdditionalData string `json:"additionalData,omitempty"`
 
-	// emailaddress
+	// Email address of the user to be invited.
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`
 
 	// languagetag
 	LanguageTag string `json:"languageTag,omitempty"`
 
-	// namespace
+	// New namespace of the user to be created.
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// namespacedisplayname
+	// Display name of the new namespace.
 	// Required: true
 	NamespaceDisplayName *string `json:"namespaceDisplayName"`
 }

@@ -37,6 +37,7 @@ func init() {
 	AchievementCmd.AddCommand(platformAchievement.BulkCreatePSNEventCmd)
 	AchievementCmd.AddCommand(tags.AdminListTagsCmd)
 	AchievementCmd.AddCommand(userAchievements.AdminListUserAchievementsCmd)
+	AchievementCmd.AddCommand(userAchievements.AdminBatchQueryUserAchievementsCmd)
 	AchievementCmd.AddCommand(userAchievements.AdminBulkUnlockAchievementCmd)
 	AchievementCmd.AddCommand(userAchievements.AdminResetAchievementCmd)
 	AchievementCmd.AddCommand(userAchievements.AdminUnlockAchievementCmd)

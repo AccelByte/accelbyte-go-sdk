@@ -21,6 +21,9 @@ type ApimodelNoSQLResourceResponse struct {
 	// configuration
 	Configuration *NosqlresourceNoSQLResourceConfiguration `json:"configuration,omitempty"`
 
+	// engineversion
+	EngineVersion string `json:"engineVersion,omitempty"`
+
 	// hostnames
 	Hostnames string `json:"hostnames,omitempty"`
 

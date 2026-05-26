@@ -28,6 +28,9 @@ type AccountcommonPermissionGroup struct {
 	// Required: true
 	GroupID *string `json:"groupId"`
 
+	// package
+	Package string `json:"package,omitempty"`
+
 	// permissions
 	// Required: true
 	Permissions []*AccountcommonAllowedPermission `json:"permissions"`

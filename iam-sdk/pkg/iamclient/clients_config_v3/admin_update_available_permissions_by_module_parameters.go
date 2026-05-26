@@ -70,7 +70,7 @@ type AdminUpdateAvailablePermissionsByModuleParams struct {
 	/*Body*/
 	Body *iamclientmodels.ClientmodelListUpsertModulesRequest
 	/*ForceDelete
-	  If this update include some delete action and to be deleted group or module is selected by any client, by default it will failed. If this force flag is true, it will success
+	  If this update includes a delete action and the targeted group or module is selected by any client, the operation will fail by default. Set this flag to true to force the operation.
 
 	*/
 	ForceDelete *bool

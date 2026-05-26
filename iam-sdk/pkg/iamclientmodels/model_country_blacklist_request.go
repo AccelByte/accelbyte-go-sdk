@@ -18,7 +18,7 @@ import (
 // swagger:model Model country blacklist request.
 type ModelCountryBlacklistRequest struct {
 
-	// blacklist
+	// List of ISO 3166-1 alpha-2 country codes to blacklist.
 	// Required: true
 	Blacklist []string `json:"blacklist"`
 }

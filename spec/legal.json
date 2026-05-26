@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "4.6.1"
+    "version": "4.9.0"
   },
   "schemes": [
     "https"
@@ -146,6 +146,7 @@
     },
     "/agreement/admin/agreements/policies/users/{userId}": {
       "get": {
+        "deprecated": true,
         "description": "This API will return all accepted Legal Agreements for specified user",
         "operationId": "oldRetrieveAcceptedAgreements",
         "parameters": [
@@ -188,6 +189,7 @@
     },
     "/agreement/admin/agreements/policy-versions/users": {
       "get": {
+        "deprecated": true,
         "description": "This API will return users who has accepted a specific policy version.",
         "operationId": "oldRetrieveAllUsersByPolicyVersion",
         "parameters": [
@@ -259,6 +261,7 @@
     },
     "/agreement/admin/base-policies": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve all base policies.",
         "operationId": "retrieveAllLegalPolicies",
         "parameters": [
@@ -303,6 +306,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Create a legal policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
         "operationId": "oldCreatePolicy",
         "parameters": [
@@ -366,6 +370,7 @@
     },
     "/agreement/admin/base-policies/{basePolicyId}": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve a base policy.",
         "operationId": "oldRetrieveSinglePolicy",
         "parameters": [
@@ -414,6 +419,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update an existing base policy.\u0026lt;br\u0026gt;Note:\u0026lt;br\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; field only accept COUNTRY or COUNTRY_GROUP.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;COUNTRY_GROUP \u0026lt;i\u0026gt;countryType\u0026lt;/i\u0026gt; requires the \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; and \u0026lt;i\u0026gt;affectedCountries\u0026lt;/i\u0026gt; fields to be provided.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;li\u0026gt;policy with COUNTRY_GROUP type include multiple countries and apply the same policy across the entire list of countries\u0026lt;/li\u0026gt;",
         "operationId": "oldPartialUpdatePolicy",
         "parameters": [
@@ -477,6 +483,7 @@
     },
     "/agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve a Base Legal Policy based on a Particular Country.",
         "operationId": "oldRetrievePolicyCountry",
         "parameters": [
@@ -531,6 +538,7 @@
     },
     "/agreement/admin/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve versions of a particular country-specific policy.",
         "operationId": "oldRetrieveLocalizedPolicyVersions",
         "parameters": [
@@ -574,6 +582,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Create a version of a particular country-specific policy.",
         "operationId": "oldCreateLocalizedPolicyVersion",
         "parameters": [
@@ -636,6 +645,7 @@
     },
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve a version of a particular country-specific policy.",
         "operationId": "oldRetrieveSingleLocalizedPolicyVersion",
         "parameters": [
@@ -684,6 +694,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update a version of a particular country-specific policy.",
         "operationId": "oldUpdateLocalizedPolicyVersion",
         "parameters": [
@@ -742,6 +753,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.",
         "operationId": "oldRequestPresignedURL",
         "parameters": [
@@ -799,6 +811,7 @@
     },
     "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
+        "deprecated": true,
         "description": "Update a localized version policy to be the default.",
         "operationId": "oldSetDefaultLocalizedPolicy",
         "parameters": [
@@ -2815,6 +2828,7 @@
     },
     "/agreement/admin/policies/countries/{countryCode}": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve all active policies based on a country.",
         "operationId": "retrievePolicies",
         "parameters": [
@@ -2860,6 +2874,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update a particular policy version.",
         "operationId": "oldUpdatePolicyVersion",
         "parameters": [
@@ -2923,6 +2938,7 @@
     },
     "/agreement/admin/policies/versions/{policyVersionId}/latest": {
       "patch": {
+        "deprecated": true,
         "description": "Manually publish a version of a particular country-specific policy.",
         "operationId": "oldPublishPolicyVersion",
         "parameters": [
@@ -2989,6 +3005,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Update country-specific and country-group policy.",
         "operationId": "oldUpdatePolicy",
         "parameters": [
@@ -3041,6 +3058,7 @@
     },
     "/agreement/admin/policies/{policyId}/default": {
       "patch": {
+        "deprecated": true,
         "description": "Update a policy to be the default.",
         "operationId": "oldSetDefaultPolicy",
         "parameters": [
@@ -3085,6 +3103,7 @@
     },
     "/agreement/admin/policies/{policyId}/versions": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.",
         "operationId": "oldRetrieveSinglePolicyVersion",
         "parameters": [
@@ -3143,6 +3162,7 @@
         "consumes": [
           "application/json"
         ],
+        "deprecated": true,
         "description": "Create a version of a particular country-specific policy.",
         "operationId": "oldCreatePolicyVersion",
         "parameters": [
@@ -3198,6 +3218,7 @@
     },
     "/agreement/admin/policy-types": {
       "get": {
+        "deprecated": true,
         "description": "Retrieve all supported policy types.",
         "operationId": "oldRetrieveAllPolicyTypes",
         "parameters": [
@@ -3284,6 +3305,7 @@
         }
       },
       "get": {
+        "deprecated": true,
         "description": "Get user info cache last updated time per namespace.\u0026lt;br\u0026gt;The query parameter namespaces can be a list of namespace separated by comma.\u0026lt;br\u0026gt;If query parameter namespaces is empty, user info cache status for all available namespaces will be returned. ",
         "operationId": "getUserInfoStatus",
         "parameters": [
@@ -6424,16 +6446,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2026-02-16T03:07:59+00:00",
-    "buildID": "4.6.1",
+    "buildDate": "2026-05-11T09:01:56+00:00",
+    "buildID": "4.9.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
     "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "1d39f0f91c",
-    "gitTag": "4.6.0",
+    "gitHash": "68556d62f8",
+    "gitTag": "4.9.0",
     "name": "justice-legal-service",
     "realm": "staging",
-    "version": "4.6.1",
+    "version": "4.9.0",
     "version-roles-seeding": "0.0.3"
   }
 }

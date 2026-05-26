@@ -96,7 +96,7 @@ type AdminUpdateRoleOverrideConfigV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelRoleOverrideUpdateRequest
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

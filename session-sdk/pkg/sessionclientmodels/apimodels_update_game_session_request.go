@@ -51,7 +51,7 @@ type ApimodelsUpdateGameSessionRequest struct {
 	InviteTimeout *int32 `json:"inviteTimeout"`
 
 	// joinability
-	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN']
+	// Enum: ['CLOSED', 'FRIENDS_OF_FRIENDS', 'FRIENDS_OF_LEADER', 'FRIENDS_OF_MEMBERS', 'INVITE_ONLY', 'OPEN', 'PASSWORD_PROTECTED']
 	// Required: true
 	Joinability *string `json:"joinability"`
 
@@ -68,6 +68,9 @@ type ApimodelsUpdateGameSessionRequest struct {
 	// Required: true
 	// Format: int32
 	MinPlayers *int32 `json:"minPlayers"`
+
+	// password
+	Password string `json:"password,omitempty"`
 
 	// preferredclaimkeys
 	PreferredClaimKeys []string `json:"preferredClaimKeys,omitempty"`
@@ -200,7 +203,7 @@ var apimodelsUpdateGameSessionRequestTypeJoinabilityPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CLOSED", "FRIENDS_OF_FRIENDS", "FRIENDS_OF_LEADER", "FRIENDS_OF_MEMBERS", "INVITE_ONLY", "OPEN", "PASSWORD_PROTECTED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -227,6 +230,9 @@ const (
 
 	// ApimodelsUpdateGameSessionRequestJoinabilityOPEN captures enum value "OPEN"
 	ApimodelsUpdateGameSessionRequestJoinabilityOPEN string = "OPEN"
+
+	// ApimodelsUpdateGameSessionRequestJoinabilityPASSWORDPROTECTED captures enum value "PASSWORD_PROTECTED"
+	ApimodelsUpdateGameSessionRequestJoinabilityPASSWORDPROTECTED string = "PASSWORD_PROTECTED"
 )
 
 // prop value enum

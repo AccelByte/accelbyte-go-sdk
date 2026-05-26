@@ -44,7 +44,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetConfigValueV3Short instead.
 
 AdminGetConfigValueV3 get config value
-This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.
+Returns the value of the specified config key. The namespace should be publisher namespace or studio namespace.
 
 **Supported config key:**
 * uniqueDisplayNameEnabled
@@ -104,7 +104,7 @@ func (a *Client) AdminGetConfigValueV3(params *AdminGetConfigValueV3Params, auth
 
 /*
 AdminGetConfigValueV3Short get config value
-This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.
+Returns the value of the specified config key. The namespace should be publisher namespace or studio namespace.
 
 **Supported config key:**
 * uniqueDisplayNameEnabled
@@ -259,8 +259,8 @@ func (a *Client) PublicGetSystemConfigV3Short(params *PublicGetSystemConfigV3Par
 Deprecated: 2022-08-10 - Use PublicGetConfigValueV3Short instead.
 
 PublicGetConfigValueV3 get config value
-This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.
-Note: this endpoint does not need any authorization.
+Returns the value of the specified config key. The namespace should be publisher namespace or studio namespace.
+Note: does not require any authorization.
 
 **Supported config key:**
 * uniqueDisplayNameEnabled
@@ -323,8 +323,8 @@ func (a *Client) PublicGetConfigValueV3(params *PublicGetConfigValueV3Params, au
 
 /*
 PublicGetConfigValueV3Short get config value
-This endpoint return the value of config key. The namespace should be publisher namespace or studio namespace.
-Note: this endpoint does not need any authorization.
+Returns the value of the specified config key. The namespace should be publisher namespace or studio namespace.
+Note: does not require any authorization.
 
 **Supported config key:**
 * uniqueDisplayNameEnabled

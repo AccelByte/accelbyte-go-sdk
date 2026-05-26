@@ -122,7 +122,7 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	TeamID *string `json:"TeamID"`
 
-	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken, code and bearerToken. Used for generic oauth flow.
+	// Token authentication type for authenticating the 3rd party user. Used for generic oauth flow. Supported values: - idToken - code - bearerToken
 	// Required: true
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
@@ -141,7 +141,7 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// registereddomains
 	RegisteredDomains []*AccountcommonRegisteredDomain `json:"registeredDomains,omitempty"`
 
-	// scopes for generic OAuth Authorization code flow
+	// OAuth scopes used during server-side token exchange and/or authorization url construction with the third-party platform. Empty means the platform default is used, see *GET /iam/v3/admin/platforms/{platformId}/defaults* for the default values.
 	Scopes []string `json:"scopes,omitempty"`
 }
 

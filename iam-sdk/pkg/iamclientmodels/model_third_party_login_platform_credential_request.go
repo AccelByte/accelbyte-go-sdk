@@ -32,14 +32,14 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
 
-	// allowed clients that can show this login method
+	// allowed clients that can show this login method.
 	AllowedClients []string `json:"AllowedClients,omitempty"`
 
 	// appid
 	// Required: true
 	AppID *string `json:"AppId"`
 
-	// third party authorization endpoint to obtain authorization code
+	// third party authorization endpoint to obtain authorization code. Used for generic oauth flow.
 	// Required: true
 	AuthorizationEndpoint *string `json:"AuthorizationEndpoint"`
 
@@ -53,7 +53,7 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// a flag indicates whether enable server license validation
 	EnableServerLicenseValidation bool `json:"EnableServerLicenseValidation"`
 
-	// environment
+	// Target environment for the platform. For netflix: sandbox or production.
 	// Required: true
 	Environment *string `json:"Environment"`
 
@@ -61,7 +61,7 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	FederationMetadataURL *string `json:"FederationMetadataURL"`
 
-	// genericoauthflow
+	// Enables generic OAuth flow. When true, configure TokenAuthenticationType, TokenClaimsMapping, JWKSEndpoint, UserInfoEndpoint, etc.
 	// Required: true
 	GenericOauthFlow *bool `json:"GenericOauthFlow"`
 
@@ -69,8 +69,7 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	IncludePUID bool `json:"IncludePUID"`
 
 	// isactive
-	// Required: true
-	IsActive *bool `json:"IsActive"`
+	IsActive bool `json:"IsActive"`
 
 	// Issuer of 3rd party identity provider. Used for generic oauth flow.
 	// Required: true
@@ -99,24 +98,24 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	PlatformName *string `json:"PlatformName"`
 
-	// private key used to decrypt JWT token
+	// private key used to decrypt JWT token. Used for live login.
 	PrivateKey string `json:"PrivateKey,omitempty"`
 
 	// redirecturi
 	// Required: true
 	RedirectURI *string `json:"RedirectUri"`
 
-	// domains that are allowed to create user and grant roles
+	// domains that are allowed to create user and grant roles. Used for google login.
 	// Required: true
 	RegisteredDomains []*AccountcommonRegisteredDomain `json:"RegisteredDomains"`
 
-	// xbox relying party
+	// xbox relying party. Used for live login.
 	RelyingParty string `json:"RelyingParty,omitempty"`
 
-	// sandbox id
+	// sandbox id. Used for live login.
 	SandboxID string `json:"SandboxId,omitempty"`
 
-	// secret
+	// Platform-specific secret value: - apple: base64-encoded private key - discord/epicgames/facebook/google/twitch/xblwebapi: client secret of the platform app - oculus: app secret - ps4/ps5/ps4web: client secret of the PSN web server - steam/steamopenid: Steam Web API Key - live: Relying Party Private Key in base64-encoded PEM format - awscognito/nintendo/netflix: not required
 	// Required: true
 	Secret *string `json:"Secret"`
 
@@ -124,14 +123,14 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// Required: true
 	TeamID *string `json:"TeamID"`
 
-	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken, code and bearerToken. Used for generic oauth flow.
+	// Token authentication type for authenticating the 3rd party user. Used for generic oauth flow. Supported values: - idToken - code - bearerToken
 	// Required: true
 	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
 
-	// A JSON containing how IAM service retrieve value from id token claims or userInfo endpoint. Used for generic oauth flow. Currently allowed fields list [userIdentity, name, email, avatarUrl]
+	// JSON map for how IAM retrieves values from id token claims or userInfo endpoint. Used for generic oauth flow. Allowed keys and their default claim keys: - userIdentity (default: sub) - name (default: name) - email (default: email) - avatarUrl (default: picture)
 	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping,omitempty"`
 
-	// third party token endpoint to obtain token
+	// third party token endpoint to obtain token. Used for generic oauth flow.
 	// Required: true
 	TokenEndpoint *string `json:"TokenEndpoint"`
 
@@ -146,9 +145,8 @@ type ModelThirdPartyLoginPlatformCredentialRequest struct {
 	// googleadminconsolekey
 	GoogleAdminConsoleKey string `json:"googleAdminConsoleKey,omitempty"`
 
-	// scopes for generic OAuth Authorization code flow. Default is [openid, profile, email]
-	// Required: true
-	Scopes []string `json:"scopes"`
+	// OAuth scopes for server-side token exchange and/or authorization URL construction with the third-party platform. - Generic OAuth / OIDC platforms: defaults to [openid, profile, email] - Pre-defined platforms (e.g. epicgames, ps4web, xblweb): platform-specific defaults apply when empty — see *GET /iam/v3/admin/platforms/{platformId}/defaults* - To reset to platform defaults after setting custom scopes, send an empty array []
+	Scopes []string `json:"scopes,omitempty"`
 }
 
 // Validate validates this Model third party login platform credential request
@@ -180,9 +178,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 	if err := m.validateGenericOauthFlow(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateIsActive(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIssuer(formats); err != nil {
@@ -225,9 +220,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 	if err := m.validateUserInfoHTTPMethod(formats); err != nil {
-		res = append(res, err)
-	}
-	if err := m.validateScopes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -312,15 +304,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateFederationMetada
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateGenericOauthFlow(formats strfmt.Registry) error {
 
 	if err := validate.Required("GenericOauthFlow", "body", m.GenericOauthFlow); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateIsActive(formats strfmt.Registry) error {
-
-	if err := validate.Required("IsActive", "body", m.IsActive); err != nil {
 		return err
 	}
 
@@ -472,15 +455,6 @@ func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateUserInfoEndpoint
 func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateUserInfoHTTPMethod(formats strfmt.Registry) error {
 
 	if err := validate.Required("UserInfoHTTPMethod", "body", m.UserInfoHTTPMethod); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ModelThirdPartyLoginPlatformCredentialRequest) validateScopes(formats strfmt.Registry) error {
-
-	if err := validate.Required("scopes", "body", m.Scopes); err != nil {
 		return err
 	}
 

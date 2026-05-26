@@ -58,6 +58,9 @@ type ApimodelsCreatePartyRequest struct {
 	// Format: int32
 	MinPlayers *int32 `json:"minPlayers"`
 
+	// password
+	Password string `json:"password,omitempty"`
+
 	// textchat
 	// Required: true
 	TextChat *bool `json:"textChat"`

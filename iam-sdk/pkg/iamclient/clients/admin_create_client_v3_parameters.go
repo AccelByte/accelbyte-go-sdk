@@ -69,7 +69,7 @@ type AdminCreateClientV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ClientmodelClientCreationV3Request
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

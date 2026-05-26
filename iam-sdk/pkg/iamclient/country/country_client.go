@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetCountryListV3Short instead.
 
 AdminGetCountryListV3 get country list
-Admin get country list
+Retrieves the list of countries for the namespace.
 */
 func (a *Client) AdminGetCountryListV3(params *AdminGetCountryListV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryListV3OK, *AdminGetCountryListV3Unauthorized, *AdminGetCountryListV3Forbidden, *AdminGetCountryListV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -104,7 +104,7 @@ func (a *Client) AdminGetCountryListV3(params *AdminGetCountryListV3Params, auth
 
 /*
 AdminGetCountryListV3Short get country list
-Admin get country list
+Retrieves the list of countries for the namespace.
 */
 func (a *Client) AdminGetCountryListV3Short(params *AdminGetCountryListV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryListV3OK, error) {
 	// TODO: Validate the params before sending
@@ -157,7 +157,7 @@ func (a *Client) AdminGetCountryListV3Short(params *AdminGetCountryListV3Params,
 Deprecated: 2022-08-10 - Use AdminGetCountryBlacklistV3Short instead.
 
 AdminGetCountryBlacklistV3 get country blacklist
-Admin get country blacklist
+Retrieves the country blacklist for the namespace.
 */
 func (a *Client) AdminGetCountryBlacklistV3(params *AdminGetCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryBlacklistV3OK, *AdminGetCountryBlacklistV3Unauthorized, *AdminGetCountryBlacklistV3Forbidden, *AdminGetCountryBlacklistV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -215,7 +215,7 @@ func (a *Client) AdminGetCountryBlacklistV3(params *AdminGetCountryBlacklistV3Pa
 
 /*
 AdminGetCountryBlacklistV3Short get country blacklist
-Admin get country blacklist
+Retrieves the country blacklist for the namespace.
 */
 func (a *Client) AdminGetCountryBlacklistV3Short(params *AdminGetCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetCountryBlacklistV3OK, error) {
 	// TODO: Validate the params before sending
@@ -268,7 +268,7 @@ func (a *Client) AdminGetCountryBlacklistV3Short(params *AdminGetCountryBlacklis
 Deprecated: 2022-08-10 - Use AdminAddCountryBlacklistV3Short instead.
 
 AdminAddCountryBlacklistV3 update country blacklist
-Admin update country blacklist
+Updates the country blacklist for the namespace.
 */
 func (a *Client) AdminAddCountryBlacklistV3(params *AdminAddCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddCountryBlacklistV3NoContent, *AdminAddCountryBlacklistV3BadRequest, *AdminAddCountryBlacklistV3Unauthorized, *AdminAddCountryBlacklistV3Forbidden, *AdminAddCountryBlacklistV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -329,7 +329,7 @@ func (a *Client) AdminAddCountryBlacklistV3(params *AdminAddCountryBlacklistV3Pa
 
 /*
 AdminAddCountryBlacklistV3Short update country blacklist
-Admin update country blacklist
+Updates the country blacklist for the namespace.
 */
 func (a *Client) AdminAddCountryBlacklistV3Short(params *AdminAddCountryBlacklistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddCountryBlacklistV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -384,7 +384,7 @@ func (a *Client) AdminAddCountryBlacklistV3Short(params *AdminAddCountryBlacklis
 Deprecated: 2022-08-10 - Use PublicGetCountryListV3Short instead.
 
 PublicGetCountryListV3 get country list
-Public get country list, will filter out countries in black list
+Retrieves the list of countries, excluding those on the blacklist.
 */
 func (a *Client) PublicGetCountryListV3(params *PublicGetCountryListV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryListV3OK, *PublicGetCountryListV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -436,7 +436,7 @@ func (a *Client) PublicGetCountryListV3(params *PublicGetCountryListV3Params, au
 
 /*
 PublicGetCountryListV3Short get country list
-Public get country list, will filter out countries in black list
+Retrieves the list of countries, excluding those on the blacklist.
 */
 func (a *Client) PublicGetCountryListV3Short(params *PublicGetCountryListV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryListV3OK, error) {
 	// TODO: Validate the params before sending

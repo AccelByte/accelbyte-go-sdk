@@ -166,7 +166,7 @@ $ samples/cli/sample-apps Lobby adminGetConfigV1 \
 ```sh
 $ samples/cli/sample-apps Lobby adminUpdateConfigV1 \
     --namespace 'string' \
-    --body '{"allowInviteNonConnectedUser": false, "allowJoinPartyDuringMatchmaking": false, "autoKickOnDisconnect": false, "autoKickOnDisconnectDelay": 1, "cancelTicketOnDisconnect": false, "chatRateLimitBurst": 1, "chatRateLimitDuration": 1, "concurrentUsersLimit": 1, "disableInvitationOnJoinParty": false, "enableChat": false, "entitlementCheck": false, "entitlementItemID": "string", "generalRateLimitBurst": 1, "generalRateLimitDuration": 1, "keepPresenceActivityOnDisconnect": false, "maxDSWaitTime": 1, "maxFriendsLimit": 1, "maxPartyMember": 1, "profanityFilter": false, "readyConsentTimeout": 1, "requestMetadataMaxSize": 1, "unregisterDelay": 1}' \
+    --body '{"allowInviteNonConnectedUser": false, "allowJoinPartyDuringMatchmaking": false, "autoKickOnDisconnect": false, "autoKickOnDisconnectDelay": 1, "cancelTicketOnDisconnect": false, "chatRateLimitBurst": 1, "chatRateLimitDuration": 1, "concurrentUsersLimit": 1, "disableInvitationOnJoinParty": false, "enableChat": false, "entitlementCheck": false, "entitlementItemID": "string", "generalRateLimitBurst": 1, "generalRateLimitDuration": 1, "keepPresenceActivityOnDisconnect": false, "maxDSWaitTime": 1, "maxFriendsLimit": 1, "maxPartyMember": 1, "profanityFilter": false, "readyConsentTimeout": 1, "requestMetadataMaxSize": 1, "unregisterDelay": 1, "wsReadTimeout": 1}' \
     > result.txt
 ```
 

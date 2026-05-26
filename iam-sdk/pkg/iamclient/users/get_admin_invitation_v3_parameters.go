@@ -70,7 +70,7 @@ type GetAdminInvitationV3Params struct {
 	*/
 	InvitationID string
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

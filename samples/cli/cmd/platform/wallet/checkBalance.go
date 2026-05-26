@@ -43,14 +43,14 @@ var CheckBalanceCmd = &cobra.Command{
 			Namespace:    namespace,
 			UserID:       userId,
 		}
-		errOK := walletService.CheckBalanceShort(input)
+		ok, errOK := walletService.CheckBalanceShort(input)
 		if errOK != nil {
 			logrus.Error(errOK)
 
 			return errOK
 		}
 
-		logrus.Infof("Response CLI success.")
+		logrus.Infof("Response CLI success: %+v", ok)
 
 		return nil
 	},

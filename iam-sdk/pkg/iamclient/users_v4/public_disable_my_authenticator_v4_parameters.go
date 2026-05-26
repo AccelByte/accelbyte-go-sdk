@@ -69,7 +69,7 @@ type PublicDisableMyAuthenticatorV4Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelDisableMFARequest
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

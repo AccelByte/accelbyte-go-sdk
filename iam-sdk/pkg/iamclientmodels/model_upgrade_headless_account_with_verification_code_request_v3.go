@@ -22,13 +22,13 @@ type ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3 struct {
 	// Required: true
 	Code *string `json:"code"`
 
-	// country
+	// Optional country to update after upgrade. Format: ISO3166-1 alpha-2 two letter, e.g. US.
 	Country string `json:"country,omitempty"`
 
-	// dateofbirth
+	// Optional date of birth to update after upgrade. Format: YYYY-MM-DD, e.g. 2019-04-29.
 	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
-	// displayname
+	// Optional display name to update after upgrade.
 	DisplayName string `json:"displayName,omitempty"`
 
 	// emailaddress

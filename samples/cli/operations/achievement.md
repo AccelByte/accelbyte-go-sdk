@@ -135,6 +135,15 @@ $ samples/cli/sample-apps Achievement adminListUserAchievements \
     > result.txt
 ```
 
+### Operation `admin_batch_query_user_achievements`
+```sh
+$ samples/cli/sample-apps Achievement adminBatchQueryUserAchievements \
+    --namespace 'string' \
+    --userId 'string' \
+    --body '{"codes": ["string"], "status": 1}' \
+    > result.txt
+```
+
 ### Operation `admin_bulk_unlock_achievement`
 ```sh
 $ samples/cli/sample-apps Achievement adminBulkUnlockAchievement \

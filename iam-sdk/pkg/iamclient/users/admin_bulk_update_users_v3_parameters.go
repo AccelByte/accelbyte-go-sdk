@@ -69,7 +69,7 @@ type AdminBulkUpdateUsersV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelUsersUpdateRequestV3
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

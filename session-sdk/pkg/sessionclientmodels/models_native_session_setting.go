@@ -59,6 +59,9 @@ type ModelsNativeSessionSetting struct {
 	// Required: true
 	XboxTitleID *string `json:"XboxTitleID"`
 
+	// Platforms to sync native sessions to. Allowed values: PSN, XBOX, STEAM. Empty means all platforms are active.
+	ActivePlatforms []string `json:"activePlatforms,omitempty"`
+
 	// localizedsessionname
 	LocalizedSessionName interface{} `json:"localizedSessionName,omitempty"`
 }

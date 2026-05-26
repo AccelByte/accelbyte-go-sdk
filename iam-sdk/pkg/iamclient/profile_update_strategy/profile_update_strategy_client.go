@@ -162,9 +162,7 @@ func (a *Client) AdminGetProfileUpdateStrategyV3Short(params *AdminGetProfileUpd
 Deprecated: 2022-08-10 - Use AdminUpdateProfileUpdateStrategyV3Short instead.
 
 AdminUpdateProfileUpdateStrategyV3 admin update profile update strategy by namespace and field.
-This API includes upsert behavior.
-Note:
-1. field 'config'' in request body will only work when type is limited
+Uses upsert behavior.
 */
 func (a *Client) AdminUpdateProfileUpdateStrategyV3(params *AdminUpdateProfileUpdateStrategyV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateProfileUpdateStrategyV3OK, *AdminUpdateProfileUpdateStrategyV3BadRequest, *AdminUpdateProfileUpdateStrategyV3Unauthorized, *AdminUpdateProfileUpdateStrategyV3Forbidden, *AdminUpdateProfileUpdateStrategyV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -225,9 +223,7 @@ func (a *Client) AdminUpdateProfileUpdateStrategyV3(params *AdminUpdateProfileUp
 
 /*
 AdminUpdateProfileUpdateStrategyV3Short admin update profile update strategy by namespace and field.
-This API includes upsert behavior.
-Note:
-1. field 'config'' in request body will only work when type is limited
+Uses upsert behavior.
 */
 func (a *Client) AdminUpdateProfileUpdateStrategyV3Short(params *AdminUpdateProfileUpdateStrategyV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateProfileUpdateStrategyV3OK, error) {
 	// TODO: Validate the params before sending

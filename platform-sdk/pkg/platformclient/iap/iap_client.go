@@ -122,6 +122,8 @@ type ClientService interface {
 	AdminSyncSteamAbnormalTransactionShort(params *AdminSyncSteamAbnormalTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamAbnormalTransactionOK, error)
 	AdminSyncSteamIAPByTransaction(params *AdminSyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamIAPByTransactionOK, *AdminSyncSteamIAPByTransactionBadRequest, *AdminSyncSteamIAPByTransactionNotFound, *AdminSyncSteamIAPByTransactionConflict, error)
 	AdminSyncSteamIAPByTransactionShort(params *AdminSyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncSteamIAPByTransactionOK, error)
+	AdminSyncTwitchDropsEntitlement(params *AdminSyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncTwitchDropsEntitlementNoContent, *AdminSyncTwitchDropsEntitlementTooManyRequests, error)
+	AdminSyncTwitchDropsEntitlementShort(params *AdminSyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncTwitchDropsEntitlementNoContent, error)
 	GetAppleConfigVersion(params *GetAppleConfigVersionParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleConfigVersionOK, *GetAppleConfigVersionNotFound, error)
 	GetAppleConfigVersionShort(params *GetAppleConfigVersionParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleConfigVersionOK, error)
 	GetIAPItemMapping(params *GetIAPItemMappingParams, authInfo runtime.ClientAuthInfoWriter) (*GetIAPItemMappingOK, *GetIAPItemMappingNotFound, error)
@@ -4769,6 +4771,111 @@ func (a *Client) AdminSyncSteamIAPByTransactionShort(params *AdminSyncSteamIAPBy
 }
 
 /*
+Deprecated: 2022-08-10 - Use AdminSyncTwitchDropsEntitlementShort instead.
+
+AdminSyncTwitchDropsEntitlement sync twitch drops entitlements with app token.
+Sync twitch drops entitlements. rate limit: 800 req/minutes.
+
+                        *  Returns :
+*/
+func (a *Client) AdminSyncTwitchDropsEntitlement(params *AdminSyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncTwitchDropsEntitlementNoContent, *AdminSyncTwitchDropsEntitlementTooManyRequests, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncTwitchDropsEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncTwitchDropsEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncTwitchDropsEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncTwitchDropsEntitlementNoContent:
+		return v, nil, nil
+
+	case *AdminSyncTwitchDropsEntitlementTooManyRequests:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminSyncTwitchDropsEntitlementShort sync twitch drops entitlements with app token.
+Sync twitch drops entitlements. rate limit: 800 req/minutes.
+
+                      *  Returns :
+*/
+func (a *Client) AdminSyncTwitchDropsEntitlementShort(params *AdminSyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncTwitchDropsEntitlementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminSyncTwitchDropsEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminSyncTwitchDropsEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminSyncTwitchDropsEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminSyncTwitchDropsEntitlementNoContent:
+		return v, nil
+	case *AdminSyncTwitchDropsEntitlementTooManyRequests:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use GetAppleConfigVersionShort instead.
 
 GetAppleConfigVersion get apple config version
@@ -5076,7 +5183,7 @@ Deprecated: 2022-08-10 - Use PublicFulfillAppleIAPItemShort instead.
 
 PublicFulfillAppleIAPItem fulfill apple iap item.
 Verify apple iap receipt and fulfill item. don't support subscriptionOther detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, *PublicFulfillAppleIAPItemBadRequest, *PublicFulfillAppleIAPItemNotFound, *PublicFulfillAppleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -5135,7 +5242,7 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 /*
 PublicFulfillAppleIAPItemShort fulfill apple iap item.
 Verify apple iap receipt and fulfill item. don't support subscriptionOther detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error) {
 	// TODO: Validate the params before sending
@@ -5189,7 +5296,7 @@ Deprecated: 2022-08-10 - Use SyncEpicGamesInventoryShort instead.
 
 SyncEpicGamesInventory sync epic games inventory.
 Sync epic games inventory's items.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, *SyncEpicGamesInventoryBadRequest, *SyncEpicGamesInventoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5245,7 +5352,7 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 /*
 SyncEpicGamesInventoryShort sync epic games inventory.
 Sync epic games inventory's items.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncEpicGamesInventoryOK, error) {
 	// TODO: Validate the params before sending
@@ -5297,7 +5404,7 @@ Deprecated: 2022-08-10 - Use PublicFulfillGoogleIAPItemShort instead.
 
 PublicFulfillGoogleIAPItem fulfill google iap item.
 Verify google iap receipt and fulfill item.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -5356,7 +5463,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 /*
 PublicFulfillGoogleIAPItemShort fulfill google iap item.
 Verify google iap receipt and fulfill item.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error) {
 	// TODO: Validate the params before sending
@@ -5516,7 +5623,7 @@ Deprecated: 2022-08-10 - Use SyncOculusConsumableEntitlementsShort instead.
 
 SyncOculusConsumableEntitlements sync oculus entitlements.
 Sync Oculus entitlements.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, *SyncOculusConsumableEntitlementsBadRequest, *SyncOculusConsumableEntitlementsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5572,7 +5679,7 @@ func (a *Client) SyncOculusConsumableEntitlements(params *SyncOculusConsumableEn
 /*
 SyncOculusConsumableEntitlementsShort sync oculus entitlements.
 Sync Oculus entitlements.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncOculusConsumableEntitlementsShort(params *SyncOculusConsumableEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*SyncOculusConsumableEntitlementsOK, error) {
 	// TODO: Validate the params before sending
@@ -5624,7 +5731,7 @@ Deprecated: 2022-08-10 - Use PublicReconcilePlayStationStoreShort instead.
 
 PublicReconcilePlayStationStore synchronize with entitlements in psn store.
 Synchronize with entitlements in PSN Store.Other detail info:
-                          * Returns : result of synchronization
+                      * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, *PublicReconcilePlayStationStoreNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5680,7 +5787,7 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 /*
 PublicReconcilePlayStationStoreShort synchronize with entitlements in psn store.
 Synchronize with entitlements in PSN Store.Other detail info:
-                          * Returns : result of synchronization
+                      * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error) {
 	// TODO: Validate the params before sending
@@ -5732,7 +5839,7 @@ Deprecated: 2022-08-10 - Use PublicReconcilePlayStationStoreWithMultipleServiceL
 
 PublicReconcilePlayStationStoreWithMultipleServiceLabels synchronize with entitlements in psn store with multiple service labels.
 Synchronize with entitlements in PSN Store with multiple service labels.Other detail info:
-                          * Returns : result of synchronization
+                      * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsBadRequest, *PublicReconcilePlayStationStoreWithMultipleServiceLabelsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5788,7 +5895,7 @@ func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabels(params
 /*
 PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort synchronize with entitlements in psn store with multiple service labels.
 Synchronize with entitlements in PSN Store with multiple service labels.Other detail info:
-                          * Returns : result of synchronization
+                      * Returns : result of synchronization
 */
 func (a *Client) PublicReconcilePlayStationStoreWithMultipleServiceLabelsShort(params *PublicReconcilePlayStationStoreWithMultipleServiceLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreWithMultipleServiceLabelsOK, error) {
 	// TODO: Validate the params before sending
@@ -5840,7 +5947,7 @@ Deprecated: 2022-08-10 - Use SyncSteamInventoryShort instead.
 
 SyncSteamInventory sync steam inventory.
 Sync steam inventory's items.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, *SyncSteamInventoryBadRequest, *SyncSteamInventoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -5896,7 +6003,7 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 /*
 SyncSteamInventoryShort sync steam inventory.
 Sync steam inventory's items.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error) {
 	// TODO: Validate the params before sending
@@ -6059,7 +6166,7 @@ Deprecated: 2022-08-10 - Use SyncSteamIAPByTransactionShort instead.
 
 SyncSteamIAPByTransaction sync steam in app purchase by transaction.
 Sync steam in app purchase by transaction.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncSteamIAPByTransaction(params *SyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamIAPByTransactionOK, *SyncSteamIAPByTransactionBadRequest, *SyncSteamIAPByTransactionNotFound, *SyncSteamIAPByTransactionConflict, error) {
 	// TODO: Validate the params before sending
@@ -6118,7 +6225,7 @@ func (a *Client) SyncSteamIAPByTransaction(params *SyncSteamIAPByTransactionPara
 /*
 SyncSteamIAPByTransactionShort sync steam in app purchase by transaction.
 Sync steam in app purchase by transaction.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncSteamIAPByTransactionShort(params *SyncSteamIAPByTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamIAPByTransactionOK, error) {
 	// TODO: Validate the params before sending
@@ -6172,7 +6279,7 @@ Deprecated: 2022-08-10 - Use SyncTwitchDropsEntitlement1Short instead.
 
 SyncTwitchDropsEntitlement1 sync twitch drops entitlements.
 Sync twitch drops entitlements.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, *SyncTwitchDropsEntitlement1BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -6225,7 +6332,7 @@ func (a *Client) SyncTwitchDropsEntitlement1(params *SyncTwitchDropsEntitlement1
 /*
 SyncTwitchDropsEntitlement1Short sync twitch drops entitlements.
 Sync twitch drops entitlements.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncTwitchDropsEntitlement1Short(params *SyncTwitchDropsEntitlement1Params, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlement1NoContent, error) {
 	// TODO: Validate the params before sending
@@ -6275,7 +6382,7 @@ Deprecated: 2022-08-10 - Use SyncXboxInventoryShort instead.
 
 SyncXboxInventory sync xbox inventory.
 Sync Xbox inventory's items.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, *SyncXboxInventoryBadRequest, *SyncXboxInventoryNotFound, error) {
 	// TODO: Validate the params before sending
@@ -6331,7 +6438,7 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 /*
 SyncXboxInventoryShort sync xbox inventory.
 Sync Xbox inventory's items.Other detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error) {
 	// TODO: Validate the params before sending
@@ -6383,7 +6490,7 @@ Deprecated: 2022-08-10 - Use V2PublicFulfillAppleIAPItemShort instead.
 
 V2PublicFulfillAppleIAPItem fulfill apple iap item v2.
 Verify apple iap transaction and fulfill item, support subscriptionOther detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) V2PublicFulfillAppleIAPItem(params *V2PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*V2PublicFulfillAppleIAPItemNoContent, *V2PublicFulfillAppleIAPItemBadRequest, *V2PublicFulfillAppleIAPItemNotFound, *V2PublicFulfillAppleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
@@ -6442,7 +6549,7 @@ func (a *Client) V2PublicFulfillAppleIAPItem(params *V2PublicFulfillAppleIAPItem
 /*
 V2PublicFulfillAppleIAPItemShort fulfill apple iap item v2.
 Verify apple iap transaction and fulfill item, support subscriptionOther detail info:
-                          * Returns :
+                      * Returns :
 */
 func (a *Client) V2PublicFulfillAppleIAPItemShort(params *V2PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*V2PublicFulfillAppleIAPItemNoContent, error) {
 	// TODO: Validate the params before sending

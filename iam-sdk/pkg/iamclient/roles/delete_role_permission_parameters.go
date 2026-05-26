@@ -76,7 +76,7 @@ type DeleteRolePermissionParams struct {
 	*/
 	Resource string
 	/*RoleID
-	  Role id
+	  Role ID
 
 	*/
 	RoleID string

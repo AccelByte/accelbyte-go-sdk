@@ -1559,6 +1559,13 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": "true",
+            "description": "Since the early goal progress data does not include the namespace, it may lead to accidental deletion. If you want to safely delete this data, please set it to true, and it will check whether have conflict data.",
+            "in": "query",
+            "name": "safeDelete",
+            "type": "string"
           }
         ],
         "produces": [
@@ -5232,11 +5239,11 @@
     "path": "/challenge/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-02-16T04:40:50+00:00",
-    "gitHash": "3a3de50507ab31c2927cb0ff77a63299247c1939",
+    "buildDate": "2026-05-11T09:00:25+00:00",
+    "gitHash": "24577b33a83ebf357cccbfcca74357b539a60c51",
     "name": "justice-challenge-service",
     "realm": "stage",
-    "version": "1.27.2",
+    "version": "1.29.0",
     "version-roles-seeding": "1.2.74"
   }
 }

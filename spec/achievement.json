@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.27.2"
+    "version": "2.29.0"
   },
   "schemes": [
     "https"
@@ -1320,6 +1320,87 @@
           }
         ],
         "summary": "Query user achievements [include achieved and in-progress]",
+        "tags": [
+          "User Achievements"
+        ],
+        "x-errorCodes": {},
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]"
+            ]
+          }
+        ]
+      }
+    },
+    "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/batchQuery": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Required permission \n\t\t\t\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Note:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; User Achievement status value mean: \u0026lt;code\u0026gt;status = 1 (in progress)\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;status = 2 (unlocked)\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt; \u0026lt;code\u0026gt;achievedAt\u0026lt;/code\u0026gt; value will return default value: \u0026lt;code\u0026gt;0001-01-01T00:00:00Z\u0026lt;/code\u0026gt; for user achievement that locked or in progress\u0026lt;/p\u0026gt;",
+        "operationId": "AdminBatchQueryUserAchievements",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.BatchQueryUserAchievementRequest"
+            }
+          },
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user id",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.UserAchievementResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Batch Query user achievements",
         "tags": [
           "User Achievements"
         ],
@@ -3142,6 +3223,24 @@
         "numberOfVisibleAchievements"
       ]
     },
+    "models.BatchQueryUserAchievementRequest": {
+      "properties": {
+        "codes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "codes",
+        "status"
+      ]
+    },
     "models.BulkCreatePSNEventResponse": {
       "properties": {
         "data": {
@@ -3775,11 +3874,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-01-08T09:31:39+00:00",
-    "gitHash": "ed1315b7db442ea69b62baedff41fcd6269df0cd",
+    "buildDate": "2026-05-11T09:06:57+00:00",
+    "gitHash": "bce744f317fcd31ef2dcc242540969d8771005df",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.27.2",
+    "version": "2.29.0",
     "version-roles-seeding": "1.0.7"
   }
 }

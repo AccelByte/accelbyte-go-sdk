@@ -69,12 +69,12 @@ type AdminUpdateClientPermissionV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.AccountcommonClientPermissionsV3
 	/*ClientID
-	  Client ID, should follow UUID version 4 without hypen
+	  Client ID, should follow UUID version 4 without hyphen
 
 	*/
 	ClientID string
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

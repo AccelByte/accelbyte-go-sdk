@@ -18,11 +18,11 @@ import (
 // swagger:model Model login allowlist request.
 type ModelLoginAllowlistRequest struct {
 
-	// active
+	// Whether the login allowlist is active.
 	// Required: true
 	Active *bool `json:"active"`
 
-	// roleids
+	// List of role IDs that are allowed to login when the allowlist is active.
 	// Required: true
 	RoleIds []string `json:"roleIds"`
 }

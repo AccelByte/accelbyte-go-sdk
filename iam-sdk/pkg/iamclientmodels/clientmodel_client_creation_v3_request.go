@@ -18,72 +18,69 @@ import (
 // swagger:model Clientmodel client creation V3 request.
 type ClientmodelClientCreationV3Request struct {
 
-	// audiences
+	// List of target client IDs who are intended to receive the token.
 	// Required: true
 	Audiences []string `json:"audiences"`
 
-	// baseuri
+	// A base URI of the application. Used in audience checking. Required if the application type is a server.
 	// Required: true
 	BaseURI *string `json:"baseUri"`
 
-	// clientid
+	// The client ID. Must be UUID v4 without hyphens.
 	// Required: true
 	ClientID *string `json:"clientId"`
 
-	// clientname
+	// The client name.
 	// Required: true
 	ClientName *string `json:"clientName"`
 
-	// clientpermissions
+	// Contains the client's permissions.
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions,omitempty"`
 
-	// clientplatform
+	// Available client platforms: Playstation, Xbox, Steam, Epic, IOS, GooglePlay, Nintendo, Oculus. Default: empty string.
 	// Required: true
 	ClientPlatform *string `json:"clientPlatform"`
 
-	// deletable
+	// Flag to identify whether the client is deletable. Defaults to true on creation.
 	Deletable bool `json:"deletable"`
 
 	// length 0~1024
 	// Required: true
 	Description *string `json:"description"`
 
-	// modulepermissions
+	// Module-based permissions for this client: 1. Only applicable for Confidential client type 2. Currently used in Multi Tenant mode only 3. To view the available module permission list, refer to _GET /iam/v3/admin/clientConfig/permissions_
 	ModulePermissions []*AccountcommonClientModulePermission `json:"modulePermissions,omitempty"`
 
-	// namespace
+	// The namespace where the client lives.
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// min value 1 second, max value 86400 seconds
+	// min value 1 second, max value 86400 seconds. Default: 0 (uses value from environment variable).
 	// Format: int32
 	OauthAccessTokenExpiration int32 `json:"oauthAccessTokenExpiration,omitempty"`
 
-	// valid time unit: SECONDS, MINUTES, or HOURS
+	// valid time unit: SECONDS, MINUTES, or HOURS. Default: SECONDS.
 	OauthAccessTokenExpirationTimeUnit string `json:"oauthAccessTokenExpirationTimeUnit,omitempty"`
 
-	// oauthclienttype
+	// OAuth client type. Allowed values: - Public: uses PKCE flow, must not have a client secret - Confidential: has a client secret, does not use PKCE flow
 	// Required: true
 	OauthClientType *string `json:"oauthClientType"`
 
-	// min value 1 seconds, max value 2592000 seconds
+	// min value 1 seconds, max value 2592000 seconds. Default: 0 (uses value from environment variable).
 	// Format: int32
 	OauthRefreshTokenExpiration int32 `json:"oauthRefreshTokenExpiration,omitempty"`
 
-	// valid time unit: SECONDS, MINUTES, HOURS or DAYS
+	// valid time unit: SECONDS, MINUTES, HOURS or DAYS. Default: SECONDS.
 	OauthRefreshTokenExpirationTimeUnit string `json:"oauthRefreshTokenExpirationTimeUnit,omitempty"`
 
-	// parentnamespace
-	ParentNamespace string `json:"parentNamespace,omitempty"`
-
-	// redirecturi
+	// Contains the redirect URI used in OAuth callback.
 	// Required: true
 	RedirectURI *string `json:"redirectUri"`
 
 	// scopes
 	Scopes []string `json:"scopes,omitempty"`
 
-	// secret
+	// Client secret. Required for Confidential clients; must not be provided for Public clients.
 	// Required: true
 	Secret *string `json:"secret"`
 
@@ -91,7 +88,7 @@ type ClientmodelClientCreationV3Request struct {
 	// Required: true
 	SkipLoginQueue *bool `json:"skipLoginQueue"`
 
-	// twofactorenabled
+	// Flag to indicate whether 2FA validation is enabled for this client. Default: false.
 	TwoFactorEnabled bool `json:"twoFactorEnabled"`
 }
 

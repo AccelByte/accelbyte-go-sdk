@@ -69,7 +69,7 @@ type UpdateThirdPartyLoginPlatformDomainV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelPlatformDomainUpdateRequest
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
 
 // NewPublicPartyJoinParams creates a new PublicPartyJoinParams object
@@ -64,6 +66,8 @@ type PublicPartyJoinParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *sessionclientmodels.ApimodelsJoinSessionRequest
 	/*Namespace
 	  Namespace
 
@@ -140,6 +144,17 @@ func (o *PublicPartyJoinParams) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the public party join params
+func (o *PublicPartyJoinParams) WithBody(body *sessionclientmodels.ApimodelsJoinSessionRequest) *PublicPartyJoinParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the public party join params
+func (o *PublicPartyJoinParams) SetBody(body *sessionclientmodels.ApimodelsJoinSessionRequest) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the public party join params
 func (o *PublicPartyJoinParams) WithNamespace(namespace string) *PublicPartyJoinParams {
 	o.SetNamespace(namespace)
@@ -169,6 +184,12 @@ func (o *PublicPartyJoinParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

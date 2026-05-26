@@ -18,11 +18,11 @@ import (
 // swagger:model Model revoke user V4 request.
 type ModelRevokeUserV4Request struct {
 
-	// namespace
+	// The user's namespace.
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// userid
+	// The user's ID.
 	// Required: true
 	UserID *string `json:"userId"`
 }

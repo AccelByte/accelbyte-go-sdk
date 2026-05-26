@@ -69,7 +69,7 @@ type PublicVerifyRegistrationCodeParams struct {
 	/*Body*/
 	Body *iamclientmodels.ModelVerifyRegistrationCode
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

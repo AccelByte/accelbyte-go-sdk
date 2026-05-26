@@ -36,6 +36,10 @@ type ClientmodelClientTemplate struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// package
+	// Required: true
+	Package *string `json:"package"`
+
 	// requiredfields
 	// Required: true
 	RequiredFields []string `json:"requiredFields"`
@@ -59,6 +63,9 @@ func (m *ClientmodelClientTemplate) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePackage(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateRequiredFields(formats); err != nil {
@@ -136,6 +143,15 @@ func (m *ClientmodelClientTemplate) validateDescription(formats strfmt.Registry)
 func (m *ClientmodelClientTemplate) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelClientTemplate) validatePackage(formats strfmt.Registry) error {
+
+	if err := validate.Required("package", "body", m.Package); err != nil {
 		return err
 	}
 

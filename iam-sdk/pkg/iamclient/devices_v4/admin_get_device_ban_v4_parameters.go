@@ -65,12 +65,12 @@ type AdminGetDeviceBanV4Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*BanID
-	  device id
+	  Ban ID, should follow UUID version 4 without hyphen
 
 	*/
 	BanID string
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

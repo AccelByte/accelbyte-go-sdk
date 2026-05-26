@@ -321,6 +321,7 @@
 | `/platform/admin/namespaces/{namespace}/users/{userId}/iap/orders/{iapOrderNo}/line_items` | GET | AdminGetIAPOrderLineItemsShort | [AdminGetIAPOrderLineItemsShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [AdminGetIAPOrderLineItemsShort](../../services-api/pkg/service/platform/iap.go) | [AdminGetIAPOrderLineItemsShort](../../samples/cli/cmd/platform/iap/adminGetIAPOrderLineItems.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncAbnormalTransaction` | PUT | AdminSyncSteamAbnormalTransactionShort | [AdminSyncSteamAbnormalTransactionShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [AdminSyncSteamAbnormalTransactionShort](../../services-api/pkg/service/platform/iap.go) | [AdminSyncSteamAbnormalTransactionShort](../../samples/cli/cmd/platform/iap/adminSyncSteamAbnormalTransaction.go) |
 | `/platform/admin/namespaces/{namespace}/users/{userId}/iap/steam/syncByTransaction` | PUT | AdminSyncSteamIAPByTransactionShort | [AdminSyncSteamIAPByTransactionShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [AdminSyncSteamIAPByTransactionShort](../../services-api/pkg/service/platform/iap.go) | [AdminSyncSteamIAPByTransactionShort](../../samples/cli/cmd/platform/iap/adminSyncSteamIAPByTransaction.go) |
+| `/platform/admin/namespaces/{namespace}/users/{userId}/iap/twitch/sync` | PUT | AdminSyncTwitchDropsEntitlementShort | [AdminSyncTwitchDropsEntitlementShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [AdminSyncTwitchDropsEntitlementShort](../../services-api/pkg/service/platform/iap.go) | [AdminSyncTwitchDropsEntitlementShort](../../samples/cli/cmd/platform/iap/adminSyncTwitchDropsEntitlement.go) |
 | `/platform/public/namespaces/{namespace}/iap/apple/config/version` | GET | GetAppleConfigVersionShort | [GetAppleConfigVersionShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [GetAppleConfigVersionShort](../../services-api/pkg/service/platform/iap.go) | [GetAppleConfigVersionShort](../../samples/cli/cmd/platform/iap/getAppleConfigVersion.go) |
 | `/platform/public/namespaces/{namespace}/iap/item/mapping` | GET | GetIAPItemMappingShort | [GetIAPItemMappingShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [GetIAPItemMappingShort](../../services-api/pkg/service/platform/iap.go) | [GetIAPItemMappingShort](../../samples/cli/cmd/platform/iap/getIAPItemMapping.go) |
 | `/platform/public/namespaces/{namespace}/users/me/iap/twitch/sync` | PUT | SyncTwitchDropsEntitlementShort | [SyncTwitchDropsEntitlementShort](../../platform-sdk/pkg/platformclient/iap/iap_client.go) | [SyncTwitchDropsEntitlementShort](../../services-api/pkg/service/platform/iap.go) | [SyncTwitchDropsEntitlementShort](../../samples/cli/cmd/platform/iap/syncTwitchDropsEntitlement.go) |
@@ -702,7 +703,6 @@
 | `BillingAccount` | [BillingAccount ](../../platform-sdk/pkg/platformclientmodels/billing_account.go) |
 | `BillingHistoryInfo` | [BillingHistoryInfo ](../../platform-sdk/pkg/platformclientmodels/billing_history_info.go) |
 | `BillingHistoryPagingSlicedResult` | [BillingHistoryPagingSlicedResult ](../../platform-sdk/pkg/platformclientmodels/billing_history_paging_sliced_result.go) |
-| `BinarySchema` | [BinarySchema ](../../platform-sdk/pkg/platformclientmodels/binary_schema.go) |
 | `BoxItem` | [BoxItem ](../../platform-sdk/pkg/platformclientmodels/box_item.go) |
 | `BulkCreditRequest` | [BulkCreditRequest ](../../platform-sdk/pkg/platformclientmodels/bulk_credit_request.go) |
 | `BulkCreditResult` | [BulkCreditResult ](../../platform-sdk/pkg/platformclientmodels/bulk_credit_result.go) |
@@ -733,6 +733,7 @@
 | `CategoryInfo` | [CategoryInfo ](../../platform-sdk/pkg/platformclientmodels/category_info.go) |
 | `CategoryUpdate` | [CategoryUpdate ](../../platform-sdk/pkg/platformclientmodels/category_update.go) |
 | `ChangeStatusItemRequest` | [ChangeStatusItemRequest ](../../platform-sdk/pkg/platformclientmodels/change_status_item_request.go) |
+| `CheckBalanceResponse` | [CheckBalanceResponse ](../../platform-sdk/pkg/platformclientmodels/check_balance_response.go) |
 | `CheckoutConfig` | [CheckoutConfig ](../../platform-sdk/pkg/platformclientmodels/checkout_config.go) |
 | `ClawbackInfo` | [ClawbackInfo ](../../platform-sdk/pkg/platformclientmodels/clawback_info.go) |
 | `ClientRequestParameter` | [ClientRequestParameter ](../../platform-sdk/pkg/platformclientmodels/client_request_parameter.go) |

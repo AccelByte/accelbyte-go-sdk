@@ -27,9 +27,11 @@ var AdminDeleteTiedChallengeCmd = &cobra.Command{
 		}
 		challengeCode, _ := cmd.Flags().GetString("challengeCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		safeDelete, _ := cmd.Flags().GetString("safeDelete")
 		input := &challenge_configuration.AdminDeleteTiedChallengeParams{
 			ChallengeCode: challengeCode,
 			Namespace:     namespace,
+			SafeDelete:    &safeDelete,
 		}
 		errNoContent := challengeConfigurationService.AdminDeleteTiedChallengeShort(input)
 		if errNoContent != nil {
@@ -49,4 +51,5 @@ func init() {
 	_ = AdminDeleteTiedChallengeCmd.MarkFlagRequired("challengeCode")
 	AdminDeleteTiedChallengeCmd.Flags().String("namespace", "", "Namespace")
 	_ = AdminDeleteTiedChallengeCmd.MarkFlagRequired("namespace")
+	AdminDeleteTiedChallengeCmd.Flags().String("safeDelete", "", "Safe delete")
 }

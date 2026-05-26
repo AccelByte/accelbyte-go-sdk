@@ -362,6 +362,7 @@ func init() {
 	PlatformCmd.AddCommand(iapSubscription.SyncSubscriptionTransactionCmd)
 	PlatformCmd.AddCommand(iapSubscription.GetThirdPartyUserSubscriptionDetailsCmd)
 	PlatformCmd.AddCommand(iapSubscription.SyncSubscriptionCmd)
+	PlatformCmd.AddCommand(iap.AdminSyncTwitchDropsEntitlementCmd)
 	PlatformCmd.AddCommand(order.QueryUserOrdersCmd)
 	PlatformCmd.AddCommand(order.AdminCreateUserOrderCmd)
 	PlatformCmd.AddCommand(order.CountOfPurchasedItemCmd)

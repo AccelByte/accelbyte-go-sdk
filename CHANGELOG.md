@@ -1,3 +1,14 @@
+<a name="v0.88.0"></a>
+## [v0.88.0]
+### chore
+- **:**  pick auth validator adjustment for parent namespace 
+- **validator:**  add config to disable global role fetch 
+- **test:**  auth validator adjustment for parent namespace 
+- **:**  use multiple client creds for integration test CG-5597 
+### fix
+- **auth:**  fix cache miss after key rotation 
+
+
 <a name="v0.87.0"></a>
 ## [v0.87.0]
 ### docs

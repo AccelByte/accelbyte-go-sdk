@@ -69,7 +69,7 @@ type AdminBanUserBulkV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelBulkBanCreateRequestV3
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

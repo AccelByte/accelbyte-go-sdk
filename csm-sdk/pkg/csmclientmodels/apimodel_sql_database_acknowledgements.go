@@ -1,0 +1,65 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+// Code generated; DO NOT EDIT.
+
+package csmclientmodels
+
+import (
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
+)
+
+// ApimodelSQLDatabaseAcknowledgements Apimodel SQL database acknowledgements
+//
+// swagger:model Apimodel SQL database acknowledgements.
+type ApimodelSQLDatabaseAcknowledgements struct {
+
+	// acceptsqlsecurecredentialhandling
+	// Required: true
+	AcceptSQLSecureCredentialHandling *bool `json:"acceptSQLSecureCredentialHandling"`
+}
+
+// Validate validates this Apimodel SQL database acknowledgements
+func (m *ApimodelSQLDatabaseAcknowledgements) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAcceptSQLSecureCredentialHandling(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ApimodelSQLDatabaseAcknowledgements) validateAcceptSQLSecureCredentialHandling(formats strfmt.Registry) error {
+
+	if err := validate.Required("acceptSQLSecureCredentialHandling", "body", m.AcceptSQLSecureCredentialHandling); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *ApimodelSQLDatabaseAcknowledgements) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *ApimodelSQLDatabaseAcknowledgements) UnmarshalBinary(b []byte) error {
+	var res ApimodelSQLDatabaseAcknowledgements
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}

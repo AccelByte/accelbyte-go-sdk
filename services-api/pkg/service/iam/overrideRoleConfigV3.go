@@ -44,10 +44,7 @@ func (aaa *OverrideRoleConfigv3Service) AdminGetRoleOverrideConfigV3(input *over
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.OverrideRoleConfigV3.AdminGetRoleOverrideConfigV3(input, client.BearerToken(*token.AccessToken))
-	if badRequest != nil {
-		return nil, badRequest
-	}
+	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.OverrideRoleConfigV3.AdminGetRoleOverrideConfigV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -125,7 +122,10 @@ func (aaa *OverrideRoleConfigv3Service) AdminChangeRoleOverrideConfigStatusV3(in
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := aaa.Client.OverrideRoleConfigV3.AdminChangeRoleOverrideConfigStatusV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.OverrideRoleConfigV3.AdminChangeRoleOverrideConfigStatusV3(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
 	if unauthorized != nil {
 		return nil, unauthorized
 	}

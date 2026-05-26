@@ -7,9 +7,12 @@
 package party
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/session"
 	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclient/party"
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -25,9 +28,16 @@ var PublicPartyJoinCmd = &cobra.Command{
 			Client:          factory.NewSessionClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
+		bodyString := cmd.Flag("body").Value.String()
+		var body *sessionclientmodels.ApimodelsJoinSessionRequest
+		errBody := json.Unmarshal([]byte(bodyString), &body)
+		if errBody != nil {
+			return errBody
+		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		partyId, _ := cmd.Flags().GetString("partyId")
 		input := &party.PublicPartyJoinParams{
+			Body:      body,
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
@@ -45,6 +55,8 @@ var PublicPartyJoinCmd = &cobra.Command{
 }
 
 func init() {
+	PublicPartyJoinCmd.Flags().String("body", "", "Body")
+	_ = PublicPartyJoinCmd.MarkFlagRequired("body")
 	PublicPartyJoinCmd.Flags().String("namespace", "", "Namespace")
 	_ = PublicPartyJoinCmd.MarkFlagRequired("namespace")
 	PublicPartyJoinCmd.Flags().String("partyId", "", "Party id")

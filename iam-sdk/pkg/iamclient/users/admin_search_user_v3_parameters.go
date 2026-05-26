@@ -78,7 +78,7 @@ type AdminSearchUserV3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
@@ -154,7 +154,7 @@ type AdminSearchUserV3Params struct {
 	*/
 	PlatformID *string
 	/*Query
-	  Query, can be either email address or display name
+	  Search query value. The field to search is controlled by the 'by' parameter.
 
 	*/
 	Query *string

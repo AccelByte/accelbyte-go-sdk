@@ -18,14 +18,14 @@ import (
 // swagger:model Model role update request V3.
 type ModelRoleUpdateRequestV3 struct {
 
-	// deletable
+	// Specify if the role can be deleted.
 	Deletable bool `json:"deletable"`
 
-	// iswildcard
+	// Specify if the role can be assigned to wildcard (*) namespace. Default: false.
 	// Required: true
 	IsWildcard *bool `json:"isWildcard"`
 
-	// rolename
+	// Role name, alphanumeric, cannot have special characters.
 	// Required: true
 	RoleName *string `json:"roleName"`
 }

@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodel create no SQL app database request.
 type ApimodelCreateNoSQLAppDatabaseRequest struct {
 
+	// acknowledgements
+	// Required: true
+	Acknowledgements *ApimodelNoSQLDatabaseAcknowledgements `json:"acknowledgements"`
+
 	// dbname
 	// Required: true
 	DbName *string `json:"dbName"`
@@ -35,6 +39,9 @@ type ApimodelCreateNoSQLAppDatabaseRequest struct {
 func (m *ApimodelCreateNoSQLAppDatabaseRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAcknowledgements(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateDbName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -48,6 +55,24 @@ func (m *ApimodelCreateNoSQLAppDatabaseRequest) Validate(formats strfmt.Registry
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelCreateNoSQLAppDatabaseRequest) validateAcknowledgements(formats strfmt.Registry) error {
+
+	if err := validate.Required("acknowledgements", "body", m.Acknowledgements); err != nil {
+		return err
+	}
+
+	if m.Acknowledgements != nil {
+		if err := m.Acknowledgements.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("acknowledgements")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

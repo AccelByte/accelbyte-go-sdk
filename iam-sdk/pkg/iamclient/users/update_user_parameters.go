@@ -69,12 +69,12 @@ type UpdateUserParams struct {
 	/*Body*/
 	Body *iamclientmodels.ModelUserUpdateRequest
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
 	/*UserID
-	  User id
+	  User ID
 
 	*/
 	UserID string

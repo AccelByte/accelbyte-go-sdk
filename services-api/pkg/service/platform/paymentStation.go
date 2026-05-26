@@ -7,6 +7,8 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
@@ -138,8 +140,8 @@ func (aaa *PaymentStationService) GetPaymentPublicConfig(input *payment_station.
 }
 
 // Deprecated: 2022-01-10 - please use PublicGetQRCodeShort instead.
-func (aaa *PaymentStationService) PublicGetQRCode(input *payment_station.PublicGetQRCodeParams) (*platformclientmodels.BinarySchema, error) {
-	ok, err := aaa.Client.PaymentStation.PublicGetQRCode(input)
+func (aaa *PaymentStationService) PublicGetQRCode(input *payment_station.PublicGetQRCodeParams, writer io.Writer) (io.Writer, error) {
+	ok, err := aaa.Client.PaymentStation.PublicGetQRCode(input, writer)
 	if err != nil {
 		return nil, err
 	}
@@ -365,7 +367,7 @@ func (aaa *PaymentStationService) GetPaymentPublicConfigShort(input *payment_sta
 	return ok.GetPayload(), nil
 }
 
-func (aaa *PaymentStationService) PublicGetQRCodeShort(input *payment_station.PublicGetQRCodeParams) (*platformclientmodels.BinarySchema, error) {
+func (aaa *PaymentStationService) PublicGetQRCodeShort(input *payment_station.PublicGetQRCodeParams, writer io.Writer) (io.Writer, error) {
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
 			MaxTries:   utils.MaxTries,
@@ -380,7 +382,7 @@ func (aaa *PaymentStationService) PublicGetQRCodeShort(input *payment_station.Pu
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.PaymentStation.PublicGetQRCodeShort(input)
+	ok, err := aaa.Client.PaymentStation.PublicGetQRCodeShort(input, writer)
 	if err != nil {
 		return nil, err
 	}

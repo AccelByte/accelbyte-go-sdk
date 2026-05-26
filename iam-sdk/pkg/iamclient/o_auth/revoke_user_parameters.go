@@ -65,7 +65,7 @@ type RevokeUserParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

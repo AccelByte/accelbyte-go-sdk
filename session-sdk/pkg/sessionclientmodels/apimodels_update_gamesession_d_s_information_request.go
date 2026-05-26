@@ -7,6 +7,8 @@
 package sessionclientmodels
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -52,6 +54,7 @@ type ApimodelsUpdateGamesessionDSInformationRequest struct {
 	Source *string `json:"source"`
 
 	// status
+	// Enum: ['AVAILABLE', 'DS_ERROR', 'ENDED', 'FAILED_TO_REQUEST']
 	// Required: true
 	Status *string `json:"status"`
 }
@@ -166,9 +169,49 @@ func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateSource(formats 
 	return nil
 }
 
+var apimodelsUpdateGamesessionDSInformationRequestTypeStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["AVAILABLE", "DS_ERROR", "ENDED", "FAILED_TO_REQUEST"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apimodelsUpdateGamesessionDSInformationRequestTypeStatusPropEnum = append(apimodelsUpdateGamesessionDSInformationRequestTypeStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// ApimodelsUpdateGamesessionDSInformationRequestStatusAVAILABLE captures enum value "AVAILABLE"
+	ApimodelsUpdateGamesessionDSInformationRequestStatusAVAILABLE string = "AVAILABLE"
+
+	// ApimodelsUpdateGamesessionDSInformationRequestStatusDSERROR captures enum value "DS_ERROR"
+	ApimodelsUpdateGamesessionDSInformationRequestStatusDSERROR string = "DS_ERROR"
+
+	// ApimodelsUpdateGamesessionDSInformationRequestStatusENDED captures enum value "ENDED"
+	ApimodelsUpdateGamesessionDSInformationRequestStatusENDED string = "ENDED"
+
+	// ApimodelsUpdateGamesessionDSInformationRequestStatusFAILEDTOREQUEST captures enum value "FAILED_TO_REQUEST"
+	ApimodelsUpdateGamesessionDSInformationRequestStatusFAILEDTOREQUEST string = "FAILED_TO_REQUEST"
+)
+
+// prop value enum
+func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apimodelsUpdateGamesessionDSInformationRequestTypeStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ApimodelsUpdateGamesessionDSInformationRequest) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateStatusEnum("status", "body", *m.Status); err != nil {
 		return err
 	}
 

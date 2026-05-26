@@ -23,28 +23,28 @@ type AccountCreateTestUserRequestV4 struct {
 	// acceptedpolicies
 	AcceptedPolicies []*LegalAcceptedPoliciesRequest `json:"acceptedPolicies,omitempty"`
 
-	// authtype
+	// Authentication type. Possible value: EMAILPASSWD.
 	// Enum: ['EMAILPASSWD']
 	// Required: true
 	AuthType *string `json:"authType"`
 
-	// country
+	// ISO3166-1 alpha-2 two letter country code, e.g. US.
 	// Required: true
 	Country *string `json:"country"`
 
-	// dateofbirth
+	// Date of birth in YYYY-MM-DD format, e.g. 1990-01-01. Valid values between 1905-01-01 and current date.
 	// Required: true
 	DateOfBirth *string `json:"dateOfBirth"`
 
-	// displayname
+	// User display name. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	// Required: true
 	DisplayName *string `json:"displayName"`
 
-	// emailaddress
+	// User email address. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`
 
-	// password
+	// User password. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	// Required: true
 	Password *string `json:"password"`
 
@@ -52,14 +52,14 @@ type AccountCreateTestUserRequestV4 struct {
 	// Required: true
 	PasswordMD5Sum *string `json:"passwordMD5Sum"`
 
-	// uniquedisplayname
+	// Unique display name. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 
-	// username
+	// Username. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	// Required: true
 	Username *string `json:"username"`
 
-	// verified
+	// Whether the new test user is already verified.
 	// Required: true
 	Verified *bool `json:"verified"`
 }

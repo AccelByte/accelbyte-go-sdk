@@ -154,7 +154,7 @@ type ApimodelsConfigurationTemplateResponse struct {
 	TextChat *bool `json:"textChat"`
 
 	// textchatmode
-	// Enum: ['GAME', 'NONE', 'TEAM']
+	// Enum: ['GAME', 'GAME_AND_TEAM', 'NONE', 'TEAM']
 	TextChatMode string `json:"textChatMode,omitempty"`
 
 	// tieteamssessionlifetime
@@ -397,7 +397,7 @@ var apimodelsConfigurationTemplateResponseTypeTextChatModePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GAME", "NONE", "TEAM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["GAME", "GAME_AND_TEAM", "NONE", "TEAM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -409,6 +409,9 @@ const (
 
 	// ApimodelsConfigurationTemplateResponseTextChatModeGAME captures enum value "GAME"
 	ApimodelsConfigurationTemplateResponseTextChatModeGAME string = "GAME"
+
+	// ApimodelsConfigurationTemplateResponseTextChatModeGAMEANDTEAM captures enum value "GAME_AND_TEAM"
+	ApimodelsConfigurationTemplateResponseTextChatModeGAMEANDTEAM string = "GAME_AND_TEAM"
 
 	// ApimodelsConfigurationTemplateResponseTextChatModeNONE captures enum value "NONE"
 	ApimodelsConfigurationTemplateResponseTextChatModeNONE string = "NONE"

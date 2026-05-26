@@ -1,0 +1,207 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
+// Code generated; DO NOT EDIT.
+
+package input_validations
+
+import (
+	"context"
+	"net/http"
+	"time"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
+	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+)
+
+// NewAdminUpdateNamespaceScopedInputValidationsParams creates a new AdminUpdateNamespaceScopedInputValidationsParams object
+// with the default values initialized.
+func NewAdminUpdateNamespaceScopedInputValidationsParams() *AdminUpdateNamespaceScopedInputValidationsParams {
+	var ()
+	return &AdminUpdateNamespaceScopedInputValidationsParams{
+
+		timeout: cr.DefaultTimeout,
+	}
+}
+
+// NewAdminUpdateNamespaceScopedInputValidationsParamsWithTimeout creates a new AdminUpdateNamespaceScopedInputValidationsParams object
+// with the default values initialized, and the ability to set a timeout on a request
+func NewAdminUpdateNamespaceScopedInputValidationsParamsWithTimeout(timeout time.Duration) *AdminUpdateNamespaceScopedInputValidationsParams {
+	var ()
+	return &AdminUpdateNamespaceScopedInputValidationsParams{
+
+		timeout: timeout,
+	}
+}
+
+// NewAdminUpdateNamespaceScopedInputValidationsParamsWithContext creates a new AdminUpdateNamespaceScopedInputValidationsParams object
+// with the default values initialized, and the ability to set a context for a request
+func NewAdminUpdateNamespaceScopedInputValidationsParamsWithContext(ctx context.Context) *AdminUpdateNamespaceScopedInputValidationsParams {
+	var ()
+	return &AdminUpdateNamespaceScopedInputValidationsParams{
+
+		Context: ctx,
+	}
+}
+
+// NewAdminUpdateNamespaceScopedInputValidationsParamsWithHTTPClient creates a new AdminUpdateNamespaceScopedInputValidationsParams object
+// with the default values initialized, and the ability to set a custom HTTPClient for a request
+func NewAdminUpdateNamespaceScopedInputValidationsParamsWithHTTPClient(client *http.Client) *AdminUpdateNamespaceScopedInputValidationsParams {
+	var ()
+	return &AdminUpdateNamespaceScopedInputValidationsParams{
+		HTTPClient: client,
+	}
+}
+
+/*AdminUpdateNamespaceScopedInputValidationsParams contains all the parameters to send to the API endpoint
+for the admin update namespace scoped input validations operation typically these are written to a http.Request
+*/
+type AdminUpdateNamespaceScopedInputValidationsParams struct {
+
+	/*RetryPolicy*/
+	RetryPolicy *utils.Retry
+	/*Body*/
+	Body []*iamclientmodels.ModelInputValidationUpdatePayload
+	/*Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
+
+	*/
+	Namespace string
+
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
+
+	// XFlightId is an optional parameter from this SDK
+	XFlightId *string
+}
+
+// WithTimeout adds the timeout to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) WithTimeout(timeout time.Duration) *AdminUpdateNamespaceScopedInputValidationsParams {
+	o.SetTimeout(timeout)
+	return o
+}
+
+// SetTimeout adds the timeout to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetTimeout(timeout time.Duration) {
+	o.timeout = timeout
+}
+
+// WithContext adds the context to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) WithContext(ctx context.Context) *AdminUpdateNamespaceScopedInputValidationsParams {
+	o.SetContext(ctx)
+	return o
+}
+
+// SetContext adds the context to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetContext(ctx context.Context) {
+	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
+}
+
+// WithHTTPClient adds the HTTPClient to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) WithHTTPClient(client *http.Client) *AdminUpdateNamespaceScopedInputValidationsParams {
+	o.SetHTTPClient(client)
+	return o
+}
+
+// SetHTTPClient adds the HTTPClient to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetHTTPClient(client *http.Client) {
+	o.HTTPClient = client
+}
+
+// SetHTTPClient adds the HTTPClient Transport to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetHTTPClientTransport(roundTripper http.RoundTripper) {
+	if o.HTTPClient != nil {
+		o.HTTPClient.Transport = roundTripper
+	} else {
+		o.HTTPClient = &http.Client{Transport: roundTripper}
+	}
+}
+
+// SetFlightId adds the flightId as the header value for this specific endpoint
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetFlightId(flightId string) {
+	if o.XFlightId != nil {
+		o.XFlightId = &flightId
+	} else {
+		o.XFlightId = &utils.GetDefaultFlightID().Value
+	}
+}
+
+// WithBody adds the body to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) WithBody(body []*iamclientmodels.ModelInputValidationUpdatePayload) *AdminUpdateNamespaceScopedInputValidationsParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetBody(body []*iamclientmodels.ModelInputValidationUpdatePayload) {
+	o.Body = body
+}
+
+// WithNamespace adds the namespace to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) WithNamespace(namespace string) *AdminUpdateNamespaceScopedInputValidationsParams {
+	o.SetNamespace(namespace)
+	return o
+}
+
+// SetNamespace adds the namespace to the admin update namespace scoped input validations params
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) SetNamespace(namespace string) {
+	o.Namespace = namespace
+}
+
+// WriteToRequest writes these params to a swagger request
+func (o *AdminUpdateNamespaceScopedInputValidationsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+
+	if err := r.SetTimeout(o.timeout); err != nil {
+		return err
+	}
+	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
+
+	// path param namespace
+	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+		return err
+	}
+
+	// setting the default header value
+	if err := r.SetHeaderParam("User-Agent", utils.UserAgentGen()); err != nil {
+		return err
+	}
+
+	if err := r.SetHeaderParam("X-Amzn-Trace-Id", utils.AmazonTraceIDGen()); err != nil {
+		return err
+	}
+
+	if o.XFlightId == nil {
+		if err := r.SetHeaderParam("X-Flight-Id", utils.GetDefaultFlightID().Value); err != nil {
+			return err
+		}
+	} else {
+		if err := r.SetHeaderParam("X-Flight-Id", *o.XFlightId); err != nil {
+			return err
+		}
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+
+	return nil
+}

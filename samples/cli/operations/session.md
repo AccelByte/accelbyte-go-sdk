@@ -197,7 +197,7 @@ $ samples/cli/sample-apps Session adminSetDSReady \
 $ samples/cli/sample-apps Session adminUpdateDSInformation \
     --namespace 'string' \
     --sessionId 'string' \
-    --body '{"createdRegion": "string", "deployment": "string", "description": "string", "ip": "string", "port": 1, "region": "string", "serverId": "string", "source": "string", "status": "string"}' \
+    --body '{"createdRegion": "string", "deployment": "string", "description": "string", "ip": "string", "port": 1, "region": "string", "serverId": "string", "source": "string", "status": "AVAILABLE"}' \
     > result.txt
 ```
 
@@ -389,7 +389,7 @@ $ samples/cli/sample-apps Session adminSyncNativeSession \
 $ samples/cli/sample-apps Session createGameSession \
     --namespace 'string' \
     --resolveMaxActiveSession false \
-    --body '{"appName": "string", "attributes": {"string": {}}, "autoJoin": false, "backfillTicketID": "string", "clientVersion": "string", "configurationName": "string", "customURLGRPC": "string", "deployment": "string", "dsSource": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "serverName": "string", "storage": {}, "teams": [{}], "textChat": false, "textChatMode": "GAME", "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS"}' \
+    --body '{"appName": "string", "attributes": {"string": {}}, "autoJoin": false, "backfillTicketID": "string", "clientVersion": "string", "configurationName": "string", "customURLGRPC": "string", "deployment": "string", "dsSource": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "password": "string", "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "serverName": "string", "storage": {}, "teams": [{}], "textChat": false, "textChatMode": "GAME", "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS"}' \
     > result.txt
 ```
 
@@ -430,7 +430,7 @@ $ samples/cli/sample-apps Session getGameSession \
 $ samples/cli/sample-apps Session updateGameSession \
     --namespace 'string' \
     --sessionId 'string' \
-    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "password": "string", "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -447,7 +447,7 @@ $ samples/cli/sample-apps Session deleteGameSession \
 $ samples/cli/sample-apps Session patchUpdateGameSession \
     --namespace 'string' \
     --sessionId 'string' \
-    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "backfillTicketID": "string", "clientVersion": "string", "deployment": "string", "fallbackClaimKeys": ["string"], "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "matchPool": "string", "maxPlayers": 1, "minPlayers": 1, "password": "string", "preferredClaimKeys": ["string"], "requestedRegions": ["string"], "teams": [{}], "ticketIDs": ["string"], "tieTeamsSessionLifetime": false, "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -490,6 +490,7 @@ $ samples/cli/sample-apps Session publicGameSessionInvite \
 $ samples/cli/sample-apps Session joinGameSession \
     --namespace 'string' \
     --sessionId 'string' \
+    --body '{"password": "string"}' \
     > result.txt
 ```
 
@@ -516,6 +517,23 @@ $ samples/cli/sample-apps Session publicKickGameSessionMember \
     --memberId 'string' \
     --namespace 'string' \
     --sessionId 'string' \
+    > result.txt
+```
+
+### Operation `public_get_game_session_password`
+```sh
+$ samples/cli/sample-apps Session publicGetGameSessionPassword \
+    --namespace 'string' \
+    --sessionId 'string' \
+    > result.txt
+```
+
+### Operation `public_update_game_session_password`
+```sh
+$ samples/cli/sample-apps Session publicUpdateGameSessionPassword \
+    --namespace 'string' \
+    --sessionId 'string' \
+    --body '{"newPassword": "string"}' \
     > result.txt
 ```
 
@@ -565,7 +583,7 @@ $ samples/cli/sample-apps Session publicGetParty \
 $ samples/cli/sample-apps Session publicUpdateParty \
     --namespace 'string' \
     --partyId 'string' \
-    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "minPlayers": 1, "type": "DS", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "minPlayers": 1, "password": "string", "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -574,7 +592,7 @@ $ samples/cli/sample-apps Session publicUpdateParty \
 $ samples/cli/sample-apps Session publicPatchUpdateParty \
     --namespace 'string' \
     --partyId 'string' \
-    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "minPlayers": 1, "type": "DS", "version": 1}' \
+    --body '{"attributes": {"string": {}}, "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "minPlayers": 1, "password": "string", "type": "DS", "version": 1}' \
     > result.txt
 ```
 
@@ -612,6 +630,23 @@ $ samples/cli/sample-apps Session publicPromotePartyLeader \
     > result.txt
 ```
 
+### Operation `public_get_party_password`
+```sh
+$ samples/cli/sample-apps Session publicGetPartyPassword \
+    --namespace 'string' \
+    --partyId 'string' \
+    > result.txt
+```
+
+### Operation `public_update_party_password`
+```sh
+$ samples/cli/sample-apps Session publicUpdatePartyPassword \
+    --namespace 'string' \
+    --partyId 'string' \
+    --body '{"newPassword": "string"}' \
+    > result.txt
+```
+
 ### Operation `public_read_party_session_storage`
 ```sh
 $ samples/cli/sample-apps Session publicReadPartySessionStorage \
@@ -645,6 +680,7 @@ $ samples/cli/sample-apps Session publicUpdateInsertPartySessionStorageReserved 
 $ samples/cli/sample-apps Session publicPartyJoin \
     --namespace 'string' \
     --partyId 'string' \
+    --body '{"password": "string"}' \
     > result.txt
 ```
 
@@ -686,7 +722,7 @@ $ samples/cli/sample-apps Session publicPartyKick \
 ```sh
 $ samples/cli/sample-apps Session publicCreateParty \
     --namespace 'string' \
-    --body '{"attributes": {"string": {}}, "configurationName": "string", "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "members": [{}], "minPlayers": 1, "textChat": false, "type": "DS"}' \
+    --body '{"attributes": {"string": {}}, "configurationName": "string", "inactiveTimeout": 1, "inviteTimeout": 1, "joinability": "CLOSED", "maxPlayers": 1, "members": [{}], "minPlayers": 1, "password": "string", "textChat": false, "type": "DS"}' \
     > result.txt
 ```
 
@@ -772,6 +808,44 @@ $ samples/cli/sample-apps Session publicQueryMyParties \
     --order 'string' \
     --orderBy 'string' \
     --status 'string' \
+    > result.txt
+```
+
+### Operation `public_replace_session_storage_leader_v2`
+```sh
+$ samples/cli/sample-apps Session publicReplaceSessionStorageLeaderV2 \
+    --namespace 'string' \
+    --sessionId 'string' \
+    --body '{"string": {}}' \
+    > result.txt
+```
+
+### Operation `public_update_insert_session_storage_leader_v2`
+```sh
+$ samples/cli/sample-apps Session publicUpdateInsertSessionStorageLeaderV2 \
+    --namespace 'string' \
+    --sessionId 'string' \
+    --body '{"string": {}}' \
+    > result.txt
+```
+
+### Operation `public_replace_session_storage_user_v2`
+```sh
+$ samples/cli/sample-apps Session publicReplaceSessionStorageUserV2 \
+    --namespace 'string' \
+    --sessionId 'string' \
+    --userId 'string' \
+    --body '{"string": {}}' \
+    > result.txt
+```
+
+### Operation `public_update_insert_session_storage_user_v2`
+```sh
+$ samples/cli/sample-apps Session publicUpdateInsertSessionStorageUserV2 \
+    --namespace 'string' \
+    --sessionId 'string' \
+    --userId 'string' \
+    --body '{"string": {}}' \
     > result.txt
 ```
 

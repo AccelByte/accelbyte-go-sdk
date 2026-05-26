@@ -65,12 +65,12 @@ type PublicListJusticePlatformAccountsV3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
 	/*UserID
-	  Publisher User ID. Should match the one in the access token
+	  Publisher User ID. Should match the one in the access token.
 
 	*/
 	UserID string

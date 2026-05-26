@@ -65,8 +65,8 @@ Deprecated: 2022-08-10 - Use CreateRewardShort instead.
 CreateReward create a reward
 This API is used to create a reward.
 Other detail info:
-                      * Returns : created reward data
-                      *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
+                  * Returns : created reward data
+                  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -129,8 +129,8 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 CreateRewardShort create a reward
 This API is used to create a reward.
 Other detail info:
-                      * Returns : created reward data
-                      *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
+                  * Returns : created reward data
+                  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, error) {
 	// TODO: Validate the params before sending
@@ -188,7 +188,7 @@ QueryRewards query rewards by criteria
 This API is used to query rewards by criteria.
 
 Other detail info:
-                      * Returns : the list of rewards
+                  * Returns : the list of rewards
 */
 func (a *Client) QueryRewards(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, *QueryRewardsUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -243,7 +243,7 @@ QueryRewardsShort query rewards by criteria
 This API is used to query rewards by criteria.
 
 Other detail info:
-                      * Returns : the list of rewards
+                  * Returns : the list of rewards
 */
 func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, error) {
 	// TODO: Validate the params before sending
@@ -496,7 +496,7 @@ Deprecated: 2022-08-10 - Use GetRewardShort instead.
 GetReward get a reward
 This API is used to get reward by reward Id.
 Other detail info:
-                      * Returns : reward instance
+                  * Returns : reward instance
 */
 func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, *GetRewardNotFound, error) {
 	// TODO: Validate the params before sending
@@ -550,7 +550,7 @@ func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthI
 GetRewardShort get a reward
 This API is used to get reward by reward Id.
 Other detail info:
-                      * Returns : reward instance
+                  * Returns : reward instance
 */
 func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, error) {
 	// TODO: Validate the params before sending
@@ -601,8 +601,8 @@ Deprecated: 2022-08-10 - Use UpdateRewardShort instead.
 UpdateReward update a reward
 This API is used to update a reward.
 Other detail info:
-                      * Returns : reward instance
-                      *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
+                  * Returns : reward instance
+                  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardBadRequest, *UpdateRewardNotFound, *UpdateRewardConflict, error) {
 	// TODO: Validate the params before sending
@@ -662,8 +662,8 @@ func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.Clien
 UpdateRewardShort update a reward
 This API is used to update a reward.
 Other detail info:
-                      * Returns : reward instance
-                      *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
+                  * Returns : reward instance
+                  *  Acceptable values for rewardItem's identityType are : ITEM_ID or ITEM_SKU
 */
 func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, error) {
 	// TODO: Validate the params before sending
@@ -719,7 +719,7 @@ DeleteReward delete a reward
 This API is used to delete a reward by reward Id.
 
 Other detail info:
-                      * Returns : the deleted reward data
+                  * Returns : the deleted reward data
 */
 func (a *Client) DeleteReward(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, *DeleteRewardNotFound, error) {
 	// TODO: Validate the params before sending
@@ -774,7 +774,7 @@ DeleteRewardShort delete a reward
 This API is used to delete a reward by reward Id.
 
 Other detail info:
-                      * Returns : the deleted reward data
+                  * Returns : the deleted reward data
 */
 func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardOK, error) {
 	// TODO: Validate the params before sending
@@ -824,7 +824,7 @@ Deprecated: 2022-08-10 - Use CheckEventConditionShort instead.
 
 CheckEventCondition check if event payload match reward condition
  [TEST FACILITY ONLY] Forbidden in live environment. Other detail info:
-                      * Returns : match result
+                  * Returns : match result
 */
 func (a *Client) CheckEventCondition(params *CheckEventConditionParams, authInfo runtime.ClientAuthInfoWriter) (*CheckEventConditionOK, *CheckEventConditionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -877,7 +877,7 @@ func (a *Client) CheckEventCondition(params *CheckEventConditionParams, authInfo
 /*
 CheckEventConditionShort check if event payload match reward condition
  [TEST FACILITY ONLY] Forbidden in live environment. Other detail info:
-                      * Returns : match result
+                  * Returns : match result
 */
 func (a *Client) CheckEventConditionShort(params *CheckEventConditionParams, authInfo runtime.ClientAuthInfoWriter) (*CheckEventConditionOK, error) {
 	// TODO: Validate the params before sending
@@ -929,7 +929,7 @@ DeleteRewardConditionRecord delete a reward condition record
  [TEST FACILITY ONLY] Forbidden in live environment. This API is used to delete a reward condition record by reward Id and condition Name (optional).
 
 Other detail info:
-                      * Returns : 204 No Content
+                  * Returns : 204 No Content
 */
 func (a *Client) DeleteRewardConditionRecord(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error) {
 	// TODO: Validate the params before sending
@@ -981,7 +981,7 @@ DeleteRewardConditionRecordShort delete a reward condition record
 [TEST FACILITY ONLY] Forbidden in live environment. This API is used to delete a reward condition record by reward Id and condition Name (optional).
 
 Other detail info:
-                      * Returns : 204 No Content
+                  * Returns : 204 No Content
 */
 func (a *Client) DeleteRewardConditionRecordShort(params *DeleteRewardConditionRecordParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardConditionRecordNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1030,7 +1030,7 @@ Deprecated: 2022-08-10 - Use GetRewardByCodeShort instead.
 GetRewardByCode get a reward by code
 This API is used to get reward by reward code.
 Other detail info:
-                      * Returns : reward instance
+                  * Returns : reward instance
 */
 func (a *Client) GetRewardByCode(params *GetRewardByCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardByCodeOK, *GetRewardByCodeNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1084,7 +1084,7 @@ func (a *Client) GetRewardByCode(params *GetRewardByCodeParams, authInfo runtime
 GetRewardByCodeShort get a reward by code
 This API is used to get reward by reward code.
 Other detail info:
-                      * Returns : reward instance
+                  * Returns : reward instance
 */
 func (a *Client) GetRewardByCodeShort(params *GetRewardByCodeParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardByCodeOK, error) {
 	// TODO: Validate the params before sending
@@ -1136,7 +1136,7 @@ QueryRewards1 query rewards by criteria
 This API is used to query rewards by criteria.
 
 Other detail info:
-                      * Returns : the list of rewards
+                  * Returns : the list of rewards
 */
 func (a *Client) QueryRewards1(params *QueryRewards1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryRewards1OK, *QueryRewards1UnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1191,7 +1191,7 @@ QueryRewards1Short query rewards by criteria
 This API is used to query rewards by criteria.
 
 Other detail info:
-                      * Returns : the list of rewards
+                  * Returns : the list of rewards
 */
 func (a *Client) QueryRewards1Short(params *QueryRewards1Params, authInfo runtime.ClientAuthInfoWriter) (*QueryRewards1OK, error) {
 	// TODO: Validate the params before sending
@@ -1242,7 +1242,7 @@ Deprecated: 2022-08-10 - Use GetReward1Short instead.
 GetReward1 get a reward
 This API is used to get reward by reward Id.
 Other detail info:
-                      * Returns : reward instance
+                  * Returns : reward instance
 */
 func (a *Client) GetReward1(params *GetReward1Params, authInfo runtime.ClientAuthInfoWriter) (*GetReward1OK, *GetReward1NotFound, error) {
 	// TODO: Validate the params before sending
@@ -1296,7 +1296,7 @@ func (a *Client) GetReward1(params *GetReward1Params, authInfo runtime.ClientAut
 GetReward1Short get a reward
 This API is used to get reward by reward Id.
 Other detail info:
-                      * Returns : reward instance
+                  * Returns : reward instance
 */
 func (a *Client) GetReward1Short(params *GetReward1Params, authInfo runtime.ClientAuthInfoWriter) (*GetReward1OK, error) {
 	// TODO: Validate the params before sending

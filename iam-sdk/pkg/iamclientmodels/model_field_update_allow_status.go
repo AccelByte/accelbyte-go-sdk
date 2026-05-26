@@ -22,11 +22,11 @@ type ModelFieldUpdateAllowStatus struct {
 	// Required: true
 	Field *string `json:"field"`
 
-	// 1. will have value if the type is limited 2. the milliseconds time of next available edit time 3. if it does not have value, it means it is allow to edit now
+	// Milliseconds timestamp of the next available edit time. - Only present when type is limited - If empty, editing is allowed now
 	// Format: int64
 	NextAvailableEditTime int64 `json:"nextAvailableEditTime,omitempty"`
 
-	// 1. will have value if the type is limited 2. the remaining seconds that need wait until user can edit this field. 3. the value O means it is allow to edit now
+	// Remaining seconds before the user can edit this field again. - Only present when type is limited - 0 means editing is allowed now
 	// Format: int64
 	RemainingTimeInSeconds int64 `json:"remainingTimeInSeconds,omitempty"`
 

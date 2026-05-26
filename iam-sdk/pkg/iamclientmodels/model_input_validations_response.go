@@ -24,6 +24,10 @@ type ModelInputValidationsResponse struct {
 	// Required: true
 	Data []*ModelInputValidationData `json:"data"`
 
+	// fromdefault
+	// Required: true
+	FromDefault *bool `json:"fromDefault"`
+
 	// version
 	// Required: true
 	// Format: int32
@@ -35,6 +39,9 @@ func (m *ModelInputValidationsResponse) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateFromDefault(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateVersion(formats); err != nil {
@@ -67,6 +74,15 @@ func (m *ModelInputValidationsResponse) validateData(formats strfmt.Registry) er
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ModelInputValidationsResponse) validateFromDefault(formats strfmt.Registry) error {
+
+	if err := validate.Required("fromDefault", "body", m.FromDefault); err != nil {
+		return err
 	}
 
 	return nil

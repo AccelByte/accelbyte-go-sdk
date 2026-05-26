@@ -65,7 +65,7 @@ type GetListCountryAgeRestrictionParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

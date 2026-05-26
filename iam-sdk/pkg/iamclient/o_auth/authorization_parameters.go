@@ -90,7 +90,7 @@ type AuthorizationParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Login
-	  User Name
+	  Username
 
 	*/
 	Login *string

@@ -69,7 +69,7 @@ type AdminResetPasswordV2Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelUserPasswordUpdateRequest
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

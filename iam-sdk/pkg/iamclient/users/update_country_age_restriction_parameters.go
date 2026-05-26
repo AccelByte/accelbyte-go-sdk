@@ -74,7 +74,7 @@ type UpdateCountryAgeRestrictionParams struct {
 	*/
 	CountryCode string
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

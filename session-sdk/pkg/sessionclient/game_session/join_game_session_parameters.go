@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/AccelByte/accelbyte-go-sdk/session-sdk/pkg/sessionclientmodels"
 )
 
 // NewJoinGameSessionParams creates a new JoinGameSessionParams object
@@ -64,6 +66,8 @@ type JoinGameSessionParams struct {
 
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
+	/*Body*/
+	Body *sessionclientmodels.ApimodelsJoinSessionRequest
 	/*Namespace
 	  Namespace
 
@@ -140,6 +144,17 @@ func (o *JoinGameSessionParams) SetFlightId(flightId string) {
 	}
 }
 
+// WithBody adds the body to the join game session params
+func (o *JoinGameSessionParams) WithBody(body *sessionclientmodels.ApimodelsJoinSessionRequest) *JoinGameSessionParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the join game session params
+func (o *JoinGameSessionParams) SetBody(body *sessionclientmodels.ApimodelsJoinSessionRequest) {
+	o.Body = body
+}
+
 // WithNamespace adds the namespace to the join game session params
 func (o *JoinGameSessionParams) WithNamespace(namespace string) *JoinGameSessionParams {
 	o.SetNamespace(namespace)
@@ -169,6 +184,12 @@ func (o *JoinGameSessionParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

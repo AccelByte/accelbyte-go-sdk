@@ -69,7 +69,7 @@ type PublicPartialUpdateUserV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelPublicUserUpdateRequestV3
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

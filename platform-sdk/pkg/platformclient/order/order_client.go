@@ -83,7 +83,7 @@ Deprecated: 2022-08-10 - Use QueryOrdersShort instead.
 QueryOrders query orders
 Query orders.
 Other detail info:
-                          * Returns : query orders
+                      * Returns : query orders
 */
 func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, *QueryOrdersUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -137,7 +137,7 @@ func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientA
 QueryOrdersShort query orders
 Query orders.
 Other detail info:
-                          * Returns : query orders
+                      * Returns : query orders
 */
 func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -188,7 +188,7 @@ Deprecated: 2022-08-10 - Use GetOrderStatisticsShort instead.
 GetOrderStatistics get order statistics
 Get Order Statistics.
 Other detail info:
-                          * Returns : order statistics
+                      * Returns : order statistics
 */
 func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error) {
 	// TODO: Validate the params before sending
@@ -239,7 +239,7 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 GetOrderStatisticsShort get order statistics
 Get Order Statistics.
 Other detail info:
-                          * Returns : order statistics
+                      * Returns : order statistics
 */
 func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderStatisticsOK, error) {
 	// TODO: Validate the params before sending
@@ -288,7 +288,7 @@ Deprecated: 2022-08-10 - Use GetOrderShort instead.
 GetOrder get order
 Get order by orderNo.
 Other detail info:
-                          * Returns : order instance
+                      * Returns : order instance
 */
 func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, *GetOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -342,7 +342,7 @@ func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInf
 GetOrderShort get order
 Get order by orderNo.
 Other detail info:
-                          * Returns : order instance
+                      * Returns : order instance
 */
 func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -504,7 +504,7 @@ Deprecated: 2022-08-10 - Use QueryUserOrdersShort instead.
 QueryUserOrders query user orders
 Query user orders.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -555,7 +555,7 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 QueryUserOrdersShort query user orders
 Query user orders.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -604,10 +604,10 @@ Deprecated: 2022-08-10 - Use AdminCreateUserOrderShort instead.
 AdminCreateUserOrder admin create an order
 Admin Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.
 Other detail info:
-                          * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
-                          * sandbox default value is false
-                          * platform default value is Other
-                          *  Returns : created order
+                      * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
+                      * sandbox default value is false
+                      * platform default value is Other
+                      *  Returns : created order
 
 ## Restrictions for ext field
 
@@ -615,13 +615,13 @@ Other detail info:
 1. Cannot use "." as the key name
 -
 
-                                                                                                { "data.2": "value" }
+                                                                                { "data.2": "value" }
 
 
 2. Cannot use "$" as the prefix in key names
 -
 
-                                                                                                { "$data": "value" }
+                                                                                { "$data": "value" }
 */
 func (a *Client) AdminCreateUserOrder(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, *AdminCreateUserOrderBadRequest, *AdminCreateUserOrderForbidden, *AdminCreateUserOrderNotFound, *AdminCreateUserOrderConflict, *AdminCreateUserOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -687,10 +687,10 @@ func (a *Client) AdminCreateUserOrder(params *AdminCreateUserOrderParams, authIn
 AdminCreateUserOrderShort admin create an order
 Admin Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.
 Other detail info:
-                          * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
-                          * sandbox default value is false
-                          * platform default value is Other
-                          *  Returns : created order
+                      * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
+                      * sandbox default value is false
+                      * platform default value is Other
+                      *  Returns : created order
 
 ## Restrictions for ext field
 
@@ -698,13 +698,13 @@ Other detail info:
 1. Cannot use "." as the key name
 -
 
-                                                                                                { "data.2": "value" }
+                                                                                { "data.2": "value" }
 
 
 2. Cannot use "$" as the prefix in key names
 -
 
-                                                                                                { "$data": "value" }
+                                                                                { "$data": "value" }
 */
 func (a *Client) AdminCreateUserOrderShort(params *AdminCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateUserOrderCreated, error) {
 	// TODO: Validate the params before sending
@@ -763,7 +763,7 @@ Deprecated: 2022-08-10 - Use CountOfPurchasedItemShort instead.
 CountOfPurchasedItem get the count of purchased item
 This API is used to get the count of purchased item which is the order target.
 Other detail info:
-                          * Returns : Item purchased count
+                      * Returns : Item purchased count
 */
 func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error) {
 	// TODO: Validate the params before sending
@@ -814,7 +814,7 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 CountOfPurchasedItemShort get the count of purchased item
 This API is used to get the count of purchased item which is the order target.
 Other detail info:
-                          * Returns : Item purchased count
+                      * Returns : Item purchased count
 */
 func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*CountOfPurchasedItemOK, error) {
 	// TODO: Validate the params before sending
@@ -863,7 +863,7 @@ Deprecated: 2022-08-10 - Use GetUserOrderShort instead.
 GetUserOrder get an order
 Get an order.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, *GetUserOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -917,7 +917,7 @@ func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.Clien
 GetUserOrderShort get an order
 Get an order.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -968,7 +968,7 @@ Deprecated: 2022-08-10 - Use UpdateUserOrderStatusShort instead.
 UpdateUserOrderStatus update order status
 Update order status.
 Other detail info:
-                          * Returns : updated order
+                      * Returns : updated order
 */
 func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, *UpdateUserOrderStatusNotFound, *UpdateUserOrderStatusConflict, *UpdateUserOrderStatusUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1028,7 +1028,7 @@ func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, auth
 UpdateUserOrderStatusShort update order status
 Update order status.
 Other detail info:
-                          * Returns : updated order
+                      * Returns : updated order
 */
 func (a *Client) UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOrderStatusOK, error) {
 	// TODO: Validate the params before sending
@@ -1083,7 +1083,7 @@ Deprecated: 2022-08-10 - Use FulfillUserOrderShort instead.
 FulfillUserOrder fulfill an order
 Fulfill an order if the order is charged but fulfill failed.
 Other detail info:
-                          * Returns : fulfilled order
+                      * Returns : fulfilled order
 */
 func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, *FulfillUserOrderBadRequest, *FulfillUserOrderNotFound, *FulfillUserOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -1143,7 +1143,7 @@ func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runti
 FulfillUserOrderShort fulfill an order
 Fulfill an order if the order is charged but fulfill failed.
 Other detail info:
-                          * Returns : fulfilled order
+                      * Returns : fulfilled order
 */
 func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*FulfillUserOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -1198,7 +1198,7 @@ Deprecated: 2022-08-10 - Use GetUserOrderGrantShort instead.
 GetUserOrderGrant get user order grant
 Get user order grant that fulfilled by this order.
 Other detail info:
-                          * Returns : get order grant
+                      * Returns : get order grant
 */
 func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error) {
 	// TODO: Validate the params before sending
@@ -1249,7 +1249,7 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 GetUserOrderGrantShort get user order grant
 Get user order grant that fulfilled by this order.
 Other detail info:
-                          * Returns : get order grant
+                      * Returns : get order grant
 */
 func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderGrantOK, error) {
 	// TODO: Validate the params before sending
@@ -1298,7 +1298,7 @@ Deprecated: 2022-08-10 - Use GetUserOrderHistoriesShort instead.
 GetUserOrderHistories get user order histories
 Get user order history.
 Other detail info:
-                          * Returns : get order history
+                      * Returns : get order history
 */
 func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -1349,7 +1349,7 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 GetUserOrderHistoriesShort get user order histories
 Get user order history.
 Other detail info:
-                          * Returns : get order history
+                      * Returns : get order history
 */
 func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -1398,7 +1398,7 @@ Deprecated: 2022-08-10 - Use ProcessUserOrderNotificationShort instead.
 ProcessUserOrderNotification web hook for payment notification
  [SERVICE COMMUNICATION ONLY] This API is used as a web hook for payment notification from justice payment service.
 Other detail info:
-                          * Returns : Process result
+                      * Returns : Process result
 */
 func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, *ProcessUserOrderNotificationBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1452,7 +1452,7 @@ func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificati
 ProcessUserOrderNotificationShort web hook for payment notification
  [SERVICE COMMUNICATION ONLY] This API is used as a web hook for payment notification from justice payment service.
 Other detail info:
-                          * Returns : Process result
+                      * Returns : Process result
 */
 func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) (*ProcessUserOrderNotificationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1503,7 +1503,7 @@ Deprecated: 2022-08-10 - Use DownloadUserOrderReceiptShort instead.
 DownloadUserOrderReceipt download user order receipt
 Download user order receipt by orderNo.
 Other detail info:
-                          * Returns : order receipt pdf
+                      * Returns : order receipt pdf
 */
 func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadUserOrderReceiptOK, *DownloadUserOrderReceiptNotFound, *DownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
@@ -1560,7 +1560,7 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 DownloadUserOrderReceiptShort download user order receipt
 Download user order receipt by orderNo.
 Other detail info:
-                          * Returns : order receipt pdf
+                      * Returns : order receipt pdf
 */
 func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*DownloadUserOrderReceiptOK, error) {
 	// TODO: Validate the params before sending
@@ -1613,7 +1613,7 @@ Deprecated: 2022-08-10 - Use PublicQueryUserOrdersShort instead.
 PublicQueryUserOrders query user orders
 Query user orders.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -1664,7 +1664,7 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 PublicQueryUserOrdersShort query user orders
 Query user orders.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*PublicQueryUserOrdersOK, error) {
 	// TODO: Validate the params before sending
@@ -1713,9 +1713,9 @@ Deprecated: 2022-08-10 - Use PublicCreateUserOrderShort instead.
 PublicCreateUserOrder create an order
 Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.
 Other detail info:
-                          * Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
-                          * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
-                          *  Returns : created order
+                      * Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
+                      * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
+                      *  Returns : created order
 
 ## Restrictions for ext field
 
@@ -1723,13 +1723,13 @@ Other detail info:
 1. Cannot use "." as the key name
 -
 
-                                                                                                { "data.2": "value" }
+                                                                                { "data.2": "value" }
 
 
 2. Cannot use "$" as the prefix in key names
 -
 
-                                                                                                { "$data": "value" }
+                                                                                { "$data": "value" }
 */
 func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, *PublicCreateUserOrderBadRequest, *PublicCreateUserOrderForbidden, *PublicCreateUserOrderNotFound, *PublicCreateUserOrderConflict, *PublicCreateUserOrderUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1795,9 +1795,9 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 PublicCreateUserOrderShort create an order
 Create an order. The result contains the checkout link and payment token. User with permission SANDBOX will create sandbox order that not real paid for xsolla/alipay and not validate price for wxpay.
 Other detail info:
-                          * Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
-                          * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
-                          *  Returns : created order
+                      * Optional permission(user with this permission will create sandbox order) : resource="SANDBOX", action=1 (CREATE)
+                      * It will be forbidden while the user is banned: ORDER_INITIATE or ORDER_AND_PAYMENT
+                      *  Returns : created order
 
 ## Restrictions for ext field
 
@@ -1805,13 +1805,13 @@ Other detail info:
 1. Cannot use "." as the key name
 -
 
-                                                                                                { "data.2": "value" }
+                                                                                { "data.2": "value" }
 
 
 2. Cannot use "$" as the prefix in key names
 -
 
-                                                                                                { "$data": "value" }
+                                                                                { "$data": "value" }
 */
 func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserOrderCreated, error) {
 	// TODO: Validate the params before sending
@@ -1869,7 +1869,7 @@ Deprecated: 2022-08-10 - Use PublicPreviewOrderPriceShort instead.
 
 PublicPreviewOrderPrice preview order price with discount code.
 Preview order price with discount code, this api is used to auto calc order price with discount code.Notes: this api don't do full order validation, only check discount code and calc final order price.Other detail info:
-                          * Returns : previewed order
+                      * Returns : previewed order
 */
 func (a *Client) PublicPreviewOrderPrice(params *PublicPreviewOrderPriceParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPreviewOrderPriceOK, *PublicPreviewOrderPriceBadRequest, *PublicPreviewOrderPriceForbidden, *PublicPreviewOrderPriceNotFound, *PublicPreviewOrderPriceConflict, *PublicPreviewOrderPriceUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1934,7 +1934,7 @@ func (a *Client) PublicPreviewOrderPrice(params *PublicPreviewOrderPriceParams, 
 /*
 PublicPreviewOrderPriceShort preview order price with discount code.
 Preview order price with discount code, this api is used to auto calc order price with discount code.Notes: this api don't do full order validation, only check discount code and calc final order price.Other detail info:
-                          * Returns : previewed order
+                      * Returns : previewed order
 */
 func (a *Client) PublicPreviewOrderPriceShort(params *PublicPreviewOrderPriceParams, authInfo runtime.ClientAuthInfoWriter) (*PublicPreviewOrderPriceOK, error) {
 	// TODO: Validate the params before sending
@@ -1993,7 +1993,7 @@ Deprecated: 2022-08-10 - Use PublicGetUserOrderShort instead.
 PublicGetUserOrder get user order
 Get user order.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, *PublicGetUserOrderNotFound, error) {
 	// TODO: Validate the params before sending
@@ -2047,7 +2047,7 @@ func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo r
 PublicGetUserOrderShort get user order
 Get user order.
 Other detail info:
-                          * Returns : get order
+                      * Returns : get order
 */
 func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -2098,7 +2098,7 @@ Deprecated: 2022-08-10 - Use PublicCancelUserOrderShort instead.
 PublicCancelUserOrder cancel user order
 Cancel user order.
 Other detail info:
-                          * Returns : cancelled order
+                      * Returns : cancelled order
 */
 func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, *PublicCancelUserOrderNotFound, *PublicCancelUserOrderConflict, error) {
 	// TODO: Validate the params before sending
@@ -2155,7 +2155,7 @@ func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, auth
 PublicCancelUserOrderShort cancel user order
 Cancel user order.
 Other detail info:
-                          * Returns : cancelled order
+                      * Returns : cancelled order
 */
 func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicCancelUserOrderOK, error) {
 	// TODO: Validate the params before sending
@@ -2208,7 +2208,7 @@ Deprecated: 2022-08-10 - Use PublicGetUserOrderHistoriesShort instead.
 PublicGetUserOrderHistories get user order histories
 Get user order histories.
 Other detail info:
-                          * Returns : get order history
+                      * Returns : get order history
 */
 func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -2259,7 +2259,7 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 PublicGetUserOrderHistoriesShort get user order histories
 Get user order histories.
 Other detail info:
-                          * Returns : get order history
+                      * Returns : get order history
 */
 func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserOrderHistoriesOK, error) {
 	// TODO: Validate the params before sending
@@ -2308,7 +2308,7 @@ Deprecated: 2022-08-10 - Use PublicDownloadUserOrderReceiptShort instead.
 PublicDownloadUserOrderReceipt download user order receipt
 Download user order receipt by orderNo.
 Other detail info:
-                          * Returns : order receipt pdf
+                      * Returns : order receipt pdf
 */
 func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadUserOrderReceiptOK, *PublicDownloadUserOrderReceiptNotFound, *PublicDownloadUserOrderReceiptConflict, error) {
 	// TODO: Validate the params before sending
@@ -2365,7 +2365,7 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 PublicDownloadUserOrderReceiptShort download user order receipt
 Download user order receipt by orderNo.
 Other detail info:
-                          * Returns : order receipt pdf
+                      * Returns : order receipt pdf
 */
 func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*PublicDownloadUserOrderReceiptOK, error) {
 	// TODO: Validate the params before sending

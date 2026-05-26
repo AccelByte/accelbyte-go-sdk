@@ -30,13 +30,13 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetRoleOverrideConfigV3(params *AdminGetRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleOverrideConfigV3OK, *AdminGetRoleOverrideConfigV3BadRequest, *AdminGetRoleOverrideConfigV3Unauthorized, *AdminGetRoleOverrideConfigV3Forbidden, *AdminGetRoleOverrideConfigV3InternalServerError, error)
+	AdminGetRoleOverrideConfigV3(params *AdminGetRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleOverrideConfigV3OK, *AdminGetRoleOverrideConfigV3Unauthorized, *AdminGetRoleOverrideConfigV3Forbidden, *AdminGetRoleOverrideConfigV3InternalServerError, error)
 	AdminGetRoleOverrideConfigV3Short(params *AdminGetRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleOverrideConfigV3OK, error)
 	AdminUpdateRoleOverrideConfigV3(params *AdminUpdateRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleOverrideConfigV3OK, *AdminUpdateRoleOverrideConfigV3BadRequest, *AdminUpdateRoleOverrideConfigV3Unauthorized, *AdminUpdateRoleOverrideConfigV3Forbidden, *AdminUpdateRoleOverrideConfigV3InternalServerError, error)
 	AdminUpdateRoleOverrideConfigV3Short(params *AdminUpdateRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleOverrideConfigV3OK, error)
 	AdminGetRoleSourceV3(params *AdminGetRoleSourceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleSourceV3OK, *AdminGetRoleSourceV3BadRequest, *AdminGetRoleSourceV3Unauthorized, *AdminGetRoleSourceV3Forbidden, *AdminGetRoleSourceV3NotFound, *AdminGetRoleSourceV3InternalServerError, error)
 	AdminGetRoleSourceV3Short(params *AdminGetRoleSourceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleSourceV3OK, error)
-	AdminChangeRoleOverrideConfigStatusV3(params *AdminChangeRoleOverrideConfigStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChangeRoleOverrideConfigStatusV3OK, *AdminChangeRoleOverrideConfigStatusV3Unauthorized, *AdminChangeRoleOverrideConfigStatusV3Forbidden, *AdminChangeRoleOverrideConfigStatusV3InternalServerError, error)
+	AdminChangeRoleOverrideConfigStatusV3(params *AdminChangeRoleOverrideConfigStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChangeRoleOverrideConfigStatusV3OK, *AdminChangeRoleOverrideConfigStatusV3BadRequest, *AdminChangeRoleOverrideConfigStatusV3Unauthorized, *AdminChangeRoleOverrideConfigStatusV3Forbidden, *AdminChangeRoleOverrideConfigStatusV3InternalServerError, error)
 	AdminChangeRoleOverrideConfigStatusV3Short(params *AdminChangeRoleOverrideConfigStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChangeRoleOverrideConfigStatusV3OK, error)
 	AdminGetRoleNamespacePermissionV3(params *AdminGetRoleNamespacePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleNamespacePermissionV3OK, *AdminGetRoleNamespacePermissionV3Unauthorized, *AdminGetRoleNamespacePermissionV3Forbidden, *AdminGetRoleNamespacePermissionV3NotFound, *AdminGetRoleNamespacePermissionV3InternalServerError, error)
 	AdminGetRoleNamespacePermissionV3Short(params *AdminGetRoleNamespacePermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleNamespacePermissionV3OK, error)
@@ -51,7 +51,7 @@ AdminGetRoleOverrideConfigV3 get role override config
 Get role override config.
 This API has upsert behavior, if there is no config yet, it will create a new one with inactive status.
 */
-func (a *Client) AdminGetRoleOverrideConfigV3(params *AdminGetRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleOverrideConfigV3OK, *AdminGetRoleOverrideConfigV3BadRequest, *AdminGetRoleOverrideConfigV3Unauthorized, *AdminGetRoleOverrideConfigV3Forbidden, *AdminGetRoleOverrideConfigV3InternalServerError, error) {
+func (a *Client) AdminGetRoleOverrideConfigV3(params *AdminGetRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetRoleOverrideConfigV3OK, *AdminGetRoleOverrideConfigV3Unauthorized, *AdminGetRoleOverrideConfigV3Forbidden, *AdminGetRoleOverrideConfigV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetRoleOverrideConfigV3Params()
@@ -83,28 +83,25 @@ func (a *Client) AdminGetRoleOverrideConfigV3(params *AdminGetRoleOverrideConfig
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetRoleOverrideConfigV3OK:
-		return v, nil, nil, nil, nil, nil
-
-	case *AdminGetRoleOverrideConfigV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetRoleOverrideConfigV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminGetRoleOverrideConfigV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *AdminGetRoleOverrideConfigV3InternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -148,8 +145,6 @@ func (a *Client) AdminGetRoleOverrideConfigV3Short(params *AdminGetRoleOverrideC
 
 	case *AdminGetRoleOverrideConfigV3OK:
 		return v, nil
-	case *AdminGetRoleOverrideConfigV3BadRequest:
-		return nil, v
 	case *AdminGetRoleOverrideConfigV3Unauthorized:
 		return nil, v
 	case *AdminGetRoleOverrideConfigV3Forbidden:
@@ -169,6 +164,9 @@ AdminUpdateRoleOverrideConfigV3 update role override config
 This API is for updating role override config.
 Note:
 This API has upsert behavior, if there is no config yet, it will create a new one first.
+**Note for Multi Tenant Mode:**
+Studio/game admin:
+* only allow to add custom permission to additions.
 */
 func (a *Client) AdminUpdateRoleOverrideConfigV3(params *AdminUpdateRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleOverrideConfigV3OK, *AdminUpdateRoleOverrideConfigV3BadRequest, *AdminUpdateRoleOverrideConfigV3Unauthorized, *AdminUpdateRoleOverrideConfigV3Forbidden, *AdminUpdateRoleOverrideConfigV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -232,6 +230,9 @@ AdminUpdateRoleOverrideConfigV3Short update role override config
 This API is for updating role override config.
 Note:
 This API has upsert behavior, if there is no config yet, it will create a new one first.
+**Note for Multi Tenant Mode:**
+Studio/game admin:
+* only allow to add custom permission to additions.
 */
 func (a *Client) AdminUpdateRoleOverrideConfigV3Short(params *AdminUpdateRoleOverrideConfigV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleOverrideConfigV3OK, error) {
 	// TODO: Validate the params before sending
@@ -411,7 +412,7 @@ Enable or disable the target role override feature in path namespace.
 Note:
 This API has upsert behavior, if there is no config yet, it will create a new one first.
 */
-func (a *Client) AdminChangeRoleOverrideConfigStatusV3(params *AdminChangeRoleOverrideConfigStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChangeRoleOverrideConfigStatusV3OK, *AdminChangeRoleOverrideConfigStatusV3Unauthorized, *AdminChangeRoleOverrideConfigStatusV3Forbidden, *AdminChangeRoleOverrideConfigStatusV3InternalServerError, error) {
+func (a *Client) AdminChangeRoleOverrideConfigStatusV3(params *AdminChangeRoleOverrideConfigStatusV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminChangeRoleOverrideConfigStatusV3OK, *AdminChangeRoleOverrideConfigStatusV3BadRequest, *AdminChangeRoleOverrideConfigStatusV3Unauthorized, *AdminChangeRoleOverrideConfigStatusV3Forbidden, *AdminChangeRoleOverrideConfigStatusV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminChangeRoleOverrideConfigStatusV3Params()
@@ -443,25 +444,28 @@ func (a *Client) AdminChangeRoleOverrideConfigStatusV3(params *AdminChangeRoleOv
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminChangeRoleOverrideConfigStatusV3OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminChangeRoleOverrideConfigStatusV3BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *AdminChangeRoleOverrideConfigStatusV3Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *AdminChangeRoleOverrideConfigStatusV3Forbidden:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *AdminChangeRoleOverrideConfigStatusV3InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -506,6 +510,8 @@ func (a *Client) AdminChangeRoleOverrideConfigStatusV3Short(params *AdminChangeR
 
 	case *AdminChangeRoleOverrideConfigStatusV3OK:
 		return v, nil
+	case *AdminChangeRoleOverrideConfigStatusV3BadRequest:
+		return nil, v
 	case *AdminChangeRoleOverrideConfigStatusV3Unauthorized:
 		return nil, v
 	case *AdminChangeRoleOverrideConfigStatusV3Forbidden:

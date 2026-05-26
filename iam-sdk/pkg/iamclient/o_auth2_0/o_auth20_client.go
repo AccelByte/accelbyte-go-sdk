@@ -30,6 +30,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetAuthorizationServerMetadataWithNamespace(params *GetAuthorizationServerMetadataWithNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthorizationServerMetadataWithNamespaceOK, error)
+	GetAuthorizationServerMetadataWithNamespaceShort(params *GetAuthorizationServerMetadataWithNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthorizationServerMetadataWithNamespaceOK, error)
 	AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, *AdminRetrieveUserThirdPartyPlatformTokenV3Unauthorized, *AdminRetrieveUserThirdPartyPlatformTokenV3Forbidden, *AdminRetrieveUserThirdPartyPlatformTokenV3NotFound, error)
 	AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRetrieveUserThirdPartyPlatformTokenV3OK, error)
 	RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error)
@@ -48,6 +50,8 @@ type ClientService interface {
 	Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error)
 	Verify2FACodeForward(params *Verify2FACodeForwardParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeForwardFound, error)
 	Verify2FACodeForwardShort(params *Verify2FACodeForwardParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeForwardFound, error)
+	OAuthDynamicClientRegisterWithNamespaceV3(params *OAuthDynamicClientRegisterWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*OAuthDynamicClientRegisterWithNamespaceV3Created, *OAuthDynamicClientRegisterWithNamespaceV3BadRequest, *OAuthDynamicClientRegisterWithNamespaceV3TooManyRequests, *OAuthDynamicClientRegisterWithNamespaceV3InternalServerError, *OAuthDynamicClientRegisterWithNamespaceV3NotImplemented, error)
+	OAuthDynamicClientRegisterWithNamespaceV3Short(params *OAuthDynamicClientRegisterWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*OAuthDynamicClientRegisterWithNamespaceV3Created, error)
 	RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, *RetrieveUserThirdPartyPlatformTokenV3Unauthorized, *RetrieveUserThirdPartyPlatformTokenV3Forbidden, *RetrieveUserThirdPartyPlatformTokenV3NotFound, error)
 	RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUserThirdPartyPlatformTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveUserThirdPartyPlatformTokenV3OK, error)
 	AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error)
@@ -69,12 +73,130 @@ type ClientService interface {
 }
 
 /*
+Deprecated: 2022-08-10 - Use GetAuthorizationServerMetadataWithNamespaceShort instead.
+
+GetAuthorizationServerMetadataWithNamespace oauth authorization server metadata
+Implements RFC 8414((https://datatracker.ietf.org/doc/html/rfc8414)), providing a standardized mechanism for OAuth 2.0 clients to discover authorization server metadata. Clients can retrieve detailed information about server capabilities, supported grant types, cryptographic algorithms, and API locations without manual configuration.
+### Key Features:
+Dynamic Discovery: Clients automatically discover server capabilities
+Standard Compliance: Implements RFC 8414 OAuth 2.0 Authorization Server Metadata
+Security Information: Provides details about supported security features
+API Discovery: Returns URLs for all OAuth APIs (authorization, token, revocation, etc.)
+### Request:
+Method: GET
+Path: '/.well-known/oauth-authorization-server/{namespace}'
+Headers: Accept: application/json
+### Response:
+Returns a JSON object containing comprehensive metadata about the OAuth authorization server configuration.
+*/
+func (a *Client) GetAuthorizationServerMetadataWithNamespace(params *GetAuthorizationServerMetadataWithNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthorizationServerMetadataWithNamespaceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAuthorizationServerMetadataWithNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAuthorizationServerMetadataWithNamespace",
+		Method:             "GET",
+		PathPattern:        "/iam/.well-known/oauth-authorization-server/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAuthorizationServerMetadataWithNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAuthorizationServerMetadataWithNamespaceOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+GetAuthorizationServerMetadataWithNamespaceShort oauth authorization server metadata
+Implements RFC 8414((https://datatracker.ietf.org/doc/html/rfc8414)), providing a standardized mechanism for OAuth 2.0 clients to discover authorization server metadata. Clients can retrieve detailed information about server capabilities, supported grant types, cryptographic algorithms, and API locations without manual configuration.
+### Key Features:
+Dynamic Discovery: Clients automatically discover server capabilities
+Standard Compliance: Implements RFC 8414 OAuth 2.0 Authorization Server Metadata
+Security Information: Provides details about supported security features
+API Discovery: Returns URLs for all OAuth APIs (authorization, token, revocation, etc.)
+### Request:
+Method: GET
+Path: '/.well-known/oauth-authorization-server/{namespace}'
+Headers: Accept: application/json
+### Response:
+Returns a JSON object containing comprehensive metadata about the OAuth authorization server configuration.
+*/
+func (a *Client) GetAuthorizationServerMetadataWithNamespaceShort(params *GetAuthorizationServerMetadataWithNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthorizationServerMetadataWithNamespaceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAuthorizationServerMetadataWithNamespaceParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetAuthorizationServerMetadataWithNamespace",
+		Method:             "GET",
+		PathPattern:        "/iam/.well-known/oauth-authorization-server/{namespace}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAuthorizationServerMetadataWithNamespaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetAuthorizationServerMetadataWithNamespaceOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead.
 
 AdminRetrieveUserThirdPartyPlatformTokenV3 admin retrieve user third party platform token
 Admin Retrieve User Third Party Platform Token
-This endpoint used for retrieving third party platform token for user that login using third party,
-if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
+Retrieves third party platform token for users that logged in using a third party platform.
+If the user has not linked the requested platform in the game namespace, attempts to retrieve the token from the publisher namespace.
 Passing platform group name or it's member will return same access token that can be used across the platform members.
 If platformUserId provided, IAM will prefer to get platform token by platform user id.
 
@@ -149,8 +271,8 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3(params *AdminRetriev
 /*
 AdminRetrieveUserThirdPartyPlatformTokenV3Short admin retrieve user third party platform token
 Admin Retrieve User Third Party Platform Token
-This endpoint used for retrieving third party platform token for user that login using third party,
-if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
+Retrieves third party platform token for users that logged in using a third party platform.
+If the user has not linked the requested platform in the game namespace, attempts to retrieve the token from the publisher namespace.
 Passing platform group name or it's member will return same access token that can be used across the platform members.
 If platformUserId provided, IAM will prefer to get platform token by platform user id.
 
@@ -218,11 +340,10 @@ func (a *Client) AdminRetrieveUserThirdPartyPlatformTokenV3Short(params *AdminRe
 /*
 Deprecated: 2022-08-10 - Use RevokeUserV3Short instead.
 
-RevokeUserV3 revokes user's tokens'
-This endpoint revokes all access tokens and refresh tokens a user has prior the revocation time.
-This endpoint requires authorized requests header with valid access token.
-It is a convenient feature for the developer (or admin) who wanted to revokes all user's access tokens and refresh tokens generated before some period of time.
-action code : 10707
+RevokeUserV3 revoke user's tokens
+Revokes all access tokens and refresh tokens a user has prior to the revocation time.
+
+**Namespace restriction for includeGameNamespace:** When the query parameter includeGameNamespace is set to true, the {namespace} path parameter must be a **publisher namespace**. Passing a game namespace with includeGameNamespace=true returns HTTP 400.
 */
 func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, *RevokeUserV3BadRequest, *RevokeUserV3Unauthorized, *RevokeUserV3Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -279,11 +400,10 @@ func (a *Client) RevokeUserV3(params *RevokeUserV3Params, authInfo runtime.Clien
 }
 
 /*
-RevokeUserV3Short revokes user's tokens'
-This endpoint revokes all access tokens and refresh tokens a user has prior the revocation time.
-This endpoint requires authorized requests header with valid access token.
-It is a convenient feature for the developer (or admin) who wanted to revokes all user's access tokens and refresh tokens generated before some period of time.
-action code : 10707
+RevokeUserV3Short revoke user's tokens
+Revokes all access tokens and refresh tokens a user has prior to the revocation time.
+
+**Namespace restriction for includeGameNamespace:** When the query parameter includeGameNamespace is set to true, the {namespace} path parameter must be a **publisher namespace**. Passing a game namespace with includeGameNamespace=true returns HTTP 400.
 */
 func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -336,12 +456,12 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 Deprecated: 2022-08-10 - Use AuthorizeV3Short instead.
 
 AuthorizeV3 oauth2 authorize api
-Initializes OAuth2.0 authorization code flow
-The endpoint stores authorization request and redirects to login page with the authorization request id.
+Initializes OAuth2.0 authorization code flow.
+Stores the authorization request and redirects to the login page with the authorization request id.
 The user can then do the authentication on the login page.
 The user will be redirected back to the requesting client with authorization code if successfully authenticated.
 
-Only authorization code flow supported by this endpoint, implicit flow is not supported.
+Only authorization code flow is supported; implicit flow is not supported.
 - **Authorize success**:
 redirects to login page with the following information: ?request_id={authorization_request_id}
 - **Authorize failure**:
@@ -363,7 +483,6 @@ The authorization server encountered an unexpected condition that prevented it f
 - temporarily_unavailable: The authorization server is currently unable to handle the request
 due to a temporary overloading or maintenance of the server.
 Please refer to the RFC for more information about authorization code flow: https://tools.ietf.org/html/rfc6749#section-4.1
-action code: 10701
 */
 func (a *Client) AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error) {
 	// TODO: Validate the params before sending
@@ -388,7 +507,7 @@ func (a *Client) AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientA
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/authorize",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AuthorizeV3Reader{formats: a.formats},
@@ -412,12 +531,12 @@ func (a *Client) AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientA
 
 /*
 AuthorizeV3Short oauth2 authorize api
-Initializes OAuth2.0 authorization code flow
-The endpoint stores authorization request and redirects to login page with the authorization request id.
+Initializes OAuth2.0 authorization code flow.
+Stores the authorization request and redirects to the login page with the authorization request id.
 The user can then do the authentication on the login page.
 The user will be redirected back to the requesting client with authorization code if successfully authenticated.
 
-Only authorization code flow supported by this endpoint, implicit flow is not supported.
+Only authorization code flow is supported; implicit flow is not supported.
 - **Authorize success**:
 redirects to login page with the following information: ?request_id={authorization_request_id}
 - **Authorize failure**:
@@ -439,7 +558,6 @@ The authorization server encountered an unexpected condition that prevented it f
 - temporarily_unavailable: The authorization server is currently unable to handle the request
 due to a temporary overloading or maintenance of the server.
 Please refer to the RFC for more information about authorization code flow: https://tools.ietf.org/html/rfc6749#section-4.1
-action code: 10701
 */
 func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error) {
 	// TODO: Validate the params before sending
@@ -460,7 +578,7 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/authorize",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AuthorizeV3Reader{formats: a.formats},
@@ -486,9 +604,8 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use TokenIntrospectionV3Short instead.
 
 TokenIntrospectionV3 oauth2 token introspection api
-This endpoint returns information about an access token intended to be used by resource servers or other internal servers.
-This endpoint requires authorized requests header with valid basic or bearer token.
-action code : 10705
+Returns information about an access token intended to be used by resource servers or other internal servers.
+Requires authorized requests header with valid basic or bearer token.
 */
 func (a *Client) TokenIntrospectionV3(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, *TokenIntrospectionV3BadRequest, *TokenIntrospectionV3Unauthorized, error) {
 	// TODO: Validate the params before sending
@@ -543,9 +660,8 @@ func (a *Client) TokenIntrospectionV3(params *TokenIntrospectionV3Params, authIn
 
 /*
 TokenIntrospectionV3Short oauth2 token introspection api
-This endpoint returns information about an access token intended to be used by resource servers or other internal servers.
-This endpoint requires authorized requests header with valid basic or bearer token.
-action code : 10705
+Returns information about an access token intended to be used by resource servers or other internal servers.
+Requires authorized requests header with valid basic or bearer token.
 */
 func (a *Client) TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, error) {
 	// TODO: Validate the params before sending
@@ -596,14 +712,13 @@ func (a *Client) TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, a
 Deprecated: 2022-08-10 - Use GetJWKSV3Short instead.
 
 GetJWKSV3 json web key set for verifying jwt
-This endpoint serves public keys for verifying JWT access tokens generated by this service.
+Serves public keys for verifying JWT access tokens generated by this service.
 When a client application wants to verify a JWT token, it needs to get the 'kid' value found in the JWT token header and use it
-to look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.
-A client application might cache the keys so it doesn't need to do request every time it needs to verify a JWT token. If a client application
+to look up the corresponding public key from a set returned by this API. The client application can then use that public key to verify the JWT.
+A client application might cache the keys so it doesn't need to do a request every time it needs to verify a JWT token. If a client application
 caches the keys and a key with the same 'kid' cannot be found in the cache, it should then try to refresh the keys by making a request to this
-endpoint again.
+API again.
 Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517
-action code : 10709
 */
 func (a *Client) GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error) {
 	// TODO: Validate the params before sending
@@ -628,7 +743,7 @@ func (a *Client) GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthI
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/jwks",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetJWKSV3Reader{formats: a.formats},
@@ -652,14 +767,13 @@ func (a *Client) GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthI
 
 /*
 GetJWKSV3Short json web key set for verifying jwt
-This endpoint serves public keys for verifying JWT access tokens generated by this service.
+Serves public keys for verifying JWT access tokens generated by this service.
 When a client application wants to verify a JWT token, it needs to get the 'kid' value found in the JWT token header and use it
-to look up the corresponding public key from a set returned by this endpoint. The client application can then use that public key to verify the JWT.
-A client application might cache the keys so it doesn't need to do request every time it needs to verify a JWT token. If a client application
+to look up the corresponding public key from a set returned by this API. The client application can then use that public key to verify the JWT.
+A client application might cache the keys so it doesn't need to do a request every time it needs to verify a JWT token. If a client application
 caches the keys and a key with the same 'kid' cannot be found in the cache, it should then try to refresh the keys by making a request to this
-endpoint again.
+API again.
 Please refer to the RFC for more information about JWK (JSON Web Key): https://tools.ietf.org/html/rfc7517
-action code : 10709
 */
 func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error) {
 	// TODO: Validate the params before sending
@@ -680,7 +794,7 @@ func (a *Client) GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.Client
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/jwks",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetJWKSV3Reader{formats: a.formats},
@@ -707,7 +821,7 @@ Deprecated: 2022-08-10 - Use SendMFAAuthenticationCodeShort instead.
 
 SendMFAAuthenticationCode send 2fa code
 Send 2FA code
-This endpoint is used for sending 2FA code.
+Sends the 2FA code.
 */
 func (a *Client) SendMFAAuthenticationCode(params *SendMFAAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendMFAAuthenticationCodeNoContent, *SendMFAAuthenticationCodeBadRequest, *SendMFAAuthenticationCodeForbidden, *SendMFAAuthenticationCodeNotFound, *SendMFAAuthenticationCodeTooManyRequests, *SendMFAAuthenticationCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -772,7 +886,7 @@ func (a *Client) SendMFAAuthenticationCode(params *SendMFAAuthenticationCodePara
 /*
 SendMFAAuthenticationCodeShort send 2fa code
 Send 2FA code
-This endpoint is used for sending 2FA code.
+Sends the 2FA code.
 */
 func (a *Client) SendMFAAuthenticationCodeShort(params *SendMFAAuthenticationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*SendMFAAuthenticationCodeNoContent, error) {
 	// TODO: Validate the params before sending
@@ -830,7 +944,7 @@ Deprecated: 2022-08-10 - Use Change2FAMethodShort instead.
 
 Change2FAMethod change 2fa method
 Change 2FA method
-This endpoint is used for change 2FA method. Only enabled methods are accepted.
+Changes the 2FA method. Only enabled methods are accepted.
 Supported methods:
 - authenticator
 - backupCode
@@ -893,7 +1007,7 @@ func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime
 /*
 Change2FAMethodShort change 2fa method
 Change 2FA method
-This endpoint is used for change 2FA method. Only enabled methods are accepted.
+Changes the 2FA method. Only enabled methods are accepted.
 Supported methods:
 - authenticator
 - backupCode
@@ -950,10 +1064,10 @@ func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo ru
 Deprecated: 2022-08-10 - Use Verify2FACodeShort instead.
 
 Verify2FACode verify 2fa code
-Verify 2FA code
-This endpoint is used for verifying 2FA code.
+Verifies the 2FA code.
+
 ## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
 */
 func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, *Verify2FACodeUnauthorized, error) {
 	// TODO: Validate the params before sending
@@ -1005,10 +1119,10 @@ func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.Cli
 
 /*
 Verify2FACodeShort verify 2fa code
-Verify 2FA code
-This endpoint is used for verifying 2FA code.
+Verifies the 2FA code.
+
 ## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
 */
 func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error) {
 	// TODO: Validate the params before sending
@@ -1057,13 +1171,14 @@ func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtim
 Deprecated: 2022-08-10 - Use Verify2FACodeForwardShort instead.
 
 Verify2FACodeForward verify 2fa code
+Verifies the 2FA code.
+
 This is a forward version for '/mfa/verify'. If there is any error, it will redirect to login website with error details.
-If success, it will forward to auth request redirect url
-If got error, it will forward to login website
-Verify 2FA code
-This endpoint is used for verifying 2FA code.
+If success, it will forward to auth request redirect url.
+If got error, it will forward to login website.
+
 ## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
 */
 func (a *Client) Verify2FACodeForward(params *Verify2FACodeForwardParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeForwardFound, error) {
 	// TODO: Validate the params before sending
@@ -1112,13 +1227,14 @@ func (a *Client) Verify2FACodeForward(params *Verify2FACodeForwardParams, authIn
 
 /*
 Verify2FACodeForwardShort verify 2fa code
+Verifies the 2FA code.
+
 This is a forward version for '/mfa/verify'. If there is any error, it will redirect to login website with error details.
-If success, it will forward to auth request redirect url
-If got error, it will forward to login website
-Verify 2FA code
-This endpoint is used for verifying 2FA code.
+If success, it will forward to auth request redirect url.
+If got error, it will forward to login website.
+
 ## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
 */
 func (a *Client) Verify2FACodeForwardShort(params *Verify2FACodeForwardParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeForwardFound, error) {
 	// TODO: Validate the params before sending
@@ -1162,12 +1278,140 @@ func (a *Client) Verify2FACodeForwardShort(params *Verify2FACodeForwardParams, a
 }
 
 /*
+Deprecated: 2022-08-10 - Use OAuthDynamicClientRegisterWithNamespaceV3Short instead.
+
+OAuthDynamicClientRegisterWithNamespaceV3 [dynamic client register] register client
+Implements OAuth 2.0 Dynamic Client Registration Management Protocol as defined in RFC 7591.
+
+Enables public users to register with an authorization server, obtaining an OAuth client dynamically without manual intervention.
+
+ð Standards Compliance: This API fully conforms to RFC 7591 specifications for OAuth 2.0 Dynamic Client Registration.
+
+â ï¸ Security Notice: Protected by IP-based rate limiting to prevent abuse while maintaining RFC 7591 compliance.
+*/
+func (a *Client) OAuthDynamicClientRegisterWithNamespaceV3(params *OAuthDynamicClientRegisterWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*OAuthDynamicClientRegisterWithNamespaceV3Created, *OAuthDynamicClientRegisterWithNamespaceV3BadRequest, *OAuthDynamicClientRegisterWithNamespaceV3TooManyRequests, *OAuthDynamicClientRegisterWithNamespaceV3InternalServerError, *OAuthDynamicClientRegisterWithNamespaceV3NotImplemented, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewOAuthDynamicClientRegisterWithNamespaceV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "OAuthDynamicClientRegisterWithNamespaceV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/namespace/{namespace}/register",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &OAuthDynamicClientRegisterWithNamespaceV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *OAuthDynamicClientRegisterWithNamespaceV3Created:
+		return v, nil, nil, nil, nil, nil
+
+	case *OAuthDynamicClientRegisterWithNamespaceV3BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *OAuthDynamicClientRegisterWithNamespaceV3TooManyRequests:
+		return nil, nil, v, nil, nil, nil
+
+	case *OAuthDynamicClientRegisterWithNamespaceV3InternalServerError:
+		return nil, nil, nil, v, nil, nil
+
+	case *OAuthDynamicClientRegisterWithNamespaceV3NotImplemented:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+OAuthDynamicClientRegisterWithNamespaceV3Short [dynamic client register] register client
+Implements OAuth 2.0 Dynamic Client Registration Management Protocol as defined in RFC 7591.
+
+Enables public users to register with an authorization server, obtaining an OAuth client dynamically without manual intervention.
+
+ð Standards Compliance: This API fully conforms to RFC 7591 specifications for OAuth 2.0 Dynamic Client Registration.
+
+â ï¸ Security Notice: Protected by IP-based rate limiting to prevent abuse while maintaining RFC 7591 compliance.
+*/
+func (a *Client) OAuthDynamicClientRegisterWithNamespaceV3Short(params *OAuthDynamicClientRegisterWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*OAuthDynamicClientRegisterWithNamespaceV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewOAuthDynamicClientRegisterWithNamespaceV3Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "OAuthDynamicClientRegisterWithNamespaceV3",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/namespace/{namespace}/register",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &OAuthDynamicClientRegisterWithNamespaceV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *OAuthDynamicClientRegisterWithNamespaceV3Created:
+		return v, nil
+	case *OAuthDynamicClientRegisterWithNamespaceV3BadRequest:
+		return nil, v
+	case *OAuthDynamicClientRegisterWithNamespaceV3TooManyRequests:
+		return nil, v
+	case *OAuthDynamicClientRegisterWithNamespaceV3InternalServerError:
+		return nil, v
+	case *OAuthDynamicClientRegisterWithNamespaceV3NotImplemented:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
 Deprecated: 2022-08-10 - Use RetrieveUserThirdPartyPlatformTokenV3Short instead.
 
 RetrieveUserThirdPartyPlatformTokenV3 retrieve user third party platform token
 Retrieve User Third Party Platform Token
-This endpoint used for retrieving third party platform token for user that login using third party,
-if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
+Retrieves third party platform token for users that logged in using a third party platform.
+If the user has not linked the requested platform in the game namespace, attempts to retrieve the token from the publisher namespace.
 Passing platform group name or it's member will return same access token that can be used across the platform members.
 
 The third party platform and platform group covered for this is:
@@ -1210,7 +1454,7 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThird
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveUserThirdPartyPlatformTokenV3Reader{formats: a.formats},
@@ -1244,8 +1488,8 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3(params *RetrieveUserThird
 /*
 RetrieveUserThirdPartyPlatformTokenV3Short retrieve user third party platform token
 Retrieve User Third Party Platform Token
-This endpoint used for retrieving third party platform token for user that login using third party,
-if user have not link requested platform in game namespace, will try to retrieving third party platform token from publisher namespace.
+Retrieves third party platform token for users that logged in using a third party platform.
+If the user has not linked the requested platform in the game namespace, attempts to retrieve the token from the publisher namespace.
 Passing platform group name or it's member will return same access token that can be used across the platform members.
 
 The third party platform and platform group covered for this is:
@@ -1284,7 +1528,7 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUser
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/namespaces/{namespace}/users/{userId}/platforms/{platformId}/platformToken",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetrieveUserThirdPartyPlatformTokenV3Reader{formats: a.formats},
@@ -1315,34 +1559,21 @@ func (a *Client) RetrieveUserThirdPartyPlatformTokenV3Short(params *RetrieveUser
 /*
 Deprecated: 2022-08-10 - Use AuthCodeRequestV3Short instead.
 
-AuthCodeRequestV3 generate url to request auth code from third party platform.
+AuthCodeRequestV3 generate url to request auth code from third party platform
 Generate url to request auth code from third party platform
 ## Supported platforms:
-- **steamopenid**This endpoint redirects to steam login page, then redirect back to platform
-authenticate endpoint after successfully authenticating user steam.
-- **xblweb**This endpoint redirects to xbox login page, then redirect back to platform
-authenticate endpoint after successfully authenticating xbox user.
-- **ps4web**This endpoint redirects to psn login page, then redirect back to platform
-authenticate endpoint after successfully authenticating psn user.
-- **epicgames**This endpoint redirects to Epicgames OAuth login page. then redirect to platform
-authenticate endpoint after successfully authenticating an Epicgames credential
-- **twitch**This endpoint redirects to twitch login page, then redirect back to platform
-authenticate endpoint after successfully authenticating twitch user.
-- **azure**This endpoint redirects to azure login page, then redirect back to platform
-authenticate(saml) endpoint after successfully authenticating azure user.
-- **facebook**This endpoint redirects to facebook login page, then redirect back to platform
-authenticate endpoint after successfully authenticating facebook user.
-- **google**This endpoint redirects to google login page, then redirect back to platform
-authenticate endpoint after successfully authenticating google user.
-- **snapchat**This endpoint redirects to snapchat login page, then redirect back to platform
-authenticate endpoint after successfully authenticating snapchat user.
-- **discord**This endpoint redirects to discord login page, then redirect back to platform
-authenticate endpoint after successfully authenticating discord user.
-- **amazon**This endpoint redirects to amazon login page, then redirect back to platform
-authenticate endpoint after successfully authenticating amazon user.
-- **oculusweb**This endpoint redirects to oculus login page, then redirect back to Login Website page after successfully authenticating oculus user.
-
-action code : 10702'
+- **steamopenid** Redirects to steam login page, then redirects back to the platform authenticate API after successfully authenticating user steam.
+- **xblweb** Redirects to xbox login page, then redirects back to the platform authenticate API after successfully authenticating xbox user.
+- **ps4web** Redirects to psn login page, then redirects back to the platform authenticate API after successfully authenticating psn user.
+- **epicgames** Redirects to Epicgames OAuth login page, then redirects to the platform authenticate API after successfully authenticating an Epicgames credential.
+- **twitch** Redirects to twitch login page, then redirects back to the platform authenticate API after successfully authenticating twitch user.
+- **azure** Redirects to azure login page, then redirects back to the platform authenticate(saml) API after successfully authenticating azure user.
+- **facebook** Redirects to facebook login page, then redirects back to the platform authenticate API after successfully authenticating facebook user.
+- **google** Redirects to google login page, then redirects back to the platform authenticate API after successfully authenticating google user.
+- **snapchat** Redirects to snapchat login page, then redirects back to the platform authenticate API after successfully authenticating snapchat user.
+- **discord** Redirects to discord login page, then redirects back to the platform authenticate API after successfully authenticating discord user.
+- **amazon** Redirects to amazon login page, then redirects back to the platform authenticate API after successfully authenticating amazon user.
+- **oculusweb** Redirects to oculus login page, then redirects back to Login Website page after successfully authenticating oculus user.
 */
 func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
 	// TODO: Validate the params before sending
@@ -1367,7 +1598,7 @@ func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo run
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/platforms/{platformId}/authorize",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AuthCodeRequestV3Reader{formats: a.formats},
@@ -1390,34 +1621,21 @@ func (a *Client) AuthCodeRequestV3(params *AuthCodeRequestV3Params, authInfo run
 }
 
 /*
-AuthCodeRequestV3Short generate url to request auth code from third party platform.
+AuthCodeRequestV3Short generate url to request auth code from third party platform
 Generate url to request auth code from third party platform
 ## Supported platforms:
-- **steamopenid**This endpoint redirects to steam login page, then redirect back to platform
-authenticate endpoint after successfully authenticating user steam.
-- **xblweb**This endpoint redirects to xbox login page, then redirect back to platform
-authenticate endpoint after successfully authenticating xbox user.
-- **ps4web**This endpoint redirects to psn login page, then redirect back to platform
-authenticate endpoint after successfully authenticating psn user.
-- **epicgames**This endpoint redirects to Epicgames OAuth login page. then redirect to platform
-authenticate endpoint after successfully authenticating an Epicgames credential
-- **twitch**This endpoint redirects to twitch login page, then redirect back to platform
-authenticate endpoint after successfully authenticating twitch user.
-- **azure**This endpoint redirects to azure login page, then redirect back to platform
-authenticate(saml) endpoint after successfully authenticating azure user.
-- **facebook**This endpoint redirects to facebook login page, then redirect back to platform
-authenticate endpoint after successfully authenticating facebook user.
-- **google**This endpoint redirects to google login page, then redirect back to platform
-authenticate endpoint after successfully authenticating google user.
-- **snapchat**This endpoint redirects to snapchat login page, then redirect back to platform
-authenticate endpoint after successfully authenticating snapchat user.
-- **discord**This endpoint redirects to discord login page, then redirect back to platform
-authenticate endpoint after successfully authenticating discord user.
-- **amazon**This endpoint redirects to amazon login page, then redirect back to platform
-authenticate endpoint after successfully authenticating amazon user.
-- **oculusweb**This endpoint redirects to oculus login page, then redirect back to Login Website page after successfully authenticating oculus user.
-
-action code : 10702'
+- **steamopenid** Redirects to steam login page, then redirects back to the platform authenticate API after successfully authenticating user steam.
+- **xblweb** Redirects to xbox login page, then redirects back to the platform authenticate API after successfully authenticating xbox user.
+- **ps4web** Redirects to psn login page, then redirects back to the platform authenticate API after successfully authenticating psn user.
+- **epicgames** Redirects to Epicgames OAuth login page, then redirects to the platform authenticate API after successfully authenticating an Epicgames credential.
+- **twitch** Redirects to twitch login page, then redirects back to the platform authenticate API after successfully authenticating twitch user.
+- **azure** Redirects to azure login page, then redirects back to the platform authenticate(saml) API after successfully authenticating azure user.
+- **facebook** Redirects to facebook login page, then redirects back to the platform authenticate API after successfully authenticating facebook user.
+- **google** Redirects to google login page, then redirects back to the platform authenticate API after successfully authenticating google user.
+- **snapchat** Redirects to snapchat login page, then redirects back to the platform authenticate API after successfully authenticating snapchat user.
+- **discord** Redirects to discord login page, then redirects back to the platform authenticate API after successfully authenticating discord user.
+- **amazon** Redirects to amazon login page, then redirects back to the platform authenticate API after successfully authenticating amazon user.
+- **oculusweb** Redirects to oculus login page, then redirects back to Login Website page after successfully authenticating oculus user.
 */
 func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error) {
 	// TODO: Validate the params before sending
@@ -1438,7 +1656,7 @@ func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInf
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/platforms/{platformId}/authorize",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &AuthCodeRequestV3Reader{formats: a.formats},
@@ -1464,14 +1682,15 @@ func (a *Client) AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInf
 Deprecated: 2022-08-10 - Use PlatformTokenGrantV3Short instead.
 
 PlatformTokenGrantV3 oauth2 access token generation specific to platform
-Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.
-This endpoint requires all requests to have Authorization header set with Basic access authentication
-constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
-should be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested
-along with platform_token parameter against publisher namespace.
-## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
-## Supported platforms:
+Platform token grant specifically used for performing token grant using platform, e.g. Steam, Device, etc.
+Automatically creates a headless account if the account associated with the platform does not exist yet, unless the createHeadless param is set to false.
+Requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret (only if using Confidential Client type). For more details on client types, refer to the [documentation guide](https://docs.accelbyte.io/gaming-services/modules/foundations/identity-access/authorization/manage-access-control-for-applications/#iam-client-types)
+
+## Request Payload
+Device token grant should be requested along with device_id parameter.
+The other 3rd party platform token grant should be requested along with platform_token parameter.
+
+## Supported platforms
 - **steam**: The platform_tokenâs value is the binary ticket returned by Steam.
 If this ticket was generated by Steam GetAuthTicketForWebApi with version >= 1.57, then platform token should use this style: `{identity}:{ticket}`, the `{identity}` was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain `:` in this `{identity}`.
 - **steamopenid**: Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
@@ -1484,7 +1703,7 @@ If this ticket was generated by Steam GetAuthTicketForWebApi with version >= 1.5
 - **android**: The device_id is the Androidâs device ID
 - **ios**: The device_id is the iOSâs device ID.
 - **apple**: The platform_tokenâs value is the authorization code or idToken returned by Apple OAuth.(We will use this code to generate APP token)
-- **device**: Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+- **device**: Every device that doesn't run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 - **justice**: The platform_tokenâs value is the designated userâs access token.
 - **epicgames**: The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 - **ps4**: The platform_tokenâs value is the authorization code returned by Sony OAuth.
@@ -1519,7 +1738,7 @@ Following is the current registered account grouping:
 Following is the access tokenâs content:
 - **namespace**. It is the namespace the token was generated from.
 - **display_name**. The display name of the sub. It is empty if the token is generated from the client credential
-- **roles**. The subâs roles. It is empty if the token is generated from the client credential
+- **roles** (deprecated). The subâs roles. It is empty if the token is generated from the client credential
 - **namespace_roles**. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
 - **permissions**. The sub or audâ permissions
 - **bans**. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -1536,7 +1755,14 @@ Following is the access tokenâs content:
 ## Bans
 The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.
 
-action code : 10704
+## 2FA remember device
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
+
+## Login Queue
+When the Login Queue is enabled and at capacity, this API returns a 401 Unauthorized response, with the queue ticket included in the response body.
+
+## Legal eligibility check
+If user hasn't accepted required legal policy (if any), the field `is_comply` will be false in response and response token will have no permission.
 */
 func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, *PlatformTokenGrantV3BadRequest, *PlatformTokenGrantV3Unauthorized, *PlatformTokenGrantV3Forbidden, *PlatformTokenGrantV3ServiceUnavailable, error) {
 	// TODO: Validate the params before sending
@@ -1597,14 +1823,15 @@ func (a *Client) PlatformTokenGrantV3(params *PlatformTokenGrantV3Params, authIn
 
 /*
 PlatformTokenGrantV3Short oauth2 access token generation specific to platform
-Platform token grant specifically used for performing token grant using platform, e.g. Steam, Justice, etc. The endpoint automatically create an account if the account associated with the platform is not exists yet.
-This endpoint requires all requests to have Authorization header set with Basic access authentication
-constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
-should be requested along with device_id parameter against game namespace. Another 3rd party platform token grant should be requested
-along with platform_token parameter against publisher namespace.
-## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
-## Supported platforms:
+Platform token grant specifically used for performing token grant using platform, e.g. Steam, Device, etc.
+Automatically creates a headless account if the account associated with the platform does not exist yet, unless the createHeadless param is set to false.
+Requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret (only if using Confidential Client type). For more details on client types, refer to the [documentation guide](https://docs.accelbyte.io/gaming-services/modules/foundations/identity-access/authorization/manage-access-control-for-applications/#iam-client-types)
+
+## Request Payload
+Device token grant should be requested along with device_id parameter.
+The other 3rd party platform token grant should be requested along with platform_token parameter.
+
+## Supported platforms
 - **steam**: The platform_tokenâs value is the binary ticket returned by Steam.
 If this ticket was generated by Steam GetAuthTicketForWebApi with version >= 1.57, then platform token should use this style: `{identity}:{ticket}`, the `{identity}` was the parameter to call GetAuthTicketForWebApi when the ticket was created. Note: Do not contain `:` in this `{identity}`.
 - **steamopenid**: Steam's user authentication method using OpenID 2.0. The platform_token's value is URL generated by Steam on web authentication
@@ -1617,7 +1844,7 @@ If this ticket was generated by Steam GetAuthTicketForWebApi with version >= 1.5
 - **android**: The device_id is the Androidâs device ID
 - **ios**: The device_id is the iOSâs device ID.
 - **apple**: The platform_tokenâs value is the authorization code or idToken returned by Apple OAuth.(We will use this code to generate APP token)
-- **device**: Every device that doesânt run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
+- **device**: Every device that doesn't run Android and iOS is categorized as a device. The device_id is the deviceâs ID.
 - **justice**: The platform_tokenâs value is the designated userâs access token.
 - **epicgames**: The platform_tokenâs value is an access-token or authorization code obtained from Epicgames EOS Account Service.
 - **ps4**: The platform_tokenâs value is the authorization code returned by Sony OAuth.
@@ -1652,7 +1879,7 @@ Following is the current registered account grouping:
 Following is the access tokenâs content:
 - **namespace**. It is the namespace the token was generated from.
 - **display_name**. The display name of the sub. It is empty if the token is generated from the client credential
-- **roles**. The subâs roles. It is empty if the token is generated from the client credential
+- **roles** (deprecated). The subâs roles. It is empty if the token is generated from the client credential
 - **namespace_roles**. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
 - **permissions**. The sub or audâ permissions
 - **bans**. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -1669,7 +1896,14 @@ Following is the access tokenâs content:
 ## Bans
 The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.
 
-action code : 10704
+## 2FA remember device
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
+
+## Login Queue
+When the Login Queue is enabled and at capacity, this API returns a 401 Unauthorized response, with the queue ticket included in the response body.
+
+## Legal eligibility check
+If user hasn't accepted required legal policy (if any), the field `is_comply` will be false in response and response token will have no permission.
 */
 func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenGrantV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1724,10 +1958,9 @@ func (a *Client) PlatformTokenGrantV3Short(params *PlatformTokenGrantV3Params, a
 Deprecated: 2022-08-10 - Use GetRevocationListV3Short instead.
 
 GetRevocationListV3 oauth2 revocation list api
-This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.
-This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
+Returns a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.
+Requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
 The bloom filter uses MurmurHash3 algorithm for hashing the values
-action code : 10708
 */
 func (a *Client) GetRevocationListV3(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, *GetRevocationListV3Unauthorized, error) {
 	// TODO: Validate the params before sending
@@ -1752,7 +1985,7 @@ func (a *Client) GetRevocationListV3(params *GetRevocationListV3Params, authInfo
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/revocationlist",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRevocationListV3Reader{formats: a.formats},
@@ -1779,10 +2012,9 @@ func (a *Client) GetRevocationListV3(params *GetRevocationListV3Params, authInfo
 
 /*
 GetRevocationListV3Short oauth2 revocation list api
-This endpoint will return a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.
-This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
+Returns a list of revoked users and revoked tokens. List of revoked tokens in bloom filter format.
+Requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
 The bloom filter uses MurmurHash3 algorithm for hashing the values
-action code : 10708
 */
 func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1803,7 +2035,7 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 		Method:             "GET",
 		PathPattern:        "/iam/v3/oauth/revocationlist",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"*/*"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRevocationListV3Reader{formats: a.formats},
@@ -1831,9 +2063,8 @@ func (a *Client) GetRevocationListV3Short(params *GetRevocationListV3Params, aut
 Deprecated: 2022-08-10 - Use TokenRevocationV3Short instead.
 
 TokenRevocationV3 oauth2 token revocation api
-This endpoint revokes a token.
-This endpoint requires authorized requests header with Basic Authentication from client that establish the token.
-action code: 10706
+Revokes a token.
+Requires authorized requests header with Basic Authentication from the client that established the token.
 */
 func (a *Client) TokenRevocationV3(params *TokenRevocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenRevocationV3OK, *TokenRevocationV3BadRequest, *TokenRevocationV3Unauthorized, error) {
 	// TODO: Validate the params before sending
@@ -1888,9 +2119,8 @@ func (a *Client) TokenRevocationV3(params *TokenRevocationV3Params, authInfo run
 
 /*
 TokenRevocationV3Short oauth2 token revocation api
-This endpoint revokes a token.
-This endpoint requires authorized requests header with Basic Authentication from client that establish the token.
-action code: 10706
+Revokes a token.
+Requires authorized requests header with Basic Authentication from the client that established the token.
 */
 func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenRevocationV3OK, error) {
 	// TODO: Validate the params before sending
@@ -1941,7 +2171,7 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 Deprecated: 2022-08-10 - Use SimultaneousLoginV3Short instead.
 
 SimultaneousLoginV3 simultaneous login
-# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries
+# This API is in ALPHA, avoid using this API for now, reach out to AB support for inquiries
 
 Simultaneous login flow.
 
@@ -2027,7 +2257,7 @@ func (a *Client) SimultaneousLoginV3(params *SimultaneousLoginV3Params, authInfo
 
 /*
 SimultaneousLoginV3Short simultaneous login
-# This endpoint is in ALPHA, avoid using this endpoint fow now, reach out to AB support for inquiries
+# This API is in ALPHA, avoid using this API for now, reach out to AB support for inquiries
 
 Simultaneous login flow.
 
@@ -2106,8 +2336,8 @@ func (a *Client) SimultaneousLoginV3Short(params *SimultaneousLoginV3Params, aut
 /*
 Deprecated: 2022-08-10 - Use TokenGrantV3Short instead.
 
-TokenGrantV3 oauth2 access token generation endpoint
-This endpoint supports grant type:
+TokenGrantV3 oauth2 access token generation
+Supports grant type:
 1. Grant Type == `authorization_code`:
 It generates the user token by given the authorization
 code which generated in "/iam/v3/authenticate" API response. It should also pass
@@ -2132,7 +2362,7 @@ In generated token:
 Following is the access tokenâs content:
 - **namespace**. It is the namespace the token was generated from.
 - **display_name**. The display name of the sub. It is empty if the token is generated from the client credential
-- **roles**. The subâs roles. It is empty if the token is generated from the client credential
+- **roles** (deprecated). The subâs roles. It is empty if the token is generated from the client credential
 - **namespace_roles**. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
 - **permissions**. The sub or audâ permissions
 - **bans**. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -2149,18 +2379,25 @@ Following is the access tokenâs content:
 
 ## Bans
 The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.
+
 ## Device Cookie Validation
 _**For grant type "password" only**_
 Device Cookie is used to protect the user account from brute force login attack, [more detail from OWASP.
-This endpoint will read device cookie from request header **Auth-Trust-Id**. If device cookie not found, it will generate a new one and set it into response body **auth_trust_id** when successfully login.
+It will read the device cookie from cookie **Auth-Trust-Id**. If device cookie not found, it will generate a new one and sets it into the response body **auth_trust_id** on successful login.
+
 ## Track Login History
-This endpoint will track login history to detect suspicious login activity, please provide **Device-Id** (alphanumeric) in request header parameter otherwise it will set to "unknown".
+It will track login history to detect suspicious login activity. Provide **Device-Id** (alphanumeric) in the request header, otherwise it will be set to "unknown".
 Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default"
+
 ## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
-## Response note
-If it is a user token request and user hasn't accepted required legal policy, the field `is_comply` will be false in response and responsed token will have no permission.
-action code: 10703
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
+
+## Login Queue
+_**For grant type "code" and "password" only**_
+When the Login Queue is enabled and at capacity, this API returns a 401 Unauthorized response, with the queue ticket included in the response body.
+
+## Legal eligibility check
+If it is a user token request and user hasn't accepted required legal policy (if any), the field `is_comply` will be false in response and response token will have no permission.
 */
 func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, *TokenGrantV3BadRequest, *TokenGrantV3Unauthorized, *TokenGrantV3Forbidden, *TokenGrantV3TooManyRequests, error) {
 	// TODO: Validate the params before sending
@@ -2220,8 +2457,8 @@ func (a *Client) TokenGrantV3(params *TokenGrantV3Params, authInfo runtime.Clien
 }
 
 /*
-TokenGrantV3Short oauth2 access token generation endpoint
-This endpoint supports grant type:
+TokenGrantV3Short oauth2 access token generation
+Supports grant type:
 1. Grant Type == `authorization_code`:
 It generates the user token by given the authorization
 code which generated in "/iam/v3/authenticate" API response. It should also pass
@@ -2246,7 +2483,7 @@ In generated token:
 Following is the access tokenâs content:
 - **namespace**. It is the namespace the token was generated from.
 - **display_name**. The display name of the sub. It is empty if the token is generated from the client credential
-- **roles**. The subâs roles. It is empty if the token is generated from the client credential
+- **roles** (deprecated). The subâs roles. It is empty if the token is generated from the client credential
 - **namespace_roles**. The subâs roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace
 - **permissions**. The sub or audâ permissions
 - **bans**. The subâs list of bans. It is used by the IAM client for validating the token.
@@ -2263,18 +2500,25 @@ Following is the access tokenâs content:
 
 ## Bans
 The JWT contains user's active bans with its expiry date. List of ban types can be obtained from /bans.
+
 ## Device Cookie Validation
 _**For grant type "password" only**_
 Device Cookie is used to protect the user account from brute force login attack, [more detail from OWASP.
-This endpoint will read device cookie from request header **Auth-Trust-Id**. If device cookie not found, it will generate a new one and set it into response body **auth_trust_id** when successfully login.
+It will read the device cookie from cookie **Auth-Trust-Id**. If device cookie not found, it will generate a new one and sets it into the response body **auth_trust_id** on successful login.
+
 ## Track Login History
-This endpoint will track login history to detect suspicious login activity, please provide **Device-Id** (alphanumeric) in request header parameter otherwise it will set to "unknown".
+It will track login history to detect suspicious login activity. Provide **Device-Id** (alphanumeric) in the request header, otherwise it will be set to "unknown".
 Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default"
+
 ## 2FA remember device
-To remember device for 2FA, should provide cookie: device_token or header: Device-Token
-## Response note
-If it is a user token request and user hasn't accepted required legal policy, the field `is_comply` will be false in response and responsed token will have no permission.
-action code: 10703
+To remember device for 2FA, the request should provide cookie: device_token or header: Device-Token
+
+## Login Queue
+_**For grant type "code" and "password" only**_
+When the Login Queue is enabled and at capacity, this API returns a 401 Unauthorized response, with the queue ticket included in the response body.
+
+## Legal eligibility check
+If it is a user token request and user hasn't accepted required legal policy (if any), the field `is_comply` will be false in response and response token will have no permission.
 */
 func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenGrantV3OK, error) {
 	// TODO: Validate the params before sending
@@ -2329,7 +2573,7 @@ func (a *Client) TokenGrantV3Short(params *TokenGrantV3Params, authInfo runtime.
 Deprecated: 2022-08-10 - Use VerifyTokenV3Short instead.
 
 VerifyTokenV3 oauth2 token verification api
-This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
+Requires Basic authentication (Base64-encoded ClientID:ClientSecret) in the Authorization header.
 */
 func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, *VerifyTokenV3BadRequest, error) {
 	// TODO: Validate the params before sending
@@ -2381,7 +2625,7 @@ func (a *Client) VerifyTokenV3(params *VerifyTokenV3Params, authInfo runtime.Cli
 
 /*
 VerifyTokenV3Short oauth2 token verification api
-This endpoint requires all requests to have Authorization header set with Basic access authentication constructed from client id and client secret.
+Requires Basic authentication (Base64-encoded ClientID:ClientSecret) in the Authorization header.
 */
 func (a *Client) VerifyTokenV3Short(params *VerifyTokenV3Params, authInfo runtime.ClientAuthInfoWriter) (*VerifyTokenV3OK, error) {
 	// TODO: Validate the params before sending

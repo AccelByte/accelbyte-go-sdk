@@ -345,6 +345,64 @@ func (aaa *PartyService) PublicPromotePartyLeader(input *party.PublicPromotePart
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use PublicGetPartyPasswordShort instead.
+func (aaa *PartyService) PublicGetPartyPassword(input *party.PublicGetPartyPasswordParams) (*sessionclientmodels.ApimodelsGetPasswordResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicGetPartyPassword(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicUpdatePartyPasswordShort instead.
+func (aaa *PartyService) PublicUpdatePartyPassword(input *party.PublicUpdatePartyPasswordParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Party.PublicUpdatePartyPassword(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicPartyJoinShort instead.
 func (aaa *PartyService) PublicPartyJoin(input *party.PublicPartyJoinParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -894,6 +952,70 @@ func (aaa *PartyService) PublicPromotePartyLeaderShort(input *party.PublicPromot
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *PartyService) PublicGetPartyPasswordShort(input *party.PublicGetPartyPasswordParams) (*sessionclientmodels.ApimodelsGetPasswordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdParty != nil {
+		input.XFlightId = tempFlightIdParty
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Party.PublicGetPartyPasswordShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *PartyService) PublicUpdatePartyPasswordShort(input *party.PublicUpdatePartyPasswordParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdParty != nil {
+		input.XFlightId = tempFlightIdParty
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.Party.PublicUpdatePartyPasswordShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *PartyService) PublicPartyJoinShort(input *party.PublicPartyJoinParams) (*sessionclientmodels.ApimodelsPartySessionResponse, error) {

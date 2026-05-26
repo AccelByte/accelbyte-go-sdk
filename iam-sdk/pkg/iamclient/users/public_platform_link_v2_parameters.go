@@ -70,7 +70,7 @@ type PublicPlatformLinkV2Params struct {
 	*/
 	Ticket string
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

@@ -1,5 +1,12 @@
 ## Go Extend SDK CLI Sample App Operation Index for Iam service.
 
+### Operation `get_authorization_server_metadata_with_namespace`
+```sh
+$ samples/cli/sample-apps Iam getAuthorizationServerMetadataWithNamespace \
+    --namespace 'string' \
+    > result.txt
+```
+
 ### Operation `admin_get_bans_type_v3`
 ```sh
 $ samples/cli/sample-apps Iam adminGetBansTypeV3 \
@@ -35,29 +42,16 @@ $ samples/cli/sample-apps Iam adminDeleteConfigPermissionsByGroup \
     > result.txt
 ```
 
+### Operation `admin_update_module_package`
+```sh
+$ samples/cli/sample-apps Iam adminUpdateModulePackage \
+    --body '{"data": [{}]}' \
+    > result.txt
+```
+
 ### Operation `admin_list_client_templates`
 ```sh
 $ samples/cli/sample-apps Iam adminListClientTemplates \
-    > result.txt
-```
-
-### Operation `admin_get_input_validations`
-```sh
-$ samples/cli/sample-apps Iam adminGetInputValidations \
-    > result.txt
-```
-
-### Operation `admin_update_input_validations`
-```sh
-$ samples/cli/sample-apps Iam adminUpdateInputValidations \
-    --body '[{"field": "string", "validation": {}}]' \
-    > result.txt
-```
-
-### Operation `admin_reset_input_validations`
-```sh
-$ samples/cli/sample-apps Iam adminResetInputValidations \
-    --field 'string' \
     > result.txt
 ```
 
@@ -165,7 +159,7 @@ $ samples/cli/sample-apps Iam adminBulkUpdateClientsV3 \
 ```sh
 $ samples/cli/sample-apps Iam adminCreateClientV3 \
     --namespace 'string' \
-    --body '{"audiences": ["string"], "baseUri": "string", "clientId": "string", "clientName": "string", "clientPermissions": [{}], "clientPlatform": "string", "deletable": false, "description": "string", "modulePermissions": [{}], "namespace": "string", "oauthAccessTokenExpiration": 1, "oauthAccessTokenExpirationTimeUnit": "string", "oauthClientType": "string", "oauthRefreshTokenExpiration": 1, "oauthRefreshTokenExpirationTimeUnit": "string", "parentNamespace": "string", "redirectUri": "string", "scopes": ["string"], "secret": "string", "skipLoginQueue": false, "twoFactorEnabled": false}' \
+    --body '{"audiences": ["string"], "baseUri": "string", "clientId": "string", "clientName": "string", "clientPermissions": [{}], "clientPlatform": "string", "deletable": false, "description": "string", "modulePermissions": [{}], "namespace": "string", "oauthAccessTokenExpiration": 1, "oauthAccessTokenExpirationTimeUnit": "string", "oauthClientType": "string", "oauthRefreshTokenExpiration": 1, "oauthRefreshTokenExpirationTimeUnit": "string", "redirectUri": "string", "scopes": ["string"], "secret": "string", "skipLoginQueue": false, "twoFactorEnabled": false}' \
     > result.txt
 ```
 
@@ -250,6 +244,29 @@ $ samples/cli/sample-apps Iam adminGetCountryBlacklistV3 \
 $ samples/cli/sample-apps Iam adminAddCountryBlacklistV3 \
     --namespace 'string' \
     --body '{"blacklist": ["string"]}' \
+    > result.txt
+```
+
+### Operation `admin_get_namespace_scoped_input_validations`
+```sh
+$ samples/cli/sample-apps Iam adminGetNamespaceScopedInputValidations \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `admin_update_namespace_scoped_input_validations`
+```sh
+$ samples/cli/sample-apps Iam adminUpdateNamespaceScopedInputValidations \
+    --namespace 'string' \
+    --body '[{"field": "string", "validation": {}}]' \
+    > result.txt
+```
+
+### Operation `admin_reset_namespace_scoped_input_validations`
+```sh
+$ samples/cli/sample-apps Iam adminResetNamespaceScopedInputValidations \
+    --field 'string' \
+    --namespace 'string' \
     > result.txt
 ```
 
@@ -916,39 +933,12 @@ $ samples/cli/sample-apps Iam adminGetUserSinglePlatformAccount \
     > result.txt
 ```
 
-### Operation `admin_delete_user_roles_v3`
-```sh
-$ samples/cli/sample-apps Iam adminDeleteUserRolesV3 \
-    --namespace 'string' \
-    --userId 'string' \
-    --body '["string"]' \
-    > result.txt
-```
-
 ### Operation `admin_save_user_role_v3`
 ```sh
 $ samples/cli/sample-apps Iam adminSaveUserRoleV3 \
     --namespace 'string' \
     --userId 'string' \
     --body '[{"namespace": "string", "roleId": "string"}]' \
-    > result.txt
-```
-
-### Operation `admin_add_user_role_v3`
-```sh
-$ samples/cli/sample-apps Iam adminAddUserRoleV3 \
-    --namespace 'string' \
-    --roleId 'string' \
-    --userId 'string' \
-    > result.txt
-```
-
-### Operation `admin_delete_user_role_v3`
-```sh
-$ samples/cli/sample-apps Iam adminDeleteUserRoleV3 \
-    --namespace 'string' \
-    --roleId 'string' \
-    --userId 'string' \
     > result.txt
 ```
 
@@ -998,6 +988,13 @@ $ samples/cli/sample-apps Iam adminUpdateClientSecretV3 \
 ### Operation `admin_check_third_party_login_platform_availability_v3`
 ```sh
 $ samples/cli/sample-apps Iam adminCheckThirdPartyLoginPlatformAvailabilityV3 \
+    --platformId 'string' \
+    > result.txt
+```
+
+### Operation `get_third_party_login_platform_defaults_v3`
+```sh
+$ samples/cli/sample-apps Iam getThirdPartyLoginPlatformDefaultsV3 \
     --platformId 'string' \
     > result.txt
 ```
@@ -1334,6 +1331,14 @@ $ samples/cli/sample-apps Iam verify2faCodeForward \
     > result.txt
 ```
 
+### Operation `o_auth_dynamic_client_register_with_namespace_v3`
+```sh
+$ samples/cli/sample-apps Iam oAuthDynamicClientRegisterWithNamespaceV3 \
+    --namespace 'string' \
+    --body '{"client_name": "string", "client_uri": "string", "grant_types": ["string"], "redirect_uris": ["string"], "response_types": ["string"], "scopes": ["string"], "token_endpoint_auth_method": "string"}' \
+    > result.txt
+```
+
 ### Operation `retrieve_user_third_party_platform_token_v3`
 ```sh
 $ samples/cli/sample-apps Iam retrieveUserThirdPartyPlatformTokenV3 \
@@ -1447,21 +1452,6 @@ $ samples/cli/sample-apps Iam platformTokenRefreshV3 \
     > result.txt
 ```
 
-### Operation `public_get_input_validations`
-```sh
-$ samples/cli/sample-apps Iam publicGetInputValidations \
-    --defaultOnEmpty false \
-    --languageCode 'string' \
-    > result.txt
-```
-
-### Operation `public_get_input_validation_by_field`
-```sh
-$ samples/cli/sample-apps Iam publicGetInputValidationByField \
-    --field 'string' \
-    > result.txt
-```
-
 ### Operation `public_get_country_age_restriction_v3`
 ```sh
 $ samples/cli/sample-apps Iam publicGetCountryAgeRestrictionV3 \
@@ -1481,6 +1471,23 @@ $ samples/cli/sample-apps Iam publicGetConfigValueV3 \
 ### Operation `public_get_country_list_v3`
 ```sh
 $ samples/cli/sample-apps Iam publicGetCountryListV3 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `public_get_namespace_scoped_input_validations`
+```sh
+$ samples/cli/sample-apps Iam publicGetNamespaceScopedInputValidations \
+    --namespace 'string' \
+    --defaultOnEmpty false \
+    --languageCode 'string' \
+    > result.txt
+```
+
+### Operation `public_get_namespace_scoped_input_validation_by_field`
+```sh
+$ samples/cli/sample-apps Iam publicGetNamespaceScopedInputValidationByField \
+    --field 'string' \
     --namespace 'string' \
     > result.txt
 ```
@@ -1788,15 +1795,6 @@ $ samples/cli/sample-apps Iam publicGetUserPlatformAccountsV3 \
 $ samples/cli/sample-apps Iam publicListJusticePlatformAccountsV3 \
     --namespace 'string' \
     --userId 'string' \
-    > result.txt
-```
-
-### Operation `public_link_platform_account`
-```sh
-$ samples/cli/sample-apps Iam publicLinkPlatformAccount \
-    --namespace 'string' \
-    --userId 'string' \
-    --body '{"platformId": "string", "platformUserId": "string"}' \
     > result.txt
 ```
 

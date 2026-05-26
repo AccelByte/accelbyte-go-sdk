@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.11.0"
+    "version": "6.13.0"
   },
   "schemes": [
     "https"
@@ -19616,6 +19616,61 @@
         }
       }
     },
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap/twitch/sync": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Sync twitch drops entitlements. \u0026lt;b\u0026gt;rate limit: 800 req/minutes. \u0026lt;/b\u0026gt;\u0026lt;p\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "adminSyncTwitchDropsEntitlement",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TwitchSyncRequest"
+            }
+          },
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Sync Successful"
+          },
+          "429": {
+            "description": "Too Many Request (twitch rate limit exceeded)"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Sync twitch drops entitlements with App Token.",
+        "tags": [
+          "IAP"
+        ],
+        "x-errorCodes": {},
+        "x-security": {
+          "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+        }
+      }
+    },
     "/platform/admin/namespaces/{namespace}/users/{userId}/orders": {
       "get": {
         "consumes": [
@@ -21835,7 +21890,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully determined if user has enough balance."
+            "description": "Successfully determined if user has enough balance.",
+            "schema": {
+              "$ref": "#/definitions/CheckBalanceResponse"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -27298,7 +27356,8 @@
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/BinarySchema"
+              "format": "binary",
+              "type": "string"
             }
           }
         },
@@ -34962,9 +35021,6 @@
       ],
       "type": "object"
     },
-    "BinarySchema": {
-      "type": "object"
-    },
     "BoxItem": {
       "description": "box item",
       "properties": {
@@ -36261,6 +36317,15 @@
           },
           "type": "array",
           "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "CheckBalanceResponse": {
+      "properties": {
+        "enoughBalance": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "type": "object"
@@ -53606,16 +53671,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2026-02-16T03:11:03+00:00",
-    "buildID": "6.11.0",
+    "buildDate": "2026-05-12T07:37:05+00:00",
+    "buildID": "6.13.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
     "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "f602488eb0",
-    "gitTag": "6.10.0",
+    "gitHash": "644db53c09",
+    "gitTag": "6.13.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.11.0",
+    "version": "6.13.0",
     "version-roles-seeding": "1.2.118"
   }
 }

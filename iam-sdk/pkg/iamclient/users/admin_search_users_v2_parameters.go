@@ -66,7 +66,7 @@ type AdminSearchUsersV2Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
@@ -86,7 +86,7 @@ type AdminSearchUsersV2Params struct {
 	*/
 	DisplayName *string
 	/*Limit
-	  the number of data retieved in a page
+	  The number of data retrieved in a page
 
 	*/
 	Limit *int64

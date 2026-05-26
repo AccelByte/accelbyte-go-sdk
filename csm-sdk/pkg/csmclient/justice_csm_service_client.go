@@ -15,15 +15,19 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_ui"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/async_messaging"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/deployment"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/deployment_v2"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/extend_files"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/image"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/image_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/managed_resources"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/managed_resources_key_value"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/managed_resources_sql"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/messages"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/notification_subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/notification_subscription_v3"
@@ -79,15 +83,19 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.App = app.New(transport, formats)
+	cli.AppUI = app_ui.New(transport, formats)
 	cli.AppV2 = app_v2.New(transport, formats)
 	cli.AsyncMessaging = async_messaging.New(transport, formats)
 	cli.Configuration = configuration.New(transport, formats)
 	cli.ConfigurationV2 = configuration_v2.New(transport, formats)
 	cli.Deployment = deployment.New(transport, formats)
 	cli.DeploymentV2 = deployment_v2.New(transport, formats)
+	cli.ExtendFiles = extend_files.New(transport, formats)
 	cli.Image = image.New(transport, formats)
 	cli.ImageV2 = image_v2.New(transport, formats)
 	cli.ManagedResources = managed_resources.New(transport, formats)
+	cli.ManagedResourcesKeyValue = managed_resources_key_value.New(transport, formats)
+	cli.ManagedResourcesSQL = managed_resources_sql.New(transport, formats)
 	cli.Messages = messages.New(transport, formats)
 	cli.NotificationSubscription = notification_subscription.New(transport, formats)
 	cli.NotificationSubscriptionV3 = notification_subscription_v3.New(transport, formats)
@@ -154,6 +162,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeCsmService struct {
 	App app.ClientService
 
+	AppUI app_ui.ClientService
+
 	AppV2 app_v2.ClientService
 
 	AsyncMessaging async_messaging.ClientService
@@ -166,11 +176,17 @@ type JusticeCsmService struct {
 
 	DeploymentV2 deployment_v2.ClientService
 
+	ExtendFiles extend_files.ClientService
+
 	Image image.ClientService
 
 	ImageV2 image_v2.ClientService
 
 	ManagedResources managed_resources.ClientService
+
+	ManagedResourcesKeyValue managed_resources_key_value.ClientService
+
+	ManagedResourcesSQL managed_resources_sql.ClientService
 
 	Messages messages.ClientService
 
@@ -188,15 +204,19 @@ type JusticeCsmService struct {
 func (c *JusticeCsmService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.App.SetTransport(transport)
+	c.AppUI.SetTransport(transport)
 	c.AppV2.SetTransport(transport)
 	c.AsyncMessaging.SetTransport(transport)
 	c.Configuration.SetTransport(transport)
 	c.ConfigurationV2.SetTransport(transport)
 	c.Deployment.SetTransport(transport)
 	c.DeploymentV2.SetTransport(transport)
+	c.ExtendFiles.SetTransport(transport)
 	c.Image.SetTransport(transport)
 	c.ImageV2.SetTransport(transport)
 	c.ManagedResources.SetTransport(transport)
+	c.ManagedResourcesKeyValue.SetTransport(transport)
+	c.ManagedResourcesSQL.SetTransport(transport)
 	c.Messages.SetTransport(transport)
 	c.NotificationSubscription.SetTransport(transport)
 	c.NotificationSubscriptionV3.SetTransport(transport)

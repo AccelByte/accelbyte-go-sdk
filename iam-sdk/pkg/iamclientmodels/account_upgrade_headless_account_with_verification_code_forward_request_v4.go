@@ -25,13 +25,13 @@ type AccountUpgradeHeadlessAccountWithVerificationCodeForwardRequestV4 struct {
 	// Required: true
 	Code *string `json:"code"`
 
-	// country
+	// Optional country to update after upgrade. Format: ISO3166-1 alpha-2 two letter, e.g. US.
 	Country string `json:"country,omitempty"`
 
-	// dateofbirth
+	// Optional date of birth to update after upgrade. Format: YYYY-MM-DD, e.g. 2019-04-29.
 	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
-	// displayname
+	// Optional user display name to update after upgrade.
 	DisplayName string `json:"displayName,omitempty"`
 
 	// emailaddress
@@ -45,7 +45,7 @@ type AccountUpgradeHeadlessAccountWithVerificationCodeForwardRequestV4 struct {
 	// reachminimumage
 	ReachMinimumAge bool `json:"reachMinimumAge"`
 
-	// uniquedisplayname
+	// Optional user display name to update after upgrade.
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 
 	// username

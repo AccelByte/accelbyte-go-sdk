@@ -51,6 +51,12 @@ func (o *AdminSearchUserV3Reader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewAdminSearchUserV3TooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminSearchUserV3InternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -267,6 +273,60 @@ func (o *AdminSearchUserV3Forbidden) GetPayload() *iamclientmodels.RestErrorResp
 }
 
 func (o *AdminSearchUserV3Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(iamclientmodels.RestErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminSearchUserV3TooManyRequests creates a AdminSearchUserV3TooManyRequests with default headers values
+func NewAdminSearchUserV3TooManyRequests() *AdminSearchUserV3TooManyRequests {
+	return &AdminSearchUserV3TooManyRequests{}
+}
+
+/*AdminSearchUserV3TooManyRequests handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20007</td><td>too many requests</td></tr></table>
+*/
+type AdminSearchUserV3TooManyRequests struct {
+	Payload *iamclientmodels.RestErrorResponse
+}
+
+func (o *AdminSearchUserV3TooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /iam/v3/admin/namespaces/{namespace}/users/search][%d] adminSearchUserV3TooManyRequests  %+v", 429, o.ToJSONString())
+}
+
+func (o *AdminSearchUserV3TooManyRequests) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminSearchUserV3TooManyRequests) GetPayload() *iamclientmodels.RestErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminSearchUserV3TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

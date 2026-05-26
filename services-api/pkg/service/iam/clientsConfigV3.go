@@ -98,6 +98,26 @@ func (aaa *ClientsConfigV3Service) AdminDeleteConfigPermissionsByGroup(input *cl
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminUpdateModulePackageShort instead.
+func (aaa *ClientsConfigV3Service) AdminUpdateModulePackage(input *clients_config_v3.AdminUpdateModulePackageParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, err := aaa.Client.ClientsConfigV3.AdminUpdateModulePackage(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminListClientTemplatesShort instead.
 func (aaa *ClientsConfigV3Service) AdminListClientTemplates(input *clients_config_v3.AdminListClientTemplatesParams) (*iamclientmodels.ClientmodelListTemplatesResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -205,6 +225,36 @@ func (aaa *ClientsConfigV3Service) AdminDeleteConfigPermissionsByGroupShort(inpu
 	}
 
 	_, err := aaa.Client.ClientsConfigV3.AdminDeleteConfigPermissionsByGroupShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *ClientsConfigV3Service) AdminUpdateModulePackageShort(input *clients_config_v3.AdminUpdateModulePackageParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdClientsConfigV3 != nil {
+		input.XFlightId = tempFlightIdClientsConfigV3
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.ClientsConfigV3.AdminUpdateModulePackageShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

@@ -1,9 +1,53 @@
 ## Go Extend SDK CLI Sample App Operation Index for Csm service.
 
+### Operation `list_app_ui`
+```sh
+$ samples/cli/sample-apps Csm listAppUI \
+    --namespace 'string' \
+    --limit 1 \
+    --name 'string' \
+    --offset 1 \
+    > result.txt
+```
+
+### Operation `create_app_ui`
+```sh
+$ samples/cli/sample-apps Csm createAppUI \
+    --namespace 'string' \
+    --body '{"name": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_app_ui`
+```sh
+$ samples/cli/sample-apps Csm deleteAppUI \
+    --appUiName 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `upload_app_ui_file`
+```sh
+$ samples/cli/sample-apps Csm uploadAppUIFile \
+    --appUiName 'string' \
+    --namespace 'string' \
+    --version 'string' \
+    --file 'tmp.dat' \
+    > result.txt
+```
+
 ### Operation `get_app_release_v1`
 ```sh
 $ samples/cli/sample-apps Csm getAppReleaseV1 \
     --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `get_extend_file`
+```sh
+$ samples/cli/sample-apps Csm getExtendFile \
+    --filePath 'string' \
     --namespace 'string' \
     > result.txt
 ```
@@ -59,6 +103,15 @@ $ samples/cli/sample-apps Csm updateAppV2 \
     > result.txt
 ```
 
+### Operation `apply_app_config_v2`
+```sh
+$ samples/cli/sample-apps Csm applyAppConfigV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"autoscaling": {}, "cpu": {}, "description": "string", "memory": {}, "permissions": [{}], "replica": {}, "scenario": "string", "secrets": [{}], "variables": [{}], "vmSharingConfiguration": "string"}' \
+    > result.txt
+```
+
 ### Operation `create_subscription_handler`
 ```sh
 $ samples/cli/sample-apps Csm createSubscriptionHandler \
@@ -104,12 +157,46 @@ $ samples/cli/sample-apps Csm deleteAppImagesV2 \
     > result.txt
 ```
 
-### Operation `create_no_sql_database_credential_v2`
+### Operation `create_key_value_credential_v2`
 ```sh
-$ samples/cli/sample-apps Csm createNoSQLDatabaseCredentialV2 \
+$ samples/cli/sample-apps Csm createKeyValueCredentialV2 \
     --app 'string' \
     --namespace 'string' \
     --body '{"password": "string", "username": "string"}' \
+    > result.txt
+```
+
+### Operation `get_integration_app_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm getIntegrationAppKeyValueClusterV2 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `integrate_app_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm integrateAppKeyValueClusterV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"acknowledgements": {}, "password": "string", "resourceId": "string", "username": "string"}' \
+    > result.txt
+```
+
+### Operation `remove_integration_app_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm removeIntegrationAppKeyValueClusterV2 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `create_new_no_sql_database_credential_v2`
+```sh
+$ samples/cli/sample-apps Csm createNewNoSQLDatabaseCredentialV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"acknowledgements": {}, "password": "string", "username": "string"}' \
     > result.txt
 ```
 
@@ -126,7 +213,7 @@ $ samples/cli/sample-apps Csm getNoSQLDatabaseV2 \
 $ samples/cli/sample-apps Csm createNoSQLDatabaseV2 \
     --app 'string' \
     --namespace 'string' \
-    --body '{"dbName": "string", "password": "string", "username": "string"}' \
+    --body '{"acknowledgements": {}, "dbName": "string", "password": "string", "username": "string"}' \
     > result.txt
 ```
 
@@ -190,6 +277,40 @@ $ samples/cli/sample-apps Csm updateSecretV2 \
 $ samples/cli/sample-apps Csm deleteSecretV2 \
     --app 'string' \
     --configId 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `create_sql_database_credential_v2`
+```sh
+$ samples/cli/sample-apps Csm createSQLDatabaseCredentialV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"password": "string", "username": "string"}' \
+    > result.txt
+```
+
+### Operation `get_sql_database_v2`
+```sh
+$ samples/cli/sample-apps Csm getSQLDatabaseV2 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `create_sql_database_v2`
+```sh
+$ samples/cli/sample-apps Csm createSQLDatabaseV2 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"acknowledgements": {}, "dbName": "string", "password": "string", "username": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_sql_database_v2`
+```sh
+$ samples/cli/sample-apps Csm deleteSQLDatabaseV2 \
+    --app 'string' \
     --namespace 'string' \
     > result.txt
 ```
@@ -363,6 +484,62 @@ $ samples/cli/sample-apps Csm deleteDeploymentV2 \
     > result.txt
 ```
 
+### Operation `get_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm getKeyValueClusterV2 \
+    --namespace 'string' \
+    --resourceId 'string' \
+    > result.txt
+```
+
+### Operation `list_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm listKeyValueClusterV2 \
+    --namespace 'string' \
+    --refresh false \
+    > result.txt
+```
+
+### Operation `create_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm createKeyValueClusterV2 \
+    --namespace 'string' \
+    --body '{"clusterName": "string", "maxDataStorageGB": 1, "maxECPUPerSecond": 1, "profileName": "string"}' \
+    > result.txt
+```
+
+### Operation `get_key_value_cluster_limit_config_v2`
+```sh
+$ samples/cli/sample-apps Csm getKeyValueClusterLimitConfigV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `update_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm updateKeyValueClusterV2 \
+    --namespace 'string' \
+    --resourceId 'string' \
+    --body '{"maxDataStorageGB": 1, "maxECPUPerSecond": 1, "profileName": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm deleteKeyValueClusterV2 \
+    --namespace 'string' \
+    --resourceId 'string' \
+    > result.txt
+```
+
+### Operation `get_list_integrated_app_key_value_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm getListIntegratedAppKeyValueClusterV2 \
+    --namespace 'string' \
+    --resourceId 'string' \
+    > result.txt
+```
+
 ### Operation `get_no_sql_cluster_v2`
 ```sh
 $ samples/cli/sample-apps Csm getNoSQLClusterV2 \
@@ -418,6 +595,62 @@ $ samples/cli/sample-apps Csm getNoSQLAccessTunnelV2 \
 ```sh
 $ samples/cli/sample-apps Csm getResourcesLimits \
     --namespace 'string' \
+    > result.txt
+```
+
+### Operation `get_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm getSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `update_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm updateSQLClusterV2 \
+    --namespace 'string' \
+    --body '{"maxACU": 3.14, "minACU": 3.14, "multiAZ": false, "profileName": "string"}' \
+    > result.txt
+```
+
+### Operation `create_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm createSQLClusterV2 \
+    --namespace 'string' \
+    --body '{"maxACU": 3.14, "minACU": 3.14, "multiAZ": false, "profileName": "string"}' \
+    > result.txt
+```
+
+### Operation `delete_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm deleteSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `start_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm startSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `stop_sql_cluster_v2`
+```sh
+$ samples/cli/sample-apps Csm stopSQLClusterV2 \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `get_sql_app_list_v2`
+```sh
+$ samples/cli/sample-apps Csm getSQLAppListV2 \
+    --namespace 'string' \
+    --resourceId 'string' \
+    --appName 'string' \
+    --gameNamespace 'string' \
+    --limit 1 \
+    --offset 1 \
     > result.txt
 ```
 

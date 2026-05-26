@@ -67,7 +67,7 @@ type PublicRemoveTrustedDeviceV4Params struct {
 	/*Cookie*/
 	Cookie *string
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

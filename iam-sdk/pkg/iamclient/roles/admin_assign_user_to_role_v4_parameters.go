@@ -69,7 +69,7 @@ type AdminAssignUserToRoleV4Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelAssignUserV4Request
 	/*RoleID
-	  Role id
+	  Role ID
 
 	*/
 	RoleID string

@@ -46,7 +46,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminQueryTagV3Short instead.
 
 AdminQueryTagV3 query account identifier tag
-Retrieve Account Identifier Tags. This endpoint allows administrators to retrieve tags that are used to identify and categorize user accounts.
+Retrieves Account Identifier Tags used to identify and categorize user accounts.
 Tag Name can be used for partial content search.
 */
 func (a *Client) AdminQueryTagV3(params *AdminQueryTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTagV3OK, *AdminQueryTagV3InternalServerError, error) {
@@ -99,7 +99,7 @@ func (a *Client) AdminQueryTagV3(params *AdminQueryTagV3Params, authInfo runtime
 
 /*
 AdminQueryTagV3Short query account identifier tag
-Retrieve Account Identifier Tags. This endpoint allows administrators to retrieve tags that are used to identify and categorize user accounts.
+Retrieves Account Identifier Tags used to identify and categorize user accounts.
 Tag Name can be used for partial content search.
 */
 func (a *Client) AdminQueryTagV3Short(params *AdminQueryTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryTagV3OK, error) {
@@ -149,7 +149,7 @@ func (a *Client) AdminQueryTagV3Short(params *AdminQueryTagV3Params, authInfo ru
 Deprecated: 2022-08-10 - Use AdminCreateTagV3Short instead.
 
 AdminCreateTagV3 create account identifier tag
-Create a new Account Identifier Tag for users. This endpoint allows administrators to create tags that can be used to identify and categorize user accounts.
+Creates a new Account Identifier Tag for users, which can be used to identify and categorize user accounts.
 */
 func (a *Client) AdminCreateTagV3(params *AdminCreateTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagV3Created, *AdminCreateTagV3BadRequest, *AdminCreateTagV3Conflict, *AdminCreateTagV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -207,7 +207,7 @@ func (a *Client) AdminCreateTagV3(params *AdminCreateTagV3Params, authInfo runti
 
 /*
 AdminCreateTagV3Short create account identifier tag
-Create a new Account Identifier Tag for users. This endpoint allows administrators to create tags that can be used to identify and categorize user accounts.
+Creates a new Account Identifier Tag for users, which can be used to identify and categorize user accounts.
 */
 func (a *Client) AdminCreateTagV3Short(params *AdminCreateTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateTagV3Created, error) {
 	// TODO: Validate the params before sending
@@ -260,7 +260,7 @@ func (a *Client) AdminCreateTagV3Short(params *AdminCreateTagV3Params, authInfo 
 Deprecated: 2022-08-10 - Use AdminUpdateTagV3Short instead.
 
 AdminUpdateTagV3 update account identifier tag
-Update an existing Account Identifier Tag. This endpoint allows administrators to update the details of a tag that is used to identify and categorize user accounts.
+Updates the details of an existing Account Identifier Tag used to identify and categorize user accounts.
 */
 func (a *Client) AdminUpdateTagV3(params *AdminUpdateTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagV3OK, *AdminUpdateTagV3BadRequest, *AdminUpdateTagV3NotFound, *AdminUpdateTagV3Conflict, *AdminUpdateTagV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -321,7 +321,7 @@ func (a *Client) AdminUpdateTagV3(params *AdminUpdateTagV3Params, authInfo runti
 
 /*
 AdminUpdateTagV3Short update account identifier tag
-Update an existing Account Identifier Tag. This endpoint allows administrators to update the details of a tag that is used to identify and categorize user accounts.
+Updates the details of an existing Account Identifier Tag used to identify and categorize user accounts.
 */
 func (a *Client) AdminUpdateTagV3Short(params *AdminUpdateTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateTagV3OK, error) {
 	// TODO: Validate the params before sending
@@ -376,7 +376,7 @@ func (a *Client) AdminUpdateTagV3Short(params *AdminUpdateTagV3Params, authInfo 
 Deprecated: 2022-08-10 - Use AdminDeleteTagV3Short instead.
 
 AdminDeleteTagV3 delete account identifier tag
-Delete an Account Identifier Tag. This endpoint allows administrators to delete a tag that is used to identify and categorize user accounts.
+Deletes an Account Identifier Tag used to identify and categorize user accounts.
 */
 func (a *Client) AdminDeleteTagV3(params *AdminDeleteTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagV3NoContent, *AdminDeleteTagV3NotFound, *AdminDeleteTagV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -431,7 +431,7 @@ func (a *Client) AdminDeleteTagV3(params *AdminDeleteTagV3Params, authInfo runti
 
 /*
 AdminDeleteTagV3Short delete account identifier tag
-Delete an Account Identifier Tag. This endpoint allows administrators to delete a tag that is used to identify and categorize user accounts.
+Deletes an Account Identifier Tag used to identify and categorize user accounts.
 */
 func (a *Client) AdminDeleteTagV3Short(params *AdminDeleteTagV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteTagV3NoContent, error) {
 	// TODO: Validate the params before sending

@@ -32,6 +32,8 @@ type Client struct {
 type ClientService interface {
 	AdminListUserAchievements(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, *AdminListUserAchievementsBadRequest, *AdminListUserAchievementsUnauthorized, *AdminListUserAchievementsNotFound, *AdminListUserAchievementsInternalServerError, error)
 	AdminListUserAchievementsShort(params *AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserAchievementsOK, error)
+	AdminBatchQueryUserAchievements(params *AdminBatchQueryUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBatchQueryUserAchievementsOK, *AdminBatchQueryUserAchievementsBadRequest, *AdminBatchQueryUserAchievementsUnauthorized, error)
+	AdminBatchQueryUserAchievementsShort(params *AdminBatchQueryUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBatchQueryUserAchievementsOK, error)
 	AdminBulkUnlockAchievement(params *AdminBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnlockAchievementOK, *AdminBulkUnlockAchievementBadRequest, *AdminBulkUnlockAchievementUnauthorized, *AdminBulkUnlockAchievementNotFound, *AdminBulkUnlockAchievementUnprocessableEntity, *AdminBulkUnlockAchievementInternalServerError, error)
 	AdminBulkUnlockAchievementShort(params *AdminBulkUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkUnlockAchievementOK, error)
 	AdminResetAchievement(params *AdminResetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*AdminResetAchievementNoContent, *AdminResetAchievementBadRequest, *AdminResetAchievementUnauthorized, *AdminResetAchievementNotFound, *AdminResetAchievementInternalServerError, error)
@@ -193,6 +195,148 @@ func (a *Client) AdminListUserAchievementsShort(params *AdminListUserAchievement
 	case *AdminListUserAchievementsNotFound:
 		return nil, v
 	case *AdminListUserAchievementsInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminBatchQueryUserAchievementsShort instead.
+
+AdminBatchQueryUserAchievements batch query user achievements
+
+
+Required permission
+`ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]` and scope `social`
+
+
+
+
+Note:
+
+
+
+
+User Achievement status value mean: `status = 1 (in progress)` and `status = 2 (unlocked)`
+
+
+
+
+`achievedAt` value will return default value: `0001-01-01T00:00:00Z` for user achievement that locked or in progress
+*/
+func (a *Client) AdminBatchQueryUserAchievements(params *AdminBatchQueryUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBatchQueryUserAchievementsOK, *AdminBatchQueryUserAchievementsBadRequest, *AdminBatchQueryUserAchievementsUnauthorized, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBatchQueryUserAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBatchQueryUserAchievements",
+		Method:             "POST",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/batchQuery",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBatchQueryUserAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBatchQueryUserAchievementsOK:
+		return v, nil, nil, nil
+
+	case *AdminBatchQueryUserAchievementsBadRequest:
+		return nil, v, nil, nil
+
+	case *AdminBatchQueryUserAchievementsUnauthorized:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminBatchQueryUserAchievementsShort batch query user achievements
+
+
+Required permission
+`ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]` and scope `social`
+
+
+
+
+Note:
+
+
+
+
+User Achievement status value mean: `status = 1 (in progress)` and `status = 2 (unlocked)`
+
+
+
+
+`achievedAt` value will return default value: `0001-01-01T00:00:00Z` for user achievement that locked or in progress
+*/
+func (a *Client) AdminBatchQueryUserAchievementsShort(params *AdminBatchQueryUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminBatchQueryUserAchievementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBatchQueryUserAchievementsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBatchQueryUserAchievements",
+		Method:             "POST",
+		PathPattern:        "/achievement/v1/admin/namespaces/{namespace}/users/{userId}/achievements/batchQuery",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBatchQueryUserAchievementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBatchQueryUserAchievementsOK:
+		return v, nil
+	case *AdminBatchQueryUserAchievementsBadRequest:
+		return nil, v
+	case *AdminBatchQueryUserAchievementsUnauthorized:
 		return nil, v
 
 	default:

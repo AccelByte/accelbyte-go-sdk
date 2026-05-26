@@ -64,6 +64,26 @@ func (aaa *UserAchievementsService) AdminListUserAchievements(input *user_achiev
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminBatchQueryUserAchievementsShort instead.
+func (aaa *UserAchievementsService) AdminBatchQueryUserAchievements(input *user_achievements.AdminBatchQueryUserAchievementsParams) ([]*achievementclientmodels.ModelsUserAchievementResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, err := aaa.Client.UserAchievements.AdminBatchQueryUserAchievements(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use AdminBulkUnlockAchievementShort instead.
 func (aaa *UserAchievementsService) AdminBulkUnlockAchievement(input *user_achievements.AdminBulkUnlockAchievementParams) ([]*achievementclientmodels.ModelsBulkUnlockAchievementResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -255,6 +275,40 @@ func (aaa *UserAchievementsService) AdminListUserAchievementsShort(input *user_a
 	}
 
 	ok, err := aaa.Client.UserAchievements.AdminListUserAchievementsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UserAchievementsService) AdminBatchQueryUserAchievementsShort(input *user_achievements.AdminBatchQueryUserAchievementsParams) ([]*achievementclientmodels.ModelsUserAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUserAchievements != nil {
+		input.XFlightId = tempFlightIdUserAchievements
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.UserAchievements.AdminBatchQueryUserAchievementsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -4,6 +4,14 @@
 
 ## Operations
 
+### App UI Wrapper:  [AppUI](../../services-api/pkg/service/csm/appUI.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v1/admin/namespaces/{namespace}/app-ui` | GET | ListAppUIShort | [ListAppUIShort](../../csm-sdk/pkg/csmclient/app_ui/app_ui_client.go) | [ListAppUIShort](../../services-api/pkg/service/csm/appUI.go) | [ListAppUIShort](../../samples/cli/cmd/csm/appUI/listAppUI.go) |
+| `/csm/v1/admin/namespaces/{namespace}/app-ui` | POST | CreateAppUIShort | [CreateAppUIShort](../../csm-sdk/pkg/csmclient/app_ui/app_ui_client.go) | [CreateAppUIShort](../../services-api/pkg/service/csm/appUI.go) | [CreateAppUIShort](../../samples/cli/cmd/csm/appUI/createAppUI.go) |
+| `/csm/v1/admin/namespaces/{namespace}/app-ui/{appUiName}` | DELETE | DeleteAppUIShort | [DeleteAppUIShort](../../csm-sdk/pkg/csmclient/app_ui/app_ui_client.go) | [DeleteAppUIShort](../../services-api/pkg/service/csm/appUI.go) | [DeleteAppUIShort](../../samples/cli/cmd/csm/appUI/deleteAppUI.go) |
+| `/csm/v1/admin/namespaces/{namespace}/app-ui/{appUiName}/files/upload` | POST | UploadAppUIFileShort | [UploadAppUIFileShort](../../csm-sdk/pkg/csmclient/app_ui/app_ui_client.go) | [UploadAppUIFileShort](../../services-api/pkg/service/csm/appUI.go) | [UploadAppUIFileShort](../../samples/cli/cmd/csm/appUI/uploadAppUIFile.go) |
+
 ### App Wrapper:  [App](../../services-api/pkg/service/csm/app.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -42,6 +50,11 @@
 | [DEPRECATED] `/csm/v1/admin/namespaces/{namespace}/apps/{app}/variables/{configId}` | PUT | UpdateVariableV1Short | [UpdateVariableV1Short](../../csm-sdk/pkg/csmclient/configuration/configuration_client.go) | [UpdateVariableV1Short](../../services-api/pkg/service/csm/configuration.go) | [UpdateVariableV1Short](../../samples/cli/cmd/csm/configuration/updateVariableV1.go) |
 | [DEPRECATED] `/csm/v1/admin/namespaces/{namespace}/apps/{app}/variables/{configId}` | DELETE | DeleteVariableV1Short | [DeleteVariableV1Short](../../csm-sdk/pkg/csmclient/configuration/configuration_client.go) | [DeleteVariableV1Short](../../services-api/pkg/service/csm/configuration.go) | [DeleteVariableV1Short](../../samples/cli/cmd/csm/configuration/deleteVariableV1.go) |
 
+### Extend Files Wrapper:  [ExtendFiles](../../services-api/pkg/service/csm/extendFiles.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v1/admin/namespaces/{namespace}/files/{filePath}` | GET | GetExtendFileShort | [GetExtendFileShort](../../csm-sdk/pkg/csmclient/extend_files/extend_files_client.go) | [GetExtendFileShort](../../services-api/pkg/service/csm/extendFiles.go) | [GetExtendFileShort](../../samples/cli/cmd/csm/extendFiles/getExtendFile.go) |
+
 ### Messages Wrapper:  [Messages](../../services-api/pkg/service/csm/messages.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
@@ -55,6 +68,7 @@
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | POST | CreateAppV2Short | [CreateAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [CreateAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [CreateAppV2Short](../../samples/cli/cmd/csm/appV2/createAppV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | DELETE | DeleteAppV2Short | [DeleteAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [DeleteAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [DeleteAppV2Short](../../samples/cli/cmd/csm/appV2/deleteAppV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | PATCH | UpdateAppV2Short | [UpdateAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [UpdateAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [UpdateAppV2Short](../../samples/cli/cmd/csm/appV2/updateAppV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/apply` | POST | ApplyAppConfigV2Short | [ApplyAppConfigV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [ApplyAppConfigV2Short](../../services-api/pkg/service/csm/appV2.go) | [ApplyAppConfigV2Short](../../samples/cli/cmd/csm/appV2/applyAppConfigV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/resources` | PATCH | UpdateAppResourcesV2Short | [UpdateAppResourcesV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [UpdateAppResourcesV2Short](../../services-api/pkg/service/csm/appV2.go) | [UpdateAppResourcesV2Short](../../samples/cli/cmd/csm/appV2/updateAppResourcesV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/resources/form` | POST | UpdateAppResourcesResourceLimitFormV2Short | [UpdateAppResourcesResourceLimitFormV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [UpdateAppResourcesResourceLimitFormV2Short](../../services-api/pkg/service/csm/appV2.go) | [UpdateAppResourcesResourceLimitFormV2Short](../../samples/cli/cmd/csm/appV2/updateAppResourcesResourceLimitFormV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/start` | PUT | StartAppV2Short | [StartAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [StartAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [StartAppV2Short](../../samples/cli/cmd/csm/appV2/startAppV2.go) |
@@ -83,10 +97,26 @@
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/images` | GET | GetAppImageListV2Short | [GetAppImageListV2Short](../../csm-sdk/pkg/csmclient/image_v2/image_v2_client.go) | [GetAppImageListV2Short](../../services-api/pkg/service/csm/imageV2.go) | [GetAppImageListV2Short](../../samples/cli/cmd/csm/imageV2/getAppImageListV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/images` | DELETE | DeleteAppImagesV2Short | [DeleteAppImagesV2Short](../../csm-sdk/pkg/csmclient/image_v2/image_v2_client.go) | [DeleteAppImagesV2Short](../../services-api/pkg/service/csm/imageV2.go) | [DeleteAppImagesV2Short](../../samples/cli/cmd/csm/imageV2/deleteAppImagesV2.go) |
 
+### Managed Resources - KeyValue Wrapper:  [ManagedResourcesKeyValue](../../services-api/pkg/service/csm/managedResourcesKeyValue.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/keyvalue/credentials` | POST | CreateKeyValueCredentialV2Short | [CreateKeyValueCredentialV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [CreateKeyValueCredentialV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [CreateKeyValueCredentialV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/createKeyValueCredentialV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/keyvalue/integrations` | GET | GetIntegrationAppKeyValueClusterV2Short | [GetIntegrationAppKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [GetIntegrationAppKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [GetIntegrationAppKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/getIntegrationAppKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/keyvalue/integrations` | POST | IntegrateAppKeyValueClusterV2Short | [IntegrateAppKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [IntegrateAppKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [IntegrateAppKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/integrateAppKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/keyvalue/integrations` | DELETE | RemoveIntegrationAppKeyValueClusterV2Short | [RemoveIntegrationAppKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [RemoveIntegrationAppKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [RemoveIntegrationAppKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/removeIntegrationAppKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/cluster/{resourceId}` | GET | GetKeyValueClusterV2Short | [GetKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [GetKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [GetKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/getKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/clusters` | GET | ListKeyValueClusterV2Short | [ListKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [ListKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [ListKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/listKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/clusters` | POST | CreateKeyValueClusterV2Short | [CreateKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [CreateKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [CreateKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/createKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/clusters/limitconfig` | GET | GetKeyValueClusterLimitConfigV2Short | [GetKeyValueClusterLimitConfigV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [GetKeyValueClusterLimitConfigV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [GetKeyValueClusterLimitConfigV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/getKeyValueClusterLimitConfigV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/clusters/{resourceId}` | PUT | UpdateKeyValueClusterV2Short | [UpdateKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [UpdateKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [UpdateKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/updateKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/clusters/{resourceId}` | DELETE | DeleteKeyValueClusterV2Short | [DeleteKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [DeleteKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [DeleteKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/deleteKeyValueClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/keyvalue/{resourceId}/integrations` | GET | GetListIntegratedAppKeyValueClusterV2Short | [GetListIntegratedAppKeyValueClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_key_value/managed_resources_key_value_client.go) | [GetListIntegratedAppKeyValueClusterV2Short](../../services-api/pkg/service/csm/managedResourcesKeyValue.go) | [GetListIntegratedAppKeyValueClusterV2Short](../../samples/cli/cmd/csm/managedResourcesKeyValue/getListIntegratedAppKeyValueClusterV2.go) |
+
 ### Managed Resources Wrapper:  [ManagedResources](../../services-api/pkg/service/csm/managedResources.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
-| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/crendentials` | POST | CreateNoSQLDatabaseCredentialV2Short | [CreateNoSQLDatabaseCredentialV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [CreateNoSQLDatabaseCredentialV2Short](../../services-api/pkg/service/csm/managedResources.go) | [CreateNoSQLDatabaseCredentialV2Short](../../samples/cli/cmd/csm/managedResources/createNoSQLDatabaseCredentialV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/credentials` | POST | CreateNewNoSQLDatabaseCredentialV2Short | [CreateNewNoSQLDatabaseCredentialV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [CreateNewNoSQLDatabaseCredentialV2Short](../../services-api/pkg/service/csm/managedResources.go) | [CreateNewNoSQLDatabaseCredentialV2Short](../../samples/cli/cmd/csm/managedResources/createNewNoSQLDatabaseCredentialV2.go) |
+| [DEPRECATED] `/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/crendentials` | POST | CreateNoSQLDatabaseCredentialV2Short | [CreateNoSQLDatabaseCredentialV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [CreateNoSQLDatabaseCredentialV2Short](../../services-api/pkg/service/csm/managedResources.go) | [CreateNoSQLDatabaseCredentialV2Short](../../samples/cli/cmd/csm/managedResources/createNoSQLDatabaseCredentialV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/databases` | GET | GetNoSQLDatabaseV2Short | [GetNoSQLDatabaseV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [GetNoSQLDatabaseV2Short](../../services-api/pkg/service/csm/managedResources.go) | [GetNoSQLDatabaseV2Short](../../samples/cli/cmd/csm/managedResources/getNoSQLDatabaseV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/databases` | POST | CreateNoSQLDatabaseV2Short | [CreateNoSQLDatabaseV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [CreateNoSQLDatabaseV2Short](../../services-api/pkg/service/csm/managedResources.go) | [CreateNoSQLDatabaseV2Short](../../samples/cli/cmd/csm/managedResources/createNoSQLDatabaseV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/nosql/databases` | DELETE | DeleteNoSQLDatabaseV2Short | [DeleteNoSQLDatabaseV2Short](../../csm-sdk/pkg/csmclient/managed_resources/managed_resources_client.go) | [DeleteNoSQLDatabaseV2Short](../../services-api/pkg/service/csm/managedResources.go) | [DeleteNoSQLDatabaseV2Short](../../samples/cli/cmd/csm/managedResources/deleteNoSQLDatabaseV2.go) |
@@ -110,6 +140,21 @@
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/variables` | POST | SaveVariableV2Short | [SaveVariableV2Short](../../csm-sdk/pkg/csmclient/configuration_v2/configuration_v2_client.go) | [SaveVariableV2Short](../../services-api/pkg/service/csm/configurationV2.go) | [SaveVariableV2Short](../../samples/cli/cmd/csm/configurationV2/saveVariableV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/variables/{configId}` | PUT | UpdateVariableV2Short | [UpdateVariableV2Short](../../csm-sdk/pkg/csmclient/configuration_v2/configuration_v2_client.go) | [UpdateVariableV2Short](../../services-api/pkg/service/csm/configurationV2.go) | [UpdateVariableV2Short](../../samples/cli/cmd/csm/configurationV2/updateVariableV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/variables/{configId}` | DELETE | DeleteVariableV2Short | [DeleteVariableV2Short](../../csm-sdk/pkg/csmclient/configuration_v2/configuration_v2_client.go) | [DeleteVariableV2Short](../../services-api/pkg/service/csm/configurationV2.go) | [DeleteVariableV2Short](../../samples/cli/cmd/csm/configurationV2/deleteVariableV2.go) |
+
+### Managed Resources - SQL Wrapper:  [ManagedResourcesSQL](../../services-api/pkg/service/csm/managedResourcesSQL.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/sql/credentials` | POST | CreateSQLDatabaseCredentialV2Short | [CreateSQLDatabaseCredentialV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [CreateSQLDatabaseCredentialV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [CreateSQLDatabaseCredentialV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/createSQLDatabaseCredentialV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/sql/databases` | GET | GetSQLDatabaseV2Short | [GetSQLDatabaseV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [GetSQLDatabaseV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [GetSQLDatabaseV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/getSQLDatabaseV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/sql/databases` | POST | CreateSQLDatabaseV2Short | [CreateSQLDatabaseV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [CreateSQLDatabaseV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [CreateSQLDatabaseV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/createSQLDatabaseV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/apps/{app}/sql/databases` | DELETE | DeleteSQLDatabaseV2Short | [DeleteSQLDatabaseV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [DeleteSQLDatabaseV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [DeleteSQLDatabaseV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/deleteSQLDatabaseV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/clusters` | GET | GetSQLClusterV2Short | [GetSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [GetSQLClusterV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [GetSQLClusterV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/getSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/clusters` | PUT | UpdateSQLClusterV2Short | [UpdateSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [UpdateSQLClusterV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [UpdateSQLClusterV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/updateSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/clusters` | POST | CreateSQLClusterV2Short | [CreateSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [CreateSQLClusterV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [CreateSQLClusterV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/createSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/clusters` | DELETE | DeleteSQLClusterV2Short | [DeleteSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [DeleteSQLClusterV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [DeleteSQLClusterV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/deleteSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/clusters/start` | PUT | StartSQLClusterV2Short | [StartSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [StartSQLClusterV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [StartSQLClusterV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/startSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/clusters/stop` | PUT | StopSQLClusterV2Short | [StopSQLClusterV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [StopSQLClusterV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [StopSQLClusterV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/stopSQLClusterV2.go) |
+| `/csm/v2/admin/namespaces/{namespace}/sql/{resourceId}/apps` | GET | GetSQLAppListV2Short | [GetSQLAppListV2Short](../../csm-sdk/pkg/csmclient/managed_resources_sql/managed_resources_sql_client.go) | [GetSQLAppListV2Short](../../services-api/pkg/service/csm/managedResourcesSQL.go) | [GetSQLAppListV2Short](../../samples/cli/cmd/csm/managedResourcesSQL/getSQLAppListV2.go) |
 
 ### Notification Subscription Wrapper:  [NotificationSubscription](../../services-api/pkg/service/csm/notificationSubscription.go)
 | Endpoint | Method | ID | Class | Wrapper | Example |
@@ -142,6 +187,10 @@
 | Model Struct | Class |
 |---|---|
 | `apimodel.AppItem` | [ApimodelAppItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_item.go) |
+| `apimodel.AppUIResponse` | [ApimodelAppUIResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_ui_response.go) |
+| `apimodel.ApplyAppConfigRequest` | [ApimodelApplyAppConfigRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_apply_app_config_request.go) |
+| `apimodel.ApplyConfigItem` | [ApimodelApplyConfigItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_apply_config_item.go) |
+| `apimodel.ApplyPermissionItem` | [ApimodelApplyPermissionItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_apply_permission_item.go) |
 | `apimodel.AutoscalingRequest` | [ApimodelAutoscalingRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_autoscaling_request.go) |
 | `apimodel.AutoscalingResponse` | [ApimodelAutoscalingResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_autoscaling_response.go) |
 | `apimodel.BulkSubscribeItem` | [ApimodelBulkSubscribeItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_bulk_subscribe_item.go) |
@@ -149,15 +198,21 @@
 | `apimodel.CPURequest` | [ApimodelCPURequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_cpu_request.go) |
 | `apimodel.CPUResponse` | [ApimodelCPUResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_cpu_response.go) |
 | `apimodel.CSMAppLimitsResponse` | [ApimodelCSMAppLimitsResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_c_s_m_app_limits_response.go) |
+| `apimodel.CreateAppUIRequest` | [ApimodelCreateAppUIRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_app_ui_request.go) |
 | `apimodel.CreateAppV2Request` | [ApimodelCreateAppV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_app_v2_request.go) |
 | `apimodel.CreateDeploymentV2Request` | [ApimodelCreateDeploymentV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_deployment_v2_request.go) |
 | `apimodel.CreateDeploymentV2Response` | [ApimodelCreateDeploymentV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_deployment_v2_response.go) |
+| `apimodel.CreateKeyValueCredentialRequest` | [ApimodelCreateKeyValueCredentialRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_key_value_credential_request.go) |
+| `apimodel.CreateKeyValueCredentialResponse` | [ApimodelCreateKeyValueCredentialResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_key_value_credential_response.go) |
 | `apimodel.CreateNoSQLAppDatabaseRequest` | [ApimodelCreateNoSQLAppDatabaseRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_no_sql_app_database_request.go) |
 | `apimodel.CreateNoSQLDatabaseCredentialRequest` | [ApimodelCreateNoSQLDatabaseCredentialRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_no_sql_database_credential_request.go) |
+| `apimodel.CreateSQLAppDatabaseRequest` | [ApimodelCreateSQLAppDatabaseRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_sql_app_database_request.go) |
+| `apimodel.CreateSQLDatabaseCredentialRequest` | [ApimodelCreateSQLDatabaseCredentialRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_sql_database_credential_request.go) |
 | `apimodel.CreateSubscriptionRequest` | [ApimodelCreateSubscriptionRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_subscription_request.go) |
 | `apimodel.CreateSubscriptionResponse` | [ApimodelCreateSubscriptionResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_subscription_response.go) |
 | `apimodel.CreateTopicRequest` | [ApimodelCreateTopicRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_topic_request.go) |
 | `apimodel.DeleteNoSQLResourceResponse` | [ApimodelDeleteNoSQLResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_delete_no_sql_resource_response.go) |
+| `apimodel.DeleteSQLResourceResponse` | [ApimodelDeleteSQLResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_delete_sql_resource_response.go) |
 | `apimodel.GetAppImageListV2DataItem` | [ApimodelGetAppImageListV2DataItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_image_list_v2_data_item.go) |
 | `apimodel.GetAppImageListV2DataItemImageScanResult` | [ApimodelGetAppImageListV2DataItemImageScanResult ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_image_list_v2_data_item_image_scan_result.go) |
 | `apimodel.GetAppImageListV2DataItemImageScanStatus` | [ApimodelGetAppImageListV2DataItemImageScanStatus ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_image_list_v2_data_item_image_scan_status.go) |
@@ -167,6 +222,7 @@
 | `apimodel.GetDeploymentListV2DataItem` | [ApimodelGetDeploymentListV2DataItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_deployment_list_v2_data_item.go) |
 | `apimodel.GetDeploymentListV2Request` | [ApimodelGetDeploymentListV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_deployment_list_v2_request.go) |
 | `apimodel.GetDeploymentListV2Response` | [ApimodelGetDeploymentListV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_deployment_list_v2_response.go) |
+| `apimodel.GetIntegrationAppKeyValueResponse` | [ApimodelGetIntegrationAppKeyValueResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_integration_app_key_value_response.go) |
 | `apimodel.GetListOfConfigurationsV2DataItem` | [ApimodelGetListOfConfigurationsV2DataItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_list_of_configurations_v2_data_item.go) |
 | `apimodel.GetListOfConfigurationsV2Response` | [ApimodelGetListOfConfigurationsV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_list_of_configurations_v2_response.go) |
 | `apimodel.GetNotificationSubscriberItem` | [ApimodelGetNotificationSubscriberItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_item.go) |
@@ -175,19 +231,37 @@
 | `apimodel.GetNotificationSubscriberListResponseV2` | [ApimodelGetNotificationSubscriberListResponseV2 ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_list_response_v2.go) |
 | `apimodel.GetNotificationSubscriberStatusResponse` | [ApimodelGetNotificationSubscriberStatusResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_notification_subscriber_status_response.go) |
 | `apimodel.IncreaseLimitFormRequest` | [ApimodelIncreaseLimitFormRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_increase_limit_form_request.go) |
+| `apimodel.IntegrateAppKeyValueRequest` | [ApimodelIntegrateAppKeyValueRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_integrate_app_key_value_request.go) |
+| `apimodel.IntegrateAppKeyValueResponse` | [ApimodelIntegrateAppKeyValueResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_integrate_app_key_value_response.go) |
+| `apimodel.IntegrationCredentialInfo` | [ApimodelIntegrationCredentialInfo ](../../csm-sdk/pkg/csmclientmodels/apimodel_integration_credential_info.go) |
+| `apimodel.IntegrationListItem` | [ApimodelIntegrationListItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_integration_list_item.go) |
+| `apimodel.KeyValueCredentialAcknowledgements` | [ApimodelKeyValueCredentialAcknowledgements ](../../csm-sdk/pkg/csmclientmodels/apimodel_key_value_credential_acknowledgements.go) |
+| `apimodel.KeyValueResourceListResponse` | [ApimodelKeyValueResourceListResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_key_value_resource_list_response.go) |
+| `apimodel.KeyValueResourceResponse` | [ApimodelKeyValueResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_key_value_resource_response.go) |
+| `apimodel.ListAppUIResponse` | [ApimodelListAppUIResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_list_app_ui_response.go) |
+| `apimodel.ListIntegratedAppsKeyValueResponse` | [ApimodelListIntegratedAppsKeyValueResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_list_integrated_apps_key_value_response.go) |
 | `apimodel.ListTopicsResponse` | [ApimodelListTopicsResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_list_topics_response.go) |
 | `apimodel.MemoryRequest` | [ApimodelMemoryRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_request.go) |
 | `apimodel.MemoryResponse` | [ApimodelMemoryResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_memory_response.go) |
 | `apimodel.NoSQLAppListResponse` | [ApimodelNoSQLAppListResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_app_list_response.go) |
 | `apimodel.NoSQLAppResponse` | [ApimodelNoSQLAppResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_app_response.go) |
+| `apimodel.NoSQLDatabaseAcknowledgements` | [ApimodelNoSQLDatabaseAcknowledgements ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_acknowledgements.go) |
 | `apimodel.NoSQLDatabaseCredentialResponse` | [ApimodelNoSQLDatabaseCredentialResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_credential_response.go) |
 | `apimodel.NoSQLDatabaseDeleteResponse` | [ApimodelNoSQLDatabaseDeleteResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_delete_response.go) |
 | `apimodel.NoSQLDatabaseResponse` | [ApimodelNoSQLDatabaseResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_database_response.go) |
 | `apimodel.NoSQLResourceResponse` | [ApimodelNoSQLResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_no_sql_resource_response.go) |
 | `apimodel.NotificationType` | [ApimodelNotificationType ](../../csm-sdk/pkg/csmclientmodels/apimodel_notification_type.go) |
 | `apimodel.PaginationResponse` | [ApimodelPaginationResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_pagination_response.go) |
+| `apimodel.PublicIAMClientResponse` | [ApimodelPublicIAMClientResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_public_i_a_m_client_response.go) |
 | `apimodel.ReplicaRequest` | [ApimodelReplicaRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_request.go) |
 | `apimodel.ReplicaResponse` | [ApimodelReplicaResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_replica_response.go) |
+| `apimodel.SQLAppListResponse` | [ApimodelSQLAppListResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_app_list_response.go) |
+| `apimodel.SQLAppResponse` | [ApimodelSQLAppResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_app_response.go) |
+| `apimodel.SQLDatabaseAcknowledgements` | [ApimodelSQLDatabaseAcknowledgements ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_database_acknowledgements.go) |
+| `apimodel.SQLDatabaseCredentialResponse` | [ApimodelSQLDatabaseCredentialResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_database_credential_response.go) |
+| `apimodel.SQLDatabaseDeleteResponse` | [ApimodelSQLDatabaseDeleteResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_database_delete_response.go) |
+| `apimodel.SQLDatabaseResponse` | [ApimodelSQLDatabaseResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_database_response.go) |
+| `apimodel.SQLResourceResponse` | [ApimodelSQLResourceResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_sql_resource_response.go) |
 | `apimodel.SaveConfigurationV2Request` | [ApimodelSaveConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_configuration_v2_request.go) |
 | `apimodel.SaveConfigurationV2Response` | [ApimodelSaveConfigurationV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_configuration_v2_response.go) |
 | `apimodel.SaveSecretConfigurationV2Request` | [ApimodelSaveSecretConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_save_secret_configuration_v2_request.go) |
@@ -205,6 +279,10 @@
 | `apimodel.UpdateConfigurationV2Request` | [ApimodelUpdateConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_configuration_v2_request.go) |
 | `apimodel.UpdateConfigurationV2Response` | [ApimodelUpdateConfigurationV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_configuration_v2_response.go) |
 | `apimodel.UpdateSecretConfigurationV2Request` | [ApimodelUpdateSecretConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_secret_configuration_v2_request.go) |
+| `apimodel.UploadFileResponse` | [ApimodelUploadFileResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_upload_file_response.go) |
+| `domain.KeyValueClusterConfig` | [DomainKeyValueClusterConfig ](../../csm-sdk/pkg/csmclientmodels/domain_key_value_cluster_config.go) |
+| `domain.KeyValueResourceConfiguration` | [DomainKeyValueResourceConfiguration ](../../csm-sdk/pkg/csmclientmodels/domain_key_value_resource_configuration.go) |
+| `domain.KeyValueUpdateConfiguration` | [DomainKeyValueUpdateConfiguration ](../../csm-sdk/pkg/csmclientmodels/domain_key_value_update_configuration.go) |
 | `generated.CreateAppV1Request` | [GeneratedCreateAppV1Request ](../../csm-sdk/pkg/csmclientmodels/generated_create_app_v1_request.go) |
 | `generated.CreateAppV1Response` | [GeneratedCreateAppV1Response ](../../csm-sdk/pkg/csmclientmodels/generated_create_app_v1_response.go) |
 | `generated.CreateDeploymentV1Request` | [GeneratedCreateDeploymentV1Request ](../../csm-sdk/pkg/csmclientmodels/generated_create_deployment_v1_request.go) |
@@ -243,3 +321,4 @@
 | `nosqlresource.NoSQLResourceConfiguration` | [NosqlresourceNoSQLResourceConfiguration ](../../csm-sdk/pkg/csmclientmodels/nosqlresource_no_sql_resource_configuration.go) |
 | `resourceaccesstunnel.TunnelInfo` | [ResourceaccesstunnelTunnelInfo ](../../csm-sdk/pkg/csmclientmodels/resourceaccesstunnel_tunnel_info.go) |
 | `response.ErrorResponse` | [ResponseErrorResponse ](../../csm-sdk/pkg/csmclientmodels/response_error_response.go) |
+| `sqlresource.SQLResourceConfiguration` | [SqlresourceSQLResourceConfiguration ](../../csm-sdk/pkg/csmclientmodels/sqlresource_sql_resource_configuration.go) |

@@ -67,12 +67,12 @@ type AdminCreateUserRolesV2Params struct {
 	/*Body*/
 	Body []string
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
 	/*UserID
-	  User id
+	  User ID
 
 	*/
 	UserID string

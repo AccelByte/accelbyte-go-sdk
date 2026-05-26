@@ -18,30 +18,30 @@ import (
 // swagger:model Clientmodel client update V3 request.
 type ClientmodelClientUpdateV3Request struct {
 
-	// audiences
+	// List of target client IDs who are intended to receive the token.
 	Audiences []string `json:"audiences,omitempty"`
 
-	// baseuri
+	// A base URI of the application. Used in audience checking to ensure the token is used by the right resource server. Required if the application type is a server.
 	BaseURI string `json:"baseUri,omitempty"`
 
-	// clientname
+	// The client name. Must not be empty if the field exists in the body.
 	ClientName string `json:"clientName,omitempty"`
 
-	// clientpermissions
+	// Contains the client's permissions.
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions,omitempty"`
 
-	// clientplatform
+	// Available client platforms: Playstation, Xbox, Steam, Epic, IOS, GooglePlay, Nintendo, Oculus. Default: empty string.
 	// Required: true
 	ClientPlatform *string `json:"clientPlatform"`
 
-	// deletable
+	// Flag to identify whether the client is deletable.
 	Deletable bool `json:"deletable"`
 
 	// length 0~1024
 	// Required: true
 	Description *string `json:"description"`
 
-	// modulepermissions
+	// Module-based permissions for this client: 1. Only applicable for Confidential client type 2. Currently used in Multi Tenant mode only 3. To view the available module permission list, refer to _GET /iam/v3/admin/clientConfig/permissions_
 	ModulePermissions []*AccountcommonClientModulePermission `json:"modulePermissions,omitempty"`
 
 	// DEPRECATED, this field is no longer used
@@ -61,7 +61,7 @@ type ClientmodelClientUpdateV3Request struct {
 	// valid time unit: SECONDS, MINUTES, HOURS or DAYS. Default is MINUTES
 	OauthRefreshTokenExpirationTimeUnit string `json:"oauthRefreshTokenExpirationTimeUnit,omitempty"`
 
-	// redirecturi
+	// Contains the redirect URI used in OAuth callback. Must not be empty if the field exists in the body.
 	RedirectURI string `json:"redirectUri,omitempty"`
 
 	// scopes
@@ -70,7 +70,7 @@ type ClientmodelClientUpdateV3Request struct {
 	// exempt this client from login queue
 	SkipLoginQueue bool `json:"skipLoginQueue"`
 
-	// twofactorenabled
+	// Flag to indicate whether 2FA validation is enabled for this client. Default: false.
 	TwoFactorEnabled bool `json:"twoFactorEnabled"`
 }
 

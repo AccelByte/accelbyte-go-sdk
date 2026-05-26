@@ -18,18 +18,18 @@ import (
 // swagger:model Model role V4 request.
 type ModelRoleV4Request struct {
 
-	// adminrole
+	// Specify if the role is for admin users. Default: false.
 	// Required: true
 	AdminRole *bool `json:"adminRole"`
 
-	// deletable
+	// Specify if the role can be deleted. Default: true.
 	Deletable bool `json:"deletable"`
 
-	// iswildcard
+	// Specify if the role can be assigned to wildcard (*) namespace. Default: false.
 	// Required: true
 	IsWildcard *bool `json:"isWildcard"`
 
-	// rolename
+	// Role name, alphanumeric, cannot have special characters.
 	// Required: true
 	RoleName *string `json:"roleName"`
 }

@@ -35,6 +35,9 @@ type AccountcommonClientPermissionSet struct {
 	// moduleid
 	// Required: true
 	ModuleID *string `json:"moduleId"`
+
+	// package
+	Package string `json:"package,omitempty"`
 }
 
 // Validate validates this Accountcommon client permission set

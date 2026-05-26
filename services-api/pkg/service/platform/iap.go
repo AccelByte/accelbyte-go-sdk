@@ -748,6 +748,23 @@ func (aaa *IAPService) AdminSyncSteamIAPByTransaction(input *iap.AdminSyncSteamI
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminSyncTwitchDropsEntitlementShort instead.
+func (aaa *IAPService) AdminSyncTwitchDropsEntitlement(input *iap.AdminSyncTwitchDropsEntitlementParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, tooManyRequests, err := aaa.Client.IAP.AdminSyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
+	if tooManyRequests != nil {
+		return tooManyRequests
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use GetAppleConfigVersionShort instead.
 func (aaa *IAPService) GetAppleConfigVersion(input *iap.GetAppleConfigVersionParams) (*platformclientmodels.AppleIAPConfigVersionInfo, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -2593,6 +2610,36 @@ func (aaa *IAPService) AdminSyncSteamIAPByTransactionShort(input *iap.AdminSyncS
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (aaa *IAPService) AdminSyncTwitchDropsEntitlementShort(input *iap.AdminSyncTwitchDropsEntitlementParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdIAP != nil {
+		input.XFlightId = tempFlightIdIAP
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.IAP.AdminSyncTwitchDropsEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (aaa *IAPService) GetAppleConfigVersionShort(input *iap.GetAppleConfigVersionParams) (*platformclientmodels.AppleIAPConfigVersionInfo, error) {

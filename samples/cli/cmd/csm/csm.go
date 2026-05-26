@@ -8,15 +8,19 @@ package csm
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/csm/app"
+	"github.com/AccelByte/sample-apps/cmd/csm/appUI"
 	"github.com/AccelByte/sample-apps/cmd/csm/appV2"
 	"github.com/AccelByte/sample-apps/cmd/csm/asyncMessaging"
 	"github.com/AccelByte/sample-apps/cmd/csm/configuration"
 	"github.com/AccelByte/sample-apps/cmd/csm/configurationV2"
 	"github.com/AccelByte/sample-apps/cmd/csm/deployment"
 	"github.com/AccelByte/sample-apps/cmd/csm/deploymentV2"
+	"github.com/AccelByte/sample-apps/cmd/csm/extendFiles"
 	"github.com/AccelByte/sample-apps/cmd/csm/image"
 	"github.com/AccelByte/sample-apps/cmd/csm/imageV2"
 	"github.com/AccelByte/sample-apps/cmd/csm/managedResources"
+	"github.com/AccelByte/sample-apps/cmd/csm/managedResourcesKeyValue"
+	"github.com/AccelByte/sample-apps/cmd/csm/managedResourcesSQL"
 	"github.com/AccelByte/sample-apps/cmd/csm/messages"
 	"github.com/AccelByte/sample-apps/cmd/csm/notificationSubscription"
 	"github.com/AccelByte/sample-apps/cmd/csm/notificationSubscriptionV3"
@@ -31,6 +35,10 @@ var CsmCmd = &cobra.Command{
 }
 
 func init() {
+	CsmCmd.AddCommand(appUI.ListAppUICmd)
+	CsmCmd.AddCommand(appUI.CreateAppUICmd)
+	CsmCmd.AddCommand(appUI.DeleteAppUICmd)
+	CsmCmd.AddCommand(appUI.UploadAppUIFileCmd)
 	CsmCmd.AddCommand(app.GetAppListV1Cmd)
 	CsmCmd.AddCommand(app.GetAppV1Cmd)
 	CsmCmd.AddCommand(app.CreateAppV1Cmd)
@@ -53,17 +61,24 @@ func init() {
 	CsmCmd.AddCommand(deployment.GetListOfDeploymentV1Cmd)
 	CsmCmd.AddCommand(deployment.GetDeploymentV1Cmd)
 	CsmCmd.AddCommand(deployment.DeleteDeploymentV1Cmd)
+	CsmCmd.AddCommand(extendFiles.GetExtendFileCmd)
 	CsmCmd.AddCommand(messages.PublicGetMessagesCmd)
 	CsmCmd.AddCommand(appV2.GetAppListV2Cmd)
 	CsmCmd.AddCommand(appV2.GetAppV2Cmd)
 	CsmCmd.AddCommand(appV2.CreateAppV2Cmd)
 	CsmCmd.AddCommand(appV2.DeleteAppV2Cmd)
 	CsmCmd.AddCommand(appV2.UpdateAppV2Cmd)
+	CsmCmd.AddCommand(appV2.ApplyAppConfigV2Cmd)
 	CsmCmd.AddCommand(asyncMessaging.CreateSubscriptionHandlerCmd)
 	CsmCmd.AddCommand(asyncMessaging.UnsubscribeTopicHandlerCmd)
 	CsmCmd.AddCommand(deploymentV2.CreateDeploymentV2Cmd)
 	CsmCmd.AddCommand(imageV2.GetAppImageListV2Cmd)
 	CsmCmd.AddCommand(imageV2.DeleteAppImagesV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.CreateKeyValueCredentialV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.GetIntegrationAppKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.IntegrateAppKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.RemoveIntegrationAppKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResources.CreateNewNoSQLDatabaseCredentialV2Cmd)
 	CsmCmd.AddCommand(managedResources.CreateNoSQLDatabaseCredentialV2Cmd)
 	CsmCmd.AddCommand(managedResources.GetNoSQLDatabaseV2Cmd)
 	CsmCmd.AddCommand(managedResources.CreateNoSQLDatabaseV2Cmd)
@@ -74,6 +89,10 @@ func init() {
 	CsmCmd.AddCommand(configurationV2.SaveSecretV2Cmd)
 	CsmCmd.AddCommand(configurationV2.UpdateSecretV2Cmd)
 	CsmCmd.AddCommand(configurationV2.DeleteSecretV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.CreateSQLDatabaseCredentialV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.GetSQLDatabaseV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.CreateSQLDatabaseV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.DeleteSQLDatabaseV2Cmd)
 	CsmCmd.AddCommand(appV2.StartAppV2Cmd)
 	CsmCmd.AddCommand(appV2.StopAppV2Cmd)
 	CsmCmd.AddCommand(notificationSubscription.GetNotificationSubscriberListV2Cmd)
@@ -94,6 +113,13 @@ func init() {
 	CsmCmd.AddCommand(deploymentV2.GetListOfDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.GetDeploymentV2Cmd)
 	CsmCmd.AddCommand(deploymentV2.DeleteDeploymentV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.GetKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.ListKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.CreateKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.GetKeyValueClusterLimitConfigV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.UpdateKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.DeleteKeyValueClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesKeyValue.GetListIntegratedAppKeyValueClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.GetNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.UpdateNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.CreateNoSQLClusterV2Cmd)
@@ -102,6 +128,13 @@ func init() {
 	CsmCmd.AddCommand(managedResources.StopNoSQLClusterV2Cmd)
 	CsmCmd.AddCommand(managedResources.GetNoSQLAccessTunnelV2Cmd)
 	CsmCmd.AddCommand(resourcesLimits.GetResourcesLimitsCmd)
+	CsmCmd.AddCommand(managedResourcesSQL.GetSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.UpdateSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.CreateSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.DeleteSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.StartSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.StopSQLClusterV2Cmd)
+	CsmCmd.AddCommand(managedResourcesSQL.GetSQLAppListV2Cmd)
 	CsmCmd.AddCommand(managedResources.GetNoSQLAppListV2Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.GetNotificationSubscriberListV3Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.DeleteSubscriptionAppNotificationV3Cmd)

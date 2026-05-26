@@ -69,7 +69,7 @@ type AdminUpdateLoginAllowlistV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelLoginAllowlistRequest
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

@@ -21,8 +21,11 @@ import (
 // NewAdminDeleteTiedChallengeParams creates a new AdminDeleteTiedChallengeParams object
 // with the default values initialized.
 func NewAdminDeleteTiedChallengeParams() *AdminDeleteTiedChallengeParams {
-	var ()
+	var (
+		safeDeleteDefault = string("true")
+	)
 	return &AdminDeleteTiedChallengeParams{
+		SafeDelete: &safeDeleteDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +34,11 @@ func NewAdminDeleteTiedChallengeParams() *AdminDeleteTiedChallengeParams {
 // NewAdminDeleteTiedChallengeParamsWithTimeout creates a new AdminDeleteTiedChallengeParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminDeleteTiedChallengeParamsWithTimeout(timeout time.Duration) *AdminDeleteTiedChallengeParams {
-	var ()
+	var (
+		safeDeleteDefault = string("true")
+	)
 	return &AdminDeleteTiedChallengeParams{
+		SafeDelete: &safeDeleteDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +47,11 @@ func NewAdminDeleteTiedChallengeParamsWithTimeout(timeout time.Duration) *AdminD
 // NewAdminDeleteTiedChallengeParamsWithContext creates a new AdminDeleteTiedChallengeParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminDeleteTiedChallengeParamsWithContext(ctx context.Context) *AdminDeleteTiedChallengeParams {
-	var ()
+	var (
+		safeDeleteDefault = string("true")
+	)
 	return &AdminDeleteTiedChallengeParams{
+		SafeDelete: &safeDeleteDefault,
 
 		Context: ctx,
 	}
@@ -51,8 +60,11 @@ func NewAdminDeleteTiedChallengeParamsWithContext(ctx context.Context) *AdminDel
 // NewAdminDeleteTiedChallengeParamsWithHTTPClient creates a new AdminDeleteTiedChallengeParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminDeleteTiedChallengeParamsWithHTTPClient(client *http.Client) *AdminDeleteTiedChallengeParams {
-	var ()
+	var (
+		safeDeleteDefault = string("true")
+	)
 	return &AdminDeleteTiedChallengeParams{
+		SafeDelete: &safeDeleteDefault,
 		HTTPClient: client,
 	}
 }
@@ -74,6 +86,11 @@ type AdminDeleteTiedChallengeParams struct {
 
 	*/
 	Namespace string
+	/*SafeDelete
+	  Since the early goal progress data does not include the namespace, it may lead to accidental deletion. If you want to safely delete this data, please set it to true, and it will check whether have conflict data.
+
+	*/
+	SafeDelete *string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -162,6 +179,17 @@ func (o *AdminDeleteTiedChallengeParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithSafeDelete adds the safeDelete to the admin delete tied challenge params
+func (o *AdminDeleteTiedChallengeParams) WithSafeDelete(safeDelete *string) *AdminDeleteTiedChallengeParams {
+	o.SetSafeDelete(safeDelete)
+	return o
+}
+
+// SetSafeDelete adds the safeDelete to the admin delete tied challenge params
+func (o *AdminDeleteTiedChallengeParams) SetSafeDelete(safeDelete *string) {
+	o.SafeDelete = safeDelete
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *AdminDeleteTiedChallengeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -178,6 +206,22 @@ func (o *AdminDeleteTiedChallengeParams) WriteToRequest(r runtime.ClientRequest,
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.SafeDelete != nil {
+
+		// query param safeDelete
+		var qrSafeDelete string
+		if o.SafeDelete != nil {
+			qrSafeDelete = *o.SafeDelete
+		}
+		qSafeDelete := qrSafeDelete
+		if qSafeDelete != "" {
+			if err := r.SetQueryParam("safeDelete", qSafeDelete); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

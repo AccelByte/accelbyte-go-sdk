@@ -104,6 +104,72 @@ func (aaa *InputValidationsService) AdminResetInputValidations(input *input_vali
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminGetNamespaceScopedInputValidationsShort instead.
+func (aaa *InputValidationsService) AdminGetNamespaceScopedInputValidations(input *input_validations.AdminGetNamespaceScopedInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, err := aaa.Client.InputValidations.AdminGetNamespaceScopedInputValidations(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminUpdateNamespaceScopedInputValidationsShort instead.
+func (aaa *InputValidationsService) AdminUpdateNamespaceScopedInputValidations(input *input_validations.AdminUpdateNamespaceScopedInputValidationsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, err := aaa.Client.InputValidations.AdminUpdateNamespaceScopedInputValidations(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminResetNamespaceScopedInputValidationsShort instead.
+func (aaa *InputValidationsService) AdminResetNamespaceScopedInputValidations(input *input_validations.AdminResetNamespaceScopedInputValidationsParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unauthorized, forbidden, notFound, err := aaa.Client.InputValidations.AdminResetNamespaceScopedInputValidations(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: 2022-01-10 - please use PublicGetInputValidationsShort instead.
 func (aaa *InputValidationsService) PublicGetInputValidations(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
 	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetInputValidations(input)
@@ -127,6 +193,46 @@ func (aaa *InputValidationsService) PublicGetInputValidationByField(input *input
 		return nil, err
 	}
 	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetInputValidationByField(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetNamespaceScopedInputValidationsShort instead.
+func (aaa *InputValidationsService) PublicGetNamespaceScopedInputValidations(input *input_validations.PublicGetNamespaceScopedInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetNamespaceScopedInputValidations(input, client.BearerToken(*token.AccessToken))
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicGetNamespaceScopedInputValidationByFieldShort instead.
+func (aaa *InputValidationsService) PublicGetNamespaceScopedInputValidationByField(input *input_validations.PublicGetNamespaceScopedInputValidationByFieldParams) (*iamclientmodels.ModelInputValidationConfigVersion, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, notFound, internalServerError, err := aaa.Client.InputValidations.PublicGetNamespaceScopedInputValidationByField(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -234,6 +340,100 @@ func (aaa *InputValidationsService) AdminResetInputValidationsShort(input *input
 	return nil
 }
 
+func (aaa *InputValidationsService) AdminGetNamespaceScopedInputValidationsShort(input *input_validations.AdminGetNamespaceScopedInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.InputValidations.AdminGetNamespaceScopedInputValidationsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *InputValidationsService) AdminUpdateNamespaceScopedInputValidationsShort(input *input_validations.AdminUpdateNamespaceScopedInputValidationsParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.InputValidations.AdminUpdateNamespaceScopedInputValidationsShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *InputValidationsService) AdminResetNamespaceScopedInputValidationsShort(input *input_validations.AdminResetNamespaceScopedInputValidationsParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.InputValidations.AdminResetNamespaceScopedInputValidationsShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (aaa *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
 	if input.RetryPolicy == nil {
 		input.RetryPolicy = &utils.Retry{
@@ -284,6 +484,74 @@ func (aaa *InputValidationsService) PublicGetInputValidationByFieldShort(input *
 	}
 
 	ok, err := aaa.Client.InputValidations.PublicGetInputValidationByFieldShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *InputValidationsService) PublicGetNamespaceScopedInputValidationsShort(input *input_validations.PublicGetNamespaceScopedInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.InputValidations.PublicGetNamespaceScopedInputValidationsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *InputValidationsService) PublicGetNamespaceScopedInputValidationByFieldShort(input *input_validations.PublicGetNamespaceScopedInputValidationByFieldParams) (*iamclientmodels.ModelInputValidationConfigVersion, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdInputValidations != nil {
+		input.XFlightId = tempFlightIdInputValidations
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.InputValidations.PublicGetNamespaceScopedInputValidationByFieldShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

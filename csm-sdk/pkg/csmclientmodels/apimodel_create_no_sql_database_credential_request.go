@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodel create no SQL database credential request.
 type ApimodelCreateNoSQLDatabaseCredentialRequest struct {
 
+	// acknowledgements
+	// Required: true
+	Acknowledgements *ApimodelNoSQLDatabaseAcknowledgements `json:"acknowledgements"`
+
 	// password
 	// Required: true
 	Password *string `json:"password"`
@@ -31,6 +35,9 @@ type ApimodelCreateNoSQLDatabaseCredentialRequest struct {
 func (m *ApimodelCreateNoSQLDatabaseCredentialRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAcknowledgements(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validatePassword(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,6 +48,24 @@ func (m *ApimodelCreateNoSQLDatabaseCredentialRequest) Validate(formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelCreateNoSQLDatabaseCredentialRequest) validateAcknowledgements(formats strfmt.Registry) error {
+
+	if err := validate.Required("acknowledgements", "body", m.Acknowledgements); err != nil {
+		return err
+	}
+
+	if m.Acknowledgements != nil {
+		if err := m.Acknowledgements.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("acknowledgements")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

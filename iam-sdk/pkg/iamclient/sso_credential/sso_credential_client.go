@@ -47,8 +47,8 @@ type ClientService interface {
 /*
 Deprecated: 2022-08-10 - Use RetrieveAllSSOLoginPlatformCredentialV3Short instead.
 
-RetrieveAllSSOLoginPlatformCredentialV3 get all sso platform credential
-This is the API to Get All Active SSO Platform Credential.
+RetrieveAllSSOLoginPlatformCredentialV3 get all sso platform credentials
+Retrieves all SSO platform credentials for the namespace. Supports pagination via limit and offset parameters.
 */
 func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, *RetrieveAllSSOLoginPlatformCredentialV3Unauthorized, *RetrieveAllSSOLoginPlatformCredentialV3Forbidden, *RetrieveAllSSOLoginPlatformCredentialV3NotFound, *RetrieveAllSSOLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -108,8 +108,8 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3(params *RetrieveAllSSOL
 }
 
 /*
-RetrieveAllSSOLoginPlatformCredentialV3Short get all sso platform credential
-This is the API to Get All Active SSO Platform Credential.
+RetrieveAllSSOLoginPlatformCredentialV3Short get all sso platform credentials
+Retrieves all SSO platform credentials for the namespace. Supports pagination via limit and offset parameters.
 */
 func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAllSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*RetrieveAllSSOLoginPlatformCredentialV3OK, error) {
 	// TODO: Validate the params before sending
@@ -164,7 +164,7 @@ func (a *Client) RetrieveAllSSOLoginPlatformCredentialV3Short(params *RetrieveAl
 Deprecated: 2022-08-10 - Use RetrieveSSOLoginPlatformCredentialShort instead.
 
 RetrieveSSOLoginPlatformCredential retrieve sso platform credential
-This is the API to Get SSO Platform Credential.
+Retrieves the SSO platform credential for the specified platform.
 */
 func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, *RetrieveSSOLoginPlatformCredentialBadRequest, *RetrieveSSOLoginPlatformCredentialUnauthorized, *RetrieveSSOLoginPlatformCredentialForbidden, *RetrieveSSOLoginPlatformCredentialNotFound, *RetrieveSSOLoginPlatformCredentialInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -228,7 +228,7 @@ func (a *Client) RetrieveSSOLoginPlatformCredential(params *RetrieveSSOLoginPlat
 
 /*
 RetrieveSSOLoginPlatformCredentialShort retrieve sso platform credential
-This is the API to Get SSO Platform Credential.
+Retrieves the SSO platform credential for the specified platform.
 */
 func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*RetrieveSSOLoginPlatformCredentialOK, error) {
 	// TODO: Validate the params before sending
@@ -285,14 +285,7 @@ func (a *Client) RetrieveSSOLoginPlatformCredentialShort(params *RetrieveSSOLogi
 Deprecated: 2022-08-10 - Use AddSSOLoginPlatformCredentialShort instead.
 
 AddSSOLoginPlatformCredential add sso platform credential
-This is the API to Add SSO Platform Credential.
-## Supported platforms:
-- **discourse**
-the ssoUrl of the discourse is the discourse forum url. example: https://forum.example.com
-- **azure with SAML**
-**appId** is an application identifier in IdP, in azure it's called EntityID
-**acsUrl** is an endpoint on the service provider where the identity provider will redirect to with its authentication response. example: /iam/v3/sso/saml/azuresaml/authenticate
-**federationMetadataUrl** is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship
+Creates an SSO platform credential for the specified platform.
 */
 func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, *AddSSOLoginPlatformCredentialBadRequest, *AddSSOLoginPlatformCredentialUnauthorized, *AddSSOLoginPlatformCredentialForbidden, *AddSSOLoginPlatformCredentialInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -353,14 +346,7 @@ func (a *Client) AddSSOLoginPlatformCredential(params *AddSSOLoginPlatformCreden
 
 /*
 AddSSOLoginPlatformCredentialShort add sso platform credential
-This is the API to Add SSO Platform Credential.
-## Supported platforms:
-- **discourse**
-the ssoUrl of the discourse is the discourse forum url. example: https://forum.example.com
-- **azure with SAML**
-**appId** is an application identifier in IdP, in azure it's called EntityID
-**acsUrl** is an endpoint on the service provider where the identity provider will redirect to with its authentication response. example: /iam/v3/sso/saml/azuresaml/authenticate
-**federationMetadataUrl** is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship
+Creates an SSO platform credential for the specified platform.
 */
 func (a *Client) AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*AddSSOLoginPlatformCredentialCreated, error) {
 	// TODO: Validate the params before sending
@@ -415,7 +401,7 @@ func (a *Client) AddSSOLoginPlatformCredentialShort(params *AddSSOLoginPlatformC
 Deprecated: 2022-08-10 - Use DeleteSSOLoginPlatformCredentialV3Short instead.
 
 DeleteSSOLoginPlatformCredentialV3 delete sso platform credential
-This is the API to Delete SSO Platform Credential.
+Deletes the SSO platform credential for the specified platform.
 */
 func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, *DeleteSSOLoginPlatformCredentialV3BadRequest, *DeleteSSOLoginPlatformCredentialV3Unauthorized, *DeleteSSOLoginPlatformCredentialV3Forbidden, *DeleteSSOLoginPlatformCredentialV3NotFound, *DeleteSSOLoginPlatformCredentialV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -479,7 +465,7 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3(params *DeleteSSOLoginPlatfo
 
 /*
 DeleteSSOLoginPlatformCredentialV3Short delete sso platform credential
-This is the API to Delete SSO Platform Credential.
+Deletes the SSO platform credential for the specified platform.
 */
 func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSSOLoginPlatformCredentialV3NoContent, error) {
 	// TODO: Validate the params before sending
@@ -536,7 +522,7 @@ func (a *Client) DeleteSSOLoginPlatformCredentialV3Short(params *DeleteSSOLoginP
 Deprecated: 2022-08-10 - Use UpdateSSOPlatformCredentialShort instead.
 
 UpdateSSOPlatformCredential update sso platform credential
-This is the API to Delete SSO Platform Credential.
+Updates the SSO platform credential for the specified platform.
 */
 func (a *Client) UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, *UpdateSSOPlatformCredentialBadRequest, *UpdateSSOPlatformCredentialUnauthorized, *UpdateSSOPlatformCredentialForbidden, *UpdateSSOPlatformCredentialNotFound, *UpdateSSOPlatformCredentialInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -600,7 +586,7 @@ func (a *Client) UpdateSSOPlatformCredential(params *UpdateSSOPlatformCredential
 
 /*
 UpdateSSOPlatformCredentialShort update sso platform credential
-This is the API to Delete SSO Platform Credential.
+Updates the SSO platform credential for the specified platform.
 */
 func (a *Client) UpdateSSOPlatformCredentialShort(params *UpdateSSOPlatformCredentialParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSSOPlatformCredentialOK, error) {
 	// TODO: Validate the params before sending

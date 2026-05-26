@@ -69,7 +69,7 @@ type AddRoleManagersParams struct {
 	/*Body*/
 	Body *iamclientmodels.ModelRoleManagersRequest
 	/*RoleID
-	  Role id
+	  Role ID
 
 	*/
 	RoleID string

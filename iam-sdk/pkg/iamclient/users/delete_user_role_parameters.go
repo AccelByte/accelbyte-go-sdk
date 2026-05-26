@@ -65,17 +65,17 @@ type DeleteUserRoleParams struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
 	/*RoleID
-	  Role id
+	  Role ID
 
 	*/
 	RoleID string
 	/*UserID
-	  User id
+	  User ID
 
 	*/
 	UserID string

@@ -40,6 +40,8 @@ type ClientService interface {
 	DeleteAppV2Short(params *DeleteAppV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppV2NoContent, error)
 	UpdateAppV2(params *UpdateAppV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppV2OK, *UpdateAppV2BadRequest, *UpdateAppV2Unauthorized, *UpdateAppV2Forbidden, *UpdateAppV2NotFound, *UpdateAppV2InternalServerError, error)
 	UpdateAppV2Short(params *UpdateAppV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppV2OK, error)
+	ApplyAppConfigV2(params *ApplyAppConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*ApplyAppConfigV2OK, *ApplyAppConfigV2BadRequest, *ApplyAppConfigV2Unauthorized, *ApplyAppConfigV2Forbidden, *ApplyAppConfigV2NotFound, *ApplyAppConfigV2Conflict, *ApplyAppConfigV2InternalServerError, error)
+	ApplyAppConfigV2Short(params *ApplyAppConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*ApplyAppConfigV2OK, error)
 	UpdateAppResourcesV2(params *UpdateAppResourcesV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppResourcesV2OK, *UpdateAppResourcesV2BadRequest, *UpdateAppResourcesV2Unauthorized, *UpdateAppResourcesV2Forbidden, *UpdateAppResourcesV2NotFound, *UpdateAppResourcesV2InternalServerError, error)
 	UpdateAppResourcesV2Short(params *UpdateAppResourcesV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppResourcesV2OK, error)
 	UpdateAppResourcesResourceLimitFormV2(params *UpdateAppResourcesResourceLimitFormV2Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppResourcesResourceLimitFormV2NoContent, *UpdateAppResourcesResourceLimitFormV2BadRequest, *UpdateAppResourcesResourceLimitFormV2Unauthorized, *UpdateAppResourcesResourceLimitFormV2Forbidden, *UpdateAppResourcesResourceLimitFormV2NotFound, *UpdateAppResourcesResourceLimitFormV2InternalServerError, error)
@@ -354,9 +356,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]`
 Create new extend app with name provided by {app} path parameter and specified scenario type
 
 Available scenario:
+- scenario 3: `event-handler`
 - scenario 1: `function-override`
 - scenario 2: `service-extension`
-- scenario 3: `event-handler`
 
 
 Available app status:
@@ -447,9 +449,9 @@ Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]`
 Create new extend app with name provided by {app} path parameter and specified scenario type
 
 Available scenario:
+- scenario 3: `event-handler`
 - scenario 1: `function-override`
 - scenario 2: `service-extension`
-- scenario 3: `event-handler`
 
 
 Available app status:
@@ -772,6 +774,144 @@ func (a *Client) UpdateAppV2Short(params *UpdateAppV2Params, authInfo runtime.Cl
 	case *UpdateAppV2NotFound:
 		return nil, v
 	case *UpdateAppV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use ApplyAppConfigV2Short instead.
+
+ApplyAppConfigV2 declaratively create or update an extend app from a spec
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP []`
+
+Idempotent endpoint that creates or updates an Extend app from a declarative spec.
+Uses three-way merge semantics (kubectl apply) for variables, secrets, and permissions.
+
+Note: `preferred_k8s_namespace` is only used on the initial create call; it is ignored on subsequent apply calls.
+On the first apply after creation the deletion phase is skipped (no prior apply state recorded).
+*/
+func (a *Client) ApplyAppConfigV2(params *ApplyAppConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*ApplyAppConfigV2OK, *ApplyAppConfigV2BadRequest, *ApplyAppConfigV2Unauthorized, *ApplyAppConfigV2Forbidden, *ApplyAppConfigV2NotFound, *ApplyAppConfigV2Conflict, *ApplyAppConfigV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewApplyAppConfigV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ApplyAppConfigV2",
+		Method:             "POST",
+		PathPattern:        "/csm/v2/admin/namespaces/{namespace}/apps/{app}/apply",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ApplyAppConfigV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ApplyAppConfigV2OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *ApplyAppConfigV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *ApplyAppConfigV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *ApplyAppConfigV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *ApplyAppConfigV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *ApplyAppConfigV2Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *ApplyAppConfigV2InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+ApplyAppConfigV2Short declaratively create or update an extend app from a spec
+Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP []`
+
+Idempotent endpoint that creates or updates an Extend app from a declarative spec.
+Uses three-way merge semantics (kubectl apply) for variables, secrets, and permissions.
+
+Note: `preferred_k8s_namespace` is only used on the initial create call; it is ignored on subsequent apply calls.
+On the first apply after creation the deletion phase is skipped (no prior apply state recorded).
+*/
+func (a *Client) ApplyAppConfigV2Short(params *ApplyAppConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*ApplyAppConfigV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewApplyAppConfigV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "ApplyAppConfigV2",
+		Method:             "POST",
+		PathPattern:        "/csm/v2/admin/namespaces/{namespace}/apps/{app}/apply",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ApplyAppConfigV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ApplyAppConfigV2OK:
+		return v, nil
+	case *ApplyAppConfigV2BadRequest:
+		return nil, v
+	case *ApplyAppConfigV2Unauthorized:
+		return nil, v
+	case *ApplyAppConfigV2Forbidden:
+		return nil, v
+	case *ApplyAppConfigV2NotFound:
+		return nil, v
+	case *ApplyAppConfigV2Conflict:
+		return nil, v
+	case *ApplyAppConfigV2InternalServerError:
 		return nil, v
 
 	default:

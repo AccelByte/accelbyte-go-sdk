@@ -8,7 +8,7 @@
     },
     "description": "Justice Inventory Service",
     "title": "justice-inventory-service (Early Access)",
-    "version": "0.2.22"
+    "version": "0.2.25"
   },
   "schemes": [
     "https"
@@ -31,7 +31,8 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tCreate chaining Operations.\n\t\t\tThis process will run sequentially \n\t\t\t1. remove item process\n\t\t\t2. consume item process\n\t\t\t3. update item process\n\t\t\t4. create item process\n               if toSpecificInventory set as true, then inventoryId field will be mandatory, vice versa\n\t\t\t\n\t\t\tThe behavior of each process is same with current admin level endpoint\n\n\t\t\trequestId: Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, \n\t\t\t\t\t   it will return original successful response\n\t\t\treplayed : replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
+        "deprecated": true,
+        "description": "\n\t\t\t## The endpoint is going to be deprecated\n\t\t\tCreate chaining Operations.\n\t\t\tThis process will run sequentially \n\t\t\t1. remove item process\n\t\t\t2. consume item process\n\t\t\t3. update item process\n\t\t\t4. create item process\n               if toSpecificInventory set as true, then inventoryId field will be mandatory, vice versa\n\t\t\t\n\t\t\tThe behavior of each process is same with current admin level endpoint\n\n\t\t\trequestId: Request id(Optional), client should provide a unique request id to perform at most once execution, When a request id is resubmitted, \n\t\t\t\t\t   it will return original successful response\n\t\t\treplayed : replayed, if true,the response is original successful response. This will not be included in response if client have not pass request id.\n\n\t\t\tPermission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:INVENTORY:ITEM [CREATE]\n\t\t",
         "operationId": "AdminCreateChainingOperations",
         "parameters": [
           {
@@ -4793,11 +4794,11 @@
     "path": "/inventory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-02-16T03:07:07+00:00",
-    "gitHash": "e24f8ec37da5e2e1e9915bcdc917ad3ff2ca8801",
+    "buildDate": "2026-05-12T07:40:45+00:00",
+    "gitHash": "445f26ea1477c1d41097fccb08370ee3c7ddbf3e",
     "name": "justice-inventory-service",
     "realm": "stage",
-    "version": "0.2.22",
+    "version": "0.2.25",
     "version-roles-seeding": "1.2.34"
   }
 }

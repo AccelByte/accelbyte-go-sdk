@@ -18,10 +18,10 @@ import (
 // swagger:model Account upgrade headless account request V4.
 type AccountUpgradeHeadlessAccountRequestV4 struct {
 
-	// dateofbirth
+	// Optional date of birth to update after upgrade. Format: YYYY-MM-DD, e.g. 2019-04-29.
 	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
-	// displayname
+	// Optional user display name to update after upgrade.
 	DisplayName string `json:"displayName,omitempty"`
 
 	// emailaddress
@@ -32,7 +32,7 @@ type AccountUpgradeHeadlessAccountRequestV4 struct {
 	// Required: true
 	Password *string `json:"password"`
 
-	// uniquedisplayname
+	// Optional user display name to update after upgrade.
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 
 	// username

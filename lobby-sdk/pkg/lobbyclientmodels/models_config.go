@@ -103,6 +103,10 @@ type ModelsConfig struct {
 	// Required: true
 	// Format: int64
 	UnregisterDelay *int64 `json:"unregisterDelay"`
+
+	// wsreadtimeout
+	// Format: int64
+	WsReadTimeout int64 `json:"wsReadTimeout,omitempty"`
 }
 
 // Validate validates this Models config

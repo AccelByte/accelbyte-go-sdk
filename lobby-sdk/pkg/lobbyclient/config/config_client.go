@@ -750,6 +750,10 @@ JSON Schema of the exported file:
 "unregisterDelay": {
 "type": "integer",
 "format": "int64"
+},
+"wsReadTimeout": {
+"type": "integer",
+"format": "int64"
 }
 }
 }
@@ -919,6 +923,10 @@ JSON Schema of the exported file:
 "format": "int32"
 },
 "unregisterDelay": {
+"type": "integer",
+"format": "int64"
+},
+"wsReadTimeout": {
 "type": "integer",
 "format": "int64"
 }

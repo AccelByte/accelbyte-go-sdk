@@ -17,7 +17,7 @@ import (
 // swagger:model Model unlink user platform request.
 type ModelUnlinkUserPlatformRequest struct {
 
-	// platformnamespace
+	// The namespace of the justice platform to unlink from. Required when platformId is 'justice'.
 	PlatformNamespace string `json:"platformNamespace,omitempty"`
 }
 

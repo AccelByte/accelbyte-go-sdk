@@ -18,11 +18,11 @@ import (
 // swagger:model Model update user status request.
 type ModelUpdateUserStatusRequest struct {
 
-	// enabled
+	// Set to true to enable the account, false to disable it.
 	// Required: true
 	Enabled *bool `json:"enabled"`
 
-	// reason
+	// Reason for disabling the account. For Account Disable: use 'AdminDeactivateAccount' when the request comes from an admin. Ignored when enabling the account.
 	Reason string `json:"reason,omitempty"`
 }
 

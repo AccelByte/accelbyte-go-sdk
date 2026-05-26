@@ -160,6 +160,7 @@ $ samples/cli/sample-apps Challenge adminListSchedules \
 $ samples/cli/sample-apps Challenge adminDeleteTiedChallenge \
     --challengeCode 'string' \
     --namespace 'string' \
+    --safeDelete 'string' \
     > result.txt
 ```
 

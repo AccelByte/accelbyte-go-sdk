@@ -26,6 +26,11 @@ type ApimodelNoSQLDatabaseCredentialResponse struct {
 	// Required: true
 	Owner *string `json:"owner"`
 
+	// recommendedmaxagedays
+	// Required: true
+	// Format: int32
+	RecommendedMaxAgeDays *int32 `json:"recommendedMaxAgeDays"`
+
 	// username
 	// Required: true
 	Username *string `json:"username"`
@@ -39,6 +44,9 @@ func (m *ApimodelNoSQLDatabaseCredentialResponse) Validate(formats strfmt.Regist
 		res = append(res, err)
 	}
 	if err := m.validateOwner(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateRecommendedMaxAgeDays(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateUsername(formats); err != nil {
@@ -63,6 +71,15 @@ func (m *ApimodelNoSQLDatabaseCredentialResponse) validateCreatedAt(formats strf
 func (m *ApimodelNoSQLDatabaseCredentialResponse) validateOwner(formats strfmt.Registry) error {
 
 	if err := validate.Required("owner", "body", m.Owner); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelNoSQLDatabaseCredentialResponse) validateRecommendedMaxAgeDays(formats strfmt.Registry) error {
+
+	if err := validate.Required("recommendedMaxAgeDays", "body", m.RecommendedMaxAgeDays); err != nil {
 		return err
 	}
 

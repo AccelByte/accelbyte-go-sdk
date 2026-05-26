@@ -2161,7 +2161,7 @@ func (aaa *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params)
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Users.AdminSearchUserV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, tooManyRequests, internalServerError, err := aaa.Client.Users.AdminSearchUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2170,6 +2170,9 @@ func (aaa *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params)
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if tooManyRequests != nil {
+		return nil, tooManyRequests
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

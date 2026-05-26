@@ -181,6 +181,10 @@ JSON Schema of the exported file:
   "unregisterDelay": {
    "type": "integer",
    "format": "int64"
+  },
+  "wsReadTimeout": {
+   "type": "integer",
+   "format": "int64"
   }
  }
 }

@@ -22,7 +22,7 @@ type ModelEnabledFactorsResponseV4 struct {
 	// Required: true
 	Default *string `json:"default"`
 
-	// enabled
+	// list of enabled MFA factors; valid values: authenticator, backupCode, email
 	// Required: true
 	Enabled []string `json:"enabled"`
 

@@ -70,7 +70,7 @@ type EnableUserBanParams struct {
 	*/
 	BanID string
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

@@ -35,6 +35,10 @@ type ClientmodelPermissionSetUpsertRequest struct {
 	// moduleid
 	// Required: true
 	ModuleID *string `json:"moduleId"`
+
+	// package
+	// Required: true
+	Package *string `json:"package"`
 }
 
 // Validate validates this Clientmodel permission set upsert request
@@ -51,6 +55,9 @@ func (m *ClientmodelPermissionSetUpsertRequest) Validate(formats strfmt.Registry
 		res = append(res, err)
 	}
 	if err := m.validateModuleID(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validatePackage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +113,15 @@ func (m *ClientmodelPermissionSetUpsertRequest) validateModule(formats strfmt.Re
 func (m *ClientmodelPermissionSetUpsertRequest) validateModuleID(formats strfmt.Registry) error {
 
 	if err := validate.Required("moduleId", "body", m.ModuleID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientmodelPermissionSetUpsertRequest) validatePackage(formats strfmt.Registry) error {
+
+	if err := validate.Required("package", "body", m.Package); err != nil {
 		return err
 	}
 

@@ -18,6 +18,10 @@ import (
 // swagger:model Apimodel no SQL database response.
 type ApimodelNoSQLDatabaseResponse struct {
 
+	// acceptnosqlsecurecredentialhandling
+	// Required: true
+	AcceptNosqlSecureCredentialHandling *bool `json:"acceptNosqlSecureCredentialHandling"`
+
 	// appid
 	// Required: true
 	AppID *string `json:"appId"`
@@ -59,6 +63,9 @@ type ApimodelNoSQLDatabaseResponse struct {
 func (m *ApimodelNoSQLDatabaseResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAcceptNosqlSecureCredentialHandling(formats); err != nil {
+		res = append(res, err)
+	}
 	if err := m.validateAppID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -90,6 +97,15 @@ func (m *ApimodelNoSQLDatabaseResponse) Validate(formats strfmt.Registry) error 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ApimodelNoSQLDatabaseResponse) validateAcceptNosqlSecureCredentialHandling(formats strfmt.Registry) error {
+
+	if err := validate.Required("acceptNosqlSecureCredentialHandling", "body", m.AcceptNosqlSecureCredentialHandling); err != nil {
+		return err
+	}
+
 	return nil
 }
 

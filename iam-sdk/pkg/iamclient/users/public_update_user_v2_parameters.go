@@ -69,7 +69,7 @@ type PublicUpdateUserV2Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelUserUpdateRequest
 	/*Namespace
-	  Namespace
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

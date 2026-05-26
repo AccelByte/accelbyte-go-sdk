@@ -48,6 +48,14 @@ type ClientService interface {
 	PublicUpdateInsertSessionStorageLeaderShort(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, error)
 	PublicUpdateInsertSessionStorage(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, *PublicUpdateInsertSessionStorageBadRequest, *PublicUpdateInsertSessionStorageUnauthorized, *PublicUpdateInsertSessionStorageForbidden, *PublicUpdateInsertSessionStorageNotFound, *PublicUpdateInsertSessionStorageInternalServerError, error)
 	PublicUpdateInsertSessionStorageShort(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, error)
+	PublicReplaceSessionStorageLeaderV2(params *PublicReplaceSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageLeaderV2OK, *PublicReplaceSessionStorageLeaderV2BadRequest, *PublicReplaceSessionStorageLeaderV2Unauthorized, *PublicReplaceSessionStorageLeaderV2Forbidden, *PublicReplaceSessionStorageLeaderV2NotFound, *PublicReplaceSessionStorageLeaderV2InternalServerError, error)
+	PublicReplaceSessionStorageLeaderV2Short(params *PublicReplaceSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageLeaderV2OK, error)
+	PublicUpdateInsertSessionStorageLeaderV2(params *PublicUpdateInsertSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderV2OK, *PublicUpdateInsertSessionStorageLeaderV2BadRequest, *PublicUpdateInsertSessionStorageLeaderV2Unauthorized, *PublicUpdateInsertSessionStorageLeaderV2Forbidden, *PublicUpdateInsertSessionStorageLeaderV2NotFound, *PublicUpdateInsertSessionStorageLeaderV2InternalServerError, error)
+	PublicUpdateInsertSessionStorageLeaderV2Short(params *PublicUpdateInsertSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderV2OK, error)
+	PublicReplaceSessionStorageUserV2(params *PublicReplaceSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageUserV2OK, *PublicReplaceSessionStorageUserV2BadRequest, *PublicReplaceSessionStorageUserV2Unauthorized, *PublicReplaceSessionStorageUserV2Forbidden, *PublicReplaceSessionStorageUserV2NotFound, *PublicReplaceSessionStorageUserV2InternalServerError, error)
+	PublicReplaceSessionStorageUserV2Short(params *PublicReplaceSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageUserV2OK, error)
+	PublicUpdateInsertSessionStorageUserV2(params *PublicUpdateInsertSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageUserV2OK, *PublicUpdateInsertSessionStorageUserV2BadRequest, *PublicUpdateInsertSessionStorageUserV2Unauthorized, *PublicUpdateInsertSessionStorageUserV2Forbidden, *PublicUpdateInsertSessionStorageUserV2NotFound, *PublicUpdateInsertSessionStorageUserV2InternalServerError, error)
+	PublicUpdateInsertSessionStorageUserV2Short(params *PublicUpdateInsertSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageUserV2OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -1023,17 +1031,24 @@ Deprecated: 2022-08-10 - Use PublicUpdateInsertSessionStorageLeaderShort instead
 
 PublicUpdateInsertSessionStorageLeader update insert session storage leader.
 
-Update Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.
-can store generic json
-example json can store :
+Update Insert Session Storage Leader. Performs selective merge with existing leader storage data.
+
+Leader (regular token): Only the session leader can update leader storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update leader storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Leader storage is separate from per-user storage and identified by session context, not userID.
+Example patch:
 {
-"leader": {
-"leader": 1
-},
-"data": 123
+"gameState": {"round": "2"},
+"difficulty": null
 }
-game Admin can update or insert session storage
-Session Storage feature only available for Gamesession
+
+Session Storage feature only available for Gamesession.
+
+Alternative v2 endpoints available with explicit semantics:
+- PATCH /v2/.../storage/leader - Selective merge with partial updates
+- PUT /v2/.../storage/leader - Complete replacement of entire storage
 */
 func (a *Client) PublicUpdateInsertSessionStorageLeader(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, *PublicUpdateInsertSessionStorageLeaderBadRequest, *PublicUpdateInsertSessionStorageLeaderUnauthorized, *PublicUpdateInsertSessionStorageLeaderForbidden, *PublicUpdateInsertSessionStorageLeaderNotFound, *PublicUpdateInsertSessionStorageLeaderInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1098,17 +1113,24 @@ func (a *Client) PublicUpdateInsertSessionStorageLeader(params *PublicUpdateInse
 /*
 PublicUpdateInsertSessionStorageLeaderShort update insert session storage leader.
 
-Update Insert Session Storage Leader. only Leader can update or insert user session storage data Leader.
-can store generic json
-example json can store :
+Update Insert Session Storage Leader. Performs selective merge with existing leader storage data.
+
+Leader (regular token): Only the session leader can update leader storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update leader storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Leader storage is separate from per-user storage and identified by session context, not userID.
+Example patch:
 {
-"leader": {
-"leader": 1
-},
-"data": 123
+"gameState": {"round": "2"},
+"difficulty": null
 }
-game Admin can update or insert session storage
-Session Storage feature only available for Gamesession
+
+Session Storage feature only available for Gamesession.
+
+Alternative v2 endpoints available with explicit semantics:
+- PATCH /v2/.../storage/leader - Selective merge with partial updates
+- PUT /v2/.../storage/leader - Complete replacement of entire storage
 */
 func (a *Client) PublicUpdateInsertSessionStorageLeaderShort(params *PublicUpdateInsertSessionStorageLeaderParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderOK, error) {
 	// TODO: Validate the params before sending
@@ -1166,17 +1188,23 @@ Deprecated: 2022-08-10 - Use PublicUpdateInsertSessionStorageShort instead.
 
 PublicUpdateInsertSessionStorage update insert session storage user.
 
-Update Insert Session Storage User. user can only update or insert user session storage data itself.
-can store generic json
-example json can store :
+Update Insert Session Storage User. Performs selective merge with existing storage data.
+
+User (regular token): Can only update own user session storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update any user's session storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Example patch:
 {
-"storage": {
-"storage": 1
-},
-"data": 123
+"weapon": "sword",
+"level": null
 }
-game Admin can update or insert session storage
-Session Storage feature only available for Gamesession
+
+Session Storage feature only available for Gamesession.
+
+Alternative v2 endpoints available with explicit semantics:
+- PATCH /v2/.../storage/users/{userId} - Selective merge with partial updates
+- PUT /v2/.../storage/users/{userId} - Complete replacement of entire storage
 */
 func (a *Client) PublicUpdateInsertSessionStorage(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, *PublicUpdateInsertSessionStorageBadRequest, *PublicUpdateInsertSessionStorageUnauthorized, *PublicUpdateInsertSessionStorageForbidden, *PublicUpdateInsertSessionStorageNotFound, *PublicUpdateInsertSessionStorageInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1241,17 +1269,23 @@ func (a *Client) PublicUpdateInsertSessionStorage(params *PublicUpdateInsertSess
 /*
 PublicUpdateInsertSessionStorageShort update insert session storage user.
 
-Update Insert Session Storage User. user can only update or insert user session storage data itself.
-can store generic json
-example json can store :
+Update Insert Session Storage User. Performs selective merge with existing storage data.
+
+User (regular token): Can only update own user session storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update any user's session storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Example patch:
 {
-"storage": {
-"storage": 1
-},
-"data": 123
+"weapon": "sword",
+"level": null
 }
-game Admin can update or insert session storage
-Session Storage feature only available for Gamesession
+
+Session Storage feature only available for Gamesession.
+
+Alternative v2 endpoints available with explicit semantics:
+- PATCH /v2/.../storage/users/{userId} - Selective merge with partial updates
+- PUT /v2/.../storage/users/{userId} - Complete replacement of entire storage
 */
 func (a *Client) PublicUpdateInsertSessionStorageShort(params *PublicUpdateInsertSessionStorageParams, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageOK, error) {
 	// TODO: Validate the params before sending
@@ -1297,6 +1331,598 @@ func (a *Client) PublicUpdateInsertSessionStorageShort(params *PublicUpdateInser
 	case *PublicUpdateInsertSessionStorageNotFound:
 		return nil, v
 	case *PublicUpdateInsertSessionStorageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicReplaceSessionStorageLeaderV2Short instead.
+
+PublicReplaceSessionStorageLeaderV2 replace entire session storage leader.
+
+Replace entire Session Storage Leader with the request body. No merging is performed.
+
+Leader (regular token): Only the session leader can replace leader storage. Complete replacement.
+Game Admin (client token): Can replace leader storage. Complete replacement.
+
+PUT semantics: The request body completely replaces the existing storage, no partial updates.
+Leader storage is separate from per-user storage and identified by session context, not userID.
+Example request:
+{
+"gameState": {"round": "2"},
+"difficulty": "hard"
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicReplaceSessionStorageLeaderV2(params *PublicReplaceSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageLeaderV2OK, *PublicReplaceSessionStorageLeaderV2BadRequest, *PublicReplaceSessionStorageLeaderV2Unauthorized, *PublicReplaceSessionStorageLeaderV2Forbidden, *PublicReplaceSessionStorageLeaderV2NotFound, *PublicReplaceSessionStorageLeaderV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReplaceSessionStorageLeaderV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReplaceSessionStorageLeaderV2",
+		Method:             "PUT",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/leader",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReplaceSessionStorageLeaderV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReplaceSessionStorageLeaderV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicReplaceSessionStorageLeaderV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicReplaceSessionStorageLeaderV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicReplaceSessionStorageLeaderV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicReplaceSessionStorageLeaderV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicReplaceSessionStorageLeaderV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicReplaceSessionStorageLeaderV2Short replace entire session storage leader.
+
+Replace entire Session Storage Leader with the request body. No merging is performed.
+
+Leader (regular token): Only the session leader can replace leader storage. Complete replacement.
+Game Admin (client token): Can replace leader storage. Complete replacement.
+
+PUT semantics: The request body completely replaces the existing storage, no partial updates.
+Leader storage is separate from per-user storage and identified by session context, not userID.
+Example request:
+{
+"gameState": {"round": "2"},
+"difficulty": "hard"
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicReplaceSessionStorageLeaderV2Short(params *PublicReplaceSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageLeaderV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReplaceSessionStorageLeaderV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReplaceSessionStorageLeaderV2",
+		Method:             "PUT",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/leader",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReplaceSessionStorageLeaderV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReplaceSessionStorageLeaderV2OK:
+		return v, nil
+	case *PublicReplaceSessionStorageLeaderV2BadRequest:
+		return nil, v
+	case *PublicReplaceSessionStorageLeaderV2Unauthorized:
+		return nil, v
+	case *PublicReplaceSessionStorageLeaderV2Forbidden:
+		return nil, v
+	case *PublicReplaceSessionStorageLeaderV2NotFound:
+		return nil, v
+	case *PublicReplaceSessionStorageLeaderV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicUpdateInsertSessionStorageLeaderV2Short instead.
+
+PublicUpdateInsertSessionStorageLeaderV2 update partial session storage leader.
+
+Update partial Session Storage Leader. Performs selective merge with existing leader storage data.
+
+Leader (regular token): Only the session leader can update leader storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update leader storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Leader storage is separate from per-user storage and identified by session context, not userID.
+Example patch:
+{
+"gameState": {"round": "2"},
+"difficulty": null
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicUpdateInsertSessionStorageLeaderV2(params *PublicUpdateInsertSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderV2OK, *PublicUpdateInsertSessionStorageLeaderV2BadRequest, *PublicUpdateInsertSessionStorageLeaderV2Unauthorized, *PublicUpdateInsertSessionStorageLeaderV2Forbidden, *PublicUpdateInsertSessionStorageLeaderV2NotFound, *PublicUpdateInsertSessionStorageLeaderV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertSessionStorageLeaderV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertSessionStorageLeaderV2",
+		Method:             "PATCH",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/leader",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertSessionStorageLeaderV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertSessionStorageLeaderV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageLeaderV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageLeaderV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageLeaderV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageLeaderV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateInsertSessionStorageLeaderV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUpdateInsertSessionStorageLeaderV2Short update partial session storage leader.
+
+Update partial Session Storage Leader. Performs selective merge with existing leader storage data.
+
+Leader (regular token): Only the session leader can update leader storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update leader storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Leader storage is separate from per-user storage and identified by session context, not userID.
+Example patch:
+{
+"gameState": {"round": "2"},
+"difficulty": null
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicUpdateInsertSessionStorageLeaderV2Short(params *PublicUpdateInsertSessionStorageLeaderV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageLeaderV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertSessionStorageLeaderV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertSessionStorageLeaderV2",
+		Method:             "PATCH",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/leader",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertSessionStorageLeaderV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertSessionStorageLeaderV2OK:
+		return v, nil
+	case *PublicUpdateInsertSessionStorageLeaderV2BadRequest:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageLeaderV2Unauthorized:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageLeaderV2Forbidden:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageLeaderV2NotFound:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageLeaderV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicReplaceSessionStorageUserV2Short instead.
+
+PublicReplaceSessionStorageUserV2 replace entire session storage user.
+
+Replace entire Session Storage User with the request body. No merging is performed.
+
+User (regular token): Can only replace own user session storage. Complete replacement.
+Game Admin (client token): Can replace any user's session storage. Complete replacement.
+
+PUT semantics: The request body completely replaces the existing storage, no partial updates.
+Example request:
+{
+"weapon": "sword",
+"armor": "leather"
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicReplaceSessionStorageUserV2(params *PublicReplaceSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageUserV2OK, *PublicReplaceSessionStorageUserV2BadRequest, *PublicReplaceSessionStorageUserV2Unauthorized, *PublicReplaceSessionStorageUserV2Forbidden, *PublicReplaceSessionStorageUserV2NotFound, *PublicReplaceSessionStorageUserV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReplaceSessionStorageUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReplaceSessionStorageUserV2",
+		Method:             "PUT",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReplaceSessionStorageUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReplaceSessionStorageUserV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicReplaceSessionStorageUserV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicReplaceSessionStorageUserV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicReplaceSessionStorageUserV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicReplaceSessionStorageUserV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicReplaceSessionStorageUserV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicReplaceSessionStorageUserV2Short replace entire session storage user.
+
+Replace entire Session Storage User with the request body. No merging is performed.
+
+User (regular token): Can only replace own user session storage. Complete replacement.
+Game Admin (client token): Can replace any user's session storage. Complete replacement.
+
+PUT semantics: The request body completely replaces the existing storage, no partial updates.
+Example request:
+{
+"weapon": "sword",
+"armor": "leather"
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicReplaceSessionStorageUserV2Short(params *PublicReplaceSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicReplaceSessionStorageUserV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicReplaceSessionStorageUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicReplaceSessionStorageUserV2",
+		Method:             "PUT",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicReplaceSessionStorageUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicReplaceSessionStorageUserV2OK:
+		return v, nil
+	case *PublicReplaceSessionStorageUserV2BadRequest:
+		return nil, v
+	case *PublicReplaceSessionStorageUserV2Unauthorized:
+		return nil, v
+	case *PublicReplaceSessionStorageUserV2Forbidden:
+		return nil, v
+	case *PublicReplaceSessionStorageUserV2NotFound:
+		return nil, v
+	case *PublicReplaceSessionStorageUserV2InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicUpdateInsertSessionStorageUserV2Short instead.
+
+PublicUpdateInsertSessionStorageUserV2 update partial session storage user.
+
+Update partial Session Storage User. Performs selective merge with existing storage data.
+
+User (regular token): Can only update own user session storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update any user's session storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Example patch:
+{
+"weapon": "sword",
+"level": null
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicUpdateInsertSessionStorageUserV2(params *PublicUpdateInsertSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageUserV2OK, *PublicUpdateInsertSessionStorageUserV2BadRequest, *PublicUpdateInsertSessionStorageUserV2Unauthorized, *PublicUpdateInsertSessionStorageUserV2Forbidden, *PublicUpdateInsertSessionStorageUserV2NotFound, *PublicUpdateInsertSessionStorageUserV2InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertSessionStorageUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertSessionStorageUserV2",
+		Method:             "PATCH",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertSessionStorageUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertSessionStorageUserV2OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageUserV2BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageUserV2Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageUserV2Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicUpdateInsertSessionStorageUserV2NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicUpdateInsertSessionStorageUserV2InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicUpdateInsertSessionStorageUserV2Short update partial session storage user.
+
+Update partial Session Storage User. Performs selective merge with existing storage data.
+
+User (regular token): Can only update own user session storage. Merges patch with existing data, nil values delete keys.
+Game Admin (client token): Can update any user's session storage. Merges patch with existing data, nil values delete keys.
+
+Deep merge: Nested objects are recursively merged, not replaced. Absent keys in patch are preserved in storage.
+Example patch:
+{
+"weapon": "sword",
+"level": null
+}
+
+Session Storage feature only available for Gamesession.
+*/
+func (a *Client) PublicUpdateInsertSessionStorageUserV2Short(params *PublicUpdateInsertSessionStorageUserV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateInsertSessionStorageUserV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicUpdateInsertSessionStorageUserV2Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "publicUpdateInsertSessionStorageUserV2",
+		Method:             "PATCH",
+		PathPattern:        "/session/v2/public/namespaces/{namespace}/sessions/{sessionId}/storage/users/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicUpdateInsertSessionStorageUserV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicUpdateInsertSessionStorageUserV2OK:
+		return v, nil
+	case *PublicUpdateInsertSessionStorageUserV2BadRequest:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageUserV2Unauthorized:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageUserV2Forbidden:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageUserV2NotFound:
+		return nil, v
+	case *PublicUpdateInsertSessionStorageUserV2InternalServerError:
 		return nil, v
 
 	default:

@@ -42,7 +42,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetLoginAllowlistV3Short instead.
 
 AdminGetLoginAllowlistV3 admin get login allowlist
-This endpoint return login allowlist configuration from specific namespace.
+Returns the login allowlist configuration from the specific namespace.
 */
 func (a *Client) AdminGetLoginAllowlistV3(params *AdminGetLoginAllowlistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLoginAllowlistV3OK, *AdminGetLoginAllowlistV3Unauthorized, *AdminGetLoginAllowlistV3Forbidden, *AdminGetLoginAllowlistV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -100,7 +100,7 @@ func (a *Client) AdminGetLoginAllowlistV3(params *AdminGetLoginAllowlistV3Params
 
 /*
 AdminGetLoginAllowlistV3Short admin get login allowlist
-This endpoint return login allowlist configuration from specific namespace.
+Returns the login allowlist configuration from the specific namespace.
 */
 func (a *Client) AdminGetLoginAllowlistV3Short(params *AdminGetLoginAllowlistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLoginAllowlistV3OK, error) {
 	// TODO: Validate the params before sending
@@ -153,9 +153,9 @@ func (a *Client) AdminGetLoginAllowlistV3Short(params *AdminGetLoginAllowlistV3P
 Deprecated: 2022-08-10 - Use AdminUpdateLoginAllowlistV3Short instead.
 
 AdminUpdateLoginAllowlistV3 admin update login allowlist
-This endpoint update login allowlist configuration from specific game namespace.
-roleIds: are list of role that allowed to login
-Note: only accept game namespace
+Updates the login allowlist configuration for a specific game namespace.
+
+**Note:** Only accepts game namespaces.
 */
 func (a *Client) AdminUpdateLoginAllowlistV3(params *AdminUpdateLoginAllowlistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateLoginAllowlistV3NoContent, *AdminUpdateLoginAllowlistV3BadRequest, *AdminUpdateLoginAllowlistV3Unauthorized, *AdminUpdateLoginAllowlistV3Forbidden, *AdminUpdateLoginAllowlistV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -216,9 +216,9 @@ func (a *Client) AdminUpdateLoginAllowlistV3(params *AdminUpdateLoginAllowlistV3
 
 /*
 AdminUpdateLoginAllowlistV3Short admin update login allowlist
-This endpoint update login allowlist configuration from specific game namespace.
-roleIds: are list of role that allowed to login
-Note: only accept game namespace
+Updates the login allowlist configuration for a specific game namespace.
+
+**Note:** Only accepts game namespaces.
 */
 func (a *Client) AdminUpdateLoginAllowlistV3Short(params *AdminUpdateLoginAllowlistV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateLoginAllowlistV3NoContent, error) {
 	// TODO: Validate the params before sending

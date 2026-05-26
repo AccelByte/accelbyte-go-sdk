@@ -1,13 +1,5 @@
 ## Go Extend SDK CLI Sample App Operation Index for Inventory service.
 
-### Operation `admin_create_chaining_operations`
-```sh
-$ samples/cli/sample-apps Inventory adminCreateChainingOperations \
-    --namespace 'string' \
-    --body '{"message": "string", "operations": [{}], "requestId": "string"}' \
-    > result.txt
-```
-
 ### Operation `admin_list_integration_configurations`
 ```sh
 $ samples/cli/sample-apps Inventory adminListIntegrationConfigurations \

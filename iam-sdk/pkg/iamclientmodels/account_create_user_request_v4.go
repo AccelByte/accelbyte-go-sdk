@@ -23,29 +23,29 @@ type AccountCreateUserRequestV4 struct {
 	// acceptedpolicies
 	AcceptedPolicies []*LegalAcceptedPoliciesRequest `json:"acceptedPolicies,omitempty"`
 
-	// authtype
+	// Authentication type. Possible value: EMAILPASSWD.
 	// Enum: ['EMAILPASSWD']
 	// Required: true
 	AuthType *string `json:"authType"`
 
-	// code
+	// Verification code. Required when mandatoryEmailVerificationEnabled config is true. Refer to the config from /iam/v3/public/namespaces/{namespace}/config/{configKey} [GET] API.
 	Code string `json:"code,omitempty"`
 
-	// country
+	// ISO3166-1 alpha-2 two letter country code, e.g. US.
 	// Required: true
 	Country *string `json:"country"`
 
-	// dateofbirth
+	// Date of birth in YYYY-MM-DD format. Valid values are between 1905-01-01 and the current date.
 	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
-	// displayname
+	// User display name. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	DisplayName string `json:"displayName,omitempty"`
 
-	// emailaddress
+	// User email address. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	// Required: true
 	EmailAddress *string `json:"emailAddress"`
 
-	// password
+	// User password. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	Password string `json:"password,omitempty"`
 
 	// passwordmd5sum
@@ -54,10 +54,10 @@ type AccountCreateUserRequestV4 struct {
 	// reachminimumage
 	ReachMinimumAge bool `json:"reachMinimumAge"`
 
-	// uniquedisplayname
+	// Unique display name. Required when uniqueDisplayNameEnabled/UNIQUE_DISPLAY_NAME_ENABLED is true. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	UniqueDisplayName string `json:"uniqueDisplayName,omitempty"`
 
-	// username
+	// Username. Refer to /v3/public/namespaces/{namespace}/inputValidations API for rules.
 	// Required: true
 	Username *string `json:"username"`
 }

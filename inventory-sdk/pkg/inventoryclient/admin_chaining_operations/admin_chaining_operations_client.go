@@ -41,6 +41,7 @@ Deprecated: 2022-08-10 - Use AdminCreateChainingOperationsShort instead.
 
 AdminCreateChainingOperations to create chaining operation
 
+## The endpoint is going to be deprecated
 Create chaining Operations.
 This process will run sequentially
 1. remove item process
@@ -120,6 +121,7 @@ func (a *Client) AdminCreateChainingOperations(params *AdminCreateChainingOperat
 /*
 AdminCreateChainingOperationsShort to create chaining operation
 
+## The endpoint is going to be deprecated
 Create chaining Operations.
 This process will run sequentially
 1. remove item process

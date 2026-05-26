@@ -69,7 +69,7 @@ type AdminSendVerificationCodeV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelSendVerificationCodeRequestV3
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string

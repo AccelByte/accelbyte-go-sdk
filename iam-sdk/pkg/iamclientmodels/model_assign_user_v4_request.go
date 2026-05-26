@@ -26,7 +26,7 @@ type ModelAssignUserV4Request struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
-	// userid
+	// The user's ID.
 	// Required: true
 	UserID *string `json:"userId"`
 }

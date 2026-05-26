@@ -85,6 +85,9 @@ type ApimodelsCreateGameSessionRequest struct {
 	// Format: int32
 	MinPlayers *int32 `json:"minPlayers"`
 
+	// password
+	Password string `json:"password,omitempty"`
+
 	// preferredclaimkeys
 	PreferredClaimKeys []string `json:"preferredClaimKeys,omitempty"`
 
@@ -108,7 +111,7 @@ type ApimodelsCreateGameSessionRequest struct {
 	TextChat *bool `json:"textChat"`
 
 	// textchatmode
-	// Enum: ['GAME', 'NONE', 'TEAM']
+	// Enum: ['GAME', 'GAME_AND_TEAM', 'NONE', 'TEAM']
 	TextChatMode string `json:"textChatMode,omitempty"`
 
 	// ticketids
@@ -375,7 +378,7 @@ var apimodelsCreateGameSessionRequestTypeTextChatModePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["GAME", "NONE", "TEAM"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["GAME", "GAME_AND_TEAM", "NONE", "TEAM"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -387,6 +390,9 @@ const (
 
 	// ApimodelsCreateGameSessionRequestTextChatModeGAME captures enum value "GAME"
 	ApimodelsCreateGameSessionRequestTextChatModeGAME string = "GAME"
+
+	// ApimodelsCreateGameSessionRequestTextChatModeGAMEANDTEAM captures enum value "GAME_AND_TEAM"
+	ApimodelsCreateGameSessionRequestTextChatModeGAMEANDTEAM string = "GAME_AND_TEAM"
 
 	// ApimodelsCreateGameSessionRequestTextChatModeNONE captures enum value "NONE"
 	ApimodelsCreateGameSessionRequestTextChatModeNONE string = "NONE"

@@ -78,12 +78,12 @@ type AdminGetCountryListV3Params struct {
 	/*RetryPolicy*/
 	RetryPolicy *utils.Retry
 	/*Namespace
-	  Namespace, only accept alphabet and numeric
+	  Accepts alphanumeric, with hyphens allowed between segments
 
 	*/
 	Namespace string
 	/*FilterBlacklist
-	  filter black list
+	  Filter by blacklist. When true (default), excludes blacklisted countries from the result.
 
 	*/
 	FilterBlacklist *bool

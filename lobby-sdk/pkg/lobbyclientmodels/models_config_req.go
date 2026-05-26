@@ -94,6 +94,10 @@ type ModelsConfigReq struct {
 	// unregisterdelay
 	// Format: int64
 	UnregisterDelay int64 `json:"unregisterDelay,omitempty"`
+
+	// wsreadtimeout
+	// Format: int64
+	WsReadTimeout int64 `json:"wsReadTimeout,omitempty"`
 }
 
 // Validate validates this Models config req

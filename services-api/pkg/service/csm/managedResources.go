@@ -38,6 +38,41 @@ func (aaa *ManagedResourcesService) GetAuthSession() auth.Session {
 	}
 }
 
+// Deprecated: 2022-01-10 - please use CreateNewNoSQLDatabaseCredentialV2Short instead.
+func (aaa *ManagedResourcesService) CreateNewNoSQLDatabaseCredentialV2(input *managed_resources.CreateNewNoSQLDatabaseCredentialV2Params) (*csmclientmodels.ApimodelNoSQLDatabaseCredentialResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, serviceUnavailable, err := aaa.Client.ManagedResources.CreateNewNoSQLDatabaseCredentialV2(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if serviceUnavailable != nil {
+		return nil, serviceUnavailable
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: 2022-01-10 - please use CreateNoSQLDatabaseCredentialV2Short instead.
 func (aaa *ManagedResourcesService) CreateNoSQLDatabaseCredentialV2(input *managed_resources.CreateNoSQLDatabaseCredentialV2Params) (*csmclientmodels.ApimodelNoSQLDatabaseCredentialResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
@@ -396,6 +431,40 @@ func (aaa *ManagedResourcesService) GetNoSQLAppListV2(input *managed_resources.G
 	}
 	if err != nil {
 		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *ManagedResourcesService) CreateNewNoSQLDatabaseCredentialV2Short(input *managed_resources.CreateNewNoSQLDatabaseCredentialV2Params) (*csmclientmodels.ApimodelNoSQLDatabaseCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdManagedResources != nil {
+		input.XFlightId = tempFlightIdManagedResources
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.ManagedResources.CreateNewNoSQLDatabaseCredentialV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
 	}
 
 	return ok.GetPayload(), nil

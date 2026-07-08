@@ -66,13 +66,13 @@ func (aaa *OAuthService) GetJWKS(input *o_auth.GetJWKSParams) (*iamclientmodels.
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use PlatformTokenRequestHandlerShort instead.
-func (aaa *OAuthService) PlatformTokenRequestHandler(input *o_auth.PlatformTokenRequestHandlerParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
+// Deprecated: 2022-01-10 - please use NamespaceScopedPlatformTokenGrantShort instead.
+func (aaa *OAuthService) NamespaceScopedPlatformTokenGrant(input *o_auth.NamespaceScopedPlatformTokenGrantParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, err := aaa.Client.OAuth.PlatformTokenRequestHandler(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, err := aaa.Client.OAuth.NamespaceScopedPlatformTokenGrant(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -257,7 +257,7 @@ func (aaa *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmo
 	return ok.GetPayload(), nil
 }
 
-func (aaa *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTokenRequestHandlerParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
+func (aaa *OAuthService) NamespaceScopedPlatformTokenGrantShort(input *o_auth.NamespaceScopedPlatformTokenGrantParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -279,7 +279,7 @@ func (aaa *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.Platform
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.OAuth.PlatformTokenRequestHandlerShort(input, authInfoWriter)
+	ok, err := aaa.Client.OAuth.NamespaceScopedPlatformTokenGrantShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

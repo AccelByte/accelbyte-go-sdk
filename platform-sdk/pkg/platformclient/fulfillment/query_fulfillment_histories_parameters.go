@@ -114,7 +114,7 @@ type QueryFulfillmentHistoriesParams struct {
 	/*Status*/
 	Status *string
 	/*UserID*/
-	UserID *string
+	UserID string
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -226,13 +226,13 @@ func (o *QueryFulfillmentHistoriesParams) SetStatus(status *string) {
 }
 
 // WithUserID adds the userID to the query fulfillment histories params
-func (o *QueryFulfillmentHistoriesParams) WithUserID(userID *string) *QueryFulfillmentHistoriesParams {
+func (o *QueryFulfillmentHistoriesParams) WithUserID(userID string) *QueryFulfillmentHistoriesParams {
 	o.SetUserID(userID)
 	return o
 }
 
 // SetUserID adds the userId to the query fulfillment histories params
-func (o *QueryFulfillmentHistoriesParams) SetUserID(userID *string) {
+func (o *QueryFulfillmentHistoriesParams) SetUserID(userID string) {
 	o.UserID = userID
 }
 
@@ -297,20 +297,13 @@ func (o *QueryFulfillmentHistoriesParams) WriteToRequest(r runtime.ClientRequest
 
 	}
 
-	if o.UserID != nil {
-
-		// query param userId
-		var qrUserID string
-		if o.UserID != nil {
-			qrUserID = *o.UserID
+	// query param userId
+	qrUserID := o.UserID
+	qUserID := qrUserID
+	if qUserID != "" {
+		if err := r.SetQueryParam("userId", qUserID); err != nil {
+			return err
 		}
-		qUserID := qrUserID
-		if qUserID != "" {
-			if err := r.SetQueryParam("userId", qUserID); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	// setting the default header value

@@ -70,7 +70,7 @@ type AdminDeleteConfigPermissionsByGroupParams struct {
 	/*Body*/
 	Body *iamclientmodels.ClientmodelPermissionSetDeleteGroupRequest
 	/*ForceDelete
-	  If the targeted group or module is selected by any client, the deletion will fail by default. Set this flag to true to force the deletion.
+	  If the targeted group or module is currently selected by any client, the deletion will fail by default. Set to 'true' to first unselect that group from affected clients and then proceed.
 
 	*/
 	ForceDelete *bool

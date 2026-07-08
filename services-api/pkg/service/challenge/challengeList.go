@@ -38,13 +38,13 @@ func (aaa *ChallengeListService) GetAuthSession() auth.Session {
 	}
 }
 
-// Deprecated: 2022-01-10 - please use GetChallengesShort instead.
-func (aaa *ChallengeListService) GetChallenges(input *challenge_list.GetChallengesParams) (*challengeclientmodels.ModelListChallengeResponse, error) {
+// Deprecated: 2022-01-10 - please use PublicGetChallengesShort instead.
+func (aaa *ChallengeListService) PublicGetChallenges(input *challenge_list.PublicGetChallengesParams) (*challengeclientmodels.ModelListChallengeResponse, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ChallengeList.GetChallenges(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.ChallengeList.PublicGetChallenges(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -90,7 +90,7 @@ func (aaa *ChallengeListService) PublicGetScheduledGoals(input *challenge_list.P
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ChallengeListService) GetChallengesShort(input *challenge_list.GetChallengesParams) (*challengeclientmodels.ModelListChallengeResponse, error) {
+func (aaa *ChallengeListService) PublicGetChallengesShort(input *challenge_list.PublicGetChallengesParams) (*challengeclientmodels.ModelListChallengeResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -112,7 +112,7 @@ func (aaa *ChallengeListService) GetChallengesShort(input *challenge_list.GetCha
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	ok, err := aaa.Client.ChallengeList.GetChallengesShort(input, authInfoWriter)
+	ok, err := aaa.Client.ChallengeList.PublicGetChallengesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

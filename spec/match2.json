@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Match Service v2",
-    "version": "2.40.0"
+    "version": "2.40.2"
   },
   "schemes": [
     "https"
@@ -37,7 +37,8 @@
             "authorization": []
           }
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/internal/v1/check-health"
       }
     },
     "/match2/healthz": {
@@ -56,7 +57,8 @@
             "authorization": []
           }
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/internal/v1/check-health-info"
       }
     },
     "/match2/v1/admin/config/log": {
@@ -84,6 +86,7 @@
           "Config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/config/v1/get-log",
         "x-security": [
           {
             "userPermissions": [
@@ -130,6 +133,7 @@
           "Config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/config/v1/update-log",
         "x-security": [
           {
             "userPermissions": [
@@ -192,6 +196,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/feature-flags/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -255,6 +260,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/feature-flags/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -271,6 +277,7 @@
         "operationId": "adminUpsertPlayFeatureFlag",
         "parameters": [
           {
+            "description": "Play Feature Flag configuration to upsert.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -332,6 +339,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/feature-flags/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -397,6 +405,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/xray-config/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -471,6 +480,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/xray-config/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -527,6 +537,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/config/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -592,6 +603,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/config/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -608,6 +620,7 @@
         "operationId": "adminPatchConfigV1",
         "parameters": [
           {
+            "description": "Matchmaking namespace config fields to update. Only specified fields will be changed.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -663,6 +676,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/config/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -713,6 +727,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/config/v1/list-environment-variables",
         "x-security": [
           {
             "userPermissions": [
@@ -727,7 +742,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Admin Query backfill ticket\n",
+        "description": "Admin Query backfill ticket.\n\nSupports filtering by session ID, match pool, time range, active status, player ID, and region.\nUse pagination parameters offset and limit to control result size.\n",
         "operationId": "AdminQueryBackfill",
         "parameters": [
           {
@@ -850,6 +865,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/backfill/v1/search",
         "x-security": [
           {
             "userPermissions": [
@@ -866,6 +882,7 @@
         "operationId": "CreateBackfill",
         "parameters": [
           {
+            "description": "Backfill ticket creation request with session ID and match pool.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -939,6 +956,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/backfill/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -953,7 +971,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get backfill proposal\n",
+        "description": "Get backfill proposal for the given session.\n\nReturns the current pending backfill proposal associated with the session ID.\nReturns 404 if no proposal exists for the session.\n",
         "operationId": "GetBackfillProposal",
         "parameters": [
           {
@@ -1023,6 +1041,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/backfill/v1/get-proposal",
         "x-security": [
           {
             "userPermissions": [
@@ -1098,6 +1117,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/backfill/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -1180,6 +1200,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/backfill/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1198,6 +1219,7 @@
         "operationId": "AcceptBackfill",
         "parameters": [
           {
+            "description": "Backfill proposal accept request. Optionally specify accepted ticket IDs to partially accept a proposal.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1272,6 +1294,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/backfill/v1/accept",
         "x-security": [
           {
             "userPermissions": [
@@ -1290,6 +1313,7 @@
         "operationId": "RejectBackfill",
         "parameters": [
           {
+            "description": "Backfill proposal reject request with proposal ID and optional stop flag.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1361,6 +1385,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/backfill/v1/reject",
         "x-security": [
           {
             "userPermissions": [
@@ -1440,6 +1465,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-functions/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1456,6 +1482,7 @@
         "operationId": "CreateMatchFunction",
         "parameters": [
           {
+            "description": "Match function definition with name and gRPC URL or service app name.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1520,6 +1547,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-functions/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -1595,6 +1623,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-functions/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -1671,6 +1700,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-functions/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1687,6 +1717,7 @@
         "operationId": "UpdateMatchFunction",
         "parameters": [
           {
+            "description": "Updated match function definition with gRPC URL or service app name.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1761,6 +1792,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-functions/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -1846,6 +1878,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1862,6 +1895,7 @@
         "operationId": "CreateMatchPool",
         "parameters": [
           {
+            "description": "Match pool configuration including name, match function, ruleset, and ticket expiration settings.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1926,6 +1960,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -2001,6 +2036,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -2013,7 +2049,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get details for a specific match pool\n",
+        "description": "Get details for a specific match pool, including its configuration such as match function,\nticket expiration, ruleset, and backfill settings.\n",
         "operationId": "MatchPoolDetails",
         "parameters": [
           {
@@ -2077,6 +2113,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -2093,6 +2130,7 @@
         "operationId": "UpdateMatchPool",
         "parameters": [
           {
+            "description": "Updated match pool configuration. Replaces existing pool settings.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2167,6 +2205,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -2245,6 +2284,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/match-pools/v1/get-metric",
         "x-security": [
           {
             "userPermissions": [
@@ -2259,10 +2299,11 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Post metrics for external flow failure in a specific match pool\n",
+        "description": "Post metrics for external flow failure in a specific match pool.\n\nRecords an external match error metric for the given match pool. Used to track failures\nfrom custom (gRPC) match functions during the matchmaking process.\n",
         "operationId": "PostMatchErrorMetric",
         "parameters": [
           {
+            "description": "External failure metric record with the failure type.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2334,6 +2375,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/create-error-metric",
         "x-security": [
           {
             "userPermissions": [
@@ -2412,6 +2454,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/get-user-metric",
         "x-security": [
           {
             "userPermissions": [
@@ -2504,6 +2547,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/match-pools/v1/list-tickets",
         "x-security": [
           {
             "userPermissions": [
@@ -2522,6 +2566,7 @@
         "operationId": "CreateMatchTicket",
         "parameters": [
           {
+            "description": "Match ticket request with match pool, attributes, and optional latency data.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2595,6 +2640,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/match-tickets/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -2678,6 +2724,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/match-tickets/v1/get-my",
         "x-security": [
           {
             "userPermissions": [
@@ -2759,6 +2806,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/match-tickets/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -2771,7 +2819,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get details for a specific match ticket\n",
+        "description": "Get details for a specific match ticket, including its current matching status and\nthe session ID if a match has been found.\n",
         "operationId": "MatchTicketDetails",
         "parameters": [
           {
@@ -2835,6 +2883,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/match-tickets/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -2920,6 +2969,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/rule-sets/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -2936,6 +2986,7 @@
         "operationId": "CreateRuleSet",
         "parameters": [
           {
+            "description": "Rule set definition with name and matchmaking rule data.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -3000,6 +3051,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/rule-sets/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -3075,6 +3127,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/rule-sets/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -3087,7 +3140,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get details for a specific rule set\n",
+        "description": "Get details for a specific rule set, including its name and the rule data used to\nconfigure matchmaking logic.\n",
         "operationId": "RuleSetDetails",
         "parameters": [
           {
@@ -3145,6 +3198,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/rule-sets/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -3161,6 +3215,7 @@
         "operationId": "UpdateRuleSet",
         "parameters": [
           {
+            "description": "Updated rule set data.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -3235,6 +3290,7 @@
           "admin"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/admin/rule-sets/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -3313,6 +3369,7 @@
           "public"
         ],
         "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/match-pools/v1/get-user-metric",
         "x-security": [
           {
             "userPermissions": [
@@ -3335,7 +3392,8 @@
             "authorization": []
           }
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "matchmaking/public/config/v1/get-version"
       }
     }
   },
@@ -4703,9 +4761,9 @@
     "path": "/match2/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T09:02:02+00:00",
-    "gitHash": "42274a2e33fef43cdfa84378ccc6da1120e9d855",
-    "version": "2.40.0",
-    "version-roles-seeding": "1.2.120"
+    "buildDate": "2026-06-24T05:54:15+00:00",
+    "gitHash": "67db60523579b7be349543e65dc112af3ea41d14",
+    "version": "2.40.2",
+    "version-roles-seeding": "1.2.133"
   }
 }

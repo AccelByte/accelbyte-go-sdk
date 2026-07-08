@@ -13,7 +13,7 @@
 | Endpoint | Method | ID | Class | Wrapper | Example |
 |---|---|---|---|---|---|
 | `/ams/healthz` | GET | PortalHealthCheckShort | [PortalHealthCheckShort](../../ams-sdk/pkg/amsclient/fleet_commander/fleet_commander_client.go) | [PortalHealthCheckShort](../../services-api/pkg/service/ams/fleetCommander.go) | [PortalHealthCheckShort](../../samples/cli/cmd/ams/fleetCommander/portalHealthCheck.go) |
-| `/ams/version` | GET | Func1Short | [Func1Short](../../ams-sdk/pkg/amsclient/fleet_commander/fleet_commander_client.go) | [Func1Short](../../services-api/pkg/service/ams/fleetCommander.go) | [Func1Short](../../samples/cli/cmd/ams/fleetCommander/func1.go) |
+| `/ams/version` | GET | VersionInfoShort | [VersionInfoShort](../../ams-sdk/pkg/amsclient/fleet_commander/fleet_commander_client.go) | [VersionInfoShort](../../services-api/pkg/service/ams/fleetCommander.go) | [VersionInfoShort](../../samples/cli/cmd/ams/fleetCommander/versionInfo.go) |
 | `/healthz` | GET | BasicHealthCheckShort | [BasicHealthCheckShort](../../ams-sdk/pkg/amsclient/fleet_commander/fleet_commander_client.go) | [BasicHealthCheckShort](../../services-api/pkg/service/ams/fleetCommander.go) | [BasicHealthCheckShort](../../samples/cli/cmd/ams/fleetCommander/basicHealthCheck.go) |
 
 ### Account Wrapper:  [Account](../../services-api/pkg/service/ams/account.go)

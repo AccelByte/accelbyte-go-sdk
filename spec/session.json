@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session Service",
     "title": "justice-session-service",
-    "version": "3.33.0"
+    "version": "3.34.0"
   },
   "schemes": [
     "https"
@@ -37,7 +37,8 @@
             "authorization": []
           }
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "session/public/internal/v1/check-health"
       }
     },
     "/session/healthz": {
@@ -56,7 +57,8 @@
             "authorization": []
           }
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "session/public/internal/v1/check-session-health"
       }
     },
     "/session/v1/admin/config/log": {
@@ -99,6 +101,7 @@
           "Config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/get-log",
         "x-security": [
           {
             "userPermissions": [
@@ -157,6 +160,7 @@
           "Config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/update-log",
         "x-security": [
           {
             "userPermissions": [
@@ -225,6 +229,7 @@
           "DSMC Default Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/get-default-dsmc",
         "x-security": [
           {
             "userPermissions": [
@@ -239,7 +244,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "List of environment variables.",
+        "description": "Returns all environment variables currently set for the session service. Useful for debugging configuration and verifying runtime settings.",
         "operationId": "adminListEnvironmentVariables",
         "produces": [
           "application/json"
@@ -274,6 +279,7 @@
           "Environment Variable"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/list-environment-variables",
         "x-security": [
           {
             "userPermissions": [
@@ -288,7 +294,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete of global configuration data.",
+        "description": "Deletes the global configuration. After deletion, the service falls back to default configuration values.",
         "operationId": "adminDeleteGlobalConfiguration",
         "produces": [
           "application/json"
@@ -323,6 +329,7 @@
           "Global Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -335,7 +342,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Record of global configuration data.",
+        "description": "Returns the current global configuration shared across all namespaces. Includes settings like maximum active sessions and cleanup intervals.",
         "operationId": "adminListGlobalConfiguration",
         "produces": [
           "application/json"
@@ -370,6 +377,7 @@
           "Global Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -382,7 +390,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Upsert global configuration data.",
+        "description": "Creates or replaces the global configuration. If no configuration exists, a new one is created. All provided fields are applied.",
         "operationId": "adminUpdateGlobalConfiguration",
         "parameters": [
           {
@@ -428,6 +436,7 @@
           "Global Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -442,7 +451,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete configuration alert.",
+        "description": "Deletes the configuration alert for the specified namespace. After deletion, no alerts are generated for session configuration issues.",
         "operationId": "adminDeleteConfigurationAlertV1",
         "parameters": [
           {
@@ -495,6 +504,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/alerts/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -569,6 +579,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/alerts/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -658,6 +669,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/alerts/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -741,6 +753,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/alerts/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -845,6 +858,7 @@
           "Certificate"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/upload-xbox-certificate",
         "x-security": [
           {
             "userPermissions": [
@@ -930,6 +944,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/templates/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -1032,6 +1047,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/templates/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1106,6 +1122,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/templates/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -1187,6 +1204,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/templates/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1277,6 +1295,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/templates/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -1291,7 +1310,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tGet Member Active Session.\n\t\t",
+        "description": "\n\t\t\tReturns the number of active sessions the specified user is participating in under the given configuration template.\n\t\t",
         "operationId": "adminGetMemberActiveSession",
         "parameters": [
           {
@@ -1355,6 +1374,7 @@
           "Max Active"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/get-active",
         "x-security": [
           {
             "userPermissions": [
@@ -1369,7 +1389,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\n\t\t\tReconcile Max Active Session.\n\t\t\t",
+        "description": "\n\t\t\tReconciles the max active session count for the specified configuration template. Scans active sessions and updates the counter to reflect the actual count.\n\t\t\t",
         "operationId": "adminReconcileMaxActiveSession",
         "parameters": [
           {
@@ -1432,6 +1452,7 @@
           "Max Active"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/reconcile-active-count",
         "x-security": [
           {
             "userPermissions": [
@@ -1509,6 +1530,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/get-dsmc",
         "x-security": [
           {
             "userPermissions": [
@@ -1524,7 +1546,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "sync dsmc configuration.",
+        "description": "**Deprecated.** Synchronizes the dedicated server manager controller configuration from DSMC. The DSMC config is cached locally for use during session creation.",
         "operationId": "adminSyncDSMCConfiguration",
         "parameters": [
           {
@@ -1586,6 +1608,7 @@
           "Configuration Template"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/config/v1/sync-dsmc",
         "x-security": [
           {
             "userPermissions": [
@@ -1600,7 +1623,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get all game sessions.",
+        "description": "Returns paginated list of game sessions matching the provided filter criteria. Supports filtering by namespace, status, members, and joinability.",
         "operationId": "adminQueryGameSessions",
         "parameters": [
           {
@@ -1788,6 +1811,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1866,6 +1890,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/list-filtered",
         "x-security": [
           {
             "userPermissions": [
@@ -1880,7 +1905,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete bulk game sessions.",
+        "description": "Permanently deletes multiple game sessions by their IDs. Returns a summary of deleted and failed sessions. Any allocated dedicated servers are released.",
         "operationId": "adminDeleteBulkGameSessions",
         "parameters": [
           {
@@ -1945,6 +1970,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/bulk-delete",
         "x-security": [
           {
             "userPermissions": [
@@ -1963,6 +1989,7 @@
         "operationId": "adminSetDSReady",
         "parameters": [
           {
+            "description": "DS ready signal. Set ready: true when the server is ready to accept player connections.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2027,6 +2054,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/set-dedicated-server-ready",
         "x-security": [
           {
             "userPermissions": [
@@ -2116,6 +2144,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/update-dedicated-server",
         "x-security": [
           {
             "userPermissions": [
@@ -2130,7 +2159,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Kick member from a game session.",
+        "description": "Removes the specified member from a game session and sets their status to KICKED. Can be used by admins to forcefully remove members.",
         "operationId": "adminKickGameSessionMember",
         "parameters": [
           {
@@ -2203,6 +2232,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/kick",
         "x-security": [
           {
             "userPermissions": [
@@ -2297,6 +2327,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/update-member",
         "x-security": [
           {
             "userPermissions": [
@@ -2311,7 +2342,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "List of native sessions.",
+        "description": "Returns paginated list of native platform sessions. Native sessions are synchronized with PSN, Xbox Live, and Steam platform session systems.",
         "operationId": "adminGetListNativeSession",
         "parameters": [
           {
@@ -2375,6 +2406,7 @@
           "Native Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/game-sessions/v1/list-native",
         "x-security": [
           {
             "userPermissions": [
@@ -2389,7 +2421,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Query parties.",
+        "description": "Returns paginated list of party sessions matching the provided filter criteria. Supports filtering by namespace, members, leader, and joinability mode.",
         "operationId": "adminQueryParties",
         "parameters": [
           {
@@ -2551,6 +2583,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/parties/v1/search",
         "x-security": [
           {
             "userPermissions": [
@@ -2565,7 +2598,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete bulk parties.",
+        "description": "Permanently deletes multiple party sessions by their IDs. Returns a summary of deleted and failed sessions.",
         "operationId": "adminDeleteBulkParties",
         "parameters": [
           {
@@ -2630,6 +2663,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/parties/v1/bulk-delete",
         "x-security": [
           {
             "userPermissions": [
@@ -2708,6 +2742,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/storage/v1/get-party",
         "x-security": [
           {
             "userPermissions": [
@@ -2778,6 +2813,7 @@
           "Platform Credential"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/platform-credentials/v1/delete-all",
         "x-security": [
           {
             "userPermissions": [
@@ -2849,6 +2885,7 @@
           "Platform Credential"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/platform-credentials/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -2932,6 +2969,7 @@
           "Platform Credential"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/platform-credentials/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -3013,6 +3051,7 @@
           "Platform Credential"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/platform-credentials/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -3096,6 +3135,7 @@
           "Platform Credential"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/platform-credentials/v1/sync",
         "x-security": [
           {
             "userPermissions": [
@@ -3193,6 +3233,7 @@
           "Platform Credential"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/platform-credentials/v1/upload",
         "x-security": [
           {
             "userPermissions": [
@@ -3276,6 +3317,7 @@
           "Recent Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/recent-users/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -3359,6 +3401,7 @@
           "Recent Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/recent-users/v1/get-team",
         "x-security": [
           {
             "userPermissions": [
@@ -3433,6 +3476,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/storage/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -3509,6 +3553,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/storage/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -3594,6 +3639,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/storage/v1/get-user",
         "x-security": [
           {
             "userPermissions": [
@@ -3616,7 +3662,7 @@
             "type": "string"
           },
           {
-            "description": "comma-separated userIDs ",
+            "description": "comma-separated userIDs",
             "in": "query",
             "name": "users",
             "type": "string"
@@ -3670,6 +3716,7 @@
           "Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/users/v1/bulk-get-attributes",
         "x-security": [
           {
             "userPermissions": [
@@ -3744,6 +3791,7 @@
           "Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/users/v1/list-attributes",
         "x-security": [
           {
             "userPermissions": [
@@ -3758,7 +3806,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Trigger user\u0026#39;s active party session to native platform.\n",
+        "description": "Triggers synchronization of the user\u0026#39;s active party session to the native platform (PSN, Xbox). Useful when native session state is out of sync with the AccelByte session state.\n",
         "operationId": "adminSyncNativeSession",
         "parameters": [
           {
@@ -3818,6 +3866,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/admin/parties/v1/sync-native",
         "x-security": [
           {
             "userPermissions": [
@@ -3904,6 +3953,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -3984,6 +4034,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/list-filtered",
         "x-security": []
       }
     },
@@ -4063,6 +4114,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/join-by-code",
         "x-security": [
           {
             "userPermissions": [
@@ -4146,6 +4198,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/get-pod",
         "x-security": [
           {
             "userPermissions": [
@@ -4160,7 +4213,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete a game session.",
+        "description": "Permanently deletes a game session. Only the session leader or an admin can delete the session. Any allocated dedicated server will be released.",
         "operationId": "deleteGameSession",
         "parameters": [
           {
@@ -4214,6 +4267,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -4295,6 +4349,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -4391,6 +4446,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -4487,6 +4543,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/set",
         "x-security": [
           {
             "userPermissions": [
@@ -4573,6 +4630,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/update-backfill",
         "x-security": [
           {
             "userPermissions": [
@@ -4653,6 +4711,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/revoke-code",
         "x-security": [
           {
             "userPermissions": [
@@ -4731,6 +4790,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/generate-code",
         "x-security": [
           {
             "userPermissions": [
@@ -4817,6 +4877,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/invite",
         "x-security": [
           {
             "userPermissions": [
@@ -4831,7 +4892,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Join a game session.",
+        "description": "Joins a game session. For PASSWORD_PROTECTED sessions, the request body must include the session password. The session must have OPEN or INVITE_ONLY joinability and available slots.",
         "operationId": "joinGameSession",
         "parameters": [
           {
@@ -4909,6 +4970,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/join",
         "x-security": [
           {
             "userPermissions": [
@@ -5001,6 +5063,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/set-leader",
         "x-security": [
           {
             "userPermissions": [
@@ -5012,7 +5075,7 @@
     },
     "/session/v1/public/namespaces/{namespace}/gamesessions/{sessionId}/leave": {
       "delete": {
-        "description": "Leave a game session.",
+        "description": "Leaves a game session, removing the caller from the member list. If the caller is the leader, leadership transfers to another active member.",
         "operationId": "leaveGameSession",
         "parameters": [
           {
@@ -5078,6 +5141,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/leave",
         "x-security": [
           {
             "userPermissions": [
@@ -5092,7 +5156,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Kick member from a game session, only leader can kick member.",
+        "description": "Removes the specified member from a game session. Only the session leader can kick members. The kicked member\u0026#39;s status is set to KICKED.",
         "operationId": "publicKickGameSessionMember",
         "parameters": [
           {
@@ -5165,6 +5229,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/kick",
         "x-security": [
           {
             "userPermissions": [
@@ -5245,6 +5310,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/get-password",
         "x-security": [
           {
             "userPermissions": [
@@ -5332,6 +5398,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/update-password",
         "x-security": [
           {
             "userPermissions": [
@@ -5346,7 +5413,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Reject a game session invitation.",
+        "description": "Rejects a pending game session invitation. The caller must have INVITED status. The session invitation will be marked as REJECTED.",
         "operationId": "publicGameSessionReject",
         "parameters": [
           {
@@ -5412,6 +5479,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/reject-invitation",
         "x-security": [
           {
             "userPermissions": [
@@ -5495,6 +5563,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/get-dedicated-server-secret",
         "x-security": [
           {
             "userPermissions": [
@@ -5510,7 +5579,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Append new member or team to session. Please use patchUpdateGameSession instead",
+        "description": "**Deprecated.** Appends new members or teams to a game session. Use PATCH updateGameSession instead, which supports partial updates and is more efficient.",
         "operationId": "appendTeamGameSession",
         "parameters": [
           {
@@ -5582,6 +5651,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/add-team",
         "x-security": [
           {
             "userPermissions": [
@@ -5596,7 +5666,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "cancel a game session invitation.",
+        "description": "Cancels a pending game session invitation sent to the specified user. Only the session leader or the inviting member can cancel the invitation.",
         "operationId": "publicGameSessionCancel",
         "parameters": [
           {
@@ -5669,6 +5739,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/cancel-invitation",
         "x-security": [
           {
             "userPermissions": [
@@ -5754,6 +5825,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/join-by-code",
         "x-security": [
           {
             "userPermissions": [
@@ -5768,7 +5840,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Get party details.",
+        "description": "Returns party session details including members, configuration, and leader. The caller must be a party member or have admin access.",
         "operationId": "publicGetParty",
         "parameters": [
           {
@@ -5825,6 +5897,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -5921,6 +5994,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -6017,6 +6091,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/set",
         "x-security": [
           {
             "userPermissions": [
@@ -6094,6 +6169,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/revoke-code",
         "x-security": [
           {
             "userPermissions": [
@@ -6172,6 +6248,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/generate-code",
         "x-security": [
           {
             "userPermissions": [
@@ -6261,6 +6338,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/invite",
         "x-security": [
           {
             "userPermissions": [
@@ -6353,6 +6431,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/set-leader",
         "x-security": [
           {
             "userPermissions": [
@@ -6433,6 +6512,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/get-password",
         "x-security": [
           {
             "userPermissions": [
@@ -6520,6 +6600,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/update-password",
         "x-security": [
           {
             "userPermissions": [
@@ -6598,6 +6679,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v1/get-party",
         "x-security": [
           {
             "userPermissions": [
@@ -6616,6 +6698,7 @@
         "operationId": "publicUpdateInsertPartySessionStorage",
         "parameters": [
           {
+            "description": "Partial party member storage update as a JSON object.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -6698,6 +6781,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v1/upsert-party",
         "x-security": [
           {
             "userPermissions": [
@@ -6716,6 +6800,7 @@
         "operationId": "publicUpdateInsertPartySessionStorageReserved",
         "parameters": [
           {
+            "description": "Partial reserved storage update as a JSON object.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -6798,6 +6883,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v1/upsert-party-reserved",
         "x-security": [
           {
             "userPermissions": [
@@ -6890,6 +6976,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/join",
         "x-security": [
           {
             "userPermissions": [
@@ -6958,6 +7045,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/leave",
         "x-security": [
           {
             "userPermissions": [
@@ -6972,7 +7060,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Reject a party invitation.",
+        "description": "Rejects a pending party invitation. The caller must have INVITED status. Once rejected, the caller must be re-invited to rejoin.",
         "operationId": "publicPartyReject",
         "parameters": [
           {
@@ -7038,6 +7126,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/reject-invitation",
         "x-security": [
           {
             "userPermissions": [
@@ -7052,7 +7141,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Cancel a party invitation.",
+        "description": "Cancels a pending party invitation sent to the specified user. Only the party leader or the inviting member can cancel the invitation.",
         "operationId": "publicPartyCancel",
         "parameters": [
           {
@@ -7125,6 +7214,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/cancel-invitation",
         "x-security": [
           {
             "userPermissions": [
@@ -7215,6 +7305,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/kick",
         "x-security": [
           {
             "userPermissions": [
@@ -7288,6 +7379,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -7365,6 +7457,7 @@
           "Recent Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/recent-users/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -7442,6 +7535,7 @@
           "Recent Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/recent-users/v1/get-team",
         "x-security": [
           {
             "userPermissions": [
@@ -7460,6 +7554,7 @@
         "operationId": "publicUpdateInsertSessionStorageLeader",
         "parameters": [
           {
+            "description": "Partial leader storage update. Keys with null values are deleted; absent keys are preserved.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -7535,6 +7630,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v1/upsert-leader",
         "x-security": [
           {
             "userPermissions": [
@@ -7553,6 +7649,7 @@
         "operationId": "publicUpdateInsertSessionStorage",
         "parameters": [
           {
+            "description": "Partial storage update. Keys with null values are deleted; absent keys are preserved.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -7635,6 +7732,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v1/upsert",
         "x-security": [
           {
             "userPermissions": [
@@ -7714,6 +7812,7 @@
           "Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/users/v1/bulk-get-platforms",
         "x-security": [
           {
             "userPermissions": [
@@ -7778,6 +7877,7 @@
           "Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/users/v1/delete-attributes",
         "x-security": [
           {
             "userPermissions": [
@@ -7843,6 +7943,7 @@
           "Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/users/v1/list-my-attributes",
         "x-security": [
           {
             "userPermissions": [
@@ -7914,6 +8015,7 @@
           "Player"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/users/v1/create-my-attributes",
         "x-security": [
           {
             "userPermissions": [
@@ -7996,6 +8098,7 @@
           "Game Session"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/game-sessions/v1/list-my",
         "x-security": []
       }
     },
@@ -8072,6 +8175,7 @@
           "Party"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/parties/v1/list-my",
         "x-security": []
       }
     },
@@ -8084,6 +8188,7 @@
         "operationId": "publicUpdateInsertSessionStorageLeaderV2",
         "parameters": [
           {
+            "description": "Partial leader storage update. Keys with null values are deleted; absent keys are preserved.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -8159,6 +8264,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v2/upsert-leader",
         "x-security": [
           {
             "userPermissions": [
@@ -8175,6 +8281,7 @@
         "operationId": "publicReplaceSessionStorageLeaderV2",
         "parameters": [
           {
+            "description": "Complete leader storage replacement. Replaces all existing data; no merging performed.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -8250,6 +8357,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v2/replace-leader",
         "x-security": [
           {
             "userPermissions": [
@@ -8268,6 +8376,7 @@
         "operationId": "publicUpdateInsertSessionStorageUserV2",
         "parameters": [
           {
+            "description": "Partial user storage update. Keys with null values are deleted; absent keys are preserved.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -8350,6 +8459,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v2/upsert-user",
         "x-security": [
           {
             "userPermissions": [
@@ -8366,6 +8476,7 @@
         "operationId": "publicReplaceSessionStorageUserV2",
         "parameters": [
           {
+            "description": "Complete user storage replacement. Replaces all existing data; no merging performed.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -8448,6 +8559,7 @@
           "Session Storage"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session/public/storage/v2/replace-user",
         "x-security": [
           {
             "userPermissions": [
@@ -11195,9 +11307,9 @@
     "path": "/session/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T09:02:39+00:00",
-    "gitHash": "51ecc36162865027ddd4635e62af876abd301f67",
-    "version": "3.33.0",
+    "buildDate": "2026-07-02T23:18:16+00:00",
+    "gitHash": "6721a51fb50e955a32396403415e4bd9c4c81ab0",
+    "version": "3.34.0",
     "version-roles-seeding": "1.2.86"
   }
 }

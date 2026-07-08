@@ -3506,7 +3506,7 @@ func (aaa *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetU
 }
 
 // Deprecated: 2022-01-10 - please use PublicGetAsyncStatusShort instead.
-func (aaa *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
+func (aaa *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelReAuthRequest, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -4109,7 +4109,7 @@ func (aaa *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatfor
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, err := aaa.Client.Users.PublicWebLinkPlatform(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := aaa.Client.Users.PublicWebLinkPlatform(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -4118,6 +4118,9 @@ func (aaa *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatfor
 	}
 	if notFound != nil {
 		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -4141,14 +4144,74 @@ func (aaa *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLi
 }
 
 // Deprecated: 2022-01-10 - please use PublicProcessWebLinkPlatformV3Short instead.
-func (aaa *UsersService) PublicProcessWebLinkPlatformV3(input *users.PublicProcessWebLinkPlatformV3Params) (*iamclientmodels.ModelLinkRequest, error) {
+func (aaa *UsersService) PublicProcessWebLinkPlatformV3(input *users.PublicProcessWebLinkPlatformV3Params) (*iamclientmodels.ModelReAuthRequest, error) {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := aaa.Client.Users.PublicProcessWebLinkPlatformV3(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, internalServerError, err := aaa.Client.Users.PublicProcessWebLinkPlatformV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicWebReauthPlatformShort instead.
+func (aaa *UsersService) PublicWebReauthPlatform(input *users.PublicWebReauthPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, notFound, err := aaa.Client.Users.PublicWebReauthPlatform(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicWebReauthPlatformEstablishShort instead.
+func (aaa *UsersService) PublicWebReauthPlatformEstablish(input *users.PublicWebReauthPlatformEstablishParams) (string, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return "", err
+	}
+	found, err := aaa.Client.Users.PublicWebReauthPlatformEstablish(input, client.BearerToken(*token.AccessToken))
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
+}
+
+// Deprecated: 2022-01-10 - please use PublicWebReauthPlatformProcessShort instead.
+func (aaa *UsersService) PublicWebReauthPlatformProcess(input *users.PublicWebReauthPlatformProcessParams) (*iamclientmodels.ModelWebReauthProcessResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, internalServerError, err := aaa.Client.Users.PublicWebReauthPlatformProcess(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
 	}
 	if err != nil {
 		return nil, err
@@ -8893,7 +8956,7 @@ func (aaa *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.Publi
 	return ok.GetPayload(), nil
 }
 
-func (aaa *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
+func (aaa *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelReAuthRequest, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -9695,7 +9758,7 @@ func (aaa *UsersService) PublicWebLinkPlatformEstablishShort(input *users.Public
 	return found.Location, nil
 }
 
-func (aaa *UsersService) PublicProcessWebLinkPlatformV3Short(input *users.PublicProcessWebLinkPlatformV3Params) (*iamclientmodels.ModelLinkRequest, error) {
+func (aaa *UsersService) PublicProcessWebLinkPlatformV3Short(input *users.PublicProcessWebLinkPlatformV3Params) (*iamclientmodels.ModelReAuthRequest, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -9718,6 +9781,104 @@ func (aaa *UsersService) PublicProcessWebLinkPlatformV3Short(input *users.Public
 	}
 
 	ok, err := aaa.Client.Users.PublicProcessWebLinkPlatformV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicWebReauthPlatformShort(input *users.PublicWebReauthPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.PublicWebReauthPlatformShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (aaa *UsersService) PublicWebReauthPlatformEstablishShort(input *users.PublicWebReauthPlatformEstablishParams) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	found, err := aaa.Client.Users.PublicWebReauthPlatformEstablishShort(input, authInfoWriter)
+	if err != nil {
+		return "", err
+	}
+
+	return found.Location, nil
+}
+
+func (aaa *UsersService) PublicWebReauthPlatformProcessShort(input *users.PublicWebReauthPlatformProcessParams) (*iamclientmodels.ModelWebReauthProcessResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdUsers != nil {
+		input.XFlightId = tempFlightIdUsers
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.Users.PublicWebReauthPlatformProcessShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

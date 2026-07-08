@@ -27,9 +27,11 @@ var FleetGetCmd = &cobra.Command{
 		}
 		fleetID, _ := cmd.Flags().GetString("fleetID")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		includeInactiveRegions, _ := cmd.Flags().GetBool("includeInactiveRegions")
 		input := &fleets.FleetGetParams{
-			FleetID:   fleetID,
-			Namespace: namespace,
+			FleetID:                fleetID,
+			Namespace:              namespace,
+			IncludeInactiveRegions: &includeInactiveRegions,
 		}
 		ok, errOK := fleetsService.FleetGetShort(input)
 		if errOK != nil {
@@ -49,4 +51,5 @@ func init() {
 	_ = FleetGetCmd.MarkFlagRequired("fleetID")
 	FleetGetCmd.Flags().String("namespace", "", "Namespace")
 	_ = FleetGetCmd.MarkFlagRequired("namespace")
+	FleetGetCmd.Flags().Bool("includeInactiveRegions", false, "Include inactive regions")
 }

@@ -174,6 +174,67 @@ func (aaa *GoalConfigurationService) AdminDeleteGoal(input *goal_configuration.A
 	return nil
 }
 
+// Deprecated: 2022-01-10 - please use AdminMoveGoalToSlotShort instead.
+func (aaa *GoalConfigurationService) AdminMoveGoalToSlot(input *goal_configuration.AdminMoveGoalToSlotParams) error {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.GoalConfiguration.AdminMoveGoalToSlot(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: 2022-01-10 - please use AdminGetChallengeSlotsShort instead.
+func (aaa *GoalConfigurationService) AdminGetChallengeSlots(input *goal_configuration.AdminGetChallengeSlotsParams) (*challengeclientmodels.ModelGetSlotsResponse, error) {
+	token, err := aaa.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, forbidden, notFound, unprocessableEntity, internalServerError, err := aaa.Client.GoalConfiguration.AdminGetChallengeSlots(input, client.BearerToken(*token.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if forbidden != nil {
+		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (aaa *GoalConfigurationService) AdminGetGoalsShort(input *goal_configuration.AdminGetGoalsParams) (*challengeclientmodels.ModelGetGoalsResponse, error) {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
@@ -338,4 +399,68 @@ func (aaa *GoalConfigurationService) AdminDeleteGoalShort(input *goal_configurat
 	}
 
 	return nil
+}
+
+func (aaa *GoalConfigurationService) AdminMoveGoalToSlotShort(input *goal_configuration.AdminMoveGoalToSlotParams) error {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdGoalConfiguration != nil {
+		input.XFlightId = tempFlightIdGoalConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	_, err := aaa.Client.GoalConfiguration.AdminMoveGoalToSlotShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (aaa *GoalConfigurationService) AdminGetChallengeSlotsShort(input *goal_configuration.AdminGetChallengeSlotsParams) (*challengeclientmodels.ModelGetSlotsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(aaa.GetAuthSession(), security, "")
+	}
+	if input.RetryPolicy == nil {
+		input.RetryPolicy = &utils.Retry{
+			MaxTries:   utils.MaxTries,
+			Backoff:    utils.NewConstantBackoff(0),
+			Transport:  aaa.Client.Runtime.Transport,
+			RetryCodes: utils.RetryCodes,
+		}
+	}
+	if tempFlightIdGoalConfiguration != nil {
+		input.XFlightId = tempFlightIdGoalConfiguration
+	} else if aaa.FlightIdRepository != nil {
+		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
+	}
+
+	ok, err := aaa.Client.GoalConfiguration.AdminGetChallengeSlotsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	if ok == nil {
+		return nil, nil
+	}
+
+	return ok.GetPayload(), nil
 }

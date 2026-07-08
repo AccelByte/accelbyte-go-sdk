@@ -1260,12 +1260,7 @@ func (a *Client) PublicPlayerBlockPlayersV1Short(params *PublicPlayerBlockPlayer
 Deprecated: 2022-08-10 - Use PublicGetPlayerBlockedPlayersV1Short instead.
 
 PublicGetPlayerBlockedPlayersV1 get blocked players by user id
-Required valid user authorization
-
-
-load blocked players in a namespace based on user id
-
-Action Code: 50101
+Load blocked players in a namespace for the current user.
 */
 func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, *PublicGetPlayerBlockedPlayersV1BadRequest, *PublicGetPlayerBlockedPlayersV1Unauthorized, *PublicGetPlayerBlockedPlayersV1Forbidden, *PublicGetPlayerBlockedPlayersV1NotFound, *PublicGetPlayerBlockedPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1329,12 +1324,7 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1(params *PublicGetPlayerBlockedP
 
 /*
 PublicGetPlayerBlockedPlayersV1Short get blocked players by user id
-Required valid user authorization
-
-
-load blocked players in a namespace based on user id
-
-Action Code: 50101
+Load blocked players in a namespace for the current user.
 */
 func (a *Client) PublicGetPlayerBlockedPlayersV1Short(params *PublicGetPlayerBlockedPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedPlayersV1OK, error) {
 	// TODO: Validate the params before sending
@@ -1391,12 +1381,7 @@ func (a *Client) PublicGetPlayerBlockedPlayersV1Short(params *PublicGetPlayerBlo
 Deprecated: 2022-08-10 - Use PublicGetPlayerBlockedByPlayersV1Short instead.
 
 PublicGetPlayerBlockedByPlayersV1 get players who blocked this player by user id
-Required valid user authorization
-
-
-load get players who blocked this player in a namespace based on user id
-
-Action Code: 50101
+Load players who have blocked the current user in a namespace.
 */
 func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, *PublicGetPlayerBlockedByPlayersV1BadRequest, *PublicGetPlayerBlockedByPlayersV1Unauthorized, *PublicGetPlayerBlockedByPlayersV1Forbidden, *PublicGetPlayerBlockedByPlayersV1NotFound, *PublicGetPlayerBlockedByPlayersV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1460,12 +1445,7 @@ func (a *Client) PublicGetPlayerBlockedByPlayersV1(params *PublicGetPlayerBlocke
 
 /*
 PublicGetPlayerBlockedByPlayersV1Short get players who blocked this player by user id
-Required valid user authorization
-
-
-load get players who blocked this player in a namespace based on user id
-
-Action Code: 50101
+Load players who have blocked the current user in a namespace.
 */
 func (a *Client) PublicGetPlayerBlockedByPlayersV1Short(params *PublicGetPlayerBlockedByPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPlayerBlockedByPlayersV1OK, error) {
 	// TODO: Validate the params before sending

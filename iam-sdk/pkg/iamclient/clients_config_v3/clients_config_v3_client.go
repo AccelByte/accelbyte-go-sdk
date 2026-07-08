@@ -154,7 +154,13 @@ func (a *Client) AdminListClientAvailablePermissionsShort(params *AdminListClien
 Deprecated: 2022-08-10 - Use AdminUpdateAvailablePermissionsByModuleShort instead.
 
 AdminUpdateAvailablePermissionsByModule update or create client permissions module
-Updates client available permissions. If the specified module or group does not exist, it will be automatically created.
+Upserts client available permissions at the module level.
+Only the modules listed in the request are processed - any other existing module is left untouched, so *callers do not need to include unchanged modules*.
+
+## Groups update behavior
+
+For each module in the request, the 'groups' array is the *full desired state* of that module's groups - any existing group whose 'groupId' is omitted is treated as ***removed***.
+If a removed group is currently used by any client, the request will fails with 400 and nothing is saved, unless 'forceDelete=true' query param is passed.
 */
 func (a *Client) AdminUpdateAvailablePermissionsByModule(params *AdminUpdateAvailablePermissionsByModuleParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAvailablePermissionsByModuleNoContent, *AdminUpdateAvailablePermissionsByModuleUnauthorized, *AdminUpdateAvailablePermissionsByModuleForbidden, error) {
 	// TODO: Validate the params before sending
@@ -209,7 +215,13 @@ func (a *Client) AdminUpdateAvailablePermissionsByModule(params *AdminUpdateAvai
 
 /*
 AdminUpdateAvailablePermissionsByModuleShort update or create client permissions module
-Updates client available permissions. If the specified module or group does not exist, it will be automatically created.
+Upserts client available permissions at the module level.
+Only the modules listed in the request are processed - any other existing module is left untouched, so *callers do not need to include unchanged modules*.
+
+## Groups update behavior
+
+For each module in the request, the 'groups' array is the *full desired state* of that module's groups - any existing group whose 'groupId' is omitted is treated as ***removed***.
+If a removed group is currently used by any client, the request will fails with 400 and nothing is saved, unless 'forceDelete=true' query param is passed.
 */
 func (a *Client) AdminUpdateAvailablePermissionsByModuleShort(params *AdminUpdateAvailablePermissionsByModuleParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateAvailablePermissionsByModuleNoContent, error) {
 	// TODO: Validate the params before sending

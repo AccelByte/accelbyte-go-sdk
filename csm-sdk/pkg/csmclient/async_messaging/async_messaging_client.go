@@ -48,8 +48,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateSubscriptionHandlerShort instead.
 
 CreateSubscriptionHandler subscribe to topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:SUBSCRIPTIONS [CREATE]`
-
 Subscribe App queue to given Topic name list inside a game namespace.
 */
 func (a *Client) CreateSubscriptionHandler(params *CreateSubscriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSubscriptionHandlerOK, *CreateSubscriptionHandlerBadRequest, *CreateSubscriptionHandlerUnauthorized, *CreateSubscriptionHandlerForbidden, *CreateSubscriptionHandlerNotFound, *CreateSubscriptionHandlerInternalServerError, error) {
@@ -114,8 +112,6 @@ func (a *Client) CreateSubscriptionHandler(params *CreateSubscriptionHandlerPara
 
 /*
 CreateSubscriptionHandlerShort subscribe to topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:SUBSCRIPTIONS [CREATE]`
-
 Subscribe App queue to given Topic name list inside a game namespace.
 */
 func (a *Client) CreateSubscriptionHandlerShort(params *CreateSubscriptionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSubscriptionHandlerOK, error) {
@@ -173,8 +169,6 @@ func (a *Client) CreateSubscriptionHandlerShort(params *CreateSubscriptionHandle
 Deprecated: 2022-08-10 - Use UnsubscribeTopicHandlerShort instead.
 
 UnsubscribeTopicHandler unsubscribe from topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:SUBSCRIPTIONS [DELETE]`
-
 Unsubscribe App queue from a topic by Topic Name.
 */
 func (a *Client) UnsubscribeTopicHandler(params *UnsubscribeTopicHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeTopicHandlerOK, *UnsubscribeTopicHandlerUnauthorized, *UnsubscribeTopicHandlerForbidden, *UnsubscribeTopicHandlerNotFound, *UnsubscribeTopicHandlerInternalServerError, error) {
@@ -236,8 +230,6 @@ func (a *Client) UnsubscribeTopicHandler(params *UnsubscribeTopicHandlerParams, 
 
 /*
 UnsubscribeTopicHandlerShort unsubscribe from topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:SUBSCRIPTIONS [DELETE]`
-
 Unsubscribe App queue from a topic by Topic Name.
 */
 func (a *Client) UnsubscribeTopicHandlerShort(params *UnsubscribeTopicHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*UnsubscribeTopicHandlerOK, error) {
@@ -293,8 +285,6 @@ func (a *Client) UnsubscribeTopicHandlerShort(params *UnsubscribeTopicHandlerPar
 Deprecated: 2022-08-10 - Use ListTopicsHandlerShort instead.
 
 ListTopicsHandler list async messaging topics
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [READ]`
-
 List all Async Messaging Topics inside a game namespace.
 */
 func (a *Client) ListTopicsHandler(params *ListTopicsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*ListTopicsHandlerOK, *ListTopicsHandlerBadRequest, *ListTopicsHandlerUnauthorized, *ListTopicsHandlerForbidden, *ListTopicsHandlerInternalServerError, error) {
@@ -356,8 +346,6 @@ func (a *Client) ListTopicsHandler(params *ListTopicsHandlerParams, authInfo run
 
 /*
 ListTopicsHandlerShort list async messaging topics
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [READ]`
-
 List all Async Messaging Topics inside a game namespace.
 */
 func (a *Client) ListTopicsHandlerShort(params *ListTopicsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*ListTopicsHandlerOK, error) {
@@ -413,8 +401,6 @@ func (a *Client) ListTopicsHandlerShort(params *ListTopicsHandlerParams, authInf
 Deprecated: 2022-08-10 - Use CreateTopicHandlerShort instead.
 
 CreateTopicHandler create async messaging topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [CREATE]`
-
 Create New Async Messaging Topic, the topic name is unique inside a game namespace.
 */
 func (a *Client) CreateTopicHandler(params *CreateTopicHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicHandlerOK, *CreateTopicHandlerBadRequest, *CreateTopicHandlerUnauthorized, *CreateTopicHandlerForbidden, *CreateTopicHandlerConflict, *CreateTopicHandlerInternalServerError, error) {
@@ -479,8 +465,6 @@ func (a *Client) CreateTopicHandler(params *CreateTopicHandlerParams, authInfo r
 
 /*
 CreateTopicHandlerShort create async messaging topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [CREATE]`
-
 Create New Async Messaging Topic, the topic name is unique inside a game namespace.
 */
 func (a *Client) CreateTopicHandlerShort(params *CreateTopicHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTopicHandlerOK, error) {
@@ -538,8 +522,6 @@ func (a *Client) CreateTopicHandlerShort(params *CreateTopicHandlerParams, authI
 Deprecated: 2022-08-10 - Use DeleteTopicHandlerShort instead.
 
 DeleteTopicHandler delete async messaging topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [DELETE]`
-
 Delete Async Messaging Topic inside a game namespace given its topic name.
 */
 func (a *Client) DeleteTopicHandler(params *DeleteTopicHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTopicHandlerOK, *DeleteTopicHandlerUnauthorized, *DeleteTopicHandlerForbidden, *DeleteTopicHandlerNotFound, *DeleteTopicHandlerInternalServerError, error) {
@@ -601,8 +583,6 @@ func (a *Client) DeleteTopicHandler(params *DeleteTopicHandlerParams, authInfo r
 
 /*
 DeleteTopicHandlerShort delete async messaging topic
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:ASYNCMESSAGING:TOPICS [DELETE]`
-
 Delete Async Messaging Topic inside a game namespace given its topic name.
 */
 func (a *Client) DeleteTopicHandlerShort(params *DeleteTopicHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTopicHandlerOK, error) {

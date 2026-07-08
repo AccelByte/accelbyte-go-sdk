@@ -49,12 +49,14 @@ const (
 // with the default values initialized.
 func NewFleetListParams() *FleetListParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault                  = int64(100)
+		includeInactiveRegionsDefault = bool(false)
+		offsetDefault                 = int64(0)
 	)
 	return &FleetListParams{
-		Count:  &countDefault,
-		Offset: &offsetDefault,
+		Count:                  &countDefault,
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
+		Offset:                 &offsetDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -64,12 +66,14 @@ func NewFleetListParams() *FleetListParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewFleetListParamsWithTimeout(timeout time.Duration) *FleetListParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault                  = int64(100)
+		includeInactiveRegionsDefault = bool(false)
+		offsetDefault                 = int64(0)
 	)
 	return &FleetListParams{
-		Count:  &countDefault,
-		Offset: &offsetDefault,
+		Count:                  &countDefault,
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
+		Offset:                 &offsetDefault,
 
 		timeout: timeout,
 	}
@@ -79,12 +83,14 @@ func NewFleetListParamsWithTimeout(timeout time.Duration) *FleetListParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewFleetListParamsWithContext(ctx context.Context) *FleetListParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault                  = int64(100)
+		includeInactiveRegionsDefault = bool(false)
+		offsetDefault                 = int64(0)
 	)
 	return &FleetListParams{
-		Count:  &countDefault,
-		Offset: &offsetDefault,
+		Count:                  &countDefault,
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
+		Offset:                 &offsetDefault,
 
 		Context: ctx,
 	}
@@ -94,13 +100,15 @@ func NewFleetListParamsWithContext(ctx context.Context) *FleetListParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFleetListParamsWithHTTPClient(client *http.Client) *FleetListParams {
 	var (
-		countDefault  = int64(100)
-		offsetDefault = int64(0)
+		countDefault                  = int64(100)
+		includeInactiveRegionsDefault = bool(false)
+		offsetDefault                 = int64(0)
 	)
 	return &FleetListParams{
-		Count:      &countDefault,
-		Offset:     &offsetDefault,
-		HTTPClient: client,
+		Count:                  &countDefault,
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
+		Offset:                 &offsetDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -126,6 +134,11 @@ type FleetListParams struct {
 
 	*/
 	Count *int64
+	/*IncludeInactiveRegions
+	  include inactive regions in the response
+
+	*/
+	IncludeInactiveRegions *bool
 	/*Name
 	  filter fleets by name
 
@@ -250,6 +263,17 @@ func (o *FleetListParams) SetCount(count *int64) {
 	o.Count = count
 }
 
+// WithIncludeInactiveRegions adds the includeInactiveRegions to the fleet list params
+func (o *FleetListParams) WithIncludeInactiveRegions(includeInactiveRegions *bool) *FleetListParams {
+	o.SetIncludeInactiveRegions(includeInactiveRegions)
+	return o
+}
+
+// SetIncludeInactiveRegions adds the includeInactiveRegions to the fleet list params
+func (o *FleetListParams) SetIncludeInactiveRegions(includeInactiveRegions *bool) {
+	o.IncludeInactiveRegions = includeInactiveRegions
+}
+
 // WithName adds the name to the fleet list params
 func (o *FleetListParams) WithName(name *string) *FleetListParams {
 	o.SetName(name)
@@ -344,6 +368,22 @@ func (o *FleetListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		qCount := swag.FormatInt64(qrCount)
 		if qCount != "" {
 			if err := r.SetQueryParam("count", qCount); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.IncludeInactiveRegions != nil {
+
+		// query param includeInactiveRegions
+		var qrIncludeInactiveRegions bool
+		if o.IncludeInactiveRegions != nil {
+			qrIncludeInactiveRegions = *o.IncludeInactiveRegions
+		}
+		qIncludeInactiveRegions := swag.FormatBool(qrIncludeInactiveRegions)
+		if qIncludeInactiveRegions != "" {
+			if err := r.SetQueryParam("includeInactiveRegions", qIncludeInactiveRegions); err != nil {
 				return err
 			}
 		}

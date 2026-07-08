@@ -28,20 +28,22 @@ var FleetListCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		active, _ := cmd.Flags().GetBool("active")
 		count, _ := cmd.Flags().GetInt64("count")
+		includeInactiveRegions, _ := cmd.Flags().GetBool("includeInactiveRegions")
 		name, _ := cmd.Flags().GetString("name")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		region, _ := cmd.Flags().GetString("region")
 		sortBy, _ := cmd.Flags().GetString("sortBy")
 		sortDirection, _ := cmd.Flags().GetString("sortDirection")
 		input := &fleets.FleetListParams{
-			Namespace:     namespace,
-			Active:        &active,
-			Count:         &count,
-			Name:          &name,
-			Offset:        &offset,
-			Region:        &region,
-			SortBy:        &sortBy,
-			SortDirection: &sortDirection,
+			Namespace:              namespace,
+			Active:                 &active,
+			Count:                  &count,
+			IncludeInactiveRegions: &includeInactiveRegions,
+			Name:                   &name,
+			Offset:                 &offset,
+			Region:                 &region,
+			SortBy:                 &sortBy,
+			SortDirection:          &sortDirection,
 		}
 		ok, errOK := fleetsService.FleetListShort(input)
 		if errOK != nil {
@@ -61,6 +63,7 @@ func init() {
 	_ = FleetListCmd.MarkFlagRequired("namespace")
 	FleetListCmd.Flags().Bool("active", false, "Active")
 	FleetListCmd.Flags().Int64("count", 1, "Count")
+	FleetListCmd.Flags().Bool("includeInactiveRegions", false, "Include inactive regions")
 	FleetListCmd.Flags().String("name", "", "Name")
 	FleetListCmd.Flags().Int64("offset", 0, "Offset")
 	FleetListCmd.Flags().String("region", "", "Region")

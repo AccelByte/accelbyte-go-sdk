@@ -62,6 +62,10 @@ type ModelsConfigResponse struct {
 	// Format: int32
 	MaxChatMessageLength int32 `json:"maxChatMessageLength,omitempty"`
 
+	// maxchatmetadatasize
+	// Format: int32
+	MaxChatMetadataSize int32 `json:"maxChatMetadataSize,omitempty"`
+
 	// shardcapacitylimit
 	// Format: int32
 	ShardCapacityLimit int32 `json:"shardCapacityLimit,omitempty"`

@@ -38,7 +38,7 @@ type ModelsDeletionStatus struct {
 	// Required: true
 	Status *string `json:"Status"`
 
-	// userid
+	// Publisher User Id
 	// Required: true
 	UserID *string `json:"UserID"`
 }

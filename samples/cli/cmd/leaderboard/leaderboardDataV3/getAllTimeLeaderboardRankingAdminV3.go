@@ -27,13 +27,15 @@ var GetAllTimeLeaderboardRankingAdminV3Cmd = &cobra.Command{
 		}
 		leaderboardCode, _ := cmd.Flags().GetString("leaderboardCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
+		includeHiddenUsers, _ := cmd.Flags().GetBool("includeHiddenUsers")
 		limit, _ := cmd.Flags().GetInt64("limit")
 		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &leaderboard_data_v3.GetAllTimeLeaderboardRankingAdminV3Params{
-			LeaderboardCode: leaderboardCode,
-			Namespace:       namespace,
-			Limit:           &limit,
-			Offset:          &offset,
+			LeaderboardCode:    leaderboardCode,
+			Namespace:          namespace,
+			IncludeHiddenUsers: &includeHiddenUsers,
+			Limit:              &limit,
+			Offset:             &offset,
 		}
 		ok, errOK := leaderboardDataV3Service.GetAllTimeLeaderboardRankingAdminV3Short(input)
 		if errOK != nil {
@@ -53,6 +55,7 @@ func init() {
 	_ = GetAllTimeLeaderboardRankingAdminV3Cmd.MarkFlagRequired("leaderboardCode")
 	GetAllTimeLeaderboardRankingAdminV3Cmd.Flags().String("namespace", "", "Namespace")
 	_ = GetAllTimeLeaderboardRankingAdminV3Cmd.MarkFlagRequired("namespace")
+	GetAllTimeLeaderboardRankingAdminV3Cmd.Flags().Bool("includeHiddenUsers", false, "Include hidden users")
 	GetAllTimeLeaderboardRankingAdminV3Cmd.Flags().Int64("limit", 20, "Limit")
 	GetAllTimeLeaderboardRankingAdminV3Cmd.Flags().Int64("offset", 0, "Offset")
 }

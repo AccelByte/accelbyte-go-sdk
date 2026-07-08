@@ -42,8 +42,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetAppImageListV1Short instead.
 
 GetAppImageListV1 get a list of container images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [READ]`
-
 Get a list of container images
 
 Default 'cached' parameter is 'true'
@@ -107,8 +105,6 @@ func (a *Client) GetAppImageListV1(params *GetAppImageListV1Params, authInfo run
 
 /*
 GetAppImageListV1Short get a list of container images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [READ]`
-
 Get a list of container images
 
 Default 'cached' parameter is 'true'
@@ -166,8 +162,6 @@ func (a *Client) GetAppImageListV1Short(params *GetAppImageListV1Params, authInf
 Deprecated: 2022-08-10 - Use DeleteAppImagesV1Short instead.
 
 DeleteAppImagesV1 deletes the images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [DELETE]`
-
 Deletes the images uploaded to the repository
 */
 func (a *Client) DeleteAppImagesV1(params *DeleteAppImagesV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppImagesV1NoContent, *DeleteAppImagesV1Unauthorized, *DeleteAppImagesV1Forbidden, *DeleteAppImagesV1NotFound, *DeleteAppImagesV1InternalServerError, error) {
@@ -229,8 +223,6 @@ func (a *Client) DeleteAppImagesV1(params *DeleteAppImagesV1Params, authInfo run
 
 /*
 DeleteAppImagesV1Short deletes the images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [DELETE]`
-
 Deletes the images uploaded to the repository
 */
 func (a *Client) DeleteAppImagesV1Short(params *DeleteAppImagesV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppImagesV1NoContent, error) {

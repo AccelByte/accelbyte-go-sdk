@@ -80,16 +80,16 @@ type GetNoSQLAppListV2Params struct {
 
 	*/
 	AppName *string
+	/*GameNamespace
+	  Game Namespace
+
+	*/
+	GameNamespace *string
 	/*Limit
 	  Limit for pagination
 
 	*/
 	Limit *int64
-	/*Namespace
-	  Game Name
-
-	*/
-	Namespace *string
 	/*Offset
 	  Offset for pagination
 
@@ -194,6 +194,17 @@ func (o *GetNoSQLAppListV2Params) SetAppName(appName *string) {
 	o.AppName = appName
 }
 
+// WithGameNamespace adds the gameNamespace to the get no sql app list v2 params
+func (o *GetNoSQLAppListV2Params) WithGameNamespace(gameNamespace *string) *GetNoSQLAppListV2Params {
+	o.SetGameNamespace(gameNamespace)
+	return o
+}
+
+// SetGameNamespace adds the gameNamespace to the get no sql app list v2 params
+func (o *GetNoSQLAppListV2Params) SetGameNamespace(gameNamespace *string) {
+	o.GameNamespace = gameNamespace
+}
+
 // WithLimit adds the limit to the get no sql app list v2 params
 func (o *GetNoSQLAppListV2Params) WithLimit(limit *int64) *GetNoSQLAppListV2Params {
 	o.SetLimit(limit)
@@ -203,17 +214,6 @@ func (o *GetNoSQLAppListV2Params) WithLimit(limit *int64) *GetNoSQLAppListV2Para
 // SetLimit adds the limit to the get no sql app list v2 params
 func (o *GetNoSQLAppListV2Params) SetLimit(limit *int64) {
 	o.Limit = limit
-}
-
-// WithNamespace adds the namespace to the get no sql app list v2 params
-func (o *GetNoSQLAppListV2Params) WithNamespace(namespace *string) *GetNoSQLAppListV2Params {
-	o.SetNamespace(namespace)
-	return o
-}
-
-// SetNamespace adds the namespace to the get no sql app list v2 params
-func (o *GetNoSQLAppListV2Params) SetNamespace(namespace *string) {
-	o.Namespace = namespace
 }
 
 // WithOffset adds the offset to the get no sql app list v2 params
@@ -261,6 +261,22 @@ func (o *GetNoSQLAppListV2Params) WriteToRequest(r runtime.ClientRequest, reg st
 
 	}
 
+	if o.GameNamespace != nil {
+
+		// query param gameNamespace
+		var qrGameNamespace string
+		if o.GameNamespace != nil {
+			qrGameNamespace = *o.GameNamespace
+		}
+		qGameNamespace := qrGameNamespace
+		if qGameNamespace != "" {
+			if err := r.SetQueryParam("gameNamespace", qGameNamespace); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -271,22 +287,6 @@ func (o *GetNoSQLAppListV2Params) WriteToRequest(r runtime.ClientRequest, reg st
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
-				return err
-			}
-		}
-
-	}
-
-	if o.Namespace != nil {
-
-		// query param namespace
-		var qrNamespace string
-		if o.Namespace != nil {
-			qrNamespace = *o.Namespace
-		}
-		qNamespace := qrNamespace
-		if qNamespace != "" {
-			if err := r.SetQueryParam("namespace", qNamespace); err != nil {
 				return err
 			}
 		}

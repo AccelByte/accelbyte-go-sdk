@@ -18,11 +18,11 @@ import (
 // swagger:model Models request delete response.
 type ModelsRequestDeleteResponse struct {
 
-	// namespace
+	// Publisher Namespace
 	// Required: true
 	Namespace *string `json:"Namespace"`
 
-	// userid
+	// Publisher User Id
 	// Required: true
 	UserID *string `json:"UserID"`
 }

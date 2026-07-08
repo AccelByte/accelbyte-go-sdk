@@ -40,6 +40,10 @@ type ClientService interface {
 	AdminUpdateGoalsShort(params *AdminUpdateGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGoalsOK, error)
 	AdminDeleteGoal(params *AdminDeleteGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGoalNoContent, *AdminDeleteGoalBadRequest, *AdminDeleteGoalNotFound, *AdminDeleteGoalInternalServerError, error)
 	AdminDeleteGoalShort(params *AdminDeleteGoalParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGoalNoContent, error)
+	AdminMoveGoalToSlot(params *AdminMoveGoalToSlotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminMoveGoalToSlotNoContent, *AdminMoveGoalToSlotBadRequest, *AdminMoveGoalToSlotUnauthorized, *AdminMoveGoalToSlotForbidden, *AdminMoveGoalToSlotNotFound, *AdminMoveGoalToSlotUnprocessableEntity, *AdminMoveGoalToSlotInternalServerError, error)
+	AdminMoveGoalToSlotShort(params *AdminMoveGoalToSlotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminMoveGoalToSlotNoContent, error)
+	AdminGetChallengeSlots(params *AdminGetChallengeSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengeSlotsOK, *AdminGetChallengeSlotsUnauthorized, *AdminGetChallengeSlotsForbidden, *AdminGetChallengeSlotsNotFound, *AdminGetChallengeSlotsUnprocessableEntity, *AdminGetChallengeSlotsInternalServerError, error)
+	AdminGetChallengeSlotsShort(params *AdminGetChallengeSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengeSlotsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -767,6 +771,279 @@ func (a *Client) AdminDeleteGoalShort(params *AdminDeleteGoalParams, authInfo ru
 	case *AdminDeleteGoalNotFound:
 		return nil, v
 	case *AdminDeleteGoalInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminMoveGoalToSlotShort instead.
+
+AdminMoveGoalToSlot move goal to another slot
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
+Moves a goal to a target slot in a FIXED or non-per-rotation RANDOMIZED challenge with repeatAfter set.
+slotIndex is 0-based and must be in [0, repeatAfter-1].
+Pass slotIndex = -1 to remove the goal from all slots; it will no longer appear in future rounds.
+TemplateSlots and all non-finished schedule documents are updated immediately.
+The currently active schedule document for the affected slot is skipped to avoid
+disrupting in-progress user progressions; the change takes effect from the next round.
+Finished (past) schedule documents are never modified.
+*/
+func (a *Client) AdminMoveGoalToSlot(params *AdminMoveGoalToSlotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminMoveGoalToSlotNoContent, *AdminMoveGoalToSlotBadRequest, *AdminMoveGoalToSlotUnauthorized, *AdminMoveGoalToSlotForbidden, *AdminMoveGoalToSlotNotFound, *AdminMoveGoalToSlotUnprocessableEntity, *AdminMoveGoalToSlotInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminMoveGoalToSlotParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminMoveGoalToSlot",
+		Method:             "PUT",
+		PathPattern:        "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}/slots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminMoveGoalToSlotReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminMoveGoalToSlotNoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminMoveGoalToSlotBadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminMoveGoalToSlotUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminMoveGoalToSlotForbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminMoveGoalToSlotNotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminMoveGoalToSlotUnprocessableEntity:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminMoveGoalToSlotInternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminMoveGoalToSlotShort move goal to another slot
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [UPDATE]
+Moves a goal to a target slot in a FIXED or non-per-rotation RANDOMIZED challenge with repeatAfter set.
+slotIndex is 0-based and must be in [0, repeatAfter-1].
+Pass slotIndex = -1 to remove the goal from all slots; it will no longer appear in future rounds.
+TemplateSlots and all non-finished schedule documents are updated immediately.
+The currently active schedule document for the affected slot is skipped to avoid
+disrupting in-progress user progressions; the change takes effect from the next round.
+Finished (past) schedule documents are never modified.
+*/
+func (a *Client) AdminMoveGoalToSlotShort(params *AdminMoveGoalToSlotParams, authInfo runtime.ClientAuthInfoWriter) (*AdminMoveGoalToSlotNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminMoveGoalToSlotParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminMoveGoalToSlot",
+		Method:             "PUT",
+		PathPattern:        "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/goals/{code}/slots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminMoveGoalToSlotReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminMoveGoalToSlotNoContent:
+		return v, nil
+	case *AdminMoveGoalToSlotBadRequest:
+		return nil, v
+	case *AdminMoveGoalToSlotUnauthorized:
+		return nil, v
+	case *AdminMoveGoalToSlotForbidden:
+		return nil, v
+	case *AdminMoveGoalToSlotNotFound:
+		return nil, v
+	case *AdminMoveGoalToSlotUnprocessableEntity:
+		return nil, v
+	case *AdminMoveGoalToSlotInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use AdminGetChallengeSlotsShort instead.
+
+AdminGetChallengeSlots get challenge slots
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+Returns the slot configuration for a FIXED or RANDOMIZED (non-per-rotation) assignment challenge.
+For repeating challenges (repeatAfter set), the response contains two separate fields:
+- templateSlots: the authoritative future configuration from TemplateSlots (goals only, no timing).
+- currentRound: the actual running state of the current (or nearest) round (goals + startTime/endTime from schedule documents).
+These two may differ when a slot move was deferred because the target slot was active.
+For non-repeating challenges, only currentRound is returned (templateSlots is absent).
+*/
+func (a *Client) AdminGetChallengeSlots(params *AdminGetChallengeSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengeSlotsOK, *AdminGetChallengeSlotsUnauthorized, *AdminGetChallengeSlotsForbidden, *AdminGetChallengeSlotsNotFound, *AdminGetChallengeSlotsUnprocessableEntity, *AdminGetChallengeSlotsInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetChallengeSlotsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetChallengeSlots",
+		Method:             "GET",
+		PathPattern:        "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/slots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetChallengeSlotsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetChallengeSlotsOK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetChallengeSlotsUnauthorized:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetChallengeSlotsForbidden:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetChallengeSlotsNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetChallengeSlotsUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetChallengeSlotsInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+AdminGetChallengeSlotsShort get challenge slots
+- Required permission: ADMIN:NAMESPACE:{namespace}:CHALLENGE [READ]
+Returns the slot configuration for a FIXED or RANDOMIZED (non-per-rotation) assignment challenge.
+For repeating challenges (repeatAfter set), the response contains two separate fields:
+- templateSlots: the authoritative future configuration from TemplateSlots (goals only, no timing).
+- currentRound: the actual running state of the current (or nearest) round (goals + startTime/endTime from schedule documents).
+These two may differ when a slot move was deferred because the target slot was active.
+For non-repeating challenges, only currentRound is returned (templateSlots is absent).
+*/
+func (a *Client) AdminGetChallengeSlotsShort(params *AdminGetChallengeSlotsParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetChallengeSlotsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetChallengeSlotsParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminGetChallengeSlots",
+		Method:             "GET",
+		PathPattern:        "/challenge/v1/admin/namespaces/{namespace}/challenges/{challengeCode}/slots",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetChallengeSlotsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetChallengeSlotsOK:
+		return v, nil
+	case *AdminGetChallengeSlotsUnauthorized:
+		return nil, v
+	case *AdminGetChallengeSlotsForbidden:
+		return nil, v
+	case *AdminGetChallengeSlotsNotFound:
+		return nil, v
+	case *AdminGetChallengeSlotsUnprocessableEntity:
+		return nil, v
+	case *AdminGetChallengeSlotsInternalServerError:
 		return nil, v
 
 	default:

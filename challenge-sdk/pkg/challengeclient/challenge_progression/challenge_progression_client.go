@@ -34,8 +34,8 @@ type ClientService interface {
 	AdminEvaluateProgressShort(params *AdminEvaluateProgressParams, authInfo runtime.ClientAuthInfoWriter) (*AdminEvaluateProgressNoContent, error)
 	AdminGetUserProgression(params *AdminGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserProgressionOK, *AdminGetUserProgressionBadRequest, *AdminGetUserProgressionUnauthorized, *AdminGetUserProgressionForbidden, *AdminGetUserProgressionNotFound, *AdminGetUserProgressionUnprocessableEntity, *AdminGetUserProgressionInternalServerError, error)
 	AdminGetUserProgressionShort(params *AdminGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserProgressionOK, error)
-	EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, *EvaluateMyProgressUnauthorized, *EvaluateMyProgressForbidden, *EvaluateMyProgressInternalServerError, error)
-	EvaluateMyProgressShort(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, error)
+	PublicEvaluateMyProgress(params *PublicEvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*PublicEvaluateMyProgressNoContent, *PublicEvaluateMyProgressUnauthorized, *PublicEvaluateMyProgressForbidden, *PublicEvaluateMyProgressInternalServerError, error)
+	PublicEvaluateMyProgressShort(params *PublicEvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*PublicEvaluateMyProgressNoContent, error)
 	PublicGetUserProgression(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, *PublicGetUserProgressionBadRequest, *PublicGetUserProgressionUnauthorized, *PublicGetUserProgressionForbidden, *PublicGetUserProgressionNotFound, *PublicGetUserProgressionUnprocessableEntity, *PublicGetUserProgressionInternalServerError, error)
 	PublicGetUserProgressionShort(params *PublicGetUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserProgressionOK, error)
 	PublicGetPastUserProgression(params *PublicGetPastUserProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPastUserProgressionOK, *PublicGetPastUserProgressionBadRequest, *PublicGetPastUserProgressionUnauthorized, *PublicGetPastUserProgressionForbidden, *PublicGetPastUserProgressionNotFound, *PublicGetPastUserProgressionInternalServerError, error)
@@ -294,15 +294,15 @@ func (a *Client) AdminGetUserProgressionShort(params *AdminGetUserProgressionPar
 }
 
 /*
-Deprecated: 2022-08-10 - Use EvaluateMyProgressShort instead.
+Deprecated: 2022-08-10 - Use PublicEvaluateMyProgressShort instead.
 
-EvaluateMyProgress evaluate user's challenge progressions
+PublicEvaluateMyProgress evaluate user's challenge progressions
 - Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
-func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, *EvaluateMyProgressUnauthorized, *EvaluateMyProgressForbidden, *EvaluateMyProgressInternalServerError, error) {
+func (a *Client) PublicEvaluateMyProgress(params *PublicEvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*PublicEvaluateMyProgressNoContent, *PublicEvaluateMyProgressUnauthorized, *PublicEvaluateMyProgressForbidden, *PublicEvaluateMyProgressInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewEvaluateMyProgressParams()
+		params = NewPublicEvaluateMyProgressParams()
 	}
 
 	if params.Context == nil {
@@ -318,14 +318,14 @@ func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo r
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "EvaluateMyProgress",
+		ID:                 "publicEvaluateMyProgress",
 		Method:             "POST",
 		PathPattern:        "/challenge/v1/public/namespaces/{namespace}/users/me/progress/evaluate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &EvaluateMyProgressReader{formats: a.formats},
+		Reader:             &PublicEvaluateMyProgressReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -336,16 +336,16 @@ func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo r
 
 	switch v := result.(type) {
 
-	case *EvaluateMyProgressNoContent:
+	case *PublicEvaluateMyProgressNoContent:
 		return v, nil, nil, nil, nil
 
-	case *EvaluateMyProgressUnauthorized:
+	case *PublicEvaluateMyProgressUnauthorized:
 		return nil, v, nil, nil, nil
 
-	case *EvaluateMyProgressForbidden:
+	case *PublicEvaluateMyProgressForbidden:
 		return nil, nil, v, nil, nil
 
-	case *EvaluateMyProgressInternalServerError:
+	case *PublicEvaluateMyProgressInternalServerError:
 		return nil, nil, nil, v, nil
 
 	default:
@@ -354,13 +354,13 @@ func (a *Client) EvaluateMyProgress(params *EvaluateMyProgressParams, authInfo r
 }
 
 /*
-EvaluateMyProgressShort evaluate user's challenge progressions
+PublicEvaluateMyProgressShort evaluate user's challenge progressions
 - Required permission: NAMESPACE:{namespace}:CHALLENGE:PROGRESSION [UPDATE]
 */
-func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*EvaluateMyProgressNoContent, error) {
+func (a *Client) PublicEvaluateMyProgressShort(params *PublicEvaluateMyProgressParams, authInfo runtime.ClientAuthInfoWriter) (*PublicEvaluateMyProgressNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewEvaluateMyProgressParams()
+		params = NewPublicEvaluateMyProgressParams()
 	}
 
 	if params.Context == nil {
@@ -372,14 +372,14 @@ func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authI
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "EvaluateMyProgress",
+		ID:                 "publicEvaluateMyProgress",
 		Method:             "POST",
 		PathPattern:        "/challenge/v1/public/namespaces/{namespace}/users/me/progress/evaluate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &EvaluateMyProgressReader{formats: a.formats},
+		Reader:             &PublicEvaluateMyProgressReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -390,13 +390,13 @@ func (a *Client) EvaluateMyProgressShort(params *EvaluateMyProgressParams, authI
 
 	switch v := result.(type) {
 
-	case *EvaluateMyProgressNoContent:
+	case *PublicEvaluateMyProgressNoContent:
 		return v, nil
-	case *EvaluateMyProgressUnauthorized:
+	case *PublicEvaluateMyProgressUnauthorized:
 		return nil, v
-	case *EvaluateMyProgressForbidden:
+	case *PublicEvaluateMyProgressForbidden:
 		return nil, v
-	case *EvaluateMyProgressInternalServerError:
+	case *PublicEvaluateMyProgressInternalServerError:
 		return nil, v
 
 	default:

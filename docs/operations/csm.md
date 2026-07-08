@@ -65,7 +65,7 @@
 |---|---|---|---|---|---|
 | `/csm/v2/admin/namespaces/{namespace}/apps` | POST | GetAppListV2Short | [GetAppListV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [GetAppListV2Short](../../services-api/pkg/service/csm/appV2.go) | [GetAppListV2Short](../../samples/cli/cmd/csm/appV2/getAppListV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | GET | GetAppV2Short | [GetAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [GetAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [GetAppV2Short](../../samples/cli/cmd/csm/appV2/getAppV2.go) |
-| `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | POST | CreateAppV2Short | [CreateAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [CreateAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [CreateAppV2Short](../../samples/cli/cmd/csm/appV2/createAppV2.go) |
+| [DEPRECATED] `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | POST | CreateAppV2Short | [CreateAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [CreateAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [CreateAppV2Short](../../samples/cli/cmd/csm/appV2/createAppV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | DELETE | DeleteAppV2Short | [DeleteAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [DeleteAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [DeleteAppV2Short](../../samples/cli/cmd/csm/appV2/deleteAppV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}` | PATCH | UpdateAppV2Short | [UpdateAppV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [UpdateAppV2Short](../../services-api/pkg/service/csm/appV2.go) | [UpdateAppV2Short](../../samples/cli/cmd/csm/appV2/updateAppV2.go) |
 | `/csm/v2/admin/namespaces/{namespace}/apps/{app}/apply` | POST | ApplyAppConfigV2Short | [ApplyAppConfigV2Short](../../csm-sdk/pkg/csmclient/app_v2/app_v2_client.go) | [ApplyAppConfigV2Short](../../services-api/pkg/service/csm/appV2.go) | [ApplyAppConfigV2Short](../../samples/cli/cmd/csm/appV2/applyAppConfigV2.go) |
@@ -179,6 +179,22 @@
 | `/csm/v3/admin/namespaces/{namespace}/apps/{app}/subscriptions` | GET | GetNotificationSubscriberListV3Short | [GetNotificationSubscriberListV3Short](../../csm-sdk/pkg/csmclient/notification_subscription_v3/notification_subscription_v3_client.go) | [GetNotificationSubscriberListV3Short](../../services-api/pkg/service/csm/notificationSubscriptionV3.go) | [GetNotificationSubscriberListV3Short](../../samples/cli/cmd/csm/notificationSubscriptionV3/getNotificationSubscriberListV3.go) |
 | `/csm/v3/admin/namespaces/{namespace}/apps/{app}/subscriptions` | DELETE | DeleteSubscriptionAppNotificationV3Short | [DeleteSubscriptionAppNotificationV3Short](../../csm-sdk/pkg/csmclient/notification_subscription_v3/notification_subscription_v3_client.go) | [DeleteSubscriptionAppNotificationV3Short](../../services-api/pkg/service/csm/notificationSubscriptionV3.go) | [DeleteSubscriptionAppNotificationV3Short](../../samples/cli/cmd/csm/notificationSubscriptionV3/deleteSubscriptionAppNotificationV3.go) |
 
+### App V4 Wrapper:  [AppV4](../../services-api/pkg/service/csm/appV4.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v4/admin/namespaces/{namespace}/apps/{app}/debuginfo` | GET | GetAppDebugInfoV4Short | [GetAppDebugInfoV4Short](../../csm-sdk/pkg/csmclient/app_v4/app_v4_client.go) | [GetAppDebugInfoV4Short](../../services-api/pkg/service/csm/appV4.go) | [GetAppDebugInfoV4Short](../../samples/cli/cmd/csm/appV4/getAppDebugInfoV4.go) |
+| `/csm/v4/admin/namespaces/{namespace}/apps/{app}/debugmode` | PUT | UpdateAppDebugModeV4Short | [UpdateAppDebugModeV4Short](../../csm-sdk/pkg/csmclient/app_v4/app_v4_client.go) | [UpdateAppDebugModeV4Short](../../services-api/pkg/service/csm/appV4.go) | [UpdateAppDebugModeV4Short](../../samples/cli/cmd/csm/appV4/updateAppDebugModeV4.go) |
+
+### App Status Progress V4 Wrapper:  [AppStatusProgressV4](../../services-api/pkg/service/csm/appStatusProgressV4.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v4/admin/namespaces/{namespace}/apps/{app}/status-progress` | GET | GetAppStatusProgressV4Short | [GetAppStatusProgressV4Short](../../csm-sdk/pkg/csmclient/app_status_progress_v4/app_status_progress_v4_client.go) | [GetAppStatusProgressV4Short](../../services-api/pkg/service/csm/appStatusProgressV4.go) | [GetAppStatusProgressV4Short](../../samples/cli/cmd/csm/appStatusProgressV4/getAppStatusProgressV4.go) |
+
+### App V5 Wrapper:  [AppV5](../../services-api/pkg/service/csm/appV5.go)
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/csm/v5/admin/namespaces/{namespace}/apps/{app}` | POST | CreateAppV5Short | [CreateAppV5Short](../../csm-sdk/pkg/csmclient/app_v5/app_v5_client.go) | [CreateAppV5Short](../../services-api/pkg/service/csm/appV5.go) | [CreateAppV5Short](../../samples/cli/cmd/csm/appV5/createAppV5.go) |
+
 
 &nbsp;  
 
@@ -186,7 +202,10 @@
 
 | Model Struct | Class |
 |---|---|
+| `apimodel.AppDebugInfoResponse` | [ApimodelAppDebugInfoResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_debug_info_response.go) |
 | `apimodel.AppItem` | [ApimodelAppItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_item.go) |
+| `apimodel.AppItemV5` | [ApimodelAppItemV5 ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_item_v5.go) |
+| `apimodel.AppStatusProgressStep` | [ApimodelAppStatusProgressStep ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_status_progress_step.go) |
 | `apimodel.AppUIResponse` | [ApimodelAppUIResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_app_ui_response.go) |
 | `apimodel.ApplyAppConfigRequest` | [ApimodelApplyAppConfigRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_apply_app_config_request.go) |
 | `apimodel.ApplyConfigItem` | [ApimodelApplyConfigItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_apply_config_item.go) |
@@ -200,6 +219,7 @@
 | `apimodel.CSMAppLimitsResponse` | [ApimodelCSMAppLimitsResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_c_s_m_app_limits_response.go) |
 | `apimodel.CreateAppUIRequest` | [ApimodelCreateAppUIRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_app_ui_request.go) |
 | `apimodel.CreateAppV2Request` | [ApimodelCreateAppV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_app_v2_request.go) |
+| `apimodel.CreateAppV5Request` | [ApimodelCreateAppV5Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_app_v5_request.go) |
 | `apimodel.CreateDeploymentV2Request` | [ApimodelCreateDeploymentV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_deployment_v2_request.go) |
 | `apimodel.CreateDeploymentV2Response` | [ApimodelCreateDeploymentV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_deployment_v2_response.go) |
 | `apimodel.CreateKeyValueCredentialRequest` | [ApimodelCreateKeyValueCredentialRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_create_key_value_credential_request.go) |
@@ -219,6 +239,7 @@
 | `apimodel.GetAppImageListV2Response` | [ApimodelGetAppImageListV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_image_list_v2_response.go) |
 | `apimodel.GetAppListV2Request` | [ApimodelGetAppListV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_list_v2_request.go) |
 | `apimodel.GetAppListV2Response` | [ApimodelGetAppListV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_list_v2_response.go) |
+| `apimodel.GetAppStatusProgressResponse` | [ApimodelGetAppStatusProgressResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_app_status_progress_response.go) |
 | `apimodel.GetDeploymentListV2DataItem` | [ApimodelGetDeploymentListV2DataItem ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_deployment_list_v2_data_item.go) |
 | `apimodel.GetDeploymentListV2Request` | [ApimodelGetDeploymentListV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_deployment_list_v2_request.go) |
 | `apimodel.GetDeploymentListV2Response` | [ApimodelGetDeploymentListV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_get_deployment_list_v2_response.go) |
@@ -278,8 +299,16 @@
 | `apimodel.UpdateAppV2Request` | [ApimodelUpdateAppV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_app_v2_request.go) |
 | `apimodel.UpdateConfigurationV2Request` | [ApimodelUpdateConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_configuration_v2_request.go) |
 | `apimodel.UpdateConfigurationV2Response` | [ApimodelUpdateConfigurationV2Response ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_configuration_v2_response.go) |
+| `apimodel.UpdateDebugModeRequest` | [ApimodelUpdateDebugModeRequest ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_debug_mode_request.go) |
 | `apimodel.UpdateSecretConfigurationV2Request` | [ApimodelUpdateSecretConfigurationV2Request ](../../csm-sdk/pkg/csmclientmodels/apimodel_update_secret_configuration_v2_request.go) |
 | `apimodel.UploadFileResponse` | [ApimodelUploadFileResponse ](../../csm-sdk/pkg/csmclientmodels/apimodel_upload_file_response.go) |
+| `createappparams.AutoscalingRequest` | [CreateappparamsAutoscalingRequest ](../../csm-sdk/pkg/csmclientmodels/createappparams_autoscaling_request.go) |
+| `createappparams.CPURequest` | [CreateappparamsCPURequest ](../../csm-sdk/pkg/csmclientmodels/createappparams_cpu_request.go) |
+| `createappparams.MemoryRequest` | [CreateappparamsMemoryRequest ](../../csm-sdk/pkg/csmclientmodels/createappparams_memory_request.go) |
+| `createappparams.ReplicaRequest` | [CreateappparamsReplicaRequest ](../../csm-sdk/pkg/csmclientmodels/createappparams_replica_request.go) |
+| `domain.AllowedInterceptedPort` | [DomainAllowedInterceptedPort ](../../csm-sdk/pkg/csmclientmodels/domain_allowed_intercepted_port.go) |
+| `domain.DebugPod` | [DomainDebugPod ](../../csm-sdk/pkg/csmclientmodels/domain_debug_pod.go) |
+| `domain.ExposedService` | [DomainExposedService ](../../csm-sdk/pkg/csmclientmodels/domain_exposed_service.go) |
 | `domain.KeyValueClusterConfig` | [DomainKeyValueClusterConfig ](../../csm-sdk/pkg/csmclientmodels/domain_key_value_cluster_config.go) |
 | `domain.KeyValueResourceConfiguration` | [DomainKeyValueResourceConfiguration ](../../csm-sdk/pkg/csmclientmodels/domain_key_value_resource_configuration.go) |
 | `domain.KeyValueUpdateConfiguration` | [DomainKeyValueUpdateConfiguration ](../../csm-sdk/pkg/csmclientmodels/domain_key_value_update_configuration.go) |
@@ -314,8 +343,6 @@
 | `generated.UpdateConfigurationV1Request` | [GeneratedUpdateConfigurationV1Request ](../../csm-sdk/pkg/csmclientmodels/generated_update_configuration_v1_request.go) |
 | `generated.UpdateConfigurationV1Response` | [GeneratedUpdateConfigurationV1Response ](../../csm-sdk/pkg/csmclientmodels/generated_update_configuration_v1_response.go) |
 | `log.AppMessageDeclaration` | [LogAppMessageDeclaration ](../../csm-sdk/pkg/csmclientmodels/log_app_message_declaration.go) |
-| `model.AppRedeploymentDetail` | [ModelAppRedeploymentDetail ](../../csm-sdk/pkg/csmclientmodels/model_app_redeployment_detail.go) |
-| `model.AppRedeploymentInfo` | [ModelAppRedeploymentInfo ](../../csm-sdk/pkg/csmclientmodels/model_app_redeployment_info.go) |
 | `model.CSMAutoscalingDefaults` | [ModelCSMAutoscalingDefaults ](../../csm-sdk/pkg/csmclientmodels/model_c_s_m_autoscaling_defaults.go) |
 | `model.ImageScanFinding` | [ModelImageScanFinding ](../../csm-sdk/pkg/csmclientmodels/model_image_scan_finding.go) |
 | `nosqlresource.NoSQLResourceConfiguration` | [NosqlresourceNoSQLResourceConfiguration ](../../csm-sdk/pkg/csmclientmodels/nosqlresource_no_sql_resource_configuration.go) |

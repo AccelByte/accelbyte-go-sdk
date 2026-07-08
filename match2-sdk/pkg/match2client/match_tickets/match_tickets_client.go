@@ -357,7 +357,8 @@ func (a *Client) GetMyMatchTicketsShort(params *GetMyMatchTicketsParams, authInf
 Deprecated: 2022-08-10 - Use MatchTicketDetailsShort instead.
 
 MatchTicketDetails get details for a specific match ticket
-Get details for a specific match ticket
+Get details for a specific match ticket, including its current matching status and
+the session ID if a match has been found.
 */
 func (a *Client) MatchTicketDetails(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, *MatchTicketDetailsUnauthorized, *MatchTicketDetailsForbidden, *MatchTicketDetailsNotFound, *MatchTicketDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -418,7 +419,8 @@ func (a *Client) MatchTicketDetails(params *MatchTicketDetailsParams, authInfo r
 
 /*
 MatchTicketDetailsShort get details for a specific match ticket
-Get details for a specific match ticket
+Get details for a specific match ticket, including its current matching status and
+the session ID if a match has been found.
 */
 func (a *Client) MatchTicketDetailsShort(params *MatchTicketDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchTicketDetailsOK, error) {
 	// TODO: Validate the params before sending

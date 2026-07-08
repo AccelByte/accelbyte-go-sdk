@@ -8,7 +8,7 @@
     },
     "description": "Login Queue Service",
     "title": "justice-login-queue-service",
-    "version": "2.5.0"
+    "version": "2.5.1"
   },
   "schemes": [
     "https"
@@ -81,6 +81,7 @@
           "Admin V1"
         ],
         "x-errorCodes": {},
+        "x-operationid": "login-queue/admin/queue/v1/get-config",
         "x-security": [
           {
             "userPermissions": [
@@ -158,6 +159,7 @@
           "Admin V1"
         ],
         "x-errorCodes": {},
+        "x-operationid": "login-queue/admin/queue/v1/update-config",
         "x-security": [
           {
             "userPermissions": [
@@ -222,6 +224,7 @@
           "Admin V1"
         ],
         "x-errorCodes": {},
+        "x-operationid": "login-queue/admin/queue/v1/get-status",
         "x-security": [
           {
             "userPermissions": [
@@ -276,7 +279,8 @@
         "tags": [
           "Ticket V1"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "login-queue/public/queue/v1/cancel-ticket"
       },
       "get": {
         "consumes": [
@@ -325,7 +329,8 @@
         "tags": [
           "Ticket V1"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "login-queue/public/queue/v1/refresh-ticket"
       }
     }
   },
@@ -540,11 +545,11 @@
     "path": "/login-queue/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T09:02:39+00:00",
-    "gitHash": "d2615912a69674b63be1bbf6444941bcea201b07",
+    "buildDate": "2026-07-02T23:20:46+00:00",
+    "gitHash": "1741d0fb58c96bc2402242183780adb9f05caccd",
     "name": "justice-login-queue-service",
     "realm": "staging",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "version-roles-seeding": "1.2.103"
   }
 }

@@ -304,6 +304,50 @@ $ samples/cli/sample-apps Gdpr publicGetMyAccountDeletionStatus \
     > result.txt
 ```
 
+### Operation `public_submit_my_headless_deletion_request`
+```sh
+$ samples/cli/sample-apps Gdpr publicSubmitMyHeadlessDeletionRequest \
+    > result.txt
+```
+
+### Operation `public_submit_my_headless_personal_data_request`
+```sh
+$ samples/cli/sample-apps Gdpr publicSubmitMyHeadlessPersonalDataRequest \
+    --email 'string' \
+    --languageTag 'string' \
+    > result.txt
+```
+
+### Operation `public_generate_my_headless_personal_data_url`
+```sh
+$ samples/cli/sample-apps Gdpr publicGenerateMyHeadlessPersonalDataURL \
+    --requestDate 'string' \
+    > result.txt
+```
+
+### Operation `public_get_my_personal_data_requests`
+```sh
+$ samples/cli/sample-apps Gdpr publicGetMyPersonalDataRequests \
+    > result.txt
+```
+
+### Operation `public_submit_my_personal_data_request`
+```sh
+$ samples/cli/sample-apps Gdpr publicSubmitMyPersonalDataRequest \
+    --email 'string' \
+    --languageTag 'string' \
+    --platformId 'string' \
+    --platformToken 'string' \
+    > result.txt
+```
+
+### Operation `public_cancel_my_personal_data_request`
+```sh
+$ samples/cli/sample-apps Gdpr publicCancelMyPersonalDataRequest \
+    --requestDate 'string' \
+    > result.txt
+```
+
 ### Operation `s2s_get_list_finished_account_deletion_request`
 ```sh
 $ samples/cli/sample-apps Gdpr s2sGetListFinishedAccountDeletionRequest \

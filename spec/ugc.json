@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "2.28.0"
+    "version": "2.28.2"
   },
   "schemes": [
     "https"
@@ -99,6 +99,7 @@
           "770700": "Unable get user channels",
           "770702": "invalid paging parameter"
         },
+        "x-operationid": "ugc/admin/channels/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -180,6 +181,7 @@
           "770503": "Invalid channel {ID}: should uuid without hypen",
           "770504": "Channel already exist"
         },
+        "x-operationid": "ugc/admin/channels/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -252,6 +254,7 @@
           "772501": "Unable to delete channel",
           "772502": "Channel not found"
         },
+        "x-operationid": "ugc/admin/channels/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -340,6 +343,7 @@
           "770602": "Unable to save channel",
           "770603": "Channel was not found"
         },
+        "x-operationid": "ugc/admin/channels/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -439,6 +443,7 @@
           "770103": "Unable to save ugc content: shareCode exceed the limit",
           "770104": "User has been banned to create content"
         },
+        "x-operationid": "ugc/admin/content/v1/upload-channel",
         "x-security": [
           {
             "userPermissions": [
@@ -537,6 +542,7 @@
           "770104": "User has been banned to create content",
           "770107": "Unable to update ugc content: invalid shareCode format"
         },
+        "x-operationid": "ugc/admin/content/v1/generate-file-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -650,6 +656,7 @@
           "772606": "Share code already used",
           "772607": "Unable to update ugc content: invalid shareCode format"
         },
+        "x-operationid": "ugc/admin/content/v1/update-file",
         "x-security": [
           {
             "userPermissions": [
@@ -804,6 +811,7 @@
           "770801": "Unable to get ugc content: database/Unable to get creator",
           "770803": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/search-channel",
         "x-security": [
           {
             "userPermissions": [
@@ -883,6 +891,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/admin/content/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -986,6 +995,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/admin/content/v1/update-channel",
         "x-security": [
           {
             "userPermissions": [
@@ -1069,6 +1079,7 @@
           "770901": "Unable to get ugc content: database error/Unable to get creator",
           "770903": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1156,6 +1167,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/bulk-get",
         "x-security": [
           {
             "userPermissions": [
@@ -1303,6 +1315,7 @@
           "770801": "Unable to get ugc content: database/Unable to get creator",
           "770803": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/search",
         "x-security": [
           {
             "userPermissions": [
@@ -1390,6 +1403,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/bulk-get-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -1466,6 +1480,7 @@
           "770301": "Unable to get ugc content/Unable to get creator",
           "770303": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/get-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -1542,6 +1557,7 @@
           "773201": "Unable to get ugc content/Unable to get creator/Unable to get included group",
           "773203": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1617,6 +1633,7 @@
           "773701": "Unable to get ugc content",
           "773702": "ugc content not found"
         },
+        "x-operationid": "ugc/admin/content/v1/get-preview",
         "x-security": [
           {
             "userPermissions": [
@@ -1706,6 +1723,7 @@
           "774102": "version not found",
           "774103": "unable to get ugc content/content cannot be restored using the current content version"
         },
+        "x-operationid": "ugc/admin/content/v1/rollback",
         "x-security": [
           {
             "userPermissions": [
@@ -1804,6 +1822,7 @@
           "772604": "User has been banned to update content",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/admin/content/v1/generate-screenshot-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -1899,6 +1918,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/admin/content/v1/update-screenshots",
         "x-security": [
           {
             "userPermissions": [
@@ -1991,6 +2011,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/admin/content/v1/delete-screenshot",
         "x-security": [
           {
             "userPermissions": [
@@ -2066,6 +2087,7 @@
           "774004": "ugc content not found",
           "774005": "unable to get ugc content"
         },
+        "x-operationid": "ugc/admin/content/v1/list-versions",
         "x-security": [
           {
             "userPermissions": [
@@ -2148,6 +2170,7 @@
           "772301": "invalid paging parameter",
           "772302": "Unable get groups"
         },
+        "x-operationid": "ugc/admin/groups/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -2222,6 +2245,7 @@
           "772101": "Malformed request/Invalid request body",
           "772102": "Unable to create group"
         },
+        "x-operationid": "ugc/admin/groups/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -2294,6 +2318,7 @@
           "772402": "Unable delete groups",
           "772403": "Group not found"
         },
+        "x-operationid": "ugc/admin/groups/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -2367,6 +2392,7 @@
           "773001": "Unable get group",
           "773002": "Group not found"
         },
+        "x-operationid": "ugc/admin/groups/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -2455,6 +2481,7 @@
           "772202": "Unable to update group",
           "772203": "Group not found"
         },
+        "x-operationid": "ugc/admin/groups/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -2553,6 +2580,7 @@
           "773102": "Unable to get ugc content: database error",
           "773103": "No group content was found"
         },
+        "x-operationid": "ugc/admin/groups/v1/list-content",
         "x-security": [
           {
             "userPermissions": [
@@ -2635,6 +2663,7 @@
           "771402": "Unable to save ugc tag",
           "771501": "invalid paging parameter"
         },
+        "x-operationid": "ugc/admin/tags/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -2716,6 +2745,7 @@
           "771402": "Unable to save ugc tag",
           "771403": "Conflicted resource indentifier"
         },
+        "x-operationid": "ugc/admin/tags/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -2788,6 +2818,7 @@
           "772002": "Unable delete tag",
           "772003": "Tag not found"
         },
+        "x-operationid": "ugc/admin/tags/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -2883,6 +2914,7 @@
           "772803": "Tag not found",
           "772804": "Proposed Tag already exist"
         },
+        "x-operationid": "ugc/admin/tags/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -2965,6 +2997,7 @@
           "771801": "invalid paging parameter",
           "771802": "Unable get types"
         },
+        "x-operationid": "ugc/admin/types/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -3046,6 +3079,7 @@
           "771702": "Unable to save ugc type",
           "771703": "Conflicted resource indentifier"
         },
+        "x-operationid": "ugc/admin/types/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -3118,6 +3152,7 @@
           "772004": "Unable delete type",
           "772005": "Type not found"
         },
+        "x-operationid": "ugc/admin/types/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -3213,6 +3248,7 @@
           "771903": "Type not found",
           "771904": "Proposed Type already exist"
         },
+        "x-operationid": "ugc/admin/types/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -3285,6 +3321,7 @@
           "773501": "Unable to delete channel",
           "773502": "Channel not found"
         },
+        "x-operationid": "ugc/admin/internal/v1/delete-all-user-channels",
         "x-security": [
           {
             "userPermissions": [
@@ -3378,6 +3415,7 @@
           "770700": "Unable get user channels",
           "770702": "invalid paging parameter"
         },
+        "x-operationid": "ugc/admin/channels/v1/list-user",
         "x-security": [
           {
             "userPermissions": [
@@ -3457,6 +3495,7 @@
           "772501": "Unable to delete channel",
           "772502": "Channel not found"
         },
+        "x-operationid": "ugc/admin/channels/v1/delete-user",
         "x-security": [
           {
             "userPermissions": [
@@ -3552,6 +3591,7 @@
           "770602": "Unable to save channel",
           "770603": "Channel was not found"
         },
+        "x-operationid": "ugc/admin/channels/v1/update-user",
         "x-security": [
           {
             "userPermissions": [
@@ -3672,6 +3712,7 @@
           "772605": "Unable to save ugc content: failed generate upload URL",
           "772606": "Share code already used"
         },
+        "x-operationid": "ugc/admin/content/v1/update-file-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -3789,6 +3830,7 @@
           "772604": "User has been banned to update content",
           "772606": "Share code already used"
         },
+        "x-operationid": "ugc/admin/content/v1/update-file-user",
         "x-security": [
           {
             "userPermissions": [
@@ -3875,6 +3917,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/admin/content/v1/delete-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -3961,6 +4004,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/admin/content/v1/delete-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4071,6 +4115,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/admin/content/v1/update-channel-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4143,6 +4188,7 @@
           "773401": "Unable to get all user content",
           "773402": "Content not found"
         },
+        "x-operationid": "ugc/admin/internal/v1/delete-all-user-content",
         "x-security": [
           {
             "userPermissions": [
@@ -4231,6 +4277,7 @@
           "770901": "Unable to get ugc content: database error/Unable to get creator",
           "770903": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v1/list-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4330,6 +4377,7 @@
           "773804": "Unable to save ugc content: failed generate upload URL",
           "773805": "Unable to save ugc content preview: failed generate upload URL"
         },
+        "x-operationid": "ugc/admin/content/v1/update-visibility",
         "x-security": [
           {
             "userPermissions": [
@@ -4402,6 +4450,7 @@
           "773301": "Unable to find all user group",
           "773302": "Groups not found"
         },
+        "x-operationid": "ugc/admin/internal/v1/delete-all-user-groups",
         "x-security": [
           {
             "userPermissions": [
@@ -4489,6 +4538,7 @@
           "772301": "invalid paging parameter",
           "772302": "Unable get groups"
         },
+        "x-operationid": "ugc/admin/groups/v1/list-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4568,6 +4618,7 @@
           "772402": "Unable delete groups",
           "772403": "Group not found"
         },
+        "x-operationid": "ugc/admin/groups/v1/delete-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4648,6 +4699,7 @@
           "773001": "Unable get group",
           "773002": "Group not found"
         },
+        "x-operationid": "ugc/admin/groups/v1/get-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4743,6 +4795,7 @@
           "772202": "Unable to update group",
           "772203": "Group not found"
         },
+        "x-operationid": "ugc/admin/groups/v1/update-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4848,6 +4901,7 @@
           "773102": "Unable to get ugc content: database error",
           "773103": "No group content was found"
         },
+        "x-operationid": "ugc/admin/groups/v1/list-contents-user",
         "x-security": [
           {
             "userPermissions": [
@@ -4920,6 +4974,7 @@
           "773601": "Unable to get all user contents/Unable to delete user states",
           "773602": "user states are not found: content not found"
         },
+        "x-operationid": "ugc/admin/internal/v1/delete-all-user-state",
         "x-security": [
           {
             "userPermissions": [
@@ -5075,6 +5130,7 @@
           "770801": "Unable to get ugc content: database/Unable to get creator",
           "770803": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/list-channel",
         "x-security": {}
       }
     },
@@ -5217,6 +5273,7 @@
           "770801": "Unable to get ugc content: database/Unable to get creator",
           "770803": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/list",
         "x-security": {}
       }
     },
@@ -5292,6 +5349,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/bulk-get",
         "x-security": {}
       }
     },
@@ -5371,6 +5429,7 @@
           "771310": "Unable to get ugc content: database error",
           "771311": "invalid paging parameter"
         },
+        "x-operationid": "ugc/public/engagements/v1/list-content-followed",
         "x-security": {}
       }
     },
@@ -5497,6 +5556,7 @@
           "771100": "unable to parse isofficial param",
           "771101": "Unable to get ugc content: database error"
         },
+        "x-operationid": "ugc/public/engagements/v1/list-liked",
         "x-security": {}
       }
     },
@@ -5579,6 +5639,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/bulk-get-by-share-code",
         "x-security": {}
       }
     },
@@ -5650,6 +5711,7 @@
           "770301": "Unable to get ugc content/Unable to get creator",
           "770303": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/get-by-share-code",
         "x-security": {}
       }
     },
@@ -5721,6 +5783,7 @@
           "773201": "Unable to get ugc content/Unable to get creator/Unable to get included group",
           "773203": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/get",
         "x-security": {}
       }
     },
@@ -5791,6 +5854,7 @@
           "772902": "Unable to add content download: database error",
           "772903": "Unable to add content download: content not found"
         },
+        "x-operationid": "ugc/public/engagements/v1/set-download-count",
         "x-security": {}
       }
     },
@@ -5875,6 +5939,7 @@
           "771000": "Malformed request/Content not found/Unable to update like status: content not found",
           "771001": "unable to like content/Unable to update like status: database error"
         },
+        "x-operationid": "ugc/public/engagements/v1/like",
         "x-security": {}
       }
     },
@@ -5945,6 +6010,7 @@
           "773701": "Unable to get ugc content",
           "773702": "ugc content not found"
         },
+        "x-operationid": "ugc/public/content/v1/get-preview",
         "x-security": {}
       }
     },
@@ -6021,7 +6087,8 @@
           "20001": "unauthorized access",
           "771501": "invalid paging parameter",
           "771502": "Unable get user tags"
-        }
+        },
+        "x-operationid": "ugc/public/tags/v1/list"
       }
     },
     "/ugc/v1/public/namespaces/{namespace}/types": {
@@ -6098,6 +6165,7 @@
           "771801": "invalid paging parameter",
           "771802": "Unable get types"
         },
+        "x-operationid": "ugc/public/types/v1/list",
         "x-security": {}
       }
     },
@@ -6187,6 +6255,7 @@
           "770800": "invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter",
           "770801": "Unable to get ugc content: database/Unable to get creator"
         },
+        "x-operationid": "ugc/public/creators/v1/search",
         "x-security": {}
       }
     },
@@ -6264,6 +6333,7 @@
           "771300": "Unable to get creators: database error",
           "771304": "invalid paging parameter"
         },
+        "x-operationid": "ugc/public/engagements/v1/list-creators-followed",
         "x-security": {}
       }
     },
@@ -6334,6 +6404,7 @@
           "771103": "Unable to get total liked content",
           "771601": "Creator not found"
         },
+        "x-operationid": "ugc/public/creators/v1/get",
         "x-security": {}
       }
     },
@@ -6401,6 +6472,7 @@
           "773501": "Unable to delete channel",
           "773502": "Channel not found"
         },
+        "x-operationid": "ugc/public/internal/v1/delete-all-user-channels",
         "x-security": [
           {
             "userPermissions": [
@@ -6495,6 +6567,7 @@
           "770700": "Unable get user channels",
           "770702": "invalid paging parameter"
         },
+        "x-operationid": "ugc/public/channels/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -6577,6 +6650,7 @@
           "770500": "Invalid request body",
           "770502": "Unable to save channel"
         },
+        "x-operationid": "ugc/public/channels/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -6657,6 +6731,7 @@
           "772501": "Unable to delete channel",
           "772502": "Channel not found"
         },
+        "x-operationid": "ugc/public/channels/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -6753,6 +6828,7 @@
           "770602": "Unable to save channel",
           "770603": "Channel was not found"
         },
+        "x-operationid": "ugc/public/channels/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -6853,6 +6929,7 @@
           "770103": "Unable to save ugc content: shareCode exceed the limit",
           "770104": "User has been banned to create content"
         },
+        "x-operationid": "ugc/public/content/v1/create-channel",
         "x-security": [
           {
             "userPermissions": [
@@ -6953,6 +7030,7 @@
           "770104": "User has been banned to create content",
           "770105": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/public/content/v1/create-s3",
         "x-security": [
           {
             "userPermissions": [
@@ -7074,6 +7152,7 @@
           "772605": "Unable to save ugc content: failed generate upload URL",
           "772606": "Share code already used"
         },
+        "x-operationid": "ugc/public/content/v1/update-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -7187,6 +7266,7 @@
           "772604": "User has been banned to update content",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/public/content/v1/update-file",
         "x-security": [
           {
             "userPermissions": [
@@ -7274,6 +7354,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/public/content/v1/delete-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -7361,6 +7442,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/public/content/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -7472,6 +7554,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/public/content/v1/update-channel",
         "x-security": [
           {
             "userPermissions": [
@@ -7591,6 +7674,7 @@
           "772603": "Content not found",
           "772606": "Share code already used"
         },
+        "x-operationid": "ugc/public/content/v1/update-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -7665,6 +7749,7 @@
           "773401": "Unable to get all user content",
           "773402": "Content not found"
         },
+        "x-operationid": "ugc/public/internal/v1/delete-all-user-content",
         "x-security": [
           {
             "userPermissions": [
@@ -7754,6 +7839,7 @@
           "770901": "Unable to get ugc content: database error/Unable to get creator",
           "770903": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v1/get-user",
         "x-security": {}
       }
     },
@@ -7854,6 +7940,7 @@
           "772604": "User has been banned to update content",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/public/content/v1/generate-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -7957,6 +8044,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/public/content/v1/update-screenshots",
         "x-security": [
           {
             "userPermissions": [
@@ -8057,6 +8145,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/public/content/v1/delete-screenshot",
         "x-security": [
           {
             "userPermissions": [
@@ -8141,6 +8230,7 @@
           "771200": "Malformed request",
           "771201": "Unable to update follow status: database error"
         },
+        "x-operationid": "ugc/public/engagements/v1/follow",
         "x-security": {}
       }
     },
@@ -8223,7 +8313,8 @@
           "20001": "unauthorized access",
           "771303": "Unable to get creators: database error",
           "771304": "invalid paging parameter"
-        }
+        },
+        "x-operationid": "ugc/public/engagements/v1/list-followers"
       }
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/following": {
@@ -8305,7 +8396,8 @@
           "20001": "unauthorized access",
           "771303": "Unable to get creators: database error",
           "771304": "invalid paging parameter"
-        }
+        },
+        "x-operationid": "ugc/public/engagements/v1/list-followed"
       }
     },
     "/ugc/v1/public/namespaces/{namespace}/users/{userId}/groups": {
@@ -8372,6 +8464,7 @@
           "773301": "Unable to find all user group",
           "773302": "Groups not found"
         },
+        "x-operationid": "ugc/public/internal/v1/delete-all-user-groups",
         "x-security": [
           {
             "userPermissions": [
@@ -8460,6 +8553,7 @@
           "772301": "invalid paging parameter",
           "772302": "Unable get groups"
         },
+        "x-operationid": "ugc/public/groups/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -8542,6 +8636,7 @@
           "772101": "Malformed request/Invalid request body",
           "772102": "Unable to create group"
         },
+        "x-operationid": "ugc/public/groups/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -8622,6 +8717,7 @@
           "772402": "Unable delete groups",
           "772403": "Group not found"
         },
+        "x-operationid": "ugc/public/groups/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -8703,6 +8799,7 @@
           "773001": "Unable get group",
           "773002": "Group not found"
         },
+        "x-operationid": "ugc/public/groups/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -8799,6 +8896,7 @@
           "772202": "Unable to update group",
           "772203": "Group not found"
         },
+        "x-operationid": "ugc/public/groups/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -8905,6 +9003,7 @@
           "773102": "Unable to get ugc content: database error",
           "773103": "No group content was found"
         },
+        "x-operationid": "ugc/public/groups/v1/list-content",
         "x-security": [
           {
             "userPermissions": [
@@ -8978,6 +9077,7 @@
           "773601": "Unable to get all user contents/Unable to delete user states",
           "773602": "user states are not found: content not found"
         },
+        "x-operationid": "ugc/public/internal/v1/delete-all-user-state",
         "x-security": [
           {
             "userPermissions": [
@@ -9080,6 +9180,7 @@
           "770804": "invalid paging parameter",
           "770805": "Unable to get ugc content: database error"
         },
+        "x-operationid": "ugc/admin/content/v2/list-channel",
         "x-security": [
           {
             "userPermissions": [
@@ -9177,6 +9278,7 @@
           "770106": "channel doesn't exist",
           "770107": "Unable to update ugc content: invalid shareCode format"
         },
+        "x-operationid": "ugc/admin/content/v2/create",
         "x-security": [
           {
             "userPermissions": [
@@ -9256,6 +9358,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/admin/content/v2/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -9359,6 +9462,7 @@
           "772606": "Share code already used",
           "772607": "Unable to update ugc content: invalid shareCode format"
         },
+        "x-operationid": "ugc/admin/content/v2/update",
         "x-security": [
           {
             "userPermissions": [
@@ -9460,6 +9564,7 @@
           "20001": "unauthorized access",
           "20013": "insufficient permission"
         },
+        "x-operationid": "ugc/admin/content/v2/copy",
         "x-security": [
           {
             "userPermissions": [
@@ -9564,6 +9669,7 @@
           "774002": "unable to update content file location: content not found",
           "774003": "unable to update content file location"
         },
+        "x-operationid": "ugc/admin/content/v2/update-file-location",
         "x-security": [
           {
             "userPermissions": [
@@ -9662,6 +9768,7 @@
           "772603": "Content not found",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/admin/content/v2/generate-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -9749,6 +9856,7 @@
           "774204": "invalid paging parameter",
           "774205": "Unable to get configs"
         },
+        "x-operationid": "ugc/admin/config/v2/list",
         "x-security": [
           {
             "userPermissions": [
@@ -9836,6 +9944,7 @@
           "774201": "Invalid request body",
           "774202": "Unable to save config"
         },
+        "x-operationid": "ugc/admin/config/v2/update",
         "x-security": [
           {
             "userPermissions": [
@@ -9961,6 +10070,7 @@
           "770801": "Unable to get ugc content: database/Unable to get creator",
           "770803": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v2/list",
         "x-security": [
           {
             "userPermissions": [
@@ -10049,6 +10159,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v2/bulk-get",
         "x-security": [
           {
             "userPermissions": [
@@ -10136,6 +10247,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v2/bulk-get-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -10213,6 +10325,7 @@
           "770303": "Failed generate download URL",
           "773201": "Unable to get ugc content/Unable to get creator/Unable to get included group"
         },
+        "x-operationid": "ugc/admin/content/v2/get-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -10290,6 +10403,7 @@
           "773201": "Unable to get ugc content/Unable to get creator/Unable to get included group",
           "773203": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v2/get",
         "x-security": [
           {
             "userPermissions": [
@@ -10379,6 +10493,7 @@
           "774102": "version not found",
           "774103": "unable to get ugc content/content cannot be restored using the current content version"
         },
+        "x-operationid": "ugc/admin/content/v2/rollback",
         "x-security": [
           {
             "userPermissions": [
@@ -10477,6 +10592,7 @@
           "772604": "User has been banned to update content",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/admin/content/v2/generate-screenshot-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -10572,6 +10688,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/admin/content/v2/update-screenshots",
         "x-security": [
           {
             "userPermissions": [
@@ -10664,6 +10781,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/admin/content/v2/delete-screenshot",
         "x-security": [
           {
             "userPermissions": [
@@ -10739,6 +10857,7 @@
           "774004": "ugc content not found",
           "774005": "unable to get ugc content"
         },
+        "x-operationid": "ugc/admin/content/v2/list-versions",
         "x-security": [
           {
             "userPermissions": [
@@ -10838,6 +10957,7 @@
           "773102": "Unable to get ugc content: database error",
           "773103": "No group content was found"
         },
+        "x-operationid": "ugc/admin/groups/v2/list-content",
         "x-security": [
           {
             "userPermissions": [
@@ -10939,6 +11059,7 @@
           "774302": "unable to get staging content",
           "774303": "unable to generate presigned URL"
         },
+        "x-operationid": "ugc/admin/staging-content/v2/list",
         "x-security": [
           {
             "userPermissions": [
@@ -11022,6 +11143,7 @@
           "774402": "unable to get staging content",
           "774403": "unable to generate presigned URL"
         },
+        "x-operationid": "ugc/admin/staging-content/v2/get",
         "x-security": [
           {
             "userPermissions": [
@@ -11120,6 +11242,7 @@
           "774407": "unable to approve staging content",
           "774408": "nable to save ugc content: shareCode exceed the limit"
         },
+        "x-operationid": "ugc/admin/staging-content/v2/approve",
         "x-security": [
           {
             "userPermissions": [
@@ -11239,6 +11362,7 @@
           "772604": "User has been banned to update content",
           "772606": "Share code already used"
         },
+        "x-operationid": "ugc/admin/content/v2/update-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -11325,6 +11449,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/admin/content/v2/delete-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -11411,6 +11536,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/admin/content/v2/delete-user",
         "x-security": [
           {
             "userPermissions": [
@@ -11521,6 +11647,7 @@
           "772606": "Share code already used",
           "772607": "Unable to update ugc content: invalid shareCode format"
         },
+        "x-operationid": "ugc/admin/content/v2/update-user",
         "x-security": [
           {
             "userPermissions": [
@@ -11632,6 +11759,7 @@
           "774002": "unable to update content file location: content not found",
           "774003": "unable to update content file location"
         },
+        "x-operationid": "ugc/admin/content/v2/update-file-location-user",
         "x-security": [
           {
             "userPermissions": [
@@ -11737,6 +11865,7 @@
           "772603": "Content not found",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/admin/content/v2/generate-user-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -11835,6 +11964,7 @@
           "770901": "Unable to get ugc content: database error/Unable to get creator",
           "770903": "Failed generate download URL"
         },
+        "x-operationid": "ugc/admin/content/v2/list-user",
         "x-security": [
           {
             "userPermissions": [
@@ -11940,6 +12070,7 @@
           "773803": "Unable to update hide status: content not found",
           "773804": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/admin/content/v2/update-visibility",
         "x-security": [
           {
             "userPermissions": [
@@ -12046,6 +12177,7 @@
           "773102": "Unable to get ugc content: database error",
           "773103": "No group content was found"
         },
+        "x-operationid": "ugc/admin/groups/v2/list-content-user",
         "x-security": [
           {
             "userPermissions": [
@@ -12154,6 +12286,7 @@
           "774302": "unable to get staging content",
           "774303": "unable to generate presigned URL"
         },
+        "x-operationid": "ugc/admin/staging-content/v2/list-user",
         "x-security": [
           {
             "userPermissions": [
@@ -12257,6 +12390,7 @@
           "770804": "invalid paging parameter",
           "770805": "Unable to get ugc content: database error"
         },
+        "x-operationid": "ugc/public/content/v2/list-channel",
         "x-security": {}
       }
     },
@@ -12377,6 +12511,7 @@
           "770801": "Unable to get ugc content: database/Unable to get creator",
           "770803": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v2/list",
         "x-security": {}
       }
     },
@@ -12452,6 +12587,7 @@
           "773900": "Malformed request/Invalid request body",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v2/bulk-get",
         "x-security": {}
       }
     },
@@ -12534,6 +12670,7 @@
           "773901": "Unable to get ugc content: database/Unable to get creator",
           "773902": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v2/bulk-get-by-share-code",
         "x-security": {}
       }
     },
@@ -12605,6 +12742,7 @@
           "770301": "Unable to get ugc content/Unable to get creator",
           "770303": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v2/get-by-share-code",
         "x-security": {}
       }
     },
@@ -12677,6 +12815,7 @@
           "773201": "Unable to get ugc content/Unable to get creator/Unable to get included group",
           "773203": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v2/get",
         "x-security": {}
       }
     },
@@ -12754,6 +12893,7 @@
           "772903": "Unable to add content download: content not found",
           "772906": "Unable to add content download: too many request"
         },
+        "x-operationid": "ugc/public/engagements/v2/set-download-count",
         "x-security": {}
       }
     },
@@ -12850,7 +12990,8 @@
           "20001": "unauthorized access",
           "770800": "invalid paging parameter/max allowed number of tags is {maxTags}/invalid official parameter/invalid ishidden parameter",
           "772904": "Unable to list content downloader: database error"
-        }
+        },
+        "x-operationid": "ugc/public/engagements/v2/list-downloaders"
       }
     },
     "/ugc/v2/public/namespaces/{namespace}/contents/{contentId}/like": {
@@ -12940,7 +13081,8 @@
           "20001": "unauthorized access",
           "771004": "invalid paging parameter",
           "771006": "unable to get list of content like: database error"
-        }
+        },
+        "x-operationid": "ugc/public/engagements/v2/list-likers"
       },
       "put": {
         "consumes": [
@@ -13030,6 +13172,7 @@
           "771001": "unable to like content/Unable to update like status: database error",
           "771003": "Unable to like content: too many request"
         },
+        "x-operationid": "ugc/public/engagements/v2/like",
         "x-security": {}
       }
     },
@@ -13124,6 +13267,7 @@
           "770105": "Unable to save ugc content: failed generate upload URL",
           "770106": "channel doesn't exist"
         },
+        "x-operationid": "ugc/public/content/v2/create",
         "x-security": [
           {
             "userPermissions": [
@@ -13243,6 +13387,7 @@
           "772604": "User has been banned to update content",
           "772606": "Share code already used"
         },
+        "x-operationid": "ugc/public/content/v2/update-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -13330,6 +13475,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/public/content/v2/delete-by-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -13417,6 +13563,7 @@
           "772701": "Unable to delete content/Unable to update user liked count/Unable to delete like state/Unable to delete like state",
           "772702": "Content not found"
         },
+        "x-operationid": "ugc/public/content/v2/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -13527,6 +13674,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/public/content/v2/update",
         "x-security": [
           {
             "userPermissions": [
@@ -13641,6 +13789,7 @@
           "774002": "unable to update content file location: content not found",
           "774003": "unable to update content file location"
         },
+        "x-operationid": "ugc/public/content/v2/update-file-location",
         "x-security": [
           {
             "userPermissions": [
@@ -13762,6 +13911,7 @@
           "772606": "Share code already used",
           "772607": "Unable to update ugc content: invalid shareCode format"
         },
+        "x-operationid": "ugc/public/content/v2/update-share-code",
         "x-security": [
           {
             "userPermissions": [
@@ -13875,6 +14025,7 @@
           "772604": "User has been banned to update content",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/public/content/v2/generate-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -13974,6 +14125,7 @@
           "770901": "Unable to get ugc content: database error/Unable to get creator",
           "770903": "Failed generate download URL"
         },
+        "x-operationid": "ugc/public/content/v2/get-user",
         "x-security": {}
       }
     },
@@ -14067,6 +14219,7 @@
           "772604": "User has been banned to update content",
           "772605": "Unable to save ugc content: failed generate upload URL"
         },
+        "x-operationid": "ugc/public/content/v2/generate-screenshot-upload-url",
         "x-security": [
           {
             "userPermissions": [
@@ -14170,6 +14323,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/public/content/v2/update-screenshots",
         "x-security": [
           {
             "userPermissions": [
@@ -14270,6 +14424,7 @@
           "772603": "Content not found",
           "772604": "User has been banned to update content"
         },
+        "x-operationid": "ugc/public/content/v2/delete-screenshot",
         "x-security": [
           {
             "userPermissions": [
@@ -14377,6 +14532,7 @@
           "773102": "Unable to get ugc content: database error",
           "773103": "No group content was found"
         },
+        "x-operationid": "ugc/public/groups/v2/list-content",
         "x-security": [
           {
             "userPermissions": [
@@ -14486,6 +14642,7 @@
           "774302": "unable to get staging content",
           "774303": "unable to generate presigned URL"
         },
+        "x-operationid": "ugc/public/staging/v2/list",
         "x-security": [
           {
             "userPermissions": [
@@ -14573,6 +14730,7 @@
           "774417": "staging content not found",
           "774418": "unable to delete staging content"
         },
+        "x-operationid": "ugc/public/staging/v2/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -14662,6 +14820,7 @@
           "774402": "unable to get staging content",
           "774403": "unable to generate presigned URL"
         },
+        "x-operationid": "ugc/public/staging/v2/get",
         "x-security": [
           {
             "userPermissions": [
@@ -14767,6 +14926,7 @@
           "774414": "unable to update staging content",
           "774415": "unable to generate presigned URL"
         },
+        "x-operationid": "ugc/public/staging/v2/update",
         "x-security": [
           {
             "userPermissions": [
@@ -16764,11 +16924,11 @@
     "path": "/ugc/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-19T07:43:40+00:00",
-    "gitHash": "3894828d63383321ed30bf4213e70d2470dc1212",
+    "buildDate": "2026-07-03T02:30:16+00:00",
+    "gitHash": "a48c67d8b3f0e4208a8297d1bda2d28a49cef0a4",
     "name": "justice-ugc-service",
     "realm": "staging",
-    "version": "2.28.0",
+    "version": "2.28.2",
     "version-roles-seeding": "1.0.21"
   }
 }

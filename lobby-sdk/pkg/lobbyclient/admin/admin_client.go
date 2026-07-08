@@ -185,7 +185,7 @@ func (a *Client) AdminGetGlobalConfigShort(params *AdminGetGlobalConfigParams, a
 Deprecated: 2022-08-10 - Use AdminUpdateGlobalConfigShort instead.
 
 AdminUpdateGlobalConfig upsert global configuration data.
-Upsert global configuration data.
+Overwrite existing global configuration with the provided values. Creates the record if it does not exist.
 */
 func (a *Client) AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, *AdminUpdateGlobalConfigUnauthorized, *AdminUpdateGlobalConfigForbidden, error) {
 	// TODO: Validate the params before sending
@@ -240,7 +240,7 @@ func (a *Client) AdminUpdateGlobalConfig(params *AdminUpdateGlobalConfigParams, 
 
 /*
 AdminUpdateGlobalConfigShort upsert global configuration data.
-Upsert global configuration data.
+Overwrite existing global configuration with the provided values. Creates the record if it does not exist.
 */
 func (a *Client) AdminUpdateGlobalConfigShort(params *AdminUpdateGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -291,7 +291,7 @@ func (a *Client) AdminUpdateGlobalConfigShort(params *AdminUpdateGlobalConfigPar
 Deprecated: 2022-08-10 - Use AdminDeleteGlobalConfigShort instead.
 
 AdminDeleteGlobalConfig delete of global configuration data.
-Delete of global configuration data.
+Remove the global configuration record. This operation is permanent.
 */
 func (a *Client) AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, *AdminDeleteGlobalConfigUnauthorized, *AdminDeleteGlobalConfigForbidden, error) {
 	// TODO: Validate the params before sending
@@ -346,7 +346,7 @@ func (a *Client) AdminDeleteGlobalConfig(params *AdminDeleteGlobalConfigParams, 
 
 /*
 AdminDeleteGlobalConfigShort delete of global configuration data.
-Delete of global configuration data.
+Remove the global configuration record. This operation is permanent.
 */
 func (a *Client) AdminDeleteGlobalConfigShort(params *AdminDeleteGlobalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigNoContent, error) {
 	// TODO: Validate the params before sending

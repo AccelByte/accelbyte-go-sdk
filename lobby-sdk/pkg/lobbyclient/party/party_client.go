@@ -290,12 +290,7 @@ func (a *Client) AdminGetUserPartyV1Short(params *AdminGetUserPartyV1Params, aut
 Deprecated: 2022-08-10 - Use PublicGetPartyDataV1Short instead.
 
 PublicGetPartyDataV1 get party data by party id
-Required valid user authorization
-
-
-load personal party data in a namespace based on Party ID
-
-Action Code: 50101
+Load party data in a namespace by Party ID.
 */
 func (a *Client) PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyDataV1OK, *PublicGetPartyDataV1BadRequest, *PublicGetPartyDataV1Unauthorized, *PublicGetPartyDataV1Forbidden, *PublicGetPartyDataV1NotFound, *PublicGetPartyDataV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -359,12 +354,7 @@ func (a *Client) PublicGetPartyDataV1(params *PublicGetPartyDataV1Params, authIn
 
 /*
 PublicGetPartyDataV1Short get party data by party id
-Required valid user authorization
-
-
-load personal party data in a namespace based on Party ID
-
-Action Code: 50101
+Load party data in a namespace by Party ID.
 */
 func (a *Client) PublicGetPartyDataV1Short(params *PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetPartyDataV1OK, error) {
 	// TODO: Validate the params before sending

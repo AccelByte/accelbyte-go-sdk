@@ -32,6 +32,10 @@ type ApimodelReplicaResponse struct {
 	// replicalimit
 	// Format: int32
 	ReplicaLimit int32 `json:"replicaLimit,omitempty"`
+
+	// rolloutreadyreplicas
+	// Format: int32
+	RolloutReadyReplicas int32 `json:"rolloutReadyReplicas,omitempty"`
 }
 
 // Validate validates this Apimodel replica response

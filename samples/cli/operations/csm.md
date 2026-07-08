@@ -76,15 +76,6 @@ $ samples/cli/sample-apps Csm getAppV2 \
     > result.txt
 ```
 
-### Operation `create_app_v2`
-```sh
-$ samples/cli/sample-apps Csm createAppV2 \
-    --app 'string' \
-    --namespace 'string' \
-    --body '{"autoscaling": {}, "cpu": {}, "description": "string", "memory": {}, "replica": {}, "scenario": "string", "vmSharingConfiguration": "string"}' \
-    > result.txt
-```
-
 ### Operation `delete_app_v2`
 ```sh
 $ samples/cli/sample-apps Csm deleteAppV2 \
@@ -99,7 +90,7 @@ $ samples/cli/sample-apps Csm deleteAppV2 \
 $ samples/cli/sample-apps Csm updateAppV2 \
     --app 'string' \
     --namespace 'string' \
-    --body '{"description": "string"}' \
+    --body '{"description": "string", "enableDebugMode": false}' \
     > result.txt
 ```
 
@@ -660,8 +651,8 @@ $ samples/cli/sample-apps Csm getNoSQLAppListV2 \
     --resourceId 'string' \
     --studioName 'string' \
     --appName 'string' \
+    --gameNamespace 'string' \
     --limit 1 \
-    --namespace 'string' \
     --offset 1 \
     > result.txt
 ```
@@ -682,6 +673,40 @@ $ samples/cli/sample-apps Csm deleteSubscriptionAppNotificationV3 \
     --namespace 'string' \
     --emailAddress 'string' \
     --userId 'string' \
+    > result.txt
+```
+
+### Operation `get_app_debug_info_v4`
+```sh
+$ samples/cli/sample-apps Csm getAppDebugInfoV4 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `update_app_debug_mode_v4`
+```sh
+$ samples/cli/sample-apps Csm updateAppDebugModeV4 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"enableDebugMode": false}' \
+    > result.txt
+```
+
+### Operation `get_app_status_progress_v4`
+```sh
+$ samples/cli/sample-apps Csm getAppStatusProgressV4 \
+    --app 'string' \
+    --namespace 'string' \
+    > result.txt
+```
+
+### Operation `create_app_v5`
+```sh
+$ samples/cli/sample-apps Csm createAppV5 \
+    --app 'string' \
+    --namespace 'string' \
+    --body '{"autoscaling": {}, "cpu": {}, "description": "string", "memory": {}, "preferred_k8s_namespace": "string", "replica": {}, "scenario": "string", "vmSharingConfiguration": "string"}' \
     > result.txt
 ```
 

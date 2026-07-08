@@ -51,13 +51,13 @@ func (aaa *FleetCommanderService) PortalHealthCheck(input *fleet_commander.Porta
 	return nil
 }
 
-// Deprecated: 2022-01-10 - please use Func1Short instead.
-func (aaa *FleetCommanderService) Func1(input *fleet_commander.Func1Params) error {
+// Deprecated: 2022-01-10 - please use VersionInfoShort instead.
+func (aaa *FleetCommanderService) VersionInfo(input *fleet_commander.VersionInfoParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = aaa.Client.FleetCommander.Func1(input, client.BearerToken(*token.AccessToken))
+	_, err = aaa.Client.FleetCommander.VersionInfo(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -109,7 +109,7 @@ func (aaa *FleetCommanderService) PortalHealthCheckShort(input *fleet_commander.
 	return nil
 }
 
-func (aaa *FleetCommanderService) Func1Short(input *fleet_commander.Func1Params) error {
+func (aaa *FleetCommanderService) VersionInfoShort(input *fleet_commander.VersionInfoParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -131,7 +131,7 @@ func (aaa *FleetCommanderService) Func1Short(input *fleet_commander.Func1Params)
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.FleetCommander.Func1Short(input, authInfoWriter)
+	_, err := aaa.Client.FleetCommander.VersionInfoShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

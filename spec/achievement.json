@@ -8,7 +8,7 @@
     },
     "description": "Justice Achievement Service",
     "title": "justice-achievement-service",
-    "version": "2.29.0"
+    "version": "2.29.2"
   },
   "schemes": [
     "https"
@@ -136,6 +136,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -217,6 +218,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/create",
         "x-security": [
           {
             "iamClientScopes": [
@@ -296,6 +298,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/export",
         "x-security": [
           {
             "iamClientScopes": [
@@ -383,6 +386,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/import",
         "x-security": [
           {
             "iamClientScopes": [
@@ -462,6 +466,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/delete",
         "x-security": [
           {
             "iamClientScopes": [
@@ -542,6 +547,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -627,6 +633,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/reorder",
         "x-security": [
           {
             "iamClientScopes": [
@@ -715,6 +722,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/achievements/v1/update",
         "x-security": [
           {
             "iamClientScopes": [
@@ -834,6 +842,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/collaborative-progress/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -936,6 +945,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/collaborative-progress/v1/list-contributors",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1009,6 +1019,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/collaborative-progress/v1/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1086,6 +1097,7 @@
           "Platform Achievement"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/platform-achievements/v1/bulk-create-playstation-event",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1196,6 +1208,7 @@
           "Tags"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/tags/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1324,6 +1337,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/user-progress/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1405,6 +1419,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/user-progress/v1/batch-query",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1504,6 +1519,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/user-progress/v1/bulk-unlock",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1590,6 +1606,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/user-progress/v1/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1682,6 +1699,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/user-progress/v1/unlock",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1749,6 +1767,7 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/internal/v1/anonymize-use",
         "x-security": [
           {
             "userPermissions": [
@@ -1862,6 +1881,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/admin/collaborative-progress/v1/list-contributions",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1993,6 +2013,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/achievements/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2082,6 +2103,7 @@
           "Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/achievements/v1/get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2201,6 +2223,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/collaborative-progress/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2303,6 +2326,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/collaborative-progress/v1/list-contributors",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2413,6 +2437,7 @@
           "Tags"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/tags/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2541,6 +2566,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/user-progress/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2640,6 +2666,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/user-progress/v1/bulk-unlock",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2732,6 +2759,7 @@
           "User Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/user-progress/v1/unlock",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2850,6 +2878,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/collaborative-progress/v1/list-contributions",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2930,6 +2959,7 @@
           "Global Achievements"
         ],
         "x-errorCodes": {},
+        "x-operationid": "achievement/public/collaborative-progress/v1/claim-reward",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3874,11 +3904,11 @@
     "path": "/achievement/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T09:06:57+00:00",
-    "gitHash": "bce744f317fcd31ef2dcc242540969d8771005df",
+    "buildDate": "2026-07-02T23:17:11+00:00",
+    "gitHash": "3d86f3a7a3a1113b930a7158b41aa90063f6a33b",
     "name": "justice-achievement-service",
     "realm": "staging",
-    "version": "2.29.0",
+    "version": "2.29.2",
     "version-roles-seeding": "1.0.7"
   }
 }

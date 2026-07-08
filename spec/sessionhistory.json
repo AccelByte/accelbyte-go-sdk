@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Session History Service",
     "title": "justice-session-history-service",
-    "version": "1.14.8"
+    "version": "1.15.0"
   },
   "schemes": [
     "https"
@@ -91,6 +91,7 @@
           "XRay"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session-history/admin/xray-tickets/v2/create",
         "x-security": [
           {
             "userPermissions": [
@@ -170,6 +171,7 @@
           "XRay"
         ],
         "x-errorCodes": {},
+        "x-operationid": "session-history/admin/xray-tickets/v2/bulk-create",
         "x-security": [
           {
             "userPermissions": [
@@ -389,9 +391,9 @@
     "path": "/sessionhistory/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T09:02:35+00:00",
-    "gitHash": "8c4cc0e046d43dfb6f93183a233e83384df846b7",
-    "version": "1.14.8",
+    "buildDate": "2026-07-02T23:17:46+00:00",
+    "gitHash": "7786ecf458ccc76794f306ca7377c7b75cda4058",
+    "version": "1.15.0",
     "version-roles-seeding": "1.2.102"
   }
 }

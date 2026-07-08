@@ -61,7 +61,7 @@ func (aaa *FleetsService) FleetCreate(input *fleets.FleetCreateParams) (*amsclie
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.Fleets.FleetCreate(input, client.BearerToken(*token.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := aaa.Client.Fleets.FleetCreate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -70,6 +70,9 @@ func (aaa *FleetsService) FleetCreate(input *fleets.FleetCreateParams) (*amsclie
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if conflict != nil {
+		return nil, conflict
 	}
 	if internalServerError != nil {
 		return nil, internalServerError
@@ -148,7 +151,7 @@ func (aaa *FleetsService) FleetUpdate(input *fleets.FleetUpdateParams) error {
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.Fleets.FleetUpdate(input, client.BearerToken(*token.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := aaa.Client.Fleets.FleetUpdate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -160,6 +163,9 @@ func (aaa *FleetsService) FleetUpdate(input *fleets.FleetUpdateParams) error {
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if internalServerError != nil {
 		return internalServerError

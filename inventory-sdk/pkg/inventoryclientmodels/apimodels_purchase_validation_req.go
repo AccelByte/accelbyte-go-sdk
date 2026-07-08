@@ -45,7 +45,7 @@ type ApimodelsPurchaseValidationReq struct {
 	Sku *string `json:"sku"`
 
 	// stackable
-	Stackable bool `json:"stackable"`
+	Stackable bool `json:"stackable,omitempty"`
 
 	// usecount
 	// Format: int32

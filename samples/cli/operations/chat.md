@@ -124,7 +124,7 @@ $ samples/cli/sample-apps Chat adminChannelTopicInfo \
 $ samples/cli/sample-apps Chat adminSendChat \
     --namespace 'string' \
     --topic 'string' \
-    --body '{"message": "string"}' \
+    --body '{"message": "string", "metadata": "string"}' \
     > result.txt
 ```
 
@@ -318,7 +318,7 @@ $ samples/cli/sample-apps Chat adminGetConfigV1 \
 ```sh
 $ samples/cli/sample-apps Chat adminUpdateConfigV1 \
     --namespace 'string' \
-    --body '{"chatRateLimitBurst": 1, "chatRateLimitDuration": 1, "concurrentUsersLimit": 1, "enableClanChat": false, "enableManualTopicCreation": false, "enablePmSendPlatformId": false, "enableProfanityFilter": false, "filterAppName": "string", "filterParam": "string", "filterType": "string", "generalRateLimitBurst": 1, "generalRateLimitDuration": 1, "maxChatMessageLength": 1, "shardCapacityLimit": 1, "shardDefaultLimit": 1, "shardHardLimit": 1, "spamChatBurst": 1, "spamChatDuration": 1, "spamMuteDuration": 1}' \
+    --body '{"chatRateLimitBurst": 1, "chatRateLimitDuration": 1, "concurrentUsersLimit": 1, "enableClanChat": false, "enableManualTopicCreation": false, "enablePmSendPlatformId": false, "enableProfanityFilter": false, "filterAppName": "string", "filterParam": "string", "filterType": "string", "generalRateLimitBurst": 1, "generalRateLimitDuration": 1, "maxChatMessageLength": 1, "maxChatMetadataSize": 1, "shardCapacityLimit": 1, "shardDefaultLimit": 1, "shardHardLimit": 1, "spamChatBurst": 1, "spamChatDuration": 1, "spamMuteDuration": 1}' \
     > result.txt
 ```
 

@@ -1,3 +1,9 @@
+<a name="v0.89.0"></a>
+## [v0.89.0]
+### fix
+- **token-validation:**  replace go-cache with a generic singleflight and stale-aware cache 
+
+
 <a name="v0.88.0"></a>
 ## [v0.88.0]
 ### chore

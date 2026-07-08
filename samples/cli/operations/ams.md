@@ -148,6 +148,7 @@ $ samples/cli/sample-apps Ams fleetList \
     --namespace 'string' \
     --active false \
     --count 1 \
+    --includeInactiveRegions false \
     --name 'string' \
     --offset 1 \
     --region 'string' \
@@ -177,6 +178,7 @@ $ samples/cli/sample-apps Ams bulkFleetDelete \
 $ samples/cli/sample-apps Ams fleetGet \
     --fleetID 'string' \
     --namespace 'string' \
+    --includeInactiveRegions false \
     > result.txt
 ```
 
@@ -402,9 +404,9 @@ $ samples/cli/sample-apps Ams uploadURLGet \
     > result.txt
 ```
 
-### Operation `func1`
+### Operation `version_info`
 ```sh
-$ samples/cli/sample-apps Ams func1 \
+$ samples/cli/sample-apps Ams versionInfo \
     > result.txt
 ```
 

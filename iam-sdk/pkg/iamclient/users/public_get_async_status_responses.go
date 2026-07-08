@@ -72,7 +72,7 @@ func NewPublicGetAsyncStatusOK() *PublicGetAsyncStatusOK {
   OK
 */
 type PublicGetAsyncStatusOK struct {
-	Payload *iamclientmodels.ModelLinkRequest
+	Payload *iamclientmodels.ModelReAuthRequest
 }
 
 func (o *PublicGetAsyncStatusOK) Error() string {
@@ -94,7 +94,7 @@ func (o *PublicGetAsyncStatusOK) ToJSONString() string {
 	return fmt.Sprintf("%+v", string(b))
 }
 
-func (o *PublicGetAsyncStatusOK) GetPayload() *iamclientmodels.ModelLinkRequest {
+func (o *PublicGetAsyncStatusOK) GetPayload() *iamclientmodels.ModelReAuthRequest {
 	return o.Payload
 }
 
@@ -106,7 +106,7 @@ func (o *PublicGetAsyncStatusOK) readResponse(response runtime.ClientResponse, c
 		consumer = runtime.ByteStreamConsumer()
 	}
 
-	o.Payload = new(iamclientmodels.ModelLinkRequest)
+	o.Payload = new(iamclientmodels.ModelReAuthRequest)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

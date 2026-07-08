@@ -60,8 +60,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateSQLDatabaseCredentialV2Short instead.
 
 CreateSQLDatabaseCredentialV2 creates a new database credential for the customer
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASECREDENTIALS [CREATE]`
-
 Creates a new database credential for the customer. This will soft-delete the old credential and create a new one.
 */
 func (a *Client) CreateSQLDatabaseCredentialV2(params *CreateSQLDatabaseCredentialV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateSQLDatabaseCredentialV2OK, *CreateSQLDatabaseCredentialV2BadRequest, *CreateSQLDatabaseCredentialV2Unauthorized, *CreateSQLDatabaseCredentialV2Forbidden, *CreateSQLDatabaseCredentialV2NotFound, *CreateSQLDatabaseCredentialV2Conflict, *CreateSQLDatabaseCredentialV2InternalServerError, *CreateSQLDatabaseCredentialV2ServiceUnavailable, error) {
@@ -132,8 +130,6 @@ func (a *Client) CreateSQLDatabaseCredentialV2(params *CreateSQLDatabaseCredenti
 
 /*
 CreateSQLDatabaseCredentialV2Short creates a new database credential for the customer
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASECREDENTIALS [CREATE]`
-
 Creates a new database credential for the customer. This will soft-delete the old credential and create a new one.
 */
 func (a *Client) CreateSQLDatabaseCredentialV2Short(params *CreateSQLDatabaseCredentialV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateSQLDatabaseCredentialV2OK, error) {
@@ -195,23 +191,21 @@ func (a *Client) CreateSQLDatabaseCredentialV2Short(params *CreateSQLDatabaseCre
 Deprecated: 2022-08-10 - Use GetSQLDatabaseV2Short instead.
 
 GetSQLDatabaseV2 get sql database for extend app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASES [READ]`
-
 Get a SQL database information returns the SQL database related information by given game namespace
 and app name.
 
 `resourceStatus` field - indicates the SQL cluster status:
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `available` : The cluster is accessible.
 - `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
-- `unknown` : The cluster status is not recognized
-- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
+- `unknown` : The cluster status is not recognized
+- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
+- `available` : The cluster is accessible.
 */
 func (a *Client) GetSQLDatabaseV2(params *GetSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetSQLDatabaseV2OK, *GetSQLDatabaseV2Unauthorized, *GetSQLDatabaseV2Forbidden, *GetSQLDatabaseV2NotFound, *GetSQLDatabaseV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -272,23 +266,21 @@ func (a *Client) GetSQLDatabaseV2(params *GetSQLDatabaseV2Params, authInfo runti
 
 /*
 GetSQLDatabaseV2Short get sql database for extend app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASES [READ]`
-
 Get a SQL database information returns the SQL database related information by given game namespace
 and app name.
 
 `resourceStatus` field - indicates the SQL cluster status:
-- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `available` : The cluster is accessible.
 - `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
-- `unknown` : The cluster status is not recognized
-- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
+- `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
+- `unknown` : The cluster status is not recognized
+- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
+- `available` : The cluster is accessible.
 */
 func (a *Client) GetSQLDatabaseV2Short(params *GetSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetSQLDatabaseV2OK, error) {
 	// TODO: Validate the params before sending
@@ -343,8 +335,6 @@ func (a *Client) GetSQLDatabaseV2Short(params *GetSQLDatabaseV2Params, authInfo 
 Deprecated: 2022-08-10 - Use CreateSQLDatabaseV2Short instead.
 
 CreateSQLDatabaseV2 creates sql database for extend app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASES [CREATE]`
-
 Creates a SQL database along with its credentials associated with given extend app. The database will be created in the provisioned SQL cluster.
 */
 func (a *Client) CreateSQLDatabaseV2(params *CreateSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateSQLDatabaseV2OK, *CreateSQLDatabaseV2BadRequest, *CreateSQLDatabaseV2Unauthorized, *CreateSQLDatabaseV2Forbidden, *CreateSQLDatabaseV2NotFound, *CreateSQLDatabaseV2Conflict, *CreateSQLDatabaseV2InternalServerError, *CreateSQLDatabaseV2ServiceUnavailable, error) {
@@ -415,8 +405,6 @@ func (a *Client) CreateSQLDatabaseV2(params *CreateSQLDatabaseV2Params, authInfo
 
 /*
 CreateSQLDatabaseV2Short creates sql database for extend app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASES [CREATE]`
-
 Creates a SQL database along with its credentials associated with given extend app. The database will be created in the provisioned SQL cluster.
 */
 func (a *Client) CreateSQLDatabaseV2Short(params *CreateSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*CreateSQLDatabaseV2OK, error) {
@@ -478,8 +466,6 @@ func (a *Client) CreateSQLDatabaseV2Short(params *CreateSQLDatabaseV2Params, aut
 Deprecated: 2022-08-10 - Use DeleteSQLDatabaseV2Short instead.
 
 DeleteSQLDatabaseV2 deletes sql database for extend app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASES [DELETE]`
-
 Deletes a SQL database and its credentials associated with given extend app and game namespace. The database will be removed from the provisioned SQL cluster.
 */
 func (a *Client) DeleteSQLDatabaseV2(params *DeleteSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSQLDatabaseV2OK, *DeleteSQLDatabaseV2BadRequest, *DeleteSQLDatabaseV2Unauthorized, *DeleteSQLDatabaseV2Forbidden, *DeleteSQLDatabaseV2NotFound, *DeleteSQLDatabaseV2InternalServerError, *DeleteSQLDatabaseV2ServiceUnavailable, error) {
@@ -547,8 +533,6 @@ func (a *Client) DeleteSQLDatabaseV2(params *DeleteSQLDatabaseV2Params, authInfo
 
 /*
 DeleteSQLDatabaseV2Short deletes sql database for extend app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:DATABASES [DELETE]`
-
 Deletes a SQL database and its credentials associated with given extend app and game namespace. The database will be removed from the provisioned SQL cluster.
 */
 func (a *Client) DeleteSQLDatabaseV2Short(params *DeleteSQLDatabaseV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteSQLDatabaseV2OK, error) {
@@ -608,22 +592,20 @@ func (a *Client) DeleteSQLDatabaseV2Short(params *DeleteSQLDatabaseV2Params, aut
 Deprecated: 2022-08-10 - Use GetSQLClusterV2Short instead.
 
 GetSQLClusterV2 get sql cluster information
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [READ]`
-
 Get SQL cluster information returns the SQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the SQL cluster status:
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `stopped` : The cluster is stopped and not accessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `available` : The cluster is accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
 - `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `stopped` : The cluster is stopped and not accessible.
 */
 func (a *Client) GetSQLClusterV2(params *GetSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetSQLClusterV2OK, *GetSQLClusterV2BadRequest, *GetSQLClusterV2Unauthorized, *GetSQLClusterV2Forbidden, *GetSQLClusterV2NotFound, *GetSQLClusterV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -687,22 +669,20 @@ func (a *Client) GetSQLClusterV2(params *GetSQLClusterV2Params, authInfo runtime
 
 /*
 GetSQLClusterV2Short get sql cluster information
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [READ]`
-
 Get SQL cluster information returns the SQL cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the SQL cluster status:
-- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
-- `stopped` : The cluster is stopped and not accessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
-- `available` : The cluster is accessible.
-- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
 - `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
 - `unknown` : The cluster status is not recognized
 - `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `available` : The cluster is accessible.
+- `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
+- `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
+- `stopped` : The cluster is stopped and not accessible.
 */
 func (a *Client) GetSQLClusterV2Short(params *GetSQLClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetSQLClusterV2OK, error) {
 	// TODO: Validate the params before sending
@@ -759,8 +739,6 @@ func (a *Client) GetSQLClusterV2Short(params *GetSQLClusterV2Params, authInfo ru
 Deprecated: 2022-08-10 - Use UpdateSQLClusterV2Short instead.
 
 UpdateSQLClusterV2 update sql cluster configurations
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [UPDATE]`
-
 Update SQL cluster configurations such as min/max ACU (AuroraDB Capacity Units) for the SQL cluster in the given studio/publisher namespace.
 The cluster must be in an available state to allow configuration updates.
 
@@ -831,8 +809,6 @@ func (a *Client) UpdateSQLClusterV2(params *UpdateSQLClusterV2Params, authInfo r
 
 /*
 UpdateSQLClusterV2Short update sql cluster configurations
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [UPDATE]`
-
 Update SQL cluster configurations such as min/max ACU (AuroraDB Capacity Units) for the SQL cluster in the given studio/publisher namespace.
 The cluster must be in an available state to allow configuration updates.
 
@@ -895,8 +871,6 @@ func (a *Client) UpdateSQLClusterV2Short(params *UpdateSQLClusterV2Params, authI
 Deprecated: 2022-08-10 - Use CreateSQLClusterV2Short instead.
 
 CreateSQLClusterV2 creates sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [CREATE]`
-
 Provision SQL database cluster and instances that can be used by extend apps in game namespace within the studio.
 Only one SQL resource can be created for one studio/publisher namespace.
 
@@ -964,8 +938,6 @@ func (a *Client) CreateSQLClusterV2(params *CreateSQLClusterV2Params, authInfo r
 
 /*
 CreateSQLClusterV2Short creates sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [CREATE]`
-
 Provision SQL database cluster and instances that can be used by extend apps in game namespace within the studio.
 Only one SQL resource can be created for one studio/publisher namespace.
 
@@ -1026,8 +998,6 @@ func (a *Client) CreateSQLClusterV2Short(params *CreateSQLClusterV2Params, authI
 Deprecated: 2022-08-10 - Use DeleteSQLClusterV2Short instead.
 
 DeleteSQLClusterV2 delete sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [DELETE]`
-
 You can only delete the cluster when its status is "available".
 
 Deleting the cluster will:
@@ -1097,8 +1067,6 @@ func (a *Client) DeleteSQLClusterV2(params *DeleteSQLClusterV2Params, authInfo r
 
 /*
 DeleteSQLClusterV2Short delete sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [DELETE]`
-
 You can only delete the cluster when its status is "available".
 
 Deleting the cluster will:
@@ -1161,8 +1129,6 @@ func (a *Client) DeleteSQLClusterV2Short(params *DeleteSQLClusterV2Params, authI
 Deprecated: 2022-08-10 - Use StartSQLClusterV2Short instead.
 
 StartSQLClusterV2 start sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [UPDATE]`
-
 Start SQL cluster.
 You can only start the cluster when its status is "stopped".
 
@@ -1233,8 +1199,6 @@ func (a *Client) StartSQLClusterV2(params *StartSQLClusterV2Params, authInfo run
 
 /*
 StartSQLClusterV2Short start sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [UPDATE]`
-
 Start SQL cluster.
 You can only start the cluster when its status is "stopped".
 
@@ -1297,8 +1261,6 @@ func (a *Client) StartSQLClusterV2Short(params *StartSQLClusterV2Params, authInf
 Deprecated: 2022-08-10 - Use StopSQLClusterV2Short instead.
 
 StopSQLClusterV2 stop sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [UPDATE]`
-
 Stop SQL cluster.
 You can only start the cluster when its status is "available".
 
@@ -1369,8 +1331,6 @@ func (a *Client) StopSQLClusterV2(params *StopSQLClusterV2Params, authInfo runti
 
 /*
 StopSQLClusterV2Short stop sql cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [UPDATE]`
-
 Stop SQL cluster.
 You can only start the cluster when its status is "available".
 
@@ -1433,20 +1393,18 @@ func (a *Client) StopSQLClusterV2Short(params *StopSQLClusterV2Params, authInfo 
 Deprecated: 2022-08-10 - Use GetSQLAppListV2Short instead.
 
 GetSQLAppListV2 get list of extend app using sql
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [READ]`
-
 Get List of Extend App using SQL database by given studio/publisher namespace and the SQL cluster resourceId.
 - `available` : The cluster is accessible.
 - `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
-- `unknown` : The cluster status is not recognized
-- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
+- `unknown` : The cluster status is not recognized
+- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
 */
 func (a *Client) GetSQLAppListV2(params *GetSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetSQLAppListV2OK, *GetSQLAppListV2BadRequest, *GetSQLAppListV2Unauthorized, *GetSQLAppListV2Forbidden, *GetSQLAppListV2InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1507,20 +1465,18 @@ func (a *Client) GetSQLAppListV2(params *GetSQLAppListV2Params, authInfo runtime
 
 /*
 GetSQLAppListV2Short get list of extend app using sql
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:SQL:CLUSTERS [READ]`
-
 Get List of Extend App using SQL database by given studio/publisher namespace and the SQL cluster resourceId.
 - `available` : The cluster is accessible.
 - `updating` : The cluster is being modified and is not yet accessible (e.g., updating min/max ACU).
-- `creating` : The cluster or instance is being created and is not yet accessible.
-- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
-- `unknown` : The cluster status is not recognized
-- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
-- `deleting` : The cluster is in the process of being deleted and is not accessible.
 - `failed` : The cluster failed to provision or is in an error state and not accessible.
 - `stopping` : The cluster is in the process of stopping and will soon become inaccessible.
 - `stopped` : The cluster is stopped and not accessible.
 - `starting` : The cluster is transitioning from stopped to running, or is rebooting.
+- `creating` : The cluster or instance is being created and is not yet accessible.
+- `deleting` : The cluster is in the process of being deleted and is not accessible.
+- `maintenance` : The cluster is undergoing maintenance operations and is not accessible.
+- `unknown` : The cluster status is not recognized
+- `configuring-replica` : The cluster is configuring replica instances for multi-AZ deployment.
 */
 func (a *Client) GetSQLAppListV2Short(params *GetSQLAppListV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetSQLAppListV2OK, error) {
 	// TODO: Validate the params before sending

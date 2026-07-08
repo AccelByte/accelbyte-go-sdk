@@ -43,7 +43,7 @@ Deprecated: 2022-08-10 - Use AdminGetMemberActiveSessionShort instead.
 
 AdminGetMemberActiveSession get member active session.
 
-Get Member Active Session.
+Returns the number of active sessions the specified user is participating in under the given configuration template.
 */
 func (a *Client) AdminGetMemberActiveSession(params *AdminGetMemberActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMemberActiveSessionOK, *AdminGetMemberActiveSessionBadRequest, *AdminGetMemberActiveSessionUnauthorized, *AdminGetMemberActiveSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -102,7 +102,7 @@ func (a *Client) AdminGetMemberActiveSession(params *AdminGetMemberActiveSession
 /*
 AdminGetMemberActiveSessionShort get member active session.
 
-Get Member Active Session.
+Returns the number of active sessions the specified user is participating in under the given configuration template.
 */
 func (a *Client) AdminGetMemberActiveSessionShort(params *AdminGetMemberActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMemberActiveSessionOK, error) {
 	// TODO: Validate the params before sending
@@ -156,7 +156,7 @@ Deprecated: 2022-08-10 - Use AdminReconcileMaxActiveSessionShort instead.
 
 AdminReconcileMaxActiveSession reconcile max active session.
 
-Reconcile Max Active Session.
+Reconciles the max active session count for the specified configuration template. Scans active sessions and updates the counter to reflect the actual count.
 */
 func (a *Client) AdminReconcileMaxActiveSession(params *AdminReconcileMaxActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReconcileMaxActiveSessionOK, *AdminReconcileMaxActiveSessionBadRequest, *AdminReconcileMaxActiveSessionUnauthorized, *AdminReconcileMaxActiveSessionInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -215,7 +215,7 @@ func (a *Client) AdminReconcileMaxActiveSession(params *AdminReconcileMaxActiveS
 /*
 AdminReconcileMaxActiveSessionShort reconcile max active session.
 
-Reconcile Max Active Session.
+Reconciles the max active session count for the specified configuration template. Scans active sessions and updates the counter to reflect the actual count.
 */
 func (a *Client) AdminReconcileMaxActiveSessionShort(params *AdminReconcileMaxActiveSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminReconcileMaxActiveSessionOK, error) {
 	// TODO: Validate the params before sending

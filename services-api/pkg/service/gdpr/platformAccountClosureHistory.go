@@ -44,7 +44,7 @@ func (aaa *PlatformAccountClosureHistoryService) AdminGetUserPlatformAccountClos
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := aaa.Client.PlatformAccountClosureHistory.AdminGetUserPlatformAccountClosureHistories(input, client.BearerToken(*token.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := aaa.Client.PlatformAccountClosureHistory.AdminGetUserPlatformAccountClosureHistories(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -53,6 +53,9 @@ func (aaa *PlatformAccountClosureHistoryService) AdminGetUserPlatformAccountClos
 	}
 	if forbidden != nil {
 		return nil, forbidden
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if internalServerError != nil {
 		return nil, internalServerError

@@ -52,7 +52,10 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminQueryBackfillShort instead.
 
 AdminQueryBackfill admin query backfill ticket
-Admin Query backfill ticket
+Admin Query backfill ticket.
+
+Supports filtering by session ID, match pool, time range, active status, player ID, and region.
+Use pagination parameters offset and limit to control result size.
 */
 func (a *Client) AdminQueryBackfill(params *AdminQueryBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryBackfillOK, *AdminQueryBackfillBadRequest, *AdminQueryBackfillUnauthorized, *AdminQueryBackfillForbidden, *AdminQueryBackfillNotFound, *AdminQueryBackfillInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -116,7 +119,10 @@ func (a *Client) AdminQueryBackfill(params *AdminQueryBackfillParams, authInfo r
 
 /*
 AdminQueryBackfillShort admin query backfill ticket
-Admin Query backfill ticket
+Admin Query backfill ticket.
+
+Supports filtering by session ID, match pool, time range, active status, player ID, and region.
+Use pagination parameters offset and limit to control result size.
 */
 func (a *Client) AdminQueryBackfillShort(params *AdminQueryBackfillParams, authInfo runtime.ClientAuthInfoWriter) (*AdminQueryBackfillOK, error) {
 	// TODO: Validate the params before sending
@@ -299,7 +305,10 @@ func (a *Client) CreateBackfillShort(params *CreateBackfillParams, authInfo runt
 Deprecated: 2022-08-10 - Use GetBackfillProposalShort instead.
 
 GetBackfillProposal get backfill proposal
-Get backfill proposal
+Get backfill proposal for the given session.
+
+Returns the current pending backfill proposal associated with the session ID.
+Returns 404 if no proposal exists for the session.
 */
 func (a *Client) GetBackfillProposal(params *GetBackfillProposalParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillProposalOK, *GetBackfillProposalBadRequest, *GetBackfillProposalUnauthorized, *GetBackfillProposalForbidden, *GetBackfillProposalNotFound, *GetBackfillProposalInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -363,7 +372,10 @@ func (a *Client) GetBackfillProposal(params *GetBackfillProposalParams, authInfo
 
 /*
 GetBackfillProposalShort get backfill proposal
-Get backfill proposal
+Get backfill proposal for the given session.
+
+Returns the current pending backfill proposal associated with the session ID.
+Returns 404 if no proposal exists for the session.
 */
 func (a *Client) GetBackfillProposalShort(params *GetBackfillProposalParams, authInfo runtime.ClientAuthInfoWriter) (*GetBackfillProposalOK, error) {
 	// TODO: Validate the params before sending

@@ -30,6 +30,7 @@
         "operationId": "adminFilterChatMessage",
         "parameters": [
           {
+            "description": "Chat message text to run through the profanity filter.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -97,6 +98,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/filter-message",
         "x-security": [
           {
             "userPermissions": [
@@ -243,6 +245,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/get-history",
         "x-security": [
           {
             "userPermissions": [
@@ -261,6 +264,7 @@
         "operationId": "adminCreateNamespaceTopic",
         "parameters": [
           {
+            "description": "New namespace group topic request body.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -297,6 +301,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/create-namespace",
         "x-security": [
           {
             "userPermissions": [
@@ -395,6 +400,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -411,6 +417,7 @@
         "operationId": "adminCreateTopic",
         "parameters": [
           {
+            "description": "New group topic request body.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -447,6 +454,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -536,6 +544,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/list-channels",
         "x-security": [
           {
             "userPermissions": [
@@ -606,6 +615,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/get-channel-summary",
         "x-security": [
           {
             "userPermissions": [
@@ -729,6 +739,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/search-log",
         "x-security": [
           {
             "userPermissions": [
@@ -806,6 +817,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -822,6 +834,7 @@
         "operationId": "adminUpdateTopic",
         "parameters": [
           {
+            "description": "Updated topic fields.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -889,6 +902,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -907,6 +921,7 @@
         "operationId": "adminBanTopicMembers",
         "parameters": [
           {
+            "description": "List of users to ban from the topic.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -980,6 +995,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/ban-members",
         "x-security": [
           {
             "userPermissions": [
@@ -1063,6 +1079,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/get-channel-info",
         "x-security": [
           {
             "userPermissions": [
@@ -1197,6 +1214,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/get-message-history",
         "x-security": [
           {
             "userPermissions": [
@@ -1213,6 +1231,7 @@
         "operationId": "adminSendChat",
         "parameters": [
           {
+            "description": "Chat message content to send.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1289,6 +1308,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/send",
         "x-security": [
           {
             "userPermissions": [
@@ -1376,6 +1396,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/delete-message",
         "x-security": [
           {
             "userPermissions": [
@@ -1486,6 +1507,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/list-members",
         "x-security": [
           {
             "userPermissions": [
@@ -1566,6 +1588,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/list-shards",
         "x-security": [
           {
             "userPermissions": [
@@ -1584,6 +1607,7 @@
         "operationId": "adminUnbanTopicMembers",
         "parameters": [
           {
+            "description": "List of users to unban from the topic.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1657,6 +1681,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/unban-members",
         "x-security": [
           {
             "userPermissions": [
@@ -1741,6 +1766,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/remove-member",
         "x-security": [
           {
             "userPermissions": [
@@ -1757,6 +1783,7 @@
         "operationId": "adminAddTopicMember",
         "parameters": [
           {
+            "description": "User to add as topic member.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -1837,6 +1864,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/add-member",
         "x-security": [
           {
             "userPermissions": [
@@ -1982,6 +2010,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -2101,6 +2130,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/topics/v1/list-joined",
         "x-security": [
           {
             "userPermissions": [
@@ -2174,6 +2204,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/list-muted",
         "x-security": []
       }
     },
@@ -2260,6 +2291,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/list",
         "x-security": []
       }
     },
@@ -2272,6 +2304,7 @@
         "operationId": "publicBanTopicMembers",
         "parameters": [
           {
+            "description": "List of users to ban from the topic.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2345,6 +2378,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/ban-members",
         "x-security": [
           {
             "groupPermissions": [
@@ -2444,6 +2478,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/get-history",
         "x-security": []
       }
     },
@@ -2519,6 +2554,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/delete",
         "x-security": [
           {
             "groupPermissions": [
@@ -2608,6 +2644,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/mute-member",
         "x-security": [
           {
             "groupPermissions": [
@@ -2626,6 +2663,7 @@
         "operationId": "publicUnbanTopicMembers",
         "parameters": [
           {
+            "description": "List of users to unban from the topic.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -2699,6 +2737,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/unban-members",
         "x-security": [
           {
             "groupPermissions": [
@@ -2788,6 +2827,7 @@
           "topic"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/topics/v1/unmute-member",
         "x-security": [
           {
             "groupPermissions": [
@@ -2855,6 +2895,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -2889,6 +2930,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/get-log",
         "x-security": [
           {
             "userPermissions": [
@@ -2935,6 +2977,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/update-log",
         "x-security": [
           {
             "userPermissions": [
@@ -3011,6 +3054,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -3100,6 +3144,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -3167,6 +3212,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/export",
         "x-security": [
           {
             "userPermissions": [
@@ -3237,6 +3283,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/config/v1/import",
         "x-security": [
           {
             "userPermissions": [
@@ -3310,6 +3357,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/list-categories",
         "x-security": [
           {
             "userPermissions": [
@@ -3326,6 +3374,7 @@
         "operationId": "adminAddInboxCategory",
         "parameters": [
           {
+            "description": "Inbox category name and schema definition.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -3386,6 +3435,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/create-category",
         "x-security": [
           {
             "userPermissions": [
@@ -3460,6 +3510,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/delete-category",
         "x-security": [
           {
             "userPermissions": [
@@ -3476,6 +3527,7 @@
         "operationId": "adminUpdateInboxCategory",
         "parameters": [
           {
+            "description": "Updated inbox category fields.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -3540,6 +3592,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/update-category",
         "x-security": [
           {
             "userPermissions": [
@@ -3623,6 +3676,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/get-category-schema",
         "x-security": [
           {
             "userPermissions": [
@@ -3687,6 +3741,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/list-kafka-topics",
         "x-security": [
           {
             "userPermissions": [
@@ -3768,6 +3823,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/delete-message",
         "x-security": [
           {
             "userPermissions": [
@@ -3913,6 +3969,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/list-messages",
         "x-security": [
           {
             "userPermissions": [
@@ -3929,6 +3986,7 @@
         "operationId": "adminSaveInboxMessage",
         "parameters": [
           {
+            "description": "Inbox message content and scheduling details.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -3989,6 +4047,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/create-message",
         "x-security": [
           {
             "userPermissions": [
@@ -4007,6 +4066,7 @@
         "operationId": "adminUnsendInboxMessage",
         "parameters": [
           {
+            "description": "Target users from which to unsend the message.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -4074,6 +4134,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/unsend-message",
         "x-security": [
           {
             "userPermissions": [
@@ -4179,6 +4240,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/list-users",
         "x-security": [
           {
             "userPermissions": [
@@ -4197,6 +4259,7 @@
         "operationId": "adminUpdateInboxMessage",
         "parameters": [
           {
+            "description": "Updated inbox message fields.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -4261,6 +4324,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/update-message",
         "x-security": [
           {
             "userPermissions": [
@@ -4279,6 +4343,7 @@
         "operationId": "adminSendInboxMessage",
         "parameters": [
           {
+            "description": "Target users and scheduling details for sending.",
             "in": "body",
             "name": "body",
             "required": true,
@@ -4346,6 +4411,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/send-message",
         "x-security": [
           {
             "userPermissions": [
@@ -4426,6 +4492,7 @@
           "inbox"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/inbox/v1/list-stats",
         "x-security": [
           {
             "userPermissions": [
@@ -4506,6 +4573,7 @@
           "moderation"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/moderation/v1/delete-snapshot",
         "x-security": [
           {
             "userPermissions": [
@@ -4587,6 +4655,7 @@
           "moderation"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/moderation/v1/get-snapshot",
         "x-security": [
           {
             "userPermissions": [
@@ -4706,6 +4775,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/query",
         "x-security": [
           {
             "userPermissions": [
@@ -4789,6 +4859,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -4871,6 +4942,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/bulk-create",
         "x-security": [
           {
             "userPermissions": [
@@ -4941,6 +5013,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/export",
         "x-security": [
           {
             "userPermissions": [
@@ -5026,6 +5099,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/list-groups",
         "x-security": [
           {
             "userPermissions": [
@@ -5126,6 +5200,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/import",
         "x-security": [
           {
             "userPermissions": [
@@ -5206,6 +5281,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -5296,6 +5372,7 @@
           "profanity"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/admin/profanity/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -5338,7 +5415,8 @@
           }
         ],
         "summary": "get service messages",
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "chat/public/service-messages/v1/get"
       }
     },
     "/chat/v1/public/config/namespaces/{namespace}": {
@@ -5408,6 +5486,7 @@
           "config"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/config/v1/get",
         "x-security": []
       }
     },
@@ -5492,6 +5571,7 @@
           "moderation"
         ],
         "x-errorCodes": {},
+        "x-operationid": "chat/public/moderation/v1/get-snapshot",
         "x-security": [
           {
             "groupPermissions": [
@@ -5658,10 +5738,14 @@
       "properties": {
         "message": {
           "type": "string"
+        },
+        "metadata": {
+          "type": "string"
         }
       },
       "required": [
-        "message"
+        "message",
+        "metadata"
       ]
     },
     "api.UnmuteUserRequest": {
@@ -6013,6 +6097,9 @@
         "message": {
           "type": "string"
         },
+        "metadata": {
+          "type": "string"
+        },
         "readAt": {
           "format": "int64",
           "type": "integer"
@@ -6029,6 +6116,7 @@
         "from",
         "id",
         "message",
+        "metadata",
         "topicId"
       ]
     },
@@ -6204,6 +6292,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "maxChatMetadataSize": {
+          "format": "int32",
+          "type": "integer"
+        },
         "useDefaultDictionary": {
           "type": "boolean",
           "x-omitempty": false
@@ -6373,6 +6465,10 @@
           "type": "integer"
         },
         "maxChatMessageLength": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxChatMetadataSize": {
           "format": "int32",
           "type": "integer"
         },
@@ -7024,6 +7120,10 @@
           "type": "integer"
         },
         "maxChatMessageLength": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxChatMetadataSize": {
           "format": "int32",
           "type": "integer"
         },
@@ -9033,6 +9133,16 @@
       "Text": "{{message}}"
     },
     {
+      "Attributes": [
+        "message"
+      ],
+      "Code": "512020",
+      "CodeName": "ChatSendMessageInvalidMetadata",
+      "Section": "send chat message",
+      "Service": "chat",
+      "Text": "{{message}}"
+    },
+    {
       "Attributes": [],
       "Code": "512100",
       "CodeName": "ReadChatSuccess",
@@ -10326,11 +10436,11 @@
     }
   ],
   "x-version": {
-    "buildDate": "2026-03-17T01:29:24+00:00",
-    "gitHash": "df88edd4f7176411ec260dab8c3a52615d07487b",
+    "buildDate": "2026-07-02T23:17:21+00:00",
+    "gitHash": "6749832ea0a75ce3e9686600858deb547fcf7e10",
     "name": "justice-chat-service",
-    "revisionID": "0.4.56",
-    "version": "0.4.56",
+    "revisionID": "0.4.60",
+    "version": "0.4.60",
     "version-roles-seeding": "1.2.108"
   }
 }

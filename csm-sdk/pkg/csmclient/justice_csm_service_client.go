@@ -15,8 +15,11 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_status_progress_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_ui"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_v2"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_v4"
+	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/app_v5"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/async_messaging"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/csm-sdk/pkg/csmclient/configuration_v2"
@@ -83,8 +86,11 @@ func New(transport runtime.ClientTransport, runtime *httptransport.Runtime, form
 	cli.Transport = transport
 	cli.Runtime = runtime
 	cli.App = app.New(transport, formats)
+	cli.AppStatusProgressV4 = app_status_progress_v4.New(transport, formats)
 	cli.AppUI = app_ui.New(transport, formats)
 	cli.AppV2 = app_v2.New(transport, formats)
+	cli.AppV4 = app_v4.New(transport, formats)
+	cli.AppV5 = app_v5.New(transport, formats)
 	cli.AsyncMessaging = async_messaging.New(transport, formats)
 	cli.Configuration = configuration.New(transport, formats)
 	cli.ConfigurationV2 = configuration_v2.New(transport, formats)
@@ -162,9 +168,15 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeCsmService struct {
 	App app.ClientService
 
+	AppStatusProgressV4 app_status_progress_v4.ClientService
+
 	AppUI app_ui.ClientService
 
 	AppV2 app_v2.ClientService
+
+	AppV4 app_v4.ClientService
+
+	AppV5 app_v5.ClientService
 
 	AsyncMessaging async_messaging.ClientService
 
@@ -204,8 +216,11 @@ type JusticeCsmService struct {
 func (c *JusticeCsmService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.App.SetTransport(transport)
+	c.AppStatusProgressV4.SetTransport(transport)
 	c.AppUI.SetTransport(transport)
 	c.AppV2.SetTransport(transport)
+	c.AppV4.SetTransport(transport)
+	c.AppV5.SetTransport(transport)
 	c.AsyncMessaging.SetTransport(transport)
 	c.Configuration.SetTransport(transport)
 	c.ConfigurationV2.SetTransport(transport)

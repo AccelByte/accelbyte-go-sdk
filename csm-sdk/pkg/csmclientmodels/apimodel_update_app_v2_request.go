@@ -19,6 +19,9 @@ type ApimodelUpdateAppV2Request struct {
 
 	// description
 	Description string `json:"description,omitempty"`
+
+	// enabledebugmode
+	EnableDebugMode bool `json:"enableDebugMode"`
 }
 
 // Validate validates this Apimodel update app V2 request

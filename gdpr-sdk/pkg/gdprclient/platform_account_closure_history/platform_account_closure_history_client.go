@@ -30,7 +30,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AdminGetUserPlatformAccountClosureHistories(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, *AdminGetUserPlatformAccountClosureHistoriesBadRequest, *AdminGetUserPlatformAccountClosureHistoriesUnauthorized, *AdminGetUserPlatformAccountClosureHistoriesForbidden, *AdminGetUserPlatformAccountClosureHistoriesInternalServerError, error)
+	AdminGetUserPlatformAccountClosureHistories(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, *AdminGetUserPlatformAccountClosureHistoriesBadRequest, *AdminGetUserPlatformAccountClosureHistoriesUnauthorized, *AdminGetUserPlatformAccountClosureHistoriesForbidden, *AdminGetUserPlatformAccountClosureHistoriesNotFound, *AdminGetUserPlatformAccountClosureHistoriesInternalServerError, error)
 	AdminGetUserPlatformAccountClosureHistoriesShort(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -49,7 +49,7 @@ Supported platforms:
 - steamnetwork
 - xbox
 */
-func (a *Client) AdminGetUserPlatformAccountClosureHistories(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, *AdminGetUserPlatformAccountClosureHistoriesBadRequest, *AdminGetUserPlatformAccountClosureHistoriesUnauthorized, *AdminGetUserPlatformAccountClosureHistoriesForbidden, *AdminGetUserPlatformAccountClosureHistoriesInternalServerError, error) {
+func (a *Client) AdminGetUserPlatformAccountClosureHistories(params *AdminGetUserPlatformAccountClosureHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetUserPlatformAccountClosureHistoriesOK, *AdminGetUserPlatformAccountClosureHistoriesBadRequest, *AdminGetUserPlatformAccountClosureHistoriesUnauthorized, *AdminGetUserPlatformAccountClosureHistoriesForbidden, *AdminGetUserPlatformAccountClosureHistoriesNotFound, *AdminGetUserPlatformAccountClosureHistoriesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetUserPlatformAccountClosureHistoriesParams()
@@ -81,28 +81,31 @@ func (a *Client) AdminGetUserPlatformAccountClosureHistories(params *AdminGetUse
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetUserPlatformAccountClosureHistoriesOK:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountClosureHistoriesBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountClosureHistoriesUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminGetUserPlatformAccountClosureHistoriesForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetUserPlatformAccountClosureHistoriesNotFound:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *AdminGetUserPlatformAccountClosureHistoriesInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -157,6 +160,8 @@ func (a *Client) AdminGetUserPlatformAccountClosureHistoriesShort(params *AdminG
 	case *AdminGetUserPlatformAccountClosureHistoriesUnauthorized:
 		return nil, v
 	case *AdminGetUserPlatformAccountClosureHistoriesForbidden:
+		return nil, v
+	case *AdminGetUserPlatformAccountClosureHistoriesNotFound:
 		return nil, v
 	case *AdminGetUserPlatformAccountClosureHistoriesInternalServerError:
 		return nil, v

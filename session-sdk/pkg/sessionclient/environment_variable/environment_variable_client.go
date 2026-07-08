@@ -40,7 +40,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListEnvironmentVariablesShort instead.
 
 AdminListEnvironmentVariables list of environment variables.
-List of environment variables.
+Returns all environment variables currently set for the session service. Useful for debugging configuration and verifying runtime settings.
 */
 func (a *Client) AdminListEnvironmentVariables(params *AdminListEnvironmentVariablesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListEnvironmentVariablesOK, *AdminListEnvironmentVariablesUnauthorized, *AdminListEnvironmentVariablesForbidden, error) {
 	// TODO: Validate the params before sending
@@ -95,7 +95,7 @@ func (a *Client) AdminListEnvironmentVariables(params *AdminListEnvironmentVaria
 
 /*
 AdminListEnvironmentVariablesShort list of environment variables.
-List of environment variables.
+Returns all environment variables currently set for the session service. Useful for debugging configuration and verifying runtime settings.
 */
 func (a *Client) AdminListEnvironmentVariablesShort(params *AdminListEnvironmentVariablesParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListEnvironmentVariablesOK, error) {
 	// TODO: Validate the params before sending

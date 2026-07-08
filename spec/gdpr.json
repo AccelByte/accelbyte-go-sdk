@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "2.23.1"
+    "version": "2.24.0"
   },
   "schemes": [
     "https"
@@ -123,6 +123,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-deletion-requests/v1/list-all",
         "x-security": [
           {
             "userPermissions": [
@@ -207,6 +208,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/remove-admin-email",
         "x-security": [
           {
             "userPermissions": [
@@ -266,6 +268,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/get-admin-email",
         "x-security": [
           {
             "userPermissions": [
@@ -336,6 +339,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/add-admin-email",
         "x-security": [
           {
             "userPermissions": [
@@ -406,6 +410,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/update-admin-email",
         "x-security": [
           {
             "userPermissions": [
@@ -482,6 +487,7 @@
           "Platform Account Closure Client"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/list-clients",
         "x-security": [
           {
             "userPermissions": [
@@ -566,6 +572,7 @@
           "Platform Account Closure Client"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/validate-xbox-business-partner-certificate",
         "x-security": [
           {
             "userPermissions": [
@@ -646,6 +653,7 @@
           "Platform Account Closure Client"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/delete-client",
         "x-security": [
           {
             "userPermissions": [
@@ -727,6 +735,7 @@
           "Platform Account Closure Client"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/get-client",
         "x-security": [
           {
             "userPermissions": [
@@ -807,6 +816,7 @@
           "Platform Account Closure Client"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/update-client",
         "x-security": [
           {
             "userPermissions": [
@@ -889,6 +899,7 @@
           "Platform Account Closure Client"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/mock-closure-event",
         "x-security": [
           {
             "userPermissions": [
@@ -983,6 +994,7 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests/v1/list-all",
         "x-security": [
           {
             "userPermissions": [
@@ -1047,6 +1059,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/list-services",
         "x-security": [
           {
             "userPermissions": [
@@ -1117,6 +1130,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/update-services",
         "x-security": [
           {
             "userPermissions": [
@@ -1172,6 +1186,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/config/v1/reset-services",
         "x-security": [
           {
             "userPermissions": [
@@ -1227,6 +1242,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/reset-services",
         "x-security": [
           {
             "userPermissions": [
@@ -1289,6 +1305,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/get-services",
         "x-security": [
           {
             "userPermissions": [
@@ -1359,6 +1376,7 @@
           "Configuration"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/update-services",
         "x-security": [
           {
             "userPermissions": [
@@ -1436,6 +1454,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -1453,6 +1477,7 @@
           "Platform Account Closure History"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/platform-closure/v1/get-history",
         "x-security": [
           {
             "userPermissions": [
@@ -1533,6 +1558,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-deletion-requests/v1/cancel-all",
         "x-security": [
           {
             "userPermissions": [
@@ -1608,6 +1634,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-deletion-requests/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1689,6 +1716,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-deletion-requests/v1/submit",
         "x-security": [
           {
             "userPermissions": [
@@ -1755,6 +1783,12 @@
               "$ref": "#/definitions/response.Error"
             }
           },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
@@ -1772,6 +1806,7 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1784,7 +1819,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Submit user personal data retrieval request.\nScope: account\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**\n",
+        "description": "Submit user\u0026#39;s personal data request.\nScope: account\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**\n",
         "operationId": "AdminRequestDataRetrieval",
         "parameters": [
           {
@@ -1854,11 +1889,12 @@
             "authorization": []
           }
         ],
-        "summary": "Submit user personal data retrieval request",
+        "summary": "Submit user's personal data request",
         "tags": [
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests/v1/submit",
         "x-security": [
           {
             "userPermissions": [
@@ -1940,6 +1976,7 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests/v1/cancel",
         "x-security": [
           {
             "userPermissions": [
@@ -1954,7 +1991,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;account\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\u0026lt;p\u0026gt;If admin request data for themselves, password is need to be set\u0026lt;/p\u0026gt;",
+        "description": "Generate personal data download url.\nIf admin request data for themselves, password is need to be set.\nScope: account",
         "operationId": "AdminGeneratePersonalDataURL",
         "parameters": [
           {
@@ -2030,6 +2067,7 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests/v1/generate-download-url",
         "x-security": [
           {
             "userPermissions": [
@@ -2104,6 +2142,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/cancel-all",
         "x-security": []
       },
       "post": {
@@ -2198,6 +2237,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/submit",
         "x-security": []
       }
     },
@@ -2263,6 +2303,7 @@
           "Data Deletion"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/get",
         "x-security": []
       }
     },
@@ -2340,13 +2381,14 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/list",
         "x-security": []
       },
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Submit personal data retrieval request.\nScope: account\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**\n",
+        "description": "Submit user\u0026#39;s personal data request.\nScope: account\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**\n",
         "operationId": "PublicRequestDataRetrieval",
         "parameters": [
           {
@@ -2417,11 +2459,12 @@
             "authorization": []
           }
         ],
-        "summary": "Submit personal data retrieval request",
+        "summary": "Submit user's personal data request",
         "tags": [
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/submit",
         "x-security": []
       }
     },
@@ -2497,6 +2540,7 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/cancel",
         "x-security": []
       }
     },
@@ -2582,6 +2626,7 @@
           "Data Retrieval"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/generate-download-url",
         "x-security": []
       }
     },
@@ -2631,16 +2676,17 @@
         ],
         "summary": "Cancel my account deletion request",
         "tags": [
-          "Data Deletion"
+          "Data Deletion - Headless"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/cancel-all-my",
         "x-security": []
       },
       "post": {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Submit my account deletion requests.\nRequires valid user access token\nThis is for in-game only and require a valid platformId and platform token. If a full account is not logged by 3rd platform, then please use [/gdpr/public/namespaces/{namespace}/users/{userId}/deletions](#operations-Data_Deletion-PublicSubmitUserAccountDeletionRequest)\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**\n",
+        "description": "Submit an Account Deletion Request authenticated by a platform token.\nRequires a valid access token.\n\nThis endpoint is intended for **in-game use** only and requires a valid platformId and platform token.\nIf a full account is available, use \u0026lt;code\u0026gt;POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions\u0026lt;/code\u0026gt; instead.\n\n### Request Header: \n- **Content-Type: application/x-www-form-urlencoded**\n",
         "operationId": "PublicSubmitMyAccountDeletionRequest",
         "parameters": [
           {
@@ -2710,11 +2756,12 @@
             "authorization": []
           }
         ],
-        "summary": "Submit my account deletion requests.",
+        "summary": "Submit my account deletion request",
         "tags": [
-          "Data Deletion"
+          "Data Deletion - Headless"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/submit-my",
         "x-security": []
       }
     },
@@ -2761,9 +2808,425 @@
         ],
         "summary": "Retrieve my account deletion status",
         "tags": [
-          "Data Deletion"
+          "Data Deletion - Headless"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/get-my",
+        "x-security": []
+      }
+    },
+    "/gdpr/public/users/me/headless/deletions": {
+      "post": {
+        "consumes": [
+          "*/*"
+        ],
+        "description": "Submit an Account Deletion Request for headless account scenario (without a password).\n**Typically used by web portal** to invoke headless player GDPR using 3rd platform web authentication.\nRequires a valid access token and a fresh **gdpr_token** cookie (max-age 10 seconds).\nThe gdpr_token is issued by the IAM service during 3rd platform web authentication.\n\nIf a full account is available, use \u0026lt;code\u0026gt;POST /gdpr/public/namespaces/{namespace}/users/{userId}/deletions\u0026lt;/code\u0026gt; instead.\n",
+        "operationId": "PublicSubmitMyHeadlessDeletionRequest",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.RequestDeleteResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Submit my headless account deletion request",
+        "tags": [
+          "Data Deletion - Headless"
+        ],
+        "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-deletion-requests/v1/headless-submit-my",
+        "x-security": []
+      }
+    },
+    "/gdpr/public/users/me/headless/requests": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "Submit a Personal Data Request for headless account scenario (without a password).\n**Typically used by web portal** to invoke headless player GDPR using 3rd platform web authentication.\nRequires a valid access token and a fresh **gdpr_token** cookie (max-age 5 minutes).\nThe gdpr_token is issued by the IAM service during 3rd platform web authentication.\n\nIf a full account is available, use \u0026lt;code\u0026gt;POST /gdpr/public/namespaces/{namespace}/users/{userId}/requests\u0026lt;/code\u0026gt; instead.\n\n### Request Header:\n- **Content-Type: application/x-www-form-urlencoded**\n",
+        "operationId": "PublicSubmitMyHeadlessPersonalDataRequest",
+        "parameters": [
+          {
+            "description": "Email address to receive notifications and download links when the generated data is ready.",
+            "in": "formData",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "description": "Language tag for the notification email",
+            "in": "formData",
+            "name": "languageTag",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.DataRetrievalResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Submit my headless personal data request",
+        "tags": [
+          "Data Retrieval - Headless"
+        ],
+        "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/headless-submit-my",
+        "x-security": []
+      }
+    },
+    "/gdpr/public/users/me/headless/requests/{requestDate}/generate": {
+      "post": {
+        "consumes": [
+          "*/*"
+        ],
+        "description": "Generate a download url for a completed Personal Data Request for headless account scenario (without a password).\n**Typically used by web portal** to invoke headless player GDPR using 3rd platform web authentication.\nRequires a valid access token and a fresh **gdpr_token** cookie (max-age 5 minutes).\nThe gdpr_token is issued by the IAM service during 3rd platform web authentication.\n\nIf a full account is available, use \u0026lt;code\u0026gt;POST /gdpr/public/namespaces/{namespace}/users/{userId}/requests/{requestDate}/generate\u0026lt;/code\u0026gt; instead.\n",
+        "operationId": "PublicGenerateMyHeadlessPersonalDataURL",
+        "parameters": [
+          {
+            "description": "Request date in RFC3339 format",
+            "in": "path",
+            "name": "requestDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UserDataURL"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Generate my headless personal data download url",
+        "tags": [
+          "Data Retrieval - Headless"
+        ],
+        "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/headless-generate-download-url-my",
+        "x-security": []
+      }
+    },
+    "/gdpr/public/users/me/requests": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "List my personal data requests. Requires a valid access token.\n",
+        "operationId": "PublicGetMyPersonalDataRequests",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.UserPersonalDataResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get my personal data requests",
+        "tags": [
+          "Data Retrieval - Headless"
+        ],
+        "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/list-my",
+        "x-security": []
+      },
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "Submit a Personal Data Request authenticated by a platform token.\nRequires a valid access token.\n\nThis endpoint is intended for **in-game use** only and requires a valid platformId and platform token.\nIf a full account is available, use \u0026lt;code\u0026gt;POST /gdpr/public/namespaces/{namespace}/users/{userId}/requests\u0026lt;/code\u0026gt; instead.\n\n### Request Header:\n- **Content-Type: application/x-www-form-urlencoded**\n",
+        "operationId": "PublicSubmitMyPersonalDataRequest",
+        "parameters": [
+          {
+            "description": "Platform ID",
+            "in": "formData",
+            "name": "platformId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Platform token",
+            "in": "formData",
+            "name": "platformToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Email address to receive notifications and download links when the generated data is ready.",
+            "in": "formData",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "description": "Language tag for the notification email",
+            "in": "formData",
+            "name": "languageTag",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/models.DataRetrievalResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Submit my personal data request",
+        "tags": [
+          "Data Retrieval - Headless"
+        ],
+        "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/submit-my",
+        "x-security": []
+      }
+    },
+    "/gdpr/public/users/me/requests/{requestDate}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Cancel a pending Personal Data Request by its request date. Requires a valid access token.\n",
+        "operationId": "PublicCancelMyPersonalDataRequest",
+        "parameters": [
+          {
+            "description": "Request date (RFC3339 format)",
+            "in": "path",
+            "name": "requestDate",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Cancel my personal data request",
+        "tags": [
+          "Data Retrieval - Headless"
+        ],
+        "x-errorCodes": {},
+        "x-operationid": "gdpr/public/user-access-requests/v1/cancel-my",
         "x-security": []
       }
     },
@@ -2842,6 +3305,7 @@
           "Data Deletion (S2S)"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-deletion-requests-s2s/v1/list-finished",
         "x-security": [
           {
             "userPermissions": [
@@ -2926,6 +3390,7 @@
           "Data Retrieval (S2S)"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests-s2s/v1/list-finished",
         "x-security": [
           {
             "userPermissions": [
@@ -2997,6 +3462,7 @@
           "Data Retrieval (S2S)"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests-s2s/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -3080,6 +3546,7 @@
           "Data Deletion (S2S)"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-deletion-requests-s2s/v1/submit",
         "x-security": [
           {
             "userPermissions": [
@@ -3094,7 +3561,7 @@
         "consumes": [
           "*/*"
         ],
-        "description": "Scope: account\n\nSubmit user personal data retrieval request.\n\n**Limitation:** This API only accepts requests with a publisher userId and does not support game userId requests at this time.\n\n---\n## This API for S2S integration purpose only\n\n**Notes:**\n\n1. This API will **not send GDPR email notification** both for player and admin notification.\n",
+        "description": "Scope: account\n\nSubmit user\u0026#39;s personal data request.\n\n**Limitation:** This API only accepts requests with a publisher userId and does not support game userId requests at this time.\n\n---\n## This API for S2S integration purpose only\n\n**Notes:**\n\n1. This API will **not send GDPR email notification** both for player and admin notification.\n",
         "operationId": "S2SRequestDataRetrieval",
         "parameters": [
           {
@@ -3152,11 +3619,12 @@
             "authorization": []
           }
         ],
-        "summary": "Submit user personal data retrieval request",
+        "summary": "Submit user's personal data request",
         "tags": [
           "Data Retrieval (S2S)"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests-s2s/v1/submit",
         "x-security": [
           {
             "userPermissions": [
@@ -3241,6 +3709,7 @@
           "Data Retrieval (S2S)"
         ],
         "x-errorCodes": {},
+        "x-operationid": "gdpr/admin/user-access-requests-s2s/v1/generate-download-url",
         "x-security": [
           {
             "userPermissions": [
@@ -3674,6 +4143,7 @@
     "models.DataRetrievalResponse": {
       "properties": {
         "Namespace": {
+          "description": "Publisher Namespace",
           "type": "string"
         },
         "RequestDate": {
@@ -3682,6 +4152,7 @@
           "x-nullable": false
         },
         "UserID": {
+          "description": "Publisher User Id",
           "type": "string"
         }
       },
@@ -3708,6 +4179,7 @@
           "type": "string"
         },
         "UserID": {
+          "description": "Publisher User Id",
           "type": "string"
         }
       },
@@ -3740,6 +4212,7 @@
           "type": "string"
         },
         "UserID": {
+          "description": "Publisher User Id",
           "type": "string"
         }
       },
@@ -3854,9 +4327,11 @@
     "models.RequestDeleteResponse": {
       "properties": {
         "Namespace": {
+          "description": "Publisher Namespace",
           "type": "string"
         },
         "UserID": {
+          "description": "Publisher User Id",
           "type": "string"
         }
       },
@@ -3991,11 +4466,11 @@
     "path": "/gdpr/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T09:17:59+00:00",
-    "gitHash": "564f83ee930336f953ed09896ed0cf441c720e19",
+    "buildDate": "2026-07-02T23:19:56+00:00",
+    "gitHash": "2f07d439ace2bf3dcc678621901c7a08007dfc62",
     "name": "justice-gdpr-service",
     "realm": "staging",
-    "version": "2.23.1",
+    "version": "2.24.0",
     "version-roles-seeding": "1.2.82"
   }
 }

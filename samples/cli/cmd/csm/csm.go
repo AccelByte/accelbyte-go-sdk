@@ -8,8 +8,11 @@ package csm
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/csm/app"
+	"github.com/AccelByte/sample-apps/cmd/csm/appStatusProgressV4"
 	"github.com/AccelByte/sample-apps/cmd/csm/appUI"
 	"github.com/AccelByte/sample-apps/cmd/csm/appV2"
+	"github.com/AccelByte/sample-apps/cmd/csm/appV4"
+	"github.com/AccelByte/sample-apps/cmd/csm/appV5"
 	"github.com/AccelByte/sample-apps/cmd/csm/asyncMessaging"
 	"github.com/AccelByte/sample-apps/cmd/csm/configuration"
 	"github.com/AccelByte/sample-apps/cmd/csm/configurationV2"
@@ -138,4 +141,8 @@ func init() {
 	CsmCmd.AddCommand(managedResources.GetNoSQLAppListV2Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.GetNotificationSubscriberListV3Cmd)
 	CsmCmd.AddCommand(notificationSubscriptionV3.DeleteSubscriptionAppNotificationV3Cmd)
+	CsmCmd.AddCommand(appV4.GetAppDebugInfoV4Cmd)
+	CsmCmd.AddCommand(appV4.UpdateAppDebugModeV4Cmd)
+	CsmCmd.AddCommand(appStatusProgressV4.GetAppStatusProgressV4Cmd)
+	CsmCmd.AddCommand(appV5.CreateAppV5Cmd)
 }

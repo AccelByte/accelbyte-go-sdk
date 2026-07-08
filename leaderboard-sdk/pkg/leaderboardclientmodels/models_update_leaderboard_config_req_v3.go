@@ -32,6 +32,9 @@ type ModelsUpdateLeaderboardConfigReqV3 struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// flag to enable server-side filtering for hidden user
+	EnableServerHiddenFilter bool `json:"enableServerHiddenFilter"`
+
 	// iconurl
 	IconURL string `json:"iconURL,omitempty"`
 

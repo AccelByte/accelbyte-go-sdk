@@ -18,7 +18,7 @@ import (
 // swagger:model Models data retrieval response.
 type ModelsDataRetrievalResponse struct {
 
-	// namespace
+	// Publisher Namespace
 	// Required: true
 	Namespace *string `json:"Namespace"`
 
@@ -27,7 +27,7 @@ type ModelsDataRetrievalResponse struct {
 	// Format: date-time
 	RequestDate strfmt.DateTime `json:"RequestDate"`
 
-	// userid
+	// Publisher User Id
 	// Required: true
 	UserID *string `json:"UserID"`
 }

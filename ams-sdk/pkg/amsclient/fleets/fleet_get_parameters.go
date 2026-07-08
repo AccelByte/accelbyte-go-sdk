@@ -16,13 +16,17 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewFleetGetParams creates a new FleetGetParams object
 // with the default values initialized.
 func NewFleetGetParams() *FleetGetParams {
-	var ()
+	var (
+		includeInactiveRegionsDefault = bool(false)
+	)
 	return &FleetGetParams{
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +35,11 @@ func NewFleetGetParams() *FleetGetParams {
 // NewFleetGetParamsWithTimeout creates a new FleetGetParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewFleetGetParamsWithTimeout(timeout time.Duration) *FleetGetParams {
-	var ()
+	var (
+		includeInactiveRegionsDefault = bool(false)
+	)
 	return &FleetGetParams{
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +48,11 @@ func NewFleetGetParamsWithTimeout(timeout time.Duration) *FleetGetParams {
 // NewFleetGetParamsWithContext creates a new FleetGetParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewFleetGetParamsWithContext(ctx context.Context) *FleetGetParams {
-	var ()
+	var (
+		includeInactiveRegionsDefault = bool(false)
+	)
 	return &FleetGetParams{
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
 
 		Context: ctx,
 	}
@@ -51,9 +61,12 @@ func NewFleetGetParamsWithContext(ctx context.Context) *FleetGetParams {
 // NewFleetGetParamsWithHTTPClient creates a new FleetGetParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewFleetGetParamsWithHTTPClient(client *http.Client) *FleetGetParams {
-	var ()
+	var (
+		includeInactiveRegionsDefault = bool(false)
+	)
 	return &FleetGetParams{
-		HTTPClient: client,
+		IncludeInactiveRegions: &includeInactiveRegionsDefault,
+		HTTPClient:             client,
 	}
 }
 
@@ -74,6 +87,11 @@ type FleetGetParams struct {
 
 	*/
 	Namespace string
+	/*IncludeInactiveRegions
+	  include inactive regions in the response
+
+	*/
+	IncludeInactiveRegions *bool
 
 	timeout        time.Duration
 	AuthInfoWriter runtime.ClientAuthInfoWriter
@@ -162,6 +180,17 @@ func (o *FleetGetParams) SetNamespace(namespace string) {
 	o.Namespace = namespace
 }
 
+// WithIncludeInactiveRegions adds the includeInactiveRegions to the fleet get params
+func (o *FleetGetParams) WithIncludeInactiveRegions(includeInactiveRegions *bool) *FleetGetParams {
+	o.SetIncludeInactiveRegions(includeInactiveRegions)
+	return o
+}
+
+// SetIncludeInactiveRegions adds the includeInactiveRegions to the fleet get params
+func (o *FleetGetParams) SetIncludeInactiveRegions(includeInactiveRegions *bool) {
+	o.IncludeInactiveRegions = includeInactiveRegions
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *FleetGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -178,6 +207,22 @@ func (o *FleetGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.IncludeInactiveRegions != nil {
+
+		// query param includeInactiveRegions
+		var qrIncludeInactiveRegions bool
+		if o.IncludeInactiveRegions != nil {
+			qrIncludeInactiveRegions = *o.IncludeInactiveRegions
+		}
+		qIncludeInactiveRegions := swag.FormatBool(qrIncludeInactiveRegions)
+		if qIncludeInactiveRegions != "" {
+			if err := r.SetQueryParam("includeInactiveRegions", qIncludeInactiveRegions); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	// setting the default header value

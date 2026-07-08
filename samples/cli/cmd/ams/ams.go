@@ -73,6 +73,6 @@ func init() {
 	AmsCmd.AddCommand(fleets.FleetClaimByKeysCmd)
 	AmsCmd.AddCommand(watchdogs.WatchdogConnectCmd)
 	AmsCmd.AddCommand(amsInfo.UploadURLGetCmd)
-	AmsCmd.AddCommand(fleetCommander.Func1Cmd)
+	AmsCmd.AddCommand(fleetCommander.VersionInfoCmd)
 	AmsCmd.AddCommand(fleetCommander.BasicHealthCheckCmd)
 }

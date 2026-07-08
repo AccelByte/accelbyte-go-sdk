@@ -42,8 +42,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetAppImageListV2Short instead.
 
 GetAppImageListV2 get a list of container images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [READ]`
-
 Get a list of container images
 
 Default 'cached' parameter is 'true'
@@ -107,8 +105,6 @@ func (a *Client) GetAppImageListV2(params *GetAppImageListV2Params, authInfo run
 
 /*
 GetAppImageListV2Short get a list of container images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [READ]`
-
 Get a list of container images
 
 Default 'cached' parameter is 'true'
@@ -166,8 +162,6 @@ func (a *Client) GetAppImageListV2Short(params *GetAppImageListV2Params, authInf
 Deprecated: 2022-08-10 - Use DeleteAppImagesV2Short instead.
 
 DeleteAppImagesV2 delete app images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [DELETE]`
-
 Deletes list of provided image tags from the app image repository
 */
 func (a *Client) DeleteAppImagesV2(params *DeleteAppImagesV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppImagesV2NoContent, *DeleteAppImagesV2Unauthorized, *DeleteAppImagesV2Forbidden, *DeleteAppImagesV2NotFound, *DeleteAppImagesV2InternalServerError, error) {
@@ -229,8 +223,6 @@ func (a *Client) DeleteAppImagesV2(params *DeleteAppImagesV2Params, authInfo run
 
 /*
 DeleteAppImagesV2Short delete app images
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:IMAGE [DELETE]`
-
 Deletes list of provided image tags from the app image repository
 */
 func (a *Client) DeleteAppImagesV2Short(params *DeleteAppImagesV2Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppImagesV2NoContent, error) {

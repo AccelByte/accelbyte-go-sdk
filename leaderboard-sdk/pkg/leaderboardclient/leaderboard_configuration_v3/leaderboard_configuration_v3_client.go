@@ -205,6 +205,9 @@ CreateLeaderboardConfigurationAdminV3 create new leaderboard
 
 
   * cycleIds: Statistic cycle ids that will be tracked in the leaderboard. (required).
+
+
+  * enableServerHiddenFilter: if true, the leaderboard will filter hidden users on server side. If false, the leaderboard will not filter hidden users. default is false. (optional).
 */
 func (a *Client) CreateLeaderboardConfigurationAdminV3(params *CreateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateLeaderboardConfigurationAdminV3Created, *CreateLeaderboardConfigurationAdminV3BadRequest, *CreateLeaderboardConfigurationAdminV3Unauthorized, *CreateLeaderboardConfigurationAdminV3Forbidden, *CreateLeaderboardConfigurationAdminV3Conflict, *CreateLeaderboardConfigurationAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -297,6 +300,9 @@ Fields :
 
 
   * cycleIds: Statistic cycle ids that will be tracked in the leaderboard. (required).
+
+
+  * enableServerHiddenFilter: if true, the leaderboard will filter hidden users on server side. If false, the leaderboard will not filter hidden users. default is false. (optional).
 */
 func (a *Client) CreateLeaderboardConfigurationAdminV3Short(params *CreateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*CreateLeaderboardConfigurationAdminV3Created, error) {
 	// TODO: Validate the params before sending
@@ -627,6 +633,9 @@ UpdateLeaderboardConfigurationAdminV3 update leaderboard by leaderboardcode
 
 
   * cycleIds: Statistic cycle ids that will be tracked in the leaderboard. (required).
+
+
+  * enableServerHiddenFilter: if true, the leaderboard will filter hidden users on server side. If false, the leaderboard will not filter hidden users. default is false. (optional).
 */
 func (a *Client) UpdateLeaderboardConfigurationAdminV3(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, *UpdateLeaderboardConfigurationAdminV3BadRequest, *UpdateLeaderboardConfigurationAdminV3Unauthorized, *UpdateLeaderboardConfigurationAdminV3Forbidden, *UpdateLeaderboardConfigurationAdminV3NotFound, *UpdateLeaderboardConfigurationAdminV3Conflict, *UpdateLeaderboardConfigurationAdminV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -722,6 +731,9 @@ Fields :
 
 
   * cycleIds: Statistic cycle ids that will be tracked in the leaderboard. (required).
+
+
+  * enableServerHiddenFilter: if true, the leaderboard will filter hidden users on server side. If false, the leaderboard will not filter hidden users. default is false. (optional).
 */
 func (a *Client) UpdateLeaderboardConfigurationAdminV3Short(params *UpdateLeaderboardConfigurationAdminV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateLeaderboardConfigurationAdminV3OK, error) {
 	// TODO: Validate the params before sending

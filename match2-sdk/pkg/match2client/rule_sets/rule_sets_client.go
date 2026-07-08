@@ -294,7 +294,8 @@ func (a *Client) CreateRuleSetShort(params *CreateRuleSetParams, authInfo runtim
 Deprecated: 2022-08-10 - Use RuleSetDetailsShort instead.
 
 RuleSetDetails get details for a specific rule set
-Get details for a specific rule set
+Get details for a specific rule set, including its name and the rule data used to
+configure matchmaking logic.
 */
 func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, *RuleSetDetailsUnauthorized, *RuleSetDetailsForbidden, *RuleSetDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -352,7 +353,8 @@ func (a *Client) RuleSetDetails(params *RuleSetDetailsParams, authInfo runtime.C
 
 /*
 RuleSetDetailsShort get details for a specific rule set
-Get details for a specific rule set
+Get details for a specific rule set, including its name and the rule data used to
+configure matchmaking logic.
 */
 func (a *Client) RuleSetDetailsShort(params *RuleSetDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*RuleSetDetailsOK, error) {
 	// TODO: Validate the params before sending

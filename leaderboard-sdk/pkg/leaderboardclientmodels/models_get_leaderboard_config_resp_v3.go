@@ -45,6 +45,10 @@ type ModelsGetLeaderboardConfigRespV3 struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// flag to enable server-side filtering for hidden user
+	// Required: true
+	EnableServerHiddenFilter *bool `json:"enableServerHiddenFilter"`
+
 	// iconurl
 	IconURL string `json:"iconURL,omitempty"`
 
@@ -84,6 +88,9 @@ func (m *ModelsGetLeaderboardConfigRespV3) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 	if err := m.validateDescending(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateEnableServerHiddenFilter(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateIsDeleted(formats); err != nil {
@@ -142,6 +149,15 @@ func (m *ModelsGetLeaderboardConfigRespV3) validateCycleIds(formats strfmt.Regis
 func (m *ModelsGetLeaderboardConfigRespV3) validateDescending(formats strfmt.Registry) error {
 
 	if err := validate.Required("descending", "body", m.Descending); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsGetLeaderboardConfigRespV3) validateEnableServerHiddenFilter(formats strfmt.Registry) error {
+
+	if err := validate.Required("enableServerHiddenFilter", "body", m.EnableServerHiddenFilter); err != nil {
 		return err
 	}
 

@@ -19,7 +19,7 @@ import (
 type ApimodelsConsumeItem struct {
 
 	// daterangevalidation
-	DateRangeValidation bool `json:"dateRangeValidation"`
+	DateRangeValidation bool `json:"dateRangeValidation,omitempty"`
 
 	// inventoryid
 	// Required: true

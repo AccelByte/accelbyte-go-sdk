@@ -54,8 +54,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetAppListV1Short instead.
 
 GetAppListV1 gets the list of apps for ab-extend customer
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
-
 Gets the List of Apps for AB-Extend Customer
 
 Available scenario:
@@ -125,8 +123,6 @@ func (a *Client) GetAppListV1(params *GetAppListV1Params, authInfo runtime.Clien
 
 /*
 GetAppListV1Short gets the list of apps for ab-extend customer
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
-
 Gets the List of Apps for AB-Extend Customer
 
 Available scenario:
@@ -189,8 +185,6 @@ func (a *Client) GetAppListV1Short(params *GetAppListV1Params, authInfo runtime.
 Deprecated: 2022-08-10 - Use GetAppV1Short instead.
 
 GetAppV1 gets the app by name
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
-
 Gets the App By Name
 */
 func (a *Client) GetAppV1(params *GetAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAppV1OK, *GetAppV1Unauthorized, *GetAppV1Forbidden, *GetAppV1NotFound, *GetAppV1InternalServerError, error) {
@@ -252,8 +246,6 @@ func (a *Client) GetAppV1(params *GetAppV1Params, authInfo runtime.ClientAuthInf
 
 /*
 GetAppV1Short gets the app by name
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
-
 Gets the App By Name
 */
 func (a *Client) GetAppV1Short(params *GetAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAppV1OK, error) {
@@ -309,8 +301,6 @@ func (a *Client) GetAppV1Short(params *GetAppV1Params, authInfo runtime.ClientAu
 Deprecated: 2022-08-10 - Use CreateAppV1Short instead.
 
 CreateAppV1 creates new app for ab-extend customers
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]`
-
 Creates new App for AB-Extend Customers
 
 Available scenario:
@@ -385,8 +375,6 @@ func (a *Client) CreateAppV1(params *CreateAppV1Params, authInfo runtime.ClientA
 
 /*
 CreateAppV1Short creates new app for ab-extend customers
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [CREATE]`
-
 Creates new App for AB-Extend Customers
 
 Available scenario:
@@ -453,8 +441,6 @@ func (a *Client) CreateAppV1Short(params *CreateAppV1Params, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use DeleteAppV1Short instead.
 
 DeleteAppV1 delete app by åpp name
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [DELETE]`
-
 Delete App by given DeploymentID
 
 This endpoint intended to delete ECR repo, ECR manifests, service images, uninstall helm-release,
@@ -524,8 +510,6 @@ func (a *Client) DeleteAppV1(params *DeleteAppV1Params, authInfo runtime.ClientA
 
 /*
 DeleteAppV1Short delete app by åpp name
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [DELETE]`
-
 Delete App by given DeploymentID
 
 This endpoint intended to delete ECR repo, ECR manifests, service images, uninstall helm-release,
@@ -588,8 +572,6 @@ func (a *Client) DeleteAppV1Short(params *DeleteAppV1Params, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use UpdateAppV1Short instead.
 
 UpdateAppV1 update app partially
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [UPDATE]`
-
 Update App Partially
 */
 func (a *Client) UpdateAppV1(params *UpdateAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppV1OK, *UpdateAppV1BadRequest, *UpdateAppV1Unauthorized, *UpdateAppV1Forbidden, *UpdateAppV1NotFound, *UpdateAppV1InternalServerError, error) {
@@ -654,8 +636,6 @@ func (a *Client) UpdateAppV1(params *UpdateAppV1Params, authInfo runtime.ClientA
 
 /*
 UpdateAppV1Short update app partially
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [UPDATE]`
-
 Update App Partially
 */
 func (a *Client) UpdateAppV1Short(params *UpdateAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppV1OK, error) {
@@ -713,8 +693,6 @@ func (a *Client) UpdateAppV1Short(params *UpdateAppV1Params, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use GetAppReleaseV1Short instead.
 
 GetAppReleaseV1 gets the latest release version info of this app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
-
 Gets the Latest Release Version info of this App
 */
 func (a *Client) GetAppReleaseV1(params *GetAppReleaseV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAppReleaseV1OK, *GetAppReleaseV1Unauthorized, *GetAppReleaseV1Forbidden, *GetAppReleaseV1NotFound, *GetAppReleaseV1InternalServerError, error) {
@@ -776,8 +754,6 @@ func (a *Client) GetAppReleaseV1(params *GetAppReleaseV1Params, authInfo runtime
 
 /*
 GetAppReleaseV1Short gets the latest release version info of this app
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [READ]`
-
 Gets the Latest Release Version info of this App
 */
 func (a *Client) GetAppReleaseV1Short(params *GetAppReleaseV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetAppReleaseV1OK, error) {
@@ -833,8 +809,6 @@ func (a *Client) GetAppReleaseV1Short(params *GetAppReleaseV1Params, authInfo ru
 Deprecated: 2022-08-10 - Use StartAppV1Short instead.
 
 StartAppV1 starts the application
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [UPDATE]`
-
 Starts the Application
 */
 func (a *Client) StartAppV1(params *StartAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*StartAppV1OK, *StartAppV1BadRequest, *StartAppV1Unauthorized, *StartAppV1Forbidden, *StartAppV1NotFound, *StartAppV1InternalServerError, error) {
@@ -899,8 +873,6 @@ func (a *Client) StartAppV1(params *StartAppV1Params, authInfo runtime.ClientAut
 
 /*
 StartAppV1Short starts the application
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [UPDATE]`
-
 Starts the Application
 */
 func (a *Client) StartAppV1Short(params *StartAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*StartAppV1OK, error) {
@@ -958,8 +930,6 @@ func (a *Client) StartAppV1Short(params *StartAppV1Params, authInfo runtime.Clie
 Deprecated: 2022-08-10 - Use StopAppV1Short instead.
 
 StopAppV1 stops the application
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [UPDATE]`
-
 Stops the Application
 */
 func (a *Client) StopAppV1(params *StopAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*StopAppV1OK, *StopAppV1BadRequest, *StopAppV1Unauthorized, *StopAppV1Forbidden, *StopAppV1NotFound, *StopAppV1InternalServerError, error) {
@@ -1024,8 +994,6 @@ func (a *Client) StopAppV1(params *StopAppV1Params, authInfo runtime.ClientAuthI
 
 /*
 StopAppV1Short stops the application
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP [UPDATE]`
-
 Stops the Application
 */
 func (a *Client) StopAppV1Short(params *StopAppV1Params, authInfo runtime.ClientAuthInfoWriter) (*StopAppV1OK, error) {

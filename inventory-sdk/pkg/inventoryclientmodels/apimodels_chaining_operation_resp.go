@@ -26,7 +26,7 @@ type ApimodelsChainingOperationResp struct {
 	Message *string `json:"message"`
 
 	// replayed
-	Replayed bool `json:"replayed"`
+	Replayed bool `json:"replayed,omitempty"`
 
 	// requestid
 	RequestID string `json:"requestId,omitempty"`

@@ -9,8 +9,10 @@ package gdpr
 import (
 	"github.com/AccelByte/sample-apps/cmd/gdpr/configuration"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletion"
+	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletionHeadless"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataDeletionS2S"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrieval"
+	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrievalHeadless"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/dataRetrievalS2S"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/platformAccountClosureClient"
 	"github.com/AccelByte/sample-apps/cmd/gdpr/platformAccountClosureHistory"
@@ -57,9 +59,15 @@ func init() {
 	GdprCmd.AddCommand(dataRetrieval.PublicRequestDataRetrievalCmd)
 	GdprCmd.AddCommand(dataRetrieval.PublicCancelUserPersonalDataRequestCmd)
 	GdprCmd.AddCommand(dataRetrieval.PublicGeneratePersonalDataURLCmd)
-	GdprCmd.AddCommand(dataDeletion.PublicSubmitMyAccountDeletionRequestCmd)
-	GdprCmd.AddCommand(dataDeletion.PublicCancelMyAccountDeletionRequestCmd)
-	GdprCmd.AddCommand(dataDeletion.PublicGetMyAccountDeletionStatusCmd)
+	GdprCmd.AddCommand(dataDeletionHeadless.PublicSubmitMyAccountDeletionRequestCmd)
+	GdprCmd.AddCommand(dataDeletionHeadless.PublicCancelMyAccountDeletionRequestCmd)
+	GdprCmd.AddCommand(dataDeletionHeadless.PublicGetMyAccountDeletionStatusCmd)
+	GdprCmd.AddCommand(dataDeletionHeadless.PublicSubmitMyHeadlessDeletionRequestCmd)
+	GdprCmd.AddCommand(dataRetrievalHeadless.PublicSubmitMyHeadlessPersonalDataRequestCmd)
+	GdprCmd.AddCommand(dataRetrievalHeadless.PublicGenerateMyHeadlessPersonalDataURLCmd)
+	GdprCmd.AddCommand(dataRetrievalHeadless.PublicGetMyPersonalDataRequestsCmd)
+	GdprCmd.AddCommand(dataRetrievalHeadless.PublicSubmitMyPersonalDataRequestCmd)
+	GdprCmd.AddCommand(dataRetrievalHeadless.PublicCancelMyPersonalDataRequestCmd)
 	GdprCmd.AddCommand(dataDeletionS2S.S2SGetListFinishedAccountDeletionRequestCmd)
 	GdprCmd.AddCommand(dataRetrievalS2S.S2SGetListFinishedPersonalDataRequestCmd)
 	GdprCmd.AddCommand(dataRetrievalS2S.S2SGetDataRequestByRequestIDCmd)

@@ -8,7 +8,7 @@
     },
     "description": "Justice Reporting Service",
     "title": "justice-reporting-service",
-    "version": "0.1.47"
+    "version": "0.1.49"
   },
   "schemes": [
     "https"
@@ -66,6 +66,7 @@
           "Admin Extension Categories and Auto Moderation Actions"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/extensions/v1/list-actions",
         "x-security": [
           {
             "userPermissions": [
@@ -123,6 +124,7 @@
           "Admin Extension Categories and Auto Moderation Actions"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/extensions/v1/create-action",
         "x-security": [
           {
             "userPermissions": [
@@ -198,6 +200,7 @@
           "Admin Extension Categories and Auto Moderation Actions"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/extensions/v1/list-categories",
         "x-security": [
           {
             "userPermissions": [
@@ -255,6 +258,7 @@
           "Admin Extension Categories and Auto Moderation Actions"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/extensions/v1/create-category",
         "x-security": [
           {
             "userPermissions": [
@@ -316,6 +320,7 @@
           "Admin Configurations"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/config/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -379,6 +384,7 @@
           "Admin Configurations"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/config/v1/upsert",
         "x-security": [
           {
             "userPermissions": [
@@ -442,6 +448,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/list-groups",
         "x-security": [
           {
             "userPermissions": [
@@ -511,6 +518,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/create-group",
         "x-security": [
           {
             "userPermissions": [
@@ -566,6 +574,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/delete-group",
         "x-security": [
           {
             "userPermissions": [
@@ -627,6 +636,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/get-group",
         "x-security": [
           {
             "userPermissions": [
@@ -703,6 +713,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/update-group",
         "x-security": [
           {
             "userPermissions": [
@@ -784,6 +795,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -853,6 +865,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -904,6 +917,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/list-all",
         "x-security": [
           {
             "userPermissions": [
@@ -972,6 +986,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/list-unused",
         "x-security": [
           {
             "userPermissions": [
@@ -1026,6 +1041,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -1087,6 +1103,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1162,6 +1179,7 @@
           "Admin Reasons"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reasons/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -1244,6 +1262,7 @@
           "Admin Reports"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reports/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1313,6 +1332,7 @@
           "Admin Reports"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/reports/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -1381,6 +1401,7 @@
           "Admin Moderation Rule"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/rules/v1/create",
         "x-security": [
           {
             "userPermissions": [
@@ -1441,6 +1462,7 @@
           "Admin Moderation Rule"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/rules/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -1522,6 +1544,7 @@
           "Admin Moderation Rule"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/rules/v1/update",
         "x-security": [
           {
             "userPermissions": [
@@ -1596,6 +1619,7 @@
           "Admin Moderation Rule"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/rules/v1/update-status",
         "x-security": [
           {
             "userPermissions": [
@@ -1683,6 +1707,7 @@
           "Admin Moderation Rule"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/rules/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1746,6 +1771,7 @@
           "Admin Moderation Rule"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/rules/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -1845,6 +1871,7 @@
           "Admin Tickets"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/tickets/v1/list",
         "x-security": [
           {
             "userPermissions": [
@@ -1909,6 +1936,7 @@
           "Admin Tickets"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/tickets/v1/get-statistics",
         "x-security": [
           {
             "userPermissions": [
@@ -1969,6 +1997,7 @@
           "Admin Tickets"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/tickets/v1/delete",
         "x-security": [
           {
             "userPermissions": [
@@ -2030,6 +2059,7 @@
           "Admin Tickets"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/tickets/v1/get",
         "x-security": [
           {
             "userPermissions": [
@@ -2099,6 +2129,7 @@
           "Admin Tickets"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/tickets/v1/list-reports",
         "x-security": [
           {
             "userPermissions": [
@@ -2164,6 +2195,7 @@
           "Admin Tickets"
         ],
         "x-errorCodes": {},
+        "x-operationid": "reporting/admin/tickets/v1/update-resolution",
         "x-security": [
           {
             "userPermissions": [
@@ -2226,7 +2258,8 @@
         "tags": [
           "Public Reasons"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "reporting/public/reasons/v1/list-groups"
       }
     },
     "/reporting/v1/public/namespaces/{namespace}/reasons": {
@@ -2299,7 +2332,8 @@
         "tags": [
           "Public Reasons"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "reporting/public/reasons/v1/list"
       }
     },
     "/reporting/v1/public/namespaces/{namespace}/reports": {
@@ -2369,7 +2403,8 @@
         "tags": [
           "Public Reports"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "reporting/public/reports/v1/create"
       }
     }
   },
@@ -2455,6 +2490,11 @@
     },
     "restapi.ModerationRuleActionsRequest": {
       "properties": {
+        "autoResolve": {
+          "description": "Enable auto resolve ticket action",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "banAccount": {
           "$ref": "#/definitions/restapi.BanAccountActionRequest",
           "description": "Ban account action configuration"
@@ -2480,6 +2520,11 @@
     },
     "restapi.ModerationRuleActionsResponse": {
       "properties": {
+        "autoResolve": {
+          "description": "Enable auto resolve ticket action",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "banAccount": {
           "$ref": "#/definitions/restapi.BanAccountActionResponse",
           "description": "Ban account action configuration"
@@ -3366,11 +3411,11 @@
     "path": "/reporting/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-04-22T08:16:46+00:00",
-    "gitHash": "8debaa13ec2b611cc4044cca83da6e7083407f1a",
+    "buildDate": "2026-07-02T23:20:36+00:00",
+    "gitHash": "3b82b0dcf32f568e4f83813a509a7ff1a4331f0d",
     "name": "justice-reporting-service",
     "realm": "staging",
-    "version": "0.1.47",
-    "version-roles-seeding": "0.0.3"
+    "version": "0.1.49",
+    "version-roles-seeding": "1.2.135"
   }
 }

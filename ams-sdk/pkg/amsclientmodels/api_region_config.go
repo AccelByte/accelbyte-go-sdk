@@ -40,6 +40,9 @@ type APIRegionConfig struct {
 	// region
 	// Required: true
 	Region *string `json:"region"`
+
+	// state
+	State string `json:"state,omitempty"`
 }
 
 // Validate validates this Api region config

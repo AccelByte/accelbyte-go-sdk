@@ -75,6 +75,11 @@ type GetAllTimeLeaderboardRankingAdminV3Params struct {
 
 	*/
 	Namespace string
+	/*IncludeHiddenUsers
+	  Whether to include hidden users in ranking list. Omit to follow leaderboard config enableServerHiddenFilter, true to always include, false to always exclude.
+
+	*/
+	IncludeHiddenUsers *bool
 	/*Limit
 	  size of displayed data
 
@@ -173,6 +178,17 @@ func (o *GetAllTimeLeaderboardRankingAdminV3Params) SetNamespace(namespace strin
 	o.Namespace = namespace
 }
 
+// WithIncludeHiddenUsers adds the includeHiddenUsers to the get all time leaderboard ranking admin v3 params
+func (o *GetAllTimeLeaderboardRankingAdminV3Params) WithIncludeHiddenUsers(includeHiddenUsers *bool) *GetAllTimeLeaderboardRankingAdminV3Params {
+	o.SetIncludeHiddenUsers(includeHiddenUsers)
+	return o
+}
+
+// SetIncludeHiddenUsers adds the includeHiddenUsers to the get all time leaderboard ranking admin v3 params
+func (o *GetAllTimeLeaderboardRankingAdminV3Params) SetIncludeHiddenUsers(includeHiddenUsers *bool) {
+	o.IncludeHiddenUsers = includeHiddenUsers
+}
+
 // WithLimit adds the limit to the get all time leaderboard ranking admin v3 params
 func (o *GetAllTimeLeaderboardRankingAdminV3Params) WithLimit(limit *int64) *GetAllTimeLeaderboardRankingAdminV3Params {
 	o.SetLimit(limit)
@@ -211,6 +227,22 @@ func (o *GetAllTimeLeaderboardRankingAdminV3Params) WriteToRequest(r runtime.Cli
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
 		return err
+	}
+
+	if o.IncludeHiddenUsers != nil {
+
+		// query param includeHiddenUsers
+		var qrIncludeHiddenUsers bool
+		if o.IncludeHiddenUsers != nil {
+			qrIncludeHiddenUsers = *o.IncludeHiddenUsers
+		}
+		qIncludeHiddenUsers := swag.FormatBool(qrIncludeHiddenUsers)
+		if qIncludeHiddenUsers != "" {
+			if err := r.SetQueryParam("includeHiddenUsers", qIncludeHiddenUsers); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Limit != nil {

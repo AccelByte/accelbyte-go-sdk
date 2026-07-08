@@ -42,8 +42,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetNotificationSubscriberListV3Short instead.
 
 GetNotificationSubscriberListV3 get a list of the app notification subscriber
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [READ]`
-
 Request param:
 - notificationType : type of the subscribed app notification
 - values:
@@ -112,8 +110,6 @@ func (a *Client) GetNotificationSubscriberListV3(params *GetNotificationSubscrib
 
 /*
 GetNotificationSubscriberListV3Short get a list of the app notification subscriber
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [READ]`
-
 Request param:
 - notificationType : type of the subscribed app notification
 - values:
@@ -176,8 +172,6 @@ func (a *Client) GetNotificationSubscriberListV3Short(params *GetNotificationSub
 Deprecated: 2022-08-10 - Use DeleteSubscriptionAppNotificationV3Short instead.
 
 DeleteSubscriptionAppNotificationV3 remove other person subscription by user id or email address
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [DELETE]`
-
 Remove a user from the notification subscription using either user ID or email address.
 Only one of them should be provided.
 */
@@ -240,8 +234,6 @@ func (a *Client) DeleteSubscriptionAppNotificationV3(params *DeleteSubscriptionA
 
 /*
 DeleteSubscriptionAppNotificationV3Short remove other person subscription by user id or email address
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APP:ALERT:SUBSCRIPTION [DELETE]`
-
 Remove a user from the notification subscription using either user ID or email address.
 Only one of them should be provided.
 */

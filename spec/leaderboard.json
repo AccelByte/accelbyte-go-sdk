@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.35.2"
+    "version": "2.36.1"
   },
   "schemes": [
     "https"
@@ -115,6 +115,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -210,6 +211,7 @@
           "71132": "leaderboard configuration already exist",
           "71242": "stat code not found in namespace"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/create",
         "x-security": [
           {
             "iamClientScopes": [
@@ -311,6 +313,7 @@
           "71230": "leaderboard configuration not found",
           "71239": "leaderboard is not archived"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/get-snapshot-url",
         "x-security": [
           {
             "iamClientScopes": [
@@ -395,6 +398,7 @@
           "20013": "insufficient permissions",
           "20019": "unable to parse request body"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/snapshot",
         "x-security": [
           {
             "iamClientScopes": [
@@ -483,6 +487,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/bulk-delete",
         "x-security": [
           {
             "iamClientScopes": [
@@ -571,6 +576,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/delete",
         "x-security": [
           {
             "iamClientScopes": [
@@ -660,6 +666,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -770,6 +777,7 @@
           "71133": "leaderboard configuration deleted",
           "71242": "stat code not found in namespace"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/update",
         "x-security": [
           {
             "iamClientScopes": [
@@ -875,6 +883,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/list-all-time",
         "x-security": [
           {
             "iamClientScopes": [
@@ -963,6 +972,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v1/delete-permanent",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1074,6 +1084,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/list-month",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1156,6 +1167,7 @@
           "71130": "leaderboard config not found",
           "71241": "forbidden environment"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1267,6 +1279,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/list-season",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1378,6 +1391,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/list-today",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1470,6 +1484,7 @@
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v1/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1567,6 +1582,7 @@
           "71233": "user ranking data not found",
           "71237": "leaderboard ranking not created for inactive leaderboard"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1675,6 +1691,7 @@
           "20019": "unable to parse request body",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v1/update-points",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1786,6 +1803,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v1/list-week",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1874,6 +1892,7 @@
           "20001": "unauthorized access",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v1/reset-all",
         "x-security": [
           {
             "iamClientScopes": [
@@ -1951,6 +1970,7 @@
           "20001": "unauthorized access",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/internal/v1/anonymize-user",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2046,6 +2066,7 @@
           "20001": "unauthorized access",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v1/list-all",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2149,6 +2170,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/public/leaderboards/v1/get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2242,6 +2264,7 @@
           "71132": "leaderboard configuration already exist",
           "71242": "stat code not found in namespace"
         },
+        "x-operationid": "leaderboard/public/leaderboards/v1/create",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2332,7 +2355,8 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v1/list-all-time"
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/archived": {
@@ -2429,6 +2453,7 @@
           "71230": "leaderboard configuration not found",
           "71239": "leaderboard is not archived"
         },
+        "x-operationid": "leaderboard/public/global-rankings/v1/get-snapshot-url",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2523,7 +2548,8 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v1/list-month"
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/season": {
@@ -2608,7 +2634,8 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v1/list-season"
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/today": {
@@ -2693,7 +2720,8 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v1/list-today"
       }
     },
     "/leaderboard/v1/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/{userId}": {
@@ -2774,6 +2802,7 @@
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
         },
+        "x-operationid": "leaderboard/public/user-rankings/v1/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2871,6 +2900,7 @@
           "71233": "user ranking data not found",
           "71237": "leaderboard ranking not created for inactive leaderboard"
         },
+        "x-operationid": "leaderboard/public/user-rankings/v1/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -2965,7 +2995,8 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v1/list-week"
       }
     },
     "/leaderboard/v2/admin/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/hidden": {
@@ -3051,6 +3082,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/visibility/v2/list-hidden",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3142,6 +3174,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/visibility/v2/get-user-status",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3244,6 +3277,7 @@
           "20019": "unable to parse request body",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/visibility/v2/set-user-status",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3340,6 +3374,7 @@
           "20013": "insufficient permissions",
           "20019": "unable to parse request body"
         },
+        "x-operationid": "leaderboard/admin/visibility/v2/set-user-status-all",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3428,7 +3463,8 @@
           "20001": "unauthorized access",
           "20002": "validation error",
           "20013": "insufficient permissions"
-        }
+        },
+        "x-operationid": "leaderboard/public/leaderboards/v2/get"
       }
     },
     "/leaderboard/v2/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/alltime": {
@@ -3519,7 +3555,8 @@
           "20002": "validation error",
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v2/list-all-time"
       }
     },
     "/leaderboard/v3/admin/namespaces/{namespace}/leaderboards": {
@@ -3604,6 +3641,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3621,7 +3659,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;Fields :\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;leaderboardCode: unique leaderboard config code must be lowercase and maximum length is 48 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;name: leaderboard name, maximum length for leaderboard name is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;description: leaderboard description, maximum length for leaderboard description is 2048 characters. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;iconURL: leaderboard icon image url. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;allTime: if true, all time leaderboard will be created. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;descending: leaderboard order. If true, the points will be sorted in descending order. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;statCode: Stat Code is related with statistic code in statistic service. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;cycleIds: Statistic cycle ids that will be tracked in the leaderboard. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;Fields :\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;leaderboardCode: unique leaderboard config code must be lowercase and maximum length is 48 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;name: leaderboard name, maximum length for leaderboard name is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;description: leaderboard description, maximum length for leaderboard description is 2048 characters. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;iconURL: leaderboard icon image url. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;allTime: if true, all time leaderboard will be created. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;descending: leaderboard order. If true, the points will be sorted in descending order. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;statCode: Stat Code is related with statistic code in statistic service. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;cycleIds: Statistic cycle ids that will be tracked in the leaderboard. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;enableServerHiddenFilter: if true, the leaderboard will filter hidden users on server side. If false, the leaderboard will not filter hidden users. default is false. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;",
         "operationId": "createLeaderboardConfigurationAdminV3",
         "parameters": [
           {
@@ -3701,6 +3739,7 @@
           "71243": "cycle doesn't belong to the stat code",
           "71244": "cycle is already stopped"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/create",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3789,6 +3828,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/bulk-delete",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3877,6 +3917,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/delete",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3966,6 +4007,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -3983,7 +4025,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;Fields :\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;leaderboardCode: unique leaderboard config code must be lowercase and maximum length is 48 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;name: leaderboard name, maximum length for leaderboard name is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;description: leaderboard description, maximum length for leaderboard description is 2048 characters. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;iconURL: leaderboard icon image url. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;allTime: if true, all time leaderboard will be created. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;descending: leaderboard order. If true, the points will be sorted in descending order. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;statCode: Stat Code is related with statistic code in statistic service. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;cycleIds: Statistic cycle ids that will be tracked in the leaderboard. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;Fields :\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;leaderboardCode: unique leaderboard config code must be lowercase and maximum length is 48 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;name: leaderboard name, maximum length for leaderboard name is 128 characters. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;description: leaderboard description, maximum length for leaderboard description is 2048 characters. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;iconURL: leaderboard icon image url. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;allTime: if true, all time leaderboard will be created. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;descending: leaderboard order. If true, the points will be sorted in descending order. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;statCode: Stat Code is related with statistic code in statistic service. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;cycleIds: Statistic cycle ids that will be tracked in the leaderboard. \u0026lt;b\u0026gt;(required)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;enableServerHiddenFilter: if true, the leaderboard will filter hidden users on server side. If false, the leaderboard will not filter hidden users. default is false. \u0026lt;b\u0026gt;(optional)\u0026lt;/b\u0026gt;.\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;",
         "operationId": "updateLeaderboardConfigurationAdminV3",
         "parameters": [
           {
@@ -4078,6 +4120,7 @@
           "71243": "cycle doesn't belong to the stat code",
           "71244": "cycle is already stopped"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/update",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4110,6 +4153,13 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Whether to include hidden users in ranking list. Omit to follow leaderboard config enableServerHiddenFilter, true to always include, false to always exclude.",
+            "in": "query",
+            "name": "includeHiddenUsers",
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "size of displayed data",
@@ -4183,6 +4233,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v3/list-all-time",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4222,6 +4273,13 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "description": "Whether to include hidden users in ranking list. Omit to follow leaderboard config enableServerHiddenFilter, true to always include, false to always exclude.",
+            "in": "query",
+            "name": "includeHiddenUsers",
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "size of displayed data",
@@ -4301,6 +4359,7 @@
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v3/list-cycle",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4390,6 +4449,7 @@
           "71130": "leaderboard config not found",
           "71241": "forbidden environment"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v3/reset-cycle",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4489,6 +4549,7 @@
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v3/reset-cycle",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4577,6 +4638,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/leaderboards/v3/delete-permanent",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4659,6 +4721,7 @@
           "71130": "leaderboard config not found",
           "71241": "forbidden environment"
         },
+        "x-operationid": "leaderboard/admin/global-rankings/v3/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4755,6 +4818,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/visibility/v3/list-hidden",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4847,6 +4911,7 @@
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v3/reset",
         "x-security": [
           {
             "iamClientScopes": [
@@ -4950,6 +5015,7 @@
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v3/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5041,6 +5107,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/visibility/v3/get-user-status",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5143,6 +5210,7 @@
           "20019": "unable to parse request body",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/visibility/v3/set-user-status",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5231,6 +5299,7 @@
           "20001": "unauthorized access",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v3/reset-all",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5333,6 +5402,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/admin/user-rankings/v3/list-all",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5430,6 +5500,7 @@
           "20019": "unable to parse request body",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/admin/visibility/v3/set-user-status-all",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5526,6 +5597,7 @@
           "20002": "validation error",
           "20013": "insufficient permissions"
         },
+        "x-operationid": "leaderboard/public/leaderboards/v3/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5615,6 +5687,7 @@
           "20013": "insufficient permissions",
           "71130": "leaderboard config not found"
         },
+        "x-operationid": "leaderboard/public/leaderboards/v3/get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5703,7 +5776,18 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v3/list-all-time",
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
+        ]
       }
     },
     "/leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/cycles/{cycleId}": {
@@ -5795,7 +5879,18 @@
           "71230": "leaderboard configuration not found",
           "71235": "leaderboard ranking not found",
           "71236": "leaderboard ranking count failed"
-        }
+        },
+        "x-operationid": "leaderboard/public/global-rankings/v3/list-cycle",
+        "x-security": [
+          {
+            "iamClientScopes": [
+              "social"
+            ]
+          },
+          {
+            "userPermissions": []
+          }
+        ]
       }
     },
     "/leaderboard/v3/public/namespaces/{namespace}/leaderboards/{leaderboardCode}/users/bulk": {
@@ -5893,6 +5988,7 @@
           "20019": "unable to parse request body",
           "71230": "leaderboard configuration not found"
         },
+        "x-operationid": "leaderboard/public/user-rankings/v3/bulk-get",
         "x-security": [
           {
             "iamClientScopes": [
@@ -5996,6 +6092,7 @@
           "71230": "leaderboard configuration not found",
           "71233": "user ranking data not found"
         },
+        "x-operationid": "leaderboard/public/user-rankings/v3/list",
         "x-security": [
           {
             "iamClientScopes": [
@@ -6429,6 +6526,11 @@
         "description": {
           "type": "string"
         },
+        "enableServerHiddenFilter": {
+          "description": "flag to enable server-side filtering for hidden user",
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "iconURL": {
           "type": "string"
         },
@@ -6456,6 +6558,7 @@
         "createdAt",
         "cycleIds",
         "descending",
+        "enableServerHiddenFilter",
         "isDeleted",
         "leaderboardCode",
         "name",
@@ -6565,6 +6668,11 @@
         },
         "description": {
           "type": "string"
+        },
+        "enableServerHiddenFilter": {
+          "description": "flag to enable server-side filtering for hidden user.",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "iconURL": {
           "type": "string"
@@ -6719,6 +6827,11 @@
         },
         "description": {
           "type": "string"
+        },
+        "enableServerHiddenFilter": {
+          "description": "flag to enable server-side filtering for hidden user",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "iconURL": {
           "type": "string"
@@ -7110,11 +7223,11 @@
     "path": "/leaderboard/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-12T07:22:06+00:00",
-    "gitHash": "9073e04e63d49e6769987c740f1d96eae2a63e0c",
+    "buildDate": "2026-07-03T02:30:26+00:00",
+    "gitHash": "19ad56ea81bf6789919390fe71792824b62166ba",
     "name": "justice-leaderboard-service",
     "realm": "staging",
-    "version": "2.35.2",
+    "version": "2.36.1",
     "version-roles-seeding": "1.2.32"
   }
 }

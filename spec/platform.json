@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "6.13.0"
+    "version": "6.14.0"
   },
   "schemes": [
     "https"
@@ -165,6 +165,9 @@
           "FulfillmentScript"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/fulfillment-script/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:FULFILLMENT [READ]"
         }
@@ -197,6 +200,9 @@
           "FulfillmentScript"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/fulfillment-script/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:FULFILLMENT [DELETE]"
         }
@@ -240,6 +246,9 @@
         ],
         "x-errorCodes": {
           "38141": "Fulfillment script does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillment-script/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:FULFILLMENT [READ]"
@@ -293,6 +302,9 @@
         "x-errorCodes": {
           "38141": "Fulfillment script does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/fulfillment-script/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:FULFILLMENT [UPDATE]"
         }
@@ -345,6 +357,9 @@
         "x-errorCodes": {
           "38171": "Fulfillment script already exists"
         },
+        "x-operationId": {
+          "value": "platform/admin/fulfillment-script/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:FULFILLMENT [CREATE]"
         }
@@ -379,6 +394,9 @@
           "Item"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-type-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:ITEM:CONFIG [READ]"
         }
@@ -438,6 +456,9 @@
           "20002": "validation error",
           "30336": "Item type [{itemType}] does not support",
           "30371": "Item type config for type [{itemType}] and clazz [{clazz}] already exists"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/create-type-config"
         },
         "x-security": {
           "userPermissions": "ADMIN:ITEM:CONFIG [CREATE]"
@@ -504,6 +525,9 @@
         "x-errorCodes": {
           "30541": "Item type config [{id}] doesn't exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/search-type-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:ITEM:CONFIG [READ]"
         }
@@ -546,6 +570,9 @@
         ],
         "x-errorCodes": {
           "30541": "Item type config [{id}] doesn't exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/delete-type-config"
         },
         "x-security": {
           "userPermissions": "ADMIN:ITEM:CONFIG [DELETE]"
@@ -590,6 +617,9 @@
         ],
         "x-errorCodes": {
           "30541": "Item type config [{id}] doesn't exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-type-config"
         },
         "x-security": {
           "userPermissions": "ADMIN:ITEM:CONFIG [READ]"
@@ -660,6 +690,9 @@
           "30371": "Item type config for type [{itemType}] and clazz [{clazz}] already exists",
           "30541": "Item type config [{id}] doesn't exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/update-type-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:ITEM:CONFIG [UPDATE]"
         }
@@ -727,6 +760,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -796,6 +832,9 @@
           "37121": "Invalid currency namespace [{namespace}] in discount config: {tips}",
           "37171": "Campaign [{name}] already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]"
         }
@@ -847,6 +886,9 @@
         ],
         "x-errorCodes": {
           "37141": "Campaign [{campaignId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
@@ -923,6 +965,9 @@
           "37141": "Campaign [{campaignId}] does not exist in namespace [{namespace}]",
           "37171": "Campaign [{name}] already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]"
         }
@@ -980,6 +1025,9 @@
         "x-errorCodes": {
           "37141": "Campaign [{campaignId}] does not exist in namespace [{namespace}]",
           "37143": "Batch name [{batchName}] does not exist for campaign [{campaignId}] in namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/rename-batch"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]"
@@ -1042,6 +1090,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/list-batch-names"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -1094,6 +1145,9 @@
         "x-errorCodes": {
           "37141": "Campaign [{campaignId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaigns/v1/get-statistics"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -1129,6 +1183,9 @@
           "Store"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/get-catalog-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE[READ]"
         }
@@ -1184,6 +1241,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/update-catalog-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE[UPDATE]"
         }
@@ -1219,6 +1279,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/delete-loot-box"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[DELETE]"
         }
@@ -1252,6 +1315,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/get-loot-box"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[READ]"
         }
@@ -1306,6 +1372,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/update-loot-box"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG [UPDATE]"
@@ -1362,6 +1431,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/upload-loot-box-certificate"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[UPDATE]"
         }
@@ -1404,6 +1476,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/get-loot-box-grpc"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[READ]"
         }
@@ -1439,6 +1514,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/delete-loot-section"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[DELETE]"
         }
@@ -1472,6 +1550,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/get-section"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[READ]"
         }
@@ -1526,6 +1607,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/update-section"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[UPDATE]"
@@ -1582,6 +1666,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/upload-section-certificate"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:CATALOG[UPDATE]"
         }
@@ -1631,6 +1718,9 @@
           "Category"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]"
         }
@@ -1716,6 +1806,9 @@
           "30241": "Category [{categoryPath}] does not exist in namespace [{namespace}]",
           "30271": "Category [{categoryPath}] already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [CREATE]"
         }
@@ -1765,6 +1858,9 @@
           "Category"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/list-basic"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]"
         }
@@ -1832,6 +1928,9 @@
           "30241": "Category [{categoryPath}] does not exist in namespace [{namespace}]",
           "30272": "Category [{categoryPath}] is not empty in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [DELETE]"
         }
@@ -1889,6 +1988,9 @@
         ],
         "x-errorCodes": {
           "30241": "Category [{categoryPath}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]"
@@ -1979,6 +2081,9 @@
           "30173": "Published store can't modify content",
           "30241": "Category [{categoryPath}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [UPDATE]"
         }
@@ -2034,6 +2139,9 @@
           "Category"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/list-children"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]"
         }
@@ -2089,6 +2197,9 @@
           "Category"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/categories/v1/list-descendants"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]"
         }
@@ -2189,6 +2300,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -2261,6 +2375,9 @@
           "37141": "Campaign [{campaignId}] does not exist in namespace [{namespace}]",
           "37180": "Code [{code}] already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]"
         }
@@ -2330,6 +2447,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/export"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -2395,6 +2515,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/bulk-disable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]"
         }
@@ -2460,6 +2583,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/bulk-enable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]"
         }
@@ -2533,6 +2659,9 @@
           "Campaign"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/list-redemptions"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -2613,6 +2742,9 @@
           "37177": "Code redemption not started",
           "37178": "Code redemption already ended"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/get"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]"
         }
@@ -2669,6 +2801,9 @@
           "37142": "Code [{code}] does not exist in namespace [{namespace}]",
           "37176": "Code [{code}] has been redeemed in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/disable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]"
         }
@@ -2724,6 +2859,9 @@
         "x-errorCodes": {
           "37142": "Code [{code}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/enable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]"
         }
@@ -2760,6 +2898,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/delete-service"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN[DELETE]"
         }
@@ -2794,6 +2935,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/get-service"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN[READ]"
         }
@@ -2849,6 +2993,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/update-service"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CONFIG:SERVICEPLUGIN[UPDATE]"
@@ -2906,6 +3053,9 @@
           "Currency"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/currencies/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]"
         }
@@ -2970,6 +3120,9 @@
           "36171": "Currency [{currencyCode}] already exists in namespace [{namespace}]",
           "36172": "Real Currency [{currencyCode}] not allowed in game namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/currencies/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [CREATE]"
         }
@@ -3022,6 +3175,9 @@
         ],
         "x-errorCodes": {
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/currencies/v1/delete"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [DELETE]"
@@ -3094,6 +3250,9 @@
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]",
           "36172": "Real Currency [{currencyCode}] not allowed in game namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/currencies/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [UPDATE]"
         }
@@ -3150,6 +3309,9 @@
         ],
         "x-errorCodes": {
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/currencies/v1/get-config"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]"
@@ -3208,6 +3370,9 @@
         "x-errorCodes": {
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/currencies/v1/get-summary"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]"
         }
@@ -3257,6 +3422,9 @@
         "x-errorCodes": {
           "39442": "DLC item config cannot be found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/get-item-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]"
         }
@@ -3303,6 +3471,9 @@
         "x-errorCodes": {
           "39442": "DLC item config cannot be found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/restore-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]"
         }
@@ -3342,6 +3513,9 @@
           "DLC"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/delete-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [DELETE]"
         }
@@ -3382,6 +3556,9 @@
         ],
         "x-errorCodes": {
           "39442": "DLC item config cannot be found in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/list-items"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]"
@@ -3460,6 +3637,9 @@
           "39471": "Duplicated dlc reward id [{dlcRewardId}] in namespace [{namespace}] ",
           "394721": "Invalid platform DLC config namespace [{namespace}]: [{message}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/update-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]"
         }
@@ -3499,6 +3679,9 @@
           "DLC"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [DELETE]"
         }
@@ -3539,6 +3722,9 @@
         ],
         "x-errorCodes": {
           "39341": "Platform DLC config cannot be found in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/list"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]"
@@ -3594,6 +3780,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/dlc-config/v1/update"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]"
@@ -3726,6 +3915,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/list-all"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -3799,6 +3991,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/list-all-by-item-ids"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -3841,6 +4036,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/enable-origin"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG[UPDATE]"
         }
@@ -3891,6 +4089,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-config-info"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG[READ]"
         }
@@ -3947,6 +4148,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/bulk-grant"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]"
@@ -4008,6 +4212,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/bulk-revoke"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [UPDATE]"
         }
@@ -4060,6 +4267,9 @@
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-by-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -4073,6 +4283,12 @@
           {
             "in": "path",
             "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "userId",
             "required": true,
             "type": "string"
           },
@@ -4102,12 +4318,6 @@
             "name": "status",
             "required": false,
             "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "userId",
-            "required": false,
-            "type": "string"
           }
         ],
         "produces": [
@@ -4131,6 +4341,9 @@
           "Fulfillment"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]"
         }
@@ -4241,6 +4454,9 @@
           "Clawback"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/clawback/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK[READ]"
         }
@@ -4290,6 +4506,9 @@
           "Clawback"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/clawback/v1/mock-playstation-event"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK[CREATE]"
         }
@@ -4339,6 +4558,9 @@
           "Clawback"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/clawback/v1/mock-xbox-event"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CLAWBACK[CREATE]"
         }
@@ -4374,6 +4596,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-apple/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -4410,6 +4635,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-apple/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -4457,6 +4685,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-apple/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -4504,6 +4735,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-apple/v1/upload-certificate"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -4539,6 +4773,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-epicgames/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -4575,6 +4812,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-epicgames/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG[READ]"
         }
@@ -4622,6 +4862,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-epicgames/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -4657,6 +4900,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-google/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -4693,6 +4939,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-google/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -4740,6 +4989,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-google/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -4787,6 +5039,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-google/v1/upload-certificate"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -4826,6 +5081,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/delete-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -4866,6 +5124,9 @@
         ],
         "x-errorCodes": {
           "39341": "IAP item config cannot be found in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/get-item-config"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
@@ -4936,6 +5197,9 @@
           "39175": "Duplicate IAP item mapping, IAPType: [{iapType}] and id: [{iapId}]",
           "39321": "Invalid IAP item config namespace [{namespace}]: [{message}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/update-item-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -4971,6 +5235,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-oculus/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -5007,6 +5274,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-oculus/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -5054,6 +5324,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-oculus/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -5095,6 +5368,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/list-oculus-groups"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -5149,6 +5425,9 @@
         ],
         "x-errorCodes": {
           "39187": "Duplicated group sku [{sku}] platform [{platform}] in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/create-oculus-group"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [CREATE]"
@@ -5206,6 +5485,9 @@
           "39152": "Platform [{platform}] - Third-party subscription group [{sku}] not found in namespace [{namespace}]. It may have been deleted.",
           "39188": "Third-party subscription group [{sku}] on platform [{platform}] in namespace [{namespace}] is already linked to the user's third-party subscription."
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/delete-oculus-group"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [DELETE]"
         }
@@ -5253,6 +5535,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/list-oculus-tiers"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -5310,6 +5595,9 @@
         "x-errorCodes": {
           "39187": "Duplicated group sku [{sku}] platform [{platform}] in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/create-oculus-tier"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [CREATE]"
         }
@@ -5366,6 +5654,9 @@
           "39152": "Platform [{platform}] - Third-party subscription group [{sku}] not found in namespace [{namespace}]. It may have been deleted.",
           "39188": "Third-party subscription group [{sku}] on platform [{platform}] in namespace [{namespace}] is already linked to the user's third-party subscription."
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/delete-oculus-tier"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [DELETE]"
         }
@@ -5401,6 +5692,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-playstation/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -5437,6 +5731,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-playstation/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -5492,6 +5789,9 @@
         "x-errorCodes": {
           "39130": "Invalid playstation config: [{message}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-playstation/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -5533,6 +5833,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-playstation/v1/validate-existing-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -5580,6 +5883,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-playstation/v1/validate-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -5615,6 +5921,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -5651,6 +5960,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -5707,6 +6019,9 @@
           "39128": "Steam publisher key is invalid",
           "39129": "Steam app id is invalid"
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -5742,6 +6057,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-twitch/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -5778,6 +6096,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-twitch/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -5825,6 +6146,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-twitch/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -5860,6 +6184,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-xbox/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
         }
@@ -5896,6 +6223,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-xbox/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
         }
@@ -5943,6 +6273,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-xbox/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
         }
@@ -6003,6 +6336,9 @@
         ],
         "x-errorCodes": {
           "39221": "Invalid Xbox Business Partner Certificate or password: [{message}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap-xbox/v1/upload-certificate"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
@@ -6114,6 +6450,9 @@
           "IAP(Notification)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-notifications/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -6181,6 +6520,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/list-abnormal-transactions"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -6222,6 +6564,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/get-job"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -6271,6 +6616,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/reset-job"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -6341,6 +6689,9 @@
           "39151": "IAP order no [{iapOrderNo}] not found in namespace [{namespace}].",
           "39184": "Steam api exception with status code [{statusCode}] and error message [{message}]",
           "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/refund"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP"
@@ -6420,6 +6771,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -6519,6 +6873,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/list-all"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -6566,6 +6923,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/get-order-details"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -6649,6 +7009,9 @@
           "Invoice"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/invoices/v1/download"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
         }
@@ -6739,6 +7102,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/invoices/v1/generate-summary"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
@@ -6852,6 +7218,9 @@
           "30383": "Item app id [{appId}] already exists in namespace [{namespace}] item [{itemId}]",
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [CREATE]"
         }
@@ -6940,6 +7309,9 @@
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "30373": "ItemType [{itemType}] is not allowed in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/sync-in-game"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -7008,6 +7380,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30342": "Item of appId [{appId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-by-app-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
@@ -7213,6 +7588,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7273,6 +7651,9 @@
           "Item"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-basic-by-features"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7346,6 +7727,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-by-user-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7414,6 +7798,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30343": "Item of sku [{sku}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-by-sku"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
@@ -7506,6 +7893,9 @@
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30343": "Item of sku [{sku}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-locale-by-sku"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7591,6 +7981,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-estimated-price"
         }
       }
     },
@@ -7658,6 +8051,9 @@
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30343": "Item of sku [{sku}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-id-by-sku"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7718,6 +8114,9 @@
           "Item"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-id-by-skus"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7803,6 +8202,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-locale"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -7851,6 +8253,9 @@
         ],
         "x-errorCodes": {
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-predicate-types"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM[READ]"
@@ -7923,6 +8328,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/validate-purchase-condition"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM[READ]"
@@ -8009,6 +8417,9 @@
           "30330": "Invalid item region price currency namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "30343": "Item of sku [{sku}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/bulk-update-region-data"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM[UPDATE]"
@@ -8129,6 +8540,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/search"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -8244,6 +8658,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-uncategorized"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -8339,6 +8756,9 @@
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "30386": "The item [{itemId}] is currently associated and cannot be deleted in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [DELETE]"
         }
@@ -8406,6 +8826,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
@@ -8526,6 +8949,9 @@
           "30383": "Item app id [{appId}] already exists in namespace [{namespace}] item [{itemId}]",
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -8589,6 +9015,9 @@
         "x-errorCodes": {
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/acquire"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -8649,6 +9078,9 @@
           "Item"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-app"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -8730,6 +9162,9 @@
           "30173": "Published store can't modify content",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/update-app"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -8808,6 +9243,9 @@
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "30387": "The item [{itemId}] is currently associated and cannot be disabled in namespace [{namespace}], Feature {featureName}, Module {moduleName}, and Reference ID {referenceId} are using this item ID"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/disable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -8859,6 +9297,9 @@
         ],
         "x-errorCodes": {
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-dynamic-data"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
@@ -8928,6 +9369,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30173": "Published store can't modify content",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/enable"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
@@ -9004,6 +9448,9 @@
           "30173": "Published store can't modify content",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/remove-feature"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -9076,6 +9523,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30173": "Published store can't modify content",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/add-feature"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
@@ -9168,6 +9618,9 @@
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/get-locale"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -9259,6 +9712,9 @@
           "30331": "Invalid purchase condition",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/update-purchase-condition"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
         }
@@ -9339,6 +9795,9 @@
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/list-references"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -9405,6 +9864,9 @@
         "x-errorCodes": {
           "20002": "validation error",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/items/v1/return"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]"
@@ -9473,6 +9935,9 @@
           "KeyGroup"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]"
         }
@@ -9535,6 +10000,9 @@
           "20002": "validation error",
           "37271": "Key group [{name}] already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [CREATE]"
         }
@@ -9588,6 +10056,9 @@
         "x-errorCodes": {
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/get-by-booth-name"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]"
         }
@@ -9639,6 +10110,9 @@
         ],
         "x-errorCodes": {
           "37241": "Key group [{keyGroupId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]"
@@ -9715,6 +10189,9 @@
           "37241": "Key group [{keyGroupId}] does not exist in namespace [{namespace}]",
           "37271": "Key group [{name}] already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [UPDATE]"
         }
@@ -9766,6 +10243,9 @@
         ],
         "x-errorCodes": {
           "37241": "Key group [{keyGroupId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/get-dynamic"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]"
@@ -9839,6 +10319,9 @@
           "KeyGroup"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/list-keys"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]"
         }
@@ -9904,6 +10387,9 @@
         "x-errorCodes": {
           "37221": "Invalid key file",
           "37241": "Key group [{keyGroupId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/key-groups/v1/upload-keys"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:KEYGROUP [UPDATE]"
@@ -10028,6 +10514,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
         }
@@ -10066,6 +10555,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/get-statistics"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
         }
@@ -10117,6 +10609,9 @@
         ],
         "x-errorCodes": {
           "32141": "Order [{orderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ORDER [READ]"
@@ -10195,6 +10690,9 @@
           "32141": "Order [{orderNo}] does not exist",
           "32171": "Order [{orderNo}] is not refundable"
         },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/refund"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ORDER [UPDATE]"
         }
@@ -10241,6 +10739,9 @@
         ],
         "x-errorCodes": {
           "33243": "Payment callback config for [{namespace}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/get-callback"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [READ]"
@@ -10290,6 +10791,9 @@
           "PaymentCallbackConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-callback"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [UPDATE]"
         }
@@ -10328,6 +10832,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/get-domain-allow-list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -10383,6 +10890,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-domain-allow-list"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
@@ -10500,6 +11010,9 @@
           "Payment"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/list-notifications"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION [READ]"
         }
@@ -10592,6 +11105,9 @@
           "Payment"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/list-orders"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]"
         }
@@ -10680,6 +11196,9 @@
           "33173": "ExtOrderNo [{extOrderNo}] already exists in namespace [{namespace}]",
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/payments/v1/create-platform-order"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [CREATE]"
         }
@@ -10727,6 +11246,9 @@
           "Payment"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/list-orders-by-external-transaction-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]"
         }
@@ -10778,6 +11300,9 @@
         ],
         "x-errorCodes": {
           "33141": "Payment Order [{paymentOrderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/get-order"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]"
@@ -10853,6 +11378,9 @@
           "33141": "Payment Order [{paymentOrderNo}] does not exist",
           "33171": "Invalid payment order status [{status}] for payment order [{paymentOrderNo}]",
           "33322": "Payment provider [{paymentProvider}] not supported"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/charge"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]"
@@ -10934,6 +11462,9 @@
           "33141": "Payment Order [{paymentOrderNo}] does not exist",
           "33172": "Payment order [{paymentOrderNo}] is not refundable"
         },
+        "x-operationId": {
+          "value": "platform/admin/payments/v1/refund-platform-order"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]"
         }
@@ -11004,6 +11535,9 @@
           "33141": "Payment Order [{paymentOrderNo}] does not exist",
           "33322": "Payment provider [{paymentProvider}] not supported"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/mock-notification"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]"
         }
@@ -11055,6 +11589,9 @@
         ],
         "x-errorCodes": {
           "33141": "Payment Order [{paymentOrderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/get-status"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]"
@@ -11111,6 +11648,9 @@
           "Platform"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-playstation-ownership"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -11166,6 +11706,9 @@
           "Platform"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-xbox-ownership"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:INTEGRATION [READ]"
         }
@@ -11225,6 +11768,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG[READ]"
         }
@@ -11298,6 +11844,9 @@
         "x-errorCodes": {
           "31147": "Origin [Steam] and System need exist in allowPlatformOrigin"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ENTITLEMENT:CONFIG[UPDATE]"
         }
@@ -11357,6 +11906,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get-platform-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]"
         }
@@ -11422,6 +11974,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/update-platform-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]"
         }
@@ -11481,6 +12036,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/reset-platform-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]"
         }
@@ -11519,6 +12077,9 @@
           "Revocation"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/revocations/v1/delete-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REVOCATION[DELETE]"
         }
@@ -11562,6 +12123,9 @@
         ],
         "x-errorCodes": {
           "33243": "Payment callback config for [{namespace}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/revocations/v1/get-config"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REVOCATION[READ]"
@@ -11610,6 +12174,9 @@
           "Revocation"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/revocations/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REVOCATION[UPDATE]"
         }
@@ -11713,6 +12280,9 @@
           "Revocation"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/revocations/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REVOCATION[READ]"
         }
@@ -11748,6 +12318,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/delete-revocation"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION[DELETE]"
         }
@@ -11781,6 +12354,9 @@
           "ServicePluginConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/get-revocation"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION[READ]"
         }
@@ -11835,6 +12411,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/update-revocation"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION[UPDATE]"
@@ -11891,6 +12470,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v2/upload-revocation-certificate"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION[UPDATE]"
         }
@@ -11946,6 +12528,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/plugin-config/v1/upload-revocation-certificate"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:PLUGIN:REVOCATION[UPDATE]"
@@ -12029,6 +12614,9 @@
           "34072": "Duplicate reward condition [{rewardConditionName}] found in reward [{rewardCode}]",
           "34074": "Reward Item [{itemId}] duration and end date can’t be set at the same time",
           "34076": "Reward Item [{sku}] duration and end date can’t be set at the same time"
+        },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/create"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [CREATE]"
@@ -12123,6 +12711,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [READ]"
         }
@@ -12162,6 +12753,9 @@
           "Reward"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/export"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [READ]"
         }
@@ -12233,6 +12827,9 @@
           "34074": "Reward Item [{itemId}] duration and end date can’t be set at the same time",
           "34076": "Reward Item [{sku}] duration and end date can’t be set at the same time"
         },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/import"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [CREATE]"
         }
@@ -12286,6 +12883,9 @@
         "x-errorCodes": {
           "34041": "Reward [{rewardId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [DELETE]"
         }
@@ -12335,6 +12935,9 @@
         ],
         "x-errorCodes": {
           "34041": "Reward [{rewardId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [READ]"
@@ -12416,6 +13019,9 @@
           "34074": "Reward Item [{itemId}] duration and end date can’t be set at the same time",
           "34076": "Reward Item [{sku}] duration and end date can’t be set at the same time"
         },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [UPDATE]"
         }
@@ -12479,6 +13085,9 @@
         "x-errorCodes": {
           "34041": "Reward [{rewardId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/match-event"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [READ]"
         }
@@ -12532,6 +13141,9 @@
           "Reward"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/rewards/v1/delete-condition"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:REWARD [DELETE]"
         }
@@ -12631,6 +13243,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/sections/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
         }
@@ -12717,6 +13332,9 @@
           "30173": "Published store can't modify content",
           "30641": "View [{viewId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/sections/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [CREATE]"
         }
@@ -12766,6 +13384,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/sections/v1/delete-expired"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [DELETE]"
@@ -12831,6 +13452,9 @@
           "30173": "Published store can't modify content",
           "30741": "Section [{sectionId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/sections/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [DELETE]"
         }
@@ -12890,6 +13514,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30741": "Section [{sectionId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/sections/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -12983,6 +13610,9 @@
           "30641": "View [{viewId}] does not exist in namespace [{namespace}]",
           "30741": "Section [{sectionId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/sections/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
         }
@@ -13024,6 +13654,9 @@
           "Store"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
         }
@@ -13087,6 +13720,9 @@
           "20002": "validation error",
           "30174": "Draft store already exists in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [CREATE]"
         }
@@ -13142,6 +13778,9 @@
           "Store"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/get-catalog-definition"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE[READ]"
         }
@@ -13181,6 +13820,9 @@
           "Store"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/download-template"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
         }
@@ -13253,6 +13895,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/export-csv"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -13328,6 +13973,9 @@
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]",
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/import"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
         }
@@ -13375,6 +14023,9 @@
         "x-errorCodes": {
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/delete-published"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [DELETE]"
         }
@@ -13419,6 +14070,9 @@
         ],
         "x-errorCodes": {
           "30142": "Published store does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/get-published"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -13470,6 +14124,9 @@
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30143": "Published store [{storeId}] backup does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/get-backup"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
         }
@@ -13519,6 +14176,9 @@
         "x-errorCodes": {
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30143": "Published store [{storeId}] backup does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/rollback"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
@@ -13579,6 +14239,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30173": "Published store can't modify content"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [DELETE]"
         }
@@ -13629,6 +14292,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -13705,6 +14371,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30171": "Store [{store}] can't change default language to [{language}]",
           "30172": "Store [{store}] can't change default region to [{region}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/update"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
@@ -13881,6 +14550,9 @@
           "CatalogChanges"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
         }
@@ -13942,6 +14614,9 @@
         "x-errorCodes": {
           "30122": "Store's meta mismatch",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/publish-all"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [CREATE]"
@@ -14012,6 +14687,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30375": "Item id [{itemId}] of sku [{sku}] is duplicate with un-published deleted item in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/publish-selected"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [CREATE]"
         }
@@ -14063,6 +14741,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/select-all"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
@@ -14186,6 +14867,9 @@
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/select-all-by-criteria"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
         }
@@ -14293,6 +14977,9 @@
           "CatalogChanges"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/get-statistics"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
         }
@@ -14344,6 +15031,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/unselect-all"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
@@ -14403,6 +15093,9 @@
         "x-errorCodes": {
           "30041": "Changelog [{changelogId}] does not exist in namespace [{namespace}]",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/select"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
@@ -14473,6 +15166,9 @@
           "30074": "Can't unselect subscription's content [{itemId}] when subscription is already selected in namespace [{namespace}]",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/catalog-changes/v1/unselect"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
         }
@@ -14542,6 +15238,9 @@
           "30122": "Store's meta mismatch",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/clone"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [CREATE]"
         }
@@ -14594,6 +15293,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/export"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -14690,6 +15392,9 @@
         ],
         "x-errorCodes": {
           "20027": "Invalid time range"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/get-import-history"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -14793,6 +15498,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30382": "Duplicated Item sku [{sku}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v1/import-csv"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
@@ -14905,6 +15613,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/list-all"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION [READ]"
         }
@@ -14952,6 +15663,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/charge-recurring"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION [UPDATE]"
         }
@@ -15003,6 +15717,9 @@
         ],
         "x-errorCodes": {
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/tickets/v1/get-dynamic"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
@@ -15071,6 +15788,9 @@
           "20002": "validation error",
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/tickets/v1/decrement"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]"
         }
@@ -15122,6 +15842,9 @@
         ],
         "x-errorCodes": {
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/tickets/v1/get-booth-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TICKET [READ]"
@@ -15193,6 +15916,9 @@
           "20002": "validation error",
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/tickets/v1/increment"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]"
         }
@@ -15243,6 +15969,9 @@
           "TradeAction"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/trades/v1/commit"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TRADE [CREATE]"
         }
@@ -15325,6 +16054,9 @@
           "TradeAction"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/trades/v1/get-history-by-criteria"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TRADE [READ]"
         }
@@ -15371,6 +16103,9 @@
           "TradeAction"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/trades/v1/get-history-by-transaction-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:TRADE [READ]"
         }
@@ -15439,6 +16174,9 @@
           "39244": "Steam config does not exist",
           "39245": "Steam app id does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/platform-achievements/v1/get-steam"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT[UPDATE]"
         }
@@ -15500,6 +16238,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/platform-achievements/v1/get-xbox"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT[READ]"
         }
@@ -15558,6 +16299,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/platform-achievements/v1/update-xbox"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT[UPDATE]"
         }
@@ -15602,6 +16346,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-campaign"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15646,6 +16393,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-entitlement"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15690,6 +16440,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-fulfillment"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15734,6 +16487,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-integration"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15778,6 +16534,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-order"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15822,6 +16581,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-payment"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15866,6 +16628,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-revocation"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION[DELETE]"
         }
@@ -15910,6 +16675,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-subscription"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -15954,6 +16722,9 @@
           "Anonymization"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/internal/v1/anonymize-wallet"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]"
         }
@@ -16011,6 +16782,9 @@
           "DLC"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/dlc-records/v1/list-by-platform"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -16089,6 +16863,9 @@
           "DLC"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/dlc-records/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -16253,6 +17030,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16327,6 +17107,9 @@
           "20002": "validation error",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/grant"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [CREATE]"
         }
@@ -16392,6 +17175,9 @@
         ],
         "x-errorCodes": {
           "31142": "Entitlement with appId [{appId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-app"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
@@ -16474,6 +17260,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/list-by-app-type"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16531,6 +17320,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/bulk-get"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16618,6 +17410,9 @@
         "x-errorCodes": {
           "31144": "Entitlement with itemId [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16681,6 +17476,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/list-items"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT[READ]"
         }
@@ -16768,6 +17566,9 @@
         "x-errorCodes": {
           "31143": "Entitlement with sku [{sku}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-sku"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16848,6 +17649,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-ownership-any"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16908,6 +17712,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-ownership-any-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -16958,6 +17765,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-ownership-by-app-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -17029,6 +17839,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-ownership-by-item-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -17092,6 +17905,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-ownership-by-item-ids"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT[READ]"
         }
@@ -17163,6 +17979,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-ownership-by-sku"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -17207,6 +18026,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/revoke-all"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -17258,6 +18080,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/revoke-by-ids"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -17315,6 +18140,9 @@
         ],
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
@@ -17397,6 +18225,9 @@
           "20006": "optimistic lock",
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]",
           "31171": "Entitlement [{entitlementId}] already revoked"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/update"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
@@ -17489,6 +18320,9 @@
           "31180": "Duplicate request id: [{requestId}]",
           "31183": "Entitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/consume"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -17554,6 +18388,9 @@
           "20006": "optimistic lock",
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]",
           "31172": "Entitlement [{entitlementId}] not active"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/disable"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
@@ -17624,6 +18461,9 @@
           "31177": "Permanent item already owned",
           "31179": "Duplicate entitlement exists"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/enable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -17677,6 +18517,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -17745,6 +18588,9 @@
         ],
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/revoke"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
@@ -17815,6 +18661,9 @@
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/revoke-by-use-count"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -17879,6 +18728,9 @@
         ],
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/check-revocation"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [CREATE]"
@@ -17949,6 +18801,9 @@
         ],
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/revoke-use-count"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
@@ -18035,6 +18890,9 @@
           "31182": "Entitlement [{entitlementId}] already sold",
           "31183": "Entitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/entitlements/v1/sell"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT[UPDATE]"
         }
@@ -18113,6 +18971,9 @@
           "35123": "Wallet [{walletId}] is inactive",
           "38121": "Duplicate permanent item exists",
           "38122": "Subscription endDate required"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v1/create"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [CREATE]"
@@ -18200,6 +19061,9 @@
           "37178": "Code redemption already ended",
           "38121": "Duplicate permanent item exists"
         },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v1/redeem-code"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [CREATE]"
         }
@@ -18272,6 +19136,9 @@
         "x-errorCodes": {
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "38121": "Duplicate permanent item exists"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v1/check"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT"
@@ -18347,6 +19214,9 @@
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "35123": "Wallet [{walletId}] is inactive",
           "38121": "Duplicate permanent item exists"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v1/grant-rewards"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [CREATE]"
@@ -18460,6 +19330,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -18504,6 +19377,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/list-all"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -18607,6 +19483,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/get-consume-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -18682,6 +19561,9 @@
           "35123": "Wallet [{walletId}] is inactive",
           "38121": "Duplicate permanent item exists",
           "38122": "Subscription endDate required"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/mock-grant"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -18759,6 +19641,9 @@
           "39146": "Oculus IAP config not found in namespace [{namespace}].",
           "39154": "Meta Quest Subscription Sku [{sku}] not found in namespace [{namespace}] config, please config this Subscription sku in subscription group."
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-oculus/v1/sync-subscriptions"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -18812,6 +19697,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap/v1/list-order-line-items"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -18879,6 +19767,9 @@
           "39184": "Steam api exception  with status code [{statusCode}] and error message [{message}]",
           "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
           "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/sync-abnormal-transactions"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -18958,6 +19849,9 @@
           "39184": "Steam api exception with error code [{errorCode}] and error message [{message}]",
           "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
           "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap-steam/v1/sync-transaction"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -19058,6 +19952,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -19126,6 +20023,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/check-ownership-by-group-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP[READ]"
         }
@@ -19194,6 +20094,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/check-ownership-by-product-id"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP[READ]"
         }
@@ -19293,6 +20196,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/list-stransactions"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -19350,6 +20256,9 @@
         ],
         "x-errorCodes": {
           "39149": "Third Party Subscription [{id}] not found for user [{userId}] in the namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/get-transaction"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
@@ -19418,6 +20327,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/get-transaction-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP[READ]"
         }
@@ -19485,6 +20397,9 @@
           "39137": "Verify Apple transaction failed with status [{status}] and error message [{message}]",
           "39149": "Third Party Subscription Transaction [{id}] not found for user [{userId}] in the namespace [{namespace}]."
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/sync-transaction"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP[UPDATE]"
         }
@@ -19542,6 +20457,9 @@
         ],
         "x-errorCodes": {
           "39149": "Third Party User Subscription [{id}] not found for user [{userId}] in the namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
@@ -19611,6 +20529,9 @@
           "39149": "Third Party Subscription Transaction [{id}] not found for user [{userId}] in the namespace [{namespace}].",
           "39150": "Third Party User Subscription [{id}] not found for user [{userId}] in the namespace [{namespace}].."
         },
+        "x-operationId": {
+          "value": "platform/admin/iap-subscriptions/v1/sync"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP[UPDATE]"
         }
@@ -19666,6 +20587,9 @@
           "IAP"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/iap-twitch/v1/sync-drops"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -19763,6 +20687,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/list-user"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -19888,6 +20815,9 @@
           "49186": "Pass already owned",
           "49187": "Exceed max tier count"
         },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]"
         }
@@ -19938,6 +20868,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/get-item-count"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -19998,6 +20931,9 @@
         ],
         "x-errorCodes": {
           "32141": "Order [{orderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/get-user"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
@@ -20080,6 +21016,9 @@
           "20006": "optimistic lock",
           "32141": "Order [{orderNo}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/update-status"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]"
         }
@@ -20158,6 +21097,9 @@
           "32172": "Invalid order status [{status}] for order [{orderNo}]",
           "35123": "Wallet [{walletId}] is inactive"
         },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/grant"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]"
         }
@@ -20209,6 +21151,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/get-grant"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -20262,6 +21207,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -20323,6 +21271,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/process-notification"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]"
         }
@@ -20387,6 +21338,9 @@
         "x-errorCodes": {
           "32141": "Order [{orderNo}] does not exist",
           "32173": "Receipt of order [{orderNo}] is not downloadable"
+        },
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/download-receipt"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
@@ -20483,6 +21437,9 @@
           "33145": "Recurring token not found",
           "36141": "Currency [{currencyCode}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [CREATE]"
         }
@@ -20566,6 +21523,9 @@
           "33141": "Payment Order [{paymentOrderNo}] does not exist",
           "33172": "Payment order [{paymentOrderNo}] is not refundable"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment/v1/refund-order"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [UPDATE]"
         }
@@ -20613,6 +21573,9 @@
           "Platform Account Closure"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/platform-closure/v1/get-user-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION [READ]"
         }
@@ -20696,6 +21659,9 @@
           "37178": "Code redemption already ended",
           "37179": "Exceeded max redeem count per campaign per user [{maxCount}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/campaign-codes/v1/redeem"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION [CREATE]"
         }
@@ -20759,6 +21725,9 @@
         "x-errorCodes": {
           "41171": "Request has different payload on previous call",
           "41172": "Request has different user id on previous call"
+        },
+        "x-operationId": {
+          "value": "platform/admin/revocations/v1/execute"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:REVOCATION[UPDATE]"
@@ -20825,6 +21794,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/platform-sessions/v1/register-box"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:INTEGRATION[UPDATE]"
@@ -20937,6 +21909,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -21012,6 +21987,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/list-activities"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -21093,6 +22071,9 @@
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "40121": "Item type [{itemType}] does not support"
         },
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [CREATE]"
         }
@@ -21143,6 +22124,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/check-subscribable-item"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -21193,6 +22177,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [DELETE]"
         }
@@ -21251,6 +22238,9 @@
         ],
         "x-errorCodes": {
           "40141": "Subscription [{subscriptionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
@@ -21337,6 +22327,9 @@
           "40171": "Subscription [{subscriptionId}] is not active",
           "40172": "Subscription [{subscriptionId}] is charging, waiting for payment notification"
         },
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/cancel"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]"
         }
@@ -21405,6 +22398,9 @@
         ],
         "x-errorCodes": {
           "40141": "Subscription [{subscriptionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/grant-days"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]"
@@ -21481,6 +22477,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/get-billing-history"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -21542,6 +22541,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/subscriptions/v1/process-notification"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]"
         }
@@ -21625,6 +22627,9 @@
           "37041": "Ticket booth [{boothName}] does not exist in namespace [{namespace}]",
           "37071": "Insufficient ticket in booth [{boothName}] in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/tickets/v1/acquire"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET [CREATE]"
         }
@@ -21677,6 +22682,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get-currency-summary"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
         }
@@ -21762,6 +22770,9 @@
           "20006": "optimistic lock",
           "35124": "Wallet [{currencyCode}] has insufficient balance"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/debit-currency"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
         }
@@ -21843,6 +22854,9 @@
         "x-errorCodes": {
           "35141": "Wallet [{walletId}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/list-transactions-by-currency"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
         }
@@ -21914,6 +22928,9 @@
         "x-errorCodes": {
           "35123": "Wallet [{walletId}] is inactive",
           "35124": "Wallet [{currencyCode}] has insufficient balance"
+        },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get-balance"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
@@ -22009,6 +23026,9 @@
           "20006": "optimistic lock",
           "35123": "Wallet [{walletId}] is inactive"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get-balance-origin"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
         }
@@ -22086,6 +23106,9 @@
         "x-errorCodes": {
           "20002": "validation error",
           "35123": "Wallet [{walletId}] is inactive"
+        },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/credit"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
@@ -22166,6 +23189,9 @@
           "35123": "Wallet [{walletId}] is inactive",
           "35124": "Wallet [{currencyCode}] has insufficient balance"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/debit-platform"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
         }
@@ -22245,6 +23271,9 @@
           "35123": "Wallet [{walletId}] is inactive",
           "35124": "Wallet [{currencyCode}] has insufficient balance"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/pay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
         }
@@ -22308,6 +23337,9 @@
         ],
         "x-errorCodes": {
           "35141": "Wallet [{walletId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get-user"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
@@ -22403,6 +23435,9 @@
           "35124": "Wallet [{currencyCode}] has insufficient balance",
           "35141": "Wallet [{walletId}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/debit"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
         }
@@ -22472,6 +23507,9 @@
           "20006": "optimistic lock",
           "35141": "Wallet [{walletId}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/disable"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
         }
@@ -22540,6 +23578,9 @@
         "x-errorCodes": {
           "20006": "optimistic lock",
           "35141": "Wallet [{walletId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/enable"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]"
@@ -22623,6 +23664,9 @@
         "x-errorCodes": {
           "35141": "Wallet [{walletId}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/list-transactions"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
         }
@@ -22686,6 +23730,9 @@
           "20002": "validation error",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/views/v1/list"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -22770,6 +23817,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30173": "Published store can't modify content"
         },
+        "x-operationId": {
+          "value": "platform/admin/views/v1/create"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [CREATE]"
         }
@@ -22834,6 +23884,9 @@
           "30173": "Published store can't modify content",
           "30641": "View [{viewId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/views/v1/delete"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [DELETE]"
         }
@@ -22893,6 +23946,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30641": "View [{viewId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/views/v1/get"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -22983,6 +24039,9 @@
           "30173": "Published store can't modify content",
           "30641": "View [{viewId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/views/v1/update"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
         }
@@ -23022,6 +24081,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [READ]"
         }
@@ -23070,6 +24132,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/update-config"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET:CONFIG [UPDATE]"
         }
@@ -23163,6 +24228,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET [READ]"
         }
@@ -23222,6 +24290,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/bulk-credit"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET [UPDATE]"
@@ -23283,6 +24354,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/bulk-debit"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET [UPDATE]"
         }
@@ -23340,6 +24414,9 @@
         "x-errorCodes": {
           "35141": "Wallet [{walletId}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/wallets/v1/get"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:WALLET [READ]"
         }
@@ -23392,6 +24469,9 @@
           "Order(Dedicated)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/orders/v1/sync"
+        },
         "x-security": {
           "userPermissions": "ADMIN:ORDER [READ]"
         }
@@ -23443,6 +24523,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-adyen"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23494,6 +24577,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-alipay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23545,6 +24631,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-checkout"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23601,6 +24690,9 @@
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/get-matched-merchant"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -23652,6 +24744,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-neonpay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23703,6 +24798,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-paypal"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23754,6 +24852,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-stripe"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23797,6 +24898,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-wxpay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23840,6 +24944,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-xsolla"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -23885,6 +24992,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/get-merchant"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -23960,6 +25070,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-adyen"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24016,6 +25129,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-adyen-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24091,6 +25207,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-alipay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24147,6 +25266,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-alipay-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24222,6 +25344,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-checkout"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24278,6 +25403,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-checkout-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24353,6 +25481,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-neonpay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24409,6 +25540,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-neonpay-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24484,6 +25618,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-paypal"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24540,6 +25677,9 @@
         ],
         "x-errorCodes": {
           "33045": "errors.net.accelbyte.platform.payment.payment_merchant_config_not_found"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-paypal-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24615,6 +25755,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-stripe"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24671,6 +25814,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-stripe-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24738,6 +25884,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-wxpay"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24793,6 +25942,9 @@
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-wxpay-certificate"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24841,6 +25993,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-wxpay-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -24908,6 +26063,9 @@
           "33221": "Update [{paymentProvider}] config in payment merchant config [{id}] failed with message [{errMsg}]",
           "33242": "Payment merchant config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-xsolla"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -24956,6 +26114,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/check-xsolla-by-id"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
@@ -25013,6 +26174,9 @@
         ],
         "x-errorCodes": {
           "33242": "Payment merchant config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-xsolla-ui"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
@@ -25077,6 +26241,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/list-providers"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -25140,6 +26307,9 @@
           "33221": "TaxJar api token required",
           "33271": "Payment provider config for namespace [{namespace}] and region [{region}] already exists"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/create-provider"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [CREATE]"
         }
@@ -25185,6 +26355,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/list-aggregate-providers"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -25241,6 +26414,9 @@
         "x-errorCodes": {
           "33241": "Payment provider config [{id}] does not exist"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/get-matched-provider"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -25286,6 +26462,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/list-special-providers"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -25329,6 +26508,9 @@
         ],
         "x-errorCodes": {
           "33241": "Payment provider config [{id}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/delete-provider"
         },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [DELETE]"
@@ -25407,6 +26589,9 @@
           "33241": "Payment provider config [{id}] does not exist",
           "33271": "Payment provider config for namespace [{namespace}] and region [{region}] already exists"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-provider"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -25438,6 +26623,9 @@
           "PaymentConfig"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/get-tax"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [READ]"
         }
@@ -25494,6 +26682,9 @@
           "20002": "validation error",
           "33221": "TaxJar api token required"
         },
+        "x-operationId": {
+          "value": "platform/admin/payment-config/v1/update-tax"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT:CONFIG [UPDATE]"
         }
@@ -25546,6 +26737,9 @@
           "Payment(Dedicated)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/payments/v1/sync-platform-orders"
+        },
         "x-security": {
           "userPermissions": "ADMIN:PAYMENT [READ]"
         }
@@ -25595,7 +26789,10 @@
         "tags": [
           "Category"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/categories/v1/list"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/categories/download": {
@@ -25650,6 +26847,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/categories/v1/download"
         }
       }
     },
@@ -25708,6 +26908,9 @@
         ],
         "x-errorCodes": {
           "30241": "Category [{categoryPath}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/categories/v1/get"
         }
       }
     },
@@ -25761,7 +26964,10 @@
         "tags": [
           "Category"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/categories/v1/list-children"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants": {
@@ -25814,7 +27020,10 @@
         "tags": [
           "Category"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/categories/v1/list-descendants"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/currencies": {
@@ -25862,7 +27071,10 @@
         "tags": [
           "Currency"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/currencies/v1/list"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/dlc/rewards/durable/map": {
@@ -25918,6 +27130,9 @@
           "39441": "Platform dlc config cannot be found in namespace [{namespace}]",
           "39442": "DLC item config cannot be found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/dlc-config/v1/get-durable-reward-map"
+        },
         "x-security": {
           "userPermissions": "-"
         }
@@ -25960,6 +27175,9 @@
         ],
         "x-errorCodes": {
           "39142": "Apple IAP config not found in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-apple/v1/get-config-version"
         }
       }
     },
@@ -26017,6 +27235,9 @@
         ],
         "x-errorCodes": {
           "39341": "IAP item config cannot be found in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/iap/v1/get-item-mapping"
         }
       }
     },
@@ -26087,6 +27308,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30342": "Item of appId [{appId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/get-by-app-id"
         }
       }
     },
@@ -26279,6 +27503,9 @@
           "20002": "validation error",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/list"
         }
       }
     },
@@ -26357,6 +27584,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30343": "Item of sku [{sku}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/get-by-sku"
         }
       }
     },
@@ -26428,6 +27658,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/get-estimated-price"
         }
       }
     },
@@ -26510,6 +27743,9 @@
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/list-locale"
         }
       }
     },
@@ -26567,6 +27803,9 @@
         ],
         "x-errorCodes": {
           "20002": "validation error"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/validate-purchase-condition"
         }
       }
     },
@@ -26681,6 +27920,9 @@
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/search"
         }
       }
     },
@@ -26745,6 +27987,9 @@
         ],
         "x-errorCodes": {
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/get-app"
         }
       }
     },
@@ -26794,6 +28039,9 @@
         ],
         "x-errorCodes": {
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/get-dynamic-data"
         }
       }
     },
@@ -26882,6 +28130,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]",
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/items/v1/get"
         }
       }
     },
@@ -26947,7 +28198,10 @@
         "tags": [
           "PaymentStation"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-customization"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/payment/link": {
@@ -27014,6 +28268,9 @@
           "33322": "Payment provider [{paymentProvider}] not supported",
           "33332": "Amount too small, please contact administrator",
           "33333": "Neon Pay checkout payment order [{paymentOrderNo}] failed with message [{errMsg}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-url"
         }
       }
     },
@@ -27064,6 +28321,9 @@
         ],
         "x-errorCodes": {
           "33141": "Payment Order [{paymentOrderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-methods"
         }
       }
     },
@@ -27119,6 +28379,9 @@
           "20008": "user [{userId}] does not exist in namespace [{namespace}]",
           "33141": "Payment Order [{paymentOrderNo}] does not exist",
           "33171": "Invalid payment order status [{status}] for payment order [{paymentOrderNo}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-unpaid"
         }
       }
     },
@@ -27214,6 +28477,9 @@
           "33141": "Payment Order [{paymentOrderNo}] does not exist",
           "33171": "Invalid payment order status [{status}] for payment order [{paymentOrderNo}]",
           "33322": "Payment provider [{paymentProvider}] not supported"
+        },
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/pay"
         }
       }
     },
@@ -27261,6 +28527,9 @@
         ],
         "x-errorCodes": {
           "33141": "Payment Order [{paymentOrderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/check-paid"
         }
       }
     },
@@ -27328,7 +28597,10 @@
         "tags": [
           "PaymentStation"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-public-config"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/payment/qrcode": {
@@ -27365,7 +28637,10 @@
         "tags": [
           "PaymentStation"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-qr-code"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/payment/returnurl": {
@@ -27510,7 +28785,10 @@
         "tags": [
           "PaymentStation"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/normalized-return-url"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/payment/tax": {
@@ -27587,6 +28865,9 @@
         "x-errorCodes": {
           "33123": "Invalid zipcode",
           "33141": "Payment Order [{paymentOrderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/payment-station/v1/get-tax"
         }
       }
     },
@@ -27636,6 +28917,9 @@
         ],
         "x-errorCodes": {
           "34043": "Reward with code [{rewardCode}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/rewards/v1/get-by-code"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:REWARD [READ]"
@@ -27731,6 +29015,9 @@
         "x-errorCodes": {
           "20002": "validation error"
         },
+        "x-operationId": {
+          "value": "platform/public/rewards/v1/list"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:REWARD [READ]"
         }
@@ -27783,6 +29070,9 @@
         "x-errorCodes": {
           "34041": "Reward [{rewardId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/rewards/v1/get"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:REWARD [READ]"
         }
@@ -27818,7 +29108,10 @@
         "tags": [
           "Store"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/stores/v1/list"
+        }
       }
     },
     "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/any": {
@@ -27884,6 +29177,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-my-ownership-any"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -27928,6 +29224,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-my-ownership-by-app-id"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -27987,6 +29286,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-my-ownership-by-item-id"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -28046,6 +29348,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-my-ownership-by-sku"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -28114,6 +29419,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/get-my-ownership-token"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:ENTITLEMENT [READ]"
         }
@@ -28175,6 +29483,9 @@
           "39125": "Invalid platform [{platformId}] user token",
           "39126": "User id [{}] in namespace [{}] doesn't link platform [{}]"
         },
+        "x-operationId": {
+          "value": "platform/public/iap-twitch/v1/sync-my-drops"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:IAP[UPDATE]"
         }
@@ -28223,6 +29534,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/wallets/v1/get-my-by-currency"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:WALLET [READ]"
         }
@@ -28291,6 +29605,9 @@
           "39126": "User id [{}] in namespace [{}] doesn't link platform [{}]",
           "39147": "Epic IAP config not found in namespace [{namespace}]."
         },
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/sync-epicgames"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:DLC[UPDATE]"
         }
@@ -28348,6 +29665,9 @@
           "39133": "Bad request for Oculus: [{reason}]",
           "39134": "Invalid Oculus IAP config under namespace [{namespace}]: [{message}]",
           "39146": "Oculus IAP config not found in namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/sync-dlc"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:DLC[UPDATE]"
@@ -28419,6 +29739,9 @@
           "39132": "Bad request for playstation under namespace [{namespace}], reason: [{reason}].",
           "39143": "PlayStation IAP config not found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/sync-playstation"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:DLC[UPDATE]"
         }
@@ -28489,6 +29812,9 @@
           "39132": "Bad request for playstation under namespace [{namespace}], reason: [{reason}].",
           "39143": "PlayStation IAP config not found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/sync-playstation-multi-label"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:DLC[UPDATE]"
         }
@@ -28555,6 +29881,9 @@
         "x-errorCodes": {
           "39124": "IAP request platform [{platformId}] user id is not linked with current user",
           "39144": "Steam IAP config not found in namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/sync-steam"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:DLC[UPDATE]"
@@ -28624,6 +29953,9 @@
           "39126": "User id [{}] in namespace [{}] doesn't link platform [{}]",
           "39145": "XBox IAP config not found in namespace [{namespace}].",
           "39221": "Invalid Xbox Business Partner Certificate or password: [{message}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/sync-xbox"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:DLC[UPDATE]"
@@ -28739,6 +30071,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/list"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -28796,6 +30131,9 @@
         ],
         "x-errorCodes": {
           "31142": "Entitlement with appId [{appId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/get-app"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
@@ -28870,6 +30208,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/list-by-app-type"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -28935,6 +30276,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/bulk-get"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29009,6 +30353,9 @@
         "x-errorCodes": {
           "31144": "Entitlement with itemId [{itemId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/get-item"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29082,6 +30429,9 @@
         ],
         "x-errorCodes": {
           "31143": "Entitlement with sku [{sku}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/get-sku"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
@@ -29176,6 +30526,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29250,6 +30603,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-ownership-any"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29300,6 +30656,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-ownership-by-app-id"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29365,6 +30724,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-ownership-by-item-id"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29422,6 +30784,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-ownership-by-item-ids"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT[READ]"
         }
@@ -29487,6 +30852,9 @@
           "Entitlement"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/check-ownership-by-sku"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
         }
@@ -29544,6 +30912,9 @@
         ],
         "x-errorCodes": {
           "31141": "Entitlement [{entitlementId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/get"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]"
@@ -29639,6 +31010,9 @@
           "31180": "Duplicate request id: [{requestId}]",
           "31183": "Entitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]"
         },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/consume"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -29724,6 +31098,9 @@
           "31182": "Entitlement [{entitlementId}] already sold",
           "31183": "Entitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]"
         },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/sell"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
         }
@@ -29806,6 +31183,9 @@
           "31178": "Entitlement [{entitlementId}] out of time range",
           "31182": "Entitlement [{entitlementId}] already sold",
           "31183": "Entitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/split"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
@@ -29891,6 +31271,9 @@
           "31183": "Entitlement [{entitlementId}] origin [{origin}] not allowed be operated at [{platform}]",
           "31184": "Source entitlement [{sourceEntitlementId}] and target entitlement [{targetEntitlementId}] should have same collectionId, timeRange, origin and itemId",
           "31185": "Transferred source entitlement [{sourceEntitlementId}] and target entitlement [{targetEntitlementId}] can not be set to same"
+        },
+        "x-operationId": {
+          "value": "platform/public/entitlements/v1/transfer"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]"
@@ -29985,6 +31368,9 @@
           "37178": "Code redemption already ended",
           "38121": "Duplicate permanent item exists"
         },
+        "x-operationId": {
+          "value": "platform/public/fulfillments/v1/redeem-code"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [CREATE]"
         }
@@ -30066,6 +31452,9 @@
           "39142": "Apple IAP config not found in namespace [{namespace}]",
           "39171": "The bundle id in namespace [{namespace}] expect [{expected}] but was [{actual}]"
         },
+        "x-operationId": {
+          "value": "platform/public/iap-apple/v1/grant"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -30139,6 +31528,9 @@
           "39125": "Invalid platform [{platformId}] user token",
           "39126": "User id [{}] in namespace [{}] doesn't link platform [{}]",
           "39147": "Epic IAP config not found in namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-epicgames/v1/sync-inventory"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -30225,6 +31617,9 @@
           "39173": "The purchase status of google play order [{orderId}] in namespace [{namespace}] expect [{expected}] but was [{actual}]",
           "39174": "The google iap purchase time of order [{orderId}] in namespace [{namespace}] expect [{expected}] but was [{actual}]"
         },
+        "x-operationId": {
+          "value": "platform/public/iap-google/v1/grant"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -30301,6 +31696,9 @@
           "39146": "Oculus IAP config not found in namespace [{namespace}].",
           "39154": "Meta Quest Subscription Sku [{sku}] not found in namespace [{namespace}] config, please config this Subscription sku in subscription group."
         },
+        "x-operationId": {
+          "value": "platform/public/iap-oculus/v1/sync-subscriptions"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -30364,6 +31762,9 @@
           "39133": "Bad request for Oculus: [{reason}]",
           "39134": "Invalid Oculus IAP config under namespace [{namespace}]: [{message}]",
           "39146": "Oculus IAP config not found in namespace [{namespace}]."
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-oculus/v1/sync-consumable"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -30441,6 +31842,9 @@
           "39132": "Bad request for playstation under namespace [{namespace}], reason: [{reason}].",
           "39143": "PlayStation IAP config not found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/iap-playstation/v1/sync-store-entitlements"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -30517,6 +31921,9 @@
           "39132": "Bad request for playstation under namespace [{namespace}], reason: [{reason}].",
           "39143": "PlayStation IAP config not found in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/public/iap-playstation/v1/sync-store-entitlements-multi"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -30585,6 +31992,9 @@
           "39124": "IAP request platform [{platformId}] user id is not linked with current user",
           "39144": "Steam IAP config not found in namespace [{namespace}]."
         },
+        "x-operationId": {
+          "value": "platform/public/iap-steam/v1/sync-inventory"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -30652,6 +32062,9 @@
           "39184": "Steam api exception with error code [{statusCode}] and error message [{message}]",
           "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
           "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-steam/v1/sync-abnormal-transactions"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -30732,6 +32145,9 @@
           "39184": "Steam api exception with error code [{errorCode}] and error message [{message}]",
           "39185": "This endpoint only works on sync mode [{workSyncMode}], but current steam iap config sync mode is [{currentSyncMode}] under namespace [{namespace}]",
           "39621": "Steam api common exception with status code [statusCode] details: [details]"
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-steam/v1/sync-transaction"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -30832,6 +32248,9 @@
           "IAP(Subscription)"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/iap-subscriptions/v1/list-platform"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [READ]"
         }
@@ -30892,6 +32311,9 @@
         "x-errorCodes": {
           "39125": "Invalid platform [{platformId}] user token",
           "39126": "User id [{}] in namespace [{}] doesn't link platform [{}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-twitch/v1/sync-drops"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -30967,6 +32389,9 @@
           "39126": "User id [{}] in namespace [{}] doesn't link platform [{}]",
           "39145": "XBox IAP config not found in namespace [{namespace}].",
           "39221": "Invalid Xbox Business Partner Certificate or password: [{message}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/iap-xbox/v1/sync-inventory"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
@@ -31065,6 +32490,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/orders/v1/list-user"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -31191,6 +32619,9 @@
           "49186": "Pass already owned",
           "49187": "Exceed max tier count"
         },
+        "x-operationId": {
+          "value": "platform/public/orders/v1/create"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]"
         }
@@ -31293,6 +32724,9 @@
           "37178": "Code redemption already ended",
           "37179": "Exceeded max redeem count per campaign per user [{maxCount}]"
         },
+        "x-operationId": {
+          "value": "platform/public/orders/v1/preview-price"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]"
         }
@@ -31353,6 +32787,9 @@
         ],
         "x-errorCodes": {
           "32141": "Order [{orderNo}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/orders/v1/get-user"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
@@ -31422,6 +32859,9 @@
           "32141": "Order [{orderNo}] does not exist",
           "32177": "Order [{orderNo}] is not cancelable"
         },
+        "x-operationId": {
+          "value": "platform/public/orders/v1/cancel"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]"
         }
@@ -31475,6 +32915,9 @@
           "Order"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/orders/v1/get-history"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -31540,6 +32983,9 @@
           "32141": "Order [{orderNo}] does not exist",
           "32173": "Receipt of order [{orderNo}] is not downloadable"
         },
+        "x-operationId": {
+          "value": "platform/public/orders/v1/download-receipt"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]"
         }
@@ -31590,6 +33036,9 @@
           "PaymentAccount"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/payment-accounts/v1/list"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT [READ]"
         }
@@ -31652,6 +33101,9 @@
           "PaymentAccount"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/payment-accounts/v1/delete"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT [DELETE]"
         }
@@ -31740,6 +33192,9 @@
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/public/sections/v1/list-active"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STORE [READ]"
@@ -31852,6 +33307,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/list"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -31945,6 +33403,9 @@
           "40172": "Subscription [{subscriptionId}] is charging, waiting for payment notification",
           "40173": "Subscription [{subscriptionId}] current currency [{currentCurrency}] not match request currency [{requestCurrency}]"
         },
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/create"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [CREATE]"
         }
@@ -31995,6 +33456,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/check-subscribable-item"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -32055,6 +33519,9 @@
         ],
         "x-errorCodes": {
           "40141": "Subscription [{subscriptionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/get"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
@@ -32131,6 +33598,9 @@
           "40141": "Subscription [{subscriptionId}] does not exist",
           "40171": "Subscription [{subscriptionId}] is not active",
           "40172": "Subscription [{subscriptionId}] is charging, waiting for payment notification"
+        },
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/update-billing-account"
         },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]"
@@ -32209,6 +33679,9 @@
           "40171": "Subscription [{subscriptionId}] is not active",
           "40172": "Subscription [{subscriptionId}] is charging, waiting for payment notification"
         },
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/cancel"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]"
         }
@@ -32284,6 +33757,9 @@
           "Subscription"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/subscriptions/v1/get-billing-history"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]"
         }
@@ -32345,6 +33821,9 @@
           "View"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/views/v1/list"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:STORE [READ]"
         }
@@ -32400,6 +33879,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/wallets/v1/get"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
         }
@@ -32473,6 +33955,9 @@
           "Wallet"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/wallets/v1/list-transactions"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]"
         }
@@ -32524,7 +34009,10 @@
         "tags": [
           "DLC"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/public/dlc-records/v1/list-content"
+        }
       }
     },
     "/platform/v2/admin/namespaces/{namespace}/fulfillments": {
@@ -32615,6 +34103,9 @@
           "Fulfillment"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v2/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]"
         }
@@ -32848,6 +34339,9 @@
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]",
           "30142": "Published store does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/items/v2/list"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:ITEM [READ]"
         }
@@ -32927,6 +34421,9 @@
           "30122": "Store's meta mismatch",
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/stores/v2/import"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]"
         }
@@ -32989,6 +34486,9 @@
         ],
         "x-errorCodes": {
           "30141": "Store [{storeId}] does not exist in namespace [{namespace}]"
+        },
+        "x-operationId": {
+          "value": "platform/admin/stores/v2/export"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:STORE [READ]"
@@ -33067,6 +34567,9 @@
           "30341": "Item [{itemId}] does not exist in namespace [{namespace}]",
           "35123": "Wallet [{walletId}] is inactive",
           "38121": "Duplicate permanent item exists"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v2/grant-rewards"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [CREATE]"
@@ -33157,6 +34660,9 @@
           "38129": "Cannot combine same item [{itemId}] with different [{fieldName}] value",
           "38130": "Cannot fulfill item with type [{itemType}] in item [{itemIdentity}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v2/grant-transaction"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
         }
@@ -33221,6 +34727,9 @@
         ],
         "x-errorCodes": {
           "38145": "Fulfillment with transactionId [{transactionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v2/retry"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
@@ -33289,6 +34798,9 @@
         ],
         "x-errorCodes": {
           "38145": "Fulfillment with transactionId [{transactionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v2/revoke"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
@@ -33371,6 +34883,9 @@
           "39142": "Apple IAP config not found in namespace [{namespace}]",
           "39171": "The bundle id in namespace [{namespace}] expect [{expected}] but was [{actual}]"
         },
+        "x-operationId": {
+          "value": "platform/public/iap-apple/v2/grant"
+        },
         "x-security": {
           "userPermissions": "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
         }
@@ -33432,6 +34947,9 @@
           "Fulfillment"
         ],
         "x-errorCodes": {},
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v3/bulk-grant"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
         }
@@ -33514,6 +35032,9 @@
           "38129": "Cannot combine same item [{itemId}] with different [{fieldName}] value",
           "38130": "Cannot fulfill item with type [{itemType}] in item [{itemIdentity}]"
         },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v3/grant-transaction"
+        },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
         }
@@ -33571,6 +35092,9 @@
         ],
         "x-errorCodes": {
           "38145": "Fulfillment with transactionId [{transactionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v3/retry"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
@@ -33632,6 +35156,9 @@
         ],
         "x-errorCodes": {
           "38145": "Fulfillment with transactionId [{transactionId}] does not exist"
+        },
+        "x-operationId": {
+          "value": "platform/admin/fulfillments/v3/revoke"
         },
         "x-security": {
           "userPermissions": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT [UPDATE]"
@@ -53671,16 +55198,16 @@
   },
   "x-version": {
     "buildBy": "Gradle 8.5",
-    "buildDate": "2026-05-12T07:37:05+00:00",
-    "buildID": "6.13.0",
+    "buildDate": "2026-07-03T02:29:35+00:00",
+    "buildID": "6.14.0",
     "buildJDK": "21.0.6 (Amazon.com Inc. 21.0.6+7-LTS)",
     "buildOS": "Linux amd64 6.1.144-170.251.amzn2023.x86_64",
     "gitBranchName": "release-candidate",
-    "gitHash": "644db53c09",
-    "gitTag": "6.13.0",
+    "gitHash": "e1b4809c41",
+    "gitTag": "6.14.0",
     "name": "justice-platform-service",
     "realm": "staging",
-    "version": "6.13.0",
+    "version": "6.14.0",
     "version-roles-seeding": "1.2.118"
   }
 }

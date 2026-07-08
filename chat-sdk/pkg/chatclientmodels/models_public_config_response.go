@@ -46,6 +46,10 @@ type ModelsPublicConfigResponse struct {
 	// Format: int32
 	MaxChatMessageLength *int32 `json:"maxChatMessageLength"`
 
+	// maxchatmetadatasize
+	// Format: int32
+	MaxChatMetadataSize int32 `json:"maxChatMetadataSize,omitempty"`
+
 	// spamchatburst
 	// Required: true
 	// Format: int32

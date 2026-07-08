@@ -21,7 +21,7 @@ import (
 type StatUpdate struct {
 
 	// The field used to define cap behavior of stat cycle min/max override. If set to false, all stat cycle and stat item will continue as is if one stat cycle is capped on its min/max. If set to true, all stat cycle and stat item cannot continue if one of stat cycle is capped on its min/max
-	CapCycleOverride bool `json:"capCycleOverride"`
+	CapCycleOverride bool `json:"capCycleOverride,omitempty"`
 
 	// cycleids
 	// Unique: true
@@ -43,13 +43,13 @@ type StatUpdate struct {
 	GlobalAggregationMethod string `json:"globalAggregationMethod,omitempty"`
 
 	// ignoreadditionaldataonvaluerejected
-	IgnoreAdditionalDataOnValueRejected bool `json:"ignoreAdditionalDataOnValueRejected"`
+	IgnoreAdditionalDataOnValueRejected bool `json:"ignoreAdditionalDataOnValueRejected,omitempty"`
 
 	// incrementonly
-	IncrementOnly bool `json:"incrementOnly"`
+	IncrementOnly bool `json:"incrementOnly,omitempty"`
 
 	// ispublic
-	IsPublic bool `json:"isPublic"`
+	IsPublic bool `json:"isPublic,omitempty"`
 
 	// maximum
 	// Format: double
@@ -63,7 +63,7 @@ type StatUpdate struct {
 	Name string `json:"name,omitempty"`
 
 	// setasglobal
-	SetAsGlobal bool `json:"setAsGlobal"`
+	SetAsGlobal bool `json:"setAsGlobal,omitempty"`
 
 	// setby
 	// Enum: ['CLIENT', 'SERVER']

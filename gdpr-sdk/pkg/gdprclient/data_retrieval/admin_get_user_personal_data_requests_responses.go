@@ -45,6 +45,12 @@ func (o *AdminGetUserPersonalDataRequestsReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 404:
+		result := NewAdminGetUserPersonalDataRequestsNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 500:
 		result := NewAdminGetUserPersonalDataRequestsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -207,6 +213,60 @@ func (o *AdminGetUserPersonalDataRequestsUnauthorized) GetPayload() *gdprclientm
 }
 
 func (o *AdminGetUserPersonalDataRequestsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// handle file responses
+	contentDisposition := response.GetHeader("Content-Disposition")
+	if strings.Contains(strings.ToLower(contentDisposition), "filename=") {
+		consumer = runtime.ByteStreamConsumer()
+	}
+
+	o.Payload = new(gdprclientmodels.ResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminGetUserPersonalDataRequestsNotFound creates a AdminGetUserPersonalDataRequestsNotFound with default headers values
+func NewAdminGetUserPersonalDataRequestsNotFound() *AdminGetUserPersonalDataRequestsNotFound {
+	return &AdminGetUserPersonalDataRequestsNotFound{}
+}
+
+/*AdminGetUserPersonalDataRequestsNotFound handles this case with default header values.
+
+  Not Found
+*/
+type AdminGetUserPersonalDataRequestsNotFound struct {
+	Payload *gdprclientmodels.ResponseError
+}
+
+func (o *AdminGetUserPersonalDataRequestsNotFound) Error() string {
+	return fmt.Sprintf("[GET /gdpr/admin/namespaces/{namespace}/users/{userId}/requests][%d] adminGetUserPersonalDataRequestsNotFound  %+v", 404, o.ToJSONString())
+}
+
+func (o *AdminGetUserPersonalDataRequestsNotFound) ToJSONString() string {
+	if o.Payload == nil {
+		return "{}"
+	}
+
+	b, err := json.Marshal(o.Payload)
+	if err != nil {
+		fmt.Println(err)
+
+		return fmt.Sprintf("Failed to marshal the payload: %+v", o.Payload)
+	}
+
+	return fmt.Sprintf("%+v", string(b))
+}
+
+func (o *AdminGetUserPersonalDataRequestsNotFound) GetPayload() *gdprclientmodels.ResponseError {
+	return o.Payload
+}
+
+func (o *AdminGetUserPersonalDataRequestsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// handle file responses
 	contentDisposition := response.GetHeader("Content-Disposition")

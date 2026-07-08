@@ -44,7 +44,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminListGlobalConfigurationShort instead.
 
 AdminListGlobalConfiguration record of global configuration data.
-Record of global configuration data.
+Returns the current global configuration shared across all namespaces. Includes settings like maximum active sessions and cleanup intervals.
 */
 func (a *Client) AdminListGlobalConfiguration(params *AdminListGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListGlobalConfigurationOK, *AdminListGlobalConfigurationUnauthorized, *AdminListGlobalConfigurationForbidden, error) {
 	// TODO: Validate the params before sending
@@ -99,7 +99,7 @@ func (a *Client) AdminListGlobalConfiguration(params *AdminListGlobalConfigurati
 
 /*
 AdminListGlobalConfigurationShort record of global configuration data.
-Record of global configuration data.
+Returns the current global configuration shared across all namespaces. Includes settings like maximum active sessions and cleanup intervals.
 */
 func (a *Client) AdminListGlobalConfigurationShort(params *AdminListGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminListGlobalConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -150,7 +150,7 @@ func (a *Client) AdminListGlobalConfigurationShort(params *AdminListGlobalConfig
 Deprecated: 2022-08-10 - Use AdminUpdateGlobalConfigurationShort instead.
 
 AdminUpdateGlobalConfiguration upsert global configuration data.
-Upsert global configuration data.
+Creates or replaces the global configuration. If no configuration exists, a new one is created. All provided fields are applied.
 */
 func (a *Client) AdminUpdateGlobalConfiguration(params *AdminUpdateGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigurationOK, *AdminUpdateGlobalConfigurationUnauthorized, *AdminUpdateGlobalConfigurationForbidden, error) {
 	// TODO: Validate the params before sending
@@ -205,7 +205,7 @@ func (a *Client) AdminUpdateGlobalConfiguration(params *AdminUpdateGlobalConfigu
 
 /*
 AdminUpdateGlobalConfigurationShort upsert global configuration data.
-Upsert global configuration data.
+Creates or replaces the global configuration. If no configuration exists, a new one is created. All provided fields are applied.
 */
 func (a *Client) AdminUpdateGlobalConfigurationShort(params *AdminUpdateGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateGlobalConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -256,7 +256,7 @@ func (a *Client) AdminUpdateGlobalConfigurationShort(params *AdminUpdateGlobalCo
 Deprecated: 2022-08-10 - Use AdminDeleteGlobalConfigurationShort instead.
 
 AdminDeleteGlobalConfiguration delete of global configuration data.
-Delete of global configuration data.
+Deletes the global configuration. After deletion, the service falls back to default configuration values.
 */
 func (a *Client) AdminDeleteGlobalConfiguration(params *AdminDeleteGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigurationNoContent, *AdminDeleteGlobalConfigurationUnauthorized, *AdminDeleteGlobalConfigurationForbidden, error) {
 	// TODO: Validate the params before sending
@@ -311,7 +311,7 @@ func (a *Client) AdminDeleteGlobalConfiguration(params *AdminDeleteGlobalConfigu
 
 /*
 AdminDeleteGlobalConfigurationShort delete of global configuration data.
-Delete of global configuration data.
+Deletes the global configuration. After deletion, the service falls back to default configuration values.
 */
 func (a *Client) AdminDeleteGlobalConfigurationShort(params *AdminDeleteGlobalConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteGlobalConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

@@ -119,6 +119,7 @@
 | `apimodels.CreateTagResp` | [ApimodelsCreateTagResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_create_tag_resp.go) |
 | `apimodels.DeleteInventoryReq` | [ApimodelsDeleteInventoryReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_delete_inventory_req.go) |
 | `apimodels.ErrorResponse` | [ApimodelsErrorResponse ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_error_response.go) |
+| `apimodels.IntegrationConfigurationReq` | [ApimodelsIntegrationConfigurationReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_integration_configuration_req.go) |
 | `apimodels.IntegrationConfigurationResp` | [ApimodelsIntegrationConfigurationResp ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_integration_configuration_resp.go) |
 | `apimodels.InventoryConfig` | [ApimodelsInventoryConfig ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_inventory_config.go) |
 | `apimodels.InventoryConfigurationReq` | [ApimodelsInventoryConfigurationReq ](../../inventory-sdk/pkg/inventoryclientmodels/apimodels_inventory_configuration_req.go) |

@@ -32,8 +32,8 @@ type Client struct {
 type ClientService interface {
 	PortalHealthCheck(params *PortalHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*PortalHealthCheckOK, error)
 	PortalHealthCheckShort(params *PortalHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*PortalHealthCheckOK, error)
-	Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error)
-	Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error)
+	VersionInfo(params *VersionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*VersionInfoOK, error)
+	VersionInfoShort(params *VersionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*VersionInfoOK, error)
 	BasicHealthCheck(params *BasicHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*BasicHealthCheckOK, error)
 	BasicHealthCheckShort(params *BasicHealthCheckParams, authInfo runtime.ClientAuthInfoWriter) (*BasicHealthCheckOK, error)
 
@@ -135,14 +135,14 @@ func (a *Client) PortalHealthCheckShort(params *PortalHealthCheckParams, authInf
 }
 
 /*
-Deprecated: 2022-08-10 - Use Func1Short instead.
+Deprecated: 2022-08-10 - Use VersionInfoShort instead.
 
-Func1 version info
+VersionInfo version info
 */
-func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error) {
+func (a *Client) VersionInfo(params *VersionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*VersionInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFunc1Params()
+		params = NewVersionInfoParams()
 	}
 
 	if params.Context == nil {
@@ -158,14 +158,14 @@ func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWrite
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "func1",
+		ID:                 "VersionInfo",
 		Method:             "GET",
 		PathPattern:        "/ams/version",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &Func1Reader{formats: a.formats},
+		Reader:             &VersionInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -176,7 +176,7 @@ func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWrite
 
 	switch v := result.(type) {
 
-	case *Func1OK:
+	case *VersionInfoOK:
 		return v, nil
 
 	default:
@@ -185,12 +185,12 @@ func (a *Client) Func1(params *Func1Params, authInfo runtime.ClientAuthInfoWrite
 }
 
 /*
-Func1Short version info
+VersionInfoShort version info
 */
-func (a *Client) Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfoWriter) (*Func1OK, error) {
+func (a *Client) VersionInfoShort(params *VersionInfoParams, authInfo runtime.ClientAuthInfoWriter) (*VersionInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewFunc1Params()
+		params = NewVersionInfoParams()
 	}
 
 	if params.Context == nil {
@@ -202,14 +202,14 @@ func (a *Client) Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfo
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "func1",
+		ID:                 "VersionInfo",
 		Method:             "GET",
 		PathPattern:        "/ams/version",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &Func1Reader{formats: a.formats},
+		Reader:             &VersionInfoReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -220,7 +220,7 @@ func (a *Client) Func1Short(params *Func1Params, authInfo runtime.ClientAuthInfo
 
 	switch v := result.(type) {
 
-	case *Func1OK:
+	case *VersionInfoOK:
 		return v, nil
 
 	default:

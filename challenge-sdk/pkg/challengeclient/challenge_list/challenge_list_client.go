@@ -30,8 +30,8 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesBadRequest, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error)
-	GetChallengesShort(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, error)
+	PublicGetChallenges(params *PublicGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetChallengesOK, *PublicGetChallengesBadRequest, *PublicGetChallengesUnauthorized, *PublicGetChallengesForbidden, *PublicGetChallengesInternalServerError, error)
+	PublicGetChallengesShort(params *PublicGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetChallengesOK, error)
 	PublicGetScheduledGoals(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, *PublicGetScheduledGoalsUnauthorized, *PublicGetScheduledGoalsForbidden, *PublicGetScheduledGoalsNotFound, *PublicGetScheduledGoalsInternalServerError, error)
 	PublicGetScheduledGoalsShort(params *PublicGetScheduledGoalsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetScheduledGoalsOK, error)
 
@@ -39,15 +39,15 @@ type ClientService interface {
 }
 
 /*
-Deprecated: 2022-08-10 - Use GetChallengesShort instead.
+Deprecated: 2022-08-10 - Use PublicGetChallengesShort instead.
 
-GetChallenges list challenges
+PublicGetChallenges list challenges
 - Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
-func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, *GetChallengesBadRequest, *GetChallengesUnauthorized, *GetChallengesForbidden, *GetChallengesInternalServerError, error) {
+func (a *Client) PublicGetChallenges(params *PublicGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetChallengesOK, *PublicGetChallengesBadRequest, *PublicGetChallengesUnauthorized, *PublicGetChallengesForbidden, *PublicGetChallengesInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetChallengesParams()
+		params = NewPublicGetChallengesParams()
 	}
 
 	if params.Context == nil {
@@ -63,14 +63,14 @@ func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.Cli
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetChallenges",
+		ID:                 "publicGetChallenges",
 		Method:             "GET",
 		PathPattern:        "/challenge/v1/public/namespaces/{namespace}/challenges",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetChallengesReader{formats: a.formats},
+		Reader:             &PublicGetChallengesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -81,19 +81,19 @@ func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.Cli
 
 	switch v := result.(type) {
 
-	case *GetChallengesOK:
+	case *PublicGetChallengesOK:
 		return v, nil, nil, nil, nil, nil
 
-	case *GetChallengesBadRequest:
+	case *PublicGetChallengesBadRequest:
 		return nil, v, nil, nil, nil, nil
 
-	case *GetChallengesUnauthorized:
+	case *PublicGetChallengesUnauthorized:
 		return nil, nil, v, nil, nil, nil
 
-	case *GetChallengesForbidden:
+	case *PublicGetChallengesForbidden:
 		return nil, nil, nil, v, nil, nil
 
-	case *GetChallengesInternalServerError:
+	case *PublicGetChallengesInternalServerError:
 		return nil, nil, nil, nil, v, nil
 
 	default:
@@ -102,13 +102,13 @@ func (a *Client) GetChallenges(params *GetChallengesParams, authInfo runtime.Cli
 }
 
 /*
-GetChallengesShort list challenges
+PublicGetChallengesShort list challenges
 - Required permission: NAMESPACE:{namespace}:CHALLENGE [READ]
 */
-func (a *Client) GetChallengesShort(params *GetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*GetChallengesOK, error) {
+func (a *Client) PublicGetChallengesShort(params *PublicGetChallengesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetChallengesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetChallengesParams()
+		params = NewPublicGetChallengesParams()
 	}
 
 	if params.Context == nil {
@@ -120,14 +120,14 @@ func (a *Client) GetChallengesShort(params *GetChallengesParams, authInfo runtim
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetChallenges",
+		ID:                 "publicGetChallenges",
 		Method:             "GET",
 		PathPattern:        "/challenge/v1/public/namespaces/{namespace}/challenges",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetChallengesReader{formats: a.formats},
+		Reader:             &PublicGetChallengesReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -138,15 +138,15 @@ func (a *Client) GetChallengesShort(params *GetChallengesParams, authInfo runtim
 
 	switch v := result.(type) {
 
-	case *GetChallengesOK:
+	case *PublicGetChallengesOK:
 		return v, nil
-	case *GetChallengesBadRequest:
+	case *PublicGetChallengesBadRequest:
 		return nil, v
-	case *GetChallengesUnauthorized:
+	case *PublicGetChallengesUnauthorized:
 		return nil, v
-	case *GetChallengesForbidden:
+	case *PublicGetChallengesForbidden:
 		return nil, v
-	case *GetChallengesInternalServerError:
+	case *PublicGetChallengesInternalServerError:
 		return nil, v
 
 	default:

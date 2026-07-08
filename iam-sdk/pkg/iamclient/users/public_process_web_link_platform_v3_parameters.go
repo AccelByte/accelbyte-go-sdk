@@ -70,7 +70,7 @@ type PublicProcessWebLinkPlatformV3Params struct {
 	*/
 	Code *string
 	/*State
-	  state
+	  state, comes from the response of <code>GET /users/me/platforms/{platformId}/web/link</code> endpoint
 
 	*/
 	State string

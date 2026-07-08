@@ -304,10 +304,10 @@ func (a *Client) S2SGetDataRequestByRequestIDShort(params *S2SGetDataRequestByRe
 /*
 Deprecated: 2022-08-10 - Use S2SRequestDataRetrievalShort instead.
 
-S2SRequestDataRetrieval submit user personal data retrieval request
+S2SRequestDataRetrieval submit user's personal data request
 Scope: account
 
-Submit user personal data retrieval request.
+Submit user's personal data request.
 
 **Limitation:** This API only accepts requests with a publisher userId and does not support game userId requests at this time.
 
@@ -376,10 +376,10 @@ func (a *Client) S2SRequestDataRetrieval(params *S2SRequestDataRetrievalParams, 
 }
 
 /*
-S2SRequestDataRetrievalShort submit user personal data retrieval request
+S2SRequestDataRetrievalShort submit user's personal data request
 Scope: account
 
-Submit user personal data retrieval request.
+Submit user's personal data request.
 
 **Limitation:** This API only accepts requests with a publisher userId and does not support game userId requests at this time.
 

@@ -334,12 +334,18 @@ type ClientService interface {
 	PublicPlatformUnlinkAllV3Short(params *PublicPlatformUnlinkAllV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicPlatformUnlinkAllV3NoContent, error)
 	PublicForcePlatformLinkV3(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, *PublicForcePlatformLinkV3BadRequest, *PublicForcePlatformLinkV3Unauthorized, *PublicForcePlatformLinkV3NotFound, *PublicForcePlatformLinkV3Conflict, *PublicForcePlatformLinkV3InternalServerError, error)
 	PublicForcePlatformLinkV3Short(params *PublicForcePlatformLinkV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForcePlatformLinkV3NoContent, error)
-	PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, error)
+	PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, *PublicWebLinkPlatformInternalServerError, error)
 	PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error)
 	PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
 	PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
-	PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, *PublicProcessWebLinkPlatformV3BadRequest, error)
+	PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, *PublicProcessWebLinkPlatformV3BadRequest, *PublicProcessWebLinkPlatformV3InternalServerError, error)
 	PublicProcessWebLinkPlatformV3Short(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, error)
+	PublicWebReauthPlatform(params *PublicWebReauthPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformOK, *PublicWebReauthPlatformBadRequest, *PublicWebReauthPlatformUnauthorized, *PublicWebReauthPlatformNotFound, error)
+	PublicWebReauthPlatformShort(params *PublicWebReauthPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformOK, error)
+	PublicWebReauthPlatformEstablish(params *PublicWebReauthPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformEstablishFound, error)
+	PublicWebReauthPlatformEstablishShort(params *PublicWebReauthPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformEstablishFound, error)
+	PublicWebReauthPlatformProcess(params *PublicWebReauthPlatformProcessParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformProcessOK, *PublicWebReauthPlatformProcessBadRequest, *PublicWebReauthPlatformProcessInternalServerError, error)
+	PublicWebReauthPlatformProcessShort(params *PublicWebReauthPlatformProcessParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformProcessOK, error)
 	PublicGetUsersPlatformInfosV3(params *PublicGetUsersPlatformInfosV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUsersPlatformInfosV3OK, *PublicGetUsersPlatformInfosV3BadRequest, *PublicGetUsersPlatformInfosV3Unauthorized, *PublicGetUsersPlatformInfosV3InternalServerError, error)
 	PublicGetUsersPlatformInfosV3Short(params *PublicGetUsersPlatformInfosV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUsersPlatformInfosV3OK, error)
 	ResetPasswordV3(params *ResetPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*ResetPasswordV3NoContent, *ResetPasswordV3BadRequest, *ResetPasswordV3Forbidden, *ResetPasswordV3NotFound, error)
@@ -20758,8 +20764,9 @@ func (a *Client) PublicForcePlatformLinkV3Short(params *PublicForcePlatformLinkV
 /*
 Deprecated: 2022-08-10 - Use PublicWebLinkPlatformShort instead.
 
-PublicWebLinkPlatform create public web linking
-Generates a third party login page which will redirect to the establish API.
+PublicWebLinkPlatform initiate platform web linking
+Generates a redirect to a third party login page for account linking authentication.
+
 Supported platforms:
 - ps4web
 - xblweb
@@ -20773,8 +20780,12 @@ Supported platforms:
 - discord
 - amazon
 - oculusweb
+
+## New API version
+
+This API remains fully functional, but `GET /users/me/platforms/{platformId}/web/reauth` is recommended for new integrations.
 */
-func (a *Client) PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, error) {
+func (a *Client) PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, *PublicWebLinkPlatformInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicWebLinkPlatformParams()
@@ -20806,31 +20817,35 @@ func (a *Client) PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, auth
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicWebLinkPlatformOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *PublicWebLinkPlatformBadRequest:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicWebLinkPlatformUnauthorized:
-		return nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicWebLinkPlatformNotFound:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil, nil
+
+	case *PublicWebLinkPlatformInternalServerError:
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
-PublicWebLinkPlatformShort create public web linking
-Generates a third party login page which will redirect to the establish API.
+PublicWebLinkPlatformShort initiate platform web linking
+Generates a redirect to a third party login page for account linking authentication.
+
 Supported platforms:
 - ps4web
 - xblweb
@@ -20844,6 +20859,10 @@ Supported platforms:
 - discord
 - amazon
 - oculusweb
+
+## New API version
+
+This API remains fully functional, but `GET /users/me/platforms/{platformId}/web/reauth` is recommended for new integrations.
 */
 func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error) {
 	// TODO: Validate the params before sending
@@ -20886,6 +20905,8 @@ func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams,
 		return nil, v
 	case *PublicWebLinkPlatformNotFound:
 		return nil, v
+	case *PublicWebLinkPlatformInternalServerError:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -20895,8 +20916,10 @@ func (a *Client) PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams,
 /*
 Deprecated: 2022-08-10 - Use PublicWebLinkPlatformEstablishShort instead.
 
-PublicWebLinkPlatformEstablish establish link progress
-Used by a third party to redirect the code for the purpose of linking the third party account to an IAM account.
+PublicWebLinkPlatformEstablish platform web link callback
+Callback endpoint for the third party to redirect to after authentication to complete the linking process for the IAM account.
+After successfully perform the account linking, it will redirect to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/link` endpoint.
+
 Supported platforms:
 - ps4web
 - xblweb
@@ -20910,6 +20933,10 @@ Supported platforms:
 - discord
 - amazon
 - oculusweb
+
+## New API version
+
+This API remains fully functional, but `GET /users/me/platforms/{platformId}/web/reauth/establish` is recommended for new integrations.
 */
 func (a *Client) PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error) {
 	// TODO: Validate the params before sending
@@ -20957,8 +20984,10 @@ func (a *Client) PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEst
 }
 
 /*
-PublicWebLinkPlatformEstablishShort establish link progress
-Used by a third party to redirect the code for the purpose of linking the third party account to an IAM account.
+PublicWebLinkPlatformEstablishShort platform web link callback
+Callback endpoint for the third party to redirect to after authentication to complete the linking process for the IAM account.
+After successfully perform the account linking, it will redirect to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/link` endpoint.
+
 Supported platforms:
 - ps4web
 - xblweb
@@ -20972,6 +21001,10 @@ Supported platforms:
 - discord
 - amazon
 - oculusweb
+
+## New API version
+
+This API remains fully functional, but `GET /users/me/platforms/{platformId}/web/reauth/establish` is recommended for new integrations.
 */
 func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error) {
 	// TODO: Validate the params before sending
@@ -21017,9 +21050,9 @@ func (a *Client) PublicWebLinkPlatformEstablishShort(params *PublicWebLinkPlatfo
 /*
 Deprecated: 2022-08-10 - Use PublicProcessWebLinkPlatformV3Short instead.
 
-PublicProcessWebLinkPlatformV3 process link progress
-Processes third party account link and returns the link status directly instead of redirecting to the original page.
-The param **state** comes from the response of `/users/me/platforms/{platformId}/web/link`
+PublicProcessWebLinkPlatformV3 complete platform web link
+Completes the third party account link and returns the link status directly instead of redirecting to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/link` endpoint.
+
 Supported platforms:
 - ps4web
 - xblweb
@@ -21033,8 +21066,12 @@ Supported platforms:
 - discord
 - amazon
 - oculusweb
+
+## New API version
+
+This API remains fully functional, but `POST /users/me/platforms/{platformId}/web/reauth/process` is recommended for new integrations.
 */
-func (a *Client) PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, *PublicProcessWebLinkPlatformV3BadRequest, error) {
+func (a *Client) PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, *PublicProcessWebLinkPlatformV3BadRequest, *PublicProcessWebLinkPlatformV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicProcessWebLinkPlatformV3Params()
@@ -21066,26 +21103,29 @@ func (a *Client) PublicProcessWebLinkPlatformV3(params *PublicProcessWebLinkPlat
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicProcessWebLinkPlatformV3OK:
-		return v, nil, nil
+		return v, nil, nil, nil
 
 	case *PublicProcessWebLinkPlatformV3BadRequest:
-		return nil, v, nil
+		return nil, v, nil, nil
+
+	case *PublicProcessWebLinkPlatformV3InternalServerError:
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
 /*
-PublicProcessWebLinkPlatformV3Short process link progress
-Processes third party account link and returns the link status directly instead of redirecting to the original page.
-The param **state** comes from the response of `/users/me/platforms/{platformId}/web/link`
+PublicProcessWebLinkPlatformV3Short complete platform web link
+Completes the third party account link and returns the link status directly instead of redirecting to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/link` endpoint.
+
 Supported platforms:
 - ps4web
 - xblweb
@@ -21099,6 +21139,10 @@ Supported platforms:
 - discord
 - amazon
 - oculusweb
+
+## New API version
+
+This API remains fully functional, but `POST /users/me/platforms/{platformId}/web/reauth/process` is recommended for new integrations.
 */
 func (a *Client) PublicProcessWebLinkPlatformV3Short(params *PublicProcessWebLinkPlatformV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicProcessWebLinkPlatformV3OK, error) {
 	// TODO: Validate the params before sending
@@ -21136,6 +21180,421 @@ func (a *Client) PublicProcessWebLinkPlatformV3Short(params *PublicProcessWebLin
 	case *PublicProcessWebLinkPlatformV3OK:
 		return v, nil
 	case *PublicProcessWebLinkPlatformV3BadRequest:
+		return nil, v
+	case *PublicProcessWebLinkPlatformV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicWebReauthPlatformShort instead.
+
+PublicWebReauthPlatform initiate platform web re-authentication
+Generates a redirect to a third party login page for re-authentication purpose.
+
+Supported platforms:
+- ps4web
+- xblweb
+- steamopenid
+- epicgames
+- facebook
+- twitch
+- google
+- apple
+- snapchat
+- discord
+- amazon
+- oculusweb
+*/
+func (a *Client) PublicWebReauthPlatform(params *PublicWebReauthPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformOK, *PublicWebReauthPlatformBadRequest, *PublicWebReauthPlatformUnauthorized, *PublicWebReauthPlatformNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebReauthPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebReauthPlatform",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/reauth",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebReauthPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebReauthPlatformOK:
+		return v, nil, nil, nil, nil
+
+	case *PublicWebReauthPlatformBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicWebReauthPlatformUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *PublicWebReauthPlatformNotFound:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicWebReauthPlatformShort initiate platform web re-authentication
+Generates a redirect to a third party login page for re-authentication purpose.
+
+Supported platforms:
+- ps4web
+- xblweb
+- steamopenid
+- epicgames
+- facebook
+- twitch
+- google
+- apple
+- snapchat
+- discord
+- amazon
+- oculusweb
+*/
+func (a *Client) PublicWebReauthPlatformShort(params *PublicWebReauthPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebReauthPlatformParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebReauthPlatform",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/reauth",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebReauthPlatformReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebReauthPlatformOK:
+		return v, nil
+	case *PublicWebReauthPlatformBadRequest:
+		return nil, v
+	case *PublicWebReauthPlatformUnauthorized:
+		return nil, v
+	case *PublicWebReauthPlatformNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicWebReauthPlatformEstablishShort instead.
+
+PublicWebReauthPlatformEstablish platform web re-auth callback
+Callback endpoint for the third party to redirect to after authentication to complete the re-auth flow on the IAM side.
+
+The re-auth flow inside IAM depends on the **operation** parameter passed to `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+For **operation=GDPR**, the **gdpr_token** cookie is set in the response headers on success.
+
+After completing the re-auth flow, it will redirect to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+
+Supported platforms:
+- ps4web
+- xblweb
+- steamopenid
+- epicgames
+- facebook
+- twitch
+- google
+- apple
+- snapchat
+- discord
+- amazon
+- oculusweb
+*/
+func (a *Client) PublicWebReauthPlatformEstablish(params *PublicWebReauthPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformEstablishFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebReauthPlatformEstablishParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebReauthPlatformEstablish",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/reauth/establish",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebReauthPlatformEstablishReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebReauthPlatformEstablishFound:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicWebReauthPlatformEstablishShort platform web re-auth callback
+Callback endpoint for the third party to redirect to after authentication to complete the re-auth flow on the IAM side.
+
+The re-auth flow inside IAM depends on the **operation** parameter passed to `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+For **operation=GDPR**, the **gdpr_token** cookie is set in the response headers on success.
+
+After completing the re-auth flow, it will redirect to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+
+Supported platforms:
+- ps4web
+- xblweb
+- steamopenid
+- epicgames
+- facebook
+- twitch
+- google
+- apple
+- snapchat
+- discord
+- amazon
+- oculusweb
+*/
+func (a *Client) PublicWebReauthPlatformEstablishShort(params *PublicWebReauthPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformEstablishFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebReauthPlatformEstablishParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebReauthPlatformEstablish",
+		Method:             "GET",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/reauth/establish",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebReauthPlatformEstablishReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebReauthPlatformEstablishFound:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+Deprecated: 2022-08-10 - Use PublicWebReauthPlatformProcessShort instead.
+
+PublicWebReauthPlatformProcess complete platform web re-auth
+Completes the re-auth flow on the IAM side and returns the result directly instead of redirecting to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+
+The re-auth flow inside IAM depends on the **operation** parameter passed to `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+For **operation=GDPR**, the **gdpr_token** cookie is set in the response headers on success.
+
+Supported platforms:
+- ps4web
+- xblweb
+- steamopenid
+- epicgames
+- facebook
+- twitch
+- google
+- apple
+- snapchat
+- discord
+- amazon
+- oculusweb
+*/
+func (a *Client) PublicWebReauthPlatformProcess(params *PublicWebReauthPlatformProcessParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformProcessOK, *PublicWebReauthPlatformProcessBadRequest, *PublicWebReauthPlatformProcessInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebReauthPlatformProcessParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	if params.XFlightId != nil {
+		params.SetFlightId(*params.XFlightId)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebReauthPlatformProcess",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/reauth/process",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebReauthPlatformProcessReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebReauthPlatformProcessOK:
+		return v, nil, nil, nil
+
+	case *PublicWebReauthPlatformProcessBadRequest:
+		return nil, v, nil, nil
+
+	case *PublicWebReauthPlatformProcessInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+PublicWebReauthPlatformProcessShort complete platform web re-auth
+Completes the re-auth flow on the IAM side and returns the result directly instead of redirecting to the **redirectUri** defined when calling the `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+
+The re-auth flow inside IAM depends on the **operation** parameter passed to `GET /users/me/platforms/{platformId}/web/reauth` endpoint.
+For **operation=GDPR**, the **gdpr_token** cookie is set in the response headers on success.
+
+Supported platforms:
+- ps4web
+- xblweb
+- steamopenid
+- epicgames
+- facebook
+- twitch
+- google
+- apple
+- snapchat
+- discord
+- amazon
+- oculusweb
+*/
+func (a *Client) PublicWebReauthPlatformProcessShort(params *PublicWebReauthPlatformProcessParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebReauthPlatformProcessOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicWebReauthPlatformProcessParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	if params.RetryPolicy != nil {
+		params.SetHTTPClientTransport(params.RetryPolicy)
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicWebReauthPlatformProcess",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/me/platforms/{platformId}/web/reauth/process",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicWebReauthPlatformProcessReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicWebReauthPlatformProcessOK:
+		return v, nil
+	case *PublicWebReauthPlatformProcessBadRequest:
+		return nil, v
+	case *PublicWebReauthPlatformProcessInternalServerError:
 		return nil, v
 
 	default:

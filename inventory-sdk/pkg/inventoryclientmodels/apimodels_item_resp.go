@@ -44,7 +44,7 @@ type ApimodelsItemResp struct {
 	Namespace *string `json:"namespace"`
 
 	// platformavailable
-	PlatformAvailable bool `json:"platformAvailable"`
+	PlatformAvailable bool `json:"platformAvailable,omitempty"`
 
 	// qty
 	// Required: true

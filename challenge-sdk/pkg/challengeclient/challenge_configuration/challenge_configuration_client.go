@@ -183,7 +183,8 @@ Challenge is a collection of goals that can be completed by players. Challenge c
 - startDate: timestamp of when the challenge is started
 - endDate: timestamp of when the challenge is ended (optional)
 - endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.
-- repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
+- repeatAfter: number of periods after which the challenge's goals repeat. Leave empty if you don't want to repeat the challenge.
+- note: when repeatAfter is set, goals cannot include the 'schedule' field when created via POST .../goals. Use PUT .../goals/{code}/slots to assign each goal to a specific slot instead.
 - rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
 - activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
 - assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)
@@ -271,7 +272,8 @@ Challenge is a collection of goals that can be completed by players. Challenge c
 - startDate: timestamp of when the challenge is started
 - endDate: timestamp of when the challenge is ended (optional)
 - endAfter: describe number of period challenge will be retired after (optional). To configure challenge that never end, leave the endDate and endAfter field null/empty.
-- repeatAfter: describe number of period challenge's goals will be repeated after. Leave it empty if you don't want to repeat the challenge.
+- repeatAfter: number of periods after which the challenge's goals repeat. Leave empty if you don't want to repeat the challenge.
+- note: when repeatAfter is set, goals cannot include the 'schedule' field when created via POST .../goals. Use PUT .../goals/{code}/slots to assign each goal to a specific slot instead.
 - rotation: describe how long goals in a challenge will be available for players to progress before rotated with another goals. (DAILY|WEEKLY|MONTHLY|NONE)
 - activeGoalsPerRotation: number of goals per rotation (currently only applicable for RANDOMIZE assignment)
 - assignmentRule: describe how the goals will be assigned and scheduled to users. (FIXED|RANDOMIZED|UNSCHEDULED|CUSTOM)

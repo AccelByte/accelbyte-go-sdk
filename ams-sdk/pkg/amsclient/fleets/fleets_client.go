@@ -32,13 +32,13 @@ type Client struct {
 type ClientService interface {
 	FleetList(params *FleetListParams, authInfo runtime.ClientAuthInfoWriter) (*FleetListOK, *FleetListInternalServerError, error)
 	FleetListShort(params *FleetListParams, authInfo runtime.ClientAuthInfoWriter) (*FleetListOK, error)
-	FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateInternalServerError, error)
+	FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateConflict, *FleetCreateInternalServerError, error)
 	FleetCreateShort(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, error)
 	BulkFleetDelete(params *BulkFleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFleetDeleteOK, *BulkFleetDeleteMultiStatus, *BulkFleetDeleteBadRequest, *BulkFleetDeleteUnauthorized, *BulkFleetDeleteForbidden, *BulkFleetDeleteUnprocessableEntity, *BulkFleetDeleteInternalServerError, error)
 	BulkFleetDeleteShort(params *BulkFleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*BulkFleetDeleteOK, error)
 	FleetGet(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, *FleetGetBadRequest, *FleetGetUnauthorized, *FleetGetForbidden, *FleetGetNotFound, *FleetGetInternalServerError, error)
 	FleetGetShort(params *FleetGetParams, authInfo runtime.ClientAuthInfoWriter) (*FleetGetOK, error)
-	FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateInternalServerError, error)
+	FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateConflict, *FleetUpdateInternalServerError, error)
 	FleetUpdateShort(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, error)
 	FleetDelete(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, *FleetDeleteBadRequest, *FleetDeleteUnauthorized, *FleetDeleteForbidden, *FleetDeleteNotFound, *FleetDeleteInternalServerError, error)
 	FleetDeleteShort(params *FleetDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*FleetDeleteNoContent, error)
@@ -161,7 +161,7 @@ Optionally, sampling rules for the fleet can also be specified
 
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [CREATE]
 */
-func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateInternalServerError, error) {
+func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetCreateCreated, *FleetCreateBadRequest, *FleetCreateUnauthorized, *FleetCreateForbidden, *FleetCreateConflict, *FleetCreateInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetCreateParams()
@@ -193,28 +193,31 @@ func (a *Client) FleetCreate(params *FleetCreateParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *FleetCreateCreated:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *FleetCreateBadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *FleetCreateUnauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *FleetCreateForbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *FleetCreateConflict:
+		return nil, nil, nil, nil, v, nil, nil
 
 	case *FleetCreateInternalServerError:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -264,6 +267,8 @@ func (a *Client) FleetCreateShort(params *FleetCreateParams, authInfo runtime.Cl
 	case *FleetCreateUnauthorized:
 		return nil, v
 	case *FleetCreateForbidden:
+		return nil, v
+	case *FleetCreateConflict:
 		return nil, v
 	case *FleetCreateInternalServerError:
 		return nil, v
@@ -532,7 +537,7 @@ Optionally, sampling rules for the fleet can also be updated
 
 Required Permission: ADMIN:NAMESPACE:{namespace}:ARMADA:FLEET [UPDATE]
 */
-func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateInternalServerError, error) {
+func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*FleetUpdateNoContent, *FleetUpdateBadRequest, *FleetUpdateUnauthorized, *FleetUpdateForbidden, *FleetUpdateNotFound, *FleetUpdateConflict, *FleetUpdateInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewFleetUpdateParams()
@@ -564,31 +569,34 @@ func (a *Client) FleetUpdate(params *FleetUpdateParams, authInfo runtime.ClientA
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *FleetUpdateNoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *FleetUpdateBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *FleetUpdateUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *FleetUpdateForbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *FleetUpdateNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *FleetUpdateConflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *FleetUpdateInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -640,6 +648,8 @@ func (a *Client) FleetUpdateShort(params *FleetUpdateParams, authInfo runtime.Cl
 	case *FleetUpdateForbidden:
 		return nil, v
 	case *FleetUpdateNotFound:
+		return nil, v
+	case *FleetUpdateConflict:
 		return nil, v
 	case *FleetUpdateInternalServerError:
 		return nil, v

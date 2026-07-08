@@ -40,8 +40,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use GetExtendFileShort instead.
 
 GetExtendFile retrieve extend hosted static files
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:FILES [READ]`
-
 Serves static files provided for extend features, for example: serving App UI files. Files are served with immutable caching headers.
 */
 func (a *Client) GetExtendFile(params *GetExtendFileParams, authInfo runtime.ClientAuthInfoWriter) (*GetExtendFileOK, *GetExtendFileBadRequest, *GetExtendFileNotFound, *GetExtendFileBadGateway, error) {
@@ -100,8 +98,6 @@ func (a *Client) GetExtendFile(params *GetExtendFileParams, authInfo runtime.Cli
 
 /*
 GetExtendFileShort retrieve extend hosted static files
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:FILES [READ]`
-
 Serves static files provided for extend features, for example: serving App UI files. Files are served with immutable caching headers.
 */
 func (a *Client) GetExtendFileShort(params *GetExtendFileParams, authInfo runtime.ClientAuthInfoWriter) (*GetExtendFileOK, error) {

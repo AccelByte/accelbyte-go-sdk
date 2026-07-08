@@ -17,6 +17,9 @@ import (
 // swagger:model Restapi moderation rule actions request.
 type RestapiModerationRuleActionsRequest struct {
 
+	// Enable auto resolve ticket action
+	AutoResolve bool `json:"autoResolve"`
+
 	// Ban account action configuration
 	BanAccount *RestapiBanAccountActionRequest `json:"banAccount,omitempty"`
 

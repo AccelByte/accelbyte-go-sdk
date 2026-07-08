@@ -40,7 +40,7 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use AdminGetListNativeSessionShort instead.
 
 AdminGetListNativeSession list of native sessions.
-List of native sessions.
+Returns paginated list of native platform sessions. Native sessions are synchronized with PSN, Xbox Live, and Steam platform session systems.
 */
 func (a *Client) AdminGetListNativeSession(params *AdminGetListNativeSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListNativeSessionOK, *AdminGetListNativeSessionUnauthorized, *AdminGetListNativeSessionForbidden, error) {
 	// TODO: Validate the params before sending
@@ -95,7 +95,7 @@ func (a *Client) AdminGetListNativeSession(params *AdminGetListNativeSessionPara
 
 /*
 AdminGetListNativeSessionShort list of native sessions.
-List of native sessions.
+Returns paginated list of native platform sessions. Native sessions are synchronized with PSN, Xbox Live, and Steam platform session systems.
 */
 func (a *Client) AdminGetListNativeSessionShort(params *AdminGetListNativeSessionParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetListNativeSessionOK, error) {
 	// TODO: Validate the params before sending

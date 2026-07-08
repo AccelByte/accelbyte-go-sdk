@@ -369,7 +369,7 @@ $ samples/cli/sample-apps Leaderboard getLeaderboardConfigurationsAdminV3 \
 ```sh
 $ samples/cli/sample-apps Leaderboard createLeaderboardConfigurationAdminV3 \
     --namespace 'string' \
-    --body '{"allTime": false, "cycleIds": ["string"], "descending": false, "description": "string", "iconURL": "string", "leaderboardCode": "string", "name": "string", "statCode": "string"}' \
+    --body '{"allTime": false, "cycleIds": ["string"], "descending": false, "description": "string", "enableServerHiddenFilter": false, "iconURL": "string", "leaderboardCode": "string", "name": "string", "statCode": "string"}' \
     > result.txt
 ```
 
@@ -394,7 +394,7 @@ $ samples/cli/sample-apps Leaderboard getLeaderboardConfigurationAdminV3 \
 $ samples/cli/sample-apps Leaderboard updateLeaderboardConfigurationAdminV3 \
     --leaderboardCode 'string' \
     --namespace 'string' \
-    --body '{"allTime": false, "cycleIds": ["string"], "descending": false, "description": "string", "iconURL": "string", "name": "string"}' \
+    --body '{"allTime": false, "cycleIds": ["string"], "descending": false, "description": "string", "enableServerHiddenFilter": false, "iconURL": "string", "name": "string"}' \
     > result.txt
 ```
 
@@ -411,6 +411,7 @@ $ samples/cli/sample-apps Leaderboard deleteLeaderboardConfigurationAdminV3 \
 $ samples/cli/sample-apps Leaderboard getAllTimeLeaderboardRankingAdminV3 \
     --leaderboardCode 'string' \
     --namespace 'string' \
+    --includeHiddenUsers false \
     --limit 1 \
     --offset 1 \
     > result.txt
@@ -422,6 +423,7 @@ $ samples/cli/sample-apps Leaderboard getCurrentCycleLeaderboardRankingAdminV3 \
     --cycleId 'string' \
     --leaderboardCode 'string' \
     --namespace 'string' \
+    --includeHiddenUsers false \
     --limit 1 \
     --offset 1 \
     --previousVersion 1 \

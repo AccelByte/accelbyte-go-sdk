@@ -3,7 +3,7 @@
   "info": {
     "description": "Manage AMS Fleets",
     "title": "fleet-commander",
-    "version": "1.45.0"
+    "version": "1.46.2"
   },
   "schemes": [
     "https"
@@ -63,7 +63,8 @@
         "tags": [
           "Auth"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/fleet-commander/v1/check-auth"
       }
     },
     "/ams/healthz": {
@@ -86,7 +87,8 @@
         "tags": [
           "Fleet Commander"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/internal/v1/check-portal-health"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/account": {
@@ -149,7 +151,8 @@
         "tags": [
           "Account"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/account/v1/get"
       },
       "post": {
         "consumes": [
@@ -212,7 +215,8 @@
         "tags": [
           "Account"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/account/v1/create"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/account/link": {
@@ -275,7 +279,8 @@
         "tags": [
           "Account"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/account/v1/get-link-token"
       },
       "post": {
         "consumes": [
@@ -338,7 +343,8 @@
         "tags": [
           "Account"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/account/v1/link"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts": {
@@ -419,7 +425,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/bulk-delete"
       },
       "get": {
         "consumes": [
@@ -573,7 +580,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/get"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts/usage": {
@@ -630,7 +638,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/get-usage"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}": {
@@ -703,7 +712,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/delete"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/artifacts/{artifactID}/url": {
@@ -779,7 +789,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/get-download-url"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/development/server-configurations": {
@@ -886,7 +897,8 @@
         "tags": [
           "Development"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dev-server-config/v1/list"
       },
       "post": {
         "consumes": [
@@ -955,7 +967,8 @@
         "tags": [
           "Development"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dev-server-config/v1/create"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/development/server-configurations/{developmentServerConfigID}": {
@@ -1022,7 +1035,8 @@
         "tags": [
           "Development"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dev-server-config/v1/delete"
       },
       "get": {
         "consumes": [
@@ -1090,7 +1104,8 @@
         "tags": [
           "Development"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dev-server-config/v1/get"
       },
       "patch": {
         "consumes": [
@@ -1163,7 +1178,8 @@
         "tags": [
           "Development"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dev-server-config/v1/update"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets": {
@@ -1246,7 +1262,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/bulk-delete"
       },
       "get": {
         "consumes": [
@@ -1275,6 +1292,14 @@
             "in": "query",
             "name": "count",
             "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "include inactive regions in the response",
+            "in": "query",
+            "name": "includeInactiveRegions",
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "filter fleets by name",
@@ -1342,7 +1367,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/list"
       },
       "post": {
         "consumes": [
@@ -1395,6 +1421,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
+          "409": {
+            "description": "fleet name already exists",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
           "500": {
             "description": "internal server error",
             "schema": {
@@ -1411,7 +1443,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/create"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}": {
@@ -1484,7 +1517,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/delete"
       },
       "get": {
         "consumes": [
@@ -1506,6 +1540,14 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "default": false,
+            "description": "include inactive regions in the response",
+            "in": "query",
+            "name": "includeInactiveRegions",
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1558,7 +1600,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/get"
       },
       "put": {
         "consumes": [
@@ -1621,6 +1664,12 @@
               "$ref": "#/definitions/response.ErrorResponse"
             }
           },
+          "409": {
+            "description": "fleet name already exists in namespace",
+            "schema": {
+              "$ref": "#/definitions/response.ErrorResponse"
+            }
+          },
           "500": {
             "description": "internal server error",
             "schema": {
@@ -1637,7 +1686,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/update"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/artifacts-sampling-rules": {
@@ -1713,7 +1763,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/get-fleet-sampling-rules"
       },
       "put": {
         "consumes": [
@@ -1795,7 +1846,8 @@
         "tags": [
           "Artifacts"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/artifacts/v1/set-fleet-sampling-rules"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers": {
@@ -1930,7 +1982,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/fleets/v1/get-dedicated-server"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/fleets/{fleetID}/servers/history": {
@@ -2042,7 +2095,8 @@
         "tags": [
           "Servers"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dedicated-servers/v1/get-history-by-fleet-id"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images": {
@@ -2170,7 +2224,8 @@
         "tags": [
           "Images"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/images/v1/list"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images-storage": {
@@ -2233,7 +2288,8 @@
         "tags": [
           "Images"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/images/v1/get-storage"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images/{imageID}": {
@@ -2306,7 +2362,8 @@
         "tags": [
           "Images"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/images/v1/mark-for-deletion"
       },
       "get": {
         "consumes": [
@@ -2374,7 +2431,8 @@
         "tags": [
           "Images"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/images/v1/get"
       },
       "patch": {
         "consumes": [
@@ -2450,7 +2508,8 @@
         "tags": [
           "Images"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/images/v1/update"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/images/{imageID}/restore": {
@@ -2520,7 +2579,8 @@
         "tags": [
           "Images"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/images/v1/unmark-for-deletion"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/qos": {
@@ -2589,7 +2649,8 @@
         "tags": [
           "AMS QoS"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/qos/v1/list-regions"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/qos/{region}": {
@@ -2670,7 +2731,8 @@
         "tags": [
           "AMS QoS"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/qos/v1/update-region"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/regions": {
@@ -2727,7 +2789,8 @@
         "tags": [
           "AMS Info"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/info/v1/list-regions"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}": {
@@ -2797,7 +2860,8 @@
         "tags": [
           "Servers"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dedicated-servers/v1/get-info"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/connectioninfo": {
@@ -2867,7 +2931,8 @@
         "tags": [
           "Servers"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dedicated-servers/v1/get-connection-info"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/servers/{serverID}/history": {
@@ -2937,7 +3002,8 @@
         "tags": [
           "Servers"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/dedicated-servers/v1/get-history"
       }
     },
     "/ams/v1/admin/namespaces/{namespace}/supported-instances": {
@@ -2994,7 +3060,8 @@
         "tags": [
           "AMS Info"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/admin/info/v1/list-supported-instances"
       }
     },
     "/ams/v1/namespaces/{namespace}/account": {
@@ -3057,7 +3124,8 @@
         "tags": [
           "Account"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/account/v1/get"
       }
     },
     "/ams/v1/namespaces/{namespace}/fleets/{fleetID}/claim": {
@@ -3141,7 +3209,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/dedicated-servers/v1/claim-by-fleet-id"
       }
     },
     "/ams/v1/namespaces/{namespace}/local/{watchdogID}/connect": {
@@ -3181,7 +3250,8 @@
         "tags": [
           "Watchdogs"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/watchdogs/v1/connect-local"
       }
     },
     "/ams/v1/namespaces/{namespace}/servers/claim": {
@@ -3258,7 +3328,8 @@
         "tags": [
           "Fleets"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/dedicated-servers/v1/claim-by-keys"
       }
     },
     "/ams/v1/namespaces/{namespace}/watchdogs/{watchdogID}/connect": {
@@ -3298,7 +3369,8 @@
         "tags": [
           "Watchdogs"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/watchdogs/v1/connect"
       }
     },
     "/ams/v1/upload-url": {
@@ -3321,12 +3393,13 @@
         "tags": [
           "AMS Info"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/info/v1/get-upload-url"
       }
     },
     "/ams/version": {
       "get": {
-        "operationId": "func1",
+        "operationId": "VersionInfo",
         "produces": [
           "application/json"
         ],
@@ -3344,7 +3417,8 @@
         "tags": [
           "Fleet Commander"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/fleet-commander/v1/get-version"
       }
     },
     "/healthz": {
@@ -3367,7 +3441,8 @@
         "tags": [
           "Fleet Commander"
         ],
-        "x-errorCodes": {}
+        "x-errorCodes": {},
+        "x-operationid": "ams/public/internal/v1/check-basic-health"
       }
     }
   },
@@ -4830,6 +4905,9 @@
         },
         "region": {
           "type": "string"
+        },
+        "state": {
+          "type": "string"
         }
       },
       "required": [
@@ -4940,10 +5018,10 @@
     "path": "/ams/apidocs/api.json"
   },
   "x-version": {
-    "buildDate": "2026-05-11T08:58:44+00:00",
-    "gitHash": "215d21f032b47075e9159091a31e25edc9b523ca",
+    "buildDate": "2026-07-02T23:15:35+00:00",
+    "gitHash": "0c1bdfbdcd180b2f169a36f4998931878c847103",
     "name": "fleet-commander",
-    "version": "1.45.0",
+    "version": "1.46.2",
     "version-roles-seeding": "1.2.70"
   }
 }

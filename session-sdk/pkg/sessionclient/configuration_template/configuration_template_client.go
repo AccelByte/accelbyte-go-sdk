@@ -440,7 +440,7 @@ func (a *Client) AdminCreateConfigurationAlertV1Short(params *AdminCreateConfigu
 Deprecated: 2022-08-10 - Use AdminDeleteConfigurationAlertV1Short instead.
 
 AdminDeleteConfigurationAlertV1 delete configuration alert.
-Delete configuration alert.
+Deletes the configuration alert for the specified namespace. After deletion, no alerts are generated for session configuration issues.
 */
 func (a *Client) AdminDeleteConfigurationAlertV1(params *AdminDeleteConfigurationAlertV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteConfigurationAlertV1NoContent, *AdminDeleteConfigurationAlertV1BadRequest, *AdminDeleteConfigurationAlertV1Unauthorized, *AdminDeleteConfigurationAlertV1Forbidden, *AdminDeleteConfigurationAlertV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -501,7 +501,7 @@ func (a *Client) AdminDeleteConfigurationAlertV1(params *AdminDeleteConfiguratio
 
 /*
 AdminDeleteConfigurationAlertV1Short delete configuration alert.
-Delete configuration alert.
+Deletes the configuration alert for the specified namespace. After deletion, no alerts are generated for session configuration issues.
 */
 func (a *Client) AdminDeleteConfigurationAlertV1Short(params *AdminDeleteConfigurationAlertV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteConfigurationAlertV1NoContent, error) {
 	// TODO: Validate the params before sending
@@ -1522,7 +1522,7 @@ func (a *Client) AdminGetDSMCConfigurationShort(params *AdminGetDSMCConfiguratio
 Deprecated: 2022-08-10 - Use AdminSyncDSMCConfigurationShort instead.
 
 AdminSyncDSMCConfiguration sync dsmc configuration.
-sync dsmc configuration.
+**Deprecated.** Synchronizes the dedicated server manager controller configuration from DSMC. The DSMC config is cached locally for use during session creation.
 */
 func (a *Client) AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, *AdminSyncDSMCConfigurationBadRequest, *AdminSyncDSMCConfigurationUnauthorized, *AdminSyncDSMCConfigurationForbidden, *AdminSyncDSMCConfigurationNotFound, *AdminSyncDSMCConfigurationInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -1586,7 +1586,7 @@ func (a *Client) AdminSyncDSMCConfiguration(params *AdminSyncDSMCConfigurationPa
 
 /*
 AdminSyncDSMCConfigurationShort sync dsmc configuration.
-sync dsmc configuration.
+**Deprecated.** Synchronizes the dedicated server manager controller configuration from DSMC. The DSMC config is cached locally for use during session creation.
 */
 func (a *Client) AdminSyncDSMCConfigurationShort(params *AdminSyncDSMCConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSyncDSMCConfigurationOK, error) {
 	// TODO: Validate the params before sending

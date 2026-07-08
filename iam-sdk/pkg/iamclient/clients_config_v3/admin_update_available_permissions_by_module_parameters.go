@@ -24,8 +24,11 @@ import (
 // NewAdminUpdateAvailablePermissionsByModuleParams creates a new AdminUpdateAvailablePermissionsByModuleParams object
 // with the default values initialized.
 func NewAdminUpdateAvailablePermissionsByModuleParams() *AdminUpdateAvailablePermissionsByModuleParams {
-	var ()
+	var (
+		forceDeleteDefault = bool(false)
+	)
 	return &AdminUpdateAvailablePermissionsByModuleParams{
+		ForceDelete: &forceDeleteDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +37,11 @@ func NewAdminUpdateAvailablePermissionsByModuleParams() *AdminUpdateAvailablePer
 // NewAdminUpdateAvailablePermissionsByModuleParamsWithTimeout creates a new AdminUpdateAvailablePermissionsByModuleParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminUpdateAvailablePermissionsByModuleParamsWithTimeout(timeout time.Duration) *AdminUpdateAvailablePermissionsByModuleParams {
-	var ()
+	var (
+		forceDeleteDefault = bool(false)
+	)
 	return &AdminUpdateAvailablePermissionsByModuleParams{
+		ForceDelete: &forceDeleteDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +50,11 @@ func NewAdminUpdateAvailablePermissionsByModuleParamsWithTimeout(timeout time.Du
 // NewAdminUpdateAvailablePermissionsByModuleParamsWithContext creates a new AdminUpdateAvailablePermissionsByModuleParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminUpdateAvailablePermissionsByModuleParamsWithContext(ctx context.Context) *AdminUpdateAvailablePermissionsByModuleParams {
-	var ()
+	var (
+		forceDeleteDefault = bool(false)
+	)
 	return &AdminUpdateAvailablePermissionsByModuleParams{
+		ForceDelete: &forceDeleteDefault,
 
 		Context: ctx,
 	}
@@ -54,9 +63,12 @@ func NewAdminUpdateAvailablePermissionsByModuleParamsWithContext(ctx context.Con
 // NewAdminUpdateAvailablePermissionsByModuleParamsWithHTTPClient creates a new AdminUpdateAvailablePermissionsByModuleParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminUpdateAvailablePermissionsByModuleParamsWithHTTPClient(client *http.Client) *AdminUpdateAvailablePermissionsByModuleParams {
-	var ()
+	var (
+		forceDeleteDefault = bool(false)
+	)
 	return &AdminUpdateAvailablePermissionsByModuleParams{
-		HTTPClient: client,
+		ForceDelete: &forceDeleteDefault,
+		HTTPClient:  client,
 	}
 }
 
@@ -70,7 +82,7 @@ type AdminUpdateAvailablePermissionsByModuleParams struct {
 	/*Body*/
 	Body *iamclientmodels.ClientmodelListUpsertModulesRequest
 	/*ForceDelete
-	  If this update includes a delete action and the targeted group or module is selected by any client, the operation will fail by default. Set this flag to true to force the operation.
+	  If the update would remove a group that is currently selected by any client, the request will fail by default. Set to 'true' to first unselect that group from affected clients and then proceed.
 
 	*/
 	ForceDelete *bool

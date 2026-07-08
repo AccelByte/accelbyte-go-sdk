@@ -56,7 +56,7 @@ type ModelCreateChallengeRequest struct {
 	// randomizedperrotation
 	RandomizedPerRotation bool `json:"randomizedPerRotation"`
 
-	// repeatafter
+	// number of days to repeat the challenge; when set, goals cannot include the 'schedule' field in the request body — use PUT /challenges/{challengeCode}/goals/{code}/slots to assign goals to slots instead
 	// Format: int32
 	RepeatAfter int32 `json:"repeatAfter,omitempty"`
 

@@ -26,16 +26,16 @@ var QueryFulfillmentHistoriesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
 		status, _ := cmd.Flags().GetString("status")
-		userId, _ := cmd.Flags().GetString("userId")
 		input := &fulfillment.QueryFulfillmentHistoriesParams{
 			Namespace: namespace,
 			Limit:     &limit,
 			Offset:    &offset,
 			Status:    &status,
-			UserID:    &userId,
+			UserID:    userId,
 		}
 		ok, errOK := fulfillmentService.QueryFulfillmentHistoriesShort(input)
 		if errOK != nil {
@@ -57,4 +57,5 @@ func init() {
 	QueryFulfillmentHistoriesCmd.Flags().Int32("offset", 0, "Offset")
 	QueryFulfillmentHistoriesCmd.Flags().String("status", "", "Status")
 	QueryFulfillmentHistoriesCmd.Flags().String("userId", "", "User id")
+	_ = QueryFulfillmentHistoriesCmd.MarkFlagRequired("userId")
 }

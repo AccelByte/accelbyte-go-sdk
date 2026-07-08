@@ -27,7 +27,7 @@ type BulkStatOperationResult struct {
 	StatCode string `json:"statCode,omitempty"`
 
 	// success
-	Success bool `json:"success"`
+	Success bool `json:"success,omitempty"`
 
 	// userid
 	UserID string `json:"userId,omitempty"`

@@ -87,6 +87,9 @@ type ModelChallengeResponse struct {
 	// tags
 	Tags []string `json:"tags,omitempty"`
 
+	// templateslots
+	TemplateSlots []*ModelChallengeSlotResponse `json:"templateSlots,omitempty"`
+
 	// updatedat
 	// Required: true
 	UpdatedAt *string `json:"updatedAt"`

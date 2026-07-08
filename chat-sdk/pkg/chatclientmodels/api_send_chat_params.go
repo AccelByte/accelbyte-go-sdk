@@ -21,6 +21,10 @@ type APISendChatParams struct {
 	// message
 	// Required: true
 	Message *string `json:"message"`
+
+	// metadata
+	// Required: true
+	Metadata *string `json:"metadata"`
 }
 
 // Validate validates this Api send chat params
@@ -28,6 +32,9 @@ func (m *APISendChatParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMessage(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -40,6 +47,15 @@ func (m *APISendChatParams) Validate(formats strfmt.Registry) error {
 func (m *APISendChatParams) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APISendChatParams) validateMetadata(formats strfmt.Registry) error {
+
+	if err := validate.Required("metadata", "body", m.Metadata); err != nil {
 		return err
 	}
 

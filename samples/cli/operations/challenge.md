@@ -125,6 +125,16 @@ $ samples/cli/sample-apps Challenge adminListSchedulesByGoal \
     > result.txt
 ```
 
+### Operation `admin_move_goal_to_slot`
+```sh
+$ samples/cli/sample-apps Challenge adminMoveGoalToSlot \
+    --challengeCode 'string' \
+    --code 'string' \
+    --namespace 'string' \
+    --body '{"slotIndex": 1}' \
+    > result.txt
+```
+
 ### Operation `admin_get_periods`
 ```sh
 $ samples/cli/sample-apps Challenge adminGetPeriods \
@@ -152,6 +162,14 @@ $ samples/cli/sample-apps Challenge adminListSchedules \
     --limit 1 \
     --offset 1 \
     --userId 'string' \
+    > result.txt
+```
+
+### Operation `admin_get_challenge_slots`
+```sh
+$ samples/cli/sample-apps Challenge adminGetChallengeSlots \
+    --challengeCode 'string' \
+    --namespace 'string' \
     > result.txt
 ```
 
@@ -268,9 +286,9 @@ $ samples/cli/sample-apps Challenge adminClaimUserRewards \
     > result.txt
 ```
 
-### Operation `get_challenges`
+### Operation `public_get_challenges`
 ```sh
-$ samples/cli/sample-apps Challenge getChallenges \
+$ samples/cli/sample-apps Challenge publicGetChallenges \
     --namespace 'string' \
     --keyword 'string' \
     --limit 1 \
@@ -324,9 +342,9 @@ $ samples/cli/sample-apps Challenge publicClaimUserRewardsByGoalCode \
     > result.txt
 ```
 
-### Operation `evaluate_my_progress`
+### Operation `public_evaluate_my_progress`
 ```sh
-$ samples/cli/sample-apps Challenge evaluateMyProgress \
+$ samples/cli/sample-apps Challenge publicEvaluateMyProgress \
     --namespace 'string' \
     --challengeCode '["string"]' \
     --includeOneTimeEvent 'string' \

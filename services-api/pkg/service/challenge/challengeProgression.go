@@ -99,13 +99,13 @@ func (aaa *ChallengeProgressionService) AdminGetUserProgression(input *challenge
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: 2022-01-10 - please use EvaluateMyProgressShort instead.
-func (aaa *ChallengeProgressionService) EvaluateMyProgress(input *challenge_progression.EvaluateMyProgressParams) error {
+// Deprecated: 2022-01-10 - please use PublicEvaluateMyProgressShort instead.
+func (aaa *ChallengeProgressionService) PublicEvaluateMyProgress(input *challenge_progression.PublicEvaluateMyProgressParams) error {
 	token, err := aaa.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, internalServerError, err := aaa.Client.ChallengeProgression.EvaluateMyProgress(input, client.BearerToken(*token.AccessToken))
+	_, unauthorized, forbidden, internalServerError, err := aaa.Client.ChallengeProgression.PublicEvaluateMyProgress(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -247,7 +247,7 @@ func (aaa *ChallengeProgressionService) AdminGetUserProgressionShort(input *chal
 	return ok.GetPayload(), nil
 }
 
-func (aaa *ChallengeProgressionService) EvaluateMyProgressShort(input *challenge_progression.EvaluateMyProgressParams) error {
+func (aaa *ChallengeProgressionService) PublicEvaluateMyProgressShort(input *challenge_progression.PublicEvaluateMyProgressParams) error {
 	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -269,7 +269,7 @@ func (aaa *ChallengeProgressionService) EvaluateMyProgressShort(input *challenge
 		utils.GetDefaultFlightID().SetFlightID(aaa.FlightIdRepository.Value)
 	}
 
-	_, err := aaa.Client.ChallengeProgression.EvaluateMyProgressShort(input, authInfoWriter)
+	_, err := aaa.Client.ChallengeProgression.PublicEvaluateMyProgressShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

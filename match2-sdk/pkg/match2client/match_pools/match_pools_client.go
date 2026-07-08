@@ -326,7 +326,8 @@ func (a *Client) CreateMatchPoolShort(params *CreateMatchPoolParams, authInfo ru
 Deprecated: 2022-08-10 - Use MatchPoolDetailsShort instead.
 
 MatchPoolDetails get details for a specific match pool
-Get details for a specific match pool
+Get details for a specific match pool, including its configuration such as match function,
+ticket expiration, ruleset, and backfill settings.
 */
 func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, *MatchPoolDetailsUnauthorized, *MatchPoolDetailsForbidden, *MatchPoolDetailsNotFound, *MatchPoolDetailsInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -387,7 +388,8 @@ func (a *Client) MatchPoolDetails(params *MatchPoolDetailsParams, authInfo runti
 
 /*
 MatchPoolDetailsShort get details for a specific match pool
-Get details for a specific match pool
+Get details for a specific match pool, including its configuration such as match function,
+ticket expiration, ruleset, and backfill settings.
 */
 func (a *Client) MatchPoolDetailsShort(params *MatchPoolDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*MatchPoolDetailsOK, error) {
 	// TODO: Validate the params before sending
@@ -829,7 +831,10 @@ func (a *Client) MatchPoolMetricShort(params *MatchPoolMetricParams, authInfo ru
 Deprecated: 2022-08-10 - Use PostMatchErrorMetricShort instead.
 
 PostMatchErrorMetric post metrics for external flow failure in a specific match pool
-Post metrics for external flow failure in a specific match pool
+Post metrics for external flow failure in a specific match pool.
+
+Records an external match error metric for the given match pool. Used to track failures
+from custom (gRPC) match functions during the matchmaking process.
 */
 func (a *Client) PostMatchErrorMetric(params *PostMatchErrorMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PostMatchErrorMetricNoContent, *PostMatchErrorMetricBadRequest, *PostMatchErrorMetricUnauthorized, *PostMatchErrorMetricForbidden, *PostMatchErrorMetricNotFound, *PostMatchErrorMetricInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -893,7 +898,10 @@ func (a *Client) PostMatchErrorMetric(params *PostMatchErrorMetricParams, authIn
 
 /*
 PostMatchErrorMetricShort post metrics for external flow failure in a specific match pool
-Post metrics for external flow failure in a specific match pool
+Post metrics for external flow failure in a specific match pool.
+
+Records an external match error metric for the given match pool. Used to track failures
+from custom (gRPC) match functions during the matchmaking process.
 */
 func (a *Client) PostMatchErrorMetricShort(params *PostMatchErrorMetricParams, authInfo runtime.ClientAuthInfoWriter) (*PostMatchErrorMetricNoContent, error) {
 	// TODO: Validate the params before sending

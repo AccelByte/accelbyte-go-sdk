@@ -1724,6 +1724,37 @@ $ samples/cli/sample-apps Iam publicProcessWebLinkPlatformV3 \
     > result.txt
 ```
 
+### Operation `public_web_reauth_platform`
+```sh
+$ samples/cli/sample-apps Iam publicWebReauthPlatform \
+    --namespace 'string' \
+    --platformId 'string' \
+    --clientId 'string' \
+    --redirectUri 'string' \
+    --operation 'GDPR' \
+    > result.txt
+```
+
+### Operation `public_web_reauth_platform_establish`
+```sh
+$ samples/cli/sample-apps Iam publicWebReauthPlatformEstablish \
+    --namespace 'string' \
+    --platformId 'string' \
+    --code 'string' \
+    --state 'string' \
+    > result.txt
+```
+
+### Operation `public_web_reauth_platform_process`
+```sh
+$ samples/cli/sample-apps Iam publicWebReauthPlatformProcess \
+    --namespace 'string' \
+    --platformId 'string' \
+    --code 'string' \
+    --state 'string' \
+    > result.txt
+```
+
 ### Operation `public_get_users_platform_infos_v3`
 ```sh
 $ samples/cli/sample-apps Iam publicGetUsersPlatformInfosV3 \

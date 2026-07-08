@@ -46,8 +46,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateDeploymentV1Short instead.
 
 CreateDeploymentV1 creates deployment
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [CREATE]`
-
 Creates Deployment for extend service
 
 This endpoint intended to apply the helm release or deploying the custom service image.
@@ -123,8 +121,6 @@ func (a *Client) CreateDeploymentV1(params *CreateDeploymentV1Params, authInfo r
 
 /*
 CreateDeploymentV1Short creates deployment
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [CREATE]`
-
 Creates Deployment for extend service
 
 This endpoint intended to apply the helm release or deploying the custom service image.
@@ -193,8 +189,6 @@ func (a *Client) CreateDeploymentV1Short(params *CreateDeploymentV1Params, authI
 Deprecated: 2022-08-10 - Use GetListOfDeploymentV1Short instead.
 
 GetListOfDeploymentV1 fetches the list of deployments
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [READ]`
-
 Filters the List of Deployments
 
 This endpoint intended to get list of Deployment done for the given publisher and game.
@@ -260,8 +254,6 @@ func (a *Client) GetListOfDeploymentV1(params *GetListOfDeploymentV1Params, auth
 
 /*
 GetListOfDeploymentV1Short fetches the list of deployments
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [READ]`
-
 Filters the List of Deployments
 
 This endpoint intended to get list of Deployment done for the given publisher and game.
@@ -321,8 +313,6 @@ func (a *Client) GetListOfDeploymentV1Short(params *GetListOfDeploymentV1Params,
 Deprecated: 2022-08-10 - Use GetDeploymentV1Short instead.
 
 GetDeploymentV1 get deployment by deployment id
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [READ]`
-
 Get Deployment information by given DeploymentID
 
 This endpoint intended to get Deployment information by given Deployment ID from Deployment Table.
@@ -388,8 +378,6 @@ func (a *Client) GetDeploymentV1(params *GetDeploymentV1Params, authInfo runtime
 
 /*
 GetDeploymentV1Short get deployment by deployment id
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [READ]`
-
 Get Deployment information by given DeploymentID
 
 This endpoint intended to get Deployment information by given Deployment ID from Deployment Table.
@@ -449,8 +437,6 @@ func (a *Client) GetDeploymentV1Short(params *GetDeploymentV1Params, authInfo ru
 Deprecated: 2022-08-10 - Use DeleteDeploymentV1Short instead.
 
 DeleteDeploymentV1 delete deployment by deployment id
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [DELETE]`
-
 Delete Deployment information by given DeploymentID
 
 This endpoint intended to delete helm release object and update the deleted_at in DB by given Deployment ID.
@@ -516,8 +502,6 @@ func (a *Client) DeleteDeploymentV1(params *DeleteDeploymentV1Params, authInfo r
 
 /*
 DeleteDeploymentV1Short delete deployment by deployment id
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:DEPLOYMENT [DELETE]`
-
 Delete Deployment information by given DeploymentID
 
 This endpoint intended to delete helm release object and update the deleted_at in DB by given Deployment ID.

@@ -64,6 +64,10 @@ type ApimodelAppItem struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// enabledebugmode
+	// Required: true
+	EnableDebugMode *bool `json:"enableDebugMode"`
+
 	// gamename
 	// Required: true
 	GameName *string `json:"gameName"`
@@ -77,9 +81,6 @@ type ApimodelAppItem struct {
 
 	// message
 	Message string `json:"message,omitempty"`
-
-	// redeploymentinfo
-	RedeploymentInfo *ModelAppRedeploymentInfo `json:"redeploymentInfo,omitempty"`
 
 	// replica
 	Replica *ApimodelReplicaResponse `json:"replica,omitempty"`
@@ -117,6 +118,9 @@ func (m *ApimodelAppItem) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateEnableDebugMode(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateGameName(formats); err != nil {
@@ -171,6 +175,15 @@ func (m *ApimodelAppItem) validateAppStatus(formats strfmt.Registry) error {
 func (m *ApimodelAppItem) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ApimodelAppItem) validateEnableDebugMode(formats strfmt.Registry) error {
+
+	if err := validate.Required("enableDebugMode", "body", m.EnableDebugMode); err != nil {
 		return err
 	}
 

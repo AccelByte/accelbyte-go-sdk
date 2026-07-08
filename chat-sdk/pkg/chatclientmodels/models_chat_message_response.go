@@ -30,6 +30,10 @@ type ModelsChatMessageResponse struct {
 	// Required: true
 	Message *string `json:"message"`
 
+	// metadata
+	// Required: true
+	Metadata *string `json:"metadata"`
+
 	// readat
 	// Format: int64
 	ReadAt int64 `json:"readAt,omitempty"`
@@ -54,6 +58,9 @@ func (m *ModelsChatMessageResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 	if err := m.validateMessage(formats); err != nil {
+		res = append(res, err)
+	}
+	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 	if err := m.validateTopicID(formats); err != nil {
@@ -87,6 +94,15 @@ func (m *ModelsChatMessageResponse) validateID(formats strfmt.Registry) error {
 func (m *ModelsChatMessageResponse) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsChatMessageResponse) validateMetadata(formats strfmt.Registry) error {
+
+	if err := validate.Required("metadata", "body", m.Metadata); err != nil {
 		return err
 	}
 

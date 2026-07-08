@@ -35,7 +35,7 @@ type ModelsDeletionData struct {
 	// Required: true
 	UniqueDisplayName *string `json:"UniqueDisplayName"`
 
-	// userid
+	// Publisher User Id
 	// Required: true
 	UserID *string `json:"UserID"`
 }

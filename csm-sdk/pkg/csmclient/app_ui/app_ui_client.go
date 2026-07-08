@@ -46,8 +46,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use ListAppUIShort instead.
 
 ListAppUI list all app ui instances in the namespace
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [READ]`
-
 Retrieves a paginated list of App UI instances. Supports filtering by name and pagination using limit/offset.
 */
 func (a *Client) ListAppUI(params *ListAppUIParams, authInfo runtime.ClientAuthInfoWriter) (*ListAppUIOK, *ListAppUIBadRequest, *ListAppUIInternalServerError, error) {
@@ -103,8 +101,6 @@ func (a *Client) ListAppUI(params *ListAppUIParams, authInfo runtime.ClientAuthI
 
 /*
 ListAppUIShort list all app ui instances in the namespace
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [READ]`
-
 Retrieves a paginated list of App UI instances. Supports filtering by name and pagination using limit/offset.
 */
 func (a *Client) ListAppUIShort(params *ListAppUIParams, authInfo runtime.ClientAuthInfoWriter) (*ListAppUIOK, error) {
@@ -156,8 +152,6 @@ func (a *Client) ListAppUIShort(params *ListAppUIParams, authInfo runtime.Client
 Deprecated: 2022-08-10 - Use CreateAppUIShort instead.
 
 CreateAppUI create a new app ui instance
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [CREATE]`
-
 Creates a new App UI configuration. The App UI can be hosted either by AccelByte (default) or externally.
 */
 func (a *Client) CreateAppUI(params *CreateAppUIParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAppUICreated, *CreateAppUIBadRequest, *CreateAppUIConflict, *CreateAppUIInternalServerError, error) {
@@ -216,8 +210,6 @@ func (a *Client) CreateAppUI(params *CreateAppUIParams, authInfo runtime.ClientA
 
 /*
 CreateAppUIShort create a new app ui instance
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [CREATE]`
-
 Creates a new App UI configuration. The App UI can be hosted either by AccelByte (default) or externally.
 */
 func (a *Client) CreateAppUIShort(params *CreateAppUIParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAppUICreated, error) {
@@ -271,8 +263,6 @@ func (a *Client) CreateAppUIShort(params *CreateAppUIParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use DeleteAppUIShort instead.
 
 DeleteAppUI delete an app ui instance
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [DELETE]`
-
 Permanently deletes an App UI instance and schedules cleanup of associated S3 assets.
 */
 func (a *Client) DeleteAppUI(params *DeleteAppUIParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppUINoContent, *DeleteAppUINotFound, *DeleteAppUIInternalServerError, error) {
@@ -328,8 +318,6 @@ func (a *Client) DeleteAppUI(params *DeleteAppUIParams, authInfo runtime.ClientA
 
 /*
 DeleteAppUIShort delete an app ui instance
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [DELETE]`
-
 Permanently deletes an App UI instance and schedules cleanup of associated S3 assets.
 */
 func (a *Client) DeleteAppUIShort(params *DeleteAppUIParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAppUINoContent, error) {
@@ -381,8 +369,6 @@ func (a *Client) DeleteAppUIShort(params *DeleteAppUIParams, authInfo runtime.Cl
 Deprecated: 2022-08-10 - Use UploadAppUIFileShort instead.
 
 UploadAppUIFile upload app ui assets as a zip file
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [UPDATE]`
-
 Uploads a ZIP archive containing App UI static assets (HTML, CSS, JS, etc.). Files are stored in S3 and served with immutable caching.
 */
 func (a *Client) UploadAppUIFile(params *UploadAppUIFileParams, authInfo runtime.ClientAuthInfoWriter) (*UploadAppUIFileOK, *UploadAppUIFileBadRequest, *UploadAppUIFileNotFound, *UploadAppUIFileInternalServerError, *UploadAppUIFileBadGateway, error) {
@@ -444,8 +430,6 @@ func (a *Client) UploadAppUIFile(params *UploadAppUIFileParams, authInfo runtime
 
 /*
 UploadAppUIFileShort upload app ui assets as a zip file
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:APPUI [UPDATE]`
-
 Uploads a ZIP archive containing App UI static assets (HTML, CSS, JS, etc.). Files are stored in S3 and served with immutable caching.
 */
 func (a *Client) UploadAppUIFileShort(params *UploadAppUIFileParams, authInfo runtime.ClientAuthInfoWriter) (*UploadAppUIFileOK, error) {

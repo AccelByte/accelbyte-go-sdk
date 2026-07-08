@@ -21,7 +21,7 @@ import (
 type StatInfo struct {
 
 	// capcycleoverride
-	CapCycleOverride bool `json:"capCycleOverride"`
+	CapCycleOverride bool `json:"capCycleOverride,omitempty"`
 
 	// createdat
 	// Required: true

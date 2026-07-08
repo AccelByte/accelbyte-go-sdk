@@ -34,8 +34,8 @@ type ClientService interface {
 	AuthorizationShort(params *AuthorizationParams, authInfo runtime.ClientAuthInfoWriter) (*AuthorizationFound, error)
 	GetJWKS(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error)
 	GetJWKSShort(params *GetJWKSParams, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSOK, error)
-	PlatformTokenRequestHandler(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, *PlatformTokenRequestHandlerBadRequest, *PlatformTokenRequestHandlerUnauthorized, error)
-	PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, error)
+	NamespaceScopedPlatformTokenGrant(params *NamespaceScopedPlatformTokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*NamespaceScopedPlatformTokenGrantOK, *NamespaceScopedPlatformTokenGrantBadRequest, *NamespaceScopedPlatformTokenGrantUnauthorized, error)
+	NamespaceScopedPlatformTokenGrantShort(params *NamespaceScopedPlatformTokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*NamespaceScopedPlatformTokenGrantOK, error)
 	RevokeUser(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, *RevokeUserUnauthorized, error)
 	RevokeUserShort(params *RevokeUserParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeUserOK, error)
 	GetRevocationList(params *GetRevocationListParams, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListOK, *GetRevocationListUnauthorized, error)
@@ -315,9 +315,9 @@ func (a *Client) GetJWKSShort(params *GetJWKSParams, authInfo runtime.ClientAuth
 }
 
 /*
-Deprecated: 2022-08-10 - Use PlatformTokenRequestHandlerShort instead.
+Deprecated: 2022-08-10 - Use NamespaceScopedPlatformTokenGrantShort instead.
 
-PlatformTokenRequestHandler oauth2 access token generation specific to platform
+NamespaceScopedPlatformTokenGrant oauth2 access token generation specific to platform
 **This endpoint is deprecated.**
 Requires all requests to have Authorization header set with Basic access authentication
 constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
@@ -331,10 +331,10 @@ The JWT contains user's active bans with its expiry date. List of ban types can 
 ### Endpoint migration guide
 - **Substitute endpoint: _/iam/v3/oauth/platforms/{platformId}/token [POST]_**
 */
-func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, *PlatformTokenRequestHandlerBadRequest, *PlatformTokenRequestHandlerUnauthorized, error) {
+func (a *Client) NamespaceScopedPlatformTokenGrant(params *NamespaceScopedPlatformTokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*NamespaceScopedPlatformTokenGrantOK, *NamespaceScopedPlatformTokenGrantBadRequest, *NamespaceScopedPlatformTokenGrantUnauthorized, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPlatformTokenRequestHandlerParams()
+		params = NewNamespaceScopedPlatformTokenGrantParams()
 	}
 
 	if params.Context == nil {
@@ -350,14 +350,14 @@ func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandler
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PlatformTokenRequestHandler",
+		ID:                 "NamespaceScopedPlatformTokenGrant",
 		Method:             "POST",
 		PathPattern:        "/iam/oauth/namespaces/{namespace}/platforms/{platformId}/token",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PlatformTokenRequestHandlerReader{formats: a.formats},
+		Reader:             &NamespaceScopedPlatformTokenGrantReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -368,13 +368,13 @@ func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandler
 
 	switch v := result.(type) {
 
-	case *PlatformTokenRequestHandlerOK:
+	case *NamespaceScopedPlatformTokenGrantOK:
 		return v, nil, nil, nil
 
-	case *PlatformTokenRequestHandlerBadRequest:
+	case *NamespaceScopedPlatformTokenGrantBadRequest:
 		return nil, v, nil, nil
 
-	case *PlatformTokenRequestHandlerUnauthorized:
+	case *NamespaceScopedPlatformTokenGrantUnauthorized:
 		return nil, nil, v, nil
 
 	default:
@@ -383,7 +383,7 @@ func (a *Client) PlatformTokenRequestHandler(params *PlatformTokenRequestHandler
 }
 
 /*
-PlatformTokenRequestHandlerShort oauth2 access token generation specific to platform
+NamespaceScopedPlatformTokenGrantShort oauth2 access token generation specific to platform
 **This endpoint is deprecated.**
 Requires all requests to have Authorization header set with Basic access authentication
 constructed from client id and client secret. For publisher-game namespace schema : Specify only either platform_token or device_id. Device token grant
@@ -397,10 +397,10 @@ The JWT contains user's active bans with its expiry date. List of ban types can 
 ### Endpoint migration guide
 - **Substitute endpoint: _/iam/v3/oauth/platforms/{platformId}/token [POST]_**
 */
-func (a *Client) PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*PlatformTokenRequestHandlerOK, error) {
+func (a *Client) NamespaceScopedPlatformTokenGrantShort(params *NamespaceScopedPlatformTokenGrantParams, authInfo runtime.ClientAuthInfoWriter) (*NamespaceScopedPlatformTokenGrantOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPlatformTokenRequestHandlerParams()
+		params = NewNamespaceScopedPlatformTokenGrantParams()
 	}
 
 	if params.Context == nil {
@@ -412,14 +412,14 @@ func (a *Client) PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHa
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PlatformTokenRequestHandler",
+		ID:                 "NamespaceScopedPlatformTokenGrant",
 		Method:             "POST",
 		PathPattern:        "/iam/oauth/namespaces/{namespace}/platforms/{platformId}/token",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PlatformTokenRequestHandlerReader{formats: a.formats},
+		Reader:             &NamespaceScopedPlatformTokenGrantReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -430,11 +430,11 @@ func (a *Client) PlatformTokenRequestHandlerShort(params *PlatformTokenRequestHa
 
 	switch v := result.(type) {
 
-	case *PlatformTokenRequestHandlerOK:
+	case *NamespaceScopedPlatformTokenGrantOK:
 		return v, nil
-	case *PlatformTokenRequestHandlerBadRequest:
+	case *NamespaceScopedPlatformTokenGrantBadRequest:
 		return nil, v
-	case *PlatformTokenRequestHandlerUnauthorized:
+	case *NamespaceScopedPlatformTokenGrantUnauthorized:
 		return nil, v
 
 	default:

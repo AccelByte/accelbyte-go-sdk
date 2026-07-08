@@ -60,8 +60,6 @@ type ClientService interface {
 Deprecated: 2022-08-10 - Use CreateKeyValueCredentialV2Short instead.
 
 CreateKeyValueCredentialV2 generate a new credential for an extend app integrated with a keyvalue cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CREDENTIALS [CREATE]`
-
 Generates a new credential for an extend app that is already integrated with a KeyValue cluster.
 Replaces the old credential. Integration status will transition to MODIFYING, then READY when complete.
 If the same username and password are provided, returns the existing credential (idempotent).
@@ -136,8 +134,6 @@ func (a *Client) CreateKeyValueCredentialV2(params *CreateKeyValueCredentialV2Pa
 
 /*
 CreateKeyValueCredentialV2Short generate a new credential for an extend app integrated with a keyvalue cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CREDENTIALS [CREATE]`
-
 Generates a new credential for an extend app that is already integrated with a KeyValue cluster.
 Replaces the old credential. Integration status will transition to MODIFYING, then READY when complete.
 If the same username and password are provided, returns the existing credential (idempotent).
@@ -203,8 +199,6 @@ func (a *Client) CreateKeyValueCredentialV2Short(params *CreateKeyValueCredentia
 Deprecated: 2022-08-10 - Use GetIntegrationAppKeyValueClusterV2Short instead.
 
 GetIntegrationAppKeyValueClusterV2 get an extend app integration
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:INTEGRATE [READ]`
-
 Get integration of an extend app with a cluster.
 */
 func (a *Client) GetIntegrationAppKeyValueClusterV2(params *GetIntegrationAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetIntegrationAppKeyValueClusterV2OK, *GetIntegrationAppKeyValueClusterV2BadRequest, *GetIntegrationAppKeyValueClusterV2Unauthorized, *GetIntegrationAppKeyValueClusterV2Forbidden, *GetIntegrationAppKeyValueClusterV2NotFound, *GetIntegrationAppKeyValueClusterV2InternalServerError, error) {
@@ -269,8 +263,6 @@ func (a *Client) GetIntegrationAppKeyValueClusterV2(params *GetIntegrationAppKey
 
 /*
 GetIntegrationAppKeyValueClusterV2Short get an extend app integration
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:INTEGRATE [READ]`
-
 Get integration of an extend app with a cluster.
 */
 func (a *Client) GetIntegrationAppKeyValueClusterV2Short(params *GetIntegrationAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetIntegrationAppKeyValueClusterV2OK, error) {
@@ -328,8 +320,6 @@ func (a *Client) GetIntegrationAppKeyValueClusterV2Short(params *GetIntegrationA
 Deprecated: 2022-08-10 - Use IntegrateAppKeyValueClusterV2Short instead.
 
 IntegrateAppKeyValueClusterV2 integrate extend app with keyvalue cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:INTEGRATE [CREATE]`
-
 Integrate an Extend App with an existing KeyValue cluster. Injects REDIS_HOST, REDIS_PORT, REDIS_USERNAME, REDIS_PASSWORD to the app config.
 */
 func (a *Client) IntegrateAppKeyValueClusterV2(params *IntegrateAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*IntegrateAppKeyValueClusterV2OK, *IntegrateAppKeyValueClusterV2BadRequest, *IntegrateAppKeyValueClusterV2Unauthorized, *IntegrateAppKeyValueClusterV2Forbidden, *IntegrateAppKeyValueClusterV2NotFound, *IntegrateAppKeyValueClusterV2Conflict, *IntegrateAppKeyValueClusterV2InternalServerError, error) {
@@ -397,8 +387,6 @@ func (a *Client) IntegrateAppKeyValueClusterV2(params *IntegrateAppKeyValueClust
 
 /*
 IntegrateAppKeyValueClusterV2Short integrate extend app with keyvalue cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:INTEGRATE [CREATE]`
-
 Integrate an Extend App with an existing KeyValue cluster. Injects REDIS_HOST, REDIS_PORT, REDIS_USERNAME, REDIS_PASSWORD to the app config.
 */
 func (a *Client) IntegrateAppKeyValueClusterV2Short(params *IntegrateAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*IntegrateAppKeyValueClusterV2OK, error) {
@@ -458,8 +446,6 @@ func (a *Client) IntegrateAppKeyValueClusterV2Short(params *IntegrateAppKeyValue
 Deprecated: 2022-08-10 - Use RemoveIntegrationAppKeyValueClusterV2Short instead.
 
 RemoveIntegrationAppKeyValueClusterV2 remove integration of an extend app from a cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:INTEGRATE [DELETE]`
-
 Remove integration of an extend app with a cluster. Removes key-value env/secret from app, deletes credential and AWS user.
 */
 func (a *Client) RemoveIntegrationAppKeyValueClusterV2(params *RemoveIntegrationAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*RemoveIntegrationAppKeyValueClusterV2NoContent, *RemoveIntegrationAppKeyValueClusterV2BadRequest, *RemoveIntegrationAppKeyValueClusterV2Unauthorized, *RemoveIntegrationAppKeyValueClusterV2Forbidden, *RemoveIntegrationAppKeyValueClusterV2NotFound, *RemoveIntegrationAppKeyValueClusterV2InternalServerError, error) {
@@ -524,8 +510,6 @@ func (a *Client) RemoveIntegrationAppKeyValueClusterV2(params *RemoveIntegration
 
 /*
 RemoveIntegrationAppKeyValueClusterV2Short remove integration of an extend app from a cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:INTEGRATE [DELETE]`
-
 Remove integration of an extend app with a cluster. Removes key-value env/secret from app, deletes credential and AWS user.
 */
 func (a *Client) RemoveIntegrationAppKeyValueClusterV2Short(params *RemoveIntegrationAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*RemoveIntegrationAppKeyValueClusterV2NoContent, error) {
@@ -583,8 +567,6 @@ func (a *Client) RemoveIntegrationAppKeyValueClusterV2Short(params *RemoveIntegr
 Deprecated: 2022-08-10 - Use GetKeyValueClusterV2Short instead.
 
 GetKeyValueClusterV2 get key-value cluster information
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 Get Key-Value cluster information returns the Key-Value cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the Key-Value cluster status.
@@ -651,8 +633,6 @@ func (a *Client) GetKeyValueClusterV2(params *GetKeyValueClusterV2Params, authIn
 
 /*
 GetKeyValueClusterV2Short get key-value cluster information
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 Get Key-Value cluster information returns the Key-Value cluster related information by given studio/publisher namespace.
 
 `status` field - indicates the Key-Value cluster status.
@@ -712,8 +692,6 @@ func (a *Client) GetKeyValueClusterV2Short(params *GetKeyValueClusterV2Params, a
 Deprecated: 2022-08-10 - Use ListKeyValueClusterV2Short instead.
 
 ListKeyValueClusterV2 list key-value clusters
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 List Key-Value clusters by studio/publisher namespace.
 If `refresh=true`, the service will sync cluster status from the provider (cached).
 */
@@ -776,8 +754,6 @@ func (a *Client) ListKeyValueClusterV2(params *ListKeyValueClusterV2Params, auth
 
 /*
 ListKeyValueClusterV2Short list key-value clusters
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 List Key-Value clusters by studio/publisher namespace.
 If `refresh=true`, the service will sync cluster status from the provider (cached).
 */
@@ -834,8 +810,6 @@ func (a *Client) ListKeyValueClusterV2Short(params *ListKeyValueClusterV2Params,
 Deprecated: 2022-08-10 - Use CreateKeyValueClusterV2Short instead.
 
 CreateKeyValueClusterV2 creates key-value cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [CREATE]`
-
 Provision Key-Value cluster using AWS Valkey Serverless that can be used by extend apps in game namespace within the studio.
 
 Cluster limits:
@@ -906,8 +880,6 @@ func (a *Client) CreateKeyValueClusterV2(params *CreateKeyValueClusterV2Params, 
 
 /*
 CreateKeyValueClusterV2Short creates key-value cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [CREATE]`
-
 Provision Key-Value cluster using AWS Valkey Serverless that can be used by extend apps in game namespace within the studio.
 
 Cluster limits:
@@ -971,8 +943,6 @@ func (a *Client) CreateKeyValueClusterV2Short(params *CreateKeyValueClusterV2Par
 Deprecated: 2022-08-10 - Use GetKeyValueClusterLimitConfigV2Short instead.
 
 GetKeyValueClusterLimitConfigV2 get key-value cluster limit config
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 Get Key-Value cluster limit config.
 */
 func (a *Client) GetKeyValueClusterLimitConfigV2(params *GetKeyValueClusterLimitConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetKeyValueClusterLimitConfigV2OK, *GetKeyValueClusterLimitConfigV2BadRequest, *GetKeyValueClusterLimitConfigV2Unauthorized, *GetKeyValueClusterLimitConfigV2Forbidden, *GetKeyValueClusterLimitConfigV2InternalServerError, error) {
@@ -1034,8 +1004,6 @@ func (a *Client) GetKeyValueClusterLimitConfigV2(params *GetKeyValueClusterLimit
 
 /*
 GetKeyValueClusterLimitConfigV2Short get key-value cluster limit config
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 Get Key-Value cluster limit config.
 */
 func (a *Client) GetKeyValueClusterLimitConfigV2Short(params *GetKeyValueClusterLimitConfigV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetKeyValueClusterLimitConfigV2OK, error) {
@@ -1091,8 +1059,6 @@ func (a *Client) GetKeyValueClusterLimitConfigV2Short(params *GetKeyValueCluster
 Deprecated: 2022-08-10 - Use UpdateKeyValueClusterV2Short instead.
 
 UpdateKeyValueClusterV2 update key-value cluster configuration
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [UPDATE]`
-
 Update Key-Value cluster configuration (maxDataStorageGB, maxECPUPerSecond, profileName).
 Only allowed when cluster status is AVAILABLE. Process is asynchronous; poll Get Cluster for updated status.
 */
@@ -1158,8 +1124,6 @@ func (a *Client) UpdateKeyValueClusterV2(params *UpdateKeyValueClusterV2Params, 
 
 /*
 UpdateKeyValueClusterV2Short update key-value cluster configuration
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [UPDATE]`
-
 Update Key-Value cluster configuration (maxDataStorageGB, maxECPUPerSecond, profileName).
 Only allowed when cluster status is AVAILABLE. Process is asynchronous; poll Get Cluster for updated status.
 */
@@ -1218,8 +1182,6 @@ func (a *Client) UpdateKeyValueClusterV2Short(params *UpdateKeyValueClusterV2Par
 Deprecated: 2022-08-10 - Use DeleteKeyValueClusterV2Short instead.
 
 DeleteKeyValueClusterV2 delete key-value cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [DELETE]`
-
 Delete Key-Value cluster. Only allowed when cluster status is AVAILABLE or CREATE-FAILED.
 Force-deletes all active integrations. Returns resource with status DELETING.
 */
@@ -1285,8 +1247,6 @@ func (a *Client) DeleteKeyValueClusterV2(params *DeleteKeyValueClusterV2Params, 
 
 /*
 DeleteKeyValueClusterV2Short delete key-value cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [DELETE]`
-
 Delete Key-Value cluster. Only allowed when cluster status is AVAILABLE or CREATE-FAILED.
 Force-deletes all active integrations. Returns resource with status DELETING.
 */
@@ -1345,8 +1305,6 @@ func (a *Client) DeleteKeyValueClusterV2Short(params *DeleteKeyValueClusterV2Par
 Deprecated: 2022-08-10 - Use GetListIntegratedAppKeyValueClusterV2Short instead.
 
 GetListIntegratedAppKeyValueClusterV2 get list extend apps integrated with a key-value cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 Get the list of Extend Apps integrated with a specific Key-Value cluster. Only active integrations are returned.
 */
 func (a *Client) GetListIntegratedAppKeyValueClusterV2(params *GetListIntegratedAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListIntegratedAppKeyValueClusterV2OK, *GetListIntegratedAppKeyValueClusterV2Unauthorized, *GetListIntegratedAppKeyValueClusterV2Forbidden, *GetListIntegratedAppKeyValueClusterV2NotFound, *GetListIntegratedAppKeyValueClusterV2InternalServerError, error) {
@@ -1408,8 +1366,6 @@ func (a *Client) GetListIntegratedAppKeyValueClusterV2(params *GetListIntegrated
 
 /*
 GetListIntegratedAppKeyValueClusterV2Short get list extend apps integrated with a key-value cluster
-Required permission : `ADMIN:NAMESPACE:{namespace}:EXTEND:KEYVALUE:CLUSTERS [READ]`
-
 Get the list of Extend Apps integrated with a specific Key-Value cluster. Only active integrations are returned.
 */
 func (a *Client) GetListIntegratedAppKeyValueClusterV2Short(params *GetListIntegratedAppKeyValueClusterV2Params, authInfo runtime.ClientAuthInfoWriter) (*GetListIntegratedAppKeyValueClusterV2OK, error) {

@@ -21,6 +21,7 @@ require (
 	go.opentelemetry.io/contrib/propagators/aws v1.15.0
 	go.opentelemetry.io/contrib/propagators/b3 v0.24.0
 	go.opentelemetry.io/otel v1.18.0
+	golang.org/x/sync v0.10.0
 	tideland.dev/go/wait v0.2.0
 )
 
@@ -53,7 +54,6 @@ require (
 	go.opentelemetry.io/otel/trace v1.18.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/net v0.33.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

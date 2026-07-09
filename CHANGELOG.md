@@ -1,5 +1,8 @@
 <a name="v0.89.0"></a>
 ## [v0.89.0]
+### docs
+- **:** add migration guide from v0.88.0 to v0.89.0 for ags 2026.4
+- **:** update CHANGELOG.md
 ### fix
 - **token-validation:**  replace go-cache with a generic singleflight and stale-aware cache 
 

@@ -53,19 +53,45 @@ type TokenValidator struct {
 
 	rolePermissionCache    *cache.Cache
 	namespaceContextsCache *cache.Cache
+
+	// ctxOnce keeps Ctx from being reassigned once the refresh loops have started reading it
+	ctxOnce sync.Once
+
+	// refreshOnce guards the background refresh loops so that a caller retrying Initialize does not
+	// start a second set of them
+	refreshOnce sync.Once
 }
 
 func (v *TokenValidator) Initialize(ctx ...context.Context) error {
-	if len(ctx) > 0 {
-		v.Ctx = ctx[0]
-	} else {
-		v.Ctx = context.Background()
-	}
+	// Ctx is taken from the first call only. The refresh loops below read it for as long as the
+	// process lives, so reassigning it on a later call -- which is what a caller retrying a failed
+	// Initialize does -- would be a data race.
+	v.ctxOnce.Do(func() {
+		if len(ctx) > 0 {
+			v.Ctx = ctx[0]
+		} else {
+			v.Ctx = context.Background()
+		}
+	})
 
-	if err := v.fetchAll(); err != nil {
+	err := v.fetchAll()
+
+	// The refresh loops are started even when the initial fetch failed. Returning early instead
+	// would leave PublicKeys empty with nothing scheduled to refill it, so a single failure at
+	// startup -- a transient IAM outage, a credential that is briefly wrong -- would make this
+	// validator reject every token with "public key not found" for the lifetime of the process.
+	v.refreshOnce.Do(v.startRefreshLoops)
+
+	if err != nil {
 		return fmt.Errorf("error initializing validator: %v", err)
 	}
 
+	return nil
+}
+
+// startRefreshLoops periodically refreshes the client token, the JWK set, and the revocation list
+// for as long as the process lives. Call it through v.refreshOnce.
+func (v *TokenValidator) startRefreshLoops() {
 	go func() {
 		for {
 			time.Sleep(v.RefreshInterval)
@@ -92,8 +118,6 @@ func (v *TokenValidator) Initialize(ctx ...context.Context) error {
 			}
 		}
 	}()
-
-	return nil
 }
 
 func (v *TokenValidator) Validate(token string, permission *Permission, namespace *string, userId *string) error {
@@ -241,20 +265,26 @@ func (v *TokenValidator) convertToPublicKey(jwkKey *iamclientmodels.OauthcommonJ
 	return &rsa.PublicKey{N: n, E: e}, nil
 }
 
+// fetchAll fetches the client token, the JWK set, and the revocation list, attempting all three even
+// when one fails. Failing fast here used to hide which stages were reachable, and let a single
+// failure decide the outcome of the other two.
 func (v *TokenValidator) fetchAll() error {
-	err := v.fetchClientToken()
-	if err != nil {
-		return err
+	var failures []string
+
+	if err := v.fetchClientToken(); err != nil {
+		failures = append(failures, fmt.Sprintf("client token: %v", err))
 	}
 
-	err = v.fetchJWKSet()
-	if err != nil {
-		return err
+	if err := v.fetchJWKSet(); err != nil {
+		failures = append(failures, fmt.Sprintf("JWK set: %v", err))
 	}
 
-	err = v.fetchRevocationList()
-	if err != nil {
-		return err
+	if err := v.fetchRevocationList(); err != nil {
+		failures = append(failures, fmt.Sprintf("revocation list: %v", err))
+	}
+
+	if len(failures) > 0 {
+		return fmt.Errorf("%s", strings.Join(failures, "; "))
 	}
 
 	return nil

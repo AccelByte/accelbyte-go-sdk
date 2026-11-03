@@ -66,7 +66,7 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 				return nil
 			}
 		}
-		aggregatedErr := fmt.Errorf(strings.Join(errors, ""))
+		aggregatedErr := fmt.Errorf("%s", strings.Join(errors, ""))
 
 		return fmt.Errorf("failed to find an existing authorization. %s", aggregatedErr)
 	})

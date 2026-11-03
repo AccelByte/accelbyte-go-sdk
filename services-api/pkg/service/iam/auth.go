@@ -976,7 +976,7 @@ func (o *OAuth20Service) initTokenValidator(value bool) {
 	}
 
 	// Initiate
-	o.tokenValidation.Initialize()
+	_ = o.tokenValidation.Initialize()
 }
 
 func (o *OAuth20Service) initTokenValidatorWithContext(ctx context.Context, value bool) {
@@ -997,7 +997,7 @@ func (o *OAuth20Service) initTokenValidatorWithContext(ctx context.Context, valu
 	}
 
 	// Initiate
-	o.tokenValidation.Initialize(ctx)
+	_ = o.tokenValidation.Initialize(ctx)
 }
 
 func (o *OAuth20Service) getPublicKey(parsedToken *jwt.JSONWebToken) (*rsa.PublicKey, error) {

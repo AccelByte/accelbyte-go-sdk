@@ -175,7 +175,7 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 		fmt.Println("token verified")
 
 		if errNamespace := v.hasValidNamespace(jwtClaims, namespace); errNamespace != nil {
-			return fmt.Errorf(errNamespace.Error())
+			return errNamespace
 		}
 
 		hasValidPermission, errPermission := v.hasValidPermissions(jwtClaims, permission, namespace, userId)
@@ -200,7 +200,7 @@ func (v *TokenValidator) Validate(token string, permission *Permission, namespac
 	}
 
 	if errNamespace := v.hasValidNamespace(jwtClaims, namespace); errNamespace != nil {
-		return fmt.Errorf(errNamespace.Error())
+		return errNamespace
 	}
 
 	hasValidPermission, errPermission := v.hasValidPermissions(jwtClaims, permission, namespace, userId)

@@ -12,7 +12,7 @@ output:
       print-linter-name: true
 
 # Only the linters that were active under golangci-lint v1.42.1 (enable-all minus the disabled list)
-# and still exist in v2. Be careful when adding linters: it might surface a lot of existing issues.
+# and still exist in v2, minus style-only ones (nlreturn, whitespace, prealloc, predeclared, nolintlint) that flagged hand-written code. Be careful when adding linters: it might surface a lot of existing issues.
 linters:
   default: none
   enable:
@@ -32,10 +32,6 @@ linters:
     - makezero
     - misspell
     - nakedret
-    - nlreturn
-    - nolintlint
-    - prealloc
-    - predeclared
     - promlinter
     - rowserrcheck
     - sqlclosecheck
@@ -44,16 +40,38 @@ linters:
     - tparallel
     - unconvert
     - unused
-    - whitespace
+  exclusions:
+    # generated headers here are non-standard ("// Code generated. DO NOT EDIT."), so match loosely
+    generated: lax
+    presets:
+      - comments
+      - std-error-handling
+      - common-false-positives
+      - legacy
+    paths:
+      - .*-sdk/pkg/.*client(models)?/
+      - services-api/pkg/factory/
   settings:
     govet:
       enable:
         - shadow
+      disable:
+        # gopls modernizer analyzer, new in recent Go versions
+        - inline
     staticcheck:
       # stylecheck (ST*) was disabled before, TODO: enable for configRepository
+      # QF* quickfixes and SA1019 (deprecated usage) are not enforced yet
       checks:
         - all
         - -ST*
+        - -QF*
+        - -SA1019
+    goconst:
+      ignore-string-values:
+        - bearer
+        - basic
+        - https
+        - "true"
     goheader:
       values:
         regexp:

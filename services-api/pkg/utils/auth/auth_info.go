@@ -41,24 +41,18 @@ func AuthInfoWriter(s Session, outerValues [][]string, key string) runtime.Clien
 					if err != nil {
 						errors = append(errors, err.Error())
 						success = false
-
-						break
 					}
 				case constant.BasicAuth:
 					err := ConfigRepo(s).AuthenticateRequest(r, nil)
 					if err != nil {
 						errors = append(errors, err.Error())
 						success = false
-
-						break
 					}
 				case constant.CookieAuth:
 					err := Cookie(s, key).AuthenticateRequest(r, nil)
 					if err != nil {
 						errors = append(errors, err.Error())
 						success = false
-
-						break
 					}
 				}
 			}

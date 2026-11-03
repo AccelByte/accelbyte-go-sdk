@@ -17,11 +17,6 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 )
 
-const (
-	environment = "production"
-	id          = int64(1)
-)
-
 type CustomTransport struct {
 	inner http.RoundTripper
 }

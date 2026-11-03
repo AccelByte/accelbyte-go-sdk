@@ -40,7 +40,7 @@ make test_cli SDK_MOCK_SERVER_PATH=/path/to/justice-codegen-sdk-mock-server    #
   ```sh
   docker run --rm --tty --network host --user $(id -u):$(id -g) \
     --volume $(pwd):/data --workdir /data --env GOCACHE=/data/.cache/go-build \
-    --env AB_HTTPBIN_URL=http://localhost golang:1.24.1 \
+    --env AB_HTTPBIN_URL=http://localhost golang:1.26.0 \
     sh -c "go test -v -race -run TestName github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/sdk"
   ```
   Note the mock-server/ws-mock-server/httpbin containers still need to be up first (see the `test_core` target) if the test exercises HTTP calls.

@@ -4,7 +4,7 @@
 
 SHELL := /bin/bash
 
-GOLANG_DOCKER_IMAGE := golang:1.24.1
+GOLANG_DOCKER_IMAGE := golang:1.26.0
 
 .PHONY: samples
 
